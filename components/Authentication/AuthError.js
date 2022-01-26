@@ -9,7 +9,7 @@ function AuthError({ errorCode, customMessage }) {
       "auth/user-not-found": "There is no user with that email address.",
       "auth/wrong-password": "Wrong password.",
       "auth/email-already-in-use":
-        "There already exists an account with the given email address.",
+        "There is already an account with the given email address.",
       "auth/operation-not-allowed":
         "Email/password accounts are not enabled. Enable email/password accounts in the Firebase Console, under the Auth tab.",
       "auth/weak-password": "Password is not strong enough.",

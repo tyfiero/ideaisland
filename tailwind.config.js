@@ -29,11 +29,11 @@ module.exports = {
           800: "#032b49",
           900: "#010e18",
         },
-              t: {
-          'bd': "#2549A5",
-          'bl': "#4EAEF7",
-          'pd': "#B25CC9",
-          'pl': "#EEC3FD",
+        t: {
+          bd: "#2549A5",
+          bl: "#4EAEF7",
+          pd: "#B25CC9",
+          pl: "#EEC3FD",
         },
       },
       animation: {
@@ -57,5 +57,9 @@ module.exports = {
       },
     },
   },
-  plugins: [require("@tailwindcss/forms"), require("@tailwindcss/typography")],
+  plugins: [
+    require("@tailwindcss/forms"),
+    require("@tailwindcss/typography"),
+    require("autoprefixer"),
+  ],
 };

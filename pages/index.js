@@ -1,8 +1,9 @@
 import dynamic from "next/dynamic";
 // import { useEffect, useState } from "react";
+import TopBar from "../components/TopBar";
 
 import LandingPage from "../components/LandingPage/LandingPage";
-
+import MainPage from "../components/MainPage/MainPage";
 // This page will be rendered at the root of the website. E.g.: www.example.com/
 export default function Root() {
   // // const [loadChat, setLoadChat] = useState(false);
@@ -13,9 +14,12 @@ export default function Root() {
   //   }, 5000);
   //   return () => clearTimeout(timer);
   // }, []);
+
   return (
     <>
-      <noscript>You need to enable JavaScript to run this app.</noscript>
+      {/* <noscript>You need to enable JavaScript to run this app.</noscript> */}
+      <TopBar />
+      <MainPage />
       <LandingPage />
     </>
   );

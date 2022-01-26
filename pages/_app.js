@@ -1,6 +1,8 @@
 import "tailwindcss/tailwind.css";
 import "../styles/globals.css";
 import Head from "next/head";
+import { Provider } from "react-redux";
+import { store } from "../redux/store";
 import CookieBanner from "../components/CookieBanner/CookieBanner";
 import Analytics from "../components/Analytics/Analytics";
 
@@ -61,15 +63,16 @@ function MyApp({ Component, pageProps }) {
         />
         <meta name="msapplication-TileColor" content="#EEC3FD" />
       </Head>
-
-      <Component {...pageProps} />
-      <CookieBanner
-        privacyPolicyLink={"/privacy"}
-        showStatistic={true}
-        showMarketing={false}
-        showExternalMedia={false}
-      />
-      <Analytics />
+      <Provider store={store}>
+        <Component {...pageProps} />
+        <CookieBanner
+          privacyPolicyLink={"/privacy"}
+          showStatistic={true}
+          showMarketing={false}
+          showExternalMedia={false}
+        />
+        <Analytics />
+      </Provider>
     </>
   );
 }
