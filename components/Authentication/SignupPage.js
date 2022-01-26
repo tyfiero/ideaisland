@@ -108,16 +108,8 @@ function SignupPage() {
         <div>
           <LightningBoltIcon className="mx-auto h-20 w-auto sm:h-30 transform rotate-12 scale-y-110 stroke-blues-500 text-blues-200" />
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Create your account for a free look inside
+            Welcome to IdeaIsland!
           </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
-            Or{" "}
-            <Link href="/login">
-              <a className="font-medium text-blues-600 hover:text-blues-500">
-                sign in to your account
-              </a>
-            </Link>
-          </p>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleLogin} action="">
           {errorAuth && (
@@ -179,6 +171,14 @@ function SignupPage() {
               <span>Sign Up</span>
             )}
           </button>
+          <p className="mt-2 text-center text-md text-gray-600">
+            Or{" "}
+            <Link href="/login">
+              <a className="font-medium text-blues-600 hover:text-blues-500">
+                sign in to your account
+              </a>
+            </Link>
+          </p>
         </form>
       </div>
     </div>

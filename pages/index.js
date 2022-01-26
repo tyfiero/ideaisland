@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 
 import LandingPage from "../components/LandingPage/LandingPage";
 
@@ -15,8 +15,8 @@ export default function Root() {
   // }, []);
   return (
     <>
-      <LandingPage />
       <noscript>You need to enable JavaScript to run this app.</noscript>
+      <LandingPage />
     </>
   );
 }
