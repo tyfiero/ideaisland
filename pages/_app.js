@@ -1,4 +1,5 @@
 import "tailwindcss/tailwind.css";
+import "../styles/globals.css";
 import Head from "next/head";
 import CookieBanner from "../components/CookieBanner/CookieBanner";
 import Analytics from "../components/Analytics/Analytics";
@@ -7,11 +8,16 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <title>Ultimate React.js starter</title>
+        <title>IdeaIsland</title>
         <meta
           name="description"
-          content="Create your next React app by using this starter. Brings a full-stack React web app to life in minutes. Made using a dream tech stack: React.js, Next.js, Firebase and TailwindCSS."
+          content="Bring your next idea to life with IdeaIsland"
         />
+
+        <link rel="manifest" href="/site.webmanifest" />
+        <meta name="theme-color" content="#EEC3FD"></meta>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <link
           rel="apple-touch-icon"
           sizes="76x76"
@@ -29,10 +35,31 @@ function MyApp({ Component, pageProps }) {
           sizes="16x16"
           href="/favicon-16x16.png"
         />
-        <link rel="manifest" href="/site.webmanifest" />
-        <meta name="theme-color" content="#fcf4ed"></meta>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+
+        {/* <!-- Disable tap highlight on IE --> */}
+        <meta name="msapplication-tap-highlight" content="no" />
+
+        {/*Add to homescreen for Chrome on Android --> */}
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="application-name" content="IdeaIsland" />
+        <link
+          rel="icon"
+          sizes="192x192"
+          href="images/touch/chrome-touch-icon-192x192.png"
+        />
+
+        {/* Add to homescreen for Safari on iOS --> */}
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <meta name="apple-mobile-web-app-title" content="IdeaIsland" />
+        <link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png" />
+
+        {/* <!-- Tile icon for Win8 (144x144 + tile color) --> */}
+        <meta
+          name="msapplication-TileImage"
+          content="images/touch/ms-touch-icon-144x144-precomposed.png"
+        />
+        <meta name="msapplication-TileColor" content="#EEC3FD" />
       </Head>
 
       <Component {...pageProps} />
