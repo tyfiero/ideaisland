@@ -1,0 +1,187 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function notUpdated(key) {
+      return !(key in request.resource.data)
+        || (
+          (key in resource.data)
+          && request.resource.data[key] == resource.data[key]
+        );
+      }
+    // document path for creating the feedback
+    match /feedback/{$feedbackId}
+    {
+      allow create: if 
+        request.resource.data.keys().hasAll(['sender', 'message', 'createdAt', "processed"]) &&
+        request.resource.data.keys().hasOnly(
+         ['sender', 'message', 'createdAt', "processed"]);
+    }
+  
+    match /chatUsers/{userId}
+    {
+      allow create, update: if 
+        ( isAdminToUpdateChatUser() || isUserToUpdateChatUser(userId)) &&
+        request.resource.data.processed is bool &&
+        request.resource.data.newestMessageCreatedAt is timestamp && 
+        request.resource.data.email is string &&
+        request.resource.data.email.size() > 0 &&
+        request.resource.data.email.size() <= 100;
+      allow read: if
+        isAdminUser();
+      allow delete: if
+        isAdminUser();
+    }
+    function isAdminToUpdateChatUser(){
+      return isAdminUser() && request.resource.data.keys().hasOnly(
+         ['processed', 'newestMessageCreatedAt', 'email']);
+    }
+    function isUserToUpdateChatUser(userId){
+      return request.auth != null && 
+        request.auth.uid == userId && 
+        request.resource.data.keys().hasAll(['processed', 'newestMessageCreatedAt', 'email']) &&
+        request.resource.data.processed == false &&
+        request.time == request.resource.data.newestMessageCreatedAt && 
+        request.resource.data.keys().hasOnly(
+         ['processed', 'newestMessageCreatedAt', 'email']);
+    }
+
+    function isAuthorizedUserToReadChatMessages (userId){
+      return request.auth != null && //user must be authenticated
+        userId == request.auth.uid &&
+        request.query.limit <= 1000;
+    }
+
+    function isAdminUser (){
+      return request.auth != null && request.auth.token.admin == true;
+      
+    }
+
+    function isUserWritingChatMessage (userId){
+      return request.resource.data.keys().hasAll(['customerEmail', 'message', 'createdAt']) &&
+        request.resource.data.keys().hasOnly(
+         ['customerEmail', 'message', 'createdAt'])  &&
+        request.auth != null &&
+        userId == request.auth.uid &&
+        request.time == request.resource.data.createdAt && 
+        request.resource.data.message is string &&
+        request.resource.data.message.size() > 0 &&
+        request.resource.data.message.size() <= 1000;
+    }
+  
+    function isAdminWritingReplyMessage (){
+      return request.resource.data.keys().hasAll(['customerEmail', 'message','reply', 'createdAt', 'unread']) &&
+        request.resource.data.keys().hasOnly(
+         ['customerEmail', 'message', 'createdAt', 'reply', 'unread'])  &&
+        isAdminUser() && 
+        request.resource.data.reply == request.auth.uid &&
+        request.resource.data.message is string &&
+        request.resource.data.message.size() > 0 &&
+        request.resource.data.message.size() <= 2000 && 
+        request.resource.data.unread is bool &&
+        request.resource.data.unread == true;
+    }
+    
+    match /chatUsers/{userId}/chatMessages/{messageId}
+    {
+      allow create: if 
+        isUserWritingChatMessage(userId) || isAdminWritingReplyMessage();
+      allow read: if  
+        isAuthorizedUserToReadChatMessages(userId) || isAdminUser();
+      allow update: if
+       ( request.auth != null && userId == request.auth.uid) &&
+        request.resource.data.keys().hasAll(['customerEmail', 'message','reply', 'createdAt', 'unread']) &&
+        request.resource.data.keys().hasOnly(['customerEmail', 'message','reply', 'createdAt', 'unread']) &&
+        request.resource.data.unread is bool &&
+        request.resource.data.unread == false &&
+        notUpdated("message") &&
+        notUpdated("reply") &&
+        notUpdated("createdAt");
+    }
+
+    // document path for the newsletter signup
+    match /newsletter/{signupId}
+    {
+      allow create: if 
+        request.resource.data.keys().hasAll(['subscriber', 'createdAt']) &&
+        request.resource.data.keys().hasOnly(
+         ['subscriber', 'createdAt', "source"]);
+    }
+
+    // document path for the todo example
+    match /todos/{todoId}
+    {
+      allow list: if 
+        request.auth != null && resource.data.owner == request.auth.uid &&
+        request.query.limit <= 100;
+      allow create: if 
+        request.auth != null && //user must be authenticated
+        request.resource.data.owner == request.auth.uid && // user can only add todos for his account
+        request.resource.data.keys().hasAll(["owner","todo", 'createdAt', "priority", "status"]) &&
+        request.resource.data.keys().hasOnly(
+         ["owner", 'todo', 'createdAt', "priority", "status"]) &&
+        request.resource.data.todo is string &&
+        request.resource.data.todo.size() > 0 &&
+        request.resource.data.todo.size() <= 100 &&
+        request.resource.data.owner is string &&
+        request.resource.data.owner.size() > 0 &&
+        request.resource.data.owner.size() <= 100 &&
+        request.resource.data.priority in ["Low", "Medium","High"] &&
+        request.resource.data.status == "open" &&
+        request.resource.data.createdAt is timestamp;
+      allow update: if 
+        request.auth != null && request.resource.data.owner == request.auth.uid &&
+        request.resource.data.keys().hasAll(["owner","todo", 'createdAt', "priority", "status"]) &&
+        request.resource.data.keys().hasOnly(
+        ["owner","todo", 'createdAt', "priority", "status"])  &&
+        notUpdated("owner") &&
+        notUpdated("todo") &&
+        notUpdated("priority") &&
+        notUpdated("createdAt");
+      allow delete: if 
+        request.auth != null && resource.data.owner == request.auth.uid;
+    }
+    // ---- Firebase Stripe Extension rules ---- do not modify
+    match /customers/{uid} {
+      allow read: if request.auth.uid == uid;
+
+      match /checkout_sessions/{id} {
+        allow read, write: if request.auth.uid == uid;
+      }
+      match /subscriptions/{id} {
+        allow read: if request.auth.uid == uid;
+      }
+      match /payments/{id} {
+        allow read: if request.auth.uid == uid;
+      }
+      match /customerProfileInfo/{id} {
+        allow read: if request.auth.uid == uid;
+        allow write: if request.auth.uid == uid &&
+         request.resource.data.keys().hasOnly(
+        ["firstName","lastName", 'email', "country", "address",'city','state','zip']) &&
+        (request.resource.data.keys().hasAny( ["firstName"]) ? request.resource.data.firstName.size() <= 100 : true) &&
+        (request.resource.data.keys().hasAny( ["lastName"]) ? request.resource.data.lastName.size() <= 100 : true) &&
+        (request.resource.data.keys().hasAny( ["email"]) ? request.resource.data.email.size() <= 100 : true) &&
+        (request.resource.data.keys().hasAny( ["country"]) ? request.resource.data.country.size() <= 100 : true) &&
+        (request.resource.data.keys().hasAny( ["address"]) ? request.resource.data.address.size() <= 100 : true) &&
+        (request.resource.data.keys().hasAny( ["city"]) ? request.resource.data.city.size() <= 100 : true) &&
+        (request.resource.data.keys().hasAny( ["state"]) ? request.resource.data.state.size() <= 100 : true) &&
+        (request.resource.data.keys().hasAny( ["zip"]) ? request.resource.data.zip.size() <= 100 : true);
+      }
+    }
+
+    match /products/{id} {
+      allow read: if true;
+
+      match /prices/{id} {
+        allow read: if true;
+      }
+
+      match /tax_rates/{id} {
+        allow read: if true;
+      }
+    }
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
