@@ -51,7 +51,7 @@ function EmailForm({ setStatus }) {
           name="email"
           id="email"
           required
-          className="focus:ring-lightning-500 focus:border-lightning-500 focus:outline-none mr-5 w-80 pl-4 sm:text-base border-gray-300 rounded-md"
+          className="focus:ring-blues-500 focus:border-blues-500 focus:outline-none mr-5 w-80 pl-4 sm:text-base border-gray-300 rounded-md"
           placeholder="Your email address"
         />
         {formError && (
@@ -63,7 +63,7 @@ function EmailForm({ setStatus }) {
           <button
             type="submit"
             onClick={handleSubmit}
-            className="inline-flex items-center justify-center px-5 py-2 border border-transparent text-base font-medium rounded-md text-white bg-lightning-600 hover:bg-lightning-700"
+            className="inline-flex items-center justify-center px-5 py-2 border border-transparent text-base font-medium rounded-md text-white bg-blues-600 hover:bg-blues-700"
           >
             Register
           </button>
@@ -74,7 +74,7 @@ function EmailForm({ setStatus }) {
 }
 function Success() {
   return (
-    <div className="flex flex-row items-center py-2 px-4 rounded-full bg-lightning-200">
+    <div className="flex flex-row items-center py-2 px-4 rounded-full bg-blues-200">
       <CheckCircleIcon className="w-8 h-8 mr-3 text-green-500" />
       <span className="text-gray-900">Successfully signed up. Thank you!</span>
     </div>
@@ -89,7 +89,7 @@ function EmailCapture() {
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
         <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
           <span className="block">Like coding at lightning speed?</span>
-          <span className="block text-lightning-600">
+          <span className="block text-blues-600">
             Get the monthly newsletter.
           </span>
         </h2>
@@ -97,7 +97,7 @@ function EmailCapture() {
           {
             {
               waiting: <EmailForm setStatus={setStatus} />,
-              loading: <Spinner className="w-5 h-5 text-lightning-500 mx-10" />,
+              loading: <Spinner className="w-5 h-5 text-blues-500 mx-10" />,
               success: <Success />,
             }[status]
           }

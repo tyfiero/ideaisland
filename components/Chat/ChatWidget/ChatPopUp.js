@@ -204,7 +204,7 @@ function ChatPopUp() {
     }
   };
   return (
-    <div className="overflow-hidden rounded-3xl shadow-lg ring-1 ring-lightning-500 ring-opacity-50 bg-white">
+    <div className="overflow-hidden rounded-3xl shadow-lg ring-1 ring-blues-500 ring-opacity-50 bg-white">
       <div className="relative bg-white">
         {!selectedOption && (
           <div className="grid sm:grid-cols-2 gap-x-2 px-3 my-2">
@@ -214,9 +214,9 @@ function ChatPopUp() {
                 onClick={() =>
                   setSelectedOption(`👋   Hi! ${item.description}`)
                 }
-                className="flex items-center bg-lightning-200 p-1 my-1 transition duration-150 ease-in-out rounded-3xl hover:bg-lightning-300 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
+                className="flex items-center bg-blues-200 p-1 my-1 transition duration-150 ease-in-out rounded-3xl hover:bg-blues-300 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
               >
-                <div className="bg-lightning-500 rounded-full p-1 ">
+                <div className="bg-blues-500 rounded-full p-1 ">
                   <div className="flex items-center justify-center flex-shrink-0  text-white ">
                     {item.icon}
                   </div>
@@ -269,7 +269,7 @@ function ChatPopUp() {
                         "mx-3 px-3 py-1 my-1 rounded-xl text-sm text-gray-900 whitespace-pre-wrap",
                         messageData.reply
                           ? "self-start bg-blue-50"
-                          : "self-end bg-lightning-100"
+                          : "self-end bg-blues-100"
                       )}
                       style={{ maxWidth: "80%" }}
                     >
@@ -284,7 +284,7 @@ function ChatPopUp() {
                     setSkipScroll(true);
                     setQueryLimit(queryLimit + 20);
                   }}
-                  className="self-center bg-lightning-500 hover:bg-lightning-600 px-3 py-1 my-1 rounded-xl text-sm text-white"
+                  className="self-center bg-blues-500 hover:bg-blues-600 px-3 py-1 my-1 rounded-xl text-sm text-white"
                 >
                   Load older messages
                 </button>
@@ -331,14 +331,14 @@ function ChatPopUp() {
                 ref={refEmail}
                 name="email"
                 id="email"
-                className="focus:ring-lightning-500 focus:border-lightning-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md"
+                className="focus:ring-blues-500 focus:border-blues-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md"
                 placeholder="you@example.com"
               />
             </div>
           </div>
         )}
         <form
-          className="border-t-2 p-2 border-lightning-300 relative"
+          className="border-t-2 p-2 border-blues-300 relative"
           onSubmit={handleSubmit}
         >
           <textarea
@@ -353,7 +353,7 @@ function ChatPopUp() {
           <button
             type="submit"
             aria-label="Send message"
-            className="absolute right-7 top-4 p-2 bg-lightning-500 hover:bg-lightning-600 rounded-full"
+            className="absolute right-7 top-4 p-2 bg-blues-500 hover:bg-blues-600 rounded-full"
           >
             {showSpinner ? (
               <Spinner className="h-6 w-6 text-white" />

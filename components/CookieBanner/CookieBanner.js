@@ -257,21 +257,21 @@ function CookieBanner({
               <button
                 type="button"
                 onClick={handleAcceptAll}
-                className="flex items-center w-full justify-center px-2 py-2 border border-transparent rounded-md shadow-sm sm:text-sm font-medium text-white bg-lightning-500 hover:bg-lightning-600"
+                className="flex items-center w-full justify-center px-2 py-2 border border-transparent rounded-md shadow-sm sm:text-sm font-medium text-white bg-blues-500 hover:bg-blues-600"
               >
                 Accept all
               </button>
               <button
                 type="button"
                 onClick={handleAcceptSelection}
-                className="flex items-center w-full justify-center px-2 py-2 border border-transparent rounded-md shadow-sm sm:text-sm font-medium text-white bg-lightning-400 hover:bg-lightning-500"
+                className="flex items-center w-full justify-center px-2 py-2 border border-transparent rounded-md shadow-sm sm:text-sm font-medium text-white bg-blues-400 hover:bg-blues-500"
               >
                 Accept selection
               </button>
               <button
                 type="button"
                 onClick={handleOnlyNecessary}
-                className="flex items-center w-full justify-center px-2 py-2 border border-transparent rounded-md shadow-sm sm:text-sm font-medium text-white bg-lightning-400 hover:bg-lightning-500"
+                className="flex items-center w-full justify-center px-2 py-2 border border-transparent rounded-md shadow-sm sm:text-sm font-medium text-white bg-blues-400 hover:bg-blues-500"
               >
                 Accept only necessary
               </button>

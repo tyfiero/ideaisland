@@ -44,7 +44,7 @@ function MobileSideBar() {
           leaveFrom="translate-x-0"
           leaveTo="-translate-x-full"
         >
-          <div className="relative flex-1 flex flex-col max-w-xs w-full bg-lightning-700">
+          <div className="relative flex-1 flex flex-col max-w-xs w-full bg-blues-700">
             <Transition.Child
               as={Fragment}
               enter="ease-in-out duration-300"

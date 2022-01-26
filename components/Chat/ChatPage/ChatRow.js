@@ -53,7 +53,7 @@ function ChatRow({ chat }) {
           <div
             className={classNames(
               "flex items-center",
-              open && "border-b border-lightning-400"
+              open && "border-b border-blues-400"
             )}
           >
             <div className="block flex-1 ">
@@ -61,7 +61,7 @@ function ChatRow({ chat }) {
                 <div className="flex flex-col sm:flex-row justify-between">
                   <div>
                     <div className="flex items-center justify-between">
-                      <p className="flex items-center text-sm font-medium text-lightning-600 truncate lowercase">
+                      <p className="flex items-center text-sm font-medium text-blues-600 truncate lowercase">
                         {chatData.email !== "Anonymous" ? (
                           <MailIcon
                             className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
@@ -117,10 +117,8 @@ function ChatRow({ chat }) {
                           checked={chatData.processed}
                           onChange={handleChangeProcessed}
                           className={classNames(
-                            chatData.processed
-                              ? "bg-lightning-600"
-                              : "bg-gray-200",
-                            "relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lightning-500"
+                            chatData.processed ? "bg-blues-600" : "bg-gray-200",
+                            "relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blues-500"
                           )}
                         >
                           <span
@@ -151,16 +149,16 @@ function ChatRow({ chat }) {
                 </div>
               </div>
             </div>
-            <Disclosure.Button className="p-2 mr-4 sm:mr-6 bg-lightning-100 hover:bg-lightning-200 rounded-full border border-lightning-500">
+            <Disclosure.Button className="p-2 mr-4 sm:mr-6 bg-blues-100 hover:bg-blues-200 rounded-full border border-blues-500">
               {open ? (
-                <ChevronUpIcon className="w-5 h-5 text-lightning-500" />
+                <ChevronUpIcon className="w-5 h-5 text-blues-500" />
               ) : (
-                <ChevronDownIcon className="w-5 h-5 text-lightning-500" />
+                <ChevronDownIcon className="w-5 h-5 text-blues-500" />
               )}
             </Disclosure.Button>
           </div>
           <Disclosure.Panel className="overflow-hidden z-0 relative">
-            <div className="px-4 pb-4 pt-1 sm:px-6 bg-lightning-50 overflow-hidden">
+            <div className="px-4 pb-4 pt-1 sm:px-6 bg-blues-50 overflow-hidden">
               <ChatWindow chatUserId={chat.id} chatUserEmail={chatData.email} />
             </div>
           </Disclosure.Panel>

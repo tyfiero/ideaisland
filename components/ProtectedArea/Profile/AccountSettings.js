@@ -98,7 +98,7 @@ function AccountSettings() {
                         name="old-password"
                         id="old-password"
                         required
-                        className="mt-1 focus:ring-lightning-500 focus:border-lightning-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        className="mt-1 focus:ring-blues-500 focus:border-blues-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                       />
                     </div>
                     <div className="col-span-6">
@@ -115,7 +115,7 @@ function AccountSettings() {
                         id="new-password"
                         ref={newPasswordRef}
                         required
-                        className="mt-1 focus:ring-lightning-500 focus:border-lightning-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        className="mt-1 focus:ring-blues-500 focus:border-blues-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                       />
                     </div>
                     <div className="col-span-6">
@@ -130,13 +130,13 @@ function AccountSettings() {
                         ref={newPasswordRepetitionRef}
                         name="new-password-repeat"
                         id="new-password-repeat"
-                        className="mt-1 focus:ring-lightning-500 focus:border-lightning-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        className="mt-1 focus:ring-blues-500 focus:border-blues-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                       />
                     </div>
                     <div className="col-span-6">
                       <div className="text-sm">
                         <Link href="/forgot">
-                          <a className="font-medium text-lightning-500 hover:text-lightning-600 hover:underline">
+                          <a className="font-medium text-blues-500 hover:text-blues-600 hover:underline">
                             Forgot your password?
                           </a>
                         </Link>
@@ -156,7 +156,7 @@ function AccountSettings() {
                   {user?.email ? ( // if the user is not anonymous, we show the button to change the password
                     <button
                       type="submit"
-                      className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-lightning-600 hover:bg-lightning-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lightning-500"
+                      className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blues-600 hover:bg-blues-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blues-500"
                     >
                       {isLoading ? (
                         <Spinner className="w-5 h-5" />
@@ -165,7 +165,7 @@ function AccountSettings() {
                       )}
                     </button>
                   ) : (
-                    <div className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-gray-700 bg-gray-300  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lightning-500">
+                    <div className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-gray-700 bg-gray-300  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blues-500">
                       Action not possible as an anonymous user
                     </div>
                   )}

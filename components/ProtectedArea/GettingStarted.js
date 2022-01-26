@@ -944,7 +944,7 @@ function GettingStartedMainContent() {
           >
             {gettingStartedStep.header}
             {gettingStartedStep.advancedFunctionality && (
-              <span className="inline-flex items-center lg:ml-3 px-2.5 py-0.5 rounded-full text-xs font-medium bg-lightning-100 text-lightning-600">
+              <span className="inline-flex items-center lg:ml-3 px-2.5 py-0.5 rounded-full text-xs font-medium bg-blues-100 text-blues-600">
                 Optional and advanced functionality
               </span>
             )}

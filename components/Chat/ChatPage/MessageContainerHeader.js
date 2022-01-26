@@ -3,7 +3,7 @@ import NewChatMessageButton from "./NewChatMessageButton";
 
 function MessageContainerHeader({ messageOrder, setMessageOrder }) {
   return (
-    <div className="bg-lightning-100 rounded-t-xl shadow mt-5 px-4 py-5 border-b border-gray-200 sm:px-6">
+    <div className="bg-blues-100 rounded-t-xl shadow mt-5 px-4 py-5 border-b border-gray-200 sm:px-6">
       <div className="-ml-4 -mt-2 sm:flex sm:items-baseline">
         <div className="ml-4 mt-2 flex sm:block justify-between items-center">
           <h3 className="text-lg leading-6 font-medium text-gray-900">Chats</h3>
@@ -17,7 +17,7 @@ function MessageContainerHeader({ messageOrder, setMessageOrder }) {
                 onClick={() => setMessageOrder(tab)}
                 className={classNames(
                   tab === messageOrder
-                    ? "border-lightning-500 text-lightning-600"
+                    ? "border-blues-500 text-blues-600"
                     : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300",
                   "whitespace-nowrap pb-2 px-1 border-b-2 font-medium text-sm focus:outline-none"
                 )}

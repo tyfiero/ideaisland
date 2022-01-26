@@ -60,7 +60,7 @@ function SidebarContent() {
   const router = useRouter();
   const user = useStore((state) => state.user);
   return (
-    <div className="flex-1 flex flex-col min-h-0 bg-lightning-500">
+    <div className="flex-1 flex flex-col min-h-0 bg-blues-500">
       <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
         <div className="flex items-center flex-shrink-0 px-4 border-b pb-3">
           <Logo />
@@ -71,13 +71,13 @@ function SidebarContent() {
               <a
                 className={classNames(
                   item.href === router.pathname
-                    ? "bg-lightning-700 text-white"
-                    : "text-white hover:bg-lightning-600 hover:bg-opacity-75",
+                    ? "bg-blues-700 text-white"
+                    : "text-white hover:bg-blues-600 hover:bg-opacity-75",
                   "group flex items-center px-2 py-2 text-sm font-medium rounded-md"
                 )}
               >
                 <item.icon
-                  className="mr-3 flex-shrink-0 h-6 w-6 text-lightning-300"
+                  className="mr-3 flex-shrink-0 h-6 w-6 text-blues-300"
                   aria-hidden="true"
                 />
                 {item.name}
@@ -97,13 +97,13 @@ function SidebarContent() {
                 <a
                   className={classNames(
                     item.href === router.pathname
-                      ? "bg-lightning-700 text-white"
-                      : "text-white hover:bg-lightning-600 hover:bg-opacity-75",
+                      ? "bg-blues-700 text-white"
+                      : "text-white hover:bg-blues-600 hover:bg-opacity-75",
                     "group flex items-center px-2 py-2 text-sm font-medium rounded-md"
                   )}
                 >
                   <item.icon
-                    className="mr-3 flex-shrink-0 h-6 w-6 text-lightning-300"
+                    className="mr-3 flex-shrink-0 h-6 w-6 text-blues-300"
                     aria-hidden="true"
                   />
                   {item.name}
@@ -122,7 +122,7 @@ function SidebarContent() {
                 <p className="text-sm font-medium text-white truncate w-44 group-hover:underline">
                   {user?.email || "Anonymous"}
                 </p>
-                <p className="text-xs font-medium text-lightning-200 group-hover:text-white group-hover:underline">
+                <p className="text-xs font-medium text-blues-200 group-hover:text-white group-hover:underline">
                   View profile
                 </p>
               </div>

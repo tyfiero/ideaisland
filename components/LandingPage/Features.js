@@ -185,10 +185,10 @@ const features = [
 
 export default function Features() {
   return (
-    <div className="py-12 bg-lightning-200" id="features">
+    <div className="py-12 bg-blues-200" id="features">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="lg:text-center">
-          <h2 className="text-base text-lightning-600 font-semibold tracking-wide uppercase">
+          <h2 className="text-base text-blues-600 font-semibold tracking-wide uppercase">
             React Website Template
           </h2>
           <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
@@ -207,10 +207,10 @@ export default function Features() {
             {features.map((feature) => (
               <div key={feature.name} className="relative">
                 <dt>
-                  <div className="absolute flex items-center justify-center h-12 w-12 rounded-full bg-lightning-100 ring-lightning-500 ring">
+                  <div className="absolute flex items-center justify-center h-12 w-12 rounded-full bg-blues-100 ring-blues-500 ring">
                     {feature.icon && (
                       <feature.icon
-                        className="h-6 w-6 text-lightning-500"
+                        className="h-6 w-6 text-blues-500"
                         aria-hidden="true"
                       />
                     )}

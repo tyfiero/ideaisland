@@ -14,7 +14,7 @@ import { getAnalytics } from "firebase/analytics";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
+const config = {
   apiKey: "AIzaSyDjF7ZR6b81q28TVdLcW0TaJlvifYE8hBo",
   authDomain: "ideaislandtest.firebaseapp.com",
   databaseURL: "https://ideaislandtest-default-rtdb.firebaseio.com",
@@ -26,7 +26,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+const app = initializeApp(config);
 const analytics = getAnalytics(app);
 // const config = {
 //   apiKey: "AIzaSyD6PS_FC7cPGlt5o_Dk7mX97n1GPWR6gqE",

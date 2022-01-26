@@ -30,7 +30,7 @@ export default function Chat() {
           <>
             <Popover.Button
               className={`fixed right-4 bottom-4 sm:right-14 sm:bottom-14 flex w-16 h-16 sm:w-20 sm:h-20
-                text-white group bg-lightning-500 px-3 py-2 rounded-full justify-center items-center text-center text-base font-medium hover:text-opacity-100 focus:outline-none focus:ring-2 focus:ring-offset-4 focus:ring-lightning-500 `}
+                text-white group bg-blues-500 px-3 py-2 rounded-full justify-center items-center text-center text-base font-medium hover:text-opacity-100 focus:outline-none focus:ring-2 focus:ring-offset-4 focus:ring-blues-500 `}
               aria-label="Chat widget"
             >
               <ChatAlt2Icon className="w-12 h-12" />

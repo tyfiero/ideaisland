@@ -6,18 +6,34 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        sm: "480px",
+        md: "768px",
+        lg: "976px",
+        xl: "1440px",
+      },
+      fontFamily: {
+        sans: ["Graphik", "sans-serif"],
+        serif: ["Merriweather", "serif"],
+      },
       colors: {
-        lightning: {
-          50: "#fdfaf6",
-          100: "#fcf4ed",
-          200: "#ffecd2",
-          300: "#f1d3b7",
-          400: "#e7b280",
-          500: "#dd914a",
-          600: "#c78343",
-          700: "#a66d38",
-          800: "#85572c",
-          900: "#6c4724",
+        blues: {
+          50: "#e7f4fe",
+          100: "#b6defc",
+          200: "#85c7f9",
+          300: "#54b1f7",
+          400: "#239bf5",
+          500: "#0a81dc",
+          600: "#0864ab",
+          700: "#06487a",
+          800: "#032b49",
+          900: "#010e18",
+        },
+              t: {
+          'bd': "#2549A5",
+          'bl': "#4EAEF7",
+          'pd': "#B25CC9",
+          'pl': "#EEC3FD",
         },
       },
       animation: {

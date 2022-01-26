@@ -20,9 +20,9 @@ const includedFeatures = [
 ];
 function CTA() {
   return (
-    <div className="py-8 bg-lightning-200" id="pricing">
+    <div className="py-8 bg-blues-200" id="pricing">
       <div className="max-w-5xl  px-4 sm:px-6 lg:px-8 mx-auto ">
-        <div className="grid md:grid-cols-2 p-10 rounded-xl bg-lightning-100 shadow gap-x-20 items-center">
+        <div className="grid md:grid-cols-2 p-10 rounded-xl bg-blues-100 shadow gap-x-20 items-center">
           <div className="">
             <h3 className="text-md font-bold text-gray-900 tracking-wide uppercase">
               What&apos;s included
@@ -46,7 +46,7 @@ function CTA() {
                 className="mx-auto h-16 w-auto transform rotate-12 scale-y-110"
               />
               <h3 className="text-3xl mt-5 text-center tracking-tight font-extrabold text-gray-900 ">
-                <span className="block text-lightning-600 ">Ultimate</span>
+                <span className="block text-blues-600 ">Ultimate</span>
                 <span className="block xl:inline">React.js starter</span>{" "}
               </h3>
               <div className="mt-4 justify-center flex">
@@ -66,7 +66,7 @@ function CTA() {
                     href={
                       "https://apphafen.gumroad.com/l/reactappstarter?price=19&wanted=true"
                     }
-                    className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-xl text-white bg-lightning-600 group-hover:bg-lightning-700 md:py-4 md:text-lg md:px-10"
+                    className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-xl text-white bg-blues-600 group-hover:bg-blues-700 md:py-4 md:text-lg md:px-10"
                   >
                     Buy this starter now for $19
                   </a>

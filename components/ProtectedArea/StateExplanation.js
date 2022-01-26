@@ -32,14 +32,14 @@ function StateExample() {
 
         <button
           type="button"
-          className="sm:ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lightning-500"
+          className="sm:ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blues-500"
           onClick={increaseSimpleCounter}
         >
           increaseSimpleCounter()
         </button>
         <button
           type="button"
-          className="mt-3 sm:ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lightning-500"
+          className="mt-3 sm:ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blues-500"
           onClick={clearSimpleCounter}
         >
           clearSimpleCounter()
@@ -52,7 +52,7 @@ function StateExample() {
         </div>
         <button
           type="button"
-          className="mt-3 sm:ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lightning-500"
+          className="mt-3 sm:ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blues-500"
           onClick={() => {
             set((state) => {
               state.nestedState.secondLevel.thirdLevel = "Deep change!";
@@ -193,7 +193,7 @@ function StateExplanation() {
               </pre>
             </div>
             <p className="text-gray-700">Try this component yourself:</p>
-            <div className="text-gray-700 p-5 border border-lightning-500 rounded-2xl w-full text-center bg-lightning-200">
+            <div className="text-gray-700 p-5 border border-blues-500 rounded-2xl w-full text-center bg-blues-200">
               <StateExample />
             </div>
           </div>

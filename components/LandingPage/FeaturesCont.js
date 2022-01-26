@@ -77,7 +77,7 @@ export default function Features() {
             {callouts.map((callout) => (
               <div key={callout.name} className={`flex-row flex sm:px-10 mr-2`}>
                 <div className="mr-6 ml-2">
-                  <callout.icon className="text-lightning-500 w-14 h-14 rounded-full bg-lightning-200 p-3" />
+                  <callout.icon className="text-blues-500 w-14 h-14 rounded-full bg-blues-200 p-3" />
                 </div>
 
                 <div>

@@ -86,7 +86,7 @@ function FirebaseExample() {
     }
   }, [user]);
   return (
-    <div className="bg-lightning-200 p-3 rounded-xl">
+    <div className="bg-blues-200 p-3 rounded-xl">
       <div className="my-2">
         <h3 className="p-2 text-lg font-medium leading-6 text-gray-900">
           Example
@@ -118,7 +118,7 @@ function FirebaseExample() {
                         name="toDo"
                         id="toDo"
                         required
-                        className="mt-1 focus:ring-lightning-500 focus:border-lightning-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        className="mt-1 focus:ring-blues-500 focus:border-blues-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                       />
                     </div>
 
@@ -133,7 +133,7 @@ function FirebaseExample() {
                         id="priority"
                         name="priority"
                         ref={priorityRef}
-                        className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-lightning-500 focus:border-lightning-500 sm:text-sm"
+                        className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blues-500 focus:border-blues-500 sm:text-sm"
                       >
                         <option>Low</option>
                         <option>Medium</option>
@@ -145,7 +145,7 @@ function FirebaseExample() {
                 <div className="px-4 py-2 bg-gray-50 text-right sm:px-6">
                   <button
                     type="submit"
-                    className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-lightning-600 hover:bg-lightning-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lightning-500"
+                    className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blues-600 hover:bg-blues-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blues-500"
                   >
                     Save
                   </button>
@@ -209,7 +209,7 @@ function FirebaseExample() {
                                           );
                                         }}
                                         checked={todoData.status === "done"}
-                                        className="focus:ring-lightning-500 h-4 w-4 text-lightning-600 border-gray-300 rounded"
+                                        className="focus:ring-blues-500 h-4 w-4 text-blues-600 border-gray-300 rounded"
                                       />
                                     </div>
                                     <div>
@@ -245,7 +245,7 @@ function FirebaseExample() {
                                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                   <button
                                     onClick={() => handleDelete(toDoItem.id)}
-                                    className="text-lightning-600 hover:text-lightning-900 focus:outline-none"
+                                    className="text-blues-600 hover:text-blues-900 focus:outline-none"
                                   >
                                     Remove
                                   </button>

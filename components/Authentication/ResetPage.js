@@ -44,7 +44,7 @@ function ResetPage() {
   return (
     <div className="flex flex-col justify-center py-12 min-h-screen bg-gray-50 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <LightningBoltIcon className="mx-auto h-20 w-auto sm:h-30 transform rotate-12 scale-y-110 stroke-lightning-500 text-lightning-200" />
+        <LightningBoltIcon className="mx-auto h-20 w-auto sm:h-30 transform rotate-12 scale-y-110 stroke-blues-500 text-blues-200" />
         <h2 className="mt-6 text-center text-gray-900 text-3xl font-extrabold">
           Reset your password
         </h2>
@@ -62,7 +62,7 @@ function ResetPage() {
               <Link href="/login">
                 <a
                   disabled={loading}
-                  className="flex justify-center mt-6 px-4 py-2 w-full text-white text-sm font-medium bg-lightning-500 hover:bg-lightning-600 border border-transparent rounded-md focus:outline-none shadow-sm focus:ring-lightning-400 focus:ring-offset-2 focus:ring-2"
+                  className="flex justify-center mt-6 px-4 py-2 w-full text-white text-sm font-medium bg-blues-500 hover:bg-blues-600 border border-transparent rounded-md focus:outline-none shadow-sm focus:ring-blues-400 focus:ring-offset-2 focus:ring-2"
                 >
                   You can sign in with your new password now.
                 </a>
@@ -93,7 +93,7 @@ function ResetPage() {
                       ref={passwordRef}
                       required
                       placeholder="Password"
-                      className="placeholder-gray-400 block px-3 py-2 w-full border border-gray-300 focus:border-lightning-400 rounded-md focus:outline-none shadow-sm appearance-none focus:ring-lightning-400 sm:text-sm"
+                      className="placeholder-gray-400 block px-3 py-2 w-full border border-gray-300 focus:border-blues-400 rounded-md focus:outline-none shadow-sm appearance-none focus:ring-blues-400 sm:text-sm"
                     />
                   </div>
                 </div>
@@ -102,7 +102,7 @@ function ResetPage() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="flex justify-center px-4 py-2 w-full text-white text-sm font-medium bg-lightning-500 hover:bg-lightning-600 border border-transparent rounded-md focus:outline-none shadow-sm focus:ring-lightning-400 focus:ring-offset-2 focus:ring-2"
+                    className="flex justify-center px-4 py-2 w-full text-white text-sm font-medium bg-blues-500 hover:bg-blues-600 border border-transparent rounded-md focus:outline-none shadow-sm focus:ring-blues-400 focus:ring-offset-2 focus:ring-2"
                   >
                     {loading ? (
                       <Spinner className="w-5 h-5 text-white" />

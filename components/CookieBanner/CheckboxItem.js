@@ -25,7 +25,7 @@ function CheckboxItem({ category, changeHandler, value }) {
           type="checkbox"
           className={classNames(
             "focus:ring-0 focus:outline-none h-6 w-6 sm:h-4 sm:w-4 border-gray-300 rounded",
-            !value ? "text-gray-400" : "text-lightning-600"
+            !value ? "text-gray-400" : "text-blues-600"
           )}
         />
       </div>

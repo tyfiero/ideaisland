@@ -34,10 +34,10 @@ function Hero() {
                 <div className="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
                   <div className="flex items-center justify-between w-full md:w-auto">
                     <a href="#" aria-label="Home">
-                      <LightningBoltIcon className="h-8 w-auto sm:h-10 transform rotate-12 scale-y-110  stroke-lightning-500 text-lightning-200" />
+                      <LightningBoltIcon className="h-8 w-auto sm:h-10 transform rotate-12 scale-y-110  stroke-blues-500 text-blues-200" />
                     </a>
                     <div className="mr-2 flex items-center md:hidden">
-                      <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-lightning-500">
+                      <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blues-500">
                         <span className="sr-only">Open main menu</span>
                         <MenuIcon className="h-6 w-6" aria-hidden="true" />
                       </Popover.Button>
@@ -63,7 +63,7 @@ function Hero() {
                           eventName: "login",
                         })
                       }
-                      className="font-medium text-lightning-600 hover:text-lightning-500 bg-lightning-100 py-2 px-3 rounded-full"
+                      className="font-medium text-blues-600 hover:text-blues-500 bg-blues-100 py-2 px-3 rounded-full"
                     >
                       Log in
                     </a>
@@ -75,7 +75,7 @@ function Hero() {
                           eventName: "signup",
                         })
                       }
-                      className="font-medium text-lightning-600 hover:text-lightning-500 bg-lightning-100 py-2 px-3 rounded-full"
+                      className="font-medium text-blues-600 hover:text-blues-500 bg-blues-100 py-2 px-3 rounded-full"
                     >
                       Sign up
                     </a>
@@ -100,10 +100,10 @@ function Hero() {
                 <div className="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
                   <div className="px-5 pt-4 flex items-center justify-between">
                     <div>
-                      <LightningBoltIcon className="h-8 w-auto sm:h-10 transform rotate-12 scale-y-110 stroke-lightning-500 text-lightning-200" />
+                      <LightningBoltIcon className="h-8 w-auto sm:h-10 transform rotate-12 scale-y-110 stroke-blues-500 text-blues-200" />
                     </div>
                     <div className="-mr-2">
-                      <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-lightning-500">
+                      <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blues-500">
                         <span className="sr-only">Close main menu</span>
                         <XIcon className="h-6 w-6" aria-hidden="true" />
                       </Popover.Button>
@@ -127,7 +127,7 @@ function Hero() {
                           eventName: "login",
                         })
                       }
-                      className="block w-full px-5 py-3 text-center font-medium text-lightning-600 bg-lightning-100 hover:bg-lightning-200"
+                      className="block w-full px-5 py-3 text-center font-medium text-blues-600 bg-blues-100 hover:bg-blues-200"
                     >
                       Log in
                     </a>
@@ -139,7 +139,7 @@ function Hero() {
                           eventName: "signup",
                         })
                       }
-                      className="block w-full mt-2 px-5 py-3 text-center font-medium text-lightning-600 bg-lightning-100 hover:bg-lightning-200"
+                      className="block w-full mt-2 px-5 py-3 text-center font-medium text-blues-600 bg-blues-100 hover:bg-blues-200"
                     >
                       Sign up
                     </a>
@@ -152,7 +152,7 @@ function Hero() {
           <main className="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
             <div className="sm:text-center lg:text-left">
               <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
-                <span className="block text-lightning-600 ">Ultimate</span>
+                <span className="block text-blues-600 ">Ultimate</span>
                 <span className="block xl:inline">React.js App starter</span>
               </h1>
               <p className="mt-3 text-base text-gray-600 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
@@ -160,7 +160,7 @@ function Hero() {
                 CSS and State Management all hooked up and ready for your next
                 project.
               </p>
-              <p className="mt-3 text-base text-lightning-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+              <p className="mt-3 text-base text-blues-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
                 Ultimate ReactJS Starter is for you if you’re looking for a
                 complete starter kit to help you build your next full-stack
                 React app. You get a solid foundation of modern best practices
@@ -175,7 +175,7 @@ function Hero() {
                           eventName: "main_cta_hero",
                         })
                       }
-                      className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-xl text-white bg-lightning-600 group-hover:bg-lightning-700 md:py-4 md:text-lg md:px-10"
+                      className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-xl text-white bg-blues-600 group-hover:bg-blues-700 md:py-4 md:text-lg md:px-10"
                     >
                       Build with lightning speed. Start creating right away!
                     </a>

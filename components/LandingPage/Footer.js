@@ -8,12 +8,12 @@ function Footer() {
         <div className="mx-auto p-4 flex-row flex align-middle  h-16 items-center">
           <Link href="/">
             <a aria-label="Home">
-              <LightningBoltIcon className="h-8 w-auto transform rotate-12 scale-y-110 stroke-lightning-500 text-lightning-200" />
+              <LightningBoltIcon className="h-8 w-auto transform rotate-12 scale-y-110 stroke-blues-500 text-blues-200" />
             </a>
           </Link>
 
           <span className=" tracking-tight font-extrabold text-gray-900 ml-2">
-            <span className="block text-lightning-600 ">Ultimate</span>
+            <span className="block text-blues-600 ">Ultimate</span>
             <span className="block text-gray-300">React.js starter</span>
           </span>
         </div>

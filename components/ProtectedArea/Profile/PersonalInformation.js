@@ -121,7 +121,7 @@ function PersonalInformation() {
                         name="first-name"
                         id="first-name"
                         autoComplete="given-name"
-                        className="mt-1 focus:ring-lightning-500 focus:border-lightning-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        className="mt-1 focus:ring-blues-500 focus:border-blues-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                       />
                     </div>
 
@@ -139,7 +139,7 @@ function PersonalInformation() {
                         ref={lastNameRef}
                         defaultValue={profileInfoFromDB?.lastName || undefined}
                         autoComplete="family-name"
-                        className="mt-1 focus:ring-lightning-500 focus:border-lightning-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        className="mt-1 focus:ring-blues-500 focus:border-blues-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                       />
                     </div>
 
@@ -160,7 +160,7 @@ function PersonalInformation() {
                         defaultValue={profileInfoFromDB?.email || undefined}
                         readOnly={user?.email}
                         className={classNames(
-                          "mt-1 focus:ring-lightning-500 focus:border-lightning-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md",
+                          "mt-1 focus:ring-blues-500 focus:border-blues-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md",
                           user?.email && "bg-gray-200"
                         )}
                       />
@@ -182,7 +182,7 @@ function PersonalInformation() {
                           "United States of America"
                         }
                         autoComplete="country-name"
-                        className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-lightning-500 focus:border-lightning-500 sm:text-sm"
+                        className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blues-500 focus:border-blues-500 sm:text-sm"
                       >
                         <option value="Afganistan">Afghanistan</option>
                         <option value="Albania">Albania</option>
@@ -501,7 +501,7 @@ function PersonalInformation() {
                         name="street-address"
                         id="street-address"
                         autoComplete="street-address"
-                        className="mt-1 focus:ring-lightning-500 focus:border-lightning-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        className="mt-1 focus:ring-blues-500 focus:border-blues-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                       />
                     </div>
 
@@ -519,7 +519,7 @@ function PersonalInformation() {
                         name="city"
                         id="city"
                         autoComplete="address-level2"
-                        className="mt-1 focus:ring-lightning-500 focus:border-lightning-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        className="mt-1 focus:ring-blues-500 focus:border-blues-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                       />
                     </div>
 
@@ -537,7 +537,7 @@ function PersonalInformation() {
                         name="region"
                         id="region"
                         autoComplete="address-level1"
-                        className="mt-1 focus:ring-lightning-500 focus:border-lightning-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        className="mt-1 focus:ring-blues-500 focus:border-blues-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                       />
                     </div>
 
@@ -555,7 +555,7 @@ function PersonalInformation() {
                         name="postal-code"
                         id="postal-code"
                         autoComplete="postal-code"
-                        className="mt-1 focus:ring-lightning-500 focus:border-lightning-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        className="mt-1 focus:ring-blues-500 focus:border-blues-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                       />
                     </div>
                   </div>
@@ -564,7 +564,7 @@ function PersonalInformation() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="inline-flex w-24 justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-lightning-600 hover:bg-lightning-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lightning-500"
+                    className="inline-flex w-24 justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blues-600 hover:bg-blues-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blues-500"
                   >
                     {loading ? (
                       <Spinner className="w-5 h-5 text-white" />

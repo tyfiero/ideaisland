@@ -114,7 +114,7 @@ function PaymentsPage() {
           to seamlessly collect one-time and recurring payments.
         </PageDescriptionParagraph>
         <div>
-          <div className="border border-lightning-200 shadow-sm rounded-3xl mt-8 overflow-hidden bg-lightning-100">
+          <div className="border border-blues-200 shadow-sm rounded-3xl mt-8 overflow-hidden bg-blues-100">
             <div className="pt-12 sm:pt-16 lg:pt-20">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center">
@@ -127,7 +127,7 @@ function PaymentsPage() {
                 </div>
               </div>
             </div>
-            <div className="mt-8 bg-lightning-100 pb-16 sm:mt-12 sm:pb-20 ">
+            <div className="mt-8 bg-blues-100 pb-16 sm:mt-12 sm:pb-20 ">
               <div className="relative">
                 <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                   <div className="max-w-lg mx-auto rounded-lg shadow-lg overflow-hidden lg:max-w-none lg:flex">
@@ -142,7 +142,7 @@ function PaymentsPage() {
                       </p>
                       <div className="mt-8">
                         <div className="flex items-center">
-                          <h4 className="flex-shrink-0 pr-4 bg-white text-sm tracking-wider font-semibold uppercase text-lightning-600">
+                          <h4 className="flex-shrink-0 pr-4 bg-white text-sm tracking-wider font-semibold uppercase text-blues-600">
                             Benefits of Stripe Checkout
                           </h4>
                           <div className="flex-1 border-t-2 border-gray-200" />

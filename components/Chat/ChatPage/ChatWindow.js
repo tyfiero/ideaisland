@@ -151,7 +151,7 @@ function ChatWindow({ chatUserId, chatUserEmail }) {
                     className={classNames(
                       "mx-3 px-3 py-1 my-1 rounded-xl text-sm text-gray-900 whitespace-pre-wrap relative",
                       messageData.reply
-                        ? "self-end bg-lightning-200"
+                        ? "self-end bg-blues-200"
                         : "self-start bg-blue-50"
                     )}
                     style={{ maxWidth: "80%" }}
@@ -173,7 +173,7 @@ function ChatWindow({ chatUserId, chatUserEmail }) {
                   setSkipScroll(true);
                   setQueryLimit(queryLimit + 20);
                 }}
-                className="self-center bg-lightning-500 hover:bg-lightning-600 px-3 py-1 my-1 rounded-xl text-sm text-white"
+                className="self-center bg-blues-500 hover:bg-blues-600 px-3 py-1 my-1 rounded-xl text-sm text-white"
               >
                 Load older messages
               </button>
@@ -182,7 +182,7 @@ function ChatWindow({ chatUserId, chatUserEmail }) {
         )}
       </div>
       <form
-        className="border-t-2 p-2 border-lightning-300 relative"
+        className="border-t-2 p-2 border-blues-300 relative"
         onSubmit={handleSubmit}
       >
         <textarea
@@ -197,7 +197,7 @@ function ChatWindow({ chatUserId, chatUserEmail }) {
         <button
           type="submit"
           disabled={showSpinner}
-          className="absolute right-7 top-6 p-2 bg-lightning-500 hover:bg-lightning-600 rounded-full"
+          className="absolute right-7 top-6 p-2 bg-blues-500 hover:bg-blues-600 rounded-full"
         >
           {showSpinner ? (
             <Spinner className="h-6 w-6 text-white" />

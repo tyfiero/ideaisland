@@ -17,7 +17,7 @@ function FullPageLoader() {
   }, []);
   return (
     showLoader && (
-      <div className="flex flex-col items-center justify-center min-h-screen text-lightning-500">
+      <div className="flex flex-col items-center justify-center min-h-screen text-blues-500">
         <Spinner className="mb-4 text-6xl w-10 h-10" />
         <p className="text-gray-700">Loading...</p>
       </div>

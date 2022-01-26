@@ -16,8 +16,8 @@ import { CheckIcon } from "@heroicons/react/outline";
 
 function NewChatMessageButton({ isMobile }) {
   const buttonClassNames = isMobile
-    ? "sm:hidden relative inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-xl text-white bg-lightning-600 hover:bg-lightning-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lightning-500"
-    : "relative inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-xl text-white bg-lightning-600 hover:bg-lightning-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lightning-500";
+    ? "sm:hidden relative inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-xl text-white bg-blues-600 hover:bg-blues-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blues-500"
+    : "relative inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-xl text-white bg-blues-600 hover:bg-blues-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blues-500";
   let [referenceElement, setReferenceElement] = useState();
   let [popperElement, setPopperElement] = useState();
   let { styles, attributes } = usePopper(referenceElement, popperElement, {
@@ -123,7 +123,7 @@ function NewChatMessageButton({ isMobile }) {
                         onChange={() => setUserNotExists(false)}
                         name="user-uid"
                         id="user-uid"
-                        className="mt-1 focus:ring-lightning-500 focus:border-lightning-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        className="mt-1 focus:ring-blues-500 focus:border-blues-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                       />
                       {userNotExists && (
                         <p className="text-red-500 text-sm font-medium mt-1">
@@ -148,7 +148,7 @@ function NewChatMessageButton({ isMobile }) {
                         required
                         disabled={showSpinner}
                         rows={3}
-                        className="shadow-sm focus:ring-lightning-500 focus:border-lightning-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
+                        className="shadow-sm focus:ring-blues-500 focus:border-blues-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
                         placeholder="Write your message here..."
                         defaultValue={""}
                       />
@@ -159,7 +159,7 @@ function NewChatMessageButton({ isMobile }) {
                   <button
                     type="submit"
                     disabled={showSpinner}
-                    className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-lightning-600 hover:bg-lightning-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lightning-500"
+                    className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blues-600 hover:bg-blues-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blues-500"
                   >
                     {showSpinner ? (
                       <Spinner className="h-6 w-6 text-white" />

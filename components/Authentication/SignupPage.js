@@ -104,16 +104,16 @@ function SignupPage() {
   };
   return (
     <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8 p-10 rounded-xl bg-lightning-100 shadow">
+      <div className="max-w-md w-full space-y-8 p-10 rounded-xl bg-blues-100 shadow">
         <div>
-          <LightningBoltIcon className="mx-auto h-20 w-auto sm:h-30 transform rotate-12 scale-y-110 stroke-lightning-500 text-lightning-200" />
+          <LightningBoltIcon className="mx-auto h-20 w-auto sm:h-30 transform rotate-12 scale-y-110 stroke-blues-500 text-blues-200" />
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
             Create your account for a free look inside
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
             Or{" "}
             <Link href="/login">
-              <a className="font-medium text-lightning-600 hover:text-lightning-500">
+              <a className="font-medium text-blues-600 hover:text-blues-500">
                 sign in to your account
               </a>
             </Link>
@@ -140,7 +140,7 @@ function SignupPage() {
                 autoComplete="email"
                 required
                 onChange={(e) => setEmail(e.target.value)}
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-lightning-500 focus:border-lightning-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-blues-500 focus:border-blues-500 focus:z-10 sm:text-sm"
                 placeholder="Email address"
               />
             </div>
@@ -155,7 +155,7 @@ function SignupPage() {
                 autoComplete="current-password"
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-lightning-500 focus:border-lightning-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blues-500 focus:border-blues-500 focus:z-10 sm:text-sm"
                 placeholder="Password"
               />
             </div>
@@ -165,11 +165,11 @@ function SignupPage() {
             type="submit"
             disabled={loading}
             onClick={handleLogin}
-            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-lightning-500 hover:bg-lightning-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lightning-500"
+            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blues-500 hover:bg-blues-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blues-500"
           >
             <span className="absolute left-0 inset-y-0 flex items-center pl-3">
               <LightningBoltIcon
-                className="h-5 w-5 text-lightning-500 group-hover:text-lightning-400"
+                className="h-5 w-5 text-blues-500 group-hover:text-blues-400"
                 aria-hidden="true"
               />
             </span>
