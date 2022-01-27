@@ -10,11 +10,14 @@ import NotePopUpModal from "../components/MainPage/NoteBubble/NotePopUpModal";
 import LandingPage from "../components/LandingPage/LandingPage";
 import MainPage from "../components/MainPage/MainPage";
 import styled from "styled-components";
-
+import HelpPage from "./Help";
+import ImplementationPage from "./Implementation";
 // import {SentencePage} from "./pages/solutions/Sentence.js";
 import SentencePage from "../pages/solutions/Sentence";
 import CombinatorialPage from "../pages/solutions/Combinatorial";
 import AIPage from "./solutions/Ai";
+import SolutionsPageIndex from "./solutions";
+import ProblemPageIndex from "./problem";
 
 let Wrapper = styled.div`
   width: 100vw;
@@ -62,11 +65,16 @@ export default function Root() {
           <Sidebar toggle={isToggled} />
         </div>
         <div className="content">
-          {/* <HomePage /> */}
-          {/* <SentencePage /> */}
-          {/* <CombinatorialPage /> */}
+          <HomePage />
+          <SolutionsPageIndex />
+          <SentencePage />
+          <CombinatorialPage />
           <AIPage />
-          {/* <MainPage /> */}
+          <ProblemPageIndex />
+          <ImplementationPage />
+          <HelpPage />
+
+          <MainPage />
         </div>
 
         <div className="notepad-container">

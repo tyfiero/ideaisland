@@ -1,6 +1,6 @@
 
 import {React, useState} from "react";
-import SentenceTool from "../../components/MainPage/solutionsComponents/sentenceTool";
+import SentenceTool from "../../components/MainPage/solutionsComponents/SentenceTool";
 import { useRouter } from "next/router";
 import { FaDice, FaPlus } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";

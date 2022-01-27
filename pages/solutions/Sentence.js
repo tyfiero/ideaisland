@@ -1,4 +1,4 @@
-import SentenceTool from "../../components/MainPage/solutionsComponents/sentenceTool";
+import SentenceTool from "../../components/MainPage/solutionsComponents/SentenceTool";
 import { useRouter } from "next/router";
 
 const SentencePage = () => {

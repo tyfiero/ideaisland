@@ -1,34 +1,31 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+// import { useSelector, useDispatch } from "react-redux";
 // import { connect } from "react-redux";
-// import { noteAction } from "../actions";
-import { gpt3InputAction, gpt3OutputAction } from "../../../../redux/actions";
-var localGPT3Prompt;
-function GPT3TextArea({ q, ph }) {
+import { noteAction } from "../../../redux/actions";
+var localNotes;
+function ProblemTextArea({ q, sendDataToParent, ph }) {
   const [textContent, setTextContent] = useState("");
-  // const [timeToSend, setTimeToSend] = useState(false);
-  const [charLength, setCharLength] = useState(0);
+  const [timeToSend, setTimeToSend] = useState(false);
 
   //redux
-  const gpt3InputRedux = useSelector((state) => state.gpt3Input);
-
   //   const notesRedux = useSelector((state) => state.notes);
-  const dispatch = useDispatch();
+  //   const dispatch = useDispatch();
 
-  // let identifier = "gpt3InputLS";
+  let identifier = "pq" + q;
   useEffect(() => {
-    localGPT3Prompt = localStorage.getItem("gpt3InputLS");
+    localNotes = localStorage.getItem(identifier);
   }, []);
+
 
   //state
   //   const [textareaheight, setTextareaheight] = useState(1);
 
   useEffect(() => {
-    if (localGPT3Prompt !== null) {
-      setTextContent(localGPT3Prompt);
+    if (localNotes !== null) {
+      setTextContent(localNotes);
     }
-  }, [localGPT3Prompt]);
+  }, [localNotes]);
 
   //   console.log(localNotes + "LN");
   const handleBlur = (event) => {
@@ -40,11 +37,9 @@ function GPT3TextArea({ q, ph }) {
 
       //   dispatch(noteAction(event.target.value));
       setTextContent(event.target.value);
-      dispatch(gpt3InputAction(event.target.value));
-
       //   sendDataToParent(textContent);
 
-      localStorage.setItem("gpt3InputLS", gpt3InputRedux);
+      //   localStorage.setItem("pq1", textContent);
     }, longDelay);
 
     setTimeout(function () {
@@ -52,11 +47,10 @@ function GPT3TextArea({ q, ph }) {
 
       //   dispatch(noteAction(event.target.value));
       setTextContent(event.target.value);
-      dispatch(gpt3InputAction(event.target.value));
-      localStorage.setItem("gpt3InputLS", gpt3InputRedux);
-      // setCharLength(gpt3InputRedux.length);
+      //   console.log(event.target.value + "TEST SHORT");
 
-      // setTimeToSend(true);
+      //   let textToSend = textContent;
+      setTimeToSend(true);
     }, shortDelay);
   };
 
@@ -67,12 +61,6 @@ function GPT3TextArea({ q, ph }) {
     // const trows = Math.ceil(height / rowHeight) - 1;
 
     setTextContent(event.target.value);
-    // dispatch(gpt3InputAction(event.target.value));
-    // console.log("gpt3InputLS", gpt3InputRedux);
-
-    setCharLength(gpt3InputRedux.length + 1);
-    // localStorage.setItem("gpt3InputLS", gpt3InputRedux);
-
     // console.log(textContent + " TC");
 
     // dispatch(noteAction(textContent));
@@ -92,12 +80,12 @@ function GPT3TextArea({ q, ph }) {
     borderRadius: "1rem",
   };
 
-  // useEffect(() => {
-  //   if (timeToSend) {
-  //     sendDataToParent([textContent, q]);
-  //     setTimeToSend(false);
-  //   }
-  // }, [timeToSend]);
+  useEffect(() => {
+    if (timeToSend) {
+      sendDataToParent([textContent, q]);
+      setTimeToSend(false);
+    }
+  }, [timeToSend]);
 
   return (
     <div>
@@ -109,13 +97,11 @@ function GPT3TextArea({ q, ph }) {
         onChange={handleChange}
         onBlur={handleBlur}
         placeholder={ph}
-        maxLength="100"
       >
         {" "}
       </textarea>
-      <p>{charLength + "/100"}</p>
     </div>
   );
 }
 
-export default GPT3TextArea;
+export default ProblemTextArea;
