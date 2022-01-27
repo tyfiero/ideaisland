@@ -18,6 +18,7 @@ const includedFeatures = [
   "Lifetime access and updates.",
   "Use for an unlimited number of personal or commercial projects.",
 ];
+
 function CTA() {
   return (
     <div className="py-8 bg-blues-200" id="pricing">

@@ -1,20 +1,31 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { allLists, sWord1Action, sWord2Action } from "../../../redux/reducers/allLists";
+// import { allLists, sWord1Action, sWord2Action } from "../../../redux/reducers/allLists";
+import {  allLists,
+  sWord1Action,
+  sWord2Action, } from "../../../redux/actions";
+
+// import {
+//   allLists,
+//   sWord1Action,
+//   sWord2Action,
+// } from "../../../redux/reducers/allLists";
 
 var selectedSentence = "commaOf";
 var index = 1;
 
 function SentenceTool(props) {
   //redux
+  const dispatch = useDispatch();
+
   const allWordLists = useSelector((state) => state.allListsContent);
   const sWord1Value = useSelector((state) => state.sWord1);
   const sWord2Value = useSelector((state) => state.sWord2);
-  const dispatch = useDispatch();
 
   //Sentence selector
 
   var sentences = ["commaOf", "hadABaby", "proofOf"];
+  // dispatch(sWord2Action("test"));
 
   const changeSentence = () => {
     if (index > sentences.length - 1) {
@@ -41,6 +52,7 @@ function SentenceTool(props) {
     }
     let randomNumber = Math.floor(Math.random() * sentenceWord1List.length);
     let randomizedInput = sentenceWord1List[randomNumber];
+
     dispatch(sWord1Action(randomizedInput));
   };
 
@@ -55,6 +67,8 @@ function SentenceTool(props) {
     }
     let randomNumber2 = Math.floor(Math.random() * sentenceWord2List.length);
     let randomizedInput2 = sentenceWord2List[randomNumber2];
+    // console.log(randomizedInput2);
+
     dispatch(sWord2Action(randomizedInput2));
   };
 

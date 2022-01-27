@@ -1,7 +1,6 @@
 import dynamic from "next/dynamic";
 // import { useEffect, useState } from "react";
 import React, { useState } from "react";
-
 import TopBar from "../components/TopBar";
 import Sidebar from "../components/SideBar/Sidebar";
 import HomePage from "./home";
@@ -11,7 +10,10 @@ import NotePopUpModal from "../components/MainPage/NoteBubble/NotePopUpModal";
 import LandingPage from "../components/LandingPage/LandingPage";
 import MainPage from "../components/MainPage/MainPage";
 import styled from "styled-components";
-// import SentencePage from "../solutions/Sentence";
+
+// import {SentencePage} from "./pages/solutions/Sentence.js";
+import SentencePage from "../pages/solutions/Sentence";
+import CombinatorialPage from "../pages/solutions/Combinatorial";
 
 let Wrapper = styled.div`
   width: 100vw;
@@ -60,7 +62,8 @@ export default function Root() {
         </div>
         <div className="content">
           {/* <HomePage /> */}
-
+          {/* <SentencePage /> */}
+          <CombinatorialPage />
           {/* <MainPage /> */}
         </div>
 

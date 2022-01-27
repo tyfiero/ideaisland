@@ -1,5 +1,5 @@
 /* redux/store.js */
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers } from "redux";
 import counterReducer from "./reducers/counter";
 import listReducer from "./reducers/list";
 import listChanged from "./reducers/listChangeBoolean";
@@ -16,7 +16,6 @@ import gptJInputReducer from "./reducers/gptjinput";
 import gptJOutputReducer from "./reducers/gptjoutput";
 
 //OTHER REDUCERS GO HERE
-
 
 const rootReducer = combineReducers({
   counter: counterReducer,
@@ -36,10 +35,11 @@ const rootReducer = combineReducers({
 
   //other reducers go here
 });
+// console.log(rootReducer);
 
 export const store = createStore(
-    rootReducer,
-    typeof window !== "undefined" &&
+  rootReducer,
+  typeof window !== "undefined" &&
     window.__REDUX_DEVTOOLS_EXTENSION__ &&
     window.__REDUX_DEVTOOLS_EXTENSION__()
 );
