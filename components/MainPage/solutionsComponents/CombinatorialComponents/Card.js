@@ -1,18 +1,18 @@
 import React, { useState, useCallback, memo, useEffect } from "react";
 import Dropdown from "./Dropdown";
 import { useSelector, useDispatch } from "react-redux";
+
 import {
   listNum,
   listChanged,
   wordAction,
   allLists,
   randomizeAction,
-} from "../actions";
+} from "../../../../redux/actions";
 import { connect } from "react-redux";
 // import useFitText from "use-fit-text";
 import { Squash as Hamburger } from "hamburger-react";
 import styled from "styled-components";
-
 // import ResizeObserver from "react-resize-observer";
 import CardModal from "./CardModal";
 import WordsCard from "./WordsCard";

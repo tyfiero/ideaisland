@@ -3,9 +3,9 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { useSelector, useDispatch } from "react-redux";
-import { listNum } from "../actions";
-import { listChanged } from "../actions";
-import { makeStyles } from "@material-ui/core/styles";
+import { listNum } from "../../../../redux/actions";
+import { listChanged } from "../../../../redux/actions";
+// import { makeStyles } from "@material-ui/core/styles";
 import { Squash as Hamburger } from "hamburger-react";
 
 // import MinimalSelect from "./MinimalDropDown";

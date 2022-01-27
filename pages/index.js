@@ -14,6 +14,7 @@ import styled from "styled-components";
 // import {SentencePage} from "./pages/solutions/Sentence.js";
 import SentencePage from "../pages/solutions/Sentence";
 import CombinatorialPage from "../pages/solutions/Combinatorial";
+import AIPage from "./solutions/Ai";
 
 let Wrapper = styled.div`
   width: 100vw;
@@ -63,7 +64,8 @@ export default function Root() {
         <div className="content">
           {/* <HomePage /> */}
           {/* <SentencePage /> */}
-          <CombinatorialPage />
+          {/* <CombinatorialPage /> */}
+          <AIPage />
           {/* <MainPage /> */}
         </div>
 

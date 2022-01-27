@@ -4,6 +4,7 @@ import SentenceTool from "../../components/MainPage/solutionsComponents/sentence
 import { useRouter } from "next/router";
 import { FaDice, FaPlus } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
+import Card from "../../components/MainPage/solutionsComponents/CombinatorialComponents/Card";
 const CombinatorialPage = () => {
   //THESE are for dynamic routing
   // const router = useRouter();
@@ -32,9 +33,9 @@ const CombinatorialPage = () => {
     <h1 className="heading-top">Combinatorial Tool</h1>
     <p>A tool for sparking creativity through random words and phrases.</p>
     <div className="cards">
-      {/* <Card card="0" key="0" />
+      <Card card="0" key="0" />
       <Card card="1" key="1" />
-      <Card card="2" key="2" /> */}
+      <Card card="2" key="2" />
       {inputList}
       <div className="buttons-div">
         <button className="add-button" onClick={onAddBtnClick}>
