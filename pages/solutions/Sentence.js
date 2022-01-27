@@ -2,7 +2,6 @@ import SentenceTool from "../../components/MainPage/solutionsComponents/sentence
 import { useRouter } from "next/router";
 
 const SentencePage = () => {
-
   //THESE are for dynamic routing
   // const router = useRouter();
   // const { id } = router.query;

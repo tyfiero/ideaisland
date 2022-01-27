@@ -10,14 +10,14 @@ function TopBar(props) {
   return (
     <nav id="navbar">
       <div className="nav-wrapper">
-        <Link href="/dashboard">
+        <Link href="/">
           <img
             src="/ii.png"
             alt="logo"
-            className="h-28 w-a cursor-pointer hover:scale-105"
-            onClick={() => {
-              console.log("clicked logo");
-            }}
+            className="h-20 w-a pl-3 pt-2 cursor-pointer hover:scale-105"
+            // onClick={() => {
+            //   console.log("clicked logo");
+            // }}
           />
         </Link>
       </div>
