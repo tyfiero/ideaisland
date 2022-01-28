@@ -22,15 +22,15 @@ function ForgotPage() {
       // If you want to send custom password reset email,
       // we will use a Cloud Function to send the email
       // with Postmark
-      // if (process.env.NEXT_PUBLIC_SEND_CUSTOM_AUTH_EMAILS === "true") {
-      //   const passwordReset = httpsCallable(
-      //     functions,
-      //     "callable-passwordReset"
-      //   );
-      //   await passwordReset({ email: emailRef.current.value });
-      // } else {
-      //   await sendPasswordResetEmail(auth, emailRef.current.value);
-      // }
+      if (process.env.NEXT_PUBLIC_SEND_CUSTOM_AUTH_EMAILS === "true") {
+        const passwordReset = httpsCallable(
+          functions,
+          "callable-passwordReset"
+        );
+        await passwordReset({ email: emailRef.current.value });
+      } else {
+        await sendPasswordResetEmail(auth, emailRef.current.value);
+      }
 
       setSuccessMessage(
         "Check your email inbox for further instructions to reset your password."
