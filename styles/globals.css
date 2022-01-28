@@ -917,7 +917,88 @@ body {
   margin-top: 48vh;
   z-index: 10;
 }
+@media screen and (min-width: 480px) {
+  body{
+    overflow: hidden;
+  }
+  .notepad-button {
+    position: fixed;
+    top: 1%;
+    left: 87%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 0.5em;
+    background-color: var(--colorLight1);
+    height: 5em;
+    width: 5em;
+    font-size: 12px;
+    align-items: center;
+    text-align: center;
+    border-radius: 3em;
+    border: 4px outset var(--colorLight2);
+    /* float: right */
+    z-index: 8;
+}
 
+.sideicon {
+  margin-left: 0.5rem;
+  font-size: 1.5rem !important;
+}
+.popup-box {
+  position: fixed;
+  /* background: #00000050; */
+  width: 100%;
+  height: 30%;
+  top: 0;
+  /* right: 0%; */
+  left: 0%;
+  z-index: 200;
+  padding-right: 1.5em;
+  /* margin-left: 1em; */
+  margin: 1em;
+  margin-top: 40% !important;
+
+
+  /* margin-top: calc(100vh - 65vh - 20px); */
+}
+.box {
+  /* display: flex;
+    flex-direction: column; */
+  /* justify-content: center; */
+  align-items: center;
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  height: auto;
+  max-height: 70vh;
+  /* margin-top: calc(100vh - 65vh - 20px); */
+  z-index: 7;
+  text-align: center;
+
+  padding: 10px;
+  background: #fff;
+  border-radius: 2em;
+  padding: 20px;
+  /* border: 1px solid #999; */
+  overflow: auto;
+  box-shadow: 9px 9px 17px #989898, -9px -9px 17px #ffffff;
+}
+.save_button {
+  padding: 2px 5px 2px 5px;
+  height: 3em;
+
+  width: 5em;
+  left: 38%;
+}
+
+.saved-message {
+  position: fixed;
+  /* top: 20%; */
+  left: 65%;
+  color: rgba(0, 115, 255, 0.377);
+}
+}
+@media screen and (min-width: 768px) {
 .notepad-button {
   position: sticky;
   top: 50%;
@@ -942,16 +1023,6 @@ body {
   transform: scale(1.2);
 }
 
-.note-modal {
-  position: fixed;
-
-  background: #00000033;
-  width: 100%;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  /* z-index: 1; */
-}
 
 .popup-box {
   position: fixed;
@@ -959,13 +1030,12 @@ body {
   width: 25%;
   height: 50vh;
   top: 0;
-  right: 0%;
+  left: 50%;
   z-index: 2;
   margin-right: 0.5em;
 
-  /* margin-top: calc(100vh - 65vh - 20px); */
+  margin-top: calc(100vh - 65vh - 20px);
 }
-
 .box {
   /* display: flex;
     flex-direction: column; */
@@ -976,7 +1046,7 @@ body {
   margin: 0 auto;
   height: auto;
   max-height: 70vh;
-  margin-top: calc(100vh - 65vh - 20px);
+  margin-top: calc(100vh - 65vh - 20px) !important;
   z-index: 7;
   text-align: center;
 
@@ -988,6 +1058,33 @@ body {
   overflow: auto;
   box-shadow: 9px 9px 17px #989898, -9px -9px 17px #ffffff;
 }
+.save_button {
+  padding: 2px 5px 2px 5px;
+  height: 3em;
+
+  width: 5em;
+  left: 38%;
+}
+
+.saved-message {
+  position: fixed;
+  left: 90%;
+  color: rgba(0, 115, 255, 0.377);
+}
+}
+.note-modal {
+  position: fixed;
+
+  background: #00000033;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  /* z-index: 1; */
+}
+
+
+
 
 .close-icon {
   content: "x";
@@ -1013,19 +1110,7 @@ body {
   display: flex;
   flex-direction: row;
 }
-.save_button {
-  padding: 2px 5px 2px 5px;
-  height: 3em;
 
-  width: 5em;
-  left: 38%;
-}
-
-.saved-message {
-  position: fixed;
-  left: 90%;
-  color: rgba(0, 115, 255, 0.377);
-}
 
 .saved-message-problem {
   position: fixed;
@@ -1253,96 +1338,98 @@ textarea {
   border-radius: 15px !important;
 }
 
-.sidebardiv {
-  display: flex;
-  /* align-items: center; */
-  overflow: visible;
-  animation: fadeIn 2s;
-  -webkit-animation: fadeIn 2s;
-  -moz-animation: fadeIn 2s;
-  -o-animation: fadeIn 2s;
-  -ms-animation: fadeIn 2s;
-  width: 3.5rem;
-  transition: width 0.6s;
-  box-shadow: 3px 3px 16px var(--colorLight2), -3px -3px 16px #ffffff;
+@media screen and (min-width: 768px) {
+  .sidebardiv {
+    display: flex;
+    /* align-items: center; */
+    overflow: visible;
+    animation: fadeIn 2s;
+    -webkit-animation: fadeIn 2s;
+    -moz-animation: fadeIn 2s;
+    -o-animation: fadeIn 2s;
+    -ms-animation: fadeIn 2s;
+    width: 3.5rem;
+    transition: width 0.6s;
+    box-shadow: 3px 3px 16px var(--colorLight2), -3px -3px 16px #ffffff;
+  }
+  
+  .sidebardiv:hover {
+    /* align-items: left; */
+  
+    width: 8rem;
+    transition: width 0.4s;
+  }
+  
+  .sidebardiv:hover .sidebartext {
+    display: inline-block;
+  }
+  .sidebardiv:hover .sideicon {
+    font-size: 1.5rem !important;
+  }
+  .sidebarunittcontainer {
+    color: black;
+  }
+  .sidebarunittcontainer:hover {
+    color: rgb(255, 255, 255) !important;
+  }
+  .sideicon {
+    margin-left: 0.8rem;
+    font-size: 1.5rem !important;
+  }
+ 
+  .sidebartext {
+    display: none;
+    animation: fadeIn 0.5s;
+    -webkit-animation: fadeIn 0.5s;
+    -moz-animation: fadeIn 0.5s;
+    -o-animation: fadeIn 0.5s;
+    -ms-animation: fadeIn 0.5s;
+  }
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @-moz-keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @-webkit-keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @-o-keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @-ms-keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
 }
 
-.sidebardiv:hover {
-  /* align-items: left; */
 
-  width: 8rem;
-  transition: width 0.4s;
-}
-
-.sidebardiv:hover .sidebartext {
-  display: inline-block;
-}
-.sidebardiv:hover .sideicon {
-  font-size: 1.5rem !important;
-}
-.sidebarunittcontainer {
-  color: black;
-}
-.sidebarunittcontainer:hover {
-  color: rgb(255, 255, 255) !important;
-}
-.sideicon {
-  margin-left: 0.8rem;
-  font-size: 1.5rem !important;
-}
-.sideicon {
-  margin-left: 0.8rem;
-  font-size: 1.5rem !important;
-}
-.sidebartext {
-  display: none;
-  animation: fadeIn 0.5s;
-  -webkit-animation: fadeIn 0.5s;
-  -moz-animation: fadeIn 0.5s;
-  -o-animation: fadeIn 0.5s;
-  -ms-animation: fadeIn 0.5s;
-}
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-moz-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-webkit-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-o-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-ms-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
