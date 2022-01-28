@@ -36,6 +36,8 @@ firebase-debug.log
 functions/.env.json
 functions.env.json
 
+next.config.js
+
 # vercel
 .vercel
 
