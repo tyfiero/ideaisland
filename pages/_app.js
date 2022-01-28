@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import { store } from "../redux/store";
 import CookieBanner from "../components/CookieBanner/CookieBanner";
 import Analytics from "../components/Analytics/Analytics";
-
+import Layout from "../components/Layout";
 function MyApp({ Component, pageProps }) {
   return (
     <>
@@ -64,6 +64,7 @@ function MyApp({ Component, pageProps }) {
         <meta name="msapplication-TileColor" content="#EEC3FD" />
       </Head>
       <Provider store={store}>
+        <Layout>
         <Component {...pageProps} />
         <CookieBanner
           privacyPolicyLink={"/privacy"}
@@ -71,6 +72,7 @@ function MyApp({ Component, pageProps }) {
           showMarketing={false}
           showExternalMedia={false}
         />
+        </Layout>
         <Analytics />
       </Provider>
     </>
