@@ -28,7 +28,7 @@ const CombinatorialPage = () => {
     setInputList(inputList.concat(<Card card={cardNum} key={cardNum} />));
   };
   return (
-    <div className="card-container">
+    <div className="card-container ml-14">
     {/* div that holds all the cards, note the img prop where the url lives, as well as the array thats passed in to Card.js as a prop */}
     <h1 className="heading-top">Combinatorial Tool</h1>
     <p>A tool for sparking creativity through random words and phrases.</p>

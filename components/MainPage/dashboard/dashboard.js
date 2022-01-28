@@ -26,7 +26,7 @@ const Dashboard = () => {
       <div className="dash-title">
         <h1 className="heading-top">Dashboard</h1>
       </div>
-      <div className="dash-wrapper">
+      <div className="ml-14 dash-wrapper">
         <div className="note-wrapper">
           <div className="dash-notes">
             <h1 className="heading">My Notes</h1>

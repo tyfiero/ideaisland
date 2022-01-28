@@ -19,7 +19,7 @@
     --colorDark2: #2549a5;
     --colorDark2soft: rgba(49, 81, 121, 0.39); */
 
-  --colorPop: rgb(154, 236, 87);
+  /* --colorPop: rgb(154, 236, 87); */
 }
 
 html,
@@ -38,13 +38,17 @@ body {
   background-attachment: fixed;
   /* background: rgb(214, 248, 184) no-repeat center center fixed; */
   background-repeat: no-repeat;
-  background: linear-gradient(
+  background-color: rgb(255, 255, 255);
+  /* background-image: url("/blob.png"); */
+
+  /* background: linear-gradient(
     170deg,
     var(--colorLight1) 0%,
     var(--colorLight2) 35%,
     var(--colorDark1) 58%,
     var(--colorDark2) 100%
-  );
+  ); */
+  /* filter: blur(20px); */
 }
 
 *,
@@ -55,6 +59,28 @@ body {
   padding: 0;
 }
 
+.blobs {
+  position: absolute;
+
+  z-index: -10;
+  /* The image used */
+  background-image: url("/blob.png");
+  background-position:center;
+
+
+  /* Add the blur effect */
+  filter: blur(100px);
+  -webkit-filter: blur(100px);
+
+  /* Full height */
+  height: 100%;
+  width: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 .wrapper {
   /* display: flex; */
   /* grid-template-columns: repeat(auto-fit, minmax(12em, 16em)); */
@@ -400,11 +426,14 @@ body {
   text-align: center;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   /* vertical-align: middle; */
-  padding: 2em;
+  /* padding: 2em; */
 }
 .cards {
   display: flex;
+  flex-wrap: wrap;
+
   /* grid-template-columns: repeat(auto-fit, minmax(12em, 16em)); */
   gap: 2em;
   justify-content: center;
@@ -896,7 +925,7 @@ body {
   display: flex;
   flex-direction: column;
   padding-top: 0.5em;
-  background-color: var(--colorPop);
+  background-color: var(--colorLight1);
   height: 5em;
   width: 5em;
   font-size: 12px;
@@ -1222,4 +1251,98 @@ textarea {
 }
 .ant-select-dropdown {
   border-radius: 15px !important;
+}
+
+.sidebardiv {
+  display: flex;
+  /* align-items: center; */
+  overflow: visible;
+  animation: fadeIn 2s;
+  -webkit-animation: fadeIn 2s;
+  -moz-animation: fadeIn 2s;
+  -o-animation: fadeIn 2s;
+  -ms-animation: fadeIn 2s;
+  width: 3.5rem;
+  transition: width 0.6s;
+  box-shadow: 3px 3px 16px var(--colorLight2), -3px -3px 16px #ffffff;
+}
+
+.sidebardiv:hover {
+  /* align-items: left; */
+
+  width: 8rem;
+  transition: width 0.4s;
+}
+
+.sidebardiv:hover .sidebartext {
+  display: inline-block;
+}
+.sidebardiv:hover .sideicon {
+  font-size: 1.5rem !important;
+}
+.sidebarunittcontainer {
+  color: black;
+}
+.sidebarunittcontainer:hover {
+  color: rgb(255, 255, 255) !important;
+}
+.sideicon {
+  margin-left: 0.8rem;
+  font-size: 1.5rem !important;
+}
+.sideicon {
+  margin-left: 0.8rem;
+  font-size: 1.5rem !important;
+}
+.sidebartext {
+  display: none;
+  animation: fadeIn 0.5s;
+  -webkit-animation: fadeIn 0.5s;
+  -moz-animation: fadeIn 0.5s;
+  -o-animation: fadeIn 0.5s;
+  -ms-animation: fadeIn 0.5s;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-o-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-ms-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
