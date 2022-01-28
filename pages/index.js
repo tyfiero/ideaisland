@@ -11,13 +11,14 @@ import LandingPage from "../components/LandingPage/LandingPage";
 import MainPage from "../components/MainPage/MainPage";
 // import styled from "styled-components";
 import HelpPage from "./Help";
-import ImplementationPage from "./Index";
+import ImplementationPage from "./index";
 // import {SentencePage} from "./pages/solutions/Sentence.js";
 import SentencePage from "./Solutions/Sentence";
 import CombinatorialPage from "./Solutions/Combinatorial";
-import AIPage from "./Solutions/Ai";
+// import AIPage from "./Solutions/Ai";
 import SolutionsPageIndex from "./Solutions";
 import ProblemPageIndex from "./Problem";
+import Dashboard from "../components/MainPage/dashboard/dashboard";
 
 // This page will be rendered at the root of the website. E.g.: www.example.com/
 
@@ -34,16 +35,17 @@ export default function Root() {
   return (
     <>
       <div className="content">
-        <HomePage />
-        <SolutionsPageIndex />
-        <SentencePage />
-        <CombinatorialPage />
-        <AIPage />
-        <ProblemPageIndex />
-        <ImplementationPage />
-        <HelpPage />
+        <Dashboard />
+        {/* <HomePage /> */}
+        {/* <SolutionsPageIndex /> */}
+        {/* <SentencePage /> */}
+        {/* <CombinatorialPage /> */}
+        {/* <AIPage /> */}
+        {/* <ProblemPageIndex /> */}
+        {/* <ImplementationPage /> */}
+        {/* <HelpPage /> */}
 
-        <MainPage />
+        {/* <MainPage /> */}
       </div>
 
       {/* <LandingPage /> */}

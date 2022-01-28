@@ -53,9 +53,9 @@ function Analytics() {
 
       gtag("js", new Date());
 
-      gtag("config", process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_GID, {
-        anonymize_ip: false,
-      });
+      // gtag("config", process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_GID, {
+      //   anonymize_ip: false,
+      // });
     };
 
     // Function to set options for a limited working and anonymous analytics
@@ -114,13 +114,13 @@ function Analytics() {
     };
 
     // Skip if the Google Analytics ID is undefined (Format it G-XXXXXX)
-    if (
-      process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_GID === undefined ||
-      process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_GID === "" ||
-      process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_GID === "G-XXXXXX"
-    ) {
-      return;
-    }
+    // if (
+    //   process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_GID === undefined ||
+    //   process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_GID === "" ||
+    //   process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_GID === "G-XXXXXX"
+    // ) {
+    //   return;
+    // }
 
     // Load the script if it is not loaded yet
     if (!analyticScriptIsLoaded) {

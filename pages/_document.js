@@ -9,8 +9,9 @@ class MyDocument extends Document {
     return (
       <Html lang="en" style={{ scrollBehavior: "smooth" }}>
         <Head />
-        <body style={{zIndex: 0}}>
-          <div className="blobs"></div>
+        <body >
+        <div className="blobs"></div>
+
           <Main />
           <NextScript />
         </body>
