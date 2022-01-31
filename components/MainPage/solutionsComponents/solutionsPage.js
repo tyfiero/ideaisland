@@ -6,7 +6,7 @@ import {
 } from "react-icons/fa";
 function SolutionsPage() {
   return (
-    <div className="text-black solution-page">
+    <div className="text-black solution-page fade-effect-quick">
       <h1 className="heading-top">Solution Page</h1>
       <h4>Tools:</h4>
       <Link href="/Solutions/Combinatorial">

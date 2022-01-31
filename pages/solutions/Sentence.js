@@ -6,7 +6,7 @@ const SentencePage = () => {
   // const router = useRouter();
   // const { id } = router.query;
   return (
-    <div className="sentence-container">
+    <div className="sentence-container fade-effect-quick">
       <h1 className="heading-top">Sentence Tool</h1>
       <p>A tool for making sentences with random nouns and verbs.</p>
     <SentenceTool />

@@ -61,7 +61,7 @@ const ProblemPage = () => {
     current.getSeconds();
   let savedMessage = "Saved at: " + cTime;
   return (
-    <div className="problem-page">
+    <div className="problem-page fade-effect-quick">
       <h1 className="heading-top">Problem Page</h1>
       {currentQ === 1 && (
         <>

@@ -22,7 +22,7 @@ const Dashboard = () => {
   // };
 
   return (
-    <div>
+    <div className="fade-effect-quick">
       <div className="dash-title">
         <h1 className="heading-top">Dashboard</h1>
       </div>

@@ -6,7 +6,7 @@ const AIPage = () => {
   // const router = useRouter();
   // const { id } = router.query;
   return (
-    <div className="TBD-container">
+    <div className="TBD-container fade-effect-quick">
       <h1 className="heading-top">AI Ideation TOOL</h1>
       <h4>
         Harness the power of advanced AI with this GPT3 product idea tool!{" "}

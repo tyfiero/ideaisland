@@ -2,7 +2,7 @@ import React from "react";
 
 const HelpPage = () => {
   return (
-    <div className="help-page">
+    <div className="help-page fade-effect-quick">
       <h1>Help Page</h1>
       <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis vel quis, voluptas pariatur at nisi! Molestiae ut cumque sunt explicabo dolor fuga, excepturi quis, deserunt libero incidunt velit optio repellendus. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam nostrum eius ad obcaecati enim natus architecto accusamus fugit quas error quo quibusdam soluta libero, animi unde, sed repellat atque harum! 
         

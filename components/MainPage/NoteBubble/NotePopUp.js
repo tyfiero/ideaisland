@@ -63,8 +63,8 @@ const NotePopUp = (props) => {
   //   };
 
   return (
-    <div className="popup-box">
-      <div className="box">
+    <div className="popup-box fade-effect-quick">
+      <div className="box fade-effect-quick">
         {/* <span className="close-icon" onClick={props.handleClose}>
           x
         </span> */}
@@ -79,7 +79,7 @@ const NotePopUp = (props) => {
           />
           <label htmlFor="cheese-status">Autosave</label> */}
 
-          <button className="card__btn save_button" onClick={saveHandler}>
+          <button className="card__btn save_button fade-effect" onClick={saveHandler}>
             Save
           </button>
           {isSaved && <p className="saved-message">{savedMessage}</p>}

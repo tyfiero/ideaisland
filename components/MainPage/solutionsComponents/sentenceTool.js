@@ -111,7 +111,7 @@ function SentenceTool(props) {
   );
 
   return (
-    <div>
+    <div className="fade-effect-quick">
       {selectedSentence === "commaOf" ? commaOf : null}
       {selectedSentence === "hadABaby" ? hadABaby : null}
       {selectedSentence === "proofOf" ? proofOf : null}
