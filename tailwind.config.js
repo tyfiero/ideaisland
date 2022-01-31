@@ -15,6 +15,7 @@ module.exports = {
       fontFamily: {
         sans: ["Graphik", "sans-serif"],
         serif: ["Merriweather", "serif"],
+        // custom: ["Sniglet", "sans-serif"],
       },
       colors: {
         blues: {
@@ -34,6 +35,17 @@ module.exports = {
           bl: "#4EAEF7",
           pd: "#B25CC9",
           pl: "#EEC3FD",
+        },
+        clear: {
+          bd: "RGBA(37, 73, 165, 0.3)",
+          bl: "RGBA(78, 174, 247, 0.7)",
+          pd: "RGBA(178, 92, 201, 0.3)",
+          pl: "RGBA(238, 195, 253, 0.6)",
+          w: "RGBA(182, 240, 255, 0.25)",
+          w1: "RGBA(182, 240, 255, 0.3)",
+          w2: "RGBA(182, 240, 255, 0.35)",
+          w3: "RGBA(182, 240, 255, 0.4)",
+          w4: "RGBA(182, 240, 255, 0.5)",
         },
       },
       animation: {
@@ -56,8 +68,8 @@ module.exports = {
         },
       },
       boxShadow: {
-        '3xl': '0 35px 60px -15px rgba(0, 0, 0, 0.3)',
-      }
+        "3xl": "0 35px 60px -15px rgba(0, 0, 0, 0.3)",
+      },
     },
   },
   plugins: [

@@ -14,7 +14,8 @@ import gpt3InputReducer from "./reducers/gpt3input";
 import gpt3OutputReducer from "./reducers/gpt3output";
 import gptJInputReducer from "./reducers/gptjinput";
 import gptJOutputReducer from "./reducers/gptjoutput";
-
+import loggedInReducer from "./reducers/isLoggedIn";
+import darkModeReducer from "./reducers/darkModeReducer";
 //OTHER REDUCERS GO HERE
 
 const rootReducer = combineReducers({
@@ -32,7 +33,8 @@ const rootReducer = combineReducers({
   gpt3Output: gpt3OutputReducer,
   gptJInput: gptJInputReducer,
   gptJOutput: gptJOutputReducer,
-
+  loggedIn: loggedInReducer,
+  darkMode: darkModeReducer,
   //other reducers go here
 });
 // console.log(rootReducer);

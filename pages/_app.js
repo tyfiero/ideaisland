@@ -6,7 +6,9 @@ import { store } from "../redux/store";
 import CookieBanner from "../components/CookieBanner/CookieBanner";
 import Analytics from "../components/Analytics/Analytics";
 import Layout from "../components/Layout";
+
 function MyApp({ Component, pageProps }) {
+
   return (
     <>
       <Head>
@@ -62,16 +64,40 @@ function MyApp({ Component, pageProps }) {
           content="images/touch/ms-touch-icon-144x144-precomposed.png"
         />
         <meta name="msapplication-TileColor" content="#EEC3FD" />
+
+
+
+
+
+        <link
+            rel="preload"
+            href="/fonts/Sniglet-Regular.ttf"
+            as="font"
+            crossOrigin=""
+          />
+          {/* <link
+            rel="preload"
+            href="/fonts/EBGaramond/EBGaramond-Medium.ttf"
+            as="font"
+            crossOrigin=""
+          /> */}
       </Head>
+
+      {/* <style jsx global>{`
+body {
+  margin: 0;
+}
+`}</style> */}
       <Provider store={store}>
+       
         <Layout>
-        <Component {...pageProps} />
-        <CookieBanner
-          privacyPolicyLink={"/privacy"}
-          showStatistic={true}
-          showMarketing={false}
-          showExternalMedia={false}
-        />
+          <Component {...pageProps} />
+          <CookieBanner
+            privacyPolicyLink={"/privacy"}
+            showStatistic={true}
+            showMarketing={false}
+            showExternalMedia={false}
+          />
         </Layout>
         <Analytics />
       </Provider>

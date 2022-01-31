@@ -14,13 +14,14 @@ function TopBar(props) {
           <img
             src="/ii.png"
             alt="logo"
-            className="w-20 h-a pl-3 pt-2 cursor-pointer hover:scale-105"
+            className="w-20 pt-2 pl-3 transition cursor-pointer h-a hover:scale-105"
             // onClick={() => {
             //   console.log("clicked logo");
             // }}
           />
         </Link>
       </div>
+      
     </nav>
   );
 }

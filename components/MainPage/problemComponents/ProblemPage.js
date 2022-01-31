@@ -183,16 +183,16 @@ const ProblemPage = () => {
         </>
       )}
       <div className="save-wrapper">
-        <button className="card__btn save_button" onClick={saveHandler}>
+        <button className="card__btn save_button rainbow-effect" onClick={saveHandler}>
           Save
         </button>
         {currentQ !== 1 && (
-          <button className="card__btn save_button" onClick={backHandler}>
+          <button className="card__btn save_button rainbow-effect" onClick={backHandler}>
             Back
           </button>
         )}
         {currentQ < 11 && (
-          <button className="card__btn save_button" onClick={nextHandler}>
+          <button className="card__btn save_button rainbow-effect" onClick={nextHandler}>
             Next
           </button>
         )}

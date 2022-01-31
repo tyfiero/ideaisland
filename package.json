@@ -34,6 +34,7 @@
     "hamburger-react": "^2.4.1",
     "immer": "^9.0.6",
     "next": "^12.0.7",
+    "next-fonts": "^1.5.1",
     "rc-cascader": "^3.2.1",
     "react": "^17.0.2",
     "react-cookie": "^4.1.1",

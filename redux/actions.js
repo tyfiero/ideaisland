@@ -1,3 +1,17 @@
+export const logIn = (boolean) => {
+  return {
+    type: "LOGIN",
+    payload: boolean,
+  };
+};
+
+export const darkMode = (boolean) => {
+  return {
+    type: "TOGGLE",
+    payload: boolean,
+  };
+};
+
 export const increment = (number) => {
   return {
     type: "INCREMENT",

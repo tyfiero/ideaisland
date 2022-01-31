@@ -9,48 +9,9 @@ import { FaHome, FaBug, FaBrain, FaSitemap, FaQuestion } from "react-icons/fa";
 import Link from "next/link";
 
 const Sidebar2 = (props) => {
-  //   console.log(isMobile + "mobile");
-  const [sidebar, setSidebar] = useState(true);
-  const showSidebar = () => setSidebar(!sidebar);
-  const [showText, setShowText] = useState(false);
-  const [clicked, setClicked] = useState(false);
 
-  const [selectedIcon, setSelectedIcon] = useState(0);
-  const [currentUrl, setCurrentUrl] = useState("/");
-  const [hovered, setHovered] = useState(false);
   const [selected, setSelected] = useState(0);
 
-  //   const handleMouseEnter = (e) => {
-
-  //     // e.target.style.background = "grey";
-  //   };
-  //   const handleMouseLeave = (e) => {
-
-  //   };
-  // const divClickHandler = () => {
-  //     setSe
-  // }
-  const hoverHandler = () => {
-    // console.log(hovered + "hover");
-    setTimeout(function () {
-      setHovered(true);
-    }, 250);
-  };
-  const leaveHandler = () => {
-    // console.log(hovered + "leave");
-
-    setHovered(false);
-  };
-
-  const sidebarClickHandler = () => {
-    // console.log("clicked");
-    setClicked(true);
-    // setTimeout(function () {
-    //   //   console.log(event.target.value + " LONG");
-
-    //   setClicked(false);
-    // }, 3000);
-  };
 
   let clickStyle = {
     color: "white",
@@ -61,12 +22,12 @@ const Sidebar2 = (props) => {
 
   return (
     <div
-      className="sidebardiv md:border-l-0 flex md:left-0 md:top-[25%] sm:bottom-0  md:bottom-[30%] sm:w-full md:flex-col sm:flex-row md:rounded-r-[3rem] sm:rounded-t-[3rem]  md:rounded-tl-none sm:rounded-b-1xl md:absolute sm:fixed bg-gradient-to-t from-t-bl  to-t-pl border-black border-[2px] content-center md:items-left  justify-evenly	md:py-4 sm:pb-1 sm:pt-4 sm:overflow-visible  z-10"
+      className="sidebardiv md:border-l-0 flex md:left-0 md:top-[25%] sm:bottom-0  md:bottom-[30%] sm:w-full md:flex-col sm:flex-row md:rounded-r-[3rem] sm:rounded-t-[3rem]  md:rounded-tl-none sm:rounded-b-1xl md:absolute sm:fixed bg-gradient-to-t from-clear-bl  to-clear-pl border-black border-[0px] content-center md:items-left  justify-evenly	md:py-4 sm:pb-1 sm:pt-4 sm:overflow-visible  z-10"
     >
       <Link href="/Home">
         <a>
           <div
-            className="sidebarunittcontainer flex rounded-[4rem] h-12 md:flex-row sm:flex-col  hover:bg-t-bl sm:items-center"
+            className="sidebarunittcontainer flex rounded-[4rem] h-12 md:flex-row sm:flex-col  hover:bg-clear-w4 sm:items-center  md:rounded-l-none"
             style={selected === 0 ? clickStyle : unClickStyle}
             onClick={() => {
               setSelected(0);
@@ -81,7 +42,7 @@ const Sidebar2 = (props) => {
       <Link href="/Problem">
         <a>
           <div
-            className="sidebarunittcontainer flex rounded-[4rem] h-12 md:flex-row sm:flex-col   hover:bg-t-bl sm:items-center"
+            className="sidebarunittcontainer flex rounded-[4rem] h-12 md:flex-row sm:flex-col   hover:bg-clear-w3 sm:items-center md:rounded-l-none"
             style={selected === 1 ? clickStyle : unClickStyle}
             onClick={() => {
               setSelected(1);
@@ -95,7 +56,7 @@ const Sidebar2 = (props) => {
       <Link href="/Solutions">
         <a>
           <div
-            className="sidebarunittcontainer flex rounded-[4rem] h-12 md:flex-row sm:flex-col   hover:bg-t-bl sm:items-center"
+            className="sidebarunittcontainer flex rounded-[4rem] h-12 md:flex-row sm:flex-col   hover:bg-clear-w2 sm:items-center md:rounded-l-none"
             style={selected === 2 ? clickStyle : unClickStyle}
             onClick={() => {
               setSelected(2);
@@ -109,7 +70,7 @@ const Sidebar2 = (props) => {
       <Link href="/Implementation">
         <a>
           <div
-            className=" sidebarunittcontainer flex rounded-[4rem] h-12 md:flex-row sm:flex-col  hover:bg-t-bl sm:items-center"
+            className=" sidebarunittcontainer flex rounded-[4rem] h-12 md:flex-row sm:flex-col  hover:bg-clear-w1 sm:items-center md:rounded-l-none"
             style={selected === 3 ? clickStyle : unClickStyle}
             onClick={() => {
               setSelected(3);
@@ -123,13 +84,13 @@ const Sidebar2 = (props) => {
       <Link href="/Help">
         <a>
           <div
-            className="sidebarunittcontainer flex rounded-[4rem] h-12 md:flex-row sm:flex-col hover:text-white  hover:bg-t-bl sm:items-center"
+            className="sidebarunittcontainer flex rounded-[4rem] h-12 md:flex-row sm:flex-col hover:text-white  hover:bg-clear-w sm:items-center md:rounded-l-none "
             style={selected === 4 ? clickStyle : unClickStyle}
             onClick={() => {
               setSelected(4);
             }}
           >
-            <FaQuestion className="sideicon" />
+            <FaQuestion className="z-10 sideicon" />
               <p className=" sidebartext sm:text-[14px] ml-2">Help</p>
           </div>
         </a>
