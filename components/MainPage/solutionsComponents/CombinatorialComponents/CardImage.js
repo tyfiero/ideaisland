@@ -132,6 +132,7 @@ function CardImage(props) {
         alt=""
         className="card__image"
         onClick={imageClickHandler}
+        placeholder="blur"
       />
       <p className="photo_credit">
         {photoCreditStatement} from{" "}

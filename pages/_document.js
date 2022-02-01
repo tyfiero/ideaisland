@@ -17,9 +17,9 @@ class MyDocument extends Document {
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Sniglet&display=swap" rel="stylesheet" /> */}
 
-<style>
+{/* <style>
 @import url('https://fonts.googleapis.com/css2?family=Sniglet&display=swap');
-</style>
+</style> */}
         <Head />
         <body>
         <div

@@ -1,6 +1,6 @@
-import SentenceTool from "../../components/MainPage/solutionsComponents/SentenceTool";
+// import SentenceTool from "../../components/MainPage/solutionsComponents/SentenceTool";
 import { useRouter } from "next/router";
-// import GPTtool from "../../components/MainPage/solutionsComponents/AI/GPT3";
+import GPTtool from "../../components/MainPage/solutionsComponents/AI/GPT3";
 const AIPage = () => {
   //THESE are for dynamic routing
   // const router = useRouter();
@@ -16,7 +16,7 @@ const AIPage = () => {
         *Note: Results from the GPT3 AI can be wild, the responses do not
         reflect the beliefs or ideals of IdeaIsland*
       </p>
-      {/* <GPTtool /> */}
+      <GPTtool />
     </div>
   );
 };

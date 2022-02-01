@@ -77,9 +77,9 @@ function TextArea(props) {
         className="text-area-note"
         style={textStyles}
         value={textContent}
-        rows="5"
+        rows={props.rows}
         onChange={handleChange}
-        placeholder="Your brilliant ideas here!"
+        placeholder={props.ph}
       >
         {" "}
       </textarea>
