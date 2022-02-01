@@ -10,6 +10,14 @@
   src: url("/fonts/Sniglet-Regular.ttf");
 }
 
+@font-face {
+  font-family: "Freude";
+  /* font-style: normal;
+  font-weight: 400; */
+  font-display: swap;
+  src: url("/fonts/Freude.otf");
+}
+
 * {
   box-sizing: border-box;
   /* padding: 0;
@@ -48,7 +56,9 @@ body {
    */
   /* @import url('https://fonts.googleapis.com/css2?family=Sniglet&display=swap'); */
   /* font-family: "Sniglet"; */
-  font-family: "Sniglet", Fallback, sans-serif !important;
+  /* font-family: "Sniglet", Fallback, sans-serif !important; */
+  font-family: "Freude", Fallback, sans-serif !important;
+
   /* @apply font-Sniglet; */
   z-index: 0;
   /* margin: 3em; */
@@ -186,8 +196,14 @@ body {
 .photo {
   cursor: pointer;
 }
-#logo {
-  background: linear-gradient(270deg, var(--colorDark1), var(--colorDark2));
+.logo {
+  font-size: 32px;
+  background: linear-gradient(
+    270deg,
+    var(--colorLight2),
+    var(--colorLight1),
+    var(--colorDark1)
+  );
   background-size: 400% 400%;
 
   -webkit-animation: logo 17s ease infinite;
@@ -803,9 +819,8 @@ body {
 }
 
 .notes-btn-sm-selected {
-  background: linear-gradient(145deg, #e4c2df, #B25CC9) !important;
+  background: linear-gradient(145deg, #e4c2df, #b25cc9) !important;
   /* box-shadow: inset 5px 5px 13px #c5a8c1, inset -3px -3px 11px #ffffff; */
-
 }
 .card__btn:before {
   position: absolute;

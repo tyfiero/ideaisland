@@ -8,7 +8,7 @@ function NoteNote() {
     <div>
       {/* <p>Title</p>
       <TextArea rows="1" ph="Idea Title" /> */}
-      <p>Notes</p>
+      <p>Note</p>
       <TextArea rows="10" ph="Notes" />
 
      

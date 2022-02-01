@@ -8,7 +8,6 @@ import Analytics from "../components/Analytics/Analytics";
 import Layout from "../components/Layout";
 
 function MyApp({ Component, pageProps }) {
-
   return (
     <>
       <Head>
@@ -65,17 +64,14 @@ function MyApp({ Component, pageProps }) {
         />
         <meta name="msapplication-TileColor" content="#EEC3FD" />
 
-
-
-
-
         <link
-            rel="preload"
-            href="/fonts/Sniglet-Regular.ttf"
-            as="font"
-            crossOrigin=""
-          />
-          {/* <link
+          rel="preload"
+          href="/fonts/Sniglet-Regular.ttf"
+          as="font"
+          crossOrigin=""
+        />
+        <link rel="preload" href="/fonts/Freude.otf" as="font" crossOrigin="" />
+        {/* <link
             rel="preload"
             href="/fonts/EBGaramond/EBGaramond-Medium.ttf"
             as="font"
@@ -89,7 +85,6 @@ body {
 }
 `}</style> */}
       <Provider store={store}>
-       
         <Layout>
           <Component {...pageProps} />
           <CookieBanner
