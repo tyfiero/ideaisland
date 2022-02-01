@@ -9,18 +9,21 @@ function TopBar(props) {
   //   };
   return (
     <nav id="navbar">
-      <div className="flex items-center nav-wrapper">
+      <div className="flex nav-wrapper">
         <Link href="/">
           <img
             src="/bulb.png"
             alt="logo"
-            className="h-20 pt-2 pl-3 pr-1 transition cursor-pointer w-a hover:scale-105"
+            className="h-16 pl-3 pr-1 mt-2 transition cursor-pointer w-a hover:scale-105"
             // onClick={() => {
             //   console.log("clicked logo");
             // }}
           />
         </Link>
+        {/* <Link href="/"> */}
+
         <p className="pt-4 logo">ideaisland</p>
+        {/* </Link> */}
       </div>
     </nav>
   );
