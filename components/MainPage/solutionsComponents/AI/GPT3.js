@@ -16,6 +16,7 @@ import {
 } from "../../../../redux/actions";
 import GPT3TextArea from "./GPTJTextArea";
 import GPTJTextArea from "./GPT3TextArea";
+import { gptJInputAction } from "../../../../redux/actions";
 
 const GPTtool = () => {
   const gpt3InputRedux = useSelector((state) => state.gpt3Input);
@@ -34,15 +35,31 @@ const GPTtool = () => {
   const [GPTJorGPT3, setGPTJorGPT3] = useState(true);
 
   const [responseRecieved, setResponseRecieved] = useState(false);
+  const [responseRecievedGPTJ, setResponseRecievedGPTJ] = useState(false);
 
   const { register, handleSubmit } = useForm({});
   const [aiResponse, setAiResponse] = useState("");
+  const [aiResponseGPTJ, setAiResponseGPTJ] = useState("");
+  const [charLength, setCharLength] = useState(0);
+
   // const headers = {
   //   "Content-Type": "application/json",
   // };
 
+  const textStyles = {
+    resize: "none",
+    fontSize: "1rem",
+    lineHeight: "1.5em",
+    padding: "10px",
+    width: "99%",
+    borderRadius: "1rem",
+  };
+  //gpt3
   const onSubmitForm = async (values) => {
     let formData = values.input;
+    setResponseRecieved(false);
+    setResponseRecievedGPTJ(false);
+
     axios({
       method: "POST",
       url: "/api/openAI",
@@ -52,8 +69,8 @@ const GPTtool = () => {
       // headers: headers,
     })
       .then((response) => {
-        console.log("index response");
-        console.log(response.data.results);
+        // console.log("index response");
+        // console.log(response.data.results);
         setAiResponse(response.data.results);
         dispatch(gpt3OutputAction(aiResponse));
         setResponseRecieved(true);
@@ -63,43 +80,80 @@ const GPTtool = () => {
         console.log(error);
         return "Sorry, an Error occured";
       });
-
-    // const fetchHello = (page) => axios.get("/api/hello");
-    // fetchHello();
-
-    // console.log(process.env.NEXT_PUBLIC_GPTJ_API_KEY);
-    // console.log(process.env.GPTJ_API_KEY);
   };
 
-  // console.log(process.env.NEXT_PUBLIC_OPENAI_API_KEY);
-  const textStyles = {
-    resize: "none",
-    fontSize: "1rem",
-    lineHeight: "1.5em",
-    // fontFamily: "Roboto",
-    padding: "10px",
-    width: "99%",
-    borderRadius: "1rem",
+  //gptJ
+  const onSubmitFormGptJ = async (values) => {
+    let formData = values.input;
+    setResponseRecievedGPTJ(false);
+    setResponseRecieved(false);
+
+    axios({
+      method: "POST",
+      url: "/api/gptJ",
+      data: {
+        input: formData,
+      },
+      // headers: headers,
+    })
+      .then((response) => {
+        console.log("index response");
+        // console.log(response.data.results);
+        setAiResponseGPTJ(response.data.results);
+        setResponseRecievedGPTJ(true);
+        dispatch(gptJOutputAction(aiResponseGPTJ));
+        return response;
+      })
+      .catch((error) => {
+        console.log(error);
+        return "Sorry, an Error occured";
+      });
   };
 
   var gptJContent = (
-    <form onSubmit={handleSubmit(onSubmitForm)}>
-      <div>
+    <form onSubmit={handleSubmit(onSubmitFormGptJ)}>
+      <div className="flex flex-col items-center">
         {/* gpt3/j switched component names. Why? Idk */}
         {/* <GPT3TextArea
         q="gptj"
         ph="Prompt for the GPT-J AI to work its magic 👀 "
         // sendDataToParent={sendDataToParent}
       /> */}
+        {/* <input
+          type="text"
+          style={textStyles}
+          className="h-[10rem] !w-[25rem] my-5 text-area-note"
+          {...register("input", { required: "Required" })}
+        /> */}
+        <textarea
+          name="text"
+          rows="14"
+          // onChange={(e) => {
+          //   console.log("hi");
+          //   dispatch(gptJInputAction(e.target.value));
+
+          //   setCharLength(gptJInputRedux.length + 1);
+          // }}
+          cols="10"
+          wrap="soft"
+          placeholder="Content to send to AI"
+          maxLength="100"
+          style={textStyles}
+          className="h-[10rem] !w-[25rem] my-5 text-area-note"
+          {...register("input", { required: "Required" })}
+        ></textarea>
+        {/* <GPT3TextArea /> */}
+        {/* <p>{charLength + "/100"}</p> */}
 
         <button
-          className="card__btn"
+          className="card__btn w-[10rem] items-center flex  rainbow-effect "
+          type="submit"
           onClick={() => {
             setGPTJStatus(true);
           }}
         >
-          <FaSeedling style={{ fontSize: "36px" }} />
-          Send to GPTJ!
+          <FaSeedling style={{ fontSize: "32px" }} className="pl-2" />
+          <p className="pl-2">Send to GPTJ!</p>
         </button>
       </div>
     </form>
@@ -107,7 +161,8 @@ const GPTtool = () => {
 
   var gpt3Content = (
     <form onSubmit={handleSubmit(onSubmitForm)}>
-      <div>
+          <div className="flex flex-col items-center">
+
         {/* gpt3/j switched component names. Why? Idk */}
 
         {/* <GPTJTextArea
@@ -117,14 +172,32 @@ const GPTtool = () => {
           // sendDataToParent={sendDataToParent}
         /> */}
 
-        <input
+        {/* <input
           type="text"
-          style={textStyles}
           className="text-area-note"
           {...register("input", { required: "Required" })}
-        />
+        /> */}
+
+        <textarea
+          name="text"
+          rows="14"
+          // onChange={(e) => {
+          //   console.log("hi");
+          //   dispatch(gptJInputAction(e.target.value));
+
+          //   setCharLength(gptJInputRedux.length + 1);
+          // }}
+          cols="10"
+          wrap="soft"
+          placeholder="Content to send to AI"
+          maxLength="100"
+          style={textStyles}
+          className="h-[10rem] !w-[25rem] my-5 text-area-note"
+          {...register("input", { required: "Required" })}
+        ></textarea>
         <button
-          className="card__btn"
+          className="card__btn w-[10rem] items-center flex  rainbow-effect "
+
           type="submit"
           onClick={() => {
             //   console.log("button input" + GPT3Input);
@@ -134,8 +207,9 @@ const GPTtool = () => {
             setGPT3Status(true);
           }}
         >
-          <FaPastafarianism style={{ fontSize: "36px" }} />
-          Send to GPT3!
+          <FaPastafarianism style={{ fontSize: "36px" }} className="pl-2" />
+          <p className="pl-2">Send to GPT3!</p>
+
         </button>
       </div>
     </form>
@@ -145,11 +219,13 @@ const GPTtool = () => {
   var gpt3Button = "GPT-3";
 
   return (
-    <div>
+    <div className="flex flex-col items-center">
       <button
-        className="card__btn"
+        className="card__btn w-[8rem]  flex px-3 items-center rainbow-effect "
         onClick={() => {
           setGPTJorGPT3(!GPTJorGPT3);
+          setResponseRecieved(false);
+          setResponseRecievedGPTJ(false);
           //   console.log(GPTJorGPT3);
         }}
       >
@@ -163,14 +239,18 @@ const GPTtool = () => {
       </button>
       {GPTJorGPT3 ? gptJContent : gpt3Content}
 
-      <h2>Results:</h2>
+      <h2 className="pt-4 pb-2 text-xl">Results:</h2>
 
-      <div className="ai-output-box">
-        {GPTJorGPT3 ? <p>{gptJOutputRedux}</p> : <p>{gpt3OutputRedux}</p>}
-
+      <div className=" ai-output-box">
+        {/* {GPTJorGPT3 ? <p>{gptJOutputRedux}</p> : <p>{gpt3OutputRedux}</p>} */}
+        {/* <p className="relative">AI:</p> */}
         {/* {responseRecieved && <p>{gpt3OutputRedux}</p>} */}
         {responseRecieved && <p>{aiResponse}</p>}
+        {!responseRecieved && !responseRecievedGPTJ && (
+          <p className="text-gray-400 ">{"AI output will display here"}</p>
+        )}
 
+        {responseRecievedGPTJ && <p>{"AI:" + aiResponseGPTJ}</p>}
       </div>
     </div>
   );

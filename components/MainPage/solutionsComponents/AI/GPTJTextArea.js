@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // import { connect } from "react-redux";
+
 // import { noteAction } from "../actions";
 import { gptJInputAction } from "../../../../redux/actions";
 var localGPTJPrompt;
@@ -83,15 +84,6 @@ function GPTJTextArea({ q, ph }) {
     // }
   };
 
-  const textStyles = {
-    resize: "none",
-    fontSize: "1rem",
-    lineHeight: "1.5em",
-    fontFamily: "Roboto",
-    padding: "10px",
-    width: "99%",
-    borderRadius: "1rem",
-  };
 
   // useEffect(() => {
   //   if (timeToSend) {
@@ -109,8 +101,11 @@ function GPTJTextArea({ q, ph }) {
         rows="5"
         onChange={handleChange}
         onBlur={handleBlur}
-        placeholder={ph}
+        wrap="soft"
+        placeholder="Content to send to AI"
         maxLength="100"
+        {...register("input", { required: "Required" })}
+
       >
         {" "}
       </textarea>
