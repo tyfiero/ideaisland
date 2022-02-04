@@ -7,7 +7,7 @@ import {
   EmailAuthProvider,
   linkWithCredential,
 } from "firebase/auth";
-import { LightningBoltIcon } from "@heroicons/react/solid";
+// import { LightningBoltIcon } from "@heroicons/react/solid";
 import { useRouter } from "next/router";
 import AuthError from "./AuthError";
 import Spinner from "../Spinner";
@@ -103,11 +103,12 @@ function SignupPage() {
     }
   };
   return (
-    <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8 p-10 rounded-xl bg-blues-100 shadow">
+    <div className="flex items-center justify-center min-h-screen px-4 py-12 sm:px-6 lg:px-8">
+      <div className="w-full max-w-md p-10 space-y-8 shadow rounded-xl bg-blues-100">
         <div>
-          <LightningBoltIcon className="mx-auto h-20 w-auto sm:h-30 transform rotate-12 scale-y-110 stroke-blues-500 text-blues-200" />
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+        <img  src="/bulb.svg" alt="logo" className="w-auto h-20 mx-auto sm:h-30" />
+          {/* <LightningBoltIcon className="w-auto h-20 mx-auto transform scale-y-110 sm:h-30 rotate-12 stroke-blues-500 text-blues-200" /> */}
+          <h2 className="mt-1 text-3xl font-extrabold text-center text-gray-900">
             Welcome to IdeaIsland!
           </h2>
         </div>
@@ -120,7 +121,7 @@ function SignupPage() {
           )}
 
           <input type="hidden" name="remember" defaultValue="true" />
-          <div className="rounded-md shadow-sm -space-y-px">
+          <div className="-space-y-px rounded-md shadow-sm">
             <div>
               <label htmlFor="email-address" className="sr-only">
                 Email address
@@ -132,7 +133,7 @@ function SignupPage() {
                 autoComplete="email"
                 required
                 onChange={(e) => setEmail(e.target.value)}
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-blues-500 focus:border-blues-500 focus:z-10 sm:text-sm"
+                className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-t-md focus:outline-none focus:ring-blues-500 focus:border-blues-500 focus:z-10 sm:text-sm"
                 placeholder="Email address"
               />
             </div>
@@ -147,7 +148,7 @@ function SignupPage() {
                 autoComplete="current-password"
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blues-500 focus:border-blues-500 focus:z-10 sm:text-sm"
+                className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-b-md focus:outline-none focus:ring-blues-500 focus:border-blues-500 focus:z-10 sm:text-sm"
                 placeholder="Password"
               />
             </div>
@@ -157,21 +158,16 @@ function SignupPage() {
             type="submit"
             disabled={loading}
             onClick={handleLogin}
-            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blues-500 hover:bg-blues-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blues-500"
+            className="relative flex justify-center w-full px-4 py-2 text-sm font-medium text-white border border-transparent rounded-xl group bg-blues-500 hover:bg-blues-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blues-500"
           >
-            <span className="absolute left-0 inset-y-0 flex items-center pl-3">
-              <LightningBoltIcon
-                className="h-5 w-5 text-blues-500 group-hover:text-blues-400"
-                aria-hidden="true"
-              />
-            </span>
+            
             {loading ? (
               <Spinner className="w-5 h-5 text-white" />
             ) : (
               <span>Sign Up</span>
             )}
           </button>
-          <p className="mt-2 text-center text-md text-gray-600">
+          <p className="mt-2 text-center text-gray-600 text-md">
             Or{" "}
             <Link href="/login">
               <a className="font-medium text-blues-600 hover:text-blues-500">

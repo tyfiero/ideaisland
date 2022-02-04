@@ -12,7 +12,7 @@ function TopBar(props) {
       <div className="flex nav-wrapper">
         <Link href="/">
           <img
-            src="/bulb.png"
+            src="/bulb.svg"
             alt="logo"
             className="h-16 pl-3 pr-1 mt-2 transition cursor-pointer w-a hover:scale-105"
             // onClick={() => {

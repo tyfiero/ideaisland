@@ -44,10 +44,11 @@ function ForgotPage() {
     setLoading(false);
   }
   return (
-    <div className="flex flex-col justify-center min-h-screen py-12 bg-gray-50 sm:px-6 lg:px-8">
+    <div className="flex flex-col justify-center min-h-screen py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <LightningBoltIcon className="w-auto h-20 mx-auto transform scale-y-110 sm:h-30 rotate-12 stroke-blues-500 text-blues-200" />
-        <h2 className="mt-6 text-3xl font-extrabold text-center text-gray-900">
+        {/* <LightningBoltIcon className="w-auto h-20 mx-auto transform scale-y-110 sm:h-30 rotate-12 stroke-blues-500 text-blues-200" /> */}
+        <img  src="/bulb.svg" alt="logo" className="w-auto h-20 mx-auto sm:h-30" />
+        <h2 className="mt-1 text-3xl font-extrabold text-center text-gray-900">
           Reset your password
         </h2>
       </div>

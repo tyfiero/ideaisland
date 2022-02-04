@@ -31,9 +31,11 @@ module.exports = {
           900: "#010e18",
         },
         t: {
-          bd: "#2549A5",
+          bpop: "#00fff8",
+          bd: "#2549A8",
           bl: "#4EAEF7",
-          pd: "#B25CC9",
+          pd: "#be0081",
+          pm: "#d662bf",
           pl: "#EEC3FD",
         },
         clear: {

@@ -13,8 +13,6 @@ import collectAnalyticsEvent from "./Analytics/collectAnalyticsEvent";
 import { darkMode } from "../redux/actions";
 import Toggle from "react-toggle";
 
-
-
 export default function Layout({ children }) {
   const loggedIn = useSelector((state) => state.loggedIn);
 
@@ -130,7 +128,7 @@ export default function Layout({ children }) {
           <Sidebar2 toggle={isToggled} />
         </div>
         <div className="fade-effect-quick">
-        <main>{children}</main>
+          <main>{children}</main>
         </div>
         <div className="notepad-container">
           {isPopUpOpen && <NotePopUpModal handleClose={togglePopup} />}
