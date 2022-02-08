@@ -4,7 +4,7 @@ import AuthError from "./AuthError";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { httpsCallable } from "firebase/functions";
 import Spinner from "../Spinner";
-import { functions, auth } from "../firebase-init";
+import { functions, auth } from "../../OLD/oldComponents/firebase-init";
 
 function ForgotPage() {
   const emailRef = useRef();

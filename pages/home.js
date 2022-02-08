@@ -1,4 +1,4 @@
-import Dashboard from "../components/MainPage/dashboard/dashboard";
+import Dashboard from "../components/MainPage/dashboard/Dashboard";
 
 const HomePage = () => {
   return <Dashboard />;

@@ -59,7 +59,7 @@ export default function Layout({ children }) {
            */}
           <Sidebar2 toggle={isToggled} />
         </div>
-        <div className="fade-effect-quick">
+        <div className="fade-effect-quick content">
           <main>{children}</main>
         </div>
         <div className="notepad-container">

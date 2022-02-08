@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
-import Protected from "../components/Protected";
+import Protected from "../../components/Protected";
 
-import TechStackPage from "../components/ProtectedArea/TechStack";
+import TechStackPage from "../../components/ProtectedArea/TechStack";
 
 function TechStack() {
   return (

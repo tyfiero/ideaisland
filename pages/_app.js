@@ -3,8 +3,8 @@ import "../styles/globals.css";
 import Head from "next/head";
 import { Provider } from "react-redux";
 import { store } from "../redux/store";
-import CookieBanner from "../components/CookieBanner/CookieBanner";
-import Analytics from "../components/Analytics/Analytics";
+// import CookieBanner from "../components/CookieBanner/CookieBanner";
+// import Analytics from "../components/Analytics/Analytics";
 import Layout from "../components/Layout";
 
 function MyApp({ Component, pageProps }) {
@@ -87,14 +87,14 @@ body {
       <Provider store={store}>
         <Layout>
           <Component {...pageProps} />
-          <CookieBanner
+          {/* <CookieBanner
             privacyPolicyLink={"/privacy"}
             showStatistic={true}
             showMarketing={false}
             showExternalMedia={false}
-          />
+          /> */}
         </Layout>
-        <Analytics />
+        {/* <Analytics /> */}
       </Provider>
     </>
   );

@@ -6,11 +6,12 @@ import { useRouter } from "next/router";
 import AuthError from "./AuthError";
 import Spinner from "../Spinner";
 import Link from "next/link";
-import useStore from "../StateManagement";
-import { auth, googleAuthProvider } from "../firebase-init";
+// import useStore from "../StateManagement";
+// import { auth, googleAuthProvider } from "../../OLD/oldComponents/firebase-init";
 import { FaEnvelope, FaChevronLeft } from "react-icons/fa";
 
-// import { auth, googleAuthProvider } from '../lib/firebase';
+import { auth, googleAuthProvider } from "../../lib/firebase";
+
 function LoginPage() {
   const rememberMeRef = useRef();
   const router = useRouter();
@@ -21,7 +22,9 @@ function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [signInMethod, setSignInMethod] = useState(0);
 
-  const user = useStore((state) => state.user);
+  //The below user variable is from zustand statemanagement. So dont use it. Replace with redux
+  // const user = useStore((state) => state.user);
+  let user = null;
 
   let emailButton = () => {
     setSignInMethod(1);

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import useStore from "../StateManagement";
+import useStore from "../../../components/StateManagement";
 import { useCookies } from "react-cookie";
 
 function Analytics() {

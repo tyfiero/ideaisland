@@ -1,9 +1,9 @@
-import { LightningBoltIcon } from "@heroicons/react/solid";
 import { useRef, useState, useEffect } from "react";
 import AuthError from "./AuthError";
 import Link from "next/link";
 import { verifyPasswordResetCode, confirmPasswordReset } from "firebase/auth";
-import { auth } from "../firebase-init";
+// import { auth } from "../../OLD/oldComponents/firebase-init";
+import { auth } from "../../lib/firebase";
 
 import { useRouter } from "next/router";
 import Spinner from "../Spinner";

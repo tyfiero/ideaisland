@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { XIcon } from "@heroicons/react/outline";
-import classNames from "../classnames";
-import useStore from "../StateManagement";
+import classNames from "../../../components/classnames";
+import useStore from "../../../components/StateManagement";
 import CookieTable from "./CookieTable";
 
 function CookieDetails({ setShowDetails, isEmbedded = false }) {

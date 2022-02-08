@@ -5,7 +5,7 @@ import NavigationContainer from "./Navigation/NavigationContainer";
 import { CheckCircleIcon, CheckIcon } from "@heroicons/react/solid";
 import Spinner from "../Spinner";
 import { httpsCallable } from "firebase/functions";
-import { firestore, functions } from "../firebase-init";
+import { firestore, functions } from "../../OLD/oldComponents/firebase-init";
 
 import MainLayout from "./MainLayout";
 import PageHeader from "./PageHeader";

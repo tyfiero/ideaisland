@@ -1,7 +1,7 @@
 import { FaBook, FaTimes, FaSun, FaMoon } from "react-icons/fa";
 import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
-import collectAnalyticsEvent from "./Analytics/collectAnalyticsEvent";
+import collectAnalyticsEvent from "../OLD/oldComponents/Analytics/collectAnalyticsEvent";
 import { darkMode } from "../redux/actions";
 import Toggle from "react-toggle";
 import React from "react";

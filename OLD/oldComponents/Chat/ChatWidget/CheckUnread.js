@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import useStore from "../../StateManagement";
+import useStore from "../../../../components/StateManagement";
 import shallow from "zustand/shallow";
 
 function CheckUnread() {
@@ -15,7 +15,7 @@ function CheckUnread() {
     if (!user) return;
     const checkForUnreadMessages = async () => {
       try {
-        const { firestore } = await import("../../firebase-init");
+        const { firestore } = await import("../../../../components/firebase-init");
 
         const { query, where, getDocs, collection, limit } = await import(
           "firebase/firestore"

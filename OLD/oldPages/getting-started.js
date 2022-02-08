@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
-import Protected from "../components/Protected";
+import Protected from "../../components/Protected";
 
-import GettingStartedPage from "../components/ProtectedArea/GettingStarted";
+import GettingStartedPage from "../../components/ProtectedArea/GettingStarted";
 
 function GettingStarted() {
   return (

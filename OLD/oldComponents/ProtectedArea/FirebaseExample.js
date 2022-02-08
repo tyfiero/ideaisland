@@ -12,7 +12,7 @@ import {
   limit,
   orderBy,
 } from "firebase/firestore";
-import { firestore } from "../firebase-init";
+import { firestore } from "../../OLD/oldComponents/firebase-init";
 
 import useStore from "../StateManagement";
 

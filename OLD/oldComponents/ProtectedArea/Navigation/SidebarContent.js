@@ -12,7 +12,7 @@ import {
 import Link from "next/link";
 
 import useStore from "../../StateManagement";
-import { auth } from "../../firebase-init";
+import { auth } from "../../../OLD/oldComponents/firebase-init";
 
 import { useRouter } from "next/router";
 import Logo from "./Logo";

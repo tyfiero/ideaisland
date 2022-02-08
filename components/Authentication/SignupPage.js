@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import shallow from "zustand/shallow";
-import useStore from "../StateManagement";
+// import shallow from "zustand/shallow";
+// import useStore from "../StateManagement";
 import {
   signOut,
   createUserWithEmailAndPassword,
@@ -12,8 +12,9 @@ import { useRouter } from "next/router";
 import AuthError from "./AuthError";
 import Spinner from "../Spinner";
 import Link from "next/link";
-import { auth } from "../firebase-init";
-import collectAnalyticsEvent from "../Analytics/collectAnalyticsEvent";
+// import { auth } from "../../OLD/oldComponents/firebase-init";
+import { auth } from "../../lib/firebase";
+import collectAnalyticsEvent from "../../OLD/oldComponents/Analytics/collectAnalyticsEvent";
 
 function SignupPage() {
   const router = useRouter();
@@ -23,13 +24,16 @@ function SignupPage() {
   const [errorAuth, setErrorAuth] = useState(undefined);
   const [loading, setLoading] = useState(false);
 
-  const { user, set } = useStore(
-    (state) => ({
-      user: state.user,
-      set: state.set,
-    }),
-    shallow
-  );
+
+
+  //from Zustand, replace with redux I guess?
+  // const { user, set } = useStore(
+  //   (state) => ({
+  //     user: state.user,
+  //     set: state.set,
+  //   }),
+  //   shallow
+  // );
 
   useEffect(() => {
     //Clear the error on page load
