@@ -8,7 +8,14 @@ async function gptJAPIRequest(req) {
 
   let userInput = req.body.input;
   let prompt = `Brainstorm some ideas combining ${userInput}: `;
-  let promptToSend = { prompt: prompt };
+  let promptToSend = {
+    prompt: prompt,
+    max_tokens: 50,
+    temperature: 1,
+    top_k: 40,
+    top_p: 0.9,
+    stop: null,
+  };
   let config = {
     method: "POST",
     // "Access-Control-Allow-Origin" : *,
@@ -22,6 +29,7 @@ async function gptJAPIRequest(req) {
     data: promptToSend,
   };
 
+  // console.log(data);
   let axiosRequest = await axios(config)
     //   axios(config)
     .then(function (response) {
@@ -29,7 +37,7 @@ async function gptJAPIRequest(req) {
       //   console.log("res" + JSON.stringify(response.data));
 
       let gptjResponse = response.data.text;
-    //   console.log("data.text" + gptjResponse);
+      //   console.log("data.text" + gptjResponse);
       // dispatch(gptJOutputAction(gptjResponse));
 
       return gptjResponse;

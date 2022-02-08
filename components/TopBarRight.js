@@ -20,7 +20,7 @@ export default function TopBarRight() {
   const darkRedux = useSelector((state) => state.darkMode);
   const dispatch = useDispatch();
 
-  console.log(userData);
+  // console.log(userData);
 
   useEffect(() => {
     if (userData.user !== null) {
