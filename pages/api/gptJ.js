@@ -7,10 +7,10 @@ async function gptJAPIRequest(req) {
   //   console.log(req.body.input);
 
   let userInput = req.body.input;
-  let prompt = `Brainstorm some ideas combining ${userInput}: `;
+  let prompt = `Write me a list of recipes using ${userInput}: `;
   let promptToSend = {
     prompt: prompt,
-    max_tokens: 50,
+    max_tokens: 100,
     temperature: 1,
     top_k: 40,
     top_p: 0.9,

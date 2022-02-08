@@ -98,7 +98,7 @@ const GPTtool = () => {
     })
       .then((response) => {
         console.log("index response");
-        // console.log(response.data.results);
+        console.log(response.data.results);
         setAiResponseGPTJ(response.data.results);
         setResponseRecievedGPTJ(true);
         dispatch(gptJOutputAction(aiResponseGPTJ));
@@ -161,8 +161,7 @@ const GPTtool = () => {
 
   var gpt3Content = (
     <form onSubmit={handleSubmit(onSubmitForm)}>
-          <div className="flex flex-col items-center">
-
+      <div className="flex flex-col items-center">
         {/* gpt3/j switched component names. Why? Idk */}
 
         {/* <GPTJTextArea
@@ -197,7 +196,6 @@ const GPTtool = () => {
         ></textarea>
         <button
           className="card__btn w-[10rem] items-center flex  rainbow-effect "
-
           type="submit"
           onClick={() => {
             //   console.log("button input" + GPT3Input);
@@ -209,7 +207,6 @@ const GPTtool = () => {
         >
           <FaPastafarianism style={{ fontSize: "36px" }} className="pl-2" />
           <p className="pl-2">Send to GPT3!</p>
-
         </button>
       </div>
     </form>
@@ -247,7 +244,9 @@ const GPTtool = () => {
         {/* {responseRecieved && <p>{gpt3OutputRedux}</p>} */}
         {responseRecieved && <p>{aiResponse}</p>}
         {!responseRecieved && !responseRecievedGPTJ && (
-          <p className="text-gray-400 ">{"AI output will display here"}</p>
+          <p className="text-gray-400">
+            {"AI output will display here"}
+          </p>
         )}
 
         {responseRecievedGPTJ && <p>{"AI:" + aiResponseGPTJ}</p>}

@@ -106,7 +106,7 @@ const options = [
     ],
   },
 ];
-function Card(props) {
+function Card({ cardNum }) {
   // console.log("======CARD RERENDERED=======");
 
   //redux
@@ -139,7 +139,7 @@ function Card(props) {
   const [cardCurrentWord, setCardCurrentWord] = React.useState("innovation");
   useEffect(() => {
     if (isRandomized) {
-      console.log("ITS BEEN RANDOMIZED");
+      // console.log("ITS BEEN RANDOMIZED");
       wordClickHandler();
       dispatch(randomizeAction(false));
     }
@@ -148,7 +148,7 @@ function Card(props) {
   useEffect(() => {
     console.log("UE1");
 
-    if (props.card === "0") {
+    if (cardNum === "0") {
       // list = allWordLists.industry;
       setListContent(allWordLists.industry);
 
@@ -159,7 +159,7 @@ function Card(props) {
       setCardCurrentWord("Innovation");
       // console.log(0 + "AHHHHHHHHH");
       // console.log(1 + list);
-    } else if (props.card === "1") {
+    } else if (cardNum === "1") {
       // list = allWordLists.idZone;
       setListContent(allWordLists.idZone);
 
@@ -168,7 +168,7 @@ function Card(props) {
 
       // defaultWord = "Generation";
       setCardCurrentWord("Efficiency");
-    } else if (props.card === "2") {
+    } else if (cardNum === "2") {
       // list = allWordLists.embody;
       setListContent(allWordLists.embody);
 
@@ -212,7 +212,17 @@ function Card(props) {
 
     // console.log(randomizedInput);
     // setWord(randomizedInput);
+
+    // if (cardNum === 0) {
+    //   sendDataToPage0([randomizedInput, cardNum]);
+    // } else if (cardNum === 1) {
+    //   sendDataToPage1([randomizedInput, cardNum]);
+    // } else if (cardNum === 2) {
+    //   sendDataToPage2([randomizedInput, cardNum]);
+    // }
+
     setCardCurrentWord(randomizedInput);
+
     // navigator.vibrate(200);
     // dispatch(wordAction(randomizedInput));
   };
@@ -357,7 +367,7 @@ function Card(props) {
           open={isOpen}
         />
       </div>
-      {imageOn && <CardImage word={cardCurrentWord} key={props.card} />}
+      {imageOn && <CardImage word={cardCurrentWord} key={cardNum} />}
       <div className="card__body">
         <div
           className="text-hover"

@@ -258,6 +258,7 @@ body {
   border-radius: 1em;
 
   box-shadow: 9px 9px 17px #9898986e, -9px -9px 17px #ffffff65;
+  overflow: auto;
 }
 
 .dark-toggle {
@@ -1551,6 +1552,7 @@ textarea {
   /* text-align: left; */
 
   /* cursor: pointer; */
+  white-space: pre-line;
 }
 
 .ant-select-selector {

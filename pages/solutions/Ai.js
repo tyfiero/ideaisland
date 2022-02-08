@@ -1,6 +1,7 @@
 // import SentenceTool from "../../components/MainPage/solutionsComponents/SentenceTool";
 import { useRouter } from "next/router";
 import GPTtool from "../../components/MainPage/solutionsComponents/AI/GPT3";
+
 const AIPage = () => {
   //THESE are for dynamic routing
   // const router = useRouter();
@@ -17,6 +18,7 @@ const AIPage = () => {
         reflect the beliefs or ideals of IdeaIsland*
       </p>
       <GPTtool />
+
     </div>
   );
 };
