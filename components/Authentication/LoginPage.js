@@ -1,6 +1,5 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
 
-import { LightningBoltIcon } from "@heroicons/react/solid";
 import { LockClosedIcon } from "@heroicons/react/solid";
 import { useRouter } from "next/router";
 import AuthError from "./AuthError";
@@ -9,10 +8,15 @@ import Link from "next/link";
 // import useStore from "../StateManagement";
 // import { auth, googleAuthProvider } from "../../OLD/oldComponents/firebase-init";
 import { FaEnvelope, FaChevronLeft } from "react-icons/fa";
+import { UserContext } from "../../lib/context";
+
+// import { auth, googleAuthProvider } from "../../lib/firebase";
 
 import { auth, googleAuthProvider } from "../../lib/firebase";
 
 function LoginPage() {
+  const { user, username } = useContext(UserContext);
+  
   const rememberMeRef = useRef();
   const router = useRouter();
 
@@ -24,17 +28,30 @@ function LoginPage() {
 
   //The below user variable is from zustand statemanagement. So dont use it. Replace with redux
   // const user = useStore((state) => state.user);
-  let user = null;
+  // let user = null;
 
   let emailButton = () => {
     setSignInMethod(1);
   };
-  let googleButton = () => {
-    setSignInMethod(2);
+  function googleButton() {
+    // setSignInMethod(2);
+    console.log("googlebutton clicked");
+
+    // console.log(auth.signInWithPopup);
+
     const signInWithGoogle = async () => {
-      await auth.signInWithPopup(googleAuthProvider);
+      console.log("tried");
+
+      try {
+        await auth.signInWithPopup(googleAuthProvider);
+
+      } catch (error) {
+        console.log(error);
+      }
     };
-  };
+
+    signInWithGoogle();
+  }
 
   let backArrow = () => {
     setSignInMethod(0);
@@ -270,5 +287,15 @@ function LoginPage() {
     </div>
   );
 }
+function SignInButton() {
+  const signInWithGoogle = async () => {
+    await auth.signInWithPopup(googleAuthProvider);
+  };
 
+  return (
+    <button className="btn-google" onClick={signInWithGoogle}>
+      <img src={"/google.png"} /> Sign in with Google
+    </button>
+  );
+}
 export default LoginPage;

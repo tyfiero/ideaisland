@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { FaPlay, FaPause, FaUndo } from "react-icons/fa";
 
 // import './index.css'
 
@@ -103,10 +104,6 @@ class Timer extends Component {
 
   renderTimerController = () => {
     const { isTimerRunning } = this.state;
-    const startOrPauseImageUrl = isTimerRunning
-      ? "https://assets.ccbp.in/frontend/react-js/pause-icon-img.png"
-      : "https://assets.ccbp.in/frontend/react-js/play-icon-img.png";
-    const startOrPauseAltText = isTimerRunning ? "pause icon" : "play icon";
 
     return (
       <div className="timer-controller-container">
@@ -115,11 +112,8 @@ class Timer extends Component {
           onClick={this.onStartOrPauseTimer}
           type="button"
         >
-          <img
-            alt={startOrPauseAltText}
-            className="timer-controller-icon"
-            src={startOrPauseImageUrl}
-          />
+          {isTimerRunning ? <FaPause /> : <FaPlay />}
+
           <p className="timer-controller-label">
             {isTimerRunning ? "Pause" : "Start"}
           </p>
@@ -129,11 +123,7 @@ class Timer extends Component {
           onClick={this.onResetTimer}
           type="button"
         >
-          <img
-            alt="reset icon"
-            className="timer-controller-icon"
-            src="https://assets.ccbp.in/frontend/react-js/reset-icon-img.png"
-          />
+          <FaUndo />
           <p className="timer-controller-label">Reset</p>
         </button>
       </div>

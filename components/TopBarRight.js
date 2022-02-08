@@ -4,19 +4,40 @@ import { useSelector, useDispatch } from "react-redux";
 import collectAnalyticsEvent from "../OLD/oldComponents/Analytics/collectAnalyticsEvent";
 import { darkMode } from "../redux/actions";
 import Toggle from "react-toggle";
-import React from "react";
+import { React, useContext, useEffect, useState } from "react";
+import { UserContext } from "../lib/context";
+import { logIn } from "../redux/actions";
+import { useUserData } from "../lib/hooks";
 
 export default function TopBarRight() {
+  // const { user, username } = useContext(UserContext);
+  const userData = useUserData();
+  // const [isLoggedIn, setIsLoggedIn] = useState();
+  const [imgSrc, setimgSrc] = useState();
 
-    const user = null;
-    const username = null;
-
-
-    
   const loggedIn = useSelector((state) => state.loggedIn);
 
   const darkRedux = useSelector((state) => state.darkMode);
   const dispatch = useDispatch();
+
+  console.log(userData);
+
+  useEffect(() => {
+    if (userData.user !== null) {
+      console.log("Logged In");
+      // setIsLoggedIn(true)
+      setimgSrc(userData.user.photoURL);
+      dispatch(logIn(true));
+
+      // console.log(imgSrc);
+    } else {
+      console.log("NOT logged in");
+      // setIsLoggedIn(true)
+      dispatch(logIn(false));
+
+      setimgSrc("https://proficon.stablenetwork.uk/api/identicon/ty.svg");
+    }
+  }, [userData]);
 
   const darkModeFunc = () => {
     const body = document.body;
@@ -51,20 +72,22 @@ export default function TopBarRight() {
 
   let profilePic = (
     <div className="profile-pic-cropper">
-          <Link href={`/${username}`}>
-        <a   >
-      <img
-        className="fade-effect profile-pic "
-        src="https://proficon.stablenetwork.uk/api/identicon/ty.svg"
-        alt="Identicons Profile Icon"
-      />
-      </a>
+      <Link href={`/${userData.username}`}>
+        <a>
+          <img
+            className="fade-effect profile-pic "
+            src={imgSrc}
+            alt="Identicons Profile Icon"
+          />
+        </a>
       </Link>
     </div>
   );
 
   return (
     <div>
+      {/* {user && profilePic} */}
+      {/* {!user && login} */}
       {loggedIn ? profilePic : login}
 
       <Toggle

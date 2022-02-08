@@ -6,8 +6,13 @@ import { store } from "../redux/store";
 // import CookieBanner from "../components/CookieBanner/CookieBanner";
 // import Analytics from "../components/Analytics/Analytics";
 import Layout from "../components/Layout";
+import { UserContext } from "../lib/context";
+import { useUserData } from "../lib/hooks";
 
 function MyApp({ Component, pageProps }) {
+  const userData = useUserData();
+
+  console.log(userData);
   return (
     <>
       <Head>
@@ -85,16 +90,18 @@ body {
 }
 `}</style> */}
       <Provider store={store}>
-        <Layout>
-          <Component {...pageProps} />
-          {/* <CookieBanner
+        <UserContext.Provider value={userData}>
+          <Layout>
+            <Component {...pageProps} />
+            {/* <CookieBanner
             privacyPolicyLink={"/privacy"}
             showStatistic={true}
             showMarketing={false}
             showExternalMedia={false}
           /> */}
-        </Layout>
-        {/* <Analytics /> */}
+          </Layout>
+          {/* <Analytics /> */}
+        </UserContext.Provider>
       </Provider>
     </>
   );
