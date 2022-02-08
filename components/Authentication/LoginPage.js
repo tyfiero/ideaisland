@@ -7,8 +7,10 @@ import AuthError from "./AuthError";
 import Spinner from "../Spinner";
 import Link from "next/link";
 import useStore from "../StateManagement";
-import { auth } from "../firebase-init";
+import { auth, googleAuthProvider } from "../firebase-init";
+import { FaEnvelope, FaChevronLeft } from "react-icons/fa";
 
+// import { auth, googleAuthProvider } from '../lib/firebase';
 function LoginPage() {
   const rememberMeRef = useRef();
   const router = useRouter();
@@ -17,8 +19,23 @@ function LoginPage() {
   const [password, setPassword] = useState("");
   const [errorAuth, setErrorAuth] = useState(undefined);
   const [loading, setLoading] = useState(false);
+  const [signInMethod, setSignInMethod] = useState(0);
+
   const user = useStore((state) => state.user);
 
+  let emailButton = () => {
+    setSignInMethod(1);
+  };
+  let googleButton = () => {
+    setSignInMethod(2);
+    const signInWithGoogle = async () => {
+      await auth.signInWithPopup(googleAuthProvider);
+    };
+  };
+
+  let backArrow = () => {
+    setSignInMethod(0);
+  };
   useEffect(() => {
     // Route the user to the password reset page
     if (router.query?.mode === "resetPassword") {
@@ -104,11 +121,115 @@ function LoginPage() {
       setLoading(false);
     }
   };
-  return (
-    <div className="flex items-center justify-center min-h-screen px-4 py-12 sm:px-6 lg:px-8">
-      <div className="w-full max-w-md p-10 space-y-8 shadow rounded-xl bg-blues-100">
+  let emailForm = (
+    <form className="mt-8 space-y-6" onSubmit={handleLogin} action="">
+      {errorAuth && (
+        <AuthError
+          errorCode={errorAuth.errorCode}
+          customMessage={errorAuth.customMessage}
+        />
+      )}
+
+      <input type="hidden" name="remember" defaultValue="true" />
+      <div className="-space-y-px rounded-md shadow-sm">
         <div>
-        <img  src="/bulb.svg" alt="logo" className="w-auto h-20 mx-auto sm:h-30" />
+          <label htmlFor="email-address" className="sr-only">
+            Email address
+          </label>
+          <input
+            id="email-address"
+            name="email"
+            type="email"
+            autoComplete="email"
+            required
+            onChange={(e) => setEmail(e.target.value)}
+            className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-t-md focus:outline-none focus:ring-blues-500 focus:border-blues-500 focus:z-10 sm:text-sm"
+            placeholder="Email address"
+          />
+        </div>
+        <div>
+          <label htmlFor="password" className="sr-only">
+            Password
+          </label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            autoComplete="current-password"
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-b-md focus:outline-none focus:ring-blues-500 focus:border-blues-500 focus:z-10 sm:text-sm"
+            placeholder="Password"
+          />
+        </div>
+      </div>
+
+      <div className="flex items-center justify-between">
+        <div className="flex items-center">
+          <input
+            id="remember-me"
+            name="remember-me"
+            type="checkbox"
+            ref={rememberMeRef}
+            className="w-4 h-4 border-gray-300 rounded text-blues-600 focus:ring-blues-500"
+          />
+          <label
+            htmlFor="remember-me"
+            className="block ml-2 text-sm text-gray-900"
+          >
+            Remember me
+          </label>
+        </div>
+
+        <div className="text-sm text-right">
+          <Link href="/forgot">
+            <a className="font-medium text-blues-600 hover:text-blues-500">
+              Forgot your password?
+            </a>
+          </Link>
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        disabled={loading}
+        onClick={handleLogin}
+        className="relative flex justify-center w-full px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md group bg-blues-600 hover:bg-blues-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blues-500"
+      >
+        <span className="absolute inset-y-0 left-0 flex items-center pl-3">
+          <LockClosedIcon
+            className="w-5 h-5 text-blues-500 group-hover:text-blues-400"
+            aria-hidden="true"
+          />
+        </span>
+        {loading ? (
+          <Spinner className="w-5 h-5 text-white" />
+        ) : (
+          <span>Sign in</span>
+        )}
+      </button>
+    </form>
+  );
+  return (
+    <div
+      className="flex items-center justify-center min-h-screen px-4 pb-[12rem] sm:px-6 lg:px-8 drop-shadow-xl
+
+    "
+    >
+      <div className="w-full max-w-md p-10 space-y-8 shadow rounded-xl bg-blues-100 drop-shadow-xl ">
+        {signInMethod !== 0 ? (
+          <FaChevronLeft
+            onClick={backArrow}
+            className="fixed cursor-pointer text-[24px]"
+          />
+        ) : null}
+
+        <div>
+          <img
+            src="/bulb.svg"
+            alt="logo"
+            className="w-auto h-20 mx-auto sm:h-30"
+          />
           <h2 className="mt-1 text-3xl font-extrabold text-center text-gray-900">
             Sign in to your account
           </h2>
@@ -116,98 +237,32 @@ function LoginPage() {
             Or{" "}
             <Link href="/signup">
               <a className="font-medium text-blues-600 hover:text-blues-500">
-                register an account
+                Register an account
               </a>
             </Link>
           </p>
-        </div>
-        <form className="mt-8 space-y-6" onSubmit={handleLogin} action="">
-          {errorAuth && (
-            <AuthError
-              errorCode={errorAuth.errorCode}
-              customMessage={errorAuth.customMessage}
-            />
-          )}
-
-          <input type="hidden" name="remember" defaultValue="true" />
-          <div className="-space-y-px rounded-md shadow-sm">
-            <div>
-              <label htmlFor="email-address" className="sr-only">
-                Email address
-              </label>
-              <input
-                id="email-address"
-                name="email"
-                type="email"
-                autoComplete="email"
-                required
-                onChange={(e) => setEmail(e.target.value)}
-                className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-t-md focus:outline-none focus:ring-blues-500 focus:border-blues-500 focus:z-10 sm:text-sm"
-                placeholder="Email address"
-              />
-            </div>
-            <div>
-              <label htmlFor="password" className="sr-only">
-                Password
-              </label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                autoComplete="current-password"
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-b-md focus:outline-none focus:ring-blues-500 focus:border-blues-500 focus:z-10 sm:text-sm"
-                placeholder="Password"
-              />
-            </div>
-          </div>
-
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <input
-                id="remember-me"
-                name="remember-me"
-                type="checkbox"
-                ref={rememberMeRef}
-                className="w-4 h-4 border-gray-300 rounded text-blues-600 focus:ring-blues-500"
-              />
-              <label
-                htmlFor="remember-me"
-                className="block ml-2 text-sm text-gray-900"
+          {signInMethod === 0 ? (
+            <div className="flex flex-col items-center gap-2 pt-3">
+              <button
+                onClick={emailButton}
+                className="w-[18em] h-12 rounded-3xl bg-t-pm flex items-center justify-center text-white gap-4"
               >
-                Remember me
-              </label>
+                <FaEnvelope className="text-[28px]  text-white" /> Sign in with
+                Email
+              </button>
+              <button
+                onClick={googleButton}
+                className="w-[18em] h-12 rounded-3xl bg-t-bl flex items-center justify-center text-white gap-4"
+              >
+                <div className="flex items-center w-8 h-8 bg-white rounded-xl">
+                  <img src="/google.png" alt="google" />
+                </div>
+                Sign in with Google
+              </button>
             </div>
-
-            <div className="text-sm text-right">
-              <Link href="/forgot">
-                <a className="font-medium text-blues-600 hover:text-blues-500">
-                  Forgot your password?
-                </a>
-              </Link>
-            </div>
-          </div>
-
-          <button
-            type="submit"
-            disabled={loading}
-            onClick={handleLogin}
-            className="relative flex justify-center w-full px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md group bg-blues-600 hover:bg-blues-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blues-500"
-          >
-            <span className="absolute inset-y-0 left-0 flex items-center pl-3">
-              <LockClosedIcon
-                className="w-5 h-5 text-blues-500 group-hover:text-blues-400"
-                aria-hidden="true"
-              />
-            </span>
-            {loading ? (
-              <Spinner className="w-5 h-5 text-white" />
-            ) : (
-              <span>Sign in</span>
-            )}
-          </button>
-        </form>
+          ) : null}
+          {signInMethod === 1 && emailForm}
+        </div>
       </div>
     </div>
   );

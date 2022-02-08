@@ -26,8 +26,12 @@ const config = {
 };
 
 // Initialize Firebase
-const app = initializeApp(config);
-const analytics = getAnalytics(app);
+// const app = initializeApp(config);
+// const analytics = getAnalytics(app);
+
+
+
+
 // const config = {
 //   apiKey: "AIzaSyD6PS_FC7cPGlt5o_Dk7mX97n1GPWR6gqE",
 //   authDomain: "reactjsappdev.firebaseapp.com",

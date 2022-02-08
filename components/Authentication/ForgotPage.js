@@ -44,7 +44,14 @@ function ForgotPage() {
     setLoading(false);
   }
   return (
-    <div className="flex flex-col justify-center min-h-screen py-12 sm:px-6 lg:px-8">
+    
+    <div
+    className="flex items-center justify-center min-h-screen px-4 pb-[12rem] sm:px-6 lg:px-8 drop-shadow-xl
+
+  "
+  >
+      <div className="flex max-w-md p-10 space-y-8 shadow rounded-xl bg-blues-100 drop-shadow-xl">
+    <div className="flex flex-col justify-center sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         {/* <LightningBoltIcon className="w-auto h-20 mx-auto transform scale-y-110 sm:h-30 rotate-12 stroke-blues-500 text-blues-200" /> */}
         <img  src="/bulb.svg" alt="logo" className="w-auto h-20 mx-auto sm:h-30" />
@@ -109,6 +116,9 @@ function ForgotPage() {
         </div>
       </div>
     </div>
+    </div>
+    </div>
+
   );
 }
 

@@ -10,6 +10,10 @@ import {
 import { getFirestore, connectFirestoreEmulator } from "firebase/firestore";
 import { getFunctions, connectFunctionsEmulator } from "firebase/functions";
 import useStore from "./StateManagement";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
+import "firebase/compat/storage";
 import {
   getFirebaseConfig,
   getRecaptchaProviderConfig,
@@ -35,6 +39,8 @@ onAuthStateChanged(auth, async (user) => {
 });
 export const firestore = getFirestore(firebaseApp);
 export const functions = getFunctions(firebaseApp);
+export const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+
 functions.region = "us-west2";
 
 if (

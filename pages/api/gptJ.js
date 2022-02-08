@@ -7,7 +7,7 @@ async function gptJAPIRequest(req) {
   //   console.log(req.body.input);
 
   let userInput = req.body.input;
-  let prompt = `Write me a product idea that involves ${userInput}`;
+  let prompt = `Brainstorm some ideas combining ${userInput}: `;
   let promptToSend = { prompt: prompt };
   let config = {
     method: "POST",

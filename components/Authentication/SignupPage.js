@@ -103,8 +103,8 @@ function SignupPage() {
     }
   };
   return (
-    <div className="flex items-center justify-center min-h-screen px-4 py-12 sm:px-6 lg:px-8">
-      <div className="w-full max-w-md p-10 space-y-8 shadow rounded-xl bg-blues-100">
+    <div className="flex items-center justify-center min-h-screen px-4 pb-[12rem] sm:px-6 lg:px-8 drop-shadow-xl ">
+      <div className="w-full max-w-md p-10 space-y-8 shadow rounded-xl bg-blues-100 drop-shadow-xl ">
         <div>
         <img  src="/bulb.svg" alt="logo" className="w-auto h-20 mx-auto sm:h-30" />
           {/* <LightningBoltIcon className="w-auto h-20 mx-auto transform scale-y-110 sm:h-30 rotate-12 stroke-blues-500 text-blues-200" /> */}
