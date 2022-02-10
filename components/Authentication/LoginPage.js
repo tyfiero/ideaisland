@@ -9,14 +9,14 @@ import Link from "next/link";
 // import { auth, googleAuthProvider } from "../../OLD/oldComponents/firebase-init";
 import { FaEnvelope, FaChevronLeft } from "react-icons/fa";
 import { UserContext } from "../../lib/context";
-
 // import { auth, googleAuthProvider } from "../../lib/firebase";
 
 import { auth, googleAuthProvider } from "../../lib/firebase";
+// import Enter from "./UsernameForm";
 
-function LoginPage() {
+export default function LoginPage() {
   const { user, username } = useContext(UserContext);
-  
+
   const rememberMeRef = useRef();
   const router = useRouter();
 
@@ -44,7 +44,6 @@ function LoginPage() {
 
       try {
         await auth.signInWithPopup(googleAuthProvider);
-
       } catch (error) {
         console.log(error);
       }
@@ -108,7 +107,7 @@ function LoginPage() {
     if (password.length < 6) {
       setErrorAuth({
         errorCode: "custom",
-        customMessage: "Please enter a password with six character or more",
+        customMessage: "Please enter a password with six characters or more",
       });
       setLoading(false);
 
@@ -265,14 +264,14 @@ function LoginPage() {
             <div className="flex flex-col items-center gap-2 pt-3">
               <button
                 onClick={emailButton}
-                className="w-[18em] h-12 rounded-3xl bg-t-pm flex items-center justify-center text-white gap-4"
+                className="w-[18em] h-12 rounded-3xl bg-t-pm flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95"
               >
                 <FaEnvelope className="text-[28px]  text-white" /> Sign in with
                 Email
               </button>
               <button
                 onClick={googleButton}
-                className="w-[18em] h-12 rounded-3xl bg-t-bl flex items-center justify-center text-white gap-4"
+                className="w-[18em] h-12 rounded-3xl bg-t-bl flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95"
               >
                 <div className="flex items-center w-8 h-8 bg-white rounded-xl">
                   <img src="/google.png" alt="google" />
@@ -284,18 +283,8 @@ function LoginPage() {
           {signInMethod === 1 && emailForm}
         </div>
       </div>
+      {/* <Enter /> */}
     </div>
   );
 }
-function SignInButton() {
-  const signInWithGoogle = async () => {
-    await auth.signInWithPopup(googleAuthProvider);
-  };
 
-  return (
-    <button className="btn-google" onClick={signInWithGoogle}>
-      <img src={"/google.png"} /> Sign in with Google
-    </button>
-  );
-}
-export default LoginPage;

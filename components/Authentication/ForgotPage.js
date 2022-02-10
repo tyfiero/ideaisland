@@ -5,6 +5,9 @@ import { sendPasswordResetEmail } from "firebase/auth";
 import { httpsCallable } from "firebase/functions";
 import Spinner from "../Spinner";
 import { functions, auth } from "../../OLD/oldComponents/firebase-init";
+import { FaChevronLeft } from "react-icons/fa";
+import Link from "next/link";
+
 
 function ForgotPage() {
   const emailRef = useRef();
@@ -51,6 +54,9 @@ function ForgotPage() {
   "
   >
       <div className="flex max-w-md p-10 space-y-8 shadow rounded-xl bg-blues-100 drop-shadow-xl">
+      <Link href="/login">
+        <FaChevronLeft className="fixed cursor-pointer text-[24px]" />
+       </Link>
     <div className="flex flex-col justify-center sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         {/* <LightningBoltIcon className="w-auto h-20 mx-auto transform scale-y-110 sm:h-30 rotate-12 stroke-blues-500 text-blues-200" /> */}

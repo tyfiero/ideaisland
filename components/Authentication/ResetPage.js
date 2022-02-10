@@ -43,9 +43,15 @@ function ResetPage() {
   }
   return (
     <div className="flex flex-col justify-center min-h-screen py-12 bg-gray-50 sm:px-6 lg:px-8">
+      
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
-      <img  src="/bulb.svg" alt="logo" className="w-auto h-20 mx-auto sm:h-30" />
-       
+     
+        <img
+          src="/bulb.svg"
+          alt="logo"
+          className="w-auto h-20 mx-auto sm:h-30"
+        />
+
         <h2 className="mt-1 text-3xl font-extrabold text-center text-gray-900">
           Reset your password
         </h2>

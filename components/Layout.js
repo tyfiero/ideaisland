@@ -8,18 +8,42 @@ import { FaBook, FaTimes } from "react-icons/fa";
 import NotePopUp from "./MainPage/NoteBubble/NotePopUp";
 import NotePopUpModal from "./MainPage/NoteBubble/NotePopUpModal";
 import React, { useEffect, useState } from "react";
-
+import { useSelector, useDispatch } from "react-redux";
+import { logIn } from "../redux/actions";
+import { useUserData } from "../lib/hooks";
 
 export default function Layout({ children }) {
-  
+  const userData = useUserData();
 
+  const dispatch = useDispatch();
   const [isToggled, setIsToggled] = useState(false);
+  const loggedIn = useSelector((state) => state.loggedIn);
 
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);
 
   const togglePopup = () => {
     setIsPopUpOpen(!isPopUpOpen);
   };
+
+  let user;
+
+  useEffect(() => {
+    if (userData.user !== null) {
+      user = userData.user;
+      console.log("Logged In");
+      if (!loggedIn) {
+        dispatch(logIn(true));
+      }
+    } else {
+      console.log("NOT logged in");
+      user = {
+        username: "notSignedIn",
+      };
+
+      // setIsLoggedIn(true)
+      dispatch(logIn(false));
+    }
+  }, [userData]);
   let notes = "Notes";
 
   // useEffect(() => {
@@ -29,10 +53,6 @@ export default function Layout({ children }) {
   // }, []);
 
   // console.log(document.body);
-
-
-
-
 
   return (
     <>
@@ -50,8 +70,7 @@ export default function Layout({ children }) {
           <TopBar />
         </div>
         <div className="top-bar">
-        <TopBarRight />
-     
+          <TopBarRight user={user} />
         </div>
 
         <div className="side-nav-bar">

@@ -1,69 +1,76 @@
-import { FaBook, FaTimes, FaSun, FaMoon } from "react-icons/fa";
+// import { FaBook, FaTimes, FaSun, FaMoon } from "react-icons/fa";
 import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
-import collectAnalyticsEvent from "../OLD/oldComponents/Analytics/collectAnalyticsEvent";
-import { darkMode } from "../redux/actions";
-import Toggle from "react-toggle";
-import { React, useContext, useEffect, useState } from "react";
+import { React, useContext, useEffect, useState, useRef } from "react";
 import { UserContext } from "../lib/context";
 import { logIn } from "../redux/actions";
 import { useUserData } from "../lib/hooks";
+import TopBarDropDown from "./TopBarDropDown";
+// import onClickOutside from "react-onclickoutside";
+import useVisible from "../lib/useVisible";
 
-export default function TopBarRight() {
+
+export default function TopBarRight({ user }) {
   // const { user, username } = useContext(UserContext);
   const userData = useUserData();
   // const [isLoggedIn, setIsLoggedIn] = useState();
   const [imgSrc, setimgSrc] = useState();
+  // const [menuOpen, setMenuOpen] = useState(false);
+  // const menuRef = useRef(null);
+  const { ref, isVisible, setIsVisible } = useVisible(false);
+
+  // let user;
 
   const loggedIn = useSelector((state) => state.loggedIn);
 
-  const darkRedux = useSelector((state) => state.darkMode);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  // console.log(userData);
+  console.log(user);
 
   useEffect(() => {
-    if (userData.user !== null) {
-      console.log("Logged In");
-      // setIsLoggedIn(true)
-      setimgSrc(userData.user.photoURL);
-      dispatch(logIn(true));
-
-      // console.log(imgSrc);
+    if (user !== null) {
+      try {
+        setimgSrc(userData.user.photoURL);
+      } catch {
+        setimgSrc("https://proficon.stablenetwork.uk/api/identicon/ty.svg");
+      }
     } else {
-      console.log("NOT logged in");
-      // setIsLoggedIn(true)
-      dispatch(logIn(false));
-
       setimgSrc("https://proficon.stablenetwork.uk/api/identicon/ty.svg");
     }
   }, [userData]);
 
-  const darkModeFunc = () => {
-    const body = document.body;
-    const blob = document.querySelector("body > div.blobs");
-    dispatch(darkMode(!darkRedux));
+  // const closeOpenMenus = (e) => {
+  //   if (menuRef.current && menuOpen && !menuRef.current.contains(e.target)) {
+  //     setMenuOpen(false);
+  //   }
+  // };
 
-    if (!darkRedux) {
-      body.setAttribute("style", "background-color: black");
-      blob.setAttribute("style", "opacity: 0.4");
-    } else {
-      body.setAttribute("style", "background-color: white");
-      blob.setAttribute("style", "opacity: 1");
-    }
-  };
+  // const dropdownAreaRef = useRef(null);
+
+  // useEffect(() => {
+  //   //Assign click handler to listen the click to close the dropdown when clicked outside
+  //   document.addEventListener("click", handleClickOutside);
+
+  //   return () => {
+  //     //Remove the listener
+  //     document.removeEventListener("click", handleClickOutside);
+  //   };
+  // }, []);
+
+  // const handleClickOutside = (event) => {
+  //   const path = event.path || (event.composedPath && event.composedPath());
+
+  //   if (!path.includes(dropdownAreaRef.current)) {
+  //     setMenuOpen(false);
+  //   }
+  // };
+
+  // document.addEventListener("mousedown", closeOpenMenus);
 
   let login = (
     <div className="hidden loginbutton md:block md:space-x-6 fade-effect">
       <Link href="/login">
-        <a
-          onClick={() =>
-            collectAnalyticsEvent({
-              eventName: "login",
-            })
-          }
-          className="px-3 py-2 font-medium rounded-full text-blues-600 hover:text-blues-500 bg-blues-100"
-        >
+        <a className="px-3 py-2 font-medium rounded-full text-blues-600 hover:text-blues-500 bg-blues-100">
           Sign in
         </a>
       </Link>
@@ -71,16 +78,17 @@ export default function TopBarRight() {
   );
 
   let profilePic = (
-    <div className="profile-pic-cropper">
-      <Link href={`/${userData.username}`}>
-        <a>
-          <img
-            className="fade-effect profile-pic "
-            src={imgSrc}
-            alt="Identicons Profile Icon"
-          />
-        </a>
-      </Link>
+    <div
+      className="profile-pic-cropper"
+      onClick={() => {
+        setIsVisible(!isVisible);
+      }}
+    >
+      <img
+        className="fade-effect profile-pic "
+        src={imgSrc}
+        alt="Identicons Profile Icon"
+      />
     </div>
   );
 
@@ -89,34 +97,9 @@ export default function TopBarRight() {
       {/* {user && profilePic} */}
       {/* {!user && login} */}
       {loggedIn ? profilePic : login}
-
-      <Toggle
-        className="dark-toggle fade-effect"
-        defaultChecked={!darkRedux}
-        icons={{
-          unchecked: (
-            <FaMoon
-              style={{
-                fontSize: "1em",
-                color: "white",
-                paddingBottom: "3px",
-                paddingTop: "1px !important",
-              }}
-            />
-          ),
-          checked: (
-            <FaSun
-              style={{
-                fontSize: "1em",
-                color: "orange",
-                paddingBottom: "2px",
-                paddingTop: "1px !important",
-              }}
-            />
-          ),
-        }}
-        onChange={darkModeFunc}
-      />
+      <div ref={ref}>
+        {isVisible && <TopBarDropDown user={user} />}
+      </div>
     </div>
   );
 }

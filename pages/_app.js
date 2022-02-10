@@ -8,11 +8,15 @@ import { store } from "../redux/store";
 import Layout from "../components/Layout";
 import { UserContext } from "../lib/context";
 import { useUserData } from "../lib/hooks";
+import { useEffect } from "react";
 
 function MyApp({ Component, pageProps }) {
   const userData = useUserData();
 
-  console.log(userData);
+
+  // console.log(userData);
+
+  
   return (
     <>
       <Head>

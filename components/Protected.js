@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
-import useStore from "./StateManagement";
+// import useStore from "./StateManagement";
 import Spinner from "./Spinner";
 
 function FullPageLoader() {
@@ -18,7 +18,7 @@ function FullPageLoader() {
   return (
     showLoader && (
       <div className="flex flex-col items-center justify-center min-h-screen text-blues-500">
-        <Spinner className="mb-4 text-6xl w-10 h-10" />
+        <Spinner className="w-10 h-10 mb-4 text-6xl" />
         <p className="text-gray-700">Loading...</p>
       </div>
     )
