@@ -20,19 +20,19 @@ export default function TopBarDropDown({ user }) {
   //   setMenuHeight(height);
   // }
 
-  function DropdownItem(props) {
+  const DropdownItem =  React.forwardRef(({ onClick, href, leftIcon, rightIcon, goToMenu, children}, ref) => {
     return (
       <a
-        href="#"
+        href={href}
         className="menu-item"
-        onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}
+        onClick={() => goToMenu && setActiveMenu(goToMenu)}
       >
-        <span className="icon-button">{props.leftIcon}</span>
-        {props.children}
-        <span className="icon-right">{props.rightIcon}</span>
+        <span className="icon-button">{leftIcon}</span>
+        {children}
+        <span className="icon-right">{rightIcon}</span>
       </a>
     );
-  }
+  })
 
   return (
     <div
@@ -46,7 +46,9 @@ export default function TopBarDropDown({ user }) {
         unmountOnExit
       >
         <div className="menu">
-          <Link href="/">
+          {/* <Link href={`/${user.username}`}> */}
+          <Link href="/priceart" passHref>
+
             {/* <a> */}
               <DropdownItem leftIcon={<FaUserAlt className="text-t-bl" />}>
                 My Profile

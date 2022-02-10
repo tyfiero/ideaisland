@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import AuthCheck from "../components/Authentication/AuthCheck";
+
 export default function IdeaFeed({ ideas, admin }) {
   return ideas
     ? ideas.map((idea) => (

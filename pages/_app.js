@@ -14,22 +14,34 @@ function MyApp({ Component, pageProps }) {
   const userData = useUserData();
 
 
-  // console.log(userData);
 
+
+//TODO edit social media image! update keywords as well
+
+
+  // console.log(userData);
+let description = "Bring your next idea to life with IdeaIsland";
+let image = "./bulb.svg"
   
   return (
     <>
       <Head>
-        <title>IdeaIsland</title>
+        <title>ideaisland</title>
         <meta
           name="description"
-          content="Bring your next idea to life with IdeaIsland"
+          content={description}
         />
+<meta name="keywords" content="idea generator, idea tools, ideas, brainstorming tool, brainstorming" />
 
         <link rel="manifest" href="/site.webmanifest" />
         <meta name="theme-color" content="#EEC3FD"></meta>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name="twitter:card" content="summary" />
+      <meta name="twitter:site" content="@theideaisland" />
+      <meta name="twitter:title" content="ideaisland" />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={image} />
         <link
           rel="apple-touch-icon"
           sizes="76x76"

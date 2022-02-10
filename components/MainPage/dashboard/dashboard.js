@@ -5,6 +5,8 @@ import { useEffect } from "react";
 // import TextArea from "../components/TextArea";
 import { useSelector, useDispatch } from "react-redux";
 // import "react-quill/dist/quill.snow.css"; // ES6
+import PublicIdeaFeed from "../../PublicIdeaFeed";
+
 
 var localNotes;
 const Dashboard = () => {
@@ -61,6 +63,7 @@ const Dashboard = () => {
           <h1 className="heading">Community Ideas</h1>
         </div>
       </div>
+      <PublicIdeaFeed />
     </div>
   );
 };
