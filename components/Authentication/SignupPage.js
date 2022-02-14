@@ -65,137 +65,137 @@ let emailButton = () => {
   setSignUpMethod(1);
 };
 
-  useEffect(() => {
-    //Clear the error on page load
-    setErrorAuth(undefined);
-  }, []);
+  // useEffect(() => {
+  //   //Clear the error on page load
+  //   setErrorAuth(undefined);
+  // }, []);
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setErrorAuth(undefined);
+//   const handleLogin = async (e) => {
+//     e.preventDefault();
+//     setLoading(true);
+//     setErrorAuth(undefined);
 
-    if (email === "") {
-      setErrorAuth({
-        errorCode: "custom",
-        customMessage: "Please enter an email address",
-      });
-      setLoading(false);
-      return;
-    }
-    if (password === "") {
-      setErrorAuth({
-        errorCode: "custom",
-        customMessage: "Please enter a password",
-      });
-      setLoading(false);
+//     if (email === "") {
+//       setErrorAuth({
+//         errorCode: "custom",
+//         customMessage: "Please enter an email address",
+//       });
+//       setLoading(false);
+//       return;
+//     }
+//     if (password === "") {
+//       setErrorAuth({
+//         errorCode: "custom",
+//         customMessage: "Please enter a password",
+//       });
+//       setLoading(false);
 
-      return;
-    }
-    if (password.length < 6) {
-      setErrorAuth({
-        errorCode: "custom",
-        customMessage: "Please enter a password with six character or more",
-      });
-      setLoading(false);
+//       return;
+//     }
+//     if (password.length < 6) {
+//       setErrorAuth({
+//         errorCode: "custom",
+//         customMessage: "Please enter a password with six character or more",
+//       });
+//       setLoading(false);
 
-      return;
-    }
-    try {
-      const isAnonymousUser = user && !user.email;
-      const isNormalUser = user && user.email;
-      if (isNormalUser) {
-        // If we have a user signed in that has a normal account
-        // we sign them out and create a new user
-        await signOut(auth);
-        await createUserWithEmailAndPassword(auth, email, password);
-      } else if (isAnonymousUser) {
-        // If the current user is anonymous, we will convert the
-        // user into a normal account with username/password auth
-        const credential = EmailAuthProvider.credential(email, password);
-        const linkedUser = await linkWithCredential(
-          auth.currentUser,
-          credential
-        );
-        if (linkedUser?.user) {
-          set((state) => {
-            state.user = linkedUser.user;
-          });
-        }
-      } else {
-        await createUserWithEmailAndPassword(auth, email, password);
-      }
-      setLoading(false);
-      collectAnalyticsEvent({
-        eventName: "signup_action_emailpassword",
-      });
-      router.push("/usernameform");
-    } catch (error) {
-      console.log(error);
-      setErrorAuth({ errorCode: error?.code });
-      setLoading(false);
-    }
-  };
+//       return;
+//     }
+//     try {
+//       const isAnonymousUser = user && !user.email;
+//       const isNormalUser = user && user.email;
+//       if (isNormalUser) {
+//         // If we have a user signed in that has a normal account
+//         // we sign them out and create a new user
+//         await signOut(auth);
+//         await createUserWithEmailAndPassword(auth, email, password);
+//       } else if (isAnonymousUser) {
+//         // If the current user is anonymous, we will convert the
+//         // user into a normal account with username/password auth
+//         const credential = EmailAuthProvider.credential(email, password);
+//         const linkedUser = await linkWithCredential(
+//           auth.currentUser,
+//           credential
+//         );
+//         if (linkedUser?.user) {
+//           set((state) => {
+//             state.user = linkedUser.user;
+//           });
+//         }
+//       } else {
+//         await createUserWithEmailAndPassword(auth, email, password);
+//       }
+//       setLoading(false);
+//       collectAnalyticsEvent({
+//         eventName: "signup_action_emailpassword",
+//       });
+//       router.push("/usernameform");
+//     } catch (error) {
+//       console.log(error);
+//       setErrorAuth({ errorCode: error?.code });
+//       setLoading(false);
+//     }
+//   };
 
 
 
-  let emailForm = ( <form className="mt-8 space-y-6" onSubmit={handleLogin} action="">
-  {errorAuth && (
-    <AuthError
-      errorCode={errorAuth.errorCode}
-      customMessage={errorAuth.customMessage}
-    />
-  )}
+//   let emailForm = ( <form className="mt-8 space-y-6" onSubmit={handleLogin} action="">
+//   {errorAuth && (
+//     <AuthError
+//       errorCode={errorAuth.errorCode}
+//       customMessage={errorAuth.customMessage}
+//     />
+//   )}
 
-  <input type="hidden" name="remember" defaultValue="true" />
-  <div className="-space-y-px rounded-md shadow-sm">
-    <div>
-      <label htmlFor="email-address" className="sr-only">
-        Email address
-      </label>
-      <input
-        id="email-address"
-        name="email"
-        type="email"
-        autoComplete="email"
-        required
-        onChange={(e) => setEmail(e.target.value)}
-        className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-t-md focus:outline-none focus:ring-blues-500 focus:border-blues-500 focus:z-10 sm:text-sm"
-        placeholder="Email address"
-      />
-    </div>
-    <div>
-      <label htmlFor="password" className="sr-only">
-        Password
-      </label>
-      <input
-        id="password"
-        name="password"
-        type="password"
-        autoComplete="current-password"
-        onChange={(e) => setPassword(e.target.value)}
-        required
-        className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-b-md focus:outline-none focus:ring-blues-500 focus:border-blues-500 focus:z-10 sm:text-sm"
-        placeholder="Password"
-      />
-    </div>
-  </div>
+//   <input type="hidden" name="remember" defaultValue="true" />
+//   <div className="-space-y-px rounded-md shadow-sm">
+//     <div>
+//       <label htmlFor="email-address" className="sr-only">
+//         Email address
+//       </label>
+//       <input
+//         id="email-address"
+//         name="email"
+//         type="email"
+//         autoComplete="email"
+//         required
+//         onChange={(e) => setEmail(e.target.value)}
+//         className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-t-md focus:outline-none focus:ring-blues-500 focus:border-blues-500 focus:z-10 sm:text-sm"
+//         placeholder="Email address"
+//       />
+//     </div>
+//     <div>
+//       <label htmlFor="password" className="sr-only">
+//         Password
+//       </label>
+//       <input
+//         id="password"
+//         name="password"
+//         type="password"
+//         autoComplete="current-password"
+//         onChange={(e) => setPassword(e.target.value)}
+//         required
+//         className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-b-md focus:outline-none focus:ring-blues-500 focus:border-blues-500 focus:z-10 sm:text-sm"
+//         placeholder="Password"
+//       />
+//     </div>
+//   </div>
 
-  <button
-    type="submit"
-    disabled={loading}
-    onClick={handleLogin}
-    className="relative flex justify-center w-full px-4 py-2 text-sm font-medium text-white border border-transparent rounded-xl group bg-blues-500 hover:bg-blues-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blues-500 md:hover:scale-105 md:transition-transform md:active:scale-95"
-  >
+//   <button
+//     type="submit"
+//     disabled={loading}
+//     onClick={handleLogin}
+//     className="relative flex justify-center w-full px-4 py-2 text-sm font-medium text-white border border-transparent rounded-xl group bg-blues-500 hover:bg-blues-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blues-500 md:hover:scale-105 md:transition-transform md:active:scale-95"
+//   >
     
-    {loading ? (
-      <Spinner className="w-5 h-5 text-white" />
-    ) : (
-      <span>Sign Up</span>
-    )}
-  </button>
+//     {loading ? (
+//       <Spinner className="w-5 h-5 text-white" />
+//     ) : (
+//       <span>Sign Up</span>
+//     )}
+//   </button>
   
-</form>)
+// </form>)
 
 
 
@@ -218,13 +218,13 @@ let emailButton = () => {
         {signUpMethod === 0 ? (
             <div className="flex flex-col items-center gap-2 pt-3">
               
-              <button
+              {/* <button
                 onClick={emailButton}
                 className="w-[18em] h-12 rounded-3xl bg-t-pm flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95"
               >
                 <FaEnvelope className="text-[28px]  text-white" /> Sign up with
                 Email
-              </button>
+              </button> */}
               <button
                 onClick={googleButton}
                 className="w-[18em] h-12 rounded-3xl bg-t-bl flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95"

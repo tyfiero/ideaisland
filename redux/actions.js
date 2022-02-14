@@ -4,6 +4,13 @@ export const logIn = (boolean) => {
     payload: boolean,
   };
 };
+export const userDataRedux = (data) => {
+  return {
+    type: "USEREXISTS",
+    payload: data,
+  };
+};
+
 
 export const darkMode = (boolean) => {
   return {

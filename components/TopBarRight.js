@@ -9,7 +9,6 @@ import TopBarDropDown from "./TopBarDropDown";
 // import onClickOutside from "react-onclickoutside";
 import useVisible from "../lib/useVisible";
 
-
 export default function TopBarRight({ user }) {
   // const { user, username } = useContext(UserContext);
   const userData = useUserData();
@@ -25,7 +24,7 @@ export default function TopBarRight({ user }) {
 
   // const dispatch = useDispatch();
 
-  console.log(user);
+  // console.log(user);
 
   useEffect(() => {
     if (user !== null) {
@@ -76,12 +75,22 @@ export default function TopBarRight({ user }) {
       </Link>
     </div>
   );
+  console.log("out" + isVisible);
 
   let profilePic = (
     <div
       className="profile-pic-cropper"
       onClick={() => {
-        setIsVisible(!isVisible);
+        if (!isVisible) {
+          setIsVisible(true);
+          console.log("set true");
+          console.log("set true" + isVisible);
+
+        } else {
+          setIsVisible(false);
+          console.log("set false");
+
+        }
       }}
     >
       <img
@@ -97,9 +106,7 @@ export default function TopBarRight({ user }) {
       {/* {user && profilePic} */}
       {/* {!user && login} */}
       {loggedIn ? profilePic : login}
-      <div ref={ref}>
-        {isVisible && <TopBarDropDown user={user} />}
-      </div>
+      <div ref={ref}>{isVisible && <TopBarDropDown user={user} />}</div>
     </div>
   );
 }

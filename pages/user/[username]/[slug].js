@@ -1,5 +1,5 @@
-import IdeaContent from '../../components/IdeaContent';
-import { firestore, getUserWithUsername, postToJSON } from '../../lib/firebase';
+import IdeaContent from '../../../components/IdeaContent';
+import { firestore, getUserWithUsername, postToJSON } from '../../../lib/firebase';
 import { useDocumentData } from 'react-firebase-hooks/firestore';
 
 

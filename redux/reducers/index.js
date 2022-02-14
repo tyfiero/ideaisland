@@ -12,6 +12,7 @@ import gpt3InputReducer from "./gpt3input";
 import gpt3OutputReducer from "./gpt3output";
 import gptJInputReducer from "./gptjinput";
 import gptJOutputReducer from "./gptjoutput";
+import userDataReducer from "./userData";
 //OTHER REDUCERS GO HERE
 
 import { combineReducers } from "redux";
@@ -31,6 +32,7 @@ const allReducers = combineReducers({
   gpt3Output: gpt3OutputReducer,
   gptJInput: gptJInputReducer,
   gptJOutput: gptJOutputReducer,
+  userData: userDataReducer,
 
   //other reducers go here
 });

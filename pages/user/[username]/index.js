@@ -1,7 +1,7 @@
 import React from "react";
-import ProfilePage from "../../components/ProfilePage";
-import IdeaFeed from "../../components/IdeaFeed";
-import { getUserWithUsername, postToJSON } from '../../lib/firebase';
+import ProfilePage from "../../../components/ProfilePage";
+import IdeaFeed from "../../../components/IdeaFeed";
+import { getUserWithUsername, postToJSON } from '../../../lib/firebase';
 
 
 
@@ -16,7 +16,7 @@ export async function getServerSideProps({ query }) {
     return {
       notFound: true,
     };
-  }
+  } 
 
 
     // JSON serializable data

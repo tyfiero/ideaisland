@@ -47,7 +47,7 @@ export default function TopBarDropDown({ user }) {
       >
         <div className="menu">
           {/* <Link href={`/${user.username}`}> */}
-          <Link href="/priceart" passHref>
+          <Link href="/user/priceart" passHref>
 
             {/* <a> */}
               <DropdownItem leftIcon={<FaUserAlt className="text-t-bl" />}>
@@ -55,18 +55,26 @@ export default function TopBarDropDown({ user }) {
               </DropdownItem>
             {/* </a> */}
           </Link>
+          <Link href="/user/priceart/settings" passHref>
+
           <DropdownItem
             leftIcon={<FaCog className="text-t-bd" />}
             //   goToMenu="settings"
           >
             Settings
           </DropdownItem>
+          </Link>
+
+          <Link href="/notes" passHref>
+
           <DropdownItem
             leftIcon={<FaBook className="text-t-pd" />}
             //   goToMenu="settings"
           >
             Ideas + Notes
           </DropdownItem>
+          </Link>
+
           <div className="flex flex-col items-center pt-5">
             <p>Dark Mode</p>
 

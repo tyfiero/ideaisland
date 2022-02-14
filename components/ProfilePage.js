@@ -23,9 +23,8 @@ function ProfilePage({ user }) {
         {/* {userData.user !== null
           ? "Hello " + userData.user.displayName + "!"
           : "Hello"} */}
-        <h3>{user.displayName || 'Anonymous User'} </h3>
+        <h3>{user.displayName || "Anonymous User"} </h3>
         {/* <h3>{"Hello " + (user.displayName || 'Anonymous User') + "!"} </h3> */}
-
       </div>
       {/* <div>
         {" "}
@@ -50,6 +49,9 @@ function ProfilePage({ user }) {
             className="hidden w-[12em] px-3 py-2 font-medium rounded-full md:block md:space-x-6 fade-effect text-black hover:text-t-pd bg-t-pl"
             onClick={() => {
               auth.signOut();
+
+              //REMOVE local storage on signout
+            //   localStorage.clear();
             }}
           >
             Sign out

@@ -76,7 +76,7 @@ function ProblemTextArea({ q, sendDataToParent, ph }) {
     lineHeight: "1.5em",
     fontFamily: "Roboto",
     padding: "10px",
-    width: "99%",
+    width: "28em",
     borderRadius: "1rem",
   };
 
