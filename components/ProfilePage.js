@@ -48,10 +48,17 @@ function ProfilePage({ user }) {
           <button
             className="hidden w-[12em] px-3 py-2 font-medium rounded-full md:block md:space-x-6 fade-effect text-black hover:text-t-pd bg-t-pl"
             onClick={() => {
-              auth.signOut();
+              auth
+                .signOut()
+                .then(() => {
+                  console.log("Sign out successful");
+                })
+                .catch((error) => {
+                  console.log(error);
+                });
 
               //REMOVE local storage on signout
-            //   localStorage.clear();
+              //   localStorage.clear();
             }}
           >
             Sign out

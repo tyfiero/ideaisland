@@ -17,6 +17,7 @@ export default function TopBarRight({ user }) {
   // const [menuOpen, setMenuOpen] = useState(false);
   // const menuRef = useRef(null);
   const { ref, isVisible, setIsVisible } = useVisible(false);
+  const userRedux = useSelector((state) => state.userData);
 
   // let user;
 
@@ -29,14 +30,14 @@ export default function TopBarRight({ user }) {
   useEffect(() => {
     if (user !== null) {
       try {
-        setimgSrc(userData.user.photoURL);
+        setimgSrc(userRedux.photoURL);
       } catch {
         setimgSrc("https://proficon.stablenetwork.uk/api/identicon/ty.svg");
       }
     } else {
       setimgSrc("https://proficon.stablenetwork.uk/api/identicon/ty.svg");
     }
-  }, [userData]);
+  }, [loggedIn]);
 
   // const closeOpenMenus = (e) => {
   //   if (menuRef.current && menuOpen && !menuRef.current.contains(e.target)) {
@@ -75,7 +76,7 @@ export default function TopBarRight({ user }) {
       </Link>
     </div>
   );
-  console.log("out" + isVisible);
+  // console.log("out" + isVisible);
 
   let profilePic = (
     <div
@@ -83,13 +84,11 @@ export default function TopBarRight({ user }) {
       onClick={() => {
         if (!isVisible) {
           setIsVisible(true);
-          console.log("set true");
-          console.log("set true" + isVisible);
-
+          // console.log("set true");
+          // console.log("set true" + isVisible);
         } else {
           setIsVisible(false);
-          console.log("set false");
-
+          // console.log("set false");
         }
       }}
     >

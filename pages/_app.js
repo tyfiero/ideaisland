@@ -8,13 +8,26 @@ import { store } from "../redux/store";
 import Layout from "../components/Layout";
 import { UserContext } from "../lib/context";
 import { useUserData } from "../lib/hooks";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import FullLoader from "../components/FullLoader";
+import {useRouter} from "next/router";
 
 function MyApp({ Component, pageProps }) {
   const userData = useUserData();
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
 
+  useEffect(() => {
+    const handleStart = (url) => {
+      url !== router.pathname ? setLoading(true) : setLoading(false);
+    };
+    const handleComplete = (url) => setLoading(false);
 
+    router.events.on("routeChangeStart", handleStart);
+    router.events.on("routeChangeComplete", handleComplete);
+    router.events.on("routeChangeError", handleComplete);
+  }, [router]);
 
 //TODO edit social media image! update keywords as well
 
@@ -108,6 +121,7 @@ body {
       <Provider store={store}>
         <UserContext.Provider value={userData}>
           <Layout>
+            <FullLoader show={loading} />
             <Component {...pageProps} />
             {/* <CookieBanner
             privacyPolicyLink={"/privacy"}

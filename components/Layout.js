@@ -9,7 +9,7 @@ import NotePopUp from "./MainPage/NoteBubble/NotePopUp";
 import NotePopUpModal from "./MainPage/NoteBubble/NotePopUpModal";
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { logIn } from "../redux/actions";
+import { logIn, userDataRedux } from "../redux/actions";
 import { useUserData } from "../lib/hooks";
 
 export default function Layout({ children }) {
@@ -18,6 +18,7 @@ export default function Layout({ children }) {
   const dispatch = useDispatch();
   const [isToggled, setIsToggled] = useState(false);
   const loggedIn = useSelector((state) => state.loggedIn);
+  const userRedux = useSelector((state) => state.userData);
 
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);
 
@@ -27,23 +28,57 @@ export default function Layout({ children }) {
 
   let user;
 
-  useEffect(() => {
-    if (userData.user !== null) {
-      user = userData.user;
-      console.log("Logged In");
-      if (!loggedIn) {
-        dispatch(logIn(true));
-      }
-    } else {
-      console.log("NOT logged in");
-      user = {
-        username: "notSignedIn",
-      };
 
-      // setIsLoggedIn(true)
-      dispatch(logIn(false));
-    }
+  useEffect(() => {
+    //runs first, and only once
+// console.log("1st UE");
+if (userData.user !== null) {
+  user = userData.user;
+  // console.log(user);
+
+  console.log("Logged In");
+  // console.log(user);
+  localStorage.setItem("userLocal", JSON.stringify(user));
+  dispatch(userDataRedux(user));
+
+  if (!loggedIn) {
+    dispatch(logIn(true));
+  }
+} else {
+  if (localStorage.getItem("userLocal") !== null) {
+    console.log("USERDATA EXISTS");
+    user = JSON.parse(localStorage.getItem("userLocal"));
+    // console.log(user);
+    dispatch(userDataRedux(user));
+
+  } else {
+    console.log("NOT logged in");
+    user = {
+      username: "notSignedIn",
+    };
+  }
+    dispatch(logIn(false));
+  
+}
+ 
+    // setIsLoggedIn(true)
   }, [userData]);
+
+    
+//   useEffect(() => {
+//     //runs second, and everytime the userData changes.
+// // console.log("2nd UE");
+
+   
+//   }, [userData]);
+
+
+
+
+
+
+
+  
   let notes = "Notes";
 
   // useEffect(() => {

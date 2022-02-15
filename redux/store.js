@@ -16,6 +16,7 @@ import gptJInputReducer from "./reducers/gptjinput";
 import gptJOutputReducer from "./reducers/gptjoutput";
 import loggedInReducer from "./reducers/isLoggedIn";
 import darkModeReducer from "./reducers/darkModeReducer";
+import userDataReducer from "./reducers/userData";
 //OTHER REDUCERS GO HERE
 
 const rootReducer = combineReducers({
@@ -35,13 +36,14 @@ const rootReducer = combineReducers({
   gptJOutput: gptJOutputReducer,
   loggedIn: loggedInReducer,
   darkMode: darkModeReducer,
+  userData: userDataReducer,
   //other reducers go here
 });
 // console.log(rootReducer);
 
 export const store = createStore(
   rootReducer,
-  // typeof window !== "undefined" &&
-  //   window.__REDUX_DEVTOOLS_EXTENSION__ &&
-  //   window.__REDUX_DEVTOOLS_EXTENSION__()
+  typeof window !== "undefined" &&
+    window.__REDUX_DEVTOOLS_EXTENSION__ &&
+    window.__REDUX_DEVTOOLS_EXTENSION__()
 );

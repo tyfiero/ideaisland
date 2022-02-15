@@ -66,7 +66,7 @@ const ProblemPage = () => {
   let savedMessage = "Saved at: " + cTime;
   return (
     <div
-      className="flex items-center justify-center  px-4 pt-[1rem] sm:px-6 lg:px-8 drop-shadow-xl
+      className="flex items-center justify-center  px-4 pt-[1rem] sm:px-6 lg:px-8 drop-shadow-xl fade-effect-quick
 
   "
     >
@@ -226,7 +226,7 @@ const ProblemPage = () => {
             {currentQ === 1 && (
               <button
                 className=" save_button left-[5%]  flex items-center justify-center !cursor-not-allowed bg-slate-400
- rounded-full drop-shadow-xl"
+ rounded-full drop-shadow-xl fade-effect"
               >
                 <FaLongArrowAltLeft className="mr-1 text-[24px]" />
                 Back
@@ -234,7 +234,7 @@ const ProblemPage = () => {
             )}
             {currentQ !== 1 && (
               <button
-                className="card__btn save_button left-[5%]  flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95"
+                className="card__btn save_button left-[5%]  flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick"
                 onClick={backHandler}
               >
                 <FaLongArrowAltLeft className="mr-1 text-[24px]" />
@@ -243,7 +243,7 @@ const ProblemPage = () => {
             )}
             {currentQ < 11 && (
               <button
-                className="card__btn_next save_button right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 "
+                className="card__btn_next save_button right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect"
                 onClick={nextHandler}
               >
                 Next

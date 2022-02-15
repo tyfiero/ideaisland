@@ -40,10 +40,12 @@ export default function LoginPage() {
     // console.log(auth.signInWithPopup);
 
     const signInWithGoogle = async () => {
-      console.log("tried");
+      // console.log("tried");
+      // console.log(user);
 
       try {
         await auth.signInWithPopup(googleAuthProvider);
+        // console.log(user);
       } catch (error) {
         console.log(error);
       }
