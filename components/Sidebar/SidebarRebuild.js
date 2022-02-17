@@ -14,7 +14,7 @@ const Sidebar2 = (props) => {
 
 
   let clickStyle = {
-    color: "white",
+    color: "#fbf0ff",
   };
   let unClickStyle = {
     color: "black",

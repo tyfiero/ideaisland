@@ -46,7 +46,7 @@ function MyApp({ Component, pageProps }) {
 
         <link
           rel="preload"
-          href="/public/fonts/Freude.otf"
+          href="/fonts/Freude.otf"
           as="font"
           type="font/otf"
           crossOrigin="anonymous"

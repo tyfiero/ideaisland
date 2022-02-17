@@ -6,6 +6,8 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // import "react-quill/dist/quill.snow.css"; // ES6
 import PublicIdeaFeed from "../../PublicIdeaFeed";
+import PieChart from "./PieChart";
+import ChartIdeas from "./ChartIdeas";
 
 var localNotes;
 const Dashboard = () => {
@@ -33,6 +35,10 @@ const Dashboard = () => {
             <h2 className="text-[40px]">40</h2>
           </div>
           <div className="dash-stat">
+            <h2 className="heading">Evolved Ideas</h2>
+            <h2 className="text-[40px]">3</h2>
+          </div>
+          <div className="dash-stat">
             <h2 className="heading">Problems</h2>
             <h2 className="text-[40px]">2</h2>
           </div>
@@ -40,12 +46,15 @@ const Dashboard = () => {
             <h2 className="heading">Implementations</h2>
             <h2 className="text-[40px]">10</h2>
           </div>
+      
+          
         </div>
         <div className="dash-graph-holder">
         <div className="dash-graph">
-          <img className="w-[35em] rounded-xl drop-shadow-2xl shadow-2xl" src="./dummygraph.png" alt="graph" />
+          {/* <img className="w-[35em] rounded-xl drop-shadow-2xl shadow-2xl" src="./dummygraph.png" alt="graph" /> */}
+          <ChartIdeas />
         </div>
-        <div className="graph-stats-holder">
+        <div className="graph-stats-holder ml-[6em]">
           <div className="graph-stat">
             <p>Ideas per day</p>
             <h4 className="graph-stat-num">0.43</h4>
@@ -68,6 +77,36 @@ const Dashboard = () => {
           </div>
         </div>
 
+          
+        </div>
+        <div className="dash-graph-holder">
+       
+        <div className="graph-stats-holder ml-[3em] mr-[6em]">
+          <div className="graph-stat">
+            <p>⭐⭐⭐⭐⭐</p>
+            <h4 className="graph-stat-num">2</h4>
+          </div>
+          <div className="graph-stat">
+            <p>⭐⭐⭐⭐</p>
+            <h4 className="graph-stat-num">5</h4>
+          </div>
+          <div className="graph-stat">
+            <p>⭐⭐⭐</p>
+            <h4 className="graph-stat-num">7</h4>
+          </div>
+          <div className="graph-stat">
+            <p>⭐⭐</p>
+            <h4 className="graph-stat-num">12</h4>
+          </div>
+          <div className="graph-stat">
+            <p>⭐</p>
+            <h4 className="graph-stat-num">18</h4>
+          </div>
+        </div>
+        <div className="dash-graph">
+        <PieChart />
+          
+        </div>
           
         </div>
       <div className="ml-14 dash-wrapper">
