@@ -12,6 +12,7 @@ import Link from "next/link";
 import HelpAccordion from "./Accordion";
 
 const HelpPage = () => {
+    let date =  new Date().getFullYear();
   const items = [
     {
       title: "Evolved Idea",
@@ -55,7 +56,9 @@ const HelpPage = () => {
     <div className="help-page fade-effect-quick">
       <h1 className="heading-top">Help</h1>
 
+      <div className="help-boxes-div-container">
       <div className="help-boxes-div">
+
         <div className="help-box">
           <div className="help-circle">
             <FaUserGraduate className="help-icons" />
@@ -79,6 +82,9 @@ const HelpPage = () => {
             <p className="help-text">Manage billing and account information.</p>
           </div>
         </Link>
+      </div>
+      <div className="help-boxes-div">
+
         <a target="_blank" href="https://tally.so/r/wA9xow" rel="noreferrer">
           <div className="help-box">
             <div className="help-circle help-circle-alt">
@@ -115,6 +121,9 @@ const HelpPage = () => {
           </div>
         </a>
       </div>
+      </div>
+
+      
       <div className="normal-box-soft w-[70%] min-h-[15em] flex flex-col items-center">
         <h4 className="help-header">FAQs</h4>
         <HelpAccordion
@@ -171,7 +180,9 @@ const HelpPage = () => {
         </div>
       </a>
 
-      <p>Made with ♥️ in Seattle</p>
+      <p className="text-[18px]">Made with ♥️ in Seattle</p>
+      <p className="text-[11px]">Copyright © {date} Digital Masonry LLC</p>
+
     </div>
   );
 };

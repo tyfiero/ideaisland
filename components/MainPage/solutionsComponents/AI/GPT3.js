@@ -5,7 +5,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { FaPastafarianism, FaSeedling } from "react-icons/fa";
 import { useForm } from "react-hook-form";
-import Loader from "../../../Loader";
+import Loader from "../../../Layout/Loader";
 // const stringSimilarity = require("string-similarity");
 // const fetch = require("node-fetch");
 import { useSelector, useDispatch } from "react-redux";
@@ -17,7 +17,7 @@ import {
 import GPT3TextArea from "./GPTJTextArea";
 import GPTJTextArea from "./GPT3TextArea";
 import { gptJInputAction } from "../../../../redux/actions";
-import FullLoader from "../../../FullLoader";
+// import FullLoader from "../../../FullLoader";
 
 const GPTtool = () => {
   const gpt3InputRedux = useSelector((state) => state.gpt3Input);
@@ -224,7 +224,8 @@ const GPTtool = () => {
   var gpt3Button = "GPT-3";
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex items-center">
+      <div className="flex flex-col">
       <button
         className="card__btn w-[8rem]  flex px-3 items-center rainbow-effect "
         onClick={() => {
@@ -243,25 +244,27 @@ const GPTtool = () => {
         {GPTJorGPT3 ? gptjButton : gpt3Button}
       </button>
       {GPTJorGPT3 ? gptJContent : gpt3Content}
+      </div>
+      <div className="flex flex-col md:ml-10">
+        <h2 className="pt-4 pb-2 text-xl">Results:</h2>
 
-      <h2 className="pt-4 pb-2 text-xl">Results:</h2>
+        <div className="flex items-center ai-output-box">
+          {/* {GPTJorGPT3 ? <p>{gptJOutputRedux}</p> : <p>{gpt3OutputRedux}</p>} */}
+          {/* <p className="relative">AI:</p> */}
+          {/* {responseRecieved && <p>{gpt3OutputRedux}</p>} */}
 
-      <div className="flex items-center ai-output-box">
-        {/* {GPTJorGPT3 ? <p>{gptJOutputRedux}</p> : <p>{gpt3OutputRedux}</p>} */}
-        {/* <p className="relative">AI:</p> */}
-        {/* {responseRecieved && <p>{gpt3OutputRedux}</p>} */}
-       
-        <Loader show={aiLoading} />
-        {/* <Loader show={true} /> */}
+          <Loader show={aiLoading} />
+          {/* <Loader show={true} /> */}
 
-        {/* <FullLoader show={true} /> */}
+          {/* <FullLoader show={true} /> */}
 
-        {responseRecieved && <p>{aiResponse}</p>}
-        {!responseRecieved && !responseRecievedGPTJ && !aiLoading && (
-          <p className="text-gray-400">{"AI output will display here"}</p>
-        )}
+          {responseRecieved && <p>{aiResponse}</p>}
+          {!responseRecieved && !responseRecievedGPTJ && !aiLoading && (
+            <p className="text-gray-400">{"AI output will display here"}</p>
+          )}
 
-        {responseRecievedGPTJ && <p>{"AI:" + aiResponseGPTJ}</p>}
+          {responseRecievedGPTJ && <p>{"AI:" + aiResponseGPTJ}</p>}
+        </div>
       </div>
     </div>
   );

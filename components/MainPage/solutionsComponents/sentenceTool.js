@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // import { allLists, sWord1Action, sWord2Action } from "../../../redux/reducers/allLists";
-import {  allLists,
-  sWord1Action,
-  sWord2Action, } from "../../../redux/actions";
+import { allLists, sWord1Action, sWord2Action } from "../../../redux/actions";
 
 // import {
 //   allLists,
@@ -73,7 +71,7 @@ function SentenceTool(props) {
   };
 
   var commaOf = (
-    <div className="sentence-wrapper">
+    <div className="sentence-wrapper ">
       <h1>The&nbsp;</h1>
       <h1 onClick={wordClickHandler1} className="sentence_word">
         {sWord1Value}
@@ -111,12 +109,8 @@ function SentenceTool(props) {
   );
 
   return (
-    <div className="fade-effect-quick">
-      {selectedSentence === "commaOf" ? commaOf : null}
-      {selectedSentence === "hadABaby" ? hadABaby : null}
-      {selectedSentence === "proofOf" ? proofOf : null}
-
-      <button
+    <div className="fade-effect-quick normal-box-soft min-w-[60%] ">
+        <button
         className="card__btn"
         onClick={() => {
           wordClickHandler1();
@@ -125,6 +119,11 @@ function SentenceTool(props) {
       >
         &nbsp; &nbsp; &nbsp;🎲&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       </button>
+      {selectedSentence === "commaOf" ? commaOf : null}
+      {selectedSentence === "hadABaby" ? hadABaby : null}
+      {selectedSentence === "proofOf" ? proofOf : null}
+
+    
       <button className="card__btn" onClick={changeSentence}>
         Change Sentence
       </button>

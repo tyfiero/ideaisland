@@ -1,16 +1,18 @@
 import styled from "styled-components";
 import TopBar from "./TopBar";
 import TopBarRight from "./TopBarRight";
-import Sidebar from "./SideBar/Sidebar";
-import Sidebar2 from "./SideBar/SidebarRebuild";
+import Sidebar from "../SideBar/Sidebar";
+import Sidebar2 from "../SideBar/SidebarRebuild";
 import { FaBook, FaTimes } from "react-icons/fa";
 
-import NotePopUp from "./MainPage/NoteBubble/NotePopUp";
-import NotePopUpModal from "./MainPage/NoteBubble/NotePopUpModal";
+import NotePopUp from "../MainPage/NoteBubble/NotePopUp";
+import NotePopUpModal from "../MainPage/NoteBubble/NotePopUpModal";
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { logIn, userDataRedux } from "../redux/actions";
-import { useUserData } from "../lib/hooks";
+import { logIn, userDataRedux } from "../../redux/actions";
+import { useUserData } from "../../lib/hooks";
+// import { CountdownCircleTimer } from "react-countdown-circle-timer";
+import CircleTimer from "./Timer";
 
 export default function Layout({ children }) {
   const userData = useUserData();
@@ -111,7 +113,9 @@ if (userData.user !== null) {
         <div className="side-nav-bar">
           {/* <Sidebar toggle={isToggled} />
            */}
-          <Sidebar2 toggle={isToggled} />
+           <Sidebar2 toggle={isToggled} />
+           <CircleTimer />
+    
         </div>
         <div className="fade-effect-quick content">
           <main>{children}</main>

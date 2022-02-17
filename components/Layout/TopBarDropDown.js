@@ -1,14 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
 import { CSSTransition } from "react-transition-group";
-import { FaUserAlt, FaCog, FaBook, FaSun, FaMoon } from "react-icons/fa";
+import { FaUserAlt, FaCog, FaBook, FaRegLightbulb, FaLightbulb } from "react-icons/fa";
 import Link from "next/link";
 import DarkModeToggle from "./DarkModeToggle";
+import { useSelector } from "react-redux";
 // import { auth } from "../lib/firebase";
 
 export default function TopBarDropDown({ user }) {
   const [activeMenu, setActiveMenu] = useState("main");
   // const [menuHeight, setMenuHeight] = useState(null);
   const dropdownRef = useRef(null);
+  const darkRedux = useSelector((state) => state.darkMode);
 
 //   console.log(user);
   // useEffect(() => {
@@ -79,6 +81,8 @@ export default function TopBarDropDown({ user }) {
             <p>Dark Mode</p>
 
             <DarkModeToggle />
+        {darkRedux ? <FaRegLightbulb /> : <FaLightbulb className="bulb-glow" style={{color: 
+        "orange"}}/>}
           </div>
           {/* <DropdownItem
             leftIcon="🦧"
@@ -97,13 +101,13 @@ export default function TopBarDropDown({ user }) {
         unmountOnExit
       >
         <div className="menu">
-          <DropdownItem goToMenu="main" leftIcon={<FaUserAlt />}>
+          {/* <DropdownItem goToMenu="main" leftIcon={<FaUserAlt />}>
             <h2>My Tutorial</h2>
           </DropdownItem>
           <DropdownItem leftIcon={<FaUserAlt />}>HTML</DropdownItem>
           <DropdownItem leftIcon={<FaUserAlt />}>CSS</DropdownItem>
           <DropdownItem leftIcon={<FaUserAlt />}>JavaScript</DropdownItem>
-          <DropdownItem leftIcon={<FaUserAlt />}>Awesome!</DropdownItem>
+          <DropdownItem leftIcon={<FaUserAlt />}>Awesome!</DropdownItem> */}
         </div>
       </CSSTransition>
 
@@ -114,13 +118,13 @@ export default function TopBarDropDown({ user }) {
         unmountOnExit
       >
         <div className="menu">
-          <DropdownItem goToMenu="main" leftIcon={<FaUserAlt />}>
+          {/* <DropdownItem goToMenu="main" leftIcon={<FaUserAlt />}>
             <h2>Animals</h2>
           </DropdownItem>
           <DropdownItem leftIcon="🦘">Kangaroo</DropdownItem>
           <DropdownItem leftIcon="🐸">Frog</DropdownItem>
           <DropdownItem leftIcon="🦋">Horse?</DropdownItem>
-          <DropdownItem leftIcon="🦔">Hedgehog</DropdownItem>
+          <DropdownItem leftIcon="🦔">Hedgehog</DropdownItem> */}
         </div>
       </CSSTransition>
     </div>

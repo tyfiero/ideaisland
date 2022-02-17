@@ -13,6 +13,7 @@ import gpt3OutputReducer from "./gpt3output";
 import gptJInputReducer from "./gptjinput";
 import gptJOutputReducer from "./gptjoutput";
 import userDataReducer from "./userData";
+import soundReducer from "./soundSetting";
 //OTHER REDUCERS GO HERE
 
 import { combineReducers } from "redux";
@@ -33,7 +34,7 @@ const allReducers = combineReducers({
   gptJInput: gptJInputReducer,
   gptJOutput: gptJOutputReducer,
   userData: userDataReducer,
-
+  soundSetting: soundReducer,
   //other reducers go here
 });
 

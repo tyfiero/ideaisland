@@ -17,6 +17,7 @@ import gptJOutputReducer from "./reducers/gptjoutput";
 import loggedInReducer from "./reducers/isLoggedIn";
 import darkModeReducer from "./reducers/darkModeReducer";
 import userDataReducer from "./reducers/userData";
+import soundReducer from "./reducers/soundSetting";
 //OTHER REDUCERS GO HERE
 
 const rootReducer = combineReducers({
@@ -37,6 +38,7 @@ const rootReducer = combineReducers({
   loggedIn: loggedInReducer,
   darkMode: darkModeReducer,
   userData: userDataReducer,
+  soundSetting: soundReducer,
   //other reducers go here
 });
 // console.log(rootReducer);

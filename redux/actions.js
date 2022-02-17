@@ -25,7 +25,12 @@ export const increment = (number) => {
     payload: number,
   };
 };
-
+export const soundSetting = (boolean) => {
+  return {
+    type: "CHANGE",
+    payload: boolean,
+  };
+};
 export const listNum = (listNum) => {
   return {
     type: "EDIT",

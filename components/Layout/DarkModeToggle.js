@@ -1,7 +1,7 @@
 import React from 'react';
 import Toggle from "react-toggle";
 import { useSelector, useDispatch } from "react-redux";
-import { darkMode } from "../redux/actions";
+import { darkMode } from "../../redux/actions";
 import { FaSun, FaMoon } from "react-icons/fa";
 
 function DarkModeToggle() {

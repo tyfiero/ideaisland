@@ -2,12 +2,12 @@
 import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
 import { React, useContext, useEffect, useState, useRef } from "react";
-import { UserContext } from "../lib/context";
-import { logIn } from "../redux/actions";
-import { useUserData } from "../lib/hooks";
+import { UserContext } from "../../lib/context";
+import { logIn } from "../../redux/actions";
+import { useUserData } from "../../lib/hooks";
 import TopBarDropDown from "./TopBarDropDown";
 // import onClickOutside from "react-onclickoutside";
-import useVisible from "../lib/useVisible";
+import useVisible from "../../lib/useVisible";
 
 export default function TopBarRight({ user }) {
   // const { user, username } = useContext(UserContext);

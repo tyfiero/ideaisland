@@ -5,11 +5,11 @@ import { Provider } from "react-redux";
 import { store } from "../redux/store";
 // import CookieBanner from "../components/CookieBanner/CookieBanner";
 // import Analytics from "../components/Analytics/Analytics";
-import Layout from "../components/Layout";
+import Layout from "../components/Layout/Layout";
 import { UserContext } from "../lib/context";
 import { useUserData } from "../lib/hooks";
 import { useEffect, useState } from "react";
-import FullLoader from "../components/FullLoader";
+import FullLoader from "../components/Layout/FullLoader";
 import { useRouter } from "next/router";
 
 function MyApp({ Component, pageProps }) {

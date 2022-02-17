@@ -1149,11 +1149,12 @@ body {
 }
 
 .sentence-wrapper {
-  padding-top: 10em;
+  padding: 2em;
   display: flex;
   flex-direction: row;
   text-align: center;
-
+  font-size: var(--fontSizeHeading-top);
+align-items: center;
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
   -khtml-user-select: none; /* Konqueror HTML */
@@ -1163,7 +1164,7 @@ body {
 }
 
 .sentence_word {
-  color: var(--colorLight1);
+  color: var(--colorLight2);
   text-decoration: underline;
 
   cursor: pointer;
@@ -2254,9 +2255,16 @@ textarea {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  width: 60%;
+  /* width: 137em; */
 }
 
+.help-boxes-div-container{
+  display: flex;
+  gap: 0.5em;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
 .help-box {
   background: rgba(255, 255, 255, 0.664);
   border-radius: 3rem;
@@ -2352,7 +2360,24 @@ margin-top: 1em;
   
 }
 
+.accordionTitle:hover{
+  transition: all 0.2s ease-in-out;
+  
+  transform: scale(1.02);
+  background: rgba(252, 241, 255, 0.964) !important;
+  
+}
 
+.accordionTitle:active{
+  background: rgba(246, 212, 255, 0.964) !important;
+  
+}
+
+.accordion .accordionItem.active .accordionTitle {
+  background: rgba(252, 241, 255, 0.964) !important;
+  
+  
+}
 .accordion .accordionTitle {
   padding: 4px;
   /* background: #ececec; */
@@ -2415,6 +2440,7 @@ font-size: var(--fontSizeHeading-top);
 
 .accordion .accordionItem.active .accordionTitle h3 {
   color: var(--colorDark1);
+  
 }
 
 .normal-box{
@@ -2447,3 +2473,56 @@ ul{
   margin:0 auto;
   
 }
+
+.bulb-glow{
+  /* animation: neon3 1.5s ease-in-out infinite alternate; 
+   */
+   box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ffdd1b,
+   0 0 35px #ffdd1b, 0 0 40px #ffdd1b, 0 0 50px #ffdd1b, 0 0 75px #ffdd1b;
+}
+
+.timer-wrapper {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 88%;
+  left: 5px;
+}
+
+.timer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 10px;
+}
+
+.text {
+  color: #aaa;
+}
+
+.value {
+  font-size: var(--fontSizeText);
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; 
+            
+}
+
+.timer-menu{
+  /* background-color: white; */
+  z-index: 250;
+  width: 16em;
+  height: 18em;
+  position: absolute;
+  top: 62%;
+  left: 5em;
+}
+/* .info {
+  max-width: 360px;
+  margin: 40px auto 0;
+  text-align: center;
+  font-size: 16px;
+} */
