@@ -30,7 +30,7 @@ export default function LoginPage() {
   // const user = useStore((state) => state.user);
   // let user = null;
 
-  let emailButton = () => {
+  let emailButton = () => {f
     setSignInMethod(1);
   };
   function googleButton() {

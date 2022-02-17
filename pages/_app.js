@@ -10,13 +10,12 @@ import { UserContext } from "../lib/context";
 import { useUserData } from "../lib/hooks";
 import { useEffect, useState } from "react";
 import FullLoader from "../components/FullLoader";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 
 function MyApp({ Component, pageProps }) {
   const userData = useUserData();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-
 
   useEffect(() => {
     const handleStart = (url) => {
@@ -29,32 +28,38 @@ function MyApp({ Component, pageProps }) {
     router.events.on("routeChangeError", handleComplete);
   }, [router]);
 
-//TODO edit social media image! update keywords as well
-
+  //TODO edit social media image! update keywords as well
 
   // console.log(userData);
-let description = "Bring your next idea to life with IdeaIsland";
-let image = "./bulb.svg"
-  
+  let description = "Bring your next idea to life with IdeaIsland";
+  let image = "./bulb.svg";
+
   return (
     <>
       <Head>
         <title>ideaisland</title>
+        <meta name="description" content={description} />
         <meta
-          name="description"
-          content={description}
+          name="keywords"
+          content="idea generator, idea tools, ideas, brainstorming tool, brainstorming"
         />
-<meta name="keywords" content="idea generator, idea tools, ideas, brainstorming tool, brainstorming" />
 
+        <link
+          rel="preload"
+          href="/public/fonts/Freude.otf"
+          as="font"
+          type="font/otf"
+          crossOrigin="anonymous"
+        />
         <link rel="manifest" href="/site.webmanifest" />
         <meta name="theme-color" content="#EEC3FD"></meta>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta name="twitter:card" content="summary" />
-      <meta name="twitter:site" content="@theideaisland" />
-      <meta name="twitter:title" content="ideaisland" />
-      <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={image} />
+        <meta name="twitter:site" content="@theideaisland" />
+        <meta name="twitter:title" content="ideaisland" />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={image} />
         <link
           rel="apple-touch-icon"
           sizes="76x76"
