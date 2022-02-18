@@ -2,6 +2,7 @@ import React from "react";
 import ProfilePage from "../../../components/ProfilePage";
 import IdeaFeed from "../../../components/IdeaFeed";
 import { getUserWithUsername, postToJSON } from '../../../lib/firebase';
+import AuthCheck from "../../../components/Authentication/AuthCheck";
 
 
 
@@ -40,9 +41,11 @@ export async function getServerSideProps({ query }) {
 
 export default function UserProfilePage({ user, ideas }) {
   return (
+    // <AuthCheck>
     <div>
       <ProfilePage user={user}/>
       <IdeaFeed ideas={ideas}/>
     </div>
+    // </AuthCheck>
   );
 }

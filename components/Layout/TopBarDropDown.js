@@ -67,7 +67,7 @@ export default function TopBarDropDown({ user }) {
           </DropdownItem>
           </Link>
 
-          <Link href="/notes" passHref>
+          <Link href="/user/priceart/notes" passHref>
 
           <DropdownItem
             leftIcon={<FaBook className="text-t-pd" />}

@@ -82,14 +82,16 @@ export default function TopBarRight({ user }) {
     <div
       className="profile-pic-cropper"
       onClick={() => {
-        if (!isVisible) {
-          setIsVisible(true);
-          // console.log("set true");
-          // console.log("set true" + isVisible);
-        } else {
-          setIsVisible(false);
-          // console.log("set false");
-        }
+        // if (!isVisible) {
+        //   setIsVisible(true);
+        //   // console.log("set true");
+        //   // console.log("set true" + isVisible);
+        // } else {
+        //   setIsVisible(false);
+        //   // console.log("set false");
+        // }
+          setIsVisible(!isVisible);
+
       }}
     >
       <img

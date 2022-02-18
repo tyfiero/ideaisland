@@ -11,9 +11,15 @@ import { useUserData } from "../lib/hooks";
 import { useEffect, useState } from "react";
 import FullLoader from "../components/Layout/FullLoader";
 import { useRouter } from "next/router";
+import Script from "next/script";
+// import splitbee from '@splitbee/web';
+
 
 function MyApp({ Component, pageProps }) {
   const userData = useUserData();
+
+  // splitbee.init()
+
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -36,6 +42,7 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
+
       <Head>
         <title>ideaisland</title>
         <meta name="description" content={description} />

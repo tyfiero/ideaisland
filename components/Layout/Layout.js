@@ -13,7 +13,7 @@ import { logIn, userDataRedux } from "../../redux/actions";
 import { useUserData } from "../../lib/hooks";
 // import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import CircleTimer from "./Timer";
-
+import { Toaster } from "react-hot-toast";
 export default function Layout({ children }) {
   const userData = useUserData();
 
@@ -103,6 +103,7 @@ if (userData.user !== null) {
       >
         {/* <div className="background blur"></div> */}
         {/* <noscript>You need to enable JavaScript to run this app.</noscript> */}
+        <div><Toaster/></div>
         <div className="logo-bar">
           <TopBar />
         </div>
