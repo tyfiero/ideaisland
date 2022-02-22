@@ -7,11 +7,13 @@ async function gptJAPIRequest(req) {
   //   console.log(req.body.input);
 
   let userInput = req.body.input;
-  let prompt = `Brainstorm some ideas combining ${userInput}: `;
+  let prompt = `Making a new startup about ${userInput} is simple! Here is a list of startup product ideas in the ${userInput} space
+
+1. `;
   let promptToSend = {
     prompt: prompt,
     max_tokens: 50,
-    temperature: 1,
+    temperature: 0.89,
     top_k: 40,
     top_p: 0.9,
     stop: null,
