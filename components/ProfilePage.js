@@ -1,11 +1,16 @@
 import React from "react";
 import { useUserData } from "../lib/hooks";
+import { useSelector, useDispatch } from "react-redux";
 
 import { auth } from "../lib/firebase";
+// import { logIn } from "../../redux/actions";
+import { logIn } from "../redux/actions";
 
 import Link from "next/link";
 function ProfilePage({ user }) {
   const userData = useUserData();
+  const userRedux = useSelector((state) => state.userData);
+  const dispatch = useDispatch();
 
   return (
     <div className="flex flex-col items-center pt-12 fade-effect">
@@ -52,6 +57,8 @@ function ProfilePage({ user }) {
                 .signOut()
                 .then(() => {
                   console.log("Sign out successful");
+                  dispatch(logIn(false));
+                  localStorage.removeItem("userLocal");
                 })
                 .catch((error) => {
                   console.log(error);

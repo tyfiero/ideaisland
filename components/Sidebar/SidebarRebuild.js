@@ -1,16 +1,45 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 // import { Link } from "react-router-dom";
 // import { IconName } from "react-icons/fa";
 
 // import { isMobile, browserName } from "react-device-detect";
 // import { Squash as Hamburger } from "hamburger-react";
 // import { SentencePage } from "../pages/SolutionPage";
-import { FaHome, FaBug, FaBrain, FaSitemap, FaQuestion } from "react-icons/fa";
+import { FaHome, FaBug, FaBrain, FaSitemap, FaQuestion, FaBook } from "react-icons/fa";
 import Link from "next/link";
+import { useUserData } from "../../lib/hooks";
+import { UserContext } from "../../lib/context";
+import { useSelector } from "react-redux";
+
 
 const Sidebar2 = (props) => {
+  const { user, username } = useContext(UserContext);
 
   const [selected, setSelected] = useState(0);
+  const [usernameSlug, setUsernameSlug] = useState("")
+  const userData = useUserData();
+  const userRedux = useSelector((state) => state.userData);
+
+
+  useEffect(() => {
+    if(userRedux){
+      setUsernameSlug(userRedux.username)
+      console.log(usernameSlug + "redux");
+      console.log(userRedux);
+
+      return usernameSlug;
+    }else if(username){
+    setUsernameSlug(username)
+    console.log(usernameSlug + "username context");
+    return usernameSlug;
+    }else{
+      console.log("Dammit")
+    }
+      
+    
+  }, [])
+  
+ 
 
 
   let clickStyle = {
@@ -38,7 +67,21 @@ const Sidebar2 = (props) => {
           </div>
         </a>
       </Link>
-
+      {/* <Link href={"user/" + (usernameSlug || "priceart") + "/notes"}> */}
+      <Link href={"user/priceart/notes"}>
+        <a>
+          <div
+            className=" sidebarunittcontainer flex rounded-[4rem] h-12 md:flex-row sm:flex-col  hover:bg-clear-w1 sm:items-center md:rounded-l-none"
+            style={selected === 4 ? clickStyle : unClickStyle}
+            onClick={() => {
+              setSelected(4);
+            }}
+          >
+            <FaBook className="sideicon" />
+            <p className="sidebartext sm:text-[14px] ml-2">Notes</p>
+          </div>
+        </a>
+      </Link>
       <Link href="/Problem">
         <a>
           <div
@@ -81,13 +124,14 @@ const Sidebar2 = (props) => {
           </div>
         </a>
       </Link>
+    
       <Link href="/Help">
         <a>
           <div
             className="sidebarunittcontainer flex rounded-[4rem] h-12 md:flex-row sm:flex-col hover:text-white  hover:bg-clear-w sm:items-center md:rounded-l-none "
-            style={selected === 4 ? clickStyle : unClickStyle}
+            style={selected === 5 ? clickStyle : unClickStyle}
             onClick={() => {
-              setSelected(4);
+              setSelected(5);
             }}
           >
             <FaQuestion className="z-10 sideicon" />

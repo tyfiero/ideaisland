@@ -11,14 +11,27 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { logIn, userDataRedux } from "../../redux/actions";
 import { useUserData } from "../../lib/hooks";
+// import firebase from "firebase/compat";
+import { auth } from "../../lib/firebase";
+import { useAuthState } from 'react-firebase-hooks/auth';
+import firebase from "firebase/compat/app";
+import {  onAuthStateChanged } from "firebase/auth";
+
 // import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import CircleTimer from "./Timer";
 import { Toaster } from "react-hot-toast";
+// import Loader from "./Loader";
+import FullLoader from "./FullLoader";
+
 export default function Layout({ children }) {
+  // console.log("Layout Rerendered")
+
   const userData = useUserData();
 
   const dispatch = useDispatch();
   const [isToggled, setIsToggled] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   const loggedIn = useSelector((state) => state.loggedIn);
   const userRedux = useSelector((state) => state.userData);
 
@@ -29,28 +42,78 @@ export default function Layout({ children }) {
   };
 
   let user;
+  
+  
 
+
+
+useEffect(() => {
+  // console.log(userRedux);
+  console.log("TOP useEffect");
+
+if(userRedux === undefined || userRedux === null){
+  setLoading(true)
+  if (localStorage.getItem("userLocal") !== null || localStorage.getItem("userLocal") !== undefined) {
+    let localStorageUser = JSON.parse(localStorage.getItem("userLocal"));
+    console.log(localStorageUser)
+  dispatch(userDataRedux(localStorageUser));
+  dispatch(logIn(true));
+
+  // user = userRedux;
+     
+  // setLoading(false);
+  // console.log("NO MORE LOADING");
+
+  }
+}else{
+  console.log("redux user is defined :D")
+  user = userRedux;
+}
+
+}, [userRedux]);
+
+// auth.onAuthStateChanged(userObjFromAuthStateFunc => {
+//   if (userObjFromAuthStateFunc) {
+    // console.log("state = definitely signed in")
+    // console.log(userTest3)
+    // localStorage.setItem("userLocal", JSON.stringify(userObjFromAuthStateFunc));
+    
+    // dispatch(userDataRedux(userTest3));
+   
+
+
+  // }
+  // else {
+  //   // console.log("state = definitely signed out")
+  // }
+// })
 
   useEffect(() => {
-    //runs first, and only once
-// console.log("1st UE");
+  // console.log("USEEFFECT Layout Rerendered")
+  // console.timeEnd("redux")
+
+  // console.time("redux")
+
 if (userData.user !== null) {
   user = userData.user;
   // console.log(user);
 
-  console.log("Logged In");
-  // console.log(user);
-  localStorage.setItem("userLocal", JSON.stringify(user));
+
+  // localStorage.setItem("userLocal", JSON.stringify(user));
   dispatch(userDataRedux(user));
 
   if (!loggedIn) {
-    dispatch(logIn(true));
+    // dispatch(logIn(true));
   }
 } else {
   if (localStorage.getItem("userLocal") !== null) {
-    console.log("USERDATA EXISTS");
-    user = JSON.parse(localStorage.getItem("userLocal"));
-    // console.log(user);
+  user = localStorage.getItem("userLocal");
+
+  //   // console.log("USERDATA EXISTS");
+  //   // user = JSON.parse(localStorage.getItem("userLocal"));
+  //   // console.log(user);
+
+
     dispatch(userDataRedux(user));
 
   } else {
@@ -59,7 +122,7 @@ if (userData.user !== null) {
       username: "notSignedIn",
     };
   }
-    dispatch(logIn(false));
+    // dispatch(logIn(false));
   
 }
  
@@ -67,12 +130,7 @@ if (userData.user !== null) {
   }, [userData]);
 
     
-//   useEffect(() => {
-//     //runs second, and everytime the userData changes.
-// // console.log("2nd UE");
 
-   
-//   }, [userData]);
 
 
 
@@ -108,7 +166,8 @@ if (userData.user !== null) {
           <TopBar />
         </div>
         <div className="top-bar">
-          <TopBarRight user={user} />
+         {/* {loading ? <FullLoader />: <TopBarRight user={user} />} */}
+         <TopBarRight user={userRedux} />
         </div>
 
         <div className="side-nav-bar">

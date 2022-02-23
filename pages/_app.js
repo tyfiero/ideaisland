@@ -110,12 +110,12 @@ function MyApp({ Component, pageProps }) {
         />
         <meta name="msapplication-TileColor" content="#EEC3FD" />
 
-        <link
+        {/* <link
           rel="preload"
           href="/fonts/Sniglet-Regular.ttf"
           as="font"
           crossOrigin=""
-        />
+        /> */}
         <link rel="preload" href="/fonts/Freude.otf" as="font" crossOrigin="" />
         {/* <link
             rel="preload"

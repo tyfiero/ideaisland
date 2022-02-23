@@ -22,6 +22,8 @@ export default function TopBarDropDown({ user }) {
   //   setMenuHeight(height);
   // }
 
+  
+  // eslint-disable-next-line
   const DropdownItem =  React.forwardRef(({ onClick, href, leftIcon, rightIcon, goToMenu, children}, ref) => {
     return (
       <a
@@ -38,7 +40,7 @@ export default function TopBarDropDown({ user }) {
 
   return (
     <div
-      className="dropdown fade-effect-quick md:left-[85%] lg:left-[88%] xl:left-[92%] absolute"
+      className="dropdown fade-effect-fast md:left-[85%] lg:left-[88%] xl:left-[92%] absolute"
       ref={dropdownRef}
     >
       <CSSTransition

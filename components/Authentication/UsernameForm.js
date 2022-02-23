@@ -124,7 +124,7 @@ export default function UsernameForm(props) {
       <Link href="/">
         <a>
           <button className="w-[18em] h-12 rounded-3xl bg-t-bl flex items-center mt-3 justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95">
-            Let's Go!
+            Let&apos;s Go!
           </button>
         </a>
       </Link>

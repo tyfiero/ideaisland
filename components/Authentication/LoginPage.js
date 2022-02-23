@@ -3,7 +3,7 @@ import { useState, useRef, useEffect, useContext } from "react";
 import { LockClosedIcon } from "@heroicons/react/solid";
 import { useRouter } from "next/router";
 import AuthError from "./AuthError";
-import Spinner from "../Spinner";
+// import Spinner from "../Spinner";
 import Link from "next/link";
 // import useStore from "../StateManagement";
 // import { auth, googleAuthProvider } from "../../OLD/oldComponents/firebase-init";
@@ -13,8 +13,16 @@ import { UserContext } from "../../lib/context";
 
 import { auth, googleAuthProvider } from "../../lib/firebase";
 // import Enter from "./UsernameForm";
+import { signInWithPopup } from "firebase/auth";
+import toast from "react-hot-toast";
+import { useSelector, useDispatch } from "react-redux";
+import { logIn, userDataRedux } from "../../redux/actions";
 
 export default function LoginPage() {
+  const loggedIn = useSelector((state) => state.loggedIn);
+  const userRedux = useSelector((state) => state.userData);
+  const dispatch = useDispatch();
+
   const { user, username } = useContext(UserContext);
 
   const rememberMeRef = useRef();
@@ -30,7 +38,8 @@ export default function LoginPage() {
   // const user = useStore((state) => state.user);
   // let user = null;
 
-  let emailButton = () => {f
+  let emailButton = () => {
+    // f;
     setSignInMethod(1);
   };
   function googleButton() {
@@ -44,20 +53,46 @@ export default function LoginPage() {
       // console.log(user);
 
       try {
-        await auth.signInWithPopup(googleAuthProvider);
-        // console.log(user);
+        await signInWithPopup(auth, googleAuthProvider).then((result) => {
+          // console.log(result.user);
+          dispatch(userDataRedux(result.user));
+          localStorage.setItem("userLocal", JSON.stringify(result.user));
+          if (!loggedIn) {
+            dispatch(logIn(true));
+            console.log("logged in")
+          }
+          toast("Welcome back!", {
+            icon: "😀",
+          });
+        });
       } catch (error) {
         console.log(error);
       }
+
+      // console.log(user);
     };
 
     signInWithGoogle();
   }
 
+  //old google sign in
+  // function googleButton() {
+  //   // setSignInMethod(2);
+  //   console.log("googlebutton clicked");
+
+  //   // console.log(auth.signInWithPopup);
+
+  //   const signInWithGoogle = async () => {
+  //     // console.log("tried");
+  //     // console.log(user);
+
+  //
+
+  //   signInWithGoogle();
+  // }
   let backArrow = () => {
     setSignInMethod(0);
   };
-
 
   //from template for email
   useEffect(() => {
@@ -70,8 +105,8 @@ export default function LoginPage() {
     // Only redirect for users that have an email. Otherwise, it is an
     // anonymous user
     if (user && user.email) {
- // store the user in localStorage
-//  localStorage.setItem('userDataLocal', user)
+      // store the user in localStorage
+      //  localStorage.setItem('userDataLocal', user)
 
       // Get return url from query parameters or default to sending the
       // authenticated user to the protected area.
@@ -148,8 +183,6 @@ export default function LoginPage() {
   //     setLoading(false);
   //   }
   // };
-
-
 
   // let emailForm = (
   //   <form className="mt-8 space-y-6" onSubmit={handleLogin} action="">
@@ -291,7 +324,7 @@ export default function LoginPage() {
               </button>
             </div>
           ) : null}
-          {signInMethod === 1 && emailForm}
+          {/* {signInMethod === 1 && emailForm} */}
         </div>
       </div>
       {/* <Enter /> */}

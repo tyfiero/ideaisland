@@ -1,19 +1,32 @@
-import NotePageContent from "../../../components/Notes/NotePageContent";
+import IdeaSideBar from "../../../components/Notes/IdeaSideBar";
 import { useRouter } from "next/router";
-import IdeaFeed from "../../../components/IdeaFeed";
+import IdeaFeed from "../../../components/Notes/IdeaFeed";
 import AuthCheck from "../../../components/Authentication/AuthCheck";
+import Editor from "../../../components/Notes/Editor";
+import { useState } from "react";
+
 
 const NotePage = () => {
-  //THESE are for dynamic routing
-  // const router = useRouter();
-  // const { id } = router.query;
+  const [ID, setID] = useState(null);
+  const getSingleIdea = (id) => {
+    setID(id);
+  };
   return (
-    <div className="sentence-container fade-effect-quick">
-      <h1 className="heading-top">My Ideas & Notes</h1>
-      <p>A place for all of your wild ideas and notes.</p>
-      <NotePageContent />
-      <div className="feed-holder">
-        <IdeaFeed />
+    <div className="flex flex-col fade-effect-quick mt-3">
+      {/* <div className="flex flex-col items-center "> */}
+      {/* <p>A place for all of your wild ideas and notes.</p> */}
+      {/* </div> */}
+      <div className="note-grid">
+        <div className="note-grid-1 normal-box-soft h-full !rounded-2xl">
+          <IdeaSideBar />
+        </div>
+
+        <div className="note-grid-2">
+          <Editor ID={ID}/>
+          <div className="feed-holder">
+            <IdeaFeed getSingleIdea={getSingleIdea}/>
+          </div>
+        </div>
       </div>
     </div>
   );

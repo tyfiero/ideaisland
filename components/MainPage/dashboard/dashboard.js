@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
-
+// import { auth } from "../../../lib/firebase";
 // import ReactQuill from "react-quill"; // ES6
 // import TextArea from "../components/TextArea";
 import { useSelector, useDispatch } from "react-redux";
@@ -8,10 +8,12 @@ import { useSelector, useDispatch } from "react-redux";
 import PublicIdeaFeed from "../../PublicIdeaFeed";
 import PieChart from "./PieChart";
 import ChartIdeas from "./ChartIdeas";
+import IdeaSideBar from "../../Notes/IdeaSideBar";
 
 var localNotes;
 const Dashboard = () => {
   const notesRedux = useSelector((state) => state.notes);
+// console.log(auth.currentUser);
 
   useEffect(() => {
     localNotes = localStorage.getItem("notes");
@@ -25,7 +27,7 @@ const Dashboard = () => {
   // };
 
   return (
-    <div className="fade-effect-quick">
+    <div className="fade-effect-quick overflow-auto">
       <div className="dash-title">
         <h1 className="heading-top">Dashboard</h1>
       </div>
@@ -110,8 +112,10 @@ const Dashboard = () => {
           
         </div>
       <div className="ml-14 dash-wrapper">
-       
-        <div className="note-wrapper">
+        <div className="w-[35em]">
+       <IdeaSideBar />
+       </div>
+        {/* <divv className="note-wrapper">
           <div className="dash-notes">
             <h1 className="heading">My Notes</h1>
 
@@ -137,7 +141,7 @@ const Dashboard = () => {
               <p>{localNotes}</p>
             </div>
           </div>
-        </div>
+        </divv> */}
         <div className="dash-news">
           <h1 className="heading">News and tips</h1>
         </div>
@@ -145,7 +149,7 @@ const Dashboard = () => {
           <h1 className="heading">Community Ideas</h1>
         </div>
       </div>
-      <PublicIdeaFeed />
+      {/* <PublicIdeaFeed /> */}
     </div>
   );
 };

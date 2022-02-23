@@ -18,6 +18,7 @@ import loggedInReducer from "./reducers/isLoggedIn";
 import darkModeReducer from "./reducers/darkModeReducer";
 import userDataReducer from "./reducers/userData";
 import soundReducer from "./reducers/soundSetting";
+import userNameReducer from "./reducers/userData copy";
 //OTHER REDUCERS GO HERE
 
 const rootReducer = combineReducers({
@@ -39,6 +40,7 @@ const rootReducer = combineReducers({
   darkMode: darkModeReducer,
   userData: userDataReducer,
   soundSetting: soundReducer,
+  userName: userNameReducer,
   //other reducers go here
 });
 // console.log(rootReducer);

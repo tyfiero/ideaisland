@@ -8,12 +8,15 @@ import { useUserData } from "../../lib/hooks";
 import TopBarDropDown from "./TopBarDropDown";
 // import onClickOutside from "react-onclickoutside";
 import useVisible from "../../lib/useVisible";
+// import Image from "next/image";
 
 export default function TopBarRight({ user }) {
   // const { user, username } = useContext(UserContext);
   const userData = useUserData();
   // const [isLoggedIn, setIsLoggedIn] = useState();
-  const [imgSrc, setimgSrc] = useState();
+  const [imgSrc, setimgSrc] = useState("/profilefallback.png");
+  const [type, setType] = useState(0);
+
   // const [menuOpen, setMenuOpen] = useState(false);
   // const menuRef = useRef(null);
   const { ref, isVisible, setIsVisible } = useVisible(false);
@@ -26,18 +29,22 @@ export default function TopBarRight({ user }) {
   // const dispatch = useDispatch();
 
   // console.log(user);
-
   useEffect(() => {
-    if (user !== null) {
+    if (userRedux !== null) {
       try {
+// console.log(userRedux)
+
         setimgSrc(userRedux.photoURL);
+        setType(1);
       } catch {
-        setimgSrc("https://proficon.stablenetwork.uk/api/identicon/ty.svg");
+        setimgSrc("/profilefallback.png");
+        setType(0);
       }
     } else {
-      setimgSrc("https://proficon.stablenetwork.uk/api/identicon/ty.svg");
+      setimgSrc("/profilefallback.png");
+      setType(0);
     }
-  }, [loggedIn]);
+  }, [userRedux]);
 
   // const closeOpenMenus = (e) => {
   //   if (menuRef.current && menuOpen && !menuRef.current.contains(e.target)) {
@@ -90,21 +97,32 @@ export default function TopBarRight({ user }) {
         //   setIsVisible(false);
         //   // console.log("set false");
         // }
-          setIsVisible(!isVisible);
-
+        setIsVisible(!isVisible);
       }}
     >
       <img
-        className="fade-effect profile-pic "
+        // src={loggedIn ? userRedux?.photoURL : "/profilefallback.png"}
         src={imgSrc}
-        alt="Identicons Profile Icon"
+        className={(!type && "profile-pic") + " fade-effect"}
+        alt=""
       />
+      {/* <Image
+        src={imgSrc}
+        className={(!type && "profile-pic") + " fade-effect"}
+        // width={60}
+        // height={60}
+        layout="fill"
+        // objectFit='cover'
+
+        // fallback="/profilefallback.png"
+        // alt="Identicons Profile Icon"
+      /> */}
     </div>
   );
 
   return (
     <div>
-      {/* {user && profilePic} */}
+      {/* {profilePic} */}
       {/* {!user && login} */}
       {loggedIn ? profilePic : login}
       <div ref={ref}>{isVisible && <TopBarDropDown user={user} />}</div>

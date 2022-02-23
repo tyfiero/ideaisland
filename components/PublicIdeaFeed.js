@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { firestore, fromMillis, postToJSON } from '../lib/firebase';
 import Loader from './Layout/Loader';
-import IdeaFeed from './IdeaFeed';
+import IdeaFeed from './Notes/IdeaFeed';
 
 const LIMIT = 1;
 
