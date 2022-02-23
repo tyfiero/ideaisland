@@ -6,11 +6,11 @@ import Editor from "../../../components/Notes/Editor";
 import { useState } from "react";
 
 
+
 const NotePage = () => {
-  const [ID, setID] = useState(null);
-  const getSingleIdea = (id) => {
-    setID(id);
-  };
+
+  // const [ID, setID] = useState(null);
+
   return (
     <div className="flex flex-col fade-effect-quick mt-3">
       {/* <div className="flex flex-col items-center "> */}
@@ -22,9 +22,9 @@ const NotePage = () => {
         </div>
 
         <div className="note-grid-2">
-          <Editor ID={ID}/>
+          <Editor />
           <div className="feed-holder">
-            <IdeaFeed getSingleIdea={getSingleIdea}/>
+            <IdeaFeed />
           </div>
         </div>
       </div>

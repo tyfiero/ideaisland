@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 
 export default function Stars({ rating, sendRating }) {
@@ -6,6 +7,9 @@ export default function Stars({ rating, sendRating }) {
   const [hoverStars, setHoverStars] = useState();
 
 //   console.log(hoverStars)
+useEffect(()=>{
+    setStars(rating);
+},[rating])
 
   return (
     <div className="flex items-center justify-center">

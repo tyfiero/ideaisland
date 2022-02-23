@@ -14,16 +14,22 @@ import dynamic from "next/dynamic";
 import {
   serverTimestamp,
   query,
+  where,
   collection,
   orderBy,
-  getFirestore,
-  setDoc,
   doc,
+  getFirestore,
+  updateDoc,
+  addDoc,
+  onSnapshot,
+  setDoc,
+  getDoc,
 } from "firebase/firestore";
 
 import toast from "react-hot-toast";
 import { FaLock, FaGlobeAmericas } from "react-icons/fa";
-import IdeaDisplay from "./IdeaDisplay"
+import IdeaDisplay from "./IdeaDisplay";
+import { useSelector } from "react-redux";
 
 const QuillNoSSRWrapper = dynamic(import("react-quill"), {
   ssr: false,
@@ -39,7 +45,67 @@ const QuillNoSSRWrapper = dynamic(import("react-quill"), {
 //   );
 
 function Editor() {
-  const [editMode, setEditMode] = useState(true);
+  const [editMode, setEditMode] = useState(false);
+  const [editDocDetails, setEditDocDetails] = useState([]);
+
+  const currentDocRedux = useSelector((state) => state.currentDoc);
+  //   const currentDocRedux = useSelector((state) => state.currentDoc);
+
+  useEffect(() => {
+    // console.log("UE START");
+
+
+    if (currentDocRedux) {
+      const getDetails = async () => {
+        try {
+          let uid;
+          if (auth.currentUser) {
+            uid = auth.currentUser.uid;
+
+            //THIS MUST BE EDITED WHEN THE PERSISTENCE IS FIXED priceart cant stay!!!
+          } else {
+            uid = "WoKVte3Fpae3Zqp1KAlcJEpO09j1";
+          }
+
+        //   console.log(uid);
+
+          let db = getFirestore();
+          const colRef = collection(db, "users", uid, "ideas");
+
+          // console.log("🚀 ~ file: Editor.js ~ line 74 ~ getDetails ~ qRef", colRef)
+
+          const q = query(colRef, where("id", "==", currentDocRedux));
+
+          // const docSnap = await getDoc(q);
+          // if (docSnap.exists()) {
+          //   console.log("Document data:", docSnap.data());
+          //   setEditDocDetails(docSnap.data());
+
+          // } else {
+          //   // doc.data() will be undefined in this case
+          //   console.log("No such document!");
+          // }
+
+          // real time collection data
+          onSnapshot(q, (snapshot) => {
+            let details = [];
+            snapshot.docs.forEach((doc) => {
+              details.push({ ...doc.data(), id: doc.id });
+            });
+            console.log(details);
+            setEditDocDetails(details);
+          });
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      getDetails();
+    } else {
+      console.log("no note change");
+    }
+    // console.log("UE END");
+  }, [currentDocRedux]);
+
   return (
     <div>
       <div className="flex items-center justify-center">
@@ -54,11 +120,36 @@ function Editor() {
           {editMode && (
             <>
               {" "}
-              <div className="heading">Edit Idea</div>
-              <CreateNewIdea />
+              {/* <div className="heading">Edit Idea</div> */}
+              <div>
+                <button
+                  className="w-[12em] h-[3em] rounded-3xl bg-t-bl flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer"
+                  onClick={() => {
+                    setEditMode(!editMode);
+                  }}
+                >
+                  Save Idea Changes
+                </button>
+              </div>
+              <CreateNewIdea setEditDocDetails={editDocDetails} />
             </>
           )}
-          {/* {!editMode && <IdeaDisplay />} */}
+          {!editMode && (
+            <>
+              {" "}
+              <div>
+                <button
+                  className="w-[12em] h-[3em] rounded-3xl bg-t-bl flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer"
+                  onClick={() => {
+                    setEditMode(!editMode);
+                  }}
+                >
+                  Edit Idea
+                </button>
+              </div>
+              <IdeaDisplay setEditDocDetails={editDocDetails} />
+            </>
+          )}
         </div>
       </div>
     </div>
@@ -67,45 +158,98 @@ function Editor() {
 
 export default Editor;
 
-function CreateNewIdea() {
+function CreateNewIdea({ setEditDocDetails }) {
   const router = useRouter();
   const { username } = useContext(UserContext);
+  const [newIdea, setNewIdea] = useState(false);
+
   const [title, setTitle] = useState("");
+  const [ideaID, setIdeaID] = useState("");
+
   const [content, setContent] = useState("");
 
   const [publish, setPublish] = useState(false);
 
   const [rating, setRating] = useState(0);
-  //   //load quil on client side so document is defined
-  //   useEffect(() => {
-  // //    const quill =
-  //    const ReactQuill = require('react-quill');
+//   console.log(setEditDocDetails.length + "docdeets");
+// console.log(serverTimestamp());
+  //?????? need to detect if setEditDocDetails is full or not.
+  useEffect(() => {
+    if (setEditDocDetails.length >= 1) {
+    //   console.log("ARRAY IS full");
 
-  //   }, [])
+    //   console.log(setEditDocDetails[0].title);
+    setIdeaID(setEditDocDetails[0].id)
+    console.log(ideaID + "THIS IS ID")
+      setTitle(setEditDocDetails[0].title);
+    //   console.log(title + "2");
+
+      setContent(setEditDocDetails[0].content);
+      setRating(setEditDocDetails[0].rating);
+      setPublish(setEditDocDetails[0].published);
+    } else {
+    //   console.log("ARRAY IS EMPTY");
+      return;
+    }
+  }, [setEditDocDetails]);
+  // console.log("🚀 ~ file: Editor.js ~ line 170 ~ CreateNewIdea ~ setEditDocDetails", setEditDocDetails)
 
   // Ensure slug is URL safe
+
   const slug = encodeURI(kebabCase(title));
+//   console.log(setEditDocDetails);
+//   console.log(title);
 
   // Validate length
-  const isValid = title.length > 3 && title.length < 100;
+  const isValid = title?.length > 3 && title?.length < 100;
 
   //Send rating back from stars component
   const sendRating = (starsRating) => {
-    console.log(starsRating);
+    // console.log(starsRating);
     setRating(starsRating);
   };
+  const updateIdea = async (e) => {
+      console.log("UPDATE")
+    toast.success("update");
+    e.preventDefault();
 
+    const uid = auth.currentUser.uid;
+    const ref = doc(getFirestore(), "users", uid, "ideas", ideaID);
+    await updateDoc(ref,{
+        content: content,
+        published: publish,
+        rating: rating,
+        slug,
+        updatedAt: serverTimestamp(),
+      })
+      .then(() => {
+        // toast.success("Idea created!");
+    toast.success("Idea updated successfully!");
+        // setEditMode(false)
+        // console.log("It Worked!");
+      })
+      .catch((error) => {
+        toast.error("Error occured 😩");
+        console.log("It failed!" + error);
+      });
+
+  };
   // Create a new post in firestore
   const createIdea = async (e) => {
+    toast.success("new");
+   
     e.preventDefault();
     const uid = auth.currentUser.uid;
     const ref = doc(getFirestore(), "users", uid, "ideas", slug);
+    // const ref = doc(getFirestore(), "users", uid, "ideas");
+    // id: (serverTimestamp.seconds + serverTimestamp.nanoseconds),
+   
 
     // Tip: give all fields a default value here
     const data = {
       title,
       rating: rating,
-      slug,
+    //   slug,
       uid,
       username,
       published: publish,
@@ -116,10 +260,14 @@ function CreateNewIdea() {
       problem: null,
     };
 
-    await setDoc(ref, data)
+    // await addDoc(ref, data)
+    await addDoc(collection(getFirestore(), 'users', uid, "ideas"), data)
+
       .then(() => {
         toast.success("Idea created!");
         console.log("It Worked!");
+        console.log(ref.id);
+
       })
       .catch((error) => {
         toast.error("Error occured :( " + error);
@@ -134,7 +282,11 @@ function CreateNewIdea() {
   };
 
   return (
+    // <form onSubmit={newIdea ? createIdea : updateIdea} 
+    // className="my-8 w-[62em]">
+
     <form onSubmit={createIdea} className="my-8 w-[62em]">
+    
       <div className="normal-box-soft flex flex-col items-center w-full gap-1">
         <h5 className="text-[22px] text-t-bd">Title</h5>
         <input
@@ -153,9 +305,12 @@ function CreateNewIdea() {
           maxLength={150}
           // className={styles.input}
         />
-        {/* <p>
+        <p>
           <strong>Slug:</strong> {slug}
-        </p> */}
+        </p>
+        <p>
+          <strong>ID:</strong> {ideaID}
+        </p>
         {/* <h5 className="text-[22px] text-t-bd">Notes</h5> */}
 
         <div className="flex justify-between w-[100%] items-end">
@@ -164,7 +319,8 @@ function CreateNewIdea() {
             <div className="flex gap-3 ">
               <Toggle
                 className="dark-toggle fade-effect"
-                defaultChecked={publish}
+                // defaultChecked={publish}
+                checked={publish}
                 icons={{
                   unchecked: (
                     <FaLock

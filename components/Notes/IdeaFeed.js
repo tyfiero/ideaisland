@@ -1,5 +1,6 @@
 import Link from "next/link";
-
+import { useSelector, useDispatch } from "react-redux";
+import { currentDocAction } from "../../redux/actions";
 // import AuthCheck from "../components/Authentication/AuthCheck";
 
 // import { doc, getDoc } from "firebase/firestore";
@@ -22,9 +23,15 @@ export default function IdeaFeed({ ideas, admin }) {
   // //   // doc.data() will be undefined in this case
   // //   console.log("No such document!");
   // // }
+    // console.log(ideas);
+
   return ideas
     ? ideas.map((idea) => (
-        <IdeaItem idea={idea} key={idea.slug} admin={admin} />
+        <IdeaItem
+          idea={idea}
+          key={idea.slug}
+          admin={admin}
+        />
       ))
     : null;
 }
@@ -32,6 +39,9 @@ export default function IdeaFeed({ ideas, admin }) {
 function IdeaItem({ idea, admin = false }) {
   const [hover, setHover] = useState(false);
   const [nav, setNav] = useState(null);
+  const currentDocRedux = useSelector((state) => state.currentDoc);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setNav(navigator);
@@ -50,12 +60,15 @@ function IdeaItem({ idea, admin = false }) {
     return date + " @ " + clockTime;
   };
 
+  // console.log(idea.documentID)
   return (
-    <div className="flex items-center justify-center px-4 pt-2 sm:px-6 lg:px-8 drop-shadow-xl md:w-[80em]  ">
+    <div className="flex items-center justify-center px-4 pt-2 sm:px-6 lg:px-8 drop-shadow-xl md:w-[80em]  "
+    onClick={()=>   dispatch(currentDocAction(idea.slug))
+    }>
       <div
         className="w-[22em]  p-1  shadow !rounded-xl normal-box-soft drop-shadow-xl flex-col  items-center "
-        onMouseOver={() => setHover(true)}
-        onMouseOut={() => setHover(false)}
+        // onMouseOver={() => setHover(true)}
+        // onMouseOut={() => setHover(false)}
       >
         <div className="flex">
           <div className="normal-box !rounded-xl w-[100%] ">
@@ -67,7 +80,7 @@ function IdeaItem({ idea, admin = false }) {
 
             {/* <Link href={`/${idea.username}/${idea.slug}`}>
               <a> */}
-            <div  onClick={() => getSingleIdea(idea.id)}>
+            <div className="cursor-pointer">
               <h2 className="text-t-bd truncate text-[18px]">{idea.title}</h2>
               {/* <p className="truncate text-[14px]">{idea.content}</p> */}
               <div

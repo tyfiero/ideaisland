@@ -11,7 +11,18 @@ export const userDataRedux = (data) => {
   };
 };
 
-
+export const userNameAction = (data) => {
+  return {
+    type: "USERNAME",
+    payload: data,
+  };
+};
+export const currentDocAction = (data) => {
+  return {
+    type: "SLUG",
+    payload: data,
+  };
+};
 export const darkMode = (boolean) => {
   return {
     type: "TOGGLE",

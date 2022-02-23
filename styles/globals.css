@@ -82,6 +82,11 @@ body {
   padding: 0;
 }
 
+::selection {
+  color: black;
+  background: var(--colorLight1);
+}
+
 .svg-blob1 {
   background-color: var(--colorLight1);
   border-top-left-radius: 5rem;

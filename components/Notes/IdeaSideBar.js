@@ -166,6 +166,8 @@ function IdeasList() {
   let uid;
   if (auth.currentUser) {
     uid = auth.currentUser.uid;
+    console.log("it actually worked");
+
   } else {
     uid = "WoKVte3Fpae3Zqp1KAlcJEpO09j1";
     console.log("it fucked up");
@@ -176,8 +178,9 @@ function IdeasList() {
 
   const [querySnapshot] = useCollection(postQuery);
 
+
   const ideas = querySnapshot?.docs.map((doc) => doc.data());
-  // console.log(ideas[10]);
+  console.log(ideas);
 
   return (
     <>
