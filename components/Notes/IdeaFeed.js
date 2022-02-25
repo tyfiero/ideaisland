@@ -5,11 +5,13 @@ import { currentDocAction } from "../../redux/actions";
 
 // import { doc, getDoc } from "firebase/firestore";
 // import { firestore } from "../lib/firebase";
-import { FaEdit, FaRegTrashAlt } from "react-icons/fa";
+import { FaEdit, FaGlobeAmericas, FaLock, FaRegTrashAlt } from "react-icons/fa";
 import OneStar from "./OneStar";
 import Stars from "./Stars";
 import DOMPurify from "dompurify";
 import { useState, useEffect } from "react";
+import { editModeAction } from "../../redux/actions";
+
 
 export default function IdeaFeed({ ideas, admin }) {
   // const docRef = doc(firestore, ", "idea-1");
@@ -29,7 +31,7 @@ export default function IdeaFeed({ ideas, admin }) {
     ? ideas.map((idea) => (
         <IdeaItem
           idea={idea}
-          key={idea.slug}
+          key={idea.identifier}
           admin={admin}
         />
       ))
@@ -59,11 +61,17 @@ function IdeaItem({ idea, admin = false }) {
     });
     return date + " @ " + clockTime;
   };
-
+ 
   // console.log(idea.documentID)
   return (
     <div className="flex items-center justify-center px-4 pt-2 sm:px-6 lg:px-8 drop-shadow-xl md:w-[80em]  "
-    onClick={()=>   dispatch(currentDocAction(idea.slug))
+    onClick={()=>   {
+      // dispatch(currentDocAction(idea.identifier));
+      dispatch(currentDocAction(idea));
+
+      dispatch(editModeAction("display"));
+  
+    }
     }>
       <div
         className="w-[22em]  p-1  shadow !rounded-xl normal-box-soft drop-shadow-xl flex-col  items-center "
@@ -114,15 +122,17 @@ function IdeaItem({ idea, admin = false }) {
           {admin && (
             <>
               {idea.published ? (
-                <div className="flex">
+                <div className="flex items-center">
                   <span className=" flex items-left">
                     {idea.heartCount || 0}
                     <p className="mr-1 ">💗</p>
                   </span>
-                  <p className="text-t-bl">Public</p>
+                  {/* <p >Public</p> */}
+                  <FaGlobeAmericas className="text-t-bl"/>
                 </div>
               ) : (
-                <p className="text-t-pd">Private</p>
+                // <p >Private</p>
+                <FaLock className="text-t-pd"/>
               )}
             </>
           )}

@@ -180,11 +180,14 @@ if (userData.user !== null) {
         <div className="fade-effect-quick content">
           <main>{children}</main>
         </div>
-        <div className="notepad-container">
-          {isPopUpOpen && <NotePopUpModal handleClose={togglePopup} />}
+        <div>
+       
+          {isPopUpOpen ? <> <div className="notepad-container"><NotePopUpModal handleClose={togglePopup} /> <NotePopUp handleClose={togglePopup} /></div></> : <><div></div></>}
 
-          {isPopUpOpen && <NotePopUp handleClose={togglePopup} />}
-          <button className="notepad-button fade-effect" onClick={togglePopup}>
+          
+        </div>
+        <div className="button-holder">
+        <button className="notepad-button fade-effect" onClick={togglePopup}>
             {!isPopUpOpen ? (
               <FaBook style={{ fontSize: "2.2em" }} />
             ) : (
@@ -192,7 +195,7 @@ if (userData.user !== null) {
             )}
             {!isPopUpOpen && notes}
           </button>
-        </div>
+          </div>
       </div>
     </>
   );

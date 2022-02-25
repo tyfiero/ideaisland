@@ -20,6 +20,8 @@ import userDataReducer from "./reducers/userData";
 import soundReducer from "./reducers/soundSetting";
 import userNameReducer from "./reducers/userData copy";
 import currentDocReducer from "./reducers/currentDoc";
+import editModeReducer from "./reducers/editModeReducer";
+import unsavedChangesReducer from "./reducers/unsavedChangesReducer";
 //OTHER REDUCERS GO HERE
 
 const rootReducer = combineReducers({
@@ -43,6 +45,8 @@ const rootReducer = combineReducers({
   soundSetting: soundReducer,
   userName: userNameReducer,
   currentDoc: currentDocReducer,
+  editMode: editModeReducer,
+  unsavedChanges: unsavedChangesReducer,
   //other reducers go here
 });
 // console.log(rootReducer);

@@ -1230,9 +1230,9 @@ body {
       -3px -3px 16px var(--colorLight1);
   }
   .notepad-button {
-    position: fixed;
+    /* position: fixed;
     top: 1%;
-    left: 87%;
+    left: 87%; */
     display: flex;
     flex-direction: column;
     padding-top: 0.5em;
@@ -1307,10 +1307,18 @@ body {
   }
 }
 @media screen and (min-width: 768px) {
+  .button-holder{
+    /* position: -webkit-sticky; */
+ position: fixed;
+    /* position: sticky; */
+
+    top: 91%;
+    left: 94%;
+  }
   .notepad-button {
-    position: sticky;
-    top: 50%;
-    left: 92%;
+    /* position: sticky; */
+    /* top: 110; */
+    /* left: 92%; */
     display: flex;
     flex-direction: column;
     padding-top: 0.5em;
@@ -2529,3 +2537,4 @@ border-top-left-radius: 1em;
 box-shadow: inset 4px 4px 4px #c2c2c2, inset -4px -4px 4px #d6d6d69f;
 
 }
+

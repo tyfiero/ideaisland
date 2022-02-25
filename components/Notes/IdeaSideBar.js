@@ -18,6 +18,9 @@ import { useRouter } from "next/router";
 import { useCollection } from "react-firebase-hooks/firestore";
 import toast from "react-hot-toast";
 import IdeaFeed from "./IdeaFeed";
+import { editModeAction } from "../../redux/actions";
+import { useSelector, useDispatch } from "react-redux";
+
 import {
   FaEdit,
   FaLightbulb,
@@ -29,6 +32,9 @@ import {
 
 export default function IdeaSideBar() {
   const [currentNote, setCurrentNote] = useState("ideas");
+  const editModeRedux = useSelector((state) => state.editMode);
+  const dispatch = useDispatch()
+  // dispatch(editModeAction("new")) 
 
   return (
     <div className="normal-box-soft fade-effect-quick flex flex-col items-center !h-[80vh] overflow-y-auto overflow-x-hidden !rounded-2xl">
@@ -124,6 +130,10 @@ export default function IdeaSideBar() {
       <button
             // type="submit"
             // disabled={!isValid}
+            onClick={() => {
+              dispatch(editModeAction("new"))
+              // dispatch(currentDocAction(idea.identifier))
+            }}
             className=" w-[12em] h-[2em] mt-2 rounded-3xl bg-t-bl flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer "
           >
             <FaPlus className="text-[20px]" />
@@ -174,13 +184,13 @@ function IdeasList() {
   }
   // console.log(auth.currentUser);
   const ref = collection(getFirestore(), "users", uid, "ideas");
-  const postQuery = query(ref, orderBy("createdAt"));
+  const postQuery = query(ref, orderBy("createdAt", "desc"));
 
   const [querySnapshot] = useCollection(postQuery);
 
 
   const ideas = querySnapshot?.docs.map((doc) => doc.data());
-  console.log(ideas);
+  // console.log(ideas);
 
   return (
     <>

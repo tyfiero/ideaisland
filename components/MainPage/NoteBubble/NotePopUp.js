@@ -85,13 +85,13 @@ const NotePopUp = (props) => {
   // let idea =
 
   return (
-    <div className="popup-box fade-effect-quick">
-      <div className="box fade-effect-quick">
+    <div className="popup-box fade-effect-fast">
+      <div className="box fade-effect-fast">
         {/* <span className="close-icon" onClick={props.handleClose}>
           x
         </span> */}
         <p className="text-[22px]">Notes</p>
-        <div className="flex items-center justify-center w-full gap-3 py-2 align-middle fade-effect-quick note-button-div">
+        <div className="flex items-center justify-center w-full gap-3 py-2 align-middle fade-effect-fast note-button-div">
           <button
             // className="flex items-center notes-btn-sm"
             className={

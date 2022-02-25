@@ -17,6 +17,18 @@ export const userNameAction = (data) => {
     payload: data,
   };
 };
+export const editModeAction = (data) => {
+  return {
+    type: "EDIT_MODE",
+    payload: data,
+  };
+};
+export const unsavedChangesAction = (data) => {
+  return {
+    type: "UNSAVED_CHANGES",
+    payload: data,
+  };
+};
 export const currentDocAction = (data) => {
   return {
     type: "SLUG",
