@@ -11,6 +11,7 @@ export default function TopBarDropDown({ user }) {
   // const [menuHeight, setMenuHeight] = useState(null);
   const dropdownRef = useRef(null);
   const darkRedux = useSelector((state) => state.darkMode);
+  const userNameRedux = useSelector((state) => state.userName);
 
 //   console.log(user);
   // useEffect(() => {
@@ -40,7 +41,7 @@ export default function TopBarDropDown({ user }) {
 
   return (
     <div
-      className="dropdown fade-effect-fast md:left-[85%] lg:left-[88%] xl:left-[92%] absolute"
+      className="dropdown fade-effect-fast md:left-[85%] lg:left-[88%] xl:left-[92%] absolute z-100"
       ref={dropdownRef}
     >
       <CSSTransition
@@ -51,7 +52,10 @@ export default function TopBarDropDown({ user }) {
       >
         <div className="menu">
           {/* <Link href={`/${user.username}`}> */}
-          <Link href="/user/priceart" passHref>
+          {/* <Link href="/user/priceart" passHref> */}
+          <Link href={`user/${userNameRedux}/`}  passHref>
+
+    
 
             {/* <a> */}
               <DropdownItem leftIcon={<FaUserAlt className="text-t-bl" />}>
@@ -59,7 +63,8 @@ export default function TopBarDropDown({ user }) {
               </DropdownItem>
             {/* </a> */}
           </Link>
-          <Link href="/user/priceart/settings" passHref>
+          {/* <Link href="/user/priceart/settings" passHref> */}
+          <Link href={`user/${userNameRedux}/settings`}  passHref>
 
           <DropdownItem
             leftIcon={<FaCog className="text-t-bd" />}
@@ -69,8 +74,9 @@ export default function TopBarDropDown({ user }) {
           </DropdownItem>
           </Link>
 
-          <Link href="/user/priceart/notes" passHref>
-
+          {/* <Link href="/user/priceart/notes" passHref> */}
+          <Link href={`user/${userNameRedux}/notes`}  passHref>
+          
           <DropdownItem
             leftIcon={<FaBook className="text-t-pd" />}
             //   goToMenu="settings"

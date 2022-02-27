@@ -7,7 +7,7 @@ import { FaEdit, FaImage, FaPlus, FaSave, FaTrash } from "react-icons/fa";
 import Stars from "./Stars";
 import { firestore, auth } from "../../lib/firebase";
 import Toggle from "react-toggle";
-
+import sanitize from "../../lib/sanitize";
 // import ReactQuill from "react-quill";
 // import ReactQuill from 'react-quill';
 import "react-quill/dist/quill.snow.css";
@@ -33,6 +33,7 @@ import toast from "react-hot-toast";
 import { FaLock, FaGlobeAmericas } from "react-icons/fa";
 import IdeaDisplay from "./IdeaDisplay";
 import { useSelector, useDispatch } from "react-redux";
+import { currentDocAction } from "../../redux/actions";
 
 const QuillNoSSRWrapper = dynamic(import("react-quill"), {
   ssr: false,
@@ -60,52 +61,44 @@ function Editor() {
     // console.log("UE START");
 
     if (currentDocRedux) {
-      const getDetails = async () => {
-        try {
-          let uid;
-          if (auth.currentUser) {
-            uid = auth.currentUser.uid;
-
-            //THIS MUST BE EDITED WHEN THE PERSISTENCE IS FIXED priceart cant stay!!!
-          } else {
-            uid = "WoKVte3Fpae3Zqp1KAlcJEpO09j1";
-          }
-
-          //   console.log(uid);
-
-          let db = getFirestore();
-          const colRef = collection(db, "users", uid, "ideas");
-
-          // console.log("🚀 ~ file: Editor.js ~ line 74 ~ getDetails ~ qRef", colRef)
-
-          const q = query(colRef, where("identifier", "==", currentDocRedux.identifier));
-
-          // const docSnap = await getDoc(q);
-          // if (docSnap.exists()) {
-          //   console.log("Document data:", docSnap.data());
-          //   setEditDocDetails(docSnap.data());
-
-          // } else {
-          //   // doc.data() will be undefined in this case
-          //   console.log("No such document!");
-          // }
-
-          // real time collection data
-          onSnapshot(q, (snapshot) => {
-            let details = [];
-            snapshot.docs.forEach((doc) => {
-              details.push({ ...doc.data(), id: doc.id });
-            });
-            // console.log(details);
-            setEditDocDetails(details);
-          });
-        } catch (error) {
-          console.error(error);
-        }
-      };
-      getDetails();
+      //I dont think I need this anymore not that i have currentDocRedux
+      // const getDetails = async () => {
+      //   try {
+      //     let uid;
+      //     if (auth.currentUser) {
+      //       uid = auth.currentUser.uid;
+      //       //THIS MUST BE EDITED WHEN THE PERSISTENCE IS FIXED priceart cant stay!!!
+      //     } else {
+      //       uid = "WoKVte3Fpae3Zqp1KAlcJEpO09j1";
+      //     }
+      //     //   console.log(uid);
+      //     let db = getFirestore();
+      //     const colRef = collection(db, "users", uid, "ideas");
+      //     // console.log("🚀 ~ file: Editor.js ~ line 74 ~ getDetails ~ qRef", colRef)
+      //     const q = query(colRef, where("identifier", "==", currentDocRedux.identifier));
+      //     // const docSnap = await getDoc(q);
+      //     // if (docSnap.exists()) {
+      //     //   console.log("Document data:", docSnap.data());
+      //     //   setEditDocDetails(docSnap.data());
+      //     // } else {
+      //     //   // doc.data() will be undefined in this case
+      //     //   console.log("No such document!");
+      //     // }
+      //     // real time collection data
+      //     onSnapshot(q, (snapshot) => {
+      //       let details = [];
+      //       snapshot.docs.forEach((doc) => {
+      //         details.push({ ...doc.data(), id: doc.id });
+      //       });
+      //       console.log(details);
+      //       setEditDocDetails(details);
+      //     });
+      //   } catch (error) {
+      //     console.error(error);
+      //   }
+      // };
+      // getDetails();
       //   dispatch(editModeAction("edit"));
-
       //   setEditMode(true);
     } else {
       // setEditDocDetails(details);
@@ -129,10 +122,12 @@ function Editor() {
               {" "}
               {/* <div className="heading">Edit Idea</div> */}
               <CreateNewIdea
-                mode={editModeRedux}
-                setEditDocDetails={
-                  editModeRedux === "new" ? null : editDocDetails
-                }
+              // mode={editModeRedux}
+
+              //I might be missing this piece of logic in my code
+              // setEditDocDetails={
+              //   editModeRedux === "new" ? null : editDocDetails
+              // }
               />
               {/* <div>
                 <button
@@ -153,7 +148,7 @@ function Editor() {
           {editModeRedux === "display" && (
             <>
               {" "}
-              <IdeaDisplay setEditDocDetails={editDocDetails} />
+              <IdeaDisplay />
             </>
           )}
         </div>
@@ -164,13 +159,13 @@ function Editor() {
 
 export default Editor;
 
-function CreateNewIdea({ setEditDocDetails }) {
+function CreateNewIdea() {
   const router = useRouter();
   const { username } = useContext(UserContext);
-  const [newIdea, setNewIdea] = useState(false);
+  //   const [newIdea, setNewIdea] = useState(false);
 
   const dispatch = useDispatch();
-
+  const currentDocRedux = useSelector((state) => state.currentDoc);
   const [title, setTitle] = useState("");
   const [ideaID, setIdeaID] = useState("");
   const [imgUrl, setImgUrl] = useState("");
@@ -213,25 +208,28 @@ function CreateNewIdea({ setEditDocDetails }) {
   }, [editModeRedux]);
 
   useEffect(() => {
-    if (setEditDocDetails) {
-      if (setEditDocDetails.length >= 1) {
-        // console.log("ARRAY IS full");
+    if (currentDocRedux && editModeRedux === "edit") {
+      //   if (setEditDocDetails.length >= 1) {
+      // console.log("ARRAY IS full");
 
-        //   console.log(setEditDocDetails[0].title);
-        setIdeaID(setEditDocDetails[0].identifier);
-        //   console.log(ideaID + "THIS IS ID");
-        setTitle(setEditDocDetails[0].title);
-        //   console.log(title + "2");
+      //   console.log(setEditDocDetails[0].title);
+      setIdeaID(currentDocRedux.identifier);
+      //   console.log(ideaID + "THIS IS ID");
+      setTitle(currentDocRedux.title);
+      //   console.log(title + "2");
 
-        setContent(setEditDocDetails[0].content);
-        setRating(setEditDocDetails[0].rating);
-        setPublish(setEditDocDetails[0].published);
-      } else {
-        //   console.log("ARRAY IS EMPTY");
-        return;
+      setContent(currentDocRedux.content);
+      setRating(currentDocRedux.rating);
+      setPublish(currentDocRedux.published);
+      setImgUrl(currentDocRedux.imgUrl);
+      if (currentDocRedux.imgUrl) {
+        setAddImg(true);
       }
+    } else {
+      return;
     }
-  }, [setEditDocDetails]);
+    // }
+  }, [currentDocRedux]);
   // console.log("🚀 ~ file: Editor.js ~ line 170 ~ CreateNewIdea ~ setEditDocDetails", setEditDocDetails)
 
   // Ensure slug is URL safe
@@ -252,13 +250,12 @@ function CreateNewIdea({ setEditDocDetails }) {
     }
   };
 
-  const imgButton = () =>{
-      if(addImg){
-          setImgUrl("")
-      }
-      setAddImg(!addImg);
-
-  }
+  const imgButton = () => {
+    if (addImg) {
+      setImgUrl("");
+    }
+    setAddImg(!addImg);
+  };
 
   const deleteIdea = async (e) => {
     const uid = auth.currentUser.uid;
@@ -274,6 +271,7 @@ function CreateNewIdea({ setEditDocDetails }) {
         setPublish(false);
         setImgUrl("");
         setPosition(0);
+        setAddImg(false);
         // console.log(ref.id);
       })
       .catch((error) => {
@@ -292,7 +290,7 @@ function CreateNewIdea({ setEditDocDetails }) {
       const ref = doc(getFirestore(), "users", uid, "ideas", ideaID);
       await updateDoc(ref, {
         title: title,
-        content: content,
+        content: sanitize(content),
         published: publish,
         rating: rating,
         //   slug,
@@ -320,7 +318,7 @@ function CreateNewIdea({ setEditDocDetails }) {
   const createIdea = async (e) => {
     // toast.success("new");
 
-    e.preventDefault();
+    e.preventDefault() || null;
     const uid = auth.currentUser.uid;
     const d = Number(new Date());
     const timeID = d.valueOf().toString();
@@ -340,7 +338,7 @@ function CreateNewIdea({ setEditDocDetails }) {
       imgPosition: position,
       username,
       published: publish,
-      content: content,
+      content: sanitize(content),
       createdAt: serverTimestamp(),
       updatedAt: serverTimestamp(),
       heartCount: 0,
@@ -353,8 +351,10 @@ function CreateNewIdea({ setEditDocDetails }) {
       .then(() => {
         toast.success("Idea created! 💡");
         dispatch(unsavedChangesAction(false));
-        console.log("It Worked!");
+        dispatch(editModeAction("display"));
+        // console.log("It Worked!");
         // console.log(ref.id);
+        dispatch(currentDocAction(data));
       })
       .catch((error) => {
         toast.error("Error occured :( " + error);
@@ -368,6 +368,7 @@ function CreateNewIdea({ setEditDocDetails }) {
     setPublish(false);
     setImgUrl("");
     setPosition(0);
+    setAddImg(false);
 
     // Imperative navigation after doc is set
     // router.push(`/admin/${slug}`);
@@ -376,21 +377,21 @@ function CreateNewIdea({ setEditDocDetails }) {
   return (
     // <form onSubmit={newIdea ? createIdea : updateIdea}
     // className="my-8 w-[62em]">
-    <div>
+    <div className="w-full">
       {/* <div className="flex items-center justify-center">
         <h1 className="heading-top">My Ideas & Notes</h1>
       </div>  */}
-      <div className="normal-box-soft flex flex-col items-center w-full">
+      <div className="flex flex-col items-center w-[98%] md:mx-3 sm:mx-1 normal-box-soft">
         <form
           onSubmit={editModeRedux === "new" ? createIdea : updateIdea}
-          className="my-8 w-[62em]"
+          className=" w-[99%] mb-2"
         >
-          <div className=" flex flex-col items-center w-full gap-1">
+          <div className="flex flex-col items-center w-full gap-1 ">
             <h5 className="text-[22px] text-t-bd">
               {editModeRedux === "edit" ? "Edit Idea" : "New Idea"}
             </h5>
             <input
-              className="w-[90%] textarea-box"
+              className="w-[96%] textarea-box"
               value={title}
               onChange={(e) => {
                 if (!unsavedChangesRedux) {
@@ -418,11 +419,11 @@ function CreateNewIdea({ setEditDocDetails }) {
             {/* <h5 className="text-[22px] text-t-bd">Notes</h5> */}
 
             <div className="flex justify-between w-[90%] items-end ">
-              <div className="flex gap-1 items-center ">
+              <div className="flex items-center gap-1 ">
                 <p className="text-[22px] text-t-bd">Rating</p>
                 <Stars hover={true} rating={rating} sendRating={sendRating} />
               </div>
-              <div className="flex justify-center  items-center ml-16 gap-1">
+              <div className="flex items-center justify-center gap-1 ml-16">
                 <p className="text-[22px]  text-t-bd">Publish?</p>
                 <div className="flex gap-3 ">
                   <Toggle
@@ -467,12 +468,19 @@ function CreateNewIdea({ setEditDocDetails }) {
             </div>
 
             <div
-              className="normal-box !rounded-lg  mt-1 !rounded-b-3xl
+              className="normal-box !rounded-lg  mt-1 !rounded-b-3xl w-[97%]
 
 "
             >
               {/* <ReactQuill theme="snow"></ReactQuill> */}
               <QuillNoSSRWrapper
+                // onKeyPress={(event) => {
+                //   if (event.key === "ENTER" && event.metakey) {
+                //     alert("The sky is your starting point!");
+                //   } else if (event.key === "n") {
+                //     alert("The sky is your limit👀");
+                //   }
+                // }}
                 onChange={(e) => {
                   setContent(e);
                   console.log(e);
@@ -485,7 +493,7 @@ function CreateNewIdea({ setEditDocDetails }) {
                 formats={Editor.formats}
                 theme="snow"
                 // readOnly= "true"
-                className="w-[55em] "
+                className="w-[100%] "
                 placeholder={"Describe your idea..."}
               />
             </div>
@@ -499,33 +507,44 @@ function CreateNewIdea({ setEditDocDetails }) {
                 <FaTrash className="text-[20px]" />
                 Delete
               </div>
-                 
-              <div  className="flex gap-2 items-center justify-center">
-              <div className=" px-2 py-2 rounded-3xl bg-t-pl flex items-center justify-center text-t-pd gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer " onClick={imgButton}>
-                {addImg ? <>X</> : <><FaImage /> Add Image</>}
-              </div>
-              {addImg && (
-                <div className="flex gap-2 items-center justify-center">
-                  <input
-                    type="text"
-                    className=" text-[12px] textarea-box"
-                    placeholder={"Paste image url here"}
-                    onChange={(e) => {
-                      setImgUrl(e.target.value);
-                      // let charLength = e.target.value.length;
-                      // console.log(charLength);
-                      // if (charLength >= 150) {
-                    }}
-                  />
-                 {imgUrl.length > 5 && <div className="w-[5em] h-[5em] normal-box flex items-center !rounded-md">
-                    <img
-                      className={"object-contain"}
-                      src={imgUrl}
-                      alt="not valid image"
-                    />
-                  </div>}
+
+              <div className="flex items-center justify-center gap-2">
+                <div
+                  className="flex items-center justify-center gap-1 px-2 py-2 cursor-pointer min-w-[2.5em] rounded-3xl bg-t-pl text-t-pd drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95"
+                  onClick={imgButton}
+                >
+                  {addImg ? (
+                    <>X</>
+                  ) : (
+                    <>
+                      <FaImage /> Add Image
+                    </>
+                  )}
                 </div>
-              )}
+                {addImg && (
+                  <div className="flex items-center justify-center gap-2">
+                    <input
+                      type="text"
+                      className=" text-[12px] textarea-box"
+                      placeholder={"Paste image url here"}
+                      onChange={(e) => {
+                        setImgUrl(e.target.value);
+                        // let charLength = e.target.value.length;
+                        // console.log(charLength);
+                        // if (charLength >= 150) {
+                      }}
+                    />
+                    {imgUrl.length > 5 && (
+                      <div className="w-[5em] h-[5em] normal-box flex items-center !rounded-md">
+                        <img
+                          className={"object-contain "}
+                          src={imgUrl}
+                          alt="not valid image"
+                        />
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
               <button
                 type="submit"

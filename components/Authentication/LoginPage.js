@@ -10,7 +10,8 @@ import Link from "next/link";
 import { FaEnvelope, FaChevronLeft } from "react-icons/fa";
 import { UserContext } from "../../lib/context";
 // import { auth, googleAuthProvider } from "../../lib/firebase";
-
+// import { useContext } from 'react';
+// import { UserContext } from '../../lib/context';
 import { auth, googleAuthProvider } from "../../lib/firebase";
 // import Enter from "./UsernameForm";
 import { signInWithPopup } from "firebase/auth";
@@ -21,6 +22,7 @@ import { logIn, userDataRedux } from "../../redux/actions";
 export default function LoginPage() {
   const loggedIn = useSelector((state) => state.loggedIn);
   const userRedux = useSelector((state) => state.userData);
+
   const dispatch = useDispatch();
 
   const { user, username } = useContext(UserContext);
@@ -57,6 +59,8 @@ export default function LoginPage() {
           // console.log(result.user);
           dispatch(userDataRedux(result.user));
           localStorage.setItem("userLocal", JSON.stringify(result.user));
+          // dispatch(userNameRedux(username));
+          
           if (!loggedIn) {
             dispatch(logIn(true));
             console.log("logged in")

@@ -28,20 +28,18 @@ const NotePage = () => {
 // }, [])
 
   return (
-    <div className="flex flex-col fade-effect-quick mt-3">
+    <div className="flex flex-col mt-3 fade-effect-quick">
       {/* <div className="flex flex-col items-center "> */}
       {/* <p>A place for all of your wild ideas and notes.</p> */}
       {/* </div> */}
       <div className="note-grid">
-        <div className="note-grid-1 normal-box-soft h-full !rounded-2xl">
+        <div className="note-grid-1 normal-box-soft h-full !rounded-2xl  min-w-[240px]">
           <IdeaSideBar />
         </div>
 
-        <div className="note-grid-2">
+        <div className="mt-1 note-grid-2">
           <Editor />
-          <div className="feed-holder">
-            <IdeaFeed />
-          </div>
+   
         </div>
       </div>
     </div>

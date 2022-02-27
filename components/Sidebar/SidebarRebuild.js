@@ -19,6 +19,8 @@ const Sidebar2 = (props) => {
   const [usernameSlug, setUsernameSlug] = useState("")
   const userData = useUserData();
   const userRedux = useSelector((state) => state.userData);
+  const userNameRedux = useSelector((state) => state.userName);
+  const loggedIn = useSelector((state) => state.loggedIn);
 
 
   useEffect(() => {
@@ -68,7 +70,7 @@ const Sidebar2 = (props) => {
         </a>
       </Link>
       {/* <Link href={"user/" + (usernameSlug || "priceart") + "/notes"}> */}
-      <Link href={"user/priceart/notes"}>
+      <Link href={loggedIn ?  `user/${userNameRedux}/notes` :  "/login"}>
         <a>
           <div
             className=" sidebarunittcontainer flex rounded-[4rem] h-12 md:flex-row sm:flex-col  hover:bg-clear-w1 sm:items-center md:rounded-l-none"

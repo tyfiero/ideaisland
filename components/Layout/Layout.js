@@ -16,7 +16,7 @@ import { auth } from "../../lib/firebase";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import firebase from "firebase/compat/app";
 import {  onAuthStateChanged } from "firebase/auth";
-
+import { userNameAction } from "../../redux/actions";
 // import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import CircleTimer from "./Timer";
 import { Toaster } from "react-hot-toast";
@@ -34,6 +34,7 @@ export default function Layout({ children }) {
 
   const loggedIn = useSelector((state) => state.loggedIn);
   const userRedux = useSelector((state) => state.userData);
+  const userNameRedux = useSelector((state) => state.userName);
 
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);
 
@@ -44,7 +45,7 @@ export default function Layout({ children }) {
   let user;
   
   
-
+// console.log(userData)
 
 
 useEffect(() => {
@@ -101,6 +102,8 @@ if (userData.user !== null) {
 
   // localStorage.setItem("userLocal", JSON.stringify(user));
   dispatch(userDataRedux(user));
+  dispatch(userNameAction(userData.username));
+
 
   if (!loggedIn) {
     // dispatch(logIn(true));
@@ -115,6 +118,7 @@ if (userData.user !== null) {
 
 
     dispatch(userDataRedux(user));
+    
 
   } else {
     console.log("NOT logged in");

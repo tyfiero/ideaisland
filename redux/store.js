@@ -18,7 +18,7 @@ import loggedInReducer from "./reducers/isLoggedIn";
 import darkModeReducer from "./reducers/darkModeReducer";
 import userDataReducer from "./reducers/userData";
 import soundReducer from "./reducers/soundSetting";
-import userNameReducer from "./reducers/userData copy";
+import userNameReducer from "./reducers/userNameReducer";
 import currentDocReducer from "./reducers/currentDoc";
 import editModeReducer from "./reducers/editModeReducer";
 import unsavedChangesReducer from "./reducers/unsavedChangesReducer";

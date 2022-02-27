@@ -13,7 +13,7 @@ export const userDataRedux = (data) => {
 
 export const userNameAction = (data) => {
   return {
-    type: "USERNAME",
+    type: "USERNAME_REDUX",
     payload: data,
   };
 };

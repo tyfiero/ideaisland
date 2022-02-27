@@ -44,6 +44,7 @@
     "next": "^12.0.7",
     "next-fonts": "^1.5.1",
     "openai-api": "^1.2.6",
+    "probe-image-size": "^7.2.3",
     "rc-cascader": "^3.2.1",
     "react": "^17.0.2",
     "react-chartjs-2": "^4.0.1",

@@ -1,6 +1,6 @@
 const userNameReducer = (state = null, action) => {
     switch (action.type) {
-      case "USERNAME":
+      case "USERNAME_REDUX":
         return action.payload;
   
       default:

@@ -8,10 +8,10 @@ import { currentDocAction } from "../../redux/actions";
 import { FaEdit, FaGlobeAmericas, FaLock, FaRegTrashAlt } from "react-icons/fa";
 import OneStar from "./OneStar";
 import Stars from "./Stars";
-import DOMPurify from "dompurify";
+// import DOMPurify from "dompurify";
+import sanitize from "../../lib/sanitize";
 import { useState, useEffect } from "react";
 import { editModeAction } from "../../redux/actions";
-
 
 export default function IdeaFeed({ ideas, admin }) {
   // const docRef = doc(firestore, ", "idea-1");
@@ -25,15 +25,11 @@ export default function IdeaFeed({ ideas, admin }) {
   // //   // doc.data() will be undefined in this case
   // //   console.log("No such document!");
   // // }
-    // console.log(ideas);
+  // console.log(ideas);
 
   return ideas
     ? ideas.map((idea) => (
-        <IdeaItem
-          idea={idea}
-          key={idea.identifier}
-          admin={admin}
-        />
+        <IdeaItem idea={idea} key={idea.identifier} admin={admin} />
       ))
     : null;
 }
@@ -55,24 +51,28 @@ function IdeaItem({ idea, admin = false }) {
       time?.seconds * 1000 + time?.nanoseconds / 1000000
     );
     let date = formattedTime.toLocaleDateString();
-    let clockTime = formattedTime.toLocaleString(navigator.language, {
+    // let clockTime = formattedTime.toLocaleString(navigator.language, {
+    //   hour: "2-digit",
+    //   minute: "2-digit",
+    // });
+    let clockTime = formattedTime.toLocaleString("en-us", {
       hour: "2-digit",
       minute: "2-digit",
     });
-    return date + " @ " + clockTime;
+    return date + ", " +clockTime;
   };
- 
+
   // console.log(idea.documentID)
   return (
-    <div className="flex items-center justify-center px-4 pt-2 sm:px-6 lg:px-8 drop-shadow-xl md:w-[80em]  "
-    onClick={()=>   {
-      // dispatch(currentDocAction(idea.identifier));
-      dispatch(currentDocAction(idea));
+    <div
+      className="flex items-center justify-center px-4 pt-2 sm:px-6 lg:px-8 drop-shadow-xl md:w-[80em]  "
+      onClick={() => {
+        // dispatch(currentDocAction(idea.identifier));
+        dispatch(currentDocAction(idea));
 
-      dispatch(editModeAction("display"));
-  
-    }
-    }>
+        dispatch(editModeAction("display"));
+      }}
+    >
       <div
         className="w-[22em]  p-1  shadow !rounded-xl normal-box-soft drop-shadow-xl flex-col  items-center "
         // onMouseOver={() => setHover(true)}
@@ -92,8 +92,9 @@ function IdeaItem({ idea, admin = false }) {
               <h2 className="text-t-bd truncate text-[18px]">{idea.title}</h2>
               {/* <p className="truncate text-[14px]">{idea.content}</p> */}
               <div
+                className="overflow-hidden max-h-[3em]"
                 dangerouslySetInnerHTML={{
-                  __html: DOMPurify.sanitize(idea.content, {
+                  __html: sanitize(idea.content, {
                     USE_PROFILES: { html: true },
                   }),
                 }}
@@ -110,8 +111,8 @@ function IdeaItem({ idea, admin = false }) {
         <div className="flex items-center justify-between ">
           {/* If admin view, show extra controls for user */}
 
-          <div className="flex  ">
-            <span className="ml-auto flex ">
+          <div className="flex ">
+            <span className="flex ml-auto ">
               {idea.rating || 0}
               <OneStar className="ml-5" />
             </span>
@@ -123,16 +124,16 @@ function IdeaItem({ idea, admin = false }) {
             <>
               {idea.published ? (
                 <div className="flex items-center">
-                  <span className=" flex items-left">
+                  <span className="flex items-left">
                     {idea.heartCount || 0}
                     <p className="mr-1 ">💗</p>
                   </span>
                   {/* <p >Public</p> */}
-                  <FaGlobeAmericas className="text-t-bl"/>
+                  <FaGlobeAmericas className="text-t-bl" />
                 </div>
               ) : (
                 // <p >Private</p>
-                <FaLock className="text-t-pd"/>
+                <FaLock className="text-t-pd" />
               )}
             </>
           )}
