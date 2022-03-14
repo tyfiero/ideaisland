@@ -23,6 +23,8 @@ import {
   FaImage,
   FaLock,
   FaSave,
+  FaSearch,
+  FaUndo,
 } from "react-icons/fa";
 import { useEffect, useState, useLayoutEffect, useRef } from "react";
 // import DOMPurify from "isomorphic-dompurify";
@@ -31,22 +33,273 @@ import { useDispatch, useSelector } from "react-redux";
 import { editModeAction } from "../../redux/actions";
 import sanitize from "../../lib/sanitize";
 // const probe = require('probe-image-size');
+import ImageList from "./ImageList";
+import axios from "axios";
+
+
+import { useForm } from "react-hook-form";
+
 
 export default function IdeaDisplay() {
-  let defaultPic= "https://rb.gy/xlq8wz"
   const currentDocRedux = useSelector((state) => state.currentDoc);
   const [cleanContent, setCleanContent] = useState("");
-  const [imgSrc, setImgSrc] = useState(defaultPic);
+  const [loading, setLoading] = useState(false);
+
   const [showImgPopUp, setShowImgPopUp] = useState(false);
-  const [hover, setHover] = useState(false);
+  const [pexels, setPexels] = useState(false);
+  const [pageCounter, setPageCounter] = useState(1);
+
+  const [pics, setPics] = useState([
+    {
+        "id": 188029,
+        "width": 5312,
+        "height": 2650,
+        "url": "https://www.pexels.com/photo/island-covered-with-green-trees-under-the-clear-skies-188029/",
+        "photographer": "Ingo Joseph",
+        "photographer_url": "https://www.pexels.com/@ingo",
+        "photographer_id": 3,
+        "avg_color": "#6D9DC3",
+        "src": {
+            "original": "https://images.pexels.com/photos/188029/pexels-photo-188029.jpeg",
+            "large2x": "https://images.pexels.com/photos/188029/pexels-photo-188029.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+            "large": "https://images.pexels.com/photos/188029/pexels-photo-188029.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+            "medium": "https://images.pexels.com/photos/188029/pexels-photo-188029.jpeg?auto=compress&cs=tinysrgb&h=350",
+            "small": "https://images.pexels.com/photos/188029/pexels-photo-188029.jpeg?auto=compress&cs=tinysrgb&h=130",
+            "portrait": "https://images.pexels.com/photos/188029/pexels-photo-188029.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800",
+            "landscape": "https://images.pexels.com/photos/188029/pexels-photo-188029.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+            "tiny": "https://images.pexels.com/photos/188029/pexels-photo-188029.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=200&w=280"
+        },
+        "liked": false,
+        "alt": "Island Covered With Green Trees Under the Clear Skies"
+    },
+    {
+        "id": 994605,
+        "width": 2726,
+        "height": 2047,
+        "url": "https://www.pexels.com/photo/seaside-994605/",
+        "photographer": "Fabian Wiktor",
+        "photographer_url": "https://www.pexels.com/@fabianwiktor",
+        "photographer_id": 369193,
+        "avg_color": "#88979C",
+        "src": {
+            "original": "https://images.pexels.com/photos/994605/pexels-photo-994605.jpeg",
+            "large2x": "https://images.pexels.com/photos/994605/pexels-photo-994605.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+            "large": "https://images.pexels.com/photos/994605/pexels-photo-994605.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+            "medium": "https://images.pexels.com/photos/994605/pexels-photo-994605.jpeg?auto=compress&cs=tinysrgb&h=350",
+            "small": "https://images.pexels.com/photos/994605/pexels-photo-994605.jpeg?auto=compress&cs=tinysrgb&h=130",
+            "portrait": "https://images.pexels.com/photos/994605/pexels-photo-994605.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800",
+            "landscape": "https://images.pexels.com/photos/994605/pexels-photo-994605.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+            "tiny": "https://images.pexels.com/photos/994605/pexels-photo-994605.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=200&w=280"
+        },
+        "liked": false,
+        "alt": "Seaside"
+    },
+    {
+        "id": 1536428,
+        "width": 4032,
+        "height": 3024,
+        "url": "https://www.pexels.com/photo/coconut-trees-planted-on-island-1536428/",
+        "photographer": "Kelli Golis",
+        "photographer_url": "https://www.pexels.com/@kelli-golis-701973",
+        "photographer_id": 701973,
+        "avg_color": "#6D8E9A",
+        "src": {
+            "original": "https://images.pexels.com/photos/1536428/pexels-photo-1536428.jpeg",
+            "large2x": "https://images.pexels.com/photos/1536428/pexels-photo-1536428.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+            "large": "https://images.pexels.com/photos/1536428/pexels-photo-1536428.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+            "medium": "https://images.pexels.com/photos/1536428/pexels-photo-1536428.jpeg?auto=compress&cs=tinysrgb&h=350",
+            "small": "https://images.pexels.com/photos/1536428/pexels-photo-1536428.jpeg?auto=compress&cs=tinysrgb&h=130",
+            "portrait": "https://images.pexels.com/photos/1536428/pexels-photo-1536428.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800",
+            "landscape": "https://images.pexels.com/photos/1536428/pexels-photo-1536428.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+            "tiny": "https://images.pexels.com/photos/1536428/pexels-photo-1536428.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=200&w=280"
+        },
+        "liked": false,
+        "alt": "Coconut Trees Planted on Island"
+    },
+    {
+        "id": 1316897,
+        "width": 2394,
+        "height": 2992,
+        "url": "https://www.pexels.com/photo/bird-s-eye-view-photography-of-island-1316897/",
+        "photographer": "Oliver Sjöström",
+        "photographer_url": "https://www.pexels.com/@ollivves",
+        "photographer_id": 333270,
+        "avg_color": "#0C3943",
+        "src": {
+            "original": "https://images.pexels.com/photos/1316897/pexels-photo-1316897.jpeg",
+            "large2x": "https://images.pexels.com/photos/1316897/pexels-photo-1316897.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+            "large": "https://images.pexels.com/photos/1316897/pexels-photo-1316897.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+            "medium": "https://images.pexels.com/photos/1316897/pexels-photo-1316897.jpeg?auto=compress&cs=tinysrgb&h=350",
+            "small": "https://images.pexels.com/photos/1316897/pexels-photo-1316897.jpeg?auto=compress&cs=tinysrgb&h=130",
+            "portrait": "https://images.pexels.com/photos/1316897/pexels-photo-1316897.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800",
+            "landscape": "https://images.pexels.com/photos/1316897/pexels-photo-1316897.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+            "tiny": "https://images.pexels.com/photos/1316897/pexels-photo-1316897.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=200&w=280"
+        },
+        "liked": false,
+        "alt": "Bird's Eye View Photography Of Island"
+    },
+    {
+        "id": 240526,
+        "width": 2050,
+        "height": 3087,
+        "url": "https://www.pexels.com/photo/coconut-tree-near-body-of-water-under-blue-sky-240526/",
+        "photographer": "Asad Photo Maldives",
+        "photographer_url": "https://www.pexels.com/@asadphotography",
+        "photographer_id": 45786,
+        "avg_color": "#7590A9",
+        "src": {
+            "original": "https://images.pexels.com/photos/240526/pexels-photo-240526.jpeg",
+            "large2x": "https://images.pexels.com/photos/240526/pexels-photo-240526.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+            "large": "https://images.pexels.com/photos/240526/pexels-photo-240526.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+            "medium": "https://images.pexels.com/photos/240526/pexels-photo-240526.jpeg?auto=compress&cs=tinysrgb&h=350",
+            "small": "https://images.pexels.com/photos/240526/pexels-photo-240526.jpeg?auto=compress&cs=tinysrgb&h=130",
+            "portrait": "https://images.pexels.com/photos/240526/pexels-photo-240526.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800",
+            "landscape": "https://images.pexels.com/photos/240526/pexels-photo-240526.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+            "tiny": "https://images.pexels.com/photos/240526/pexels-photo-240526.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=200&w=280"
+        },
+        "liked": false,
+        "alt": "Coconut Tree Near Body of Water Under Blue Sky"
+    },
+    {
+        "id": 1139040,
+        "width": 3954,
+        "height": 2962,
+        "url": "https://www.pexels.com/photo/aerial-view-photography-of-island-1139040/",
+        "photographer": "Flo Dahm",
+        "photographer_url": "https://www.pexels.com/@flodahm",
+        "photographer_id": 154317,
+        "avg_color": "#51838B",
+        "src": {
+            "original": "https://images.pexels.com/photos/1139040/pexels-photo-1139040.jpeg",
+            "large2x": "https://images.pexels.com/photos/1139040/pexels-photo-1139040.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+            "large": "https://images.pexels.com/photos/1139040/pexels-photo-1139040.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+            "medium": "https://images.pexels.com/photos/1139040/pexels-photo-1139040.jpeg?auto=compress&cs=tinysrgb&h=350",
+            "small": "https://images.pexels.com/photos/1139040/pexels-photo-1139040.jpeg?auto=compress&cs=tinysrgb&h=130",
+            "portrait": "https://images.pexels.com/photos/1139040/pexels-photo-1139040.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800",
+            "landscape": "https://images.pexels.com/photos/1139040/pexels-photo-1139040.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+            "tiny": "https://images.pexels.com/photos/1139040/pexels-photo-1139040.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=200&w=280"
+        },
+        "liked": false,
+        "alt": "Aerial View Photography of Island"
+    },
+    {
+        "id": 457878,
+        "width": 3828,
+        "height": 2552,
+        "url": "https://www.pexels.com/photo/green-trees-near-seashore-under-blue-sky-457878/",
+        "photographer": "Asad Photo Maldives",
+        "photographer_url": "https://www.pexels.com/@asadphotography",
+        "photographer_id": 45786,
+        "avg_color": "#9FAF9F",
+        "src": {
+            "original": "https://images.pexels.com/photos/457878/pexels-photo-457878.jpeg",
+            "large2x": "https://images.pexels.com/photos/457878/pexels-photo-457878.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+            "large": "https://images.pexels.com/photos/457878/pexels-photo-457878.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+            "medium": "https://images.pexels.com/photos/457878/pexels-photo-457878.jpeg?auto=compress&cs=tinysrgb&h=350",
+            "small": "https://images.pexels.com/photos/457878/pexels-photo-457878.jpeg?auto=compress&cs=tinysrgb&h=130",
+            "portrait": "https://images.pexels.com/photos/457878/pexels-photo-457878.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800",
+            "landscape": "https://images.pexels.com/photos/457878/pexels-photo-457878.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+            "tiny": "https://images.pexels.com/photos/457878/pexels-photo-457878.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=200&w=280"
+        },
+        "liked": false,
+        "alt": "Green Trees Near Seashore Under Blue Sky"
+    },
+    {
+        "id": 2196602,
+        "width": 3120,
+        "height": 3896,
+        "url": "https://www.pexels.com/photo/flock-of-birds-flying-over-islet-2196602/",
+        "photographer": "Thiago  Matos",
+        "photographer_url": "https://www.pexels.com/@thiagomobile",
+        "photographer_id": 903600,
+        "avg_color": "#849CA7",
+        "src": {
+            "original": "https://images.pexels.com/photos/2196602/pexels-photo-2196602.jpeg",
+            "large2x": "https://images.pexels.com/photos/2196602/pexels-photo-2196602.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+            "large": "https://images.pexels.com/photos/2196602/pexels-photo-2196602.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+            "medium": "https://images.pexels.com/photos/2196602/pexels-photo-2196602.jpeg?auto=compress&cs=tinysrgb&h=350",
+            "small": "https://images.pexels.com/photos/2196602/pexels-photo-2196602.jpeg?auto=compress&cs=tinysrgb&h=130",
+            "portrait": "https://images.pexels.com/photos/2196602/pexels-photo-2196602.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800",
+            "landscape": "https://images.pexels.com/photos/2196602/pexels-photo-2196602.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+            "tiny": "https://images.pexels.com/photos/2196602/pexels-photo-2196602.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=200&w=280"
+        },
+        "liked": false,
+        "alt": "Flock of Birds Flying over Islet"
+    },
+    {
+        "id": 2307638,
+        "width": 3840,
+        "height": 2160,
+        "url": "https://www.pexels.com/photo/aerial-view-of-green-island-2307638/",
+        "photographer": "Arist Creathrive",
+        "photographer_url": "https://www.pexels.com/@arist-creathrive-1183525",
+        "photographer_id": 1183525,
+        "avg_color": "#295B5E",
+        "src": {
+            "original": "https://images.pexels.com/photos/2307638/pexels-photo-2307638.jpeg",
+            "large2x": "https://images.pexels.com/photos/2307638/pexels-photo-2307638.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+            "large": "https://images.pexels.com/photos/2307638/pexels-photo-2307638.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+            "medium": "https://images.pexels.com/photos/2307638/pexels-photo-2307638.jpeg?auto=compress&cs=tinysrgb&h=350",
+            "small": "https://images.pexels.com/photos/2307638/pexels-photo-2307638.jpeg?auto=compress&cs=tinysrgb&h=130",
+            "portrait": "https://images.pexels.com/photos/2307638/pexels-photo-2307638.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800",
+            "landscape": "https://images.pexels.com/photos/2307638/pexels-photo-2307638.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+            "tiny": "https://images.pexels.com/photos/2307638/pexels-photo-2307638.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=200&w=280"
+        },
+        "liked": false,
+        "alt": "Aerial View of Green Island"
+    }
+]);
+  const [searchTerm, setSearchTerm] = useState("island")
+  const { register, handleSubmit } = useForm({});
+
+
+  // const [hover, setHover] = useState(false);
   const [position, setPosition] = useState("0");
   const [isPic, setIsPic] = useState(false);
   const [imgHeight, setImgHeight] = useState(600);
   const [imgHeightUnit, setImgHeightUnit] = useState(0);
-
   const dispatch = useDispatch();
+
+  let picList = [
+    "https://rb.gy/df8y2i",
+    "https://rb.gy/osiw9l",
+    "https://rb.gy/s8a3mn",
+    "https://rb.gy/1jfgm0",
+    "https://rb.gy/hpeopl",
+    "https://rb.gy/dur8fg",
+    "https://rb.gy/ujaeir",
+    "https://rb.gy/z8yvnq",
+    "https://rb.gy/a46vwt",
+    "https://rb.gy/2nshjg",
+    "https://rb.gy/gujhr7",
+    "https://rb.gy/nsaww3",
+    "https://rb.gy/fnxgkq",
+    "https://rb.gy/nwvqlx",
+    "https://rb.gy/pkjcm5",
+    "https://rb.gy/2o5v0d",
+    "https://rb.gy/5cnzzy",
+    "https://rb.gy/ine8y2",
+    "https://rb.gy/czxlg0",
+  ];
+
+  let randomNumber = Math.floor(Math.random() * picList.length);
+
+  // let randomPic =
+
+ 
+
+  let defaultPic = picList[randomNumber];
+  const [imgSrc, setImgSrc] = useState(defaultPic);
+
+ // Send url back from imagecard component
+ const sendURL = (url) => {
+  // console.log(url);
+  setImgSrc(url)
+  reSizeImgBounds()
+};
   // console.log(currentDocRedux);
   const imgRef = useRef(null);
+  // console.log(imgSrc)
 
   useEffect(() => {
     setShowImgPopUp(false);
@@ -72,19 +325,17 @@ export default function IdeaDisplay() {
     // setImgSrc(currentDocRedux);
 
     // imgRef.style.objectPosition = "0 10%";
-    console.log(imgSrc)
+    // console.log(imgSrc);
 
     if (currentDocRedux) {
       //   console.log(setEditDocDetails[0].imgPosition);
-      if(imgSrc){
-      setImgSrc(currentDocRedux.imgUrl);
-    console.log(imgSrc)
-        
-      }else{
-        setImgSrc(defaultPic)
+      if (imgSrc) {
+        setImgSrc(currentDocRedux.imgUrl);
+        // console.log(imgSrc);
+      } else {
+        setImgSrc(defaultPic);
 
-    console.log(imgSrc)
-
+        // console.log(imgSrc);
       }
       if (currentDocRedux.imgUrl) {
         setIsPic(true);
@@ -95,45 +346,6 @@ export default function IdeaDisplay() {
     }
   }, [currentDocRedux]);
 
-  // useEffect(() => {
-
-  //   if(!showImgPopUp){
-  //       console.log("as;dldfjla;sdkfj")
-  //     // setPosition(currentDocRedux.imgPosition)
-
-  //       // if (setEditDocDetails[0].imgPosition === 2) {
-  //       //     setPosition("object-[0px,210px]");
-  //       //   } else if (setEditDocDetails[0].imgPosition === 1) {
-  //       //     setPosition("object-[0px,110px]");
-  //       //   } else if (setEditDocDetails[0].imgPosition === -1) {
-  //       //     setPosition("object-[0px,-110px]");
-  //       //   } else if (setEditDocDetails[0].imgPosition === -2) {
-  //       //     setPosition("object-[0px,-210px]");
-  //       //   } else {
-  //       //     setPosition("object-[0px,0px]");
-  //       //   }
-  //   }
-
-  // }, [showImgPopUp])
-
-  // const onImgLoad = ({ target: img }) => {
-  //   console.log(img);
-  //   console.log("loaded "+ currentDocRedux.imgUrl);
-
-  //   // setTimeout(function(){
-  //   const { offsetHeight, offsetWidth } = img;
-  //   setImgHeight([offsetHeight, offsetWidth]);
-  //   console.log(imgHeight[0] + "imgheight");
-  //   // let heightDivFour = ;
-  //   if (imgHeight[0] >= imgHeight[1]) {
-  //     setImgHeightUnit(imgHeight[0]);
-  //   } else {
-  //     setImgHeightUnit(imgHeight[0] / 2);
-  //   }
-  // // }, 1000);
-  //   // console.log(offsetHeight, offsetWidth);
-
-  // };
   const reSizeImgBounds = () => {
     // console.log(e);
     if (typeof window !== "undefined") {
@@ -142,22 +354,22 @@ export default function IdeaDisplay() {
       // setImgHeight([offsetHeight, offsetWidth]);
       // console.log(imgHeight[0] + "imgheight");
       // let heightDivFour = ;
-      console.log(imgRef.current.clientHeight + "init");
+      // console.log(imgRef.current.clientHeight + "init");
       // setImgHeight(imgRef.current.clientHeight);
 
       var localImgHeight = imgRef.current.clientHeight;
       var localImgWidth = imgRef.current.clientWidth;
 
-      console.log(imgRef.current.clientHeight + "after");
+      // console.log(imgRef.current.clientHeight + "after");
 
-      console.log(localImgHeight + "hieght");
+      // console.log(localImgHeight + "hieght");
 
       if (localImgHeight >= localImgWidth) {
         setImgHeightUnit(localImgHeight / 2.2);
-        console.log(localImgHeight + "unit");
+        // console.log(localImgHeight + "unit");
       } else {
         setImgHeightUnit(localImgHeight / 2.5);
-        console.log(localImgHeight + "unit");
+        // console.log(localImgHeight + "unit");
       }
     }
   };
@@ -182,6 +394,8 @@ export default function IdeaDisplay() {
     })
       .then(() => {
         setShowImgPopUp(!showImgPopUp);
+        setPexels(false);
+        setSearchTerm("idea")
         toast.success("Image/Positon Saved!");
       })
       .catch((error) => {
@@ -189,6 +403,108 @@ export default function IdeaDisplay() {
         console.log("Update failed!" + error);
       });
   };
+
+  const onSubmitForm = async (values) => {
+    setLoading(true)
+    console.time("load")
+    // e.preventDefault();
+      console.log(pageCounter)
+      // console.log(values.input);
+    // console.log(searchTerm);
+    let formData, pageNum;
+    // let pageData= pageCounter;
+    if(values === 2){
+  
+      formData = searchTerm;
+      setPageCounter(pageCounter + 1);
+      pageNum = pageCounter +1;
+
+      // pageData = 2
+    }else{
+     formData = values.input;
+     
+      // setPageCounter(1);
+      pageNum = 1;
+    }
+    // setLoading(true)
+    console.log(pageCounter)
+
+    axios({
+      method: "POST",
+      url: "/api/pexels",
+      data: {
+        input: formData,
+        page: pageNum,
+      },
+      // headers: headers,
+    })
+      .then((response) => {
+        // console.log("index response");
+        // console.log(response.data.results);
+        // setAiResponse(response.data.results);
+        // dispatch(gpt3OutputAction(aiResponse));
+        // setResponseRecieved(true);
+        // setAiLoading(false);
+// console.log(response.data);
+          
+        setPics(response.data.results.photos)
+        setLoading(false)
+        // console.log(pics)
+        // return response;
+      })
+      .catch((error) => {
+        console.log(error);
+        return "Sorry, an Error occured";
+      });
+
+    console.timeEnd("load")
+
+  };
+
+  // {handleSubmit(onSubmitFormGptJ)}>
+  let pexelsWindow = (
+    <div className=" flex items-center flex-col w-[35em]">
+         <form onSubmit={handleSubmit(onSubmitForm)} className="flex items-center w-full text-gray-600 bg-white border-2 border-gray-300 rounded-2xl">
+      <input
+        className="h-10 px-5  text-sm bg-white border-gray-300 border-none w-[90%] rounded-2xl focus:outline-none"
+        type="search"
+        name="search"
+        placeholder="Search Pexels"
+        value={searchTerm}
+        {...register("input")}
+        onChange={(e)=>{
+          // console.log(e.target.value)
+          setSearchTerm(e.target.value)
+          setPageCounter(1)
+          // setTimeout(() => {
+          // setSearchTerm(e.target.value)
+          //   onSubmitForm()
+          // }, 500);
+        }}
+      />
+      <button
+        type="submit"
+        className="p-2 mr-1 text-white cursor-pointer rounded-3xl bg-t-bl drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95"
+      >
+        <FaSearch />
+      </button>
+      </form>
+      <div className="flex items-center gap-2">
+        <ImageList loading={loading} images={pics} sendURL={sendURL}/>
+      </div>
+      {pics.length === 0 && <p>No images found</p>}
+      {pics.length > 0 && <button
+        className="flex items-center justify-center gap-3 p-2 mr-1 text-white cursor-pointer rounded-3xl bg-t-bd drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 w-[10em]"
+        onClick={()=>{
+          onSubmitForm(2)
+        }}
+      >
+        <FaUndo />
+        Load More
+      </button>}
+      
+    </div>
+  );
 
   return (
     <div className="flex flex-col items-center w-full fade-effect-quick">
@@ -199,10 +515,12 @@ export default function IdeaDisplay() {
             //   "https://images.unsplash.com/photo-1530658432962-05f34932eb47?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2307&q=80"
             // );
             // setTimeout(function(){
-              // setShowImgPopUp(true)
-              setIsPic(true);
+            // setShowImgPopUp(true)
+            setIsPic(true);
+            setImgSrc(defaultPic)
+            setShowImgPopUp(true)
 
-          // }, 2000);
+            // }, 2000);
           }}
           className="fixed flex items-center justify-center w-[8em]  gap-2 h-8 rounded-full bg-white/60 md:hover:scale-105 top-2 left-4"
         >
@@ -212,40 +530,51 @@ export default function IdeaDisplay() {
         </button>
       )}
       {/* {isPic && ( */}
-        <div
-          className={"h-[10em] w-[100%] flex items-center overflow-hidden rounded-2xl " + (isPic ? null : " !hidden")}
-          onMouseEnter={() => setHover(true)}
-          onMouseLeave={() => setHover(false)}
-        >
-          {hover && (
-            <button
-              onClick={() => {
-                reSizeImgBounds();
-                setShowImgPopUp(!showImgPopUp);
-              }}
-            >
-              <div className="fixed flex items-center justify-center w-[8em] h-8 rounded-full bg-white/60 md:hover:scale-105 top-2 left-4 gap-2 text-black/60">
-                <FaImage className="text-t-bl" />
-                Edit Image
-              </div>{" "}
-            </button>
-          )}
-          {showImgPopUp && (
-            <div className="fixed top-10 left-16 normal-box flex flex-col !rounded-xl">
-              <div className="flex items-center justify-between">
-                <p className="mx-4">Position:</p>
+      <div
+        className={
+          "h-[10em] w-[100%] flex items-center overflow-hidden rounded-2xl image-cover-div  " +
+          (isPic ? null : " !hidden")
+        }
+      >
+        <button
+          onClick={() => {
+            reSizeImgBounds();
+            setShowImgPopUp(!showImgPopUp);
+        setPexels(false);
+        setSearchTerm("idea")
 
-                <p
-                  onClick={() => {
-                    setShowImgPopUp(!showImgPopUp);
-                  }}
-                  className="mr-1 text-2xl cursor-pointer md:hover:text-t-bl text-t-bd"
-                >
-                  X
-                </p>
-              </div>
-              <div className="flex justify-center ">
-                <input
+          }}
+          className="img-button fade-effect-turbo"
+        >
+          <div className="fixed flex items-center justify-center w-[8em] h-8 rounded-full bg-white/60 md:hover:scale-105  top-2 left-4 gap-2 text-black/60 ">
+            <FaImage className="text-t-bl" />
+            Edit Image
+          </div>{" "}
+        </button>
+        {showImgPopUp && (
+          <div
+            className={
+              "fixed top-10 left-16 normal-box flex flex-col !rounded-xl "
+            }
+          >
+            <div className="flex items-center justify-between">
+              <p className="mx-4">Position:</p>
+
+              <p
+                onClick={() => {
+                  setShowImgPopUp(!showImgPopUp);
+        setPexels(false);
+        setSearchTerm("idea")
+
+                }}
+                className="mr-1 text-2xl cursor-pointer md:hover:text-t-bl text-t-bd"
+              >
+                X
+              </p>
+            </div>
+            <div className="flex justify-center mx-[2em]">
+              <FaAngleDown className="text-[20px] text-t-bd"/>
+              <input
                 id="typeinp"
                 type="range"
                 className="blue range"
@@ -255,15 +584,18 @@ export default function IdeaDisplay() {
                 value={position}
                 step="1"
                 onChange={(e) => {
-                  console.log(imgHeightUnit);
+                  // console.log(imgHeightUnit);
 
                   // console.log(e.target.valueAsNumber)
                   setPosition(e.target.valueAsNumber);
                   // console.log(position)
                 }}
-              /></div>
-              
-              {/* <div className="flex items-center justify-center gap-3 normal-box">
+              />
+              <FaAngleUp className="text-[20px] text-t-pd"/>
+
+            </div>
+
+            {/* <div className="flex items-center justify-center gap-3 normal-box">
               <button
                 onClick={() => {
                 //   setPosition(`0px ${(imgHeightUnit * 2)}px`);
@@ -326,44 +658,67 @@ export default function IdeaDisplay() {
                 </div>{" "}
               </button>
             </div> */}
-              <p className="mx-4">Set Image URL:</p>
 
-              <input
-                type="text"
-                className="mx-5 mb-3 textarea-box"
-                placeholder={imgSrc}
-                onChange={(e) => {
-                  setImgSrc(e.target.value);
-                  // let charLength = e.target.value.length;
-                  // console.log(charLength);
-                  // if (charLength >= 150) {
+            <p className="mx-4">Set Image URL:</p>
+
+            <input
+              type="text"
+              className="mx-5 mb-1 textarea-box"
+              placeholder={imgSrc || "Paste image url here"}
+              onChange={(e) => {
+                setImgSrc(e.target.value);
+                // let charLength = e.target.value.length;
+                // console.log(charLength);
+                // if (charLength >= 150) {
+              }}
+            />
+
+            <div className="flex flex-col items-center justify-center w-full">
+            {/* <p className="mx-4">Or</p> */}
+            <div className={"flex items-center justify-center w-full" + (pexels ? " flex-row gap-10" : " flex-col")}>
+              <button
+                className="w-[12em] h-[2em] rounded-3xl bg-t-bpop flex items-center justify-center text-black gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer mb-2"
+                onClick={() => {
+                  setPexels(!pexels);
                 }}
-              />
-              <div className="flex items-center justify-center w-full">
-                <button
-                  className="w-[13em] h-[2em] rounded-3xl bg-t-bl flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer mb-2"
-                  onClick={() => {
-                    updateImagetoDB();
-                    // setShowImgPopUp(false)
-                  }}
-                >
-                  <FaSave />
-                  Save image & Position
-                </button>
-              </div>
+              >
+                 <img
+        src="/pexels.svg"
+        alt="logo"
+        className="w-auto h-8"
+      />
+                {pexels ? "Close" : "Browse Pexels"}
+              </button>
+           
+              <button
+                className="w-[13em] h-[2em] rounded-3xl bg-t-bl flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer mb-2"
+                onClick={() => {
+                  updateImagetoDB();
+                  // setShowImgPopUp(false)
+                }}
+              >
+                <FaSave />
+                Save image & Position
+              </button>
             </div>
-          )}
-          {/* <div className="h-[20em] w-full"> */}
-          <img
-            ref={imgRef}
-            // onLoad={onImgLoad}
+              {pexels && <div> {pexelsWindow} </div>}
+            </div>
+      
+          </div>
+        )}
+        {/* <div className="h-[20em] w-full"> */}
+        <img
+          ref={imgRef}
+          // onLoad={onImgLoad}
 
-            style={{ objectPosition: "0px " + position + "px" }}
-            className={" w-full fade-effect "}
-            src={currentDocRedux?.imgUrl}
-            alt="cover image"
-          />
-        </div>
+          style={{ objectPosition: "0px " + position + "px" }}
+          className={" w-full fade-effect-turbo "}
+          // src={currentDocRedux?.imgUrl || defaultPic}
+          src={imgSrc}
+
+          alt="cover image"
+        />
+      </div>
       {/* )} */}
       {/* </div> */}
       <div className="normal-box-soft text-t-bd text-[28px] p-5 mt-3">
@@ -372,7 +727,7 @@ export default function IdeaDisplay() {
       <div className="flex items-center my-2 justify-between w-[98%]">
         <div className="flex items-center gap-1 ">
           <p className="text-[22px] text-t-bd">Rating</p>
-          <Stars hover={false} rating={currentDocRedux?.rating} />
+          <Stars  hover={false} rating={currentDocRedux?.rating} />
         </div>
         <div>
           {currentDocRedux?.published ? (

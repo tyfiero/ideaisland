@@ -20,7 +20,7 @@ import toast from "react-hot-toast";
 import IdeaFeed from "./IdeaFeed";
 import { editModeAction } from "../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
-
+import { statsAction } from "../../redux/actions";
 import {
   FaEdit,
   FaLightbulb,
@@ -163,6 +163,10 @@ export default function IdeaSideBar() {
 }
 
 function IdeasList() {
+  const statsRedux = useSelector((state) => state.stats);
+  const dispatch = useDispatch()
+
+  
   // const ref = firestore
   //   .collection("users")
   //   .doc(auth.currentUser.uid)
@@ -190,7 +194,10 @@ function IdeasList() {
 
 
   const ideas = querySnapshot?.docs.map((doc) => doc.data());
-  // console.log(ideas);
+  // console.log(ideas.length);
+
+
+  
 
   return (
     <>

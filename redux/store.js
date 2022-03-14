@@ -22,7 +22,17 @@ import userNameReducer from "./reducers/userNameReducer";
 import currentDocReducer from "./reducers/currentDoc";
 import editModeReducer from "./reducers/editModeReducer";
 import unsavedChangesReducer from "./reducers/unsavedChangesReducer";
+import statsReducer from "./reducers/statsReducer";
 //OTHER REDUCERS GO HERE
+
+let devTools;
+
+if(typeof window !== "undefined" &&
+window.__REDUX_DEVTOOLS_EXTENSION__ &&
+window.__REDUX_DEVTOOLS_EXTENSION__()){
+  devTools = (window.__REDUX_DEVTOOLS_EXTENSION__ &&
+  window.__REDUX_DEVTOOLS_EXTENSION__())
+}
 
 const rootReducer = combineReducers({
   counter: counterReducer,
@@ -47,13 +57,11 @@ const rootReducer = combineReducers({
   currentDoc: currentDocReducer,
   editMode: editModeReducer,
   unsavedChanges: unsavedChangesReducer,
+  stats: statsReducer,
   //other reducers go here
 });
 // console.log(rootReducer);
 
 export const store = createStore(
-  rootReducer,
-  typeof window !== "undefined" &&
-    window.__REDUX_DEVTOOLS_EXTENSION__ &&
-    window.__REDUX_DEVTOOLS_EXTENSION__()
+  rootReducer, devTools
 );

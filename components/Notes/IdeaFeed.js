@@ -12,8 +12,11 @@ import Stars from "./Stars";
 import sanitize from "../../lib/sanitize";
 import { useState, useEffect } from "react";
 import { editModeAction } from "../../redux/actions";
+import { statsAction } from "../../redux/actions";
 
 export default function IdeaFeed({ ideas, admin }) {
+  const statsRedux = useSelector((state) => state.stats);
+  const dispatch = useDispatch()
   // const docRef = doc(firestore, ", "idea-1");
   // getDoc(docRef).then((doc) => {
   //   console.log(doc.data(), doc.id);
@@ -27,6 +30,16 @@ export default function IdeaFeed({ ideas, admin }) {
   // // }
   // console.log(ideas);
 
+  useEffect(() => {
+
+    if(ideas){
+      let num = ideas.length;
+      dispatch(statsAction({ideaNum: num}))
+    }
+  
+   
+  }, [])
+  
   return ideas
     ? ideas.map((idea) => (
         <IdeaItem idea={idea} key={idea.identifier} admin={admin} />

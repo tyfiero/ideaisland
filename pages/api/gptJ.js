@@ -1,12 +1,15 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import axios from "axios";
 // import { responseSymbol } from "next/dist/server/web/spec-compliant/fetch-event";
+import sanitize from "../../lib/sanitize";
 
 // console.log(process.env.NEXT_PUBLIC_OPENAI_API_KEY);
 async function gptJAPIRequest(req) {
   //   console.log(req.body.input);
 
-  let userInput = req.body.input;
+  let userInput = sanitize(req.body.input, {
+    USE_PROFILES: { html: true },
+  });
   let prompt = `Write me a list of recipes using ${userInput}: `;
   let promptToSend = {
     prompt: prompt,

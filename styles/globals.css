@@ -1723,6 +1723,15 @@ border-radius: 1em;
     -o-animation: fadeIn 0.5s;
     -ms-animation: fadeIn 0.5s;
   }
+
+  .fade-effect-turbo {
+    animation: fadeIn 0.2s;
+    -webkit-animation: fadeIn 0.2s;
+    -moz-animation: fadeIn 0.2s;
+    -o-animation: fadeIn 0.2s;
+    -ms-animation: fadeIn 0.2s;
+  }
+  
   @keyframes fadeIn {
     0% {
       opacity: 0;
@@ -2620,4 +2629,37 @@ input[type=range]::-webkit-slider-thumb:active {
 
 input[type=range]::-moz-range-thumb:active {
   cursor: -moz-grabbing;
+}
+
+
+
+.img-button{
+  display: none;
+}
+
+.image-cover-div:hover .img-button {
+  display: block !important;
+  /* background: red !important; */
+
+}
+
+
+
+.dot {
+  color: black;
+  cursor: pointer;
+  font-size: 36px;
+  line-height: 1;
+  margin: 0 15px;
+  opacity: .4;
+  text-shadow: none;
+  transition: opacity 1s ease,
+      text-shadow 1s ease;
+  will-change: opacity, text-shadow;
+}
+
+.active {
+  color: var(--colorDark1);
+  opacity: 1;
+  text-shadow: 0 0px 8px;
 }

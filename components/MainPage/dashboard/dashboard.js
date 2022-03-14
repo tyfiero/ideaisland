@@ -10,9 +10,20 @@ import PieChart from "./PieChart";
 import ChartIdeas from "./ChartIdeas";
 import IdeaSideBar from "../../Notes/IdeaSideBar";
 
+
+
+// export async function getServerSideProps(context) {
+//   return {
+//     props: {}, 
+//   }
+// }
+
+
 var localNotes;
 const Dashboard = () => {
   const notesRedux = useSelector((state) => state.notes);
+  const statsRedux = useSelector((state) => state.stats);
+
 // console.log(auth.currentUser);
 
   useEffect(() => {
@@ -27,14 +38,14 @@ const Dashboard = () => {
   // };
 
   return (
-    <div className="fade-effect-quick overflow-auto">
+    <div className="overflow-auto fade-effect-quick">
       <div className="dash-title">
         <h1 className="heading-top">Dashboard</h1>
       </div>
       <div className="stat-holder">
           <div className="dash-stat">
             <h2 className="heading">Ideas</h2>
-            <h2 className="text-[40px]">40</h2>
+            <h2 className="text-[40px]">{statsRedux?.ideaNum || 10}</h2>
           </div>
           <div className="dash-stat">
             <h2 className="heading">Evolved Ideas</h2>

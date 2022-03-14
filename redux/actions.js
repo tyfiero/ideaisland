@@ -35,6 +35,12 @@ export const currentDocAction = (data) => {
     payload: data,
   };
 };
+export const statsAction = (data) => {
+  return {
+    type: "STATS_UPDATE",
+    payload: data,
+  };
+};
 export const darkMode = (boolean) => {
   return {
     type: "TOGGLE",
