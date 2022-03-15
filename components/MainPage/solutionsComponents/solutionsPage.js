@@ -3,6 +3,7 @@ import {
   FaPastafarianism,
   FaAlignLeft,
   FaRandom,
+  FaWalking,
 } from "react-icons/fa";
 function SolutionsPage() {
   return (
@@ -32,6 +33,14 @@ function SolutionsPage() {
           <div className="solution-button">
             <FaPastafarianism className="text-3xl" />
             <p>AI Tool</p>
+          </div>
+        </a>
+      </Link>
+      <Link href="/Solutions/Wizard">
+        <a>
+          <div className="solution-button">
+            <FaWalking className="text-3xl" />
+            <p>Walkthrough wizard</p>
           </div>
         </a>
       </Link>
