@@ -51,7 +51,7 @@ function SolutionWizard() {
     // console.log(form.details)
   };
 
-  console.log(formContent);
+  // console.log(formContent);
   // Create a new post in firestore
   const saveProblemForm = async (e) => {
     e.preventDefault() || null;

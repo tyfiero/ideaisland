@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Popover, ArrowContainer } from "react-tiny-popover";
+// import { Popover, ArrowContainer } from "react-tiny-popover";
 
 import {
   FaLaptopCode,
@@ -8,7 +8,9 @@ import {
   FaLongArrowAltLeft,
   FaLongArrowAltRight,
   FaCheck,
+  FaInfoCircle,
 } from "react-icons/fa";
+import { ArrowContainer, Popover } from "react-tiny-popover";
 function SFilter(props) {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [button1, setButton1] = useState(false);
@@ -28,6 +30,52 @@ function SFilter(props) {
   "
       >
         <div className="w-full max-w-[42rem] p-10 space-y-8 shadow rounded-xl bg-blues-100 drop-shadow-xl container-style normal-box-soft">
+          <div className="absolute top-5 right-5">
+            <Popover
+              isOpen={isPopoverOpen}
+              containerStyle={{
+                zIndex: 100,
+                boxShadow: "5px 13px 28px 0px rgba(0,0,0,0.48)",
+                backgroundColor: "white",
+                borderRadius: "2em",
+              }}
+              onClickOutside={() => setIsPopoverOpen(false)}
+              positions={["bottom", "left", "right"]} // preferred positions by priority
+              content={({ position, childRect, popoverRect }) => (
+                <ArrowContainer
+                  position={position}
+                  childRect={childRect}
+                  popoverRect={popoverRect}
+                  arrowColor={"white"}
+                  arrowSize={10}
+                  arrowStyle={{ opacity: 1, top: "-6px" }}
+                  className="popover-arrow-container"
+                  arrowClassName="popover-arrow"
+                >
+                  <div
+                    className="!opacity-100 bg-white w-[25em] rounded-xl p-3"
+                    onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+                  >
+                    You can't bring all of your ideas to market. Selecting the
+                    most promising idea is a difficult, but important step. By
+                    choosing one, you can explore that idea further and run it
+                    through the idea evolution process to see if this idea is
+                    worth pursuing. If so, Great!! You have your idea and a
+                    plan. If not, thats ok! Evolve another idea and repeat the
+                    process.
+                  </div>
+                </ArrowContainer>
+              )}
+            >
+              
+              <div
+                onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+                className="w-5"
+              >
+                <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 md:hover:scale-110" />
+              </div>
+            </Popover>
+          </div>
           <div className="flex flex-col items-center justify-center problem-page fade-effect-quick">
             <h1 className="heading-top">Filter</h1>
             <div className="normal-box-soft">
@@ -65,59 +113,27 @@ function SFilter(props) {
               /> */}
 
               <div className="flex flex-col gap-4">
+                <div className="flex items-center normal-box-soft">
+                  <input type="radio" id="html" name="fav_language" value="" />
 
-              <div className="normal-box-soft flex items-center">
-              <input type="radio" id="html" name="fav_language" value=""/>
+                  <div className="w-full ml-5 normal-box">Idea 1</div>
+                </div>
+                <div className="flex items-center normal-box-soft">
+                  <input type="radio" id="html" name="fav_language" value="" />
 
-                <div className="ml-5 normal-box w-full">Idea 1</div>
+                  <div className="w-full ml-5 normal-box">Idea 2</div>
+                </div>
+                <div className="flex items-center normal-box-soft">
+                  <input type="radio" id="html" name="fav_language" value="" />
+
+                  <div className="w-full ml-5 normal-box">Idea 3</div>
+                </div>
+                <div className="flex items-center normal-box-soft">
+                  <input type="radio" id="html" name="fav_language" value="" />
+
+                  <div className="w-full ml-5 normal-box">Idea 4</div>
+                </div>
               </div>
-              <div className="normal-box-soft flex items-center">
-              <input type="radio" id="html" name="fav_language" value=""/>
-
-                <div className="ml-5 normal-box w-full">Idea 2</div>
-              </div><div className="normal-box-soft flex items-center">
-              <input type="radio" id="html" name="fav_language" value=""/>
-
-                <div className="ml-5 normal-box w-full">Idea 3</div>
-              </div><div className="normal-box-soft flex items-center">
-              <input type="radio" id="html" name="fav_language" value=""/>
-
-                <div className="ml-5 normal-box w-full">Idea 4</div>
-              </div>
-
-              </div>
-              <Popover
-                isOpen={isPopoverOpen}
-                padding={2} // adjust padding here!
-                onClickOutside={() => setIsPopoverOpen(false)}
-                positions={["bottom", "left", "right"]} // preferred positions by priority
-                content={({ position, childRect, popoverRect }) => (
-                  <ArrowContainer // if you'd like an arrow, you can import the ArrowContainer!
-                    position={position}
-                    childRect={childRect}
-                    popoverRect={popoverRect}
-                    arrowColor={"white"}
-                    arrowSize={10}
-                    arrowStyle={{ opacity: 1 }}
-                    className="popover-arrow-container"
-                    arrowClassName="popover-arrow"
-                  >
-                    <div
-                      className="!opacity-100 bg-white w-[25em] rounded-xl p-5"
-                      onClick={() => setIsPopoverOpen(!isPopoverOpen)}
-                    >
-                      You can't bring all of your ideas to market. Selecting the most promising idea is a difficult, but important step. By choosing one, you can explore that idea further and run it through the idea evolution process to see if this idea is worth pursuing. If so, Great!! You have your idea and a plan. If not, thats ok! Evolve another idea and repeat the process.
-                    </div>
-                  </ArrowContainer>
-                )}
-              >
-                <p
-                  onClick={() => setIsPopoverOpen(!isPopoverOpen)}
-                  className="underline cursor-pointer text-blues-100 md:hover:scale-110"
-                >
-                  Why this step?
-                </p>
-              </Popover>
             </div>
             <div className="flex items-center justify-between w-full">
               <button

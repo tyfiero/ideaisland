@@ -8,6 +8,7 @@ import {
   FaLongArrowAltLeft,
   FaLongArrowAltRight,
   FaCheck,
+  FaInfoCircle,
 } from "react-icons/fa";
 
 import { Popover, ArrowContainer } from "react-tiny-popover";
@@ -36,6 +37,58 @@ function PWhy(props) {
       >
         <div className="w-full max-w-[42rem] p-10 space-y-8 shadow rounded-xl bg-blues-100 drop-shadow-xl container-style normal-box-soft">
           <div className="flex flex-col items-center justify-center problem-page fade-effect-quick">
+          <div className="absolute top-5 right-5">
+            <Popover
+              isOpen={isPopoverOpen}
+              containerStyle={{
+                zIndex: 100,
+                boxShadow: "5px 13px 28px 0px rgba(0,0,0,0.48)",
+                backgroundColor: "white",
+                borderRadius: "2em",
+              }}
+              onClickOutside={() => setIsPopoverOpen(false)}
+              positions={["bottom", "left", "right"]} // preferred positions by priority
+              content={({ position, childRect, popoverRect }) => (
+                <ArrowContainer
+                  position={position}
+                  childRect={childRect}
+                  popoverRect={popoverRect}
+                  arrowColor={"white"}
+                  arrowSize={10}
+                  arrowStyle={{ opacity: 1, top: "-6px" }}
+                  className="popover-arrow-container"
+                  arrowClassName="popover-arrow"
+                >
+                 <div
+                      className="!opacity-100 bg-white w-[25em] rounded-xl p-5"
+                      onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+                    >
+                      Starting with why helps keep the end in mind. It helps
+                      frame the entire reason you embark on the innovation
+                      journey. <br /> Check out Simon Sinek's{" "}
+                      <a
+                        className="underline text-blues-300"
+                        href="https://www.youtube.com/watch?v=u4ZoJKF_VuA&ab_channel=TEDxTalks"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {" "}
+                        TED talk
+                      </a>{" "}
+                      for more on the importance of starting with why.
+                    </div>
+                </ArrowContainer>
+              )}
+            >
+              
+              <div
+                onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+                className="w-5"
+              >
+                <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 md:hover:scale-110" />
+              </div>
+            </Popover>
+          </div>
             <h1 className="heading-top">Why?</h1>
             <div className="normal-box-soft">
               <h3 className="heading">
@@ -81,50 +134,7 @@ function PWhy(props) {
                 later.
               </p>
 
-              <Popover
-                isOpen={isPopoverOpen}
-                padding={2} // adjust padding here!
-                onClickOutside={() => setIsPopoverOpen(false)}
-                positions={["bottom", "left", "right"]} // preferred positions by priority
-                content={({ position, childRect, popoverRect }) => (
-                  <ArrowContainer // if you'd like an arrow, you can import the ArrowContainer!
-                    position={position}
-                    childRect={childRect}
-                    popoverRect={popoverRect}
-                    arrowColor={"white"}
-                    arrowSize={10}
-                    arrowStyle={{ opacity: 1 }}
-                    className="popover-arrow-container"
-                    arrowClassName="popover-arrow"
-                  >
-                    <div
-                      className="!opacity-100 bg-white w-[25em] rounded-xl p-5"
-                      onClick={() => setIsPopoverOpen(!isPopoverOpen)}
-                    >
-                      Starting with why helps keep the end in mind. It helps
-                      frame the entire reason you embark on the innovation
-                      journey. <br /> Check out Simon Sinek's{" "}
-                      <a
-                        className="underline text-blues-300"
-                        href="https://www.youtube.com/watch?v=u4ZoJKF_VuA&ab_channel=TEDxTalks"
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        {" "}
-                        TED talk
-                      </a>{" "}
-                      for more on the importance of starting with why.
-                    </div>
-                  </ArrowContainer>
-                )}
-              >
-                <p
-                  onClick={() => setIsPopoverOpen(!isPopoverOpen)}
-                  className="underline cursor-pointer text-blues-100 md:hover:scale-110"
-                >
-                  Why this question?
-                </p>
-              </Popover>
+              
             </div>
             <div className="flex items-center justify-end w-full">
               <button

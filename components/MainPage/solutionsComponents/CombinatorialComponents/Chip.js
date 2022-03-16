@@ -1,6 +1,6 @@
 import React from "react";
 import { FaPlus, FaTimes } from "react-icons/fa";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 function Chip({
   iconColor,
   text,
@@ -8,9 +8,38 @@ function Chip({
   bColor,
   color,
   updateArray,
+  formContent,
   deleteIndex,
+  changes,
 }) {
   const [clicked, setClicked] = useState(false);
+
+  // console.log(formContent);
+
+
+
+  //Attempted fix to have chips be 'unclicked' when the feature is deleted from feature list. I failed at this one. useEffect is not working as expected, it should be running this function every time formContent changes, but its not for some reason.
+  // useEffect(() => {
+  //   console.log(
+  //   "UE RANNNNNNN"
+  //   );
+
+  //   if (formContent) {
+  //     let __FOUND = formContent.find(function (formContent, index) {
+  //       if (formContent.name === text) {
+  //         console.log("FOUND INDEX @ " + index + text + " clicked? " + clicked);
+
+        
+  //       } else {
+  //         console.log("not found " + text + " clicked? " + clicked);
+  //         if(clicked){
+  //           setClicked(false);
+            
+  //         }
+  //       }
+  //     });
+  //   }
+  // }, [formContent, changes]);
 
   return (
     <div>
@@ -19,20 +48,16 @@ function Chip({
           // console.log(e);
 
           if (clicked) {
-          console.log("DELETE");
+            // console.log("DELETE");
 
             deleteIndex(text);
-          setClicked(false);
-
-            
+            setClicked(false);
           } else {
-          console.log("UPDATE");
+            // console.log("UPDATE");
 
             updateArray(text);
-          setClicked(true);
-
+            setClicked(true);
           }
-
         }}
         // value={"BUTTON"}
         className={

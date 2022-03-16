@@ -396,7 +396,7 @@ export default function IdeaDisplay() {
         setShowImgPopUp(!showImgPopUp);
         setPexels(false);
         setSearchTerm("idea")
-        toast.success("Image/Positon Saved!");
+        toast.success("Image/Position Saved!");
       })
       .catch((error) => {
         toast.error("Error occured 😩");

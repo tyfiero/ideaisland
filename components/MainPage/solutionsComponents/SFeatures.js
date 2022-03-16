@@ -11,6 +11,7 @@ import {
   FaStar,
   FaPlus,
   FaTimes,
+  FaInfoCircle,
 } from "react-icons/fa";
 import Chip from "./CombinatorialComponents/chip";
 import { useEffect } from "react";
@@ -23,6 +24,8 @@ function SFeatures(props) {
   const [featureContent, setFeatureContent] = useState("");
   const [featureArray, setFeatureArray] = useState([]);
   const [featureString, setFeatureString] = useState("");
+  // const [changes, setChanges] = useState(false);
+
 
   // console.log(props.form.form.Features);
   // console.log(featureString);
@@ -52,6 +55,7 @@ function SFeatures(props) {
     props.update("Features", featureArray);
   };
   const deleteIndex = (data) => {
+    // setChanges(true)
     // console.log("🚀 ~ file: SFeatures.js ~ line 29 ~ deleteIndex ~ data", data);
     for (var i = featureArray.length - 1; i >= 0; i--) {
       if (featureArray[i].name === data) {
@@ -60,6 +64,7 @@ function SFeatures(props) {
         // console.log(featureArray);
 
         setFeatureArray(featureArray);
+        // setChanges(false)
       }
     }
 
@@ -101,6 +106,48 @@ function SFeatures(props) {
         <div className="w-full p-10 space-y-8 shadow !rounded-2xl bg-blues-100 drop-shadow-xl container-style normal-box-soft">
           <div className="flex">
             <div className="flex flex-col items-center justify-center problem-page fade-effect-quick">
+            <div className="absolute top-5 right-12">
+            <Popover
+              isOpen={isPopoverOpen}
+              containerStyle={{
+                zIndex: 100,
+                boxShadow: "5px 13px 28px 0px rgba(0,0,0,0.48)",
+                backgroundColor: "white",
+                borderRadius: "2em",
+              }}
+              onClickOutside={() => setIsPopoverOpen(false)}
+              positions={["bottom", "left", "right"]} // preferred positions by priority
+              content={({ position, childRect, popoverRect }) => (
+                <ArrowContainer
+                  position={position}
+                  childRect={childRect}
+                  popoverRect={popoverRect}
+                  arrowColor={"white"}
+                  arrowSize={10}
+                  arrowStyle={{ opacity: 1, top: "-6px" }}
+                  className="popover-arrow-container"
+                  arrowClassName="popover-arrow"
+                >
+                  <div
+                    className="!opacity-100 bg-white w-[25em] rounded-xl p-3"
+                    onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+                  >
+                     Features are essential to any application. Identifying
+                        the key features you need ahead of time will help you
+                        frame the product and gauge the complexity.
+                  </div>
+                </ArrowContainer>
+              )}
+            >
+              
+              <div
+                onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+                className="w-5"
+              >
+                <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 md:hover:scale-110" />
+              </div>
+            </Popover>
+          </div>
               <h1 className="heading-top">Features</h1>
               <div className="normal-box-soft">
                 <h3 className="heading">
@@ -174,12 +221,13 @@ function SFeatures(props) {
                     <p className="pl-3 m-0">Authentication</p>
                     <div className="flex flex-wrap gap-1">
                       <Chip
+                      // changes={changes}
                         updateArray={updateArray}
                         deleteIndex={deleteIndex}
+                        formContent={props.form.form?.Features}
                         text="Sign-in with Email/Password"
                         value="Sign-in with Email/Password"
                         icon="plus"
-                        // color={featureArray.includes("Sign-in with Email/Password") ? "bg-teal-800" : "bg-teal-100"}
                         color="bg-teal-100"
                         bColor="border-teal-300"
                         iconColor="text-teal-500"
@@ -187,6 +235,7 @@ function SFeatures(props) {
                       <Chip
                         updateArray={updateArray}
                         deleteIndex={deleteIndex}
+                        formContent={props.form.form?.Features}
                         text="Sign-in with Google/other 3rd party"
                         icon="plus"
                         color="bg-teal-100"
@@ -197,6 +246,7 @@ function SFeatures(props) {
                       <Chip
                         updateArray={updateArray}
                         deleteIndex={deleteIndex}
+                        formContent={props.form.form?.Features}
                         text="2-factor Auth"
                         icon="plus"
                         color="bg-teal-100"
@@ -211,6 +261,7 @@ function SFeatures(props) {
                       <Chip
                         updateArray={updateArray}
                         deleteIndex={deleteIndex}
+                        formContent={props.form.form?.Features}
                         text="Database"
                         icon="plus"
                         color="bg-yellow-100"
@@ -220,7 +271,9 @@ function SFeatures(props) {
                       <Chip
                         updateArray={updateArray}
                         deleteIndex={deleteIndex}
-                        text="Import data"
+                        formContent={props.form.form?.Features}
+                        text="Import Data"
+
                         icon="plus"
                         color="bg-yellow-100"
                         bColor="border-yellow-300"
@@ -230,6 +283,7 @@ function SFeatures(props) {
                       <Chip
                         updateArray={updateArray}
                         deleteIndex={deleteIndex}
+                        formContent={props.form.form?.Features}
                         text="Export data"
                         icon="plus"
                         color="bg-yellow-100"
@@ -244,6 +298,7 @@ function SFeatures(props) {
                       <Chip
                         updateArray={updateArray}
                         deleteIndex={deleteIndex}
+                        formContent={props.form.form?.Features}
                         text="Share to Social Media"
                         icon="plus"
                         color="bg-sky-100"
@@ -253,6 +308,7 @@ function SFeatures(props) {
                       <Chip
                         updateArray={updateArray}
                         deleteIndex={deleteIndex}
+                        formContent={props.form.form?.Features}
                         text="Realtime Collaboration"
                         icon="plus"
                         color="bg-sky-100"
@@ -263,6 +319,7 @@ function SFeatures(props) {
                       <Chip
                         updateArray={updateArray}
                         deleteIndex={deleteIndex}
+                        formContent={props.form.form?.Features}
                         text="File sharing"
                         icon="plus"
                         color="bg-sky-100"
@@ -277,6 +334,7 @@ function SFeatures(props) {
                       <Chip
                         updateArray={updateArray}
                         deleteIndex={deleteIndex}
+                        formContent={props.form.form?.Features}
                         text="Notes"
                         icon="plus"
                         color="bg-violet-100"
@@ -286,6 +344,7 @@ function SFeatures(props) {
                       <Chip
                         updateArray={updateArray}
                         deleteIndex={deleteIndex}
+                        formContent={props.form.form?.Features}
                         text="3rd party integrations"
                         icon="plus"
                         color="bg-violet-100"
@@ -296,6 +355,7 @@ function SFeatures(props) {
                       <Chip
                         updateArray={updateArray}
                         deleteIndex={deleteIndex}
+                        formContent={props.form.form?.Features}
                         text="AI/ML"
                         icon="plus"
                         color="bg-violet-100"
@@ -312,40 +372,7 @@ function SFeatures(props) {
                 </div>
               )}
               <div className="flex flex-col">
-                <Popover
-                  isOpen={isPopoverOpen}
-                  padding={2} // adjust padding here!
-                  onClickOutside={() => setIsPopoverOpen(false)}
-                  positions={["bottom", "left", "right"]} // preferred positions by priority
-                  content={({ position, childRect, popoverRect }) => (
-                    <ArrowContainer
-                      position={position}
-                      childRect={childRect}
-                      popoverRect={popoverRect}
-                      arrowColor={"white"}
-                      arrowSize={10}
-                      arrowStyle={{ opacity: 1 }}
-                      className="popover-arrow-container"
-                      arrowClassName="popover-arrow"
-                    >
-                      <div
-                        className="!opacity-100 bg-white w-[25em] rounded-xl p-5"
-                        onClick={() => setIsPopoverOpen(!isPopoverOpen)}
-                      >
-                        Features are essential to any application. Identifying
-                        the key features you need ahead of time will help you
-                        frame the product and gauge the complexity.
-                      </div>
-                    </ArrowContainer>
-                  )}
-                >
-                  <p
-                    onClick={() => setIsPopoverOpen(!isPopoverOpen)}
-                    className="underline cursor-pointer text-blues-100 md:hover:scale-110"
-                  >
-                    Why this step?
-                  </p>
-                </Popover>
+               
               </div>
               <div className="flex items-center justify-between w-full">
                 <button
@@ -376,7 +403,11 @@ function SFeatures(props) {
                   <p>Feature with a sentence description</p> */}
                 {featureArray.length === 0 && <p>No features added yet.</p>}
                 {featureArray.map((data, index) => (
-                  <ListItem name={data.name} key={index} deleteIndex={deleteIndex} />
+                  <ListItem
+                    name={data.name}
+                    key={index}
+                    deleteIndex={deleteIndex}
+                  />
                 ))}
 
                 {/* <p>Feature with a sentence description</p>
