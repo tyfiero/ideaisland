@@ -176,7 +176,7 @@ function IdeasList() {
 
   // const ideas = querySnapshot?.docs.map((doc) => doc.data());
 
-  //THIS MUST BE EDITED WHEN THE PERSISTENCE IS FIXED priceart cant stay!!!
+  //THIS MUST BE EDITED WHEN THE PERSISTENCE IS FIXED priceart cant stay!!! @auth
   let uid;
   if (auth.currentUser) {
     uid = auth.currentUser.uid;

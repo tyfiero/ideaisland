@@ -26,6 +26,9 @@ const Dashboard = () => {
 
 // console.log(auth.currentUser);
 
+
+
+//Clean up and delete all localStorage references that arent redux plz @auth
   useEffect(() => {
     localNotes = localStorage.getItem("notes");
 

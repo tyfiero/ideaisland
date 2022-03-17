@@ -4,9 +4,21 @@ export const logIn = (boolean) => {
     payload: boolean,
   };
 };
-export const userDataRedux = (data) => {
+export const userUIDAction = (data) => {
   return {
-    type: "USEREXISTS",
+    type: "UID_Redux",
+    payload: data,
+  };
+};
+export const userPhotoAction = (data) => {
+  return {
+    type: "PHOTO_REDUX",
+    payload: data,
+  };
+};
+export const userDisplayNameAction = (data) => {
+  return {
+    type: "DISPLAY_NAME_REDUX",
     payload: data,
   };
 };

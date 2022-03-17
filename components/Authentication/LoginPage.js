@@ -17,14 +17,18 @@ import { auth, googleAuthProvider } from "../../lib/firebase";
 import { signInWithPopup } from "firebase/auth";
 import toast from "react-hot-toast";
 import { useSelector, useDispatch } from "react-redux";
-import { logIn, userDataRedux } from "../../redux/actions";
+import { logIn, userPhotoAction,
+  userDisplayNameAction,
+  userUIDAction, } from "../../redux/actions";
 
 export default function LoginPage() {
   const loggedIn = useSelector((state) => state.loggedIn);
-  const userRedux = useSelector((state) => state.userData);
+  // const userRedux = useSelector((state) => state.userData);
+  const userNameRedux = useSelector((state) => state.userName);
 
   const dispatch = useDispatch();
 
+  //Do i need these useContexts anymore? If not, delete them all! @auth
   const { user, username } = useContext(UserContext);
 
   const rememberMeRef = useRef();
@@ -36,17 +40,23 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [signInMethod, setSignInMethod] = useState(0);
 
-  //The below user variable is from zustand statemanagement. So dont use it. Replace with redux
-  // const user = useStore((state) => state.user);
-  // let user = null;
 
+
+
+//Add logic to check to see if they have a username or not @auth
+
+//Also add logic to clear persited redux data if they sign in as a new account. Maybe just add it to logout button? @auth
+
+//ALSO its not navigating to the dashboard after sign in
+
+  
   let emailButton = () => {
     // f;
     setSignInMethod(1);
   };
   function googleButton() {
     // setSignInMethod(2);
-    console.log("googlebutton clicked");
+    // console.log("googlebutton clicked");
 
     // console.log(auth.signInWithPopup);
 
@@ -56,15 +66,27 @@ export default function LoginPage() {
 
       try {
         await signInWithPopup(auth, googleAuthProvider).then((result) => {
+          console.log(result)
           // console.log(result.user);
-          dispatch(userDataRedux(result.user));
-          localStorage.setItem("userLocal", JSON.stringify(result.user));
+          // localStorage.setItem("userLocal", JSON.stringify(result.user));
           // dispatch(userNameRedux(username));
-          
+          dispatch(userUIDAction(result.user.uid));
+          dispatch(userDisplayNameAction(result.user.displayName));
+          dispatch(userPhotoAction(result.user.photoURL));
           if (!loggedIn) {
             dispatch(logIn(true));
             console.log("logged in")
           }
+
+
+          if(userNameRedux){
+       router.push("/");
+            
+          }else{
+       router.push("/usernameform");
+            
+          }
+          
           toast("Welcome back!", {
             icon: "😀",
           });
@@ -98,36 +120,36 @@ export default function LoginPage() {
     setSignInMethod(0);
   };
 
-  //from template for email
-  useEffect(() => {
-    // Route the user to the password reset page
-    if (router.query?.mode === "resetPassword") {
-      router.push({ pathname: "/reset", query: router.query });
-      return;
-    }
-    // If the user is already logged in, we redirect to the protected area.
-    // Only redirect for users that have an email. Otherwise, it is an
-    // anonymous user
-    if (user && user.email) {
-      // store the user in localStorage
-      //  localStorage.setItem('userDataLocal', user)
+  // //from template for email
+  // useEffect(() => {
+  //   // Route the user to the password reset page
+  //   if (router.query?.mode === "resetPassword") {
+  //     router.push({ pathname: "/reset", query: router.query });
+  //     return;
+  //   }
+  //   // If the user is already logged in, we redirect to the protected area.
+  //   // Only redirect for users that have an email. Otherwise, it is an
+  //   // anonymous user
+  //   if (user && user.email) {
+  //     // store the user in localStorage
+  //     //  localStorage.setItem('userDataLocal', user)
 
-      // Get return url from query parameters or default to sending the
-      // authenticated user to the protected area.
-      const returnUrl = router.query.returnUrl || "/";
-      router.push(returnUrl);
-      return;
-    } else if (user && router?.query?.returnUrl) {
-      // Is anonymous user and a returnUrl is present
-      // then we push the anonymous user through
-      const returnUrl = router.query.returnUrl;
-      router.push(returnUrl);
-      return;
-    }
+  //     // Get return url from query parameters or default to sending the
+  //     // authenticated user to the protected area.
+  //     const returnUrl = router.query.returnUrl || "/";
+  //     router.push(returnUrl);
+  //     return;
+  //   } else if (user && router?.query?.returnUrl) {
+  //     // Is anonymous user and a returnUrl is present
+  //     // then we push the anonymous user through
+  //     const returnUrl = router.query.returnUrl;
+  //     router.push(returnUrl);
+  //     return;
+  //   }
 
-    // Clear the error on page load
-    setErrorAuth(undefined);
-  }, [user, router]);
+  //   // Clear the error on page load
+  //   setErrorAuth(undefined);
+  // }, [user, router]);
 
   // const handleLogin = async (e) => {
   //   e.preventDefault();

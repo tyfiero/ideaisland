@@ -13,6 +13,7 @@ function TextArea(props) {
   const dispatch = useDispatch();
 
 
+  //Again, clean up all local storage instances. We use firebase and redux now @auth
   useEffect(() => {
    localNotes = localStorage.getItem("notes");
 }, []);

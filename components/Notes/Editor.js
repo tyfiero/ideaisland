@@ -61,45 +61,7 @@ function Editor() {
     // console.log("UE START");
 
     if (currentDocRedux) {
-      //I dont think I need this anymore not that i have currentDocRedux
-      // const getDetails = async () => {
-      //   try {
-      //     let uid;
-      //     if (auth.currentUser) {
-      //       uid = auth.currentUser.uid;
-      //       //THIS MUST BE EDITED WHEN THE PERSISTENCE IS FIXED priceart cant stay!!!
-      //     } else {
-      //       uid = "WoKVte3Fpae3Zqp1KAlcJEpO09j1";
-      //     }
-      //     //   console.log(uid);
-      //     let db = getFirestore();
-      //     const colRef = collection(db, "users", uid, "ideas");
-      //     // console.log("🚀 ~ file: Editor.js ~ line 74 ~ getDetails ~ qRef", colRef)
-      //     const q = query(colRef, where("identifier", "==", currentDocRedux.identifier));
-      //     // const docSnap = await getDoc(q);
-      //     // if (docSnap.exists()) {
-      //     //   console.log("Document data:", docSnap.data());
-      //     //   setEditDocDetails(docSnap.data());
-      //     // } else {
-      //     //   // doc.data() will be undefined in this case
-      //     //   console.log("No such document!");
-      //     // }
-      //     // real time collection data
-      //     onSnapshot(q, (snapshot) => {
-      //       let details = [];
-      //       snapshot.docs.forEach((doc) => {
-      //         details.push({ ...doc.data(), id: doc.id });
-      //       });
-      //       console.log(details);
-      //       setEditDocDetails(details);
-      //     });
-      //   } catch (error) {
-      //     console.error(error);
-      //   }
-      // };
-      // getDetails();
-      //   dispatch(editModeAction("edit"));
-      //   setEditMode(true);
+    //idk what to do with this @auth
     } else {
       // setEditDocDetails(details);
       dispatch(editModeAction("new"));
@@ -116,7 +78,7 @@ function Editor() {
 
 "
       >
-        <div className="w-full max-w-[82rem] p-10 space-y-8 shadow h-[40em] rounded-xl bg-blues-100 drop-shadow-xl container-style normal-box-soft items-center flex flex-col !rounded-2xl">
+        <div className="w-full max-w-[82rem] p-10 space-y-8 shadow h-[40em]  bg-blues-100 drop-shadow-xl container-style normal-box-soft items-center flex flex-col !rounded-2xl">
           {(editModeRedux === "edit" || editModeRedux === "new") && (
             <>
               {" "}
@@ -258,6 +220,7 @@ function CreateNewIdea() {
   };
 
   const deleteIdea = async (e) => {
+    //Should I be using redux? Or auth.current user? If I do use redux, delete all instances of auth.currentUser @auth
     const uid = auth.currentUser.uid;
     const ref = doc(getFirestore(), "users", uid, "ideas", ideaID);
     await deleteDoc(ref)
@@ -329,6 +292,8 @@ function CreateNewIdea() {
     // id: (serverTimestamp.seconds + serverTimestamp.nanoseconds),
 
     // Tip: give all fields a default value here
+
+    //Username needs replacing with redux here @auth
     const data = {
       title,
       rating: rating,

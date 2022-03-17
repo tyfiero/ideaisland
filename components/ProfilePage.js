@@ -7,7 +7,9 @@ import { auth } from "../lib/firebase";
 import { logIn } from "../redux/actions";
 
 import Link from "next/link";
+import LogOutButton from "./Authentication/LogOutButton";
 function ProfilePage({ user }) {
+  //THIS WHOLE PAGE needs cleaning with redux user @auth
   const userData = useUserData();
   const userRedux = useSelector((state) => state.userData);
   const dispatch = useDispatch();
@@ -19,6 +21,7 @@ function ProfilePage({ user }) {
         <img
           src={user.photoURL || "/cryingpepe.png"}
           className="card-img-center"
+          referrerPolicy="no-referrer"
         />
       </div>
       <div>
@@ -41,37 +44,13 @@ function ProfilePage({ user }) {
       <button
         className="hidden w-[12em] px-3 py-2 font-medium rounded-full md:block md:space-x-6 fade-effect text-white hover:text-t-bd bg-t-bl my-5"
         onClick={() => {
-          // auth.signOut();
           console.log("SEND TO UPGRADE PAGE");
         }}
       >
         Upgrade to pro!
       </button>
 
-      <Link href="/">
-        <a>
-          <button
-            className="hidden w-[12em] px-3 py-2 font-medium rounded-full md:block md:space-x-6 fade-effect text-black hover:text-t-pd bg-t-pl"
-            onClick={() => {
-              auth
-                .signOut()
-                .then(() => {
-                  console.log("Sign out successful");
-                  dispatch(logIn(false));
-                  localStorage.removeItem("userLocal");
-                })
-                .catch((error) => {
-                  console.log(error);
-                });
-
-              //REMOVE local storage on signout
-              //   localStorage.clear();
-            }}
-          >
-            Sign out
-          </button>
-        </a>
-      </Link>
+     <LogOutButton />
     </div>
   );
 }

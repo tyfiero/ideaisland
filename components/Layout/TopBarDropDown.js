@@ -1,19 +1,25 @@
 import React, { useState, useEffect, useRef } from "react";
 import { CSSTransition } from "react-transition-group";
-import { FaUserAlt, FaCog, FaBook, FaRegLightbulb, FaLightbulb } from "react-icons/fa";
+import {
+  FaUserAlt,
+  FaCog,
+  FaBook,
+  FaRegLightbulb,
+  FaLightbulb,
+} from "react-icons/fa";
 import Link from "next/link";
 import DarkModeToggle from "./DarkModeToggle";
 import { useSelector } from "react-redux";
 // import { auth } from "../lib/firebase";
 
-export default function TopBarDropDown({ user }) {
+export default function TopBarDropDown() {
   const [activeMenu, setActiveMenu] = useState("main");
   // const [menuHeight, setMenuHeight] = useState(null);
   const dropdownRef = useRef(null);
   const darkRedux = useSelector((state) => state.darkMode);
   const userNameRedux = useSelector((state) => state.userName);
 
-//   console.log(user);
+  //   console.log(user);
   // useEffect(() => {
   //   setMenuHeight(dropdownRef.current?.firstChild.offsetHeight)
   // }, [])
@@ -23,21 +29,22 @@ export default function TopBarDropDown({ user }) {
   //   setMenuHeight(height);
   // }
 
-  
   // eslint-disable-next-line
-  const DropdownItem =  React.forwardRef(({ onClick, href, leftIcon, rightIcon, goToMenu, children}, ref) => {
-    return (
-      <a
-        href={href}
-        className="menu-item"
-        onClick={() => goToMenu && setActiveMenu(goToMenu)}
-      >
-        <span className="icon-button">{leftIcon}</span>
-        {children}
-        <span className="icon-right">{rightIcon}</span>
-      </a>
-    );
-  })
+  const DropdownItem = React.forwardRef(
+    ({ onClick, href, leftIcon, rightIcon, goToMenu, children }, ref) => {
+      return (
+        <a
+          href={href}
+          className="menu-item"
+          onClick={() => goToMenu && setActiveMenu(goToMenu)}
+        >
+          <span className="icon-button">{leftIcon}</span>
+          {children}
+          <span className="icon-right">{rightIcon}</span>
+        </a>
+      );
+    }
+  );
 
   return (
     <div
@@ -53,44 +60,43 @@ export default function TopBarDropDown({ user }) {
         <div className="menu">
           {/* <Link href={`/${user.username}`}> */}
           {/* <Link href="/user/priceart" passHref> */}
-          <Link href={`user/${userNameRedux}/`}  passHref>
-
-    
-
+          {/* ensure that these link routes are consistent and not buggy @auth */}
+          <Link href={`user/${userNameRedux}/`} passHref>
             {/* <a> */}
-              <DropdownItem leftIcon={<FaUserAlt className="text-t-bl" />}>
-                My Profile
-              </DropdownItem>
+            <DropdownItem leftIcon={<FaUserAlt className="text-t-bl" />}>
+              My Profile
+            </DropdownItem>
             {/* </a> */}
           </Link>
           {/* <Link href="/user/priceart/settings" passHref> */}
-          <Link href={`user/${userNameRedux}/settings`}  passHref>
-
-          <DropdownItem
-            leftIcon={<FaCog className="text-t-bd" />}
-            //   goToMenu="settings"
-          >
-            Settings
-          </DropdownItem>
+          <Link href={`user/${userNameRedux}/settings`} passHref>
+            <DropdownItem
+              leftIcon={<FaCog className="text-t-bd" />}
+              //   goToMenu="settings"
+            >
+              Settings
+            </DropdownItem>
           </Link>
 
           {/* <Link href="/user/priceart/notes" passHref> */}
-          <Link href={`user/${userNameRedux}/notes`}  passHref>
-          
-          <DropdownItem
-            leftIcon={<FaBook className="text-t-pd" />}
-            //   goToMenu="settings"
-          >
-            Ideas + Notes
-          </DropdownItem>
+          <Link href={`user/${userNameRedux}/notes`} passHref>
+            <DropdownItem
+              leftIcon={<FaBook className="text-t-pd" />}
+              //   goToMenu="settings"
+            >
+              Ideas + Notes
+            </DropdownItem>
           </Link>
 
           <div className="flex flex-col items-center pt-5">
             <p>Dark Mode</p>
 
             <DarkModeToggle />
-        {darkRedux ? <FaRegLightbulb /> : <FaLightbulb className="bulb-glow" style={{color: 
-        "orange"}}/>}
+            {darkRedux ? (
+              <FaRegLightbulb />
+            ) : (
+              <FaLightbulb className="bulb-glow" style={{ color: "orange" }} />
+            )}
           </div>
           {/* <DropdownItem
             leftIcon="🦧"

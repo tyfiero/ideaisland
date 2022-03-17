@@ -5,44 +5,46 @@ import React, { useState, useEffect, useContext } from "react";
 // import { isMobile, browserName } from "react-device-detect";
 // import { Squash as Hamburger } from "hamburger-react";
 // import { SentencePage } from "../pages/SolutionPage";
-import { FaHome, FaBug, FaBrain, FaSitemap, FaQuestion, FaBook } from "react-icons/fa";
+import {
+  FaHome,
+  FaBug,
+  FaBrain,
+  FaSitemap,
+  FaQuestion,
+  FaBook,
+} from "react-icons/fa";
 import Link from "next/link";
 import { useUserData } from "../../lib/hooks";
 import { UserContext } from "../../lib/context";
 import { useSelector } from "react-redux";
 
-
 const Sidebar2 = (props) => {
   const { user, username } = useContext(UserContext);
 
   const [selected, setSelected] = useState(0);
-  const [usernameSlug, setUsernameSlug] = useState("")
+  const [usernameSlug, setUsernameSlug] = useState("");
   const userData = useUserData();
   const userRedux = useSelector((state) => state.userData);
   const userNameRedux = useSelector((state) => state.userName);
   const loggedIn = useSelector((state) => state.loggedIn);
 
-
   useEffect(() => {
-    if(userRedux){
-      setUsernameSlug(userRedux.username)
+    //WOW this needs cleaning too. @auth
+
+    if (userRedux) {
+      setUsernameSlug(userNameRedux);
       console.log(usernameSlug + "redux");
       console.log(userRedux);
 
       return usernameSlug;
-    }else if(username){
-    setUsernameSlug(username)
-    console.log(usernameSlug + "username context");
-    return usernameSlug;
-    }else{
-      console.log("Dammit")
+    } else if (username) {
+      setUsernameSlug(username);
+      console.log(usernameSlug + "username context");
+      return usernameSlug;
+    } else {
+      console.log("Dammit");
     }
-      
-    
-  }, [])
-  
- 
-
+  }, []);
 
   let clickStyle = {
     color: "#fbf0ff",
@@ -52,9 +54,7 @@ const Sidebar2 = (props) => {
   };
 
   return (
-    <div
-      className="sidebardiv md:border-l-0 flex md:left-0 md:top-[25%] sm:bottom-0  md:bottom-[30%] sm:w-full md:flex-col sm:flex-row md:rounded-r-[3rem] sm:rounded-t-[3rem]  md:rounded-tl-none sm:rounded-b-1xl md:absolute sm:fixed bg-gradient-to-t from-clear-bl  to-clear-pl border-black border-[0px] content-center md:items-left  justify-evenly	md:py-4 sm:pb-1 sm:pt-4 sm:overflow-visible  z-10"
-    >
+    <div className="sidebardiv md:border-l-0 flex md:left-0 md:top-[25%] sm:bottom-0  md:bottom-[30%] sm:w-full md:flex-col sm:flex-row md:rounded-r-[3rem] sm:rounded-t-[3rem]  md:rounded-tl-none sm:rounded-b-1xl md:absolute sm:fixed bg-gradient-to-t from-clear-bl  to-clear-pl border-black border-[0px] content-center md:items-left  justify-evenly	md:py-4 sm:pb-1 sm:pt-4 sm:overflow-visible  z-10">
       <Link href="/Home">
         <a>
           <div
@@ -65,12 +65,18 @@ const Sidebar2 = (props) => {
             }}
           >
             <FaHome className=" sideicon" />
-         <p className="sidebartext ml-2 text-[14px]">Home</p>
+            <p className="sidebartext ml-2 text-[14px]">Home</p>
           </div>
         </a>
       </Link>
       {/* <Link href={"user/" + (usernameSlug || "priceart") + "/notes"}> */}
-      <Link href={loggedIn ?  `user/${userNameRedux}/notes` :  "/login"}>
+      {/* Fix all of these dynamic links to be less buggy please @auth */}
+      {/* <Link href={loggedIn ?  `user/${userNameRedux}/notes` :  "/login"}>
+       */}
+     {/* <Link href={`user/${userNameRedux || null}/notes`}> */}
+     <Link href={`user/${userNameRedux}/notes`} passHref>
+
+      
         <a>
           <div
             className=" sidebarunittcontainer flex rounded-[4rem] h-12 md:flex-row sm:flex-col  hover:bg-clear-w1 sm:items-center md:rounded-l-none"
@@ -94,7 +100,7 @@ const Sidebar2 = (props) => {
             }}
           >
             <FaBug className="sideicon" />
-              <p className="sidebartext sm:text-[14px] ml-2">Problem</p>
+            <p className="sidebartext sm:text-[14px] ml-2">Problem</p>
           </div>
         </a>
       </Link>
@@ -108,7 +114,7 @@ const Sidebar2 = (props) => {
             }}
           >
             <FaBrain className="sideicon" />
-              <p className="sidebartext sm:text-[14px] ml-2">Solutions</p>
+            <p className="sidebartext sm:text-[14px] ml-2">Solutions</p>
           </div>
         </a>
       </Link>
@@ -126,7 +132,7 @@ const Sidebar2 = (props) => {
           </div>
         </a>
       </Link>
-    
+
       <Link href="/Help">
         <a>
           <div
@@ -137,7 +143,7 @@ const Sidebar2 = (props) => {
             }}
           >
             <FaQuestion className="z-10 sideicon" />
-              <p className=" sidebartext sm:text-[14px] ml-2">Help</p>
+            <p className=" sidebartext sm:text-[14px] ml-2">Help</p>
           </div>
         </a>
       </Link>

@@ -20,7 +20,8 @@ export default function TopBarRight({ user }) {
   // const [menuOpen, setMenuOpen] = useState(false);
   // const menuRef = useRef(null);
   const { ref, isVisible, setIsVisible } = useVisible(false);
-  const userRedux = useSelector((state) => state.userData);
+  // const userRedux = useSelector((state) => state.userData);
+  const userPhotoRedux = useSelector((state) => state.userPhoto);
 
   // let user;
 
@@ -29,12 +30,14 @@ export default function TopBarRight({ user }) {
   // const dispatch = useDispatch();
 
   // console.log(user);
-  useEffect(() => {
-    if (userRedux !== null) {
-      try {
-// console.log(userRedux)
 
-        setimgSrc(userRedux.photoURL);
+  //Now that the image thing is fixed, can I remove userRedux from the dependency array here? How can this UE be cleaned up? @auth
+  //UPDATE, it might be best to leave it, in case userphotoredux isnt defined, and so that it updates correctly on change. 
+  useEffect(() => {
+    if (userPhotoRedux !== null) {
+      try {
+        // console.log(userRedux)
+        setimgSrc(userPhotoRedux);
         setType(1);
       } catch {
         setimgSrc("/profilefallback.png");
@@ -44,7 +47,7 @@ export default function TopBarRight({ user }) {
       setimgSrc("/profilefallback.png");
       setType(0);
     }
-  }, [userRedux]);
+  }, [userPhotoRedux]);
 
   // const closeOpenMenus = (e) => {
   //   if (menuRef.current && menuOpen && !menuRef.current.contains(e.target)) {
@@ -97,12 +100,16 @@ export default function TopBarRight({ user }) {
         //   setIsVisible(false);
         //   // console.log("set false");
         // }
+       
         setIsVisible(!isVisible);
+          
+        
       }}
     >
       <img
         // src={loggedIn ? userRedux?.photoURL : "/profilefallback.png"}
         src={imgSrc}
+        referrerPolicy="no-referrer"
         className={(!type && "profile-pic") + " fade-effect"}
         alt=""
       />
@@ -125,7 +132,7 @@ export default function TopBarRight({ user }) {
       {/* {profilePic} */}
       {/* {!user && login} */}
       {loggedIn ? profilePic : login}
-      <div ref={ref}>{isVisible && <TopBarDropDown user={user} />}</div>
+      <div ref={ref}>{isVisible && <TopBarDropDown />}</div>
     </div>
   );
 }

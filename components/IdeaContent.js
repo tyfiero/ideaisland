@@ -2,7 +2,7 @@ import Link from 'next/link';
 // import ReactMarkdown from 'react-markdown';
 
 // UI component for main post content
-export default function PostContent({ idea }) {
+export default function IdeaContent({ idea }) {
   const createdAt = typeof idea?.createdAt === 'number' ? new Date(idea.createdAt) : idea.createdAt.toDate();
 
   return (

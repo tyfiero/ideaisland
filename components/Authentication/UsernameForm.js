@@ -5,6 +5,8 @@ import { useEffect, useState, useCallback, useContext } from "react";
 import debounce from "lodash.debounce";
 import { useRouter } from 'next/router'
 import Link from "next/link";
+import { useSelector, useDispatch } from "react-redux";
+import { userNameAction } from "../../redux/actions";
 
 export default function UsernameForm(props) {
   const { user, username } = useContext(UserContext);
@@ -12,6 +14,8 @@ export default function UsernameForm(props) {
   const [formValue, setFormValue] = useState("");
   const [isValid, setIsValid] = useState(false);
   const [loading, setLoading] = useState(false);
+  const userNameRedux = useSelector((state) => state.userNameRedux);
+  const dispatch = useDispatch();
 
   // const { user, username } = useContext(UserContext);
 
@@ -30,6 +34,11 @@ export default function UsernameForm(props) {
       displayName: user.displayName,
     });
     batch.set(usernameDoc, { uid: user.uid });
+
+
+
+    //MAKE SURE THIS ONE WORKS @auth
+    dispatch(userNameAction(formValue));
 
     await batch.commit();
     await router.push("/");
