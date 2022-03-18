@@ -14,7 +14,7 @@ function ProblemTextArea({ q, sendDataToParent, ph }) {
 
   let identifier = "pq" + q;
   useEffect(() => {
-    localNotes = localStorage.getItem(identifier);
+    // localNotes = localStorage.getItem(identifier);
   }, []);
 
 

@@ -19,7 +19,6 @@ import IdeaSideBar from "../../Notes/IdeaSideBar";
 // }
 
 
-var localNotes;
 const Dashboard = () => {
   const notesRedux = useSelector((state) => state.notes);
   const statsRedux = useSelector((state) => state.stats);
@@ -28,17 +27,7 @@ const Dashboard = () => {
 
 
 
-//Clean up and delete all localStorage references that arent redux plz @auth
-  useEffect(() => {
-    localNotes = localStorage.getItem("notes");
 
-    // console.log("client");
-  }, []);
-  //   var localNotes = localStorage.getItem("notes");
-
-  // const handleQuilChange = () => {
-  //   console.log("TEXT EDITED");
-  // };
 
   return (
     <div className="overflow-auto fade-effect-quick">
@@ -127,7 +116,7 @@ const Dashboard = () => {
         </div>
       <div className="ml-14 dash-wrapper">
         <div className="w-[35em]">
-       <IdeaSideBar />
+       {/* <IdeaSideBar /> */}
        </div>
         {/* <divv className="note-wrapper">
           <div className="dash-notes">

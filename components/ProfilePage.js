@@ -12,6 +12,9 @@ function ProfilePage({ user }) {
   //THIS WHOLE PAGE needs cleaning with redux user @auth
   const userData = useUserData();
   const userRedux = useSelector((state) => state.userData);
+  const userPhotoRedux = useSelector((state) => state.userPhoto);
+  const userNameRedux = useSelector((state) => state.userName);
+
   const dispatch = useDispatch();
 
   return (
@@ -19,19 +22,20 @@ function ProfilePage({ user }) {
       <h2 className="heading-top">Profile</h2>
       <div className="bg-white rounded-full profile-pic-page-holder">
         <img
-          src={user.photoURL || "/cryingpepe.png"}
-          className="card-img-center"
+          src={userPhotoRedux || "/profilefallback.png"}
+          className="rounded-full card-img-center"
           referrerPolicy="no-referrer"
+          alt=""
         />
       </div>
       <div>
-        <i className="italic text-blues-100">@{user.username || "username"}</i>
+        <i className="italic text-blues-100">@{userNameRedux || "username"}</i>
       </div>
       <div className="text-xl">
         {/* {userData.user !== null
           ? "Hello " + userData.user.displayName + "!"
           : "Hello"} */}
-        <h3>{user.displayName || "Anonymous User"} </h3>
+        {/* <h3>{user.displayName || "Anonymous User"} </h3> */}
         {/* <h3>{"Hello " + (user.displayName || 'Anonymous User') + "!"} </h3> */}
       </div>
       {/* <div>

@@ -31,6 +31,7 @@ import statsReducer from "./reducers/statsReducer";
 import userUidReducer from "./reducers/userUidReducer";
 import userPhotoReducer from "./reducers/userPhotoReducer";
 import userDisplayName from "./reducers/userDisplayName";
+import logOutReducer from "./reducers/logOutReducer";
 //OTHER REDUCERS GO HERE
 
 let devTools;
@@ -50,7 +51,7 @@ if (
 
 
 
-const rootReducer = combineReducers({
+const appReducer = combineReducers({
   counter: counterReducer,
   list: listReducer,
   listChanged: listChanged,
@@ -73,19 +74,32 @@ const rootReducer = combineReducers({
   editMode: editModeReducer,
   unsavedChanges: unsavedChangesReducer,
   stats: statsReducer,
-  userUid: userUidReducer,
+  userUID: userUidReducer,
   userPhoto: userPhotoReducer,
-  userDisplayName: userDisplayName
+  userDisplayName: userDisplayName,
+  logOut: logOutReducer,
   //other reducers go here
 });
 // console.log(rootReducer);
 
+
+const rootReducer = (state, action) => {
+  if (action.type === 'LOGOUT') {
+      // for all keys defined in your persistConfig(s)
+      storage.removeItem('persist:root')
+      // storage.removeItem('persist:otherKey')
+
+      return appReducer(undefined, action);
+  }
+  return appReducer(state, action);
+};
 
 const persistConfig = {
   key: 'root',
   storage: storage,
   stateReconciler: autoMergeLevel2 // see "Merge Process" section for details.
  };
+
 
  const pReducer = persistReducer(persistConfig, rootReducer);
 

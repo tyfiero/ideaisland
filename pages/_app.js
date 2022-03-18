@@ -37,6 +37,7 @@ function MyApp({ Component, pageProps }) {
 
   if (typeof window === "undefined") {
     // console.log("SERVER");
+
     return (
       <>
         <Header />

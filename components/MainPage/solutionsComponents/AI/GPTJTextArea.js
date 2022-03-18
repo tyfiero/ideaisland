@@ -19,7 +19,9 @@ function GPTJTextArea({ q, ph }) {
 
   // let identifier = "gpt3InputLS";
   useEffect(() => {
-    localGPTJPrompt = localStorage.getItem("gptJInputLS");
+    //FIX THIS if side effects of no localStorage @Auth
+
+    // localGPTJPrompt = localStorage.getItem("gptJInputLS");
   }, []);
 
   //state
@@ -44,8 +46,9 @@ function GPTJTextArea({ q, ph }) {
       dispatch(gptJInputAction(event.target.value));
 
       //   sendDataToParent(textContent);
+    //FIX THIS if side effects of no localStorage @Auth
 
-      localStorage.setItem("gptJInputLS", gptJInputRedux);
+      // localStorage.setItem("gptJInputLS", gptJInputRedux);
     }, longDelay);
 
     setTimeout(function () {
@@ -54,7 +57,9 @@ function GPTJTextArea({ q, ph }) {
       //   dispatch(noteAction(event.target.value));
       setTextContent(event.target.value);
       dispatch(gptJInputAction(event.target.value));
-      localStorage.setItem("gptJInputLS", gptJInputRedux);
+    //FIX THIS if side effects of no localStorage @Auth
+
+      // localStorage.setItem("gptJInputLS", gptJInputRedux);
       // setCharLength(gpt3InputRedux.length);
 
       // setTimeToSend(true);

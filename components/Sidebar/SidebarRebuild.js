@@ -22,29 +22,29 @@ const Sidebar2 = (props) => {
   const { user, username } = useContext(UserContext);
 
   const [selected, setSelected] = useState(0);
-  const [usernameSlug, setUsernameSlug] = useState("");
+  // const [usernameSlug, setUsernameSlug] = useState("");
   const userData = useUserData();
   const userRedux = useSelector((state) => state.userData);
   const userNameRedux = useSelector((state) => state.userName);
   const loggedIn = useSelector((state) => state.loggedIn);
 
-  useEffect(() => {
-    //WOW this needs cleaning too. @auth
+  // useEffect(() => {
+  //   //I fixed it, this code can be deleted i think
 
-    if (userRedux) {
-      setUsernameSlug(userNameRedux);
-      console.log(usernameSlug + "redux");
-      console.log(userRedux);
+  //   if (userRedux) {
+  //     setUsernameSlug(userNameRedux);
+  //     console.log(usernameSlug + "redux");
+  //     console.log(userRedux);
 
-      return usernameSlug;
-    } else if (username) {
-      setUsernameSlug(username);
-      console.log(usernameSlug + "username context");
-      return usernameSlug;
-    } else {
-      console.log("Dammit");
-    }
-  }, []);
+  //     return usernameSlug;
+  //   } else if (username) {
+  //     setUsernameSlug(username);
+  //     console.log(usernameSlug + "username context");
+  //     return usernameSlug;
+  //   } else {
+  //     console.log("Dammit");
+  //   }
+  // }, []);
 
   let clickStyle = {
     color: "#fbf0ff",
@@ -69,12 +69,11 @@ const Sidebar2 = (props) => {
           </div>
         </a>
       </Link>
-      {/* <Link href={"user/" + (usernameSlug || "priceart") + "/notes"}> */}
-      {/* Fix all of these dynamic links to be less buggy please @auth */}
+
       {/* <Link href={loggedIn ?  `user/${userNameRedux}/notes` :  "/login"}>
        */}
      {/* <Link href={`user/${userNameRedux || null}/notes`}> */}
-     <Link href={`user/${userNameRedux}/notes`} passHref>
+     <Link href={`/notes`} passHref>
 
       
         <a>

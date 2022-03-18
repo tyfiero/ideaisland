@@ -61,7 +61,6 @@ function Editor() {
     // console.log("UE START");
 
     if (currentDocRedux) {
-    //idk what to do with this @auth
     } else {
       // setEditDocDetails(details);
       dispatch(editModeAction("new"));
@@ -145,7 +144,7 @@ function CreateNewIdea() {
   // console.log(serverTimestamp());
   useEffect(() => {
     return () => {
-      console.log("Here, you can add clean up code - componentWillUnmount");
+      // console.log("Here, you can add clean up code - componentWillUnmount");
 
       if (unsavedChangesRedux) {
         if (editModeRedux === "edit") {

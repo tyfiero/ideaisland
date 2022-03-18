@@ -1,7 +1,12 @@
 const userUidReducer = (state = null, action) => {
   switch (action.type) {
     case "UID_Redux":
-      return action.payload;
+      if(action.payload){
+        return action.payload;
+
+      }else{
+        return null;
+      }
 
     default:
       return state;

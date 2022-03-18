@@ -9,7 +9,7 @@ import NotePopUp from "../MainPage/NoteBubble/NotePopUp";
 import NotePopUpModal from "../MainPage/NoteBubble/NotePopUpModal";
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { logIn, userDataRedux } from "../../redux/actions";
+// import { logIn, userDataRedux } from "../../redux/actions";
 import { useUserData } from "../../lib/hooks";
 // import firebase from "firebase/compat";
 import { auth } from "../../lib/firebase";
@@ -21,6 +21,7 @@ import {
   userPhotoAction,
   userDisplayNameAction,
   userUIDAction,
+  logIn,
 } from "../../redux/actions";
 // import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import CircleTimer from "./Timer";
@@ -55,7 +56,7 @@ export default function Layout({ children }) {
   // console.log(userData)
 
   // useEffect(() => {
-  //   //Dear GOD please clean this code up. Im getting anxiety just looking at it @auth. UPDATE: I dont think  I need any of this code now that persistence is inplace. This was my shitty workaround to redux persist.
+  //   //Dear GOD please clean this code up. Im getting anxiety just looking at it @auth. UPDATE: I dont think  I need any of this code now that persistence is in place. This was my shitty workaround to redux persist.
   //   // console.log(userRedux);
   //   // console.log("TOP useEffect");
 
@@ -101,29 +102,39 @@ export default function Layout({ children }) {
 
     // console.time("redux")
 
-    //UPDATE: I think I cleaned it up. Time to test it a bunch. Aaaaaaaaand clean up this one too please @auth... 
+    //UPDATE: I think I cleaned it up. Time to test it a bunch.  @auth...
 
     if (userData.user !== null) {
 
-      if (userUIDRedux === null) {
-        dispatch(userUIDAction(userData.user.uid));
-      }
-      if (userPhotoRedux === null) {
-        dispatch(userPhotoAction(userData.user.photoUrl));
-      }
-      if (userDisplayNameRedux === null) {
-        dispatch(userDisplayNameAction(userData.user.displayName));
-      }
-      if (userNameRedux === null) {
-      dispatch(userNameAction(userData.username));
+      setTimeout(()=>{
 
-      }
-
+        if (userUIDRedux === null) {
+          console.log("LAYOUT IS SETTING USER REDUX VALUES")
+          dispatch(userUIDAction(userData.user.uid));
+        }
+        if (userPhotoRedux === null) {
+          console.log("LAYOUT IS SETTING USER REDUX VALUES")
+  
+          dispatch(userPhotoAction(userData.user.photoURL));
+        }
+        if (userDisplayNameRedux === null) {
+          console.log("LAYOUT IS SETTING USER REDUX VALUES")
+  
+          dispatch(userDisplayNameAction(userData.user.displayName));
+        }
+        if (userNameRedux === null) {
+          console.log("LAYOUT IS SETTING USER REDUX VALUES")
+  
+          dispatch(userNameAction(userData.username));
+        }
+  
+      },[2000])
+      
       // if (!loggedIn) {
       //   // dispatch(logIn(true));
       // }
     } else {
-      console.log("Somehow userData (useContext) === null  ???????")
+      console.log("Somehow userData (useContext) === null  ???????");
       // if (localStorage.getItem("userLocal") !== null) {
       //   user = localStorage.getItem("userLocal");
 

@@ -8,7 +8,7 @@ import Link from "next/link";
 // import useStore from "../StateManagement";
 // import { auth, googleAuthProvider } from "../../OLD/oldComponents/firebase-init";
 import { FaEnvelope, FaChevronLeft } from "react-icons/fa";
-import { UserContext } from "../../lib/context";
+// import { UserContext } from "../../lib/context";
 // import { auth, googleAuthProvider } from "../../lib/firebase";
 // import { useContext } from 'react';
 // import { UserContext } from '../../lib/context';
@@ -28,8 +28,7 @@ export default function LoginPage() {
 
   const dispatch = useDispatch();
 
-  //Do i need these useContexts anymore? If not, delete them all! @auth
-  const { user, username } = useContext(UserContext);
+  // const { user, username } = useContext(UserContext);
 
   const rememberMeRef = useRef();
   const router = useRouter();
@@ -43,11 +42,11 @@ export default function LoginPage() {
 
 
 
-//Add logic to check to see if they have a username or not @auth
+//TEST Add logic to check to see if they have a username or not @auth UPDATE: I figured out how to delete persisted data, I have it defaulting to send them to the username page now. TEST IT
 
-//Also add logic to clear persited redux data if they sign in as a new account. Maybe just add it to logout button? @auth
 
-//ALSO its not navigating to the dashboard after sign in
+
+
 
   
   let emailButton = () => {
@@ -66,7 +65,7 @@ export default function LoginPage() {
 
       try {
         await signInWithPopup(auth, googleAuthProvider).then((result) => {
-          console.log(result)
+          console.log(result.user.photoURL)
           // console.log(result.user);
           // localStorage.setItem("userLocal", JSON.stringify(result.user));
           // dispatch(userNameRedux(username));

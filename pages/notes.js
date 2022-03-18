@@ -1,8 +1,8 @@
-import IdeaSideBar from "../../../components/Notes/IdeaSideBar";
+import IdeaSideBar from "../components/Notes/IdeaSideBar";
 import { useRouter } from "next/router";
-import IdeaFeed from "../../../components/Notes/IdeaFeed";
-import AuthCheck from "../../../components/Authentication/AuthCheck";
-import Editor from "../../../components/Notes/Editor";
+import IdeaFeed from "../components/Notes/IdeaFeed";
+import AuthCheck from "../components/Authentication/AuthCheck";
+import Editor from "../components/Notes/Editor";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 

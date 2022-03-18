@@ -1,5 +1,6 @@
-import { auth, firestore, googleAuthProvider } from "../../lib/firebase";
+// import { auth, firestore, googleAuthProvider } from "../../lib/firebase";
 import { UserContext } from "../../lib/context";
+import { doc, writeBatch, getDoc, getFirestore } from 'firebase/firestore';
 
 import { useEffect, useState, useCallback, useContext } from "react";
 import debounce from "lodash.debounce";
@@ -22,22 +23,18 @@ export default function UsernameForm(props) {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    // Create refs for both documents
-    const userDoc = firestore.doc(`users/${user.uid}`);
-    const usernameDoc = firestore.doc(`usernames/${formValue}`);
+ // Create refs for both documents
+    const userDoc = doc(getFirestore(), 'users', user.uid);
+    const usernameDoc = doc(getFirestore(), 'usernames', formValue);
 
     // Commit both docs together as a batch write.
-    const batch = firestore.batch();
-    batch.set(userDoc, {
-      username: formValue,
-      photoURL: user.photoURL,
-      displayName: user.displayName,
-    });
+    const batch = writeBatch(getFirestore());
+    batch.set(userDoc, { username: formValue, photoURL: user.photoURL, displayName: user.displayName });
     batch.set(usernameDoc, { uid: user.uid });
 
 
 
-    //MAKE SURE THIS ONE WORKS @auth
+
     dispatch(userNameAction(formValue));
 
     await batch.commit();
@@ -74,10 +71,12 @@ export default function UsernameForm(props) {
   const checkUsername = useCallback(
     debounce(async (username) => {
       if (username.length >= 3) {
-        const ref = firestore.doc(`usernames/${username}`);
-        const { exists } = await ref.get();
+        const ref = doc(getFirestore(), 'usernames', username);
+        
+        const snap = await getDoc(ref);
+
         console.log("Firestore read executed!");
-        setIsValid(!exists);
+        setIsValid(!snap.exists());
         setLoading(false);
       }
     }, 500),
@@ -127,7 +126,7 @@ export default function UsernameForm(props) {
   let hasUsernameAlready = (
     <>
       <h3 className="mt-1 text-3xl font-extrabold text-center text-gray-900">
-        Welcome back {username}!! 😄
+        Welcome {username}!! 😄
       </h3>
 
       <Link href="/">

@@ -4,6 +4,12 @@ export const logIn = (boolean) => {
     payload: boolean,
   };
 };
+export const logOutAction = (boolean) => {
+  return {
+    type: "LOGOUT",
+    payload: boolean,
+  };
+};
 export const userUIDAction = (data) => {
   return {
     type: "UID_Redux",

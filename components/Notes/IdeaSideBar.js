@@ -165,6 +165,7 @@ export default function IdeaSideBar() {
 function IdeasList() {
   const statsRedux = useSelector((state) => state.stats);
   const dispatch = useDispatch()
+  const userUIDRedux = useSelector((state) => state.userUID);
 
   
   // const ref = firestore
@@ -176,18 +177,20 @@ function IdeasList() {
 
   // const ideas = querySnapshot?.docs.map((doc) => doc.data());
 
-  //THIS MUST BE EDITED WHEN THE PERSISTENCE IS FIXED priceart cant stay!!! @auth
-  let uid;
-  if (auth.currentUser) {
-    uid = auth.currentUser.uid;
-    console.log("it actually worked");
+  //Done? idk. that was traumatic. Make sure it still works.THIS MUST BE EDITED WHEN THE PERSISTENCE IS FIXED priceart cant stay!!!  TODO
+  // console.log(userUIDRedux)
+  // let uid;
+  // if (userUIDRedux) {
+  //   uid = userUIDRedux;
+  //   console.log("it actually worked");
 
-  } else {
-    uid = "WoKVte3Fpae3Zqp1KAlcJEpO09j1";
-    console.log("it fucked up");
-  }
+  // } else {
+  //   uid = null;
+  //   console.log("it fucked up");
+  // }
+
   // console.log(auth.currentUser);
-  const ref = collection(getFirestore(), "users", uid, "ideas");
+  const ref = collection(getFirestore(), "users", userUIDRedux, "ideas");
   const postQuery = query(ref, orderBy("createdAt", "desc"));
 
   const [querySnapshot] = useCollection(postQuery);

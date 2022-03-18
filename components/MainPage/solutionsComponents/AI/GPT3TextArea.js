@@ -18,7 +18,12 @@ function GPT3TextArea({ q, ph }) {
 
   // let identifier = "gpt3InputLS";
   useEffect(() => {
-    localGPT3Prompt = localStorage.getItem("gpt3InputLS");
+
+
+    //FIX THIS if side effects of no localStorage @Auth TODO Refactor this to not have this overly complicated text area
+
+    
+    // localGPT3Prompt = localStorage.getItem("gpt3InputLS");
   }, []);
 
   //state
@@ -43,8 +48,9 @@ function GPT3TextArea({ q, ph }) {
       dispatch(gpt3InputAction(event.target.value));
 
       //   sendDataToParent(textContent);
+    //FIX THIS if side effects of no localStorage @Auth
 
-      localStorage.setItem("gpt3InputLS", gpt3InputRedux);
+      // localStorage.setItem("gpt3InputLS", gpt3InputRedux);
     }, longDelay);
 
     setTimeout(function () {
@@ -53,7 +59,9 @@ function GPT3TextArea({ q, ph }) {
       //   dispatch(noteAction(event.target.value));
       setTextContent(event.target.value);
       dispatch(gpt3InputAction(event.target.value));
-      localStorage.setItem("gpt3InputLS", gpt3InputRedux);
+    //FIX THIS if side effects of no localStorage @Auth
+
+      // localStorage.setItem("gpt3InputLS", gpt3InputRedux);
       // setCharLength(gpt3InputRedux.length);
 
       // setTimeToSend(true);

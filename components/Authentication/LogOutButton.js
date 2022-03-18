@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
-import { logIn } from "../../redux/actions";
+import { logIn, logOutAction } from "../../redux/actions";
 import { auth } from "../../lib/firebase";
 
 function LogOutButton() {
@@ -19,14 +19,14 @@ function LogOutButton() {
                 .then(() => {
                   console.log("Sign out successful");
                   dispatch(logIn(false));
-                  localStorage.removeItem("userLocal");
+                  dispatch(logOutAction(true));
+
+                //   localStorage.removeItem("persist:root");
                 })
                 .catch((error) => {
                   console.log(error);
                 });
 
-              //REMOVE redux persist local storage on signout! @auth
-              //   localStorage.clear();
             }}
           >
             Sign out

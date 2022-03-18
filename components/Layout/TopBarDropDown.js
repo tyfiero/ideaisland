@@ -60,7 +60,7 @@ export default function TopBarDropDown() {
         <div className="menu">
           {/* <Link href={`/${user.username}`}> */}
           {/* <Link href="/user/priceart" passHref> */}
-          {/* ensure that these link routes are consistent and not buggy @auth */}
+         
           <Link href={`user/${userNameRedux}/`} passHref>
             {/* <a> */}
             <DropdownItem leftIcon={<FaUserAlt className="text-t-bl" />}>
@@ -69,7 +69,7 @@ export default function TopBarDropDown() {
             {/* </a> */}
           </Link>
           {/* <Link href="/user/priceart/settings" passHref> */}
-          <Link href={`user/${userNameRedux}/settings`} passHref>
+          <Link href={`/settings`} passHref>
             <DropdownItem
               leftIcon={<FaCog className="text-t-bd" />}
               //   goToMenu="settings"
@@ -79,7 +79,7 @@ export default function TopBarDropDown() {
           </Link>
 
           {/* <Link href="/user/priceart/notes" passHref> */}
-          <Link href={`user/${userNameRedux}/notes`} passHref>
+          <Link href={`/notes`} passHref>
             <DropdownItem
               leftIcon={<FaBook className="text-t-pd" />}
               //   goToMenu="settings"

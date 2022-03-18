@@ -1,5 +1,5 @@
-import DarkModeToggle from "../../../components/Layout/DarkModeToggle";
-import AuthCheck from "../../../components/Authentication/AuthCheck";
+import DarkModeToggle from "../components/Layout/DarkModeToggle";
+import AuthCheck from "../components/Authentication/AuthCheck";
 
 const settings = () => {
 

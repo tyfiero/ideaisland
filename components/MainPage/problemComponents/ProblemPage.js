@@ -28,14 +28,14 @@ const ProblemPage = () => {
 
     if (questionNum === 1) {
       setQ1(content);
-      localStorage.setItem("pq1", content);
+      // localStorage.setItem("pq1", content);
     }
   };
 
   const saveHandler = () => {
     setTimeout(function () {
       console.log(q1 + "q1");
-      localStorage.setItem("pq1", q1);
+      // localStorage.setItem("pq1", q1);
 
       setIsSaved(true);
       //   console.log(event.target.value + " LONG");
