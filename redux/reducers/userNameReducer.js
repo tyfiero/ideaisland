@@ -1,4 +1,4 @@
-const userNameReducer = (state = null, action) => {
+const userNameReducer = (state = "", action) => {
     switch (action.type) {
       case "USERNAME_REDUX":
         if(action.payload){

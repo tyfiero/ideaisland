@@ -33,7 +33,7 @@ export default function TopBarDropDown() {
   const DropdownItem = React.forwardRef(
     ({ onClick, href, leftIcon, rightIcon, goToMenu, children }, ref) => {
       return (
-        <a
+        <div
           href={href}
           className="menu-item"
           onClick={() => goToMenu && setActiveMenu(goToMenu)}
@@ -41,7 +41,7 @@ export default function TopBarDropDown() {
           <span className="icon-button">{leftIcon}</span>
           {children}
           <span className="icon-right">{rightIcon}</span>
-        </a>
+        </div>
       );
     }
   );
@@ -80,12 +80,16 @@ export default function TopBarDropDown() {
 
           {/* <Link href="/user/priceart/notes" passHref> */}
           <Link href={`/notes`} passHref>
+          <a>
+            <div>
             <DropdownItem
               leftIcon={<FaBook className="text-t-pd" />}
               //   goToMenu="settings"
             >
               Ideas + Notes
             </DropdownItem>
+            </div>
+            </a>
           </Link>
 
           <div className="flex flex-col items-center pt-5">

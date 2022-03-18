@@ -106,7 +106,7 @@ export default function Layout({ children }) {
 
     if (userData.user !== null) {
 
-      setTimeout(()=>{
+      // setTimeout(()=>{
 
         if (userUIDRedux === null) {
           console.log("LAYOUT IS SETTING USER REDUX VALUES")
@@ -128,7 +128,7 @@ export default function Layout({ children }) {
           dispatch(userNameAction(userData.username));
         }
   
-      },[2000])
+      // },[2000])
       
       // if (!loggedIn) {
       //   // dispatch(logIn(true));

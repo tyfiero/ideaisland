@@ -33,15 +33,14 @@ import {
 export default function IdeaSideBar() {
   const [currentNote, setCurrentNote] = useState("ideas");
   const editModeRedux = useSelector((state) => state.editMode);
-  const dispatch = useDispatch()
-  // dispatch(editModeAction("new")) 
+  const dispatch = useDispatch();
+  // dispatch(editModeAction("new"))
 
   return (
     <div className="normal-box-soft fade-effect-quick flex flex-col items-center !h-[80vh] overflow-y-auto overflow-x-hidden !rounded-2xl">
-       {currentNote === "ideas" && (
+      {currentNote === "ideas" && (
         <>
           <h1 className="heading-top">Ideas</h1>
-      
         </>
       )}
       {currentNote === "problems" && (
@@ -52,7 +51,6 @@ export default function IdeaSideBar() {
       {currentNote === "notes" && (
         <>
           <h1 className="heading-top">Notes</h1>
-
         </>
       )}
       <div className="flex w-[20em] h-[3.5em] items-center justify-evenly text-center normal-box-soft">
@@ -70,9 +68,8 @@ export default function IdeaSideBar() {
           }
           onClick={() => setCurrentNote("ideas")}
         >
-        
-            <FaLightbulb className="text-[18px] text-t-bd" />
-     
+          <FaLightbulb className="text-[18px] text-t-bd" />
+
           <p
             className={
               "mr-1  " +
@@ -91,9 +88,8 @@ export default function IdeaSideBar() {
           }
           onClick={() => setCurrentNote("problems")}
         >
-        
-            <FaExclamationTriangle className="text-[18px] text-t-bd" />
-    
+          <FaExclamationTriangle className="text-[18px] text-t-bd" />
+
           <p
             className={
               "mr-1  " +
@@ -112,9 +108,8 @@ export default function IdeaSideBar() {
           }
           onClick={() => setCurrentNote("notes")}
         >
-         
-            <FaStickyNote className="text-[18px] text-t-bd" />
-     
+          <FaStickyNote className="text-[18px] text-t-bd" />
+
           <p
             className={
               "mr-1  " +
@@ -128,17 +123,17 @@ export default function IdeaSideBar() {
         </button>
       </div>
       <button
-            // type="submit"
-            // disabled={!isValid}
-            onClick={() => {
-              dispatch(editModeAction("new"))
-              // dispatch(currentDocAction(idea.identifier))
-            }}
-            className=" w-[12em] h-[2em] mt-2 rounded-3xl bg-t-bl flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer "
-          >
-            <FaPlus className="text-[20px]" />
-            Create New Idea
-          </button>
+        // type="submit"
+        // disabled={!isValid}
+        onClick={() => {
+          dispatch(editModeAction("new"));
+          // dispatch(currentDocAction(idea.identifier))
+        }}
+        className=" w-[12em] h-[2em] mt-2 rounded-3xl bg-t-bl flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer "
+      >
+        <FaPlus className="text-[20px]" />
+        Create New Idea
+      </button>
       {currentNote === "ideas" && (
         <>
           <IdeasList />
@@ -154,7 +149,6 @@ export default function IdeaSideBar() {
         <>
           {/* <h1 className="heading-top">Notes</h1> */}
           <p>No notes to display</p>
-
         </>
       )}
     </div>
@@ -164,10 +158,9 @@ export default function IdeaSideBar() {
 
 function IdeasList() {
   const statsRedux = useSelector((state) => state.stats);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const userUIDRedux = useSelector((state) => state.userUID);
 
-  
   // const ref = firestore
   //   .collection("users")
   //   .doc(auth.currentUser.uid)
@@ -178,29 +171,25 @@ function IdeasList() {
   // const ideas = querySnapshot?.docs.map((doc) => doc.data());
 
   //Done? idk. that was traumatic. Make sure it still works.THIS MUST BE EDITED WHEN THE PERSISTENCE IS FIXED priceart cant stay!!!  TODO
-  // console.log(userUIDRedux)
-  // let uid;
-  // if (userUIDRedux) {
-  //   uid = userUIDRedux;
-  //   console.log("it actually worked");
-
-  // } else {
-  //   uid = null;
-  //   console.log("it fucked up");
-  // }
+  console.log(userUIDRedux);
+  let uid;
+  if (userUIDRedux) {
+    uid = userUIDRedux;
+    console.log("it actually worked");
+  } else if (auth.currentUser?.uid) {
+    uid = auth.currentUser.uid;
+  }else{
+    uid = null;
+    console.log("it fucked up");
+  }
 
   // console.log(auth.currentUser);
-  const ref = collection(getFirestore(), "users", userUIDRedux, "ideas");
+  const ref = collection(getFirestore(), "users", uid, "ideas");
   const postQuery = query(ref, orderBy("createdAt", "desc"));
 
   const [querySnapshot] = useCollection(postQuery);
 
-
   const ideas = querySnapshot?.docs.map((doc) => doc.data());
-  // console.log(ideas.length);
-
-
-  
 
   return (
     <>
@@ -222,7 +211,7 @@ function IdeasList() {
 //   // Validate length
 //   const isValid = title.length > 3 && title.length < 100;
 
-  // Create a new post in firestore
+// Create a new post in firestore
 //   const createIdea = async (e) => {
 //     e.preventDefault();
 //     const uid = auth.currentUser.uid;

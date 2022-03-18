@@ -68,7 +68,7 @@ function MyApp({ Component, pageProps }) {
       <Header />
 
       <Provider store={store}>
-        <PersistGate loading={<FullLoader />} persistor={persistor}>
+        <PersistGate loading={(<FullLoader from="persist"/>)} persistor={persistor}>
           <UserContext.Provider value={userData}>
             <Layout>
               <FullLoader show={loading} />
