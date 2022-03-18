@@ -60,7 +60,7 @@ export default function TopBarDropDown() {
         <div className="menu">
           {/* <Link href={`/${user.username}`}> */}
           {/* <Link href="/user/priceart" passHref> */}
-         
+
           <Link href={`user/${userNameRedux}/`} passHref>
             {/* <a> */}
             <DropdownItem leftIcon={<FaUserAlt className="text-t-bl" />}>
@@ -80,15 +80,15 @@ export default function TopBarDropDown() {
 
           {/* <Link href="/user/priceart/notes" passHref> */}
           <Link href={`/notes`} passHref>
-          <a>
-            <div>
-            <DropdownItem
-              leftIcon={<FaBook className="text-t-pd" />}
-              //   goToMenu="settings"
-            >
-              Ideas + Notes
-            </DropdownItem>
-            </div>
+            <a>
+              <div>
+                <DropdownItem
+                  leftIcon={<FaBook className="text-t-pd" />}
+                  //   goToMenu="settings"
+                >
+                  Ideas + Notes
+                </DropdownItem>
+              </div>
             </a>
           </Link>
 
