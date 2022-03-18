@@ -35,7 +35,7 @@ export default function TopBarDropDown() {
       return (
         <div
           href={href}
-          className="menu-item"
+          className="cursor-pointer menu-item"
           onClick={() => goToMenu && setActiveMenu(goToMenu)}
         >
           <span className="icon-button">{leftIcon}</span>
@@ -62,20 +62,28 @@ export default function TopBarDropDown() {
           {/* <Link href="/user/priceart" passHref> */}
 
           <Link href={`user/${userNameRedux}/`} passHref>
+          <a>
+              <div>
             {/* <a> */}
             <DropdownItem leftIcon={<FaUserAlt className="text-t-bl" />}>
               My Profile
             </DropdownItem>
+            </div>
+            </a>
             {/* </a> */}
           </Link>
           {/* <Link href="/user/priceart/settings" passHref> */}
           <Link href={`/settings`} passHref>
+          <a>
+              <div>
             <DropdownItem
               leftIcon={<FaCog className="text-t-bd" />}
               //   goToMenu="settings"
             >
               Settings
             </DropdownItem>
+            </div>
+            </a>
           </Link>
 
           {/* <Link href="/user/priceart/notes" passHref> */}

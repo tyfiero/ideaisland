@@ -15,7 +15,7 @@ function DarkModeToggle() {
     dispatch(darkMode(!darkRedux));
 
     if (!darkRedux) {
-      body.setAttribute("style", "background-color: black");
+      body.setAttribute("style", "background-color: RGBA(30, 41, 59, 1)");
       blob.setAttribute("style", "opacity: 0.4");
     } else {
       body.setAttribute("style", "background-color: white");
