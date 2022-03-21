@@ -247,7 +247,7 @@ function CreateNewIdea() {
 
     if (unsavedChangesRedux) {
       e.preventDefault();
-
+ //Should I be using redux? Or auth.current user? If I do use redux, delete all instances of auth.currentUser @auth
       const uid = auth.currentUser.uid;
       const ref = doc(getFirestore(), "users", uid, "ideas", ideaID);
       await updateDoc(ref, {
@@ -279,13 +279,19 @@ function CreateNewIdea() {
   // Create a new post in firestore
   const createIdea = async (e) => {
     // toast.success("new");
+// console.log(e)
 
-    e.preventDefault() || null;
+//TODO Is this needed? preventdefault?
+//     e.preventDefault() ?? null;
+
+
+
+ //Should I be using redux? Or auth.current user? If I do use redux, delete all instances of auth.currentUser @auth
     const uid = auth.currentUser.uid;
     const d = Number(new Date());
     const timeID = d.valueOf().toString();
     // let timeIDNum = timeID.stringify()
-    console.log(timeID);
+    // console.log(timeID);
     // const ref = doc(getFirestore(), "users", uid, "ideas", timeID);
     const ref = doc(getFirestore(), "users", uid, "ideas", timeID);
     // id: (serverTimestamp.seconds + serverTimestamp.nanoseconds),

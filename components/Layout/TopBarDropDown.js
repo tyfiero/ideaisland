@@ -61,28 +61,28 @@ export default function TopBarDropDown() {
           {/* <Link href={`/${user.username}`}> */}
           {/* <Link href="/user/priceart" passHref> */}
 
-          <Link href={`user/${userNameRedux}/`} passHref>
-          <a>
+          <Link href={`/profile`} passHref>
+            <a>
               <div>
-            {/* <a> */}
-            <DropdownItem leftIcon={<FaUserAlt className="text-t-bl" />}>
-              My Profile
-            </DropdownItem>
-            </div>
+                {/* <a> */}
+                <DropdownItem leftIcon={<FaUserAlt className="text-t-bl" />}>
+                  My Profile
+                </DropdownItem>
+              </div>
             </a>
             {/* </a> */}
           </Link>
           {/* <Link href="/user/priceart/settings" passHref> */}
           <Link href={`/settings`} passHref>
-          <a>
+            <a>
               <div>
-            <DropdownItem
-              leftIcon={<FaCog className="text-t-bd" />}
-              //   goToMenu="settings"
-            >
-              Settings
-            </DropdownItem>
-            </div>
+                <DropdownItem
+                  leftIcon={<FaCog className="text-t-bd" />}
+                  //   goToMenu="settings"
+                >
+                  Settings
+                </DropdownItem>
+              </div>
             </a>
           </Link>
 

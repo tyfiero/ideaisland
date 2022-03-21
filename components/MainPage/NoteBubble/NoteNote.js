@@ -9,7 +9,7 @@ function NoteNote() {
       {/* <p>Title</p>
       <TextArea rows="1" ph="Idea Title" /> */}
       <p>Note</p>
-      <TextArea rows="10" ph="Notes" />
+      {/* <TextArea rows="10" ph="Notes" /> */}
 
      
     </div>

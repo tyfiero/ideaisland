@@ -54,7 +54,7 @@ function ProfilePage({ user }) {
         Upgrade to pro!
       </button>
 
-     <LogOutButton />
+      <LogOutButton />
     </div>
   );
 }

@@ -10,12 +10,30 @@ import {
   FaInfoCircle,
 } from "react-icons/fa";
 import toast from "react-hot-toast";
+
+import { useSelector, useDispatch } from "react-redux";
+import { pFormAction } from "../../../redux/actions";
+
 function PDetails(props) {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [titleContent, setTitleContent] = useState("");
+  const dispatch = useDispatch();
+  const pFormRedux = useSelector((state) => state.pForm);
 
   const update = (e) => {
-    props.update(e.target.name, e.target.value);
+    let updated = pFormRedux;
+    if (e.target.name === "title") {
+      updated.title = e.target.value;
+    } else if (e.target.name === "pq1") {
+      updated.pq1 = e.target.value;
+    } else if (e.target.name === "pq2") {
+      updated.pq2 = e.target.value;
+    } else if (e.target.name === "pq3") {
+      updated.pq3 = e.target.value;
+    }
+
+    dispatch(pFormAction(updated));
+    // props.update(e.target.name, e.target.value);
   };
 
   return (
@@ -27,51 +45,49 @@ function PDetails(props) {
       >
         <div className="w-full max-w-[42rem] p-10 space-y-8 shadow rounded-xl bg-blues-100 drop-shadow-xl container-style normal-box-soft">
           <div className="flex flex-col items-center justify-center problem-page fade-effect-quick">
-          <div className="absolute top-5 right-5">
-            <Popover
-              isOpen={isPopoverOpen}
-              containerStyle={{
-                zIndex: 100,
-                boxShadow: "5px 13px 28px 0px rgba(0,0,0,0.48)",
-                backgroundColor: "white",
-                borderRadius: "2em",
-              }}
-              onClickOutside={() => setIsPopoverOpen(false)}
-              positions={["bottom", "left", "right"]} // preferred positions by priority
-              content={({ position, childRect, popoverRect }) => (
-                <ArrowContainer
-                  position={position}
-                  childRect={childRect}
-                  popoverRect={popoverRect}
-                  arrowColor={"white"}
-                  arrowSize={10}
-                  arrowStyle={{ opacity: 1, top: "-6px" }}
-                  className="popover-arrow-container"
-                  arrowClassName="popover-arrow"
-                >
-                  <div
-                    className="!opacity-100 bg-white w-[25em] rounded-xl p-3"
-                    onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+            <div className="absolute top-5 right-5">
+              <Popover
+                isOpen={isPopoverOpen}
+                containerStyle={{
+                  zIndex: 100,
+                  boxShadow: "5px 13px 28px 0px rgba(0,0,0,0.48)",
+                  backgroundColor: "white",
+                  borderRadius: "2em",
+                }}
+                onClickOutside={() => setIsPopoverOpen(false)}
+                positions={["bottom", "left", "right"]} // preferred positions by priority
+                content={({ position, childRect, popoverRect }) => (
+                  <ArrowContainer
+                    position={position}
+                    childRect={childRect}
+                    popoverRect={popoverRect}
+                    arrowColor={"white"}
+                    arrowSize={10}
+                    arrowStyle={{ opacity: 1, top: "-6px" }}
+                    className="popover-arrow-container"
+                    arrowClassName="popover-arrow"
                   >
-                    Finding the root cause of your problem helps to clarify what you're actually trying to solve. 
-                  </div>
-                </ArrowContainer>
-              )}
-            >
-              
-              <div
-                onClick={() => setIsPopoverOpen(!isPopoverOpen)}
-                className="w-5"
+                    <div
+                      className="!opacity-100 bg-white w-[25em] rounded-xl p-3"
+                      onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+                    >
+                      Finding the root cause of your problem helps to clarify
+                      what you're actually trying to solve.
+                    </div>
+                  </ArrowContainer>
+                )}
               >
-                <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 md:hover:scale-110" />
-              </div>
-            </Popover>
-          </div>
+                <div
+                  onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+                  className="w-5"
+                >
+                  <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 md:hover:scale-110" />
+                </div>
+              </Popover>
+            </div>
             <h1 className="heading-top">Problem</h1>
             <div className="normal-box-soft">
-              <h3 className="heading">
-                Time to find your problem
-              </h3>
+              <h3 className="heading">Time to find your problem</h3>
             </div>
 
             {/* <div className='flex gap-5'>
@@ -117,30 +133,38 @@ function PDetails(props) {
 
                 </div>
               </div> */}
-              <p>What problem are you trying to solve? What frustrates or annoys your users?</p>
+              <p>
+                What problem are you trying to solve? What frustrates or annoys
+                your users?
+              </p>
 
               <textarea
                 // type="text"
                 className="textarea-box h-[5em] whitespace-normal"
-                name="details"
+                name="pq1"
                 placeholder="..."
                 onChange={update}
               />
-              <p>Explain why this frustration/annoyance occurs? This is a potential cause</p>
-
-<textarea
-  // type="text"
-  className="textarea-box h-[5em] whitespace-normal"
-  name="details"
-  placeholder="..."
-  onChange={update}
-/>
-<p>Why does the potential cause occur? This is your root cause.</p>
+              <p>
+                Explain why this frustration/annoyance occurs? This is a
+                potential cause
+              </p>
 
               <textarea
                 // type="text"
                 className="textarea-box h-[5em] whitespace-normal"
-                name="details"
+                name="pq2"
+                placeholder="..."
+                onChange={update}
+              />
+              <p>
+                Why does the potential cause occur? This is your root cause.
+              </p>
+
+              <textarea
+                // type="text"
+                className="textarea-box h-[5em] whitespace-normal"
+                name="pq3"
                 placeholder="..."
                 onChange={update}
               />
@@ -148,7 +172,6 @@ function PDetails(props) {
                 *This note will be saved to your Idea Page for your review
                 later.
               </p>
-              
             </div>
             <div className="flex items-center justify-between w-full">
               <button

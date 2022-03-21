@@ -16,12 +16,12 @@ function SFilter(props) {
   const [button1, setButton1] = useState(false);
   const [button2, setButton2] = useState(false);
 
-  const update = (e) => {
-    props.update(e.target.name, e.target.value);
-  };
-  const updateButton = (e) => {
-    props.update("productType", e.target.value);
-  };
+  // const update = (e) => {
+  //   props.update(e.target.name, e.target.value);
+  // };
+  // const updateButton = (e) => {
+  //   props.update("productType", e.target.value);
+  // };
   return (
     <div>
       <div

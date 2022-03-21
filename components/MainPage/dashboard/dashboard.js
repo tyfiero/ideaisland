@@ -9,25 +9,22 @@ import PublicIdeaFeed from "../../PublicIdeaFeed";
 import PieChart from "./PieChart";
 import ChartIdeas from "./ChartIdeas";
 import IdeaSideBar from "../../Notes/IdeaSideBar";
-
-
-
+import statsAction from "../../../redux/actions";
+// import statsAction
 // export async function getServerSideProps(context) {
 //   return {
-//     props: {}, 
+//     props: {},
 //   }
 // }
-
 
 const Dashboard = () => {
   const notesRedux = useSelector((state) => state.notes);
   const statsRedux = useSelector((state) => state.stats);
+  const userNameRedux = useSelector((state) => state.userName);
 
-// console.log(auth.currentUser);
+  const dispatch = useDispatch();
 
-
-
-
+  // console.log(auth.currentUser);
 
   return (
     <div className="overflow-auto fade-effect-quick">
@@ -35,26 +32,26 @@ const Dashboard = () => {
         <h1 className="heading-top">Dashboard</h1>
       </div>
       <div className="stat-holder">
-          <div className="dash-stat">
-            <h2 className="heading">Ideas</h2>
-            <h2 className="text-[40px]">{statsRedux?.ideaNum || 10}</h2>
-          </div>
-          <div className="dash-stat">
-            <h2 className="heading">Evolved Ideas</h2>
-            <h2 className="text-[40px]">3</h2>
-          </div>
-          <div className="dash-stat">
-            <h2 className="heading">Problems</h2>
-            <h2 className="text-[40px]">2</h2>
-          </div>
-          <div className="dash-stat">
-            <h2 className="heading">Implementations</h2>
-            <h2 className="text-[40px]">10</h2>
-          </div>
-      
-          
+        {/* <button onClick={()=>{ dispatch(statsAction(5))}}>inc</button> */}
+        {/* <p>userName: {userNameRedux}</p> */}
+        <div className="dash-stat">
+          <h2 className="heading">Ideas</h2>
+          <h2 className="text-[40px]">{statsRedux?.ideaNum || 10}</h2>
         </div>
-        <div className="dash-graph-holder">
+        <div className="dash-stat">
+          <h2 className="heading">Evolved Ideas</h2>
+          <h2 className="text-[40px]">3</h2>
+        </div>
+        <div className="dash-stat">
+          <h2 className="heading">Problems</h2>
+          <h2 className="text-[40px]">2</h2>
+        </div>
+        <div className="dash-stat">
+          <h2 className="heading">Implementations</h2>
+          <h2 className="text-[40px]">10</h2>
+        </div>
+      </div>
+      <div className="dash-graph-holder">
         <div className="dash-graph">
           {/* <img className="w-[35em] rounded-xl drop-shadow-2xl shadow-2xl" src="./dummygraph.png" alt="graph" /> */}
           <ChartIdeas />
@@ -81,11 +78,8 @@ const Dashboard = () => {
             <h4 className="graph-stat-num">93%</h4>
           </div>
         </div>
-
-          
-        </div>
-        <div className="dash-graph-holder">
-       
+      </div>
+      <div className="dash-graph-holder">
         <div className="graph-stats-holder ml-[3em] mr-[6em]">
           <div className="graph-stat">
             <p>⭐⭐⭐⭐⭐</p>
@@ -109,15 +103,11 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="dash-graph">
-        <PieChart />
-          
+          <PieChart />
         </div>
-          
-        </div>
+      </div>
       <div className="ml-14 dash-wrapper">
-        <div className="w-[35em]">
-       {/* <IdeaSideBar /> */}
-       </div>
+        <div className="w-[35em]">{/* <IdeaSideBar /> */}</div>
         {/* <divv className="note-wrapper">
           <div className="dash-notes">
             <h1 className="heading">My Notes</h1>

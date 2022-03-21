@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
 import { Popover, ArrowContainer } from "react-tiny-popover";
+import { pFormAction } from "../../../redux/actions";
+import { useSelector, useDispatch } from "react-redux";
 
 import {
   FaLaptopCode,
@@ -14,13 +16,21 @@ function PWhat(props) {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [button1, setButton1] = useState(false);
   const [button2, setButton2] = useState(false);
-
+  const dispatch = useDispatch();
+  const pFormRedux = useSelector((state) => state.pForm);
   
   const update = (e) => {
-    props.update(e.target.name, e.target.value);
+    
+    let updated = pFormRedux;
+    updated.what = e.target.value;
+    dispatch(pFormAction(updated))
+    // props.update(e.target.name, e.target.value);
   };
   const updateButton = (e) => {
-    props.update("productType", e.target.value);
+    let updated = pFormRedux;
+    updated.productType = e.target.value;
+    dispatch(pFormAction(updated))
+    // props.update("productType", e.target.value);
   };
   return (
     <div>
@@ -104,7 +114,7 @@ function PWhat(props) {
               <textarea
                 // type="text"
                 className="textarea-box h-[10em] whitespace-normal"
-                name="what"
+                // name="what"
                 placeholder="What are you building?"
                 onChange={update}
               />

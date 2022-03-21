@@ -53,6 +53,18 @@ export const currentDocAction = (data) => {
     payload: data,
   };
 };
+export const sFormAction = (data) => {
+  return {
+    type: "sFORM_UPDATE",
+    payload: data,
+  };
+};
+export const pFormAction = (data) => {
+  return {
+    type: "pFORM_UPDATE",
+    payload: data,
+  };
+};
 export const statsAction = (data) => {
   return {
     type: "STATS_UPDATE",

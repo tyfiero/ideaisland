@@ -2,11 +2,21 @@ import React, { useState } from "react";
 
 import { Popover, ArrowContainer } from "react-tiny-popover";
 import { FaInfoCircle, FaLongArrowAltLeft, FaLongArrowAltRight } from "react-icons/fa";
+
+import { useSelector, useDispatch } from "react-redux";
+import { pFormAction } from "../../../redux/actions";
 // import { FaLaptopCode, FaShoppingBag } from "react-icons/fa";
 function PWho(props) {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const dispatch = useDispatch();
+  const pFormRedux = useSelector((state) => state.pForm);
+
   const update = (e) => {
-    props.update(e.target.name, e.target.value);
+
+    let updated = pFormRedux;
+    updated.who = e.target.value;
+    dispatch(pFormAction(updated))
+    // props.update(e.target.name, e.target.value);
   };
   return (
     <div>
@@ -73,7 +83,6 @@ function PWho(props) {
               <textarea
                 // type="text"
                 className="textarea-box h-[10em] whitespace-normal"
-                name="who"
                 placeholder="Who is your audience?"
                 onChange={update}
               />

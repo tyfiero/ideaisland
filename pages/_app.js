@@ -62,7 +62,7 @@ function MyApp({ Component, pageProps }) {
       </>
     );
   }
-
+// console.log("CLIENT")
   return (
     <>
       <Header />

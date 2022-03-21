@@ -15,9 +15,13 @@ import {
 } from "react-icons/fa";
 import Chip from "./CombinatorialComponents/chip";
 import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { sFormAction } from "../../../redux/actions";
+
 function SFeatures(props) {
   // console.log("Rerendered")
-
+  const dispatch = useDispatch();
+  const sFormRedux = useSelector((state) => state.pForm);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [showCommonFeatures, setShowCommonFeatures] = useState(false);
   const [button2, setButton2] = useState(false);
@@ -27,7 +31,7 @@ function SFeatures(props) {
   // const [changes, setChanges] = useState(false);
 
 
-  // console.log(props.form.form.Features);
+  // console.log(props.form.form);
   // console.log(featureString);
 
   // useEffect(() => {
@@ -39,20 +43,25 @@ function SFeatures(props) {
   // }, [props.form.form]);
 
   const updateArray = (data) => {
-    console.log(featureArray);
+    // console.log(featureArray);
 
+
+    //NOTE!! This is duplicated many times. If you want to change it, change all of them.
     let featureObject = {
       name: data,
-      importance: "Could Have",
+      importance: "...",
       feasibility: "test",
       cost: "test",
       version: "test",
       comments: "test",
     };
     featureArray.push(featureObject);
-    // console.log(featureArray);
+    console.log(featureArray);
+    let updated = sFormRedux;
+    updated.features = featureArray;
+    dispatch(sFormAction(updated))
 
-    props.update("Features", featureArray);
+    // props.update("Features", featureArray);
   };
   const deleteIndex = (data) => {
     // setChanges(true)
@@ -67,14 +76,16 @@ function SFeatures(props) {
         // setChanges(false)
       }
     }
-
-    props.update("Features", featureArray);
+    let updated = sFormRedux;
+    updated.features = featureArray;
+    dispatch(sFormAction(updated))
+    // props.update("Features", featureArray);
   };
   const updateButton = (e) => {
     // console.log(e);
     let featureObject = {
       name: e.target.value,
-      importance: "Could Have",
+      importance: "...",
       feasibility: "test",
       cost: "test",
       version: "test",
@@ -83,11 +94,13 @@ function SFeatures(props) {
     featureArray.push(featureObject);
     // featureArray.push(e.target.value);
     // console.log(featureArray);
-
-    props.update("Features", featureArray);
+    let updated = sFormRedux;
+    updated.features = featureArray;
+    dispatch(sFormAction(updated))
+    // props.update("Features", featureArray);
   };
 
-  console.log(featureString);
+  // console.log(featureString);
 
   // for (var i = 0; i < featureArray.length; i++){
   // // document.writeln((i+1) + ": " + array[i]);
@@ -224,7 +237,6 @@ function SFeatures(props) {
                       // changes={changes}
                         updateArray={updateArray}
                         deleteIndex={deleteIndex}
-                        formContent={props.form.form?.Features}
                         text="Sign-in with Email/Password"
                         value="Sign-in with Email/Password"
                         icon="plus"
@@ -235,7 +247,6 @@ function SFeatures(props) {
                       <Chip
                         updateArray={updateArray}
                         deleteIndex={deleteIndex}
-                        formContent={props.form.form?.Features}
                         text="Sign-in with Google/other 3rd party"
                         icon="plus"
                         color="bg-teal-100"
@@ -246,7 +257,6 @@ function SFeatures(props) {
                       <Chip
                         updateArray={updateArray}
                         deleteIndex={deleteIndex}
-                        formContent={props.form.form?.Features}
                         text="2-factor Auth"
                         icon="plus"
                         color="bg-teal-100"
@@ -261,7 +271,6 @@ function SFeatures(props) {
                       <Chip
                         updateArray={updateArray}
                         deleteIndex={deleteIndex}
-                        formContent={props.form.form?.Features}
                         text="Database"
                         icon="plus"
                         color="bg-yellow-100"
@@ -271,7 +280,6 @@ function SFeatures(props) {
                       <Chip
                         updateArray={updateArray}
                         deleteIndex={deleteIndex}
-                        formContent={props.form.form?.Features}
                         text="Import Data"
 
                         icon="plus"
@@ -283,7 +291,6 @@ function SFeatures(props) {
                       <Chip
                         updateArray={updateArray}
                         deleteIndex={deleteIndex}
-                        formContent={props.form.form?.Features}
                         text="Export data"
                         icon="plus"
                         color="bg-yellow-100"
@@ -298,7 +305,6 @@ function SFeatures(props) {
                       <Chip
                         updateArray={updateArray}
                         deleteIndex={deleteIndex}
-                        formContent={props.form.form?.Features}
                         text="Share to Social Media"
                         icon="plus"
                         color="bg-sky-100"
@@ -308,7 +314,6 @@ function SFeatures(props) {
                       <Chip
                         updateArray={updateArray}
                         deleteIndex={deleteIndex}
-                        formContent={props.form.form?.Features}
                         text="Realtime Collaboration"
                         icon="plus"
                         color="bg-sky-100"
@@ -319,12 +324,122 @@ function SFeatures(props) {
                       <Chip
                         updateArray={updateArray}
                         deleteIndex={deleteIndex}
-                        formContent={props.form.form?.Features}
                         text="File sharing"
                         icon="plus"
                         color="bg-sky-100"
                         bColor="border-sky-300"
                         iconColor="text-sky-500"
+                      />
+                       <Chip
+                        updateArray={updateArray}
+                        deleteIndex={deleteIndex}
+                        text="Comments"
+                        icon="plus"
+                        color="bg-sky-100"
+                        bColor="border-sky-300"
+                        iconColor="text-sky-500"
+                      />
+                       <Chip
+                        updateArray={updateArray}
+                        deleteIndex={deleteIndex}
+                        text="Liking/Hearting"
+                        icon="plus"
+                        color="bg-sky-100"
+                        bColor="border-sky-300"
+                        iconColor="text-sky-500"
+                      />
+                      <Chip
+                        updateArray={updateArray}
+                        deleteIndex={deleteIndex}
+                        text="Voting/Polling"
+                        icon="plus"
+                        color="bg-sky-100"
+                        bColor="border-sky-300"
+                        iconColor="text-sky-500"
+                      />
+                    </div>
+                  </div>
+                  <div className="flex flex-col items-start p-1 mt-2 border-2 border-pink-400 rounded-2xl">
+                    <p className="pl-3 m-0">Web3</p>
+                    <div className="flex flex-wrap gap-1">
+                    <Chip
+                        updateArray={updateArray}
+                        deleteIndex={deleteIndex}
+                        text="Crypto Payments"
+                        icon="plus"
+                        color="bg-pink-100"
+                        bColor="border-pink-300"
+                        iconColor="text-pink-500"
+                      />
+                      <Chip
+                        updateArray={updateArray}
+                        deleteIndex={deleteIndex}
+                        text="Wallet Integration"
+                        icon="plus"
+                        color="bg-pink-100"
+                        bColor="border-pink-300"
+                        iconColor="text-pink-500"
+                      />
+                      <Chip
+                        updateArray={updateArray}
+                        deleteIndex={deleteIndex}
+                        text="NFTs"
+                        icon="plus"
+                        color="bg-pink-100"
+                        bColor="border-pink-300"
+                        iconColor="text-pink-500"
+                      />
+
+                      <Chip
+                        updateArray={updateArray}
+                        deleteIndex={deleteIndex}
+                        text="Yield Farming"
+                        icon="plus"
+                        color="bg-pink-100"
+                        bColor="border-pink-300"
+                        iconColor="text-pink-500"
+                      />
+                       <Chip
+                        updateArray={updateArray}
+                        deleteIndex={deleteIndex}
+                        text="Blockchain node capabilities"
+                        icon="plus"
+                        color="bg-pink-100"
+                        bColor="border-pink-300"
+                        iconColor="text-pink-500"
+                      />
+                    </div>
+                  </div>
+                  <div className="flex flex-col items-start p-1 mt-2 border-2 border-orange-400 rounded-2xl">
+                    <p className="pl-3 m-0">Security</p>
+                    <div className="flex flex-wrap gap-1">
+                      <Chip
+                        updateArray={updateArray}
+                        deleteIndex={deleteIndex}
+                        text="Data Encryption"
+                        icon="plus"
+                        color="bg-orange-100"
+                        bColor="border-orange-300"
+                        iconColor="text-orange-500"
+                      />
+                      <Chip
+                        updateArray={updateArray}
+                        deleteIndex={deleteIndex}
+                        text="Cryptography"
+                        icon="plus"
+                        color="bg-orange-100"
+                        bColor="border-orange-300"
+                        iconColor="text-orange-500"
+                      />
+
+                      <Chip
+                        updateArray={updateArray}
+                        deleteIndex={deleteIndex}
+                        text="Biometrics"
+                        icon="plus"
+                        color="bg-orange-100"
+                        bColor="border-orange-300"
+                        iconColor="text-orange-500"
                       />
                     </div>
                   </div>
@@ -334,8 +449,7 @@ function SFeatures(props) {
                       <Chip
                         updateArray={updateArray}
                         deleteIndex={deleteIndex}
-                        formContent={props.form.form?.Features}
-                        text="Notes"
+                        text="Payment Processing"
                         icon="plus"
                         color="bg-violet-100"
                         bColor="border-violet-300"
@@ -344,8 +458,7 @@ function SFeatures(props) {
                       <Chip
                         updateArray={updateArray}
                         deleteIndex={deleteIndex}
-                        formContent={props.form.form?.Features}
-                        text="3rd party integrations"
+                        text="Computer vision"
                         icon="plus"
                         color="bg-violet-100"
                         bColor="border-violet-300"
@@ -355,8 +468,97 @@ function SFeatures(props) {
                       <Chip
                         updateArray={updateArray}
                         deleteIndex={deleteIndex}
-                        formContent={props.form.form?.Features}
+                        text="Ecommerce"
+                        icon="plus"
+                        color="bg-violet-100"
+                        bColor="border-violet-300"
+                        iconColor="text-violet-500"
+                      />
+                      <Chip
+                        updateArray={updateArray}
+                        deleteIndex={deleteIndex}
+                        text="Analytics"
+                        icon="plus"
+                        color="bg-violet-100"
+                        bColor="border-violet-300"
+                        iconColor="text-violet-500"
+                      />
+                      <Chip
+                        updateArray={updateArray}
+                        deleteIndex={deleteIndex}
+                        text="Timers"
+                        icon="plus"
+                        color="bg-violet-100"
+                        bColor="border-violet-300"
+                        iconColor="text-violet-500"
+                      />
+                      <Chip
+                        updateArray={updateArray}
+                        deleteIndex={deleteIndex}
+                        text="Notifications"
+                        icon="plus"
+                        color="bg-violet-100"
+                        bColor="border-violet-300"
+                        iconColor="text-violet-500"
+                      />
+                       <Chip
+                        updateArray={updateArray}
+                        deleteIndex={deleteIndex}
                         text="AI/ML"
+                        icon="plus"
+                        color="bg-violet-100"
+                        bColor="border-violet-300"
+                        iconColor="text-violet-500"
+                      />
+                       <Chip
+                        updateArray={updateArray}
+                        deleteIndex={deleteIndex}
+                        text="NLP"
+                        icon="plus"
+                        color="bg-violet-100"
+                        bColor="border-violet-300"
+                        iconColor="text-violet-500"
+                      />
+                       <Chip
+                        updateArray={updateArray}
+                        deleteIndex={deleteIndex}
+                        text="Static pages"
+                        icon="plus"
+                        color="bg-violet-100"
+                        bColor="border-violet-300"
+                        iconColor="text-violet-500"
+                      />
+                      <Chip
+                        updateArray={updateArray}
+                        deleteIndex={deleteIndex}
+                        text="Templates"
+                        icon="plus"
+                        color="bg-violet-100"
+                        bColor="border-violet-300"
+                        iconColor="text-violet-500"
+                      />
+                      <Chip
+                        updateArray={updateArray}
+                        deleteIndex={deleteIndex}
+                        text="Dark Mode"
+                        icon="plus"
+                        color="bg-violet-100"
+                        bColor="border-violet-300"
+                        iconColor="text-violet-500"
+                      />
+                      <Chip
+                        updateArray={updateArray}
+                        deleteIndex={deleteIndex}
+                        text="3D"
+                        icon="plus"
+                        color="bg-violet-100"
+                        bColor="border-violet-300"
+                        iconColor="text-violet-500"
+                      />
+                      <Chip
+                        updateArray={updateArray}
+                        deleteIndex={deleteIndex}
+                        text="Drag and drop"
                         icon="plus"
                         color="bg-violet-100"
                         bColor="border-violet-300"

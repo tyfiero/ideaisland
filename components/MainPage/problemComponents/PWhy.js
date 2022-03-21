@@ -12,20 +12,31 @@ import {
 } from "react-icons/fa";
 
 import { Popover, ArrowContainer } from "react-tiny-popover";
+import { useSelector, useDispatch } from "react-redux";
+import { pFormAction } from "../../../redux/actions";
 
 function PWhy(props) {
   // console.log(props.update)
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [button1, setButton1] = useState(false);
   const [button2, setButton2] = useState(false);
+  const dispatch = useDispatch();
+  const pFormRedux = useSelector((state) => state.pForm);
 
 
 
   const update = (e) => {
-    props.update(e.target.name, e.target.value);
+
+    let updated = pFormRedux;
+    updated.why = e.target.value;
+    dispatch(pFormAction(updated))
+    // props.update(e.target.name, e.target.value);
   };
   const updateButton = (e) => {
-    props.update("whyOptions", e.target.value);
+    let updated = pFormRedux;
+    updated.whyOptions = e.target.value;
+    dispatch(pFormAction(updated))
+    // props.update("whyOptions", e.target.value);
   };
 
   return (
@@ -125,7 +136,7 @@ function PWhy(props) {
               <textarea
                 // type="text"
                 className="textarea-box h-[10em] whitespace-normal"
-                name="why"
+                // name="why"
                 placeholder="Enter your why..."
                 onChange={update}
               />

@@ -33,25 +33,33 @@ import {
   FaChevronRight,
   FaRedo,
 } from "react-icons/fa";
+import { useSelector, useDispatch } from "react-redux";
+
 function ProblemWizard() {
   const { username } = useContext(UserContext);
+  const pFormRedux = useSelector((state) => state.pForm);
+  const dispatch = useDispatch();
 
-  const [formContent, setFormContent] = useState({ form: {} });
-  const updateForm = (key, value) => {
-    const { form } = formContent;
+  // const [formContent, setFormContent] = useState({ form: {} });
+  // console.log(formContent)
 
-    form[key] = value;
-    setFormContent({
-      ...formContent,
-      form,
-    });
-    // console.log(form.details)
-  };
 
-  console.log(formContent);
+  
+  // const updateForm = (key, value) => {
+  //   const { form } = formContent;
+
+  //   form[key] = value;
+  //   setFormContent({
+  //     ...formContent,
+  //     form,
+  //   });
+  //   // console.log(form.details)
+  // };
+
+  // console.log(formContent);
   // Create a new post in firestore
   const saveProblemForm = async (e) => {
-    e.preventDefault() || null;
+    e?.preventDefault() || null;
     const uid = auth.currentUser.uid;
 
     const ref = doc(
@@ -59,20 +67,20 @@ function ProblemWizard() {
       "users",
       uid,
       "problem",
-      formContent.form.title
+      pFormRedux.title
     );
 
     // Tip: give all fields a default value here
     const data = {
-      problemTitle: formContent.form.title,
+      problemTitle: pFormRedux.title,
       uid,
       username,
-      productType: formContent.form.productType || null,
-      whyOptions: formContent.form.whyOptions || null,
-      why: formContent.form.why || null,
-      what: formContent.form.what || null,
-      who: formContent.form.who || null,
-      details: formContent.form.details || null,
+      productType: pFormRedux.productType || null,
+      whyOptions: pFormRedux.whyOptions || null,
+      why: pFormRedux.why || null,
+      what: pFormRedux.what || null,
+      who: pFormRedux.who || null,
+      details: pFormRedux.details || null,
       createdAt: serverTimestamp(),
       updatedAt: serverTimestamp(),
     };
@@ -100,13 +108,13 @@ function ProblemWizard() {
   const onStepChange = (stats) => {
     // console.log(stats);
   };
-  const setInstance = (SW) =>
-    setFormContent({
-      ...formContent,
-      SW,
-    });
+  // const setInstance = (SW) =>
+  //   setFormContent({
+  //     ...formContent,
+  //     SW,
+  //   });
 
-  const { SW } = formContent;
+  // const { SW } = formContent;
   return (
     <div>
       <ToolBar  />
@@ -116,16 +124,16 @@ function ProblemWizard() {
         isHashEnabled
         //  transitions={state.transitions} // comment out for default transitions
         nav={<ProgressStepper />}
-        instance={setInstance}
+        // instance={setInstance}
       >
         {/* <ProblemPage /> */}
 
-        <PWhy hashKey={"Why"} update={updateForm} />
-        <PWhat hashKey={"What"} update={updateForm} />
-        <PWho hashKey={"Who"} update={updateForm} />
+        <PWhy hashKey={"Why"}  />
+        <PWhat hashKey={"What"}  />
+        <PWho hashKey={"Who"} />
         <PDetails
           hashKey={"Details"}
-          update={updateForm}
+          
           saveProblemForm={saveProblemForm}
         />
       </StepWizard>

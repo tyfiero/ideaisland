@@ -14,9 +14,12 @@ import {
   FaPen,
   FaTrash,
   FaInfoCircle,
+  FaUndoAlt,
 } from "react-icons/fa";
 import FeatureTable from "./CombinatorialComponents/FeatureTable";
-
+import ImportanceChip from "./rank/ImportanceChip";
+import { useSelector, useDispatch } from "react-redux";
+import { sFormAction } from "../../../redux/actions";
 const Styles = styled.div`
   padding: 1rem;
 
@@ -47,74 +50,120 @@ const Styles = styled.div`
 `;
 
 function SRankFeatures(props) {
+  const dispatch = useDispatch();
+  const sFormRedux = useSelector((state) => state.pForm);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [button1, setButton1] = useState(false);
-  const [button2, setButton2] = useState(false);
-  const [tableContent, setTableContent] = useState([{
-    col1: "BLANK",
-    col2: "BLANK",
-    col3: "BLANK",
-    col4: "BLANK",
-    col5: "BLANK",
-    col6: "BLANK",
-  }]);
-// console.log(tableContent);
+  const [refresh, setRefresh] = useState(false);
+  const [tableContent, setTableContent] = useState([
+    {
+      col1: "BLANK",
+      col2: "BLANK",
+      col3: "BLANK",
+      col4: "BLANK",
+      col5: "BLANK",
+      col6: "BLANK",
+    },
+  ]);
+  // console.log(props.form.form.Features);
+  // console.log("props.form.form.Features ^^^^");
+  // console.log(props)
+  const updateFromChip = (data) => {
+    console.log(data);
+    let pointerIndex = data[0];
+    let impValue = data[1];
+
+    let pointer = sFormRedux.features[pointerIndex];
+
+    console.log(sFormRedux.features[pointerIndex])
+
+    //TODO FIX THIS SHIT! ITS NOT SAVING OBVVIOSLY
+
+//     let updatedObj = {
+//       name: pointer.name,
+//       importance: impValue,
+//       feasibility: pointer.feasibility,
+//       cost: pointer.cost,
+//       version: pointer.version,
+//       comments: pointer.comments,
+//     };
+// // console.log(updatedObj);
+//     let oldArray = props.form.form.Features;
+//     console.log(props.form.form.Features);
+//     console.log("^^old");
+//     oldArray[pointerIndex] = updatedObj;
+
+//     console.log(oldArray);
+//     console.log("^^new");
+//     props.update("Features", );
+//     console.log(updatedObj)
+  };
+
   useEffect(() => {
-    console.log("UE RAN");
-    if (props.form.form.Features) {
+    // console.log("UE RAN");
+    // console.log(tableContent);
+    // console.log("before map tableContent");
+
+    if (sFormRedux.features) {
       console.log("MAP TIME");
 
-      let mappedData = props.form.form.Features.map((featureData, index) => {
+      let mappedData = sFormRedux.features.map((featureData, index) => {
         return {
           col1: featureData.name,
-          col2: featureData.importance,
-          col3: featureData.feasibility,
-          col4: featureData.cost,
-          col5: featureData.version,
-          col6: featureData.comments,
-          // col2: (
-          //   <span className="px-3 py-1 text-xs text-orange-600 bg-orange-200 rounded-full cursor-pointer md:hover:scale-110">
-          //     {featureData.importance}
-          //   </span>
-          // ),
-          // col3: (
-          //   <span className="px-3 py-1 text-xs text-green-600 bg-green-200 rounded-full cursor-pointer md:hover:scale-110">
-          //     {featureData.feasibility}
-          //   </span>
-          // ),
-          // col4: (
-          //   <span className="px-3 py-1 text-xs text-purple-600 bg-purple-200 rounded-full cursor-pointer md:hover:scale-110">
-          //     {featureData.cost}
-          //   </span>
-          // ),
-          // col5: (
-          //   <span className="px-3 py-1 text-xs text-blue-600 bg-blue-200 rounded-full cursor-pointer md:hover:scale-110">
-          //     {featureData.version}
-          //   </span>
-          // ),
-          // col6: (
-          //   <p className="px-3 py-1 m-0 text-xs cursor-auto ">
-          //     {featureData.comments}
-          //   </p>
-          // ),
+          // col2: featureData.importance,
+          // col3: featureData.feasibility,
+          // col4: featureData.cost,
+          // col5: featureData.version,
+          // col6: featureData.comments,
+          col2: (
+            // <span className="px-3 py-1 text-xs text-orange-600 bg-orange-200 rounded-full cursor-pointer md:hover:scale-110">
+            //   {featureData.importance}
+            // </span>
+            <ImportanceChip
+              value={featureData.importance}
+              updateFromChip={updateFromChip}
+              givenFeature={index}
+            />
+          ),
+          col3: (
+            <span className="px-3 py-1 text-xs text-green-600 bg-green-200 rounded-full cursor-pointer md:hover:scale-110">
+              {featureData.feasibility}
+            </span>
+          ),
+          col4: (
+            <span className="px-3 py-1 text-xs text-purple-600 bg-purple-200 rounded-full cursor-pointer md:hover:scale-110">
+              {featureData.cost}
+            </span>
+          ),
+          col5: (
+            <span className="px-3 py-1 text-xs text-blue-600 bg-blue-200 rounded-full cursor-pointer md:hover:scale-110">
+              {featureData.version}
+            </span>
+          ),
+          col6: (
+            <p className="px-3 py-1 m-0 text-xs cursor-auto ">
+              {featureData.comments}
+            </p>
+          ),
         };
       });
       // console.log(mappedData);
       setTableContent(mappedData);
       // console.log(tableContent);
+      // console.log("after map tableContent");
     } else {
       console.log(":(");
     }
-  }, [props.form.form.Features]);
+  }, [sFormRedux, refresh]);
 
   // console.log(props.form.form.Features);
 
-  const update = (e) => {
-    props.update(e.target.name, e.target.value);
-  };
-  const updateButton = (e) => {
-    props.update("productType", e.target.value);
-  };
+  // const update = (e) => {
+  //   props.update(e.target.name, e.target.value);
+  // };
+  // const updateButton = (e) => {
+  //   props.update("productType", e.target.value);
+  // };
 
   const columns = React.useMemo(
     () => [
@@ -192,46 +241,45 @@ function SRankFeatures(props) {
         <div className="w-full p-10 space-y-8 shadow rounded-xl bg-blues-100 drop-shadow-xl container-style normal-box-soft">
           <div className="flex flex-col items-center justify-center problem-page fade-effect-quick">
             <div className="absolute top-5 right-5">
-            <Popover
-              isOpen={isPopoverOpen}
-              containerStyle={{
-                zIndex: 100,
-                boxShadow: "5px 13px 28px 0px rgba(0,0,0,0.48)",
-                backgroundColor: "white",
-                borderRadius: "2em",
-              }}
-              onClickOutside={() => setIsPopoverOpen(false)}
-              positions={["bottom", "left", "right"]} // preferred positions by priority
-              content={({ position, childRect, popoverRect }) => (
-                <ArrowContainer
-                  position={position}
-                  childRect={childRect}
-                  popoverRect={popoverRect}
-                  arrowColor={"white"}
-                  arrowSize={10}
-                  arrowStyle={{ opacity: 1, top: "-6px" }}
-                  className="popover-arrow-container"
-                  arrowClassName="popover-arrow"
-                >
-                  <div
-                    className="!opacity-100 bg-white w-[25em] rounded-xl p-3"
-                    onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+              <Popover
+                isOpen={isPopoverOpen}
+                containerStyle={{
+                  zIndex: 100,
+                  boxShadow: "5px 13px 28px 0px rgba(0,0,0,0.48)",
+                  backgroundColor: "white",
+                  borderRadius: "2em",
+                }}
+                onClickOutside={() => setIsPopoverOpen(false)}
+                positions={["bottom", "left", "right"]} // preferred positions by priority
+                content={({ position, childRect, popoverRect }) => (
+                  <ArrowContainer
+                    position={position}
+                    childRect={childRect}
+                    popoverRect={popoverRect}
+                    arrowColor={"white"}
+                    arrowSize={10}
+                    arrowStyle={{ opacity: 1, top: "-6px" }}
+                    className="popover-arrow-container"
+                    arrowClassName="popover-arrow"
                   >
-                    This helps to frame what kinds of solutions would work for
+                    <div
+                      className="!opacity-100 bg-white w-[25em] rounded-xl p-3"
+                      onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+                    >
+                      This helps to frame what kinds of solutions would work for
                       your product.
-                  </div>
-                </ArrowContainer>
-              )}
-            >
-              
-              <div
-                onClick={() => setIsPopoverOpen(!isPopoverOpen)}
-                className="w-5"
+                    </div>
+                  </ArrowContainer>
+                )}
               >
-                <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 md:hover:scale-110" />
-              </div>
-            </Popover>
-          </div>
+                <div
+                  onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+                  className="w-5"
+                >
+                  <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 md:hover:scale-110" />
+                </div>
+              </Popover>
+            </div>
             <h1 className="heading-top">Feature Selection</h1>
             <div className="normal-box-soft">
               <h3 className="heading">
@@ -241,6 +289,18 @@ function SRankFeatures(props) {
 
             <div className="flex flex-col w-full">
               <Styles>
+                <button
+                  onClick={() => {
+                    setRefresh(!refresh);
+                  }}
+                  className={
+                    "w-[6em] h-[4em] rounded-3xl  flex items-center justify-center text-black gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  bg-t-bl"
+                  }
+                >
+                  <FaUndoAlt />
+                  Refresh
+                </button>
+
                 <FeatureTable columns={columns} data={data} />
               </Styles>
               {/* table start */}
@@ -379,7 +439,6 @@ function SRankFeatures(props) {
                 *This note will be saved to your Idea Page for your review
                 later.
               </p> */}
-             
             </div>
             <div className="flex items-center justify-between w-full">
               <button

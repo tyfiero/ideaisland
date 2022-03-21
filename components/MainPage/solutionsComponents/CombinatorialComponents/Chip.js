@@ -8,7 +8,6 @@ function Chip({
   bColor,
   color,
   updateArray,
-  formContent,
   deleteIndex,
   changes,
 }) {

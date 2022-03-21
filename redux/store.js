@@ -1,10 +1,9 @@
 /* redux/store.js */
 import { createStore, combineReducers } from "redux";
 import { persistStore, persistReducer } from "redux-persist";
-import storage from 'redux-persist/lib/storage';
-import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
-
-
+// import storage from "redux-persist/lib/storage";
+import storage from "./storage";
+import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
 
 import counterReducer from "./reducers/counter";
 import listReducer from "./reducers/list";
@@ -32,6 +31,8 @@ import userUidReducer from "./reducers/userUidReducer";
 import userPhotoReducer from "./reducers/userPhotoReducer";
 import userDisplayName from "./reducers/userDisplayName";
 import logOutReducer from "./reducers/logOutReducer";
+import pFormReducer from "./reducers/pFormReducer";
+import sFormReducer from "./reducers/sFormReducer";
 //OTHER REDUCERS GO HERE
 
 let devTools;
@@ -46,10 +47,6 @@ if (
     window.__REDUX_DEVTOOLS_EXTENSION__ &&
     window.__REDUX_DEVTOOLS_EXTENSION__();
 }
-
-
-
-
 
 const appReducer = combineReducers({
   counter: counterReducer,
@@ -78,49 +75,54 @@ const appReducer = combineReducers({
   userPhoto: userPhotoReducer,
   userDisplayName: userDisplayName,
   logOut: logOutReducer,
+  pForm: pFormReducer,
+  sForm: sFormReducer,
   //other reducers go here
 });
 // console.log(rootReducer);
 
 
-const rootReducer = (state, action) => {
-  if (action.type === 'LOGOUT') {
-      // for all keys defined in your persistConfig(s)
-      storage.removeItem('persist:root')
-      // storage.removeItem('persist:otherKey')
+// const afterHydrate = () => {
+//   if(typeof window === "undefined"){
+//     console.log(" server HYDRATED~~~!!!!")
 
-      return appReducer(undefined, action);
+//   }else{
+//   console.log("client HYDRATED~~~!!!!")
+
+//   }
+// }
+
+const rootReducer = (state, action) => {
+  if (action.type === "LOGOUT") {
+    // for all keys defined in your persistConfig(s)
+    storage.removeItem("persist:root");
+    // storage.removeItem('persist:otherKey')
+
+    return appReducer(undefined, action);
   }
   return appReducer(state, action);
 };
 
 const persistConfig = {
-  key: 'root',
+  key: "root",
   storage: storage,
-  stateReconciler: autoMergeLevel2 // see "Merge Process" section for details.
- };
+  stateReconciler: autoMergeLevel2, // see "Merge Process" section for details.
+  debug: true,
+};
 
-
- const pReducer = persistReducer(persistConfig, rootReducer);
-
+const pReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = createStore(pReducer, devTools);
+// export const persistor = persistStore(store);
 export const persistor = persistStore(store);
 
 
+// console.log(store.getState()
+// )
 
 
 
-
-
-
-
-
-
-
-
-
-
+// console.log(store)
 // let devTools;
 // const isClient = typeof window !== "undefined";
 

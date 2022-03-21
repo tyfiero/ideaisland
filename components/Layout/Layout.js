@@ -44,6 +44,7 @@ export default function Layout({ children }) {
   const userDisplayNameRedux = useSelector((state) => state.userDisplayName);
 
   const userNameRedux = useSelector((state) => state.userName);
+  console.log(userNameRedux + "unr")
 
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);
 

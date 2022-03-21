@@ -54,7 +54,7 @@ function SolutionWizard() {
   // console.log(formContent);
   // Create a new post in firestore
   const saveProblemForm = async (e) => {
-    e.preventDefault() || null;
+    e?.preventDefault();
     const uid = auth.currentUser.uid;
 
     const ref = doc(
@@ -117,6 +117,7 @@ function SolutionWizard() {
       <StepWizard
         onStepChange={onStepChange}
         isHashEnabled
+        initialStep={1}
         //  transitions={state.transitions} // comment out for default transitions
         nav={<SolutionProgressStepper />}
         instance={setInstance}
