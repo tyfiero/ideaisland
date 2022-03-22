@@ -16,6 +16,8 @@ import { useRouter } from "next/router";
 import Script from "next/script";
 import Head from "../components/Header";
 import Header from "../components/Header";
+import {wrapper} from '../redux/store';
+
 // import splitbee from '@splitbee/web';
 
 function MyApp({ Component, pageProps }) {
@@ -36,34 +38,7 @@ function MyApp({ Component, pageProps }) {
     router.events.on("routeChangeError", handleComplete);
   }, [router]);
 
-  if (typeof window === "undefined") {
-    // console.log("SERVER");
 
-    return (
-      <>
-        <Header />
-
-        <Provider store={store}>
-          {/* <PersistGate loading={<FullLoader />} persistor={persistor}> */}
-          <UserContext.Provider value={userData}>
-            <Layout>
-              <FullLoader show={loading} />
-              <Component {...pageProps} />
-              {/* <CookieBanner
-              privacyPolicyLink={"/privacy"}
-              showStatistic={true}
-              showMarketing={false}
-              showExternalMedia={false}
-            /> */}
-            </Layout>
-            {/* <Analytics /> */}
-          </UserContext.Provider>
-          {/* </PersistGate> */}
-        </Provider>
-      </>
-    );
-  }
-// console.log("CLIENT")
 
 
 
@@ -72,7 +47,7 @@ function MyApp({ Component, pageProps }) {
     <>
       <Header />
 
-      <Provider store={store}>
+      {/* <Provider store={store}> */}
         {/* <PersistGate loading={(<FullLoader from="persist"/>)} persistor={persistor}> */}
           <UserContext.Provider value={userData}>
             <Layout>
@@ -88,25 +63,95 @@ function MyApp({ Component, pageProps }) {
             {/* <Analytics /> */}
           </UserContext.Provider>
         {/* </PersistGate> */}
-      </Provider>
+      {/* </Provider> */}
     </>
   );
 }
-if(typeof window !== "undefined"){
+
+
+
+export default wrapper.withRedux(MyApp);
+
+
+
+
+
+
+
+
+
+
+//   if (typeof window === "undefined") {
+//     // console.log("SERVER");
+
+//     return (
+//       <>
+//         <Header />
+
+//         <Provider store={store}>
+//           {/* <PersistGate loading={<FullLoader />} persistor={persistor}> */}
+//           <UserContext.Provider value={userData}>
+//             <Layout>
+//               <FullLoader show={loading} />
+//               <Component {...pageProps} />
+//               {/* <CookieBanner
+//               privacyPolicyLink={"/privacy"}
+//               showStatistic={true}
+//               showMarketing={false}
+//               showExternalMedia={false}
+//             /> */}
+//             </Layout>
+//             {/* <Analytics /> */}
+//           </UserContext.Provider>
+//           {/* </PersistGate> */}
+//         </Provider>
+//       </>
+//     );
+//   }
+// // console.log("CLIENT")
+
+
+
+// // 
+//   return (
+//     <>
+//       <Header />
+
+//       <Provider store={store}>
+//         {/* <PersistGate loading={(<FullLoader from="persist"/>)} persistor={persistor}> */}
+//           <UserContext.Provider value={userData}>
+//             <Layout>
+//               <FullLoader show={loading} />
+//               <Component {...pageProps} />
+//               {/* <CookieBanner
+//             privacyPolicyLink={"/privacy"}
+//             showStatistic={true}
+//             showMarketing={false}
+//             showExternalMedia={false}
+//           /> */}
+//             </Layout>
+//             {/* <Analytics /> */}
+//           </UserContext.Provider>
+//         {/* </PersistGate> */}
+//       </Provider>
+//     </>
+//   );
+// }
+// // if(typeof window !== "undefined"){
 
   
-  persistor.subscribe(() => {
-    /* Hydrate React components when persistor has synced with redux store */
-    const { bootstrapped } = persistor.getState();
+// //   persistor.subscribe(() => {
+// //     /* Hydrate React components when persistor has synced with redux store */
+// //     const { bootstrapped } = persistor.getState();
   
-    console.log(bootstrapped)
+// //     console.log(bootstrapped)
   
-    if (bootstrapped) {
-       hydrate(<MyApp />, document.getElementById("root"));
-    }
-  });
-}
+// //     if (bootstrapped) {
+// //        hydrate(<MyApp />, document.getElementById("root"));
+// //     }
+// //   });
+// // }
 
-export default MyApp;
+// export default MyApp;
 
 

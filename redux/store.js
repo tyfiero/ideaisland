@@ -1,7 +1,11 @@
 /* redux/store.js */
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers, applyMiddleware, AnyAction, Store } from "redux";
 import { persistStore, persistReducer } from "redux-persist";
 // import storage from "redux-persist/lib/storage";
+import {createWrapper, Context, HYDRATE} from 'next-redux-wrapper';
+import thunkMiddleware from 'redux-thunk'
+// import { composeWithDevTools } from '@redux-devtools/extension';
+
 import storage from "./storage";
 import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
 
@@ -35,18 +39,18 @@ import pFormReducer from "./reducers/pFormReducer";
 import sFormReducer from "./reducers/sFormReducer";
 //OTHER REDUCERS GO HERE
 
-let devTools;
-const isClient = typeof window !== "undefined";
+// let devTools;
+// const isClient = typeof window !== "undefined";
 
-if (
-  isClient &&
-  window.__REDUX_DEVTOOLS_EXTENSION__ &&
-  window.__REDUX_DEVTOOLS_EXTENSION__()
-) {
-  devTools =
-    window.__REDUX_DEVTOOLS_EXTENSION__ &&
-    window.__REDUX_DEVTOOLS_EXTENSION__();
-}
+// if (
+//   isClient &&
+//   window.__REDUX_DEVTOOLS_EXTENSION__ &&
+//   window.__REDUX_DEVTOOLS_EXTENSION__()
+// ) {
+//   devTools =
+//     window.__REDUX_DEVTOOLS_EXTENSION__ &&
+//     window.__REDUX_DEVTOOLS_EXTENSION__();
+// }
 
 const appReducer = combineReducers({
   counter: counterReducer,
@@ -82,43 +86,93 @@ const appReducer = combineReducers({
 // console.log(rootReducer);
 
 
-// const afterHydrate = () => {
-//   if(typeof window === "undefined"){
-//     console.log(" server HYDRATED~~~!!!!")
 
-//   }else{
-//   console.log("client HYDRATED~~~!!!!")
 
+// const rootReducer = (state, action) => {
+//   if (action.type === "LOGOUT") {
+//     // for all keys defined in your persistConfig(s)
+//     storage.removeItem("persist:root");
+//     // storage.removeItem('persist:otherKey')
+
+//     return appReducer(undefined, action);
 //   }
-// }
+//   return appReducer(state, action);
+// };
 
-const rootReducer = (state, action) => {
-  if (action.type === "LOGOUT") {
-    // for all keys defined in your persistConfig(s)
-    storage.removeItem("persist:root");
-    // storage.removeItem('persist:otherKey')
+// const persistConfig = {
+//   key: "root",
+//   storage: storage,
+//   stateReconciler: autoMergeLevel2, // see "Merge Process" section for details.
+//   debug: true,
+// };
 
-    return appReducer(undefined, action);
-  }
-  return appReducer(state, action);
-};
+// const pReducer = persistReducer(persistConfig, rootReducer);
 
-const persistConfig = {
-  key: "root",
-  storage: storage,
-  stateReconciler: autoMergeLevel2, // see "Merge Process" section for details.
-  debug: true,
-};
 
-const pReducer = persistReducer(persistConfig, rootReducer);
 
-export const store = createStore(pReducer, devTools);
+
+
+
+
+// export const store = createStore(pReducer, devTools);
+// // export const persistor = persistStore(store);
 // export const persistor = persistStore(store);
-export const persistor = persistStore(store);
+
+
+
+
+
+const bindMiddleware = (middleware) => {
+  if (process.env.NODE_ENV !== 'production') {
+    const { composeWithDevTools } = require('@redux-devtools/extension')
+    return composeWithDevTools(applyMiddleware(...middleware))
+  }
+  return applyMiddleware(...middleware)
+}
+
+
+// create your reducer
+
+const reducer = (state, action) => {
+  if (action.type === HYDRATE) {
+    const nextState = {
+      ...state, // use previous state
+      ...action.payload, // apply delta from hydration
+    }
+    if (state.count.count) nextState.count.count = state.count.count // preserve count value on client side navigation
+    return nextState
+  } else {
+    return appReducer(state, action)
+  }
+}
+
+const initStore = () => {
+  return createStore(reducer, bindMiddleware([thunkMiddleware]))
+}
+
+// export an assembled wrapper
+export const wrapper = createWrapper(initStore, {debug: true});
 
 
 // console.log(store.getState()
 // )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
