@@ -2,7 +2,8 @@ import "tailwindcss/tailwind.css";
 import "../styles/globals.css";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/lib/integration/react";
-
+// import { ReactDOM } from "react";
+import { hydrate } from "react-dom";
 import { store, persistor } from "../redux/store";
 // import CookieBanner from "../components/CookieBanner/CookieBanner";
 // import Analytics from "../components/Analytics/Analytics";
@@ -63,12 +64,16 @@ function MyApp({ Component, pageProps }) {
     );
   }
 // console.log("CLIENT")
+
+
+
+// 
   return (
     <>
       <Header />
 
       <Provider store={store}>
-        <PersistGate loading={(<FullLoader from="persist"/>)} persistor={persistor}>
+        {/* <PersistGate loading={(<FullLoader from="persist"/>)} persistor={persistor}> */}
           <UserContext.Provider value={userData}>
             <Layout>
               <FullLoader show={loading} />
@@ -82,10 +87,26 @@ function MyApp({ Component, pageProps }) {
             </Layout>
             {/* <Analytics /> */}
           </UserContext.Provider>
-        </PersistGate>
+        {/* </PersistGate> */}
       </Provider>
     </>
   );
 }
+if(typeof window !== "undefined"){
+
+  
+  persistor.subscribe(() => {
+    /* Hydrate React components when persistor has synced with redux store */
+    const { bootstrapped } = persistor.getState();
+  
+    console.log(bootstrapped)
+  
+    if (bootstrapped) {
+       hydrate(<MyApp />, document.getElementById("root"));
+    }
+  });
+}
 
 export default MyApp;
+
+
