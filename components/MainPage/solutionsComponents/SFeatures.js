@@ -21,15 +21,16 @@ import { sFormAction } from "../../../redux/actions";
 function SFeatures(props) {
   // console.log("Rerendered")
   const dispatch = useDispatch();
-  const sFormRedux = useSelector((state) => state.pForm);
+  const sFormRedux = useSelector((state) => state.sForm);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [showCommonFeatures, setShowCommonFeatures] = useState(false);
   const [button2, setButton2] = useState(false);
+  const [rerender, setRerender] = useState(false);
+
   const [featureContent, setFeatureContent] = useState("");
   const [featureArray, setFeatureArray] = useState([]);
   const [featureString, setFeatureString] = useState("");
   // const [changes, setChanges] = useState(false);
-
 
   // console.log(props.form.form);
   // console.log(featureString);
@@ -42,6 +43,15 @@ function SFeatures(props) {
   //   setFeatureString(text);
   // }, [props.form.form]);
 
+
+useEffect(()=> {
+  // console.log(featureArray)
+  // console.log("ue")
+
+  // setFeatureArray(featureArray)
+  setRerender(!rerender)
+},[sFormRedux, featureArray])
+
   const updateArray = (data) => {
     // console.log(featureArray);
 
@@ -50,13 +60,14 @@ function SFeatures(props) {
     let featureObject = {
       name: data,
       importance: "...",
-      feasibility: "test",
-      cost: "test",
-      version: "test",
-      comments: "test",
+      feasibility: "...",
+      cost: "...",
+      version: "MVP",
+      comments: "",
     };
     featureArray.push(featureObject);
-    console.log(featureArray);
+    // console.log(featureArray);
+    setFeatureArray(featureArray)
     let updated = sFormRedux;
     updated.features = featureArray;
     dispatch(sFormAction(updated))
@@ -86,10 +97,10 @@ function SFeatures(props) {
     let featureObject = {
       name: e.target.value,
       importance: "...",
-      feasibility: "test",
-      cost: "test",
-      version: "test",
-      comments: "test",
+      feasibility: "...",
+      cost: "...",
+      version: "MVP",
+      comments: "",
     };
     featureArray.push(featureObject);
     // featureArray.push(e.target.value);
@@ -228,7 +239,10 @@ function SFeatures(props) {
             </button> */}
 
               {showCommonFeatures && (
-                <div className="normal-box-soft border-2 border-t-pm w-[90%] !p-2  !rounded-xl gap-2">
+                <div className="normal-box-soft border-2 border-t-pm w-[90%] !p-2  !rounded-xl gap-2" onClick={()=>{
+                  // console.log("click")
+                  setRerender(!rerender)
+                }}>
                   {/* <p>Common Features</p> */}
                   <div className="flex flex-col items-start p-1 mb-2 border-2 border-teal-400 rounded-2xl">
                     <p className="pl-3 m-0">Authentication</p>

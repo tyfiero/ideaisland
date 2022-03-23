@@ -13,6 +13,8 @@ function FeatureTable({ columns, data }) {
     headerGroups,
     rows,
     prepareRow,
+    sortFunc,
+    
   } = useTable(
     {
       columns,
@@ -28,8 +30,8 @@ function FeatureTable({ columns, data }) {
   return (
     <>
     <div className="overflow-x-auto">
-        <div className="flex justify-center min-h-screen overflow-hidden font-sans bg-gray-100 min-w-screen rounded-xl">
-     <div className="w-full lg:w-5/6">
+        <div className="flex justify-center  overflow-hidden font-sans bg-gray-100 min-w-screen rounded-xl">
+     <div className="w-full lg:w-[98%]">
                 <div className="my-6 bg-white shadow-md !rounded-2xl">
       <table className="w-full table-auto min-w-max" {...getTableProps()}>
         <thead>
@@ -38,9 +40,10 @@ function FeatureTable({ columns, data }) {
               {headerGroup.headers.map(column => (
                 // Add the sorting props to control sorting. For this example
                 // we can add them into the header props
-                <th className="px-6 py-3 text-left" {...column.getHeaderProps(column.getSortByToggleProps())}>
+                <th className="px-2 py-3 text-left" {...column.getHeaderProps(column.getSortByToggleProps())}>
                   {column.render('Header')}
                   {/* Add a sort direction indicator */}
+
                   <span className='text-[18px]'>
                     {column.isSorted
                       ? column.isSortedDesc
@@ -57,6 +60,8 @@ function FeatureTable({ columns, data }) {
           {firstPageRows.map(
             (row, i) => {
               prepareRow(row);
+              // {console.log(row)}
+
               return (
                 <tr {...row.getRowProps()}>
                   {row.cells.map(cell => {
@@ -70,7 +75,7 @@ function FeatureTable({ columns, data }) {
         </tbody>
       </table>
       <br />
-      <div>Showing the first 20 results of {rows.length} rows</div>
+      {/* <div>Showing the first 20 results of {rows.length} rows</div> */}
       </div>
       </div>
       </div>

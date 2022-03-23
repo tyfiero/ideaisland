@@ -1,7 +1,7 @@
 import React from "react";
 import { FaPlus, FaTimes } from "react-icons/fa";
 import { useState, useEffect } from "react";
-function ImportanceChip({
+function VersionChip({
   iconColor,
   icon,
   givenFeature,
@@ -12,46 +12,48 @@ function ImportanceChip({
   const [option, setOption] = useState(0);
   const [content, setContent] = useState(value);
 
-  const [color, setColor] = useState(" bg-blue-200 text-blue-500");
+
+  const [color, setColor] = useState(" bg-green-200 text-green-500");
 
   useEffect(() => {
     if (option === 0) {
-      setColor(" bg-slate-200  text-slate-500");
-      setContent("...");
-    } else if (option === 1) {
       setColor(" bg-blue-200  text-blue-500");
-      setContent("Could have");
+      setContent("MVP");
+    } else if (option === 1) {
+      setColor(" bg-green-200  text-green-500");
+      setContent("V2");
     } else if (option === 2) {
-      setColor(" bg-yellow-200  text-yellow-600");
-      setContent("Should have");
+      setColor(" bg-orange-200  text-orange-600");
+      setContent("V3+");
     } else {
-      setColor(" bg-red-200  text-red-600 shadow-md shadow-red-300");
-      setContent("Must have");
+      setColor(" bg-pink-200  text-pink-600 shadow-md shadow-pink-300");
+      setContent("Back burner");
     }
   }, [clicked]);
 
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center" >
       <button
         onClick={(e) => {
           if (option === 0) {
             setOption(1);
-            updateFromChip([givenFeature, "Could have", "importance"]);
+            updateFromChip([givenFeature, "V2", "version"]);
 
               
           } else if (option === 1) {
             setOption(2);
 
-            updateFromChip([givenFeature, "Should have", "importance"]);
+            updateFromChip([givenFeature, "V3+", "version"]);
             
           } else if (option === 2) {
             setOption(3);
-            updateFromChip([givenFeature, "Must have", "importance"]);
+
+            updateFromChip([givenFeature, "Back burner", "version"]);
 
           } else {
             setOption(0);
 
-            updateFromChip([givenFeature, "...", "importance"]);
+            updateFromChip([givenFeature, "MVP", "version"]);
 
           }
 
@@ -84,7 +86,6 @@ function ImportanceChip({
           ) : (
             <FaPlus className={iconColor} />
           ))}
-
         <p className="m-0 text-xs md:hover:scale-100">
           <b>{content}</b>
         </p>
@@ -93,4 +94,4 @@ function ImportanceChip({
   );
 }
 
-export default ImportanceChip;
+export default VersionChip;

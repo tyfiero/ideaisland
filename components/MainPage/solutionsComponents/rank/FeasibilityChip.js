@@ -1,7 +1,7 @@
 import React from "react";
 import { FaPlus, FaTimes } from "react-icons/fa";
 import { useState, useEffect } from "react";
-function ImportanceChip({
+function FeasibilityChip({
   iconColor,
   icon,
   givenFeature,
@@ -12,21 +12,21 @@ function ImportanceChip({
   const [option, setOption] = useState(0);
   const [content, setContent] = useState(value);
 
-  const [color, setColor] = useState(" bg-blue-200 text-blue-500");
+  const [color, setColor] = useState(" bg-green-200 text-green-500");
 
   useEffect(() => {
     if (option === 0) {
       setColor(" bg-slate-200  text-slate-500");
       setContent("...");
     } else if (option === 1) {
-      setColor(" bg-blue-200  text-blue-500");
-      setContent("Could have");
+      setColor(" bg-green-200  text-green-500");
+      setContent("Easy");
     } else if (option === 2) {
-      setColor(" bg-yellow-200  text-yellow-600");
-      setContent("Should have");
+      setColor(" bg-orange-200  text-orange-600");
+      setContent("Moderate");
     } else {
-      setColor(" bg-red-200  text-red-600 shadow-md shadow-red-300");
-      setContent("Must have");
+      setColor(" bg-pink-200  text-pink-600 shadow-md shadow-pink-300");
+      setContent("Difficult");
     }
   }, [clicked]);
 
@@ -36,22 +36,22 @@ function ImportanceChip({
         onClick={(e) => {
           if (option === 0) {
             setOption(1);
-            updateFromChip([givenFeature, "Could have", "importance"]);
+            updateFromChip([givenFeature, "Easy", "feasibility"]);
 
               
           } else if (option === 1) {
             setOption(2);
 
-            updateFromChip([givenFeature, "Should have", "importance"]);
+            updateFromChip([givenFeature, "Moderate", "feasibility"]);
             
           } else if (option === 2) {
             setOption(3);
-            updateFromChip([givenFeature, "Must have", "importance"]);
+            updateFromChip([givenFeature, "Difficult", "feasibility"]);
 
           } else {
             setOption(0);
 
-            updateFromChip([givenFeature, "...", "importance"]);
+            updateFromChip([givenFeature, "...", "feasibility"]);
 
           }
 
@@ -93,4 +93,4 @@ function ImportanceChip({
   );
 }
 
-export default ImportanceChip;
+export default FeasibilityChip;

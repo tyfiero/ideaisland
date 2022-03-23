@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 
 import { Popover, ArrowContainer } from "react-tiny-popover";
 import styled from "styled-components";
@@ -15,13 +15,20 @@ import {
   FaTrash,
   FaInfoCircle,
   FaUndoAlt,
+  FaSort
 } from "react-icons/fa";
 import FeatureTable from "./CombinatorialComponents/FeatureTable";
 import ImportanceChip from "./rank/ImportanceChip";
+import FeasibilityChip from "./rank/FeasibilityChip";
+import CostChip from "./rank/CostChip";
+import VersionChip from "./rank/VersionChip";
+import CommentsTextArea from "./rank/CommentsTextArea";
+
+
 import { useSelector, useDispatch } from "react-redux";
 import { sFormAction } from "../../../redux/actions";
 const Styles = styled.div`
-  padding: 1rem;
+  padding: 0rem;
 
   table {
     border-spacing: 0;
@@ -30,7 +37,7 @@ const Styles = styled.div`
     tr {
       :last-child {
         td {
-          border-bottom: 0;
+          /* border-bottom: 0; */
         }
       }
     }
@@ -38,7 +45,7 @@ const Styles = styled.div`
     th,
     td {
       margin: 0;
-      padding: 0.5rem;
+      padding: 0.1rem;
       border-bottom: 1px solid black;
       border-right: 0.5px solid black;
 
@@ -51,9 +58,12 @@ const Styles = styled.div`
 
 function SRankFeatures(props) {
   const dispatch = useDispatch();
-  const sFormRedux = useSelector((state) => state.pForm);
+  const sFormRedux = useSelector((state) => state.sForm);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-  const [button1, setButton1] = useState(false);
+  const [rerender, setRerender] = useState(false);
+  const [sort, setSort] = useState(false);
+
+
   const [refresh, setRefresh] = useState(false);
   const [tableContent, setTableContent] = useState([
     {
@@ -65,6 +75,9 @@ function SRankFeatures(props) {
       col6: "BLANK",
     },
   ]);
+console.log("TABLE RERENDERED")
+// console.log(tableContent.length === sFormRedux.features.length)
+
   // console.log(props.form.form.Features);
   // console.log("props.form.form.Features ^^^^");
   // console.log(props)
@@ -72,35 +85,102 @@ function SRankFeatures(props) {
     console.log(data);
     let pointerIndex = data[0];
     let impValue = data[1];
+    let type = data[2];
+
 
     let pointer = sFormRedux.features[pointerIndex];
 
-    console.log(sFormRedux.features[pointerIndex])
+    // console.log(sFormRedux.features[pointerIndex]);
+let updatedObj;
+if(type === "importance"){
+   updatedObj = {
+    name: pointer.name,
+    importance: impValue,
+    feasibility: pointer.feasibility,
+    cost: pointer.cost,
+    version: pointer.version,
+    comments: pointer.comments,
+  };
+}else if(type === "feasibility"){
+   updatedObj = {
+    name: pointer.name,
+    importance: pointer.importance,
+    feasibility: impValue,
+    cost: pointer.cost,
+    version: pointer.version,
+    comments: pointer.comments,
+  };
+}else if(type === "cost"){
+   updatedObj = {
+    name: pointer.name,
+    importance: pointer.importance,
+    feasibility: pointer.feasibility,
+    cost: impValue,
+    version: pointer.version,
+    comments: pointer.comments,
+  };
+}else if(type === "version"){
+   updatedObj = {
+    name: pointer.name,
+    importance: pointer.importance,
+    feasibility: pointer.feasibility,
+    cost: pointer.cost,
+    version: impValue,
+    comments: pointer.comments,
+  };
+}else{
+  updatedObj = {
+    name: pointer.name,
+    importance: pointer.importance,
+    feasibility: pointer.feasibility,
+    cost: pointer.cost,
+    version: pointer.version,
+    comments: impValue,
+  };
+}
+     
+        let oldArray = sFormRedux.features;
+        // console.log("^^old");
 
-    //TODO FIX THIS SHIT! ITS NOT SAVING OBVVIOSLY
+        // console.log(sFormRedux.features === oldArray)
+        oldArray[pointerIndex] = updatedObj;
+        // sFormRedux.features[pointerIndex] = updatedObj;
+    dispatch(sFormAction(oldArray));
+setRefresh(!refresh)
+    // console.log(sFormRedux.features[pointerIndex]);
 
-//     let updatedObj = {
-//       name: pointer.name,
-//       importance: impValue,
-//       feasibility: pointer.feasibility,
-//       cost: pointer.cost,
-//       version: pointer.version,
-//       comments: pointer.comments,
-//     };
-// // console.log(updatedObj);
-//     let oldArray = props.form.form.Features;
-//     console.log(props.form.form.Features);
-//     console.log("^^old");
-//     oldArray[pointerIndex] = updatedObj;
-
-//     console.log(oldArray);
-//     console.log("^^new");
-//     props.update("Features", );
-//     console.log(updatedObj)
+        // console.log(oldArray);
+        // console.log("^^new");
+        // props.update("Features", );
+        // console.log(updatedObj)
   };
 
+
+
   useEffect(() => {
-    // console.log("UE RAN");
+// console.log("shit changed")
+// setRerender(!rerender)
+if(tableContent.length !== sFormRedux.features?.length){
+  setRefresh(!refresh)
+  // console.log("It actually changed")
+}
+
+  })
+
+
+
+//   //function that sorts object of objects by key
+// function sortByKey(array, key) {
+
+
+//   return array.sort(function(a, b) {
+//     var x = a[key];
+//     var y = b[key];
+//     return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+//   });
+// }
+  useEffect(() => {
+    console.log("UE RAN");
     // console.log(tableContent);
     // console.log("before map tableContent");
 
@@ -109,7 +189,7 @@ function SRankFeatures(props) {
 
       let mappedData = sFormRedux.features.map((featureData, index) => {
         return {
-          col1: featureData.name,
+          col1: (<div className="text-left"><p className="mb-0 ml-5">{featureData.name}</p></div>),
           // col2: featureData.importance,
           // col3: featureData.feasibility,
           // col4: featureData.cost,
@@ -123,27 +203,51 @@ function SRankFeatures(props) {
               value={featureData.importance}
               updateFromChip={updateFromChip}
               givenFeature={index}
+              
             />
           ),
           col3: (
-            <span className="px-3 py-1 text-xs text-green-600 bg-green-200 rounded-full cursor-pointer md:hover:scale-110">
-              {featureData.feasibility}
-            </span>
+            // <span className="px-3 py-1 text-xs text-green-600 bg-green-200 rounded-full cursor-pointer md:hover:scale-110">
+            //   {featureData.feasibility}
+            // </span>
+            <FeasibilityChip
+              value={featureData.feasibility}
+              updateFromChip={updateFromChip}
+              givenFeature={index}
+            />
           ),
           col4: (
-            <span className="px-3 py-1 text-xs text-purple-600 bg-purple-200 rounded-full cursor-pointer md:hover:scale-110">
-              {featureData.cost}
-            </span>
+            // <span className="px-3 py-1 text-xs text-purple-600 bg-purple-200 rounded-full cursor-pointer md:hover:scale-110">
+            //   {featureData.cost}
+            // </span>
+             <CostChip
+             value={featureData.cost}
+             updateFromChip={updateFromChip}
+             givenFeature={index}
+           />
           ),
           col5: (
-            <span className="px-3 py-1 text-xs text-blue-600 bg-blue-200 rounded-full cursor-pointer md:hover:scale-110">
-              {featureData.version}
-            </span>
+            // <span className="px-3 py-1 text-xs text-blue-600 bg-blue-200 rounded-full cursor-pointer md:hover:scale-110">
+            //   {featureData.version}
+            // </span>
+            <>
+            {/* <p className="">{index}</p> */}
+               <VersionChip
+             value={featureData.version}
+             updateFromChip={updateFromChip}
+             givenFeature={index}
+             key={index}
+           />
+           </>
           ),
           col6: (
-            <p className="px-3 py-1 m-0 text-xs cursor-auto ">
-              {featureData.comments}
-            </p>
+            <div> 
+              {/* <textarea className="rounded-md" name="comment"  cols="15" rows="5" value={featureData.comments}> */}
+
+              <CommentsTextArea text={featureData.comments} updateFromChip={updateFromChip} givenFeature={index}/>
+                
+                </div>
+            
           ),
         };
       });
@@ -156,31 +260,28 @@ function SRankFeatures(props) {
     }
   }, [sFormRedux, refresh]);
 
-  // console.log(props.form.form.Features);
+  
 
-  // const update = (e) => {
-  //   props.update(e.target.name, e.target.value);
-  // };
-  // const updateButton = (e) => {
-  //   props.update("productType", e.target.value);
-  // };
+ 
 
   const columns = React.useMemo(
     () => [
       {
         Header: "Feature",
         accessor: "col1",
+        disableSortBy: true,
       },
       {
         Header: "Importance",
         accessor: "col2",
+        // sortType: sortFunc,
       },
       {
         Header: "Feasibility",
         accessor: "col3",
       },
       {
-        Header: "Cost to Build",
+        Header: "Cost",
         accessor: "col4",
       },
       {
@@ -191,9 +292,62 @@ function SRankFeatures(props) {
         Header: "Comments",
         accessor: "col6",
       },
+      
     ],
     []
   );
+
+  columns.forEach((column) => {
+    column.sortType = (a, b, columnId, desc) => {
+
+      let itemA;
+      let itemB;
+let aValue;
+let bValue;
+if(columnId === "col2"){
+  itemA = a.values.col2.props.value
+  itemB = b.values.col2.props.value
+
+  // console.log(itemA)
+  // console.log(itemB)
+
+}else if(columnId === "col5"){
+ itemA =a.values.col5.props.children.props.value;
+ itemB =b.values.col5.props.children.props.value;
+}
+if(itemA === "MVP" || itemA ==="..."){
+  aValue = 0;
+}else if(itemA === "V2"  || itemA ==="Could have"){
+  aValue = 1;
+
+}else if(itemA === "V3+"  || itemA ==="Should have"){
+  aValue = 2;
+}else if(itemA === "Back burner"  || itemA ==="Must have"){
+  aValue = 3;
+
+}else{
+  aValue=4;
+}
+if(itemB === "MVP" || itemB ==="..."){
+  bValue = 0;
+}else if(itemB === "V2"  || itemB ==="Could have"){
+  bValue = 1;
+}else if(itemB === "V3+"  || itemB ==="Should have"){
+  bValue = 2;
+
+}else if(itemB === "Back burner"  || itemB ==="Must have"){
+  bValue = 3;
+}else{
+  bValue=4;
+}
+
+// console.log(aValue + " " + bValue)
+
+if (aValue > bValue) return 1; 
+       if (bValue > aValue) return -1;
+        return 0;
+    };
+  });
 
   const data = React.useMemo(() => tableContent, [tableContent]);
   // const data = React.useMemo(
@@ -238,7 +392,13 @@ function SRankFeatures(props) {
 
   "
       >
-        <div className="w-full p-10 space-y-8 shadow rounded-xl bg-blues-100 drop-shadow-xl container-style normal-box-soft">
+        <div
+          className="w-full p-10 space-y-8 shadow rounded-xl bg-blues-100 drop-shadow-xl container-style normal-box-soft"
+          onLoad={() => {
+            console.log("table render");
+            setRerender(!rerender);
+          }}
+        >
           <div className="flex flex-col items-center justify-center problem-page fade-effect-quick">
             <div className="absolute top-5 right-5">
               <Popover
@@ -281,26 +441,56 @@ function SRankFeatures(props) {
               </Popover>
             </div>
             <h1 className="heading-top">Feature Selection</h1>
-            <div className="normal-box-soft">
+            
+            <div className="flex items-center justify-between w-full">
+              <button
+                className="card__btn save_button left-[5%]  flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick"
+                onClick={() => props.goToStep(3)}
+              >
+                <FaLongArrowAltLeft className="mr-1 text-[24px]" />
+                Back
+              </button>
+              <div className="normal-box-soft">
               <h3 className="heading">
                 Time to pick the features defined in the last step.
               </h3>
             </div>
-
+              <button
+                className="card__btn_next save_button right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect"
+                onClick={() => props.goToStep(5)}
+              >
+                Next
+                <FaLongArrowAltRight className="ml-1 text-[24px]" />
+              </button>
+            </div>
             <div className="flex flex-col w-full">
               <Styles>
+                {/* <div className="flex  gap-3 normal-box-soft right-10  ">
+                <button
+                  onClick={() => {
+                    setSort(!sort);
+                  }}
+                  className={
+                    "w-[4em] h-[2em] rounded-3xl  flex items-center justify-center text-black gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  bg-blues-200"
+                  }
+                >
+                  Sort
+
+                  <FaSort />
+                  
+                </button>
                 <button
                   onClick={() => {
                     setRefresh(!refresh);
                   }}
                   className={
-                    "w-[6em] h-[4em] rounded-3xl  flex items-center justify-center text-black gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  bg-t-bl"
+                    "w-[2em] h-[2em] rounded-3xl  flex items-center justify-center text-black gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  bg-t-bl"
                   }
                 >
                   <FaUndoAlt />
-                  Refresh
+                  
                 </button>
-
+                </div> */}
                 <FeatureTable columns={columns} data={data} />
               </Styles>
               {/* table start */}
@@ -350,8 +540,8 @@ function SRankFeatures(props) {
 	</div>
 </div>  */}
 
-              {/* table start */}
-              <div className="overflow-x-auto">
+              {/*  other table start */}
+              {/* <div className="overflow-x-auto">
                 <div className="flex justify-center min-h-screen overflow-hidden font-sans bg-gray-100 min-w-screen rounded-xl">
                   <div className="w-full lg:w-5/6">
                     <div className="my-6 bg-white shadow-md !rounded-2xl">
@@ -425,7 +615,7 @@ function SRankFeatures(props) {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
 
               {/* <p>If neither, describe what you are looking to innovate:</p>
               <textarea
@@ -440,22 +630,7 @@ function SRankFeatures(props) {
                 later.
               </p> */}
             </div>
-            <div className="flex items-center justify-between w-full">
-              <button
-                className="card__btn save_button left-[5%]  flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick"
-                onClick={() => props.goToStep(3)}
-              >
-                <FaLongArrowAltLeft className="mr-1 text-[24px]" />
-                Back
-              </button>
-              <button
-                className="card__btn_next save_button right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect"
-                onClick={() => props.goToStep(5)}
-              >
-                Next
-                <FaLongArrowAltRight className="ml-1 text-[24px]" />
-              </button>
-            </div>
+            
           </div>
         </div>
       </div>
@@ -464,3 +639,6 @@ function SRankFeatures(props) {
 }
 
 export default SRankFeatures;
+
+
+
