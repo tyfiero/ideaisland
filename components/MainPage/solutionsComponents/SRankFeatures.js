@@ -75,7 +75,6 @@ function SRankFeatures(props) {
       col6: "BLANK",
     },
   ]);
-console.log("TABLE RERENDERED")
 // console.log(tableContent.length === sFormRedux.features.length)
 
   // console.log(props.form.form.Features);
@@ -279,10 +278,14 @@ if(tableContent.length !== sFormRedux.features?.length){
       {
         Header: "Feasibility",
         accessor: "col3",
+        disableSortBy: true,
+        
       },
       {
         Header: "Cost",
         accessor: "col4",
+        disableSortBy: true,
+
       },
       {
         Header: "Version",
@@ -291,6 +294,8 @@ if(tableContent.length !== sFormRedux.features?.length){
       {
         Header: "Comments",
         accessor: "col6",
+        disableSortBy: true,
+
       },
       
     ],
@@ -465,7 +470,7 @@ if (aValue > bValue) return 1;
             </div>
             <div className="flex flex-col w-full">
               <Styles>
-                {/* <div className="flex  gap-3 normal-box-soft right-10  ">
+                {/* <div className="flex gap-3 normal-box-soft right-10 ">
                 <button
                   onClick={() => {
                     setSort(!sort);

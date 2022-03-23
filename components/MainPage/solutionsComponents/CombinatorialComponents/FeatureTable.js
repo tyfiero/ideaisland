@@ -30,11 +30,11 @@ function FeatureTable({ columns, data }) {
   return (
     <>
     <div className="overflow-x-auto">
-        <div className="flex justify-center  overflow-hidden font-sans bg-gray-100 min-w-screen rounded-xl">
+        <div className="flex justify-center overflow-hidden font-sans bg-gray-100 min-w-screen rounded-xl">
      <div className="w-full lg:w-[98%]">
                 <div className="my-6 bg-white shadow-md !rounded-2xl">
       <table className="w-full table-auto min-w-max" {...getTableProps()}>
-        <thead>
+        <thead >
           {headerGroups.map(headerGroup => (
             <tr className="text-sm leading-normal text-gray-600 uppercase bg-blues-100 " {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map(column => (
@@ -45,6 +45,7 @@ function FeatureTable({ columns, data }) {
                   {/* Add a sort direction indicator */}
 
                   <span className='text-[18px]'>
+                    {console.log(column.isSorted)}
                     {column.isSorted
                       ? column.isSortedDesc
                         ?  '  ∨'
