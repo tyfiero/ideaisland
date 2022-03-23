@@ -9,7 +9,6 @@ function Header() {
 
   return (
     <>
-      <Head>
         <title>ideaisland</title>
         <meta name="description" content={description} />
         <meta
@@ -89,7 +88,6 @@ function Header() {
             as="font"
             crossOrigin=""
           /> */}
-      </Head>
       </>
   )
 }

@@ -1,8 +1,9 @@
 import "tailwindcss/tailwind.css";
 import "../styles/globals.css";
-import { Provider } from "react-redux";
+import { Provider, useStore } from "react-redux";
 import { PersistGate } from "redux-persist/lib/integration/react";
-
+// import { ReactDOM } from "react";
+import { hydrate } from "react-dom";
 import { store, persistor } from "../redux/store";
 // import CookieBanner from "../components/CookieBanner/CookieBanner";
 // import Analytics from "../components/Analytics/Analytics";
@@ -15,6 +16,9 @@ import { useRouter } from "next/router";
 import Script from "next/script";
 import Head from "../components/Header";
 import Header from "../components/Header";
+import { wrapper } from "../redux/store";
+// import { useStore } from 'react-redux';
+
 // import splitbee from '@splitbee/web';
 
 function MyApp({ Component, pageProps }) {
@@ -35,57 +39,123 @@ function MyApp({ Component, pageProps }) {
     router.events.on("routeChangeError", handleComplete);
   }, [router]);
 
-  if (typeof window === "undefined") {
-    // console.log("SERVER");
-
-    return (
-      <>
-        <Header />
-
-        <Provider store={store}>
-          {/* <PersistGate loading={<FullLoader />} persistor={persistor}> */}
-          <UserContext.Provider value={userData}>
-            <Layout>
-              <FullLoader show={loading} />
-              <Component {...pageProps} />
-              {/* <CookieBanner
-              privacyPolicyLink={"/privacy"}
-              showStatistic={true}
-              showMarketing={false}
-              showExternalMedia={false}
-            /> */}
-            </Layout>
-            {/* <Analytics /> */}
-          </UserContext.Provider>
-          {/* </PersistGate> */}
-        </Provider>
-      </>
-    );
-  }
-// console.log("CLIENT")
-  return (
-    <>
-      <Header />
-
-      <Provider store={store}>
-        <PersistGate loading={(<FullLoader from="persist"/>)} persistor={persistor}>
-          <UserContext.Provider value={userData}>
-            <Layout>
-              <FullLoader show={loading} />
-              <Component {...pageProps} />
-              {/* <CookieBanner
-            privacyPolicyLink={"/privacy"}
-            showStatistic={true}
-            showMarketing={false}
-            showExternalMedia={false}
-          /> */}
-            </Layout>
-            {/* <Analytics /> */}
-          </UserContext.Provider>
-        </PersistGate>
-      </Provider>
-    </>
+  const store = useStore((state) => state);
+  return process.browser ? (
+    <PersistGate persistor={store.__persistor} loading={(<FullLoader from="persist"/>)}>
+      <UserContext.Provider value={userData}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </UserContext.Provider>
+    </PersistGate>
+  ) : (
+    <PersistGate persistor={store}>
+      <UserContext.Provider value={userData}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </UserContext.Provider>
+    </PersistGate>
   );
 }
+//
+export default wrapper.withRedux(MyApp);
 
-export default MyApp;
+//   return (
+//     <>
+//       <Header />
+
+//       {/* <Provider store={store}> */}
+//         {/* <PersistGate loading={(<FullLoader from="persist"/>)} persistor={persistor}> */}
+//           <UserContext.Provider value={userData}>
+//             <Layout>
+//               <FullLoader show={loading} />
+//               <Component {...pageProps} />
+//               {/* <CookieBanner
+//             privacyPolicyLink={"/privacy"}
+//             showStatistic={true}
+//             showMarketing={false}
+//             showExternalMedia={false}
+//           /> */}
+//             </Layout>
+//             {/* <Analytics /> */}
+//           </UserContext.Provider>
+//         {/* </PersistGate> */}
+//       {/* </Provider> */}
+//     </>
+//   );
+// }
+
+
+//   if (typeof window === "undefined") {
+//     // console.log("SERVER");
+
+//     return (
+//       <>
+//         <Header />
+
+//         <Provider store={store}>
+//           {/* <PersistGate loading={<FullLoader />} persistor={persistor}> */}
+//           <UserContext.Provider value={userData}>
+//             <Layout>
+//               <FullLoader show={loading} />
+//               <Component {...pageProps} />
+//               {/* <CookieBanner
+//               privacyPolicyLink={"/privacy"}
+//               showStatistic={true}
+//               showMarketing={false}
+//               showExternalMedia={false}
+//             /> */}
+//             </Layout>
+//             {/* <Analytics /> */}
+//           </UserContext.Provider>
+//           {/* </PersistGate> */}
+//         </Provider>
+//       </>
+//     );
+//   }
+// // console.log("CLIENT")
+
+// //
+//   return (
+//     <>
+//       <Header />
+
+//       <Provider store={store}>
+//         {/* <PersistGate loading={(<FullLoader from="persist"/>)} persistor={persistor}> */}
+//           <UserContext.Provider value={userData}>
+//             <Layout>
+//               <FullLoader show={loading} />
+//               <Component {...pageProps} />
+//               {/* <CookieBanner
+//             privacyPolicyLink={"/privacy"}
+//             showStatistic={true}
+//             showMarketing={false}
+//             showExternalMedia={false}
+//           /> */}
+//             </Layout>
+//             {/* <Analytics /> */}
+//           </UserContext.Provider>
+//         {/* </PersistGate> */}
+//       </Provider>
+//     </>
+//   );
+// }
+// // if(typeof window !== "undefined"){
+
+// //   persistor.subscribe(() => {
+// //     /* Hydrate React components when persistor has synced with redux store */
+// //     const { bootstrapped } = persistor.getState();
+
+// //     console.log(bootstrapped)
+
+// //     if (bootstrapped) {
+// //        hydrate(<MyApp />, document.getElementById("root"));
+// //     }
+// //   });
+// // }
+
+// export default MyApp;
+
+
+

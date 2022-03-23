@@ -1,5 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
-
+import Header from "../components/Header";
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const initialProps = await Document.getInitialProps(ctx);
@@ -16,7 +16,9 @@ class MyDocument extends Document {
         {/* <style>
 @import url('https://fonts.googleapis.com/css2?family=Sniglet&display=swap');
 </style> */}
-        <Head />
+        <Head >
+        <Header />
+        </Head >
         <body>
           <div className="blobs">
             <div className="svg-blob1 rotate-effect scale-effect"></div>

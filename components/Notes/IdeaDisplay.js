@@ -709,7 +709,7 @@ export default function IdeaDisplay() {
         {/* <div className="h-[20em] w-full"> */}
         <img
           ref={imgRef}
-          // onLoad={onImgLoad}
+          // onLoad={()=>{console.log("IMG LOADED")}}
 
           style={{ objectPosition: "0px " + position + "px" }}
           className={" w-full fade-effect-turbo "}
