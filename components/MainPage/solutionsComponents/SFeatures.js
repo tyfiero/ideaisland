@@ -239,7 +239,7 @@ useEffect(()=> {
             </button> */}
 
               {showCommonFeatures && (
-                <div className="normal-box-soft border-2 border-t-pm w-[90%] !p-2  !rounded-xl gap-2" onClick={()=>{
+                <div className="glass-box border-2 border-t-pm w-[90%] !p-2  !rounded-xl gap-2" onClick={()=>{
                   // console.log("click")
                   setRerender(!rerender)
                 }}>
@@ -598,13 +598,16 @@ useEffect(()=> {
                   <FaLongArrowAltLeft className="mr-1 text-[24px]" />
                   Back
                 </button>
-                <button
-                  className="card__btn_next save_button right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect"
-                  onClick={() => props.goToStep(4)}
-                >
-                  Next
-                  <FaLongArrowAltRight className="ml-1 text-[24px]" />
-                </button>
+                <div className="relative group">
+      <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
+              <button
+                className="w-[5em] h-[3em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-t-bd/50 md:hover:shadow-xl m-1 drop-shadow-xl "
+                onClick={() => props.goToStep(4)}
+              >
+                Next
+                <FaLongArrowAltRight className="ml-1 text-[24px]" />
+              </button>
+            </div>
               </div>
             </div>
             <div className="normal-box-soft !rounded-xl w-[30em]">

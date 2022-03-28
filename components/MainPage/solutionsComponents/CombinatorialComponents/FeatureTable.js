@@ -45,7 +45,7 @@ function FeatureTable({ columns, data }) {
                   {/* Add a sort direction indicator */}
 
                   <span className='text-[18px]'>
-                    {console.log(column.isSorted)}
+                    {/* {console.log(column.isSorted)} */}
                     {column.isSorted
                       ? column.isSortedDesc
                         ?  '  ∨'

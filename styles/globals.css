@@ -87,6 +87,11 @@ body {
   background: var(--colorLight1);
 }
 
+
+p {
+  margin-bottom: 0 !important;
+}
+
 .svg-blob1 {
   background-color: var(--colorLight1);
   border-top-left-radius: 5rem;
@@ -974,7 +979,7 @@ body {
   background: linear-gradient(145deg, #c6f0fd, var(--colorDark1));
   box-shadow: 5px 5px 13px var(--colorDark1), -3px -3px 11px #ffffff;
   /* position: relative; */
-  height: 60px;
+  /* height: 60px; */
 
   font-size: var(--fontSizeHeading-sm);
 }
@@ -2442,7 +2447,17 @@ textarea {
   border-radius: 3em;
   box-shadow: 9px 9px 17px #9898986e, -9px -9px 17px #ffffff65;
 }
-
+.glass-box {
+  background: rgba( 255, 255, 255, 0.25 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 4.5px );
+-webkit-backdrop-filter: blur( 4.5px );
+border-radius: 10px;
+border: 1px solid rgba(255, 255, 255, 0.74);
+  padding: 4px;
+  /* border-radius: 3em; */
+  /* box-shadow: 9px 9px 17px #9898986e, -9px -9px 17px #ffffff65; */
+}
 .normal-box-soft {
   background: rgba(255, 255, 255, 0.364);
   padding: 4px;
@@ -2666,8 +2681,17 @@ input[type="range"]::-moz-range-thumb:active {
   will-change: opacity, text-shadow;
 }
 
-.active {
+/* .active {
   color: var(--colorDark1);
   opacity: 1;
   text-shadow: 0 0px 8px;
+} */
+
+
+.react-select__control{
+  border-radius: 3em !important;
+  background: linear-gradient(145deg, #ffffff, #ebebeb);
+box-shadow:  2px 2px 11px #bebebe,
+             -2px -2px 11px #ffffff;
+             border: none;
 }

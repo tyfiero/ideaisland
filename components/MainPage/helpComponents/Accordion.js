@@ -19,7 +19,7 @@ const AccordionItem = ({
     onItemClick,
   }) => {
     return (
-      <div className={`accordionItem ${isActive ? "active" : ""}`}>
+      <div className={`shadow-0 accordionItem ${isActive ? "active" : ""}`}>
         <div className="accordionTitle" onClick={onItemClick}>
           <h3>
             {title}

@@ -64,7 +64,7 @@ export default function IdeaSideBar() {
         <button
           className={
             "w-[6em] h-[2em] rounded-3xl  flex items-center justify-center text-white gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer " +
-            (currentNote === "ideas" ? " bg-t-bl" : " bg-slate-400")
+            (currentNote === "ideas" ? " bg-t-bl" : " bg-slate-300")
           }
           onClick={() => setCurrentNote("ideas")}
         >
@@ -72,7 +72,7 @@ export default function IdeaSideBar() {
 
           <p
             className={
-              "mr-1  " +
+              "mr-1  mb-0 " +
               (currentNote === "ideas"
                 ? "text-white text-[20px]"
                 : "text-black text-[18px]")
@@ -84,7 +84,7 @@ export default function IdeaSideBar() {
         <button
           className={
             "w-[7em] h-[2em] rounded-3xl bg-t-bl flex items-center justify-center text-white gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer " +
-            (currentNote === "problems" ? " bg-t-bl" : " bg-slate-400")
+            (currentNote === "problems" ? " bg-t-bl" : " bg-slate-300")
           }
           onClick={() => setCurrentNote("problems")}
         >
@@ -92,7 +92,7 @@ export default function IdeaSideBar() {
 
           <p
             className={
-              "mr-1  " +
+              "mr-1  mb-0 " +
               (currentNote === "problems"
                 ? "text-white text-[20px]"
                 : "text-black text-[18px]")
@@ -104,7 +104,7 @@ export default function IdeaSideBar() {
         <button
           className={
             "w-[6em] h-[2em] rounded-3xl bg-t-bl flex items-center justify-center text-white gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer " +
-            (currentNote === "notes" ? " bg-t-bl" : " bg-slate-400")
+            (currentNote === "notes" ? " bg-t-bl" : " bg-slate-300")
           }
           onClick={() => setCurrentNote("notes")}
         >
@@ -112,7 +112,7 @@ export default function IdeaSideBar() {
 
           <p
             className={
-              "mr-1  " +
+              "mr-1 mb-0 " +
               (currentNote === "notes"
                 ? "text-white text-[20px]"
                 : "text-black text-[18px]")
@@ -122,6 +122,7 @@ export default function IdeaSideBar() {
           </p>
         </button>
       </div>
+      {/* <div className="transition duration-1000 rounded-lg -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 blur">
       <button
         // type="submit"
         // disabled={!isValid}
@@ -134,6 +135,27 @@ export default function IdeaSideBar() {
         <FaPlus className="text-[20px]" />
         Create New Idea
       </button>
+      </div> */}
+     
+    <div className="relative mt-2 group">
+      <div className="absolute transition duration-1000 rounded-full opacity-25 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
+      {/* <div className="relative flex justify-start rounded-lg ring-1 items-top"> */}
+       
+          
+          <button
+        // type="submit"
+        // disabled={!isValid}
+        onClick={() => {
+          dispatch(editModeAction("new"));
+          // dispatch(currentDocAction(idea.identifier))
+        }}
+        className=" w-[12em] h-[2em] m-2 rounded-3xl bg-t-bl flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer md:hover:shadow-xl shadow-t-bd/50"
+      >
+        <FaPlus className="text-[20px]" />
+        Create New Idea
+      </button>
+    </div>
+    
       {currentNote === "ideas" && (
         <>
           <IdeasList />
@@ -141,18 +163,15 @@ export default function IdeaSideBar() {
       )}
       {currentNote === "problems" && (
         <>
-          {/* <h1 className="heading-top">Problems</h1> */}
           <p>No problems to display</p>
         </>
       )}
       {currentNote === "notes" && (
         <>
-          {/* <h1 className="heading-top">Notes</h1> */}
           <p>No notes to display</p>
         </>
       )}
     </div>
-    // <h1>Hello {id}</h1>);
   );
 }
 
@@ -161,16 +180,10 @@ function IdeasList() {
   const dispatch = useDispatch();
   const userUIDRedux = useSelector((state) => state.userUID);
 
-  // const ref = firestore
-  //   .collection("users")
-  //   .doc(auth.currentUser.uid)
-  //   .collection("ideas");
-  // const query = ref.orderBy("createdAt");
-  // const [querySnapshot] = useCollection(query);
-
-  // const ideas = querySnapshot?.docs.map((doc) => doc.data());
+ 
 
   //Done? idk. that was traumatic. Make sure it still works.THIS MUST BE EDITED WHEN THE PERSISTENCE IS FIXED priceart cant stay!!!  TODO
+  //TODO memoize this so that firebase reads less
   console.log(userUIDRedux);
   let uid;
   if (userUIDRedux) {
@@ -182,22 +195,22 @@ function IdeasList() {
     uid = null;
     console.log("it fucked up");
   }
+// console.log(auth.currentUser);
+const ref = collection(getFirestore(), "users", uid, "ideas");
+const postQuery = query(ref, orderBy("createdAt", "desc"));
 
-  // console.log(auth.currentUser);
-  const ref = collection(getFirestore(), "users", uid, "ideas");
-  const postQuery = query(ref, orderBy("createdAt", "desc"));
+const [querySnapshot] = useCollection(postQuery);
 
-  const [querySnapshot] = useCollection(postQuery);
+const ideas = querySnapshot?.docs.map((doc) => doc.data());
 
-  const ideas = querySnapshot?.docs.map((doc) => doc.data());
-
-  return (
-    <>
-      {/* <h1>Manage your Posts</h1> */}
-      <IdeaFeed ideas={ideas} admin />
-      {/* <p>{[ideas]}</p> */}
-    </>
-  );
+return (
+  <>
+    <IdeaFeed ideas={ideas} admin />
+  </>
+);
+  
+  
+  
 }
 
 // function CreateNewIdea() {

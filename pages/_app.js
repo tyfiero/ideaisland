@@ -41,20 +41,24 @@ function MyApp({ Component, pageProps }) {
 
   const store = useStore((state) => state);
   return process.browser ? (
-    <PersistGate persistor={store.__persistor} loading={(<FullLoader from="persist"/>)}>
+    <PersistGate persistor={store.__persistor} >
+      {() => (
       <UserContext.Provider value={userData}>
         <Layout>
           <Component {...pageProps} />
         </Layout>
       </UserContext.Provider>
+      )}
     </PersistGate>
   ) : (
     <PersistGate persistor={store}>
+      {() => (
       <UserContext.Provider value={userData}>
         <Layout>
           <Component {...pageProps} />
         </Layout>
       </UserContext.Provider>
+         )}
     </PersistGate>
   );
 }

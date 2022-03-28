@@ -11,6 +11,7 @@ import {
   FaInfoCircle,
 } from "react-icons/fa";
 import { ArrowContainer, Popover } from "react-tiny-popover";
+import SFilterIdeas from "./SFilterIdeas";
 function SFilter(props) {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [button1, setButton1] = useState(false);
@@ -29,7 +30,7 @@ function SFilter(props) {
 
   "
       >
-        <div className="w-full max-w-[42rem] p-10 space-y-8 shadow rounded-xl bg-blues-100 drop-shadow-xl container-style normal-box-soft">
+        <div className="w-full max-w-[72rem] p-10  shadow rounded-xl bg-blues-100 drop-shadow-xl container-style normal-box-soft">
           <div className="absolute top-5 right-5">
             <Popover
               isOpen={isPopoverOpen}
@@ -76,10 +77,12 @@ function SFilter(props) {
               </div>
             </Popover>
           </div>
-          <div className="flex flex-col items-center justify-center problem-page fade-effect-quick">
-            <h1 className="heading-top">Filter</h1>
-            <div className="normal-box-soft">
-              <h3 className="heading">Time to choose an idea to evolve</h3>
+          <div className="flex flex-col items-center justify-center  fade-effect-quick w-full">
+            <h1 className="heading-top !m-0">Filter</h1>
+            <div className="normal-box-soft !p-2">
+              <h3 className="heading !m-0">Time to choose an idea to evolve</h3>
+              <p className="m-0">You can always come back here to select another idea. </p>
+
             </div>
 
             <div className="flex gap-5">
@@ -103,7 +106,6 @@ function SFilter(props) {
             </div>
 
             <div className="flex flex-col">
-              <p>You can always come back here to select another idea. </p>
               {/* <textarea
                 // type="text"
                 className="textarea-box h-[10em] whitespace-normal"
@@ -113,27 +115,15 @@ function SFilter(props) {
               /> */}
 
               <div className="flex flex-col gap-4">
+                <SFilterIdeas />
                 <div className="flex items-center normal-box-soft">
                   <input type="radio" id="html" name="fav_language" value="" />
 
                   <div className="w-full ml-5 normal-box">Idea 1</div>
                 </div>
-                <div className="flex items-center normal-box-soft">
-                  <input type="radio" id="html" name="fav_language" value="" />
-
-                  <div className="w-full ml-5 normal-box">Idea 2</div>
-                </div>
-                <div className="flex items-center normal-box-soft">
-                  <input type="radio" id="html" name="fav_language" value="" />
-
-                  <div className="w-full ml-5 normal-box">Idea 3</div>
-                </div>
-                <div className="flex items-center normal-box-soft">
-                  <input type="radio" id="html" name="fav_language" value="" />
-
-                  <div className="w-full ml-5 normal-box">Idea 4</div>
-                </div>
+              
               </div>
+              
             </div>
             <div className="flex items-center justify-between w-full">
               <button
@@ -143,13 +133,16 @@ function SFilter(props) {
                 <FaLongArrowAltLeft className="mr-1 text-[24px]" />
                 Back
               </button>
+              <div className="relative group">
+      <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
               <button
-                className="card__btn_next save_button right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect"
+                className="w-[5em] h-[3em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-t-bd/50 md:hover:shadow-xl m-1 drop-shadow-xl "
                 onClick={() => props.goToStep(3)}
               >
                 Next
                 <FaLongArrowAltRight className="ml-1 text-[24px]" />
               </button>
+            </div>
             </div>
           </div>
         </div>

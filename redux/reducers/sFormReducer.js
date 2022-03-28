@@ -1,4 +1,4 @@
-const sFormReducer = (state = { features: [] }, action) => {
+const sFormReducer = (state = { features: [], idea: null }, action) => {
   switch (action.type) {
     case "sForm_UPDATE":
       return action.payload;

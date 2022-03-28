@@ -54,7 +54,13 @@ export default function Layout({ children }) {
 
   // let user;
 
-  // console.log(userData)
+
+  if(typeof window === "undefined"){
+    console.log("SERVER DATA")
+    console.log(userData)
+    console.log(auth.currentUser)
+
+  }
 
   // useEffect(() => {
   //   //Dear GOD please clean this code up. Im getting anxiety just looking at it @auth. UPDATE: I dont think  I need any of this code now that persistence is in place. This was my shitty workaround to redux persist.

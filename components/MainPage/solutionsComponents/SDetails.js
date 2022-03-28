@@ -142,14 +142,18 @@ function SDetails(props) {
               </button>
 
               {titleContent ? (
-                <button
-                  type="submit"
-                  className="card__btn_next save_button right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect !w-[15em]"
-                  onClick={props.saveProblemForm}
-                >
-                  Submit and Continue
-                  <FaLongArrowAltRight className="ml-1 text-[24px]" />
-                </button>
+                  <div className="relative group">
+                  <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
+                         
+                          <button
+                   type="submit"
+                   className="card__btn_next h-[3em]  right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect !w-[15em] drop-shadow-xl m-3"
+                   onClick={props.saveProblemForm}
+                 >
+                   Submit and Continue
+                   <FaLongArrowAltRight className="ml-1 text-[24px]" />
+                 </button>
+                        </div>
               ) : (
                 <button
                   type="submit"
