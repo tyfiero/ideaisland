@@ -178,7 +178,7 @@ function STechStack(props) {
                     borderRadius: "2em",
                   }}
                   onClickOutside={() => setIsPopoverOpen(false)}
-                  positions={["bottom", "left", "right"]} // preferred positions by priority
+                  positions={["bottom", "left", "right"]}
                   content={({ position, childRect, popoverRect }) => (
                     <ArrowContainer
                       position={position}
@@ -221,35 +221,34 @@ function STechStack(props) {
 
               <div className="flex gap-2">
                 <div className="flex py-3 flex-col border-2 max-h-[35em] w-[15em] rounded-xl items-center gap-2 overflow-auto">
-                  
                   <div className="relative group">
-                  <div className="absolute transition duration-1000 rounded-full opacity-50 group:hover:!-inset-3 -inset-1 bg-gradient-to-r from-t-pl via-t-pm via-t-pd to-violet-400 blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy-slow"></div>
-                  <button
-                    className={
-                      "w-[12em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start text-black gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
-                      (selected === "Faves"
-                        ? " border-4 border-t-pm bg-gradient-to-br from-t-pl via-t-pl via-t-pm to-t-pm"
-                        : "bg-gradient-to-br from-pink-100 via-t-pl to-t-pm ")
-                    }
-                    onClick={() => {
-                      if (selected !== "Faves") {
-                        setSelected("Faves");
-                      } else {
-                        setSelected("");
+                    <div className="absolute transition duration-1000 rounded-full opacity-50 group:hover:!-inset-3 -inset-1 bg-gradient-to-r from-t-pl via-t-pm via-t-pd to-violet-400 blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy-slow"></div>
+                    <button
+                      className={
+                        "w-[12em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start text-black gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
+                        (selected === "Faves"
+                          ? " border-4 border-t-pm bg-gradient-to-br from-t-pl via-t-pl via-t-pm to-t-pm"
+                          : "bg-gradient-to-br from-pink-100 via-t-pl to-t-pm ")
                       }
-                    }}
-                  >
-                    <FaHeart className="text-t-pd"/>
-                    Faves
-                  </button>
-                  {/* <button
+                      onClick={() => {
+                        if (selected !== "Faves") {
+                          setSelected("Faves");
+                        } else {
+                          setSelected("");
+                        }
+                      }}
+                    >
+                      <FaHeart className="text-t-pd" />
+                      Faves
+                    </button>
+                    {/* <button
                     className="w-[5em] h-[3em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-t-bd/50 md:hover:shadow-xl m-1 drop-shadow-xl "
                     onClick={() => props.goToStep(6)}
                   >
                     Next
                     <FaLongArrowAltRight className="ml-1 text-[24px]" />
                   </button> */}
-                </div>
+                  </div>
                   <button
                     className={
                       "w-[12em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start text-black gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
@@ -488,7 +487,11 @@ function STechStack(props) {
                 </div>
                 <div className="flex flex-col items-center gap-2">
                   <div className="flex items-center min-h-[20em] w-[45em] rounded-xl p-5 flex-col justify-between bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-70 border border-white/50 shadow-lg">
-                  {selected === "Faves" && (<><p>No Favorites yet :(</p></>)}
+                    {selected === "Faves" && (
+                      <>
+                        <p>No Favorites yet :(</p>
+                      </>
+                    )}
                     {selected === "Languages" && (
                       <>
                         <div className="flex flex-wrap content-start gap-2 ">
@@ -703,7 +706,6 @@ function ListItem({ name, deleteIndex, cost, url, type }) {
 function ItemChip({ name, color, bColor, iconColor, update, cost, url, type }) {
   const [clicked, setClicked] = useState(false);
 
-
   console.log(color);
   return (
     <button
@@ -741,8 +743,6 @@ function ItemChip({ name, color, bColor, iconColor, update, cost, url, type }) {
   );
 }
 
-
-
 function ItemCard({ name, color, bColor, iconColor, update, cost, url, type }) {
   const [clicked, setClicked] = useState(false);
   const [heartClicked, setHeartClicked] = useState(false);
@@ -773,44 +773,64 @@ function ItemCard({ name, color, bColor, iconColor, update, cost, url, type }) {
           : " " + color + " " + bColor)
       }
     >
-
-
       <div className="flex flex-col items-center justify-center w-full h-full">
         <div className="w-full h-[70%] bg-white/40  relative">
-          <img src={"https://picsum.photos/82/52"} alt="logo" className="object-cover" />
-          <div className="opacity-0 transition duration-200 z-100 group-hover:opacity-100 absolute top-0 right-0"><div className="flex items-center justify-center rounded-full bg-t-pl/60 h-6 w-6 " onClick={()=>setHeartClicked(!heartClicked)}>{heartClicked ? <FaHeart className="text-t-pd" /> : <FaRegHeart className="text-t-pd" />}</div></div>
-        </div>
-   
-   
-
-<div className="h-full">
-<p className="m-0 text-xs">{name}</p>
-      <p className="m-0 text-xs"><a
-          href={url || "https://www.google.com"}
-          target="_blank"
-          rel="noreferrer"
-          className="flex gap-1 transition   md:hover:scale-125 md:hover:text-blue-200" 
-        >Link
-          <FaLink
-           
+          <img
+            src={"https://picsum.photos/82/52"}
+            alt="logo"
+            className="object-cover"
           />
-        </a></p>
-      {!clicked &&(<div className={
-        " flex gap-1 items-center rounded-md p-1 border-2  md:hover:scale-105 md:active:scale-95 whitespace-nowrap transition cursor-pointer h-[1.5em] w-fit " +
-         color + " " + bColor
-      }><p className="m-0">Add</p> <FaPlus className={iconColor} /></div>
-       
-      )
-    }
-     {clicked &&(<div className={
-        "flex items-center gap-1 h-fit w-fit rounded-md  border-2 border-t-pm  md:hover:scale-105 md:active:scale-95 whitespace-nowrap transition cursor-pointer h-[1.5em] w-fit bg-t-pl/70" 
-      }><p className="m-0 ml-1">Delete</p><FaTimes className="text-t-pm" /></div>
-       
-      )}
-</div>
-</div>
+          <div className="opacity-0 transition duration-200 z-100 group-hover:opacity-100 absolute top-0 right-0">
+            <div
+              className="flex items-center justify-center rounded-full bg-t-pl/60 h-6 w-6 "
+              onClick={() => setHeartClicked(!heartClicked)}
+            >
+              {heartClicked ? (
+                <FaHeart className="text-t-pd" />
+              ) : (
+                <FaRegHeart className="text-t-pd" />
+              )}
+            </div>
+          </div>
+        </div>
 
-
+        <div className="h-full">
+          <p className="m-0 text-xs">{name}</p>
+          <p className="m-0 text-xs">
+            <a
+              href={url || "https://www.google.com"}
+              target="_blank"
+              rel="noreferrer"
+              className="flex gap-1 transition   md:hover:scale-125 md:hover:text-blue-200"
+            >
+              Link
+              <FaLink />
+            </a>
+          </p>
+          {!clicked && (
+            <div
+              className={
+                " flex gap-1 items-center rounded-md p-1 border-2  md:hover:scale-105 md:active:scale-95 whitespace-nowrap transition cursor-pointer h-[1.5em] w-fit " +
+                color +
+                " " +
+                bColor
+              }
+            >
+              <p className="m-0">Add</p> <FaPlus className={iconColor} />
+            </div>
+          )}
+          {clicked && (
+            <div
+              className={
+                "flex items-center gap-1 h-fit w-fit rounded-md  border-2 border-t-pm  md:hover:scale-105 md:active:scale-95 whitespace-nowrap transition cursor-pointer h-[1.5em] w-fit bg-t-pl/70"
+              }
+            >
+              <p className="m-0 ml-1">Delete</p>
+              <FaTimes className="text-t-pm" />
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

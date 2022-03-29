@@ -43,18 +43,16 @@ function SFeatures(props) {
   //   setFeatureString(text);
   // }, [props.form.form]);
 
+  useEffect(() => {
+    // console.log(featureArray)
+    // console.log("ue")
 
-useEffect(()=> {
-  // console.log(featureArray)
-  // console.log("ue")
-
-  // setFeatureArray(featureArray)
-  setRerender(!rerender)
-},[sFormRedux, featureArray])
+    // setFeatureArray(featureArray)
+    setRerender(!rerender);
+  }, [sFormRedux, featureArray]);
 
   const updateArray = (data) => {
     // console.log(featureArray);
-
 
     //NOTE!! This is duplicated many times. If you want to change it, change all of them.
     let featureObject = {
@@ -67,10 +65,10 @@ useEffect(()=> {
     };
     featureArray.push(featureObject);
     // console.log(featureArray);
-    setFeatureArray(featureArray)
+    setFeatureArray(featureArray);
     let updated = sFormRedux;
     updated.features = featureArray;
-    dispatch(sFormAction(updated))
+    dispatch(sFormAction(updated));
 
     // props.update("Features", featureArray);
   };
@@ -89,7 +87,7 @@ useEffect(()=> {
     }
     let updated = sFormRedux;
     updated.features = featureArray;
-    dispatch(sFormAction(updated))
+    dispatch(sFormAction(updated));
     // props.update("Features", featureArray);
   };
   const updateButton = (e) => {
@@ -107,7 +105,7 @@ useEffect(()=> {
     // console.log(featureArray);
     let updated = sFormRedux;
     updated.features = featureArray;
-    dispatch(sFormAction(updated))
+    dispatch(sFormAction(updated));
     // props.update("Features", featureArray);
   };
 
@@ -130,48 +128,47 @@ useEffect(()=> {
         <div className="w-full p-10 space-y-8 shadow !rounded-2xl bg-blues-100 drop-shadow-xl container-style normal-box-soft">
           <div className="flex">
             <div className="flex flex-col items-center justify-center problem-page fade-effect-quick">
-            <div className="absolute top-5 right-12">
-            <Popover
-              isOpen={isPopoverOpen}
-              containerStyle={{
-                zIndex: 100,
-                boxShadow: "5px 13px 28px 0px rgba(0,0,0,0.48)",
-                backgroundColor: "white",
-                borderRadius: "2em",
-              }}
-              onClickOutside={() => setIsPopoverOpen(false)}
-              positions={["bottom", "left", "right"]} // preferred positions by priority
-              content={({ position, childRect, popoverRect }) => (
-                <ArrowContainer
-                  position={position}
-                  childRect={childRect}
-                  popoverRect={popoverRect}
-                  arrowColor={"white"}
-                  arrowSize={10}
-                  arrowStyle={{ opacity: 1, top: "-6px" }}
-                  className="popover-arrow-container"
-                  arrowClassName="popover-arrow"
-                >
-                  <div
-                    className="!opacity-100 bg-white w-[25em] rounded-xl p-3"
-                    onClick={() => setIsPopoverOpen(!isPopoverOpen)}
-                  >
-                     Features are essential to any application. Identifying
+              <div className="absolute top-5 right-12">
+                <Popover
+                  isOpen={isPopoverOpen}
+                  containerStyle={{
+                    zIndex: 100,
+                    boxShadow: "5px 13px 28px 0px rgba(0,0,0,0.48)",
+                    backgroundColor: "white",
+                    borderRadius: "2em",
+                  }}
+                  onClickOutside={() => setIsPopoverOpen(false)}
+                  positions={["bottom", "left", "right"]}
+                  content={({ position, childRect, popoverRect }) => (
+                    <ArrowContainer
+                      position={position}
+                      childRect={childRect}
+                      popoverRect={popoverRect}
+                      arrowColor={"white"}
+                      arrowSize={10}
+                      arrowStyle={{ opacity: 1, top: "-6px" }}
+                      className="popover-arrow-container"
+                      arrowClassName="popover-arrow"
+                    >
+                      <div
+                        className="!opacity-100 bg-white w-[25em] rounded-xl p-3"
+                        onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+                      >
+                        Features are essential to any application. Identifying
                         the key features you need ahead of time will help you
                         frame the product and gauge the complexity.
+                      </div>
+                    </ArrowContainer>
+                  )}
+                >
+                  <div
+                    onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+                    className="w-5"
+                  >
+                    <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 md:hover:scale-110" />
                   </div>
-                </ArrowContainer>
-              )}
-            >
-              
-              <div
-                onClick={() => setIsPopoverOpen(!isPopoverOpen)}
-                className="w-5"
-              >
-                <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 md:hover:scale-110" />
+                </Popover>
               </div>
-            </Popover>
-          </div>
               <h1 className="heading-top">Features</h1>
               <div className="normal-box-soft">
                 <h3 className="heading">
@@ -239,16 +236,19 @@ useEffect(()=> {
             </button> */}
 
               {showCommonFeatures && (
-                <div className="glass-box border-2 border-t-pm w-[90%] !p-2  !rounded-xl gap-2" onClick={()=>{
-                  // console.log("click")
-                  setRerender(!rerender)
-                }}>
+                <div
+                  className="glass-box border-2 border-t-pm w-[90%] !p-2  !rounded-xl gap-2"
+                  onClick={() => {
+                    // console.log("click")
+                    setRerender(!rerender);
+                  }}
+                >
                   {/* <p>Common Features</p> */}
                   <div className="flex flex-col items-start p-1 mb-2 border-2 border-teal-400 rounded-2xl">
                     <p className="pl-3 m-0">Authentication</p>
                     <div className="flex flex-wrap gap-1">
                       <Chip
-                      // changes={changes}
+                        // changes={changes}
                         updateArray={updateArray}
                         deleteIndex={deleteIndex}
                         text="Sign-in with Email/Password"
@@ -295,7 +295,6 @@ useEffect(()=> {
                         updateArray={updateArray}
                         deleteIndex={deleteIndex}
                         text="Import Data"
-
                         icon="plus"
                         color="bg-yellow-100"
                         bColor="border-yellow-300"
@@ -344,7 +343,7 @@ useEffect(()=> {
                         bColor="border-sky-300"
                         iconColor="text-sky-500"
                       />
-                       <Chip
+                      <Chip
                         updateArray={updateArray}
                         deleteIndex={deleteIndex}
                         text="Comments"
@@ -353,7 +352,7 @@ useEffect(()=> {
                         bColor="border-sky-300"
                         iconColor="text-sky-500"
                       />
-                       <Chip
+                      <Chip
                         updateArray={updateArray}
                         deleteIndex={deleteIndex}
                         text="Liking/Hearting"
@@ -376,7 +375,7 @@ useEffect(()=> {
                   <div className="flex flex-col items-start p-1 mt-2 border-2 border-pink-400 rounded-2xl">
                     <p className="pl-3 m-0">Web3</p>
                     <div className="flex flex-wrap gap-1">
-                    <Chip
+                      <Chip
                         updateArray={updateArray}
                         deleteIndex={deleteIndex}
                         text="Crypto Payments"
@@ -413,7 +412,7 @@ useEffect(()=> {
                         bColor="border-pink-300"
                         iconColor="text-pink-500"
                       />
-                       <Chip
+                      <Chip
                         updateArray={updateArray}
                         deleteIndex={deleteIndex}
                         text="Blockchain node capabilities"
@@ -515,7 +514,7 @@ useEffect(()=> {
                         bColor="border-violet-300"
                         iconColor="text-violet-500"
                       />
-                       <Chip
+                      <Chip
                         updateArray={updateArray}
                         deleteIndex={deleteIndex}
                         text="AI/ML"
@@ -524,7 +523,7 @@ useEffect(()=> {
                         bColor="border-violet-300"
                         iconColor="text-violet-500"
                       />
-                       <Chip
+                      <Chip
                         updateArray={updateArray}
                         deleteIndex={deleteIndex}
                         text="NLP"
@@ -533,7 +532,7 @@ useEffect(()=> {
                         bColor="border-violet-300"
                         iconColor="text-violet-500"
                       />
-                       <Chip
+                      <Chip
                         updateArray={updateArray}
                         deleteIndex={deleteIndex}
                         text="Static pages"
@@ -587,9 +586,7 @@ useEffect(()=> {
                   <p>*Inspirations or other feature set goes here*</p>
                 </div>
               )}
-              <div className="flex flex-col">
-               
-              </div>
+              <div className="flex flex-col"></div>
               <div className="flex items-center justify-between w-full">
                 <button
                   className="card__btn save_button left-[5%]  flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick"
@@ -599,15 +596,15 @@ useEffect(()=> {
                   Back
                 </button>
                 <div className="relative group">
-      <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
-              <button
-                className="w-[5em] h-[3em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-t-bd/50 md:hover:shadow-xl m-1 drop-shadow-xl "
-                onClick={() => props.goToStep(4)}
-              >
-                Next
-                <FaLongArrowAltRight className="ml-1 text-[24px]" />
-              </button>
-            </div>
+                  <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
+                  <button
+                    className="w-[5em] h-[3em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-t-bd/50 md:hover:shadow-xl m-1 drop-shadow-xl "
+                    onClick={() => props.goToStep(4)}
+                  >
+                    Next
+                    <FaLongArrowAltRight className="ml-1 text-[24px]" />
+                  </button>
+                </div>
               </div>
             </div>
             <div className="normal-box-soft !rounded-xl w-[30em]">

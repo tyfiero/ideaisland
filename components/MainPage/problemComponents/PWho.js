@@ -37,7 +37,7 @@ function PWho(props) {
                 borderRadius: "2em",
               }}
               onClickOutside={() => setIsPopoverOpen(false)}
-              positions={["bottom", "left", "right"]} // preferred positions by priority
+              positions={["bottom", "left", "right"]} 
               content={({ position, childRect, popoverRect }) => (
                 <ArrowContainer
                   position={position}

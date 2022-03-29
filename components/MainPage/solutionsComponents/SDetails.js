@@ -28,45 +28,44 @@ function SDetails(props) {
         <div className="w-full max-w-[42rem] p-10 space-y-8 shadow rounded-xl bg-blues-100 drop-shadow-xl container-style normal-box-soft">
           <div className="flex flex-col items-center justify-center problem-page fade-effect-quick">
             <div className="absolute top-5 right-5">
-            <Popover
-              isOpen={isPopoverOpen}
-              containerStyle={{
-                zIndex: 100,
-                boxShadow: "5px 13px 28px 0px rgba(0,0,0,0.48)",
-                backgroundColor: "white",
-                borderRadius: "2em",
-              }}
-              onClickOutside={() => setIsPopoverOpen(false)}
-              positions={["bottom", "left", "right"]} // preferred positions by priority
-              content={({ position, childRect, popoverRect }) => (
-                <ArrowContainer
-                  position={position}
-                  childRect={childRect}
-                  popoverRect={popoverRect}
-                  arrowColor={"white"}
-                  arrowSize={10}
-                  arrowStyle={{ opacity: 1, top: "-6px" }}
-                  className="popover-arrow-container"
-                  arrowClassName="popover-arrow"
-                >
-                  <div
-                    className="!opacity-100 bg-white w-[25em] rounded-xl p-3"
-                    onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+              <Popover
+                isOpen={isPopoverOpen}
+                containerStyle={{
+                  zIndex: 100,
+                  boxShadow: "5px 13px 28px 0px rgba(0,0,0,0.48)",
+                  backgroundColor: "white",
+                  borderRadius: "2em",
+                }}
+                onClickOutside={() => setIsPopoverOpen(false)}
+                positions={["bottom", "left", "right"]}
+                content={({ position, childRect, popoverRect }) => (
+                  <ArrowContainer
+                    position={position}
+                    childRect={childRect}
+                    popoverRect={popoverRect}
+                    arrowColor={"white"}
+                    arrowSize={10}
+                    arrowStyle={{ opacity: 1, top: "-6px" }}
+                    className="popover-arrow-container"
+                    arrowClassName="popover-arrow"
                   >
-                    Edit me plz
-                  </div>
-                </ArrowContainer>
-              )}
-            >
-              
-              <div
-                onClick={() => setIsPopoverOpen(!isPopoverOpen)}
-                className="w-5"
+                    <div
+                      className="!opacity-100 bg-white w-[25em] rounded-xl p-3"
+                      onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+                    >
+                      Edit me plz
+                    </div>
+                  </ArrowContainer>
+                )}
               >
-                <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 md:hover:scale-110" />
-              </div>
-            </Popover>
-          </div>
+                <div
+                  onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+                  className="w-5"
+                >
+                  <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 md:hover:scale-110" />
+                </div>
+              </Popover>
+            </div>
             <h1 className="heading-top">Details</h1>
             <div className="normal-box-soft">
               <h3 className="heading">
@@ -130,7 +129,6 @@ function SDetails(props) {
                 *This note will be saved to your Idea Page for your review
                 later.
               </p>
-              
             </div>
             <div className="flex items-center justify-between w-full">
               <button
@@ -142,18 +140,18 @@ function SDetails(props) {
               </button>
 
               {titleContent ? (
-                  <div className="relative group">
+                <div className="relative group">
                   <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
-                         
-                          <button
-                   type="submit"
-                   className="card__btn_next h-[3em]  right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect !w-[15em] drop-shadow-xl m-3"
-                   onClick={props.saveProblemForm}
-                 >
-                   Submit and Continue
-                   <FaLongArrowAltRight className="ml-1 text-[24px]" />
-                 </button>
-                        </div>
+
+                  <button
+                    type="submit"
+                    className="card__btn_next h-[3em]  right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect !w-[15em] drop-shadow-xl m-3"
+                    onClick={props.saveProblemForm}
+                  >
+                    Submit and Continue
+                    <FaLongArrowAltRight className="ml-1 text-[24px]" />
+                  </button>
+                </div>
               ) : (
                 <button
                   type="submit"

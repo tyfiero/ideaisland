@@ -15,7 +15,7 @@ import {
   FaTrash,
   FaInfoCircle,
   FaUndoAlt,
-  FaSort
+  FaSort,
 } from "react-icons/fa";
 import FeatureTable from "./CombinatorialComponents/FeatureTable";
 import ImportanceChip from "./rank/ImportanceChip";
@@ -23,7 +23,6 @@ import FeasibilityChip from "./rank/FeasibilityChip";
 import CostChip from "./rank/CostChip";
 import VersionChip from "./rank/VersionChip";
 import CommentsTextArea from "./rank/CommentsTextArea";
-
 
 import { useSelector, useDispatch } from "react-redux";
 import { sFormAction } from "../../../redux/actions";
@@ -63,7 +62,6 @@ function SRankFeatures(props) {
   const [rerender, setRerender] = useState(false);
   const [sort, setSort] = useState(false);
 
-
   const [refresh, setRefresh] = useState(false);
   const [tableContent, setTableContent] = useState([
     {
@@ -75,7 +73,7 @@ function SRankFeatures(props) {
       col6: "BLANK",
     },
   ]);
-// console.log(tableContent.length === sFormRedux.features.length)
+  // console.log(tableContent.length === sFormRedux.features.length)
 
   // console.log(props.form.form.Features);
   // console.log("props.form.form.Features ^^^^");
@@ -86,98 +84,91 @@ function SRankFeatures(props) {
     let impValue = data[1];
     let type = data[2];
 
-
     let pointer = sFormRedux.features[pointerIndex];
 
     // console.log(sFormRedux.features[pointerIndex]);
-let updatedObj;
-if(type === "importance"){
-   updatedObj = {
-    name: pointer.name,
-    importance: impValue,
-    feasibility: pointer.feasibility,
-    cost: pointer.cost,
-    version: pointer.version,
-    comments: pointer.comments,
-  };
-}else if(type === "feasibility"){
-   updatedObj = {
-    name: pointer.name,
-    importance: pointer.importance,
-    feasibility: impValue,
-    cost: pointer.cost,
-    version: pointer.version,
-    comments: pointer.comments,
-  };
-}else if(type === "cost"){
-   updatedObj = {
-    name: pointer.name,
-    importance: pointer.importance,
-    feasibility: pointer.feasibility,
-    cost: impValue,
-    version: pointer.version,
-    comments: pointer.comments,
-  };
-}else if(type === "version"){
-   updatedObj = {
-    name: pointer.name,
-    importance: pointer.importance,
-    feasibility: pointer.feasibility,
-    cost: pointer.cost,
-    version: impValue,
-    comments: pointer.comments,
-  };
-}else{
-  updatedObj = {
-    name: pointer.name,
-    importance: pointer.importance,
-    feasibility: pointer.feasibility,
-    cost: pointer.cost,
-    version: pointer.version,
-    comments: impValue,
-  };
-}
-     
-        let oldArray = sFormRedux.features;
-        // console.log("^^old");
+    let updatedObj;
+    if (type === "importance") {
+      updatedObj = {
+        name: pointer.name,
+        importance: impValue,
+        feasibility: pointer.feasibility,
+        cost: pointer.cost,
+        version: pointer.version,
+        comments: pointer.comments,
+      };
+    } else if (type === "feasibility") {
+      updatedObj = {
+        name: pointer.name,
+        importance: pointer.importance,
+        feasibility: impValue,
+        cost: pointer.cost,
+        version: pointer.version,
+        comments: pointer.comments,
+      };
+    } else if (type === "cost") {
+      updatedObj = {
+        name: pointer.name,
+        importance: pointer.importance,
+        feasibility: pointer.feasibility,
+        cost: impValue,
+        version: pointer.version,
+        comments: pointer.comments,
+      };
+    } else if (type === "version") {
+      updatedObj = {
+        name: pointer.name,
+        importance: pointer.importance,
+        feasibility: pointer.feasibility,
+        cost: pointer.cost,
+        version: impValue,
+        comments: pointer.comments,
+      };
+    } else {
+      updatedObj = {
+        name: pointer.name,
+        importance: pointer.importance,
+        feasibility: pointer.feasibility,
+        cost: pointer.cost,
+        version: pointer.version,
+        comments: impValue,
+      };
+    }
 
-        // console.log(sFormRedux.features === oldArray)
-        oldArray[pointerIndex] = updatedObj;
-        // sFormRedux.features[pointerIndex] = updatedObj;
+    let oldArray = sFormRedux.features;
+    // console.log("^^old");
+
+    // console.log(sFormRedux.features === oldArray)
+    oldArray[pointerIndex] = updatedObj;
+    // sFormRedux.features[pointerIndex] = updatedObj;
     dispatch(sFormAction(oldArray));
-setRefresh(!refresh)
+    setRefresh(!refresh);
     // console.log(sFormRedux.features[pointerIndex]);
 
-        // console.log(oldArray);
-        // console.log("^^new");
-        // props.update("Features", );
-        // console.log(updatedObj)
+    // console.log(oldArray);
+    // console.log("^^new");
+    // props.update("Features", );
+    // console.log(updatedObj)
   };
 
-
-
   useEffect(() => {
-// console.log("shit changed")
-// setRerender(!rerender)
-if(tableContent.length !== sFormRedux.features?.length){
-  setRefresh(!refresh)
-  // console.log("It actually changed")
-}
+    // console.log("shit changed")
+    // setRerender(!rerender)
+    if (tableContent.length !== sFormRedux.features?.length) {
+      setRefresh(!refresh);
+      // console.log("It actually changed")
+    }
+  });
 
-  })
+  //   //function that sorts object of objects by key
+  // function sortByKey(array, key) {
 
-
-
-//   //function that sorts object of objects by key
-// function sortByKey(array, key) {
-
-
-//   return array.sort(function(a, b) {
-//     var x = a[key];
-//     var y = b[key];
-//     return ((x < y) ? -1 : ((x > y) ? 1 : 0));
-//   });
-// }
+  //   return array.sort(function(a, b) {
+  //     var x = a[key];
+  //     var y = b[key];
+  //     return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+  //   });
+  // }
   useEffect(() => {
     console.log("UE RAN");
     // console.log(tableContent);
@@ -188,7 +179,11 @@ if(tableContent.length !== sFormRedux.features?.length){
 
       let mappedData = sFormRedux.features.map((featureData, index) => {
         return {
-          col1: (<div className="text-left"><p className="mb-0 ml-5">{featureData.name}</p></div>),
+          col1: (
+            <div className="text-left">
+              <p className="mb-0 ml-5">{featureData.name}</p>
+            </div>
+          ),
           // col2: featureData.importance,
           // col3: featureData.feasibility,
           // col4: featureData.cost,
@@ -202,7 +197,6 @@ if(tableContent.length !== sFormRedux.features?.length){
               value={featureData.importance}
               updateFromChip={updateFromChip}
               givenFeature={index}
-              
             />
           ),
           col3: (
@@ -219,34 +213,36 @@ if(tableContent.length !== sFormRedux.features?.length){
             // <span className="px-3 py-1 text-xs text-purple-600 bg-purple-200 rounded-full cursor-pointer md:hover:scale-110">
             //   {featureData.cost}
             // </span>
-             <CostChip
-             value={featureData.cost}
-             updateFromChip={updateFromChip}
-             givenFeature={index}
-           />
+            <CostChip
+              value={featureData.cost}
+              updateFromChip={updateFromChip}
+              givenFeature={index}
+            />
           ),
           col5: (
             // <span className="px-3 py-1 text-xs text-blue-600 bg-blue-200 rounded-full cursor-pointer md:hover:scale-110">
             //   {featureData.version}
             // </span>
             <>
-            {/* <p className="">{index}</p> */}
-               <VersionChip
-             value={featureData.version}
-             updateFromChip={updateFromChip}
-             givenFeature={index}
-             key={index}
-           />
-           </>
+              {/* <p className="">{index}</p> */}
+              <VersionChip
+                value={featureData.version}
+                updateFromChip={updateFromChip}
+                givenFeature={index}
+                key={index}
+              />
+            </>
           ),
           col6: (
-            <div> 
+            <div>
               {/* <textarea className="rounded-md" name="comment"  cols="15" rows="5" value={featureData.comments}> */}
 
-              <CommentsTextArea text={featureData.comments} updateFromChip={updateFromChip} givenFeature={index}/>
-                
-                </div>
-            
+              <CommentsTextArea
+                text={featureData.comments}
+                updateFromChip={updateFromChip}
+                givenFeature={index}
+              />
+            </div>
           ),
         };
       });
@@ -258,10 +254,6 @@ if(tableContent.length !== sFormRedux.features?.length){
       console.log(":(");
     }
   }, [sFormRedux, refresh]);
-
-  
-
- 
 
   const columns = React.useMemo(
     () => [
@@ -279,13 +271,11 @@ if(tableContent.length !== sFormRedux.features?.length){
         Header: "Feasibility",
         accessor: "col3",
         disableSortBy: true,
-        
       },
       {
         Header: "Cost",
         accessor: "col4",
         disableSortBy: true,
-
       },
       {
         Header: "Version",
@@ -295,62 +285,55 @@ if(tableContent.length !== sFormRedux.features?.length){
         Header: "Comments",
         accessor: "col6",
         disableSortBy: true,
-
       },
-      
     ],
     []
   );
 
   columns.forEach((column) => {
     column.sortType = (a, b, columnId, desc) => {
-
       let itemA;
       let itemB;
-let aValue;
-let bValue;
-if(columnId === "col2"){
-  itemA = a.values.col2.props.value
-  itemB = b.values.col2.props.value
+      let aValue;
+      let bValue;
+      if (columnId === "col2") {
+        itemA = a.values.col2.props.value;
+        itemB = b.values.col2.props.value;
 
-  // console.log(itemA)
-  // console.log(itemB)
+        // console.log(itemA)
+        // console.log(itemB)
+      } else if (columnId === "col5") {
+        itemA = a.values.col5.props.children.props.value;
+        itemB = b.values.col5.props.children.props.value;
+      }
+      if (itemA === "MVP" || itemA === "...") {
+        aValue = 0;
+      } else if (itemA === "V2" || itemA === "Could have") {
+        aValue = 1;
+      } else if (itemA === "V3+" || itemA === "Should have") {
+        aValue = 2;
+      } else if (itemA === "Back burner" || itemA === "Must have") {
+        aValue = 3;
+      } else {
+        aValue = 4;
+      }
+      if (itemB === "MVP" || itemB === "...") {
+        bValue = 0;
+      } else if (itemB === "V2" || itemB === "Could have") {
+        bValue = 1;
+      } else if (itemB === "V3+" || itemB === "Should have") {
+        bValue = 2;
+      } else if (itemB === "Back burner" || itemB === "Must have") {
+        bValue = 3;
+      } else {
+        bValue = 4;
+      }
 
-}else if(columnId === "col5"){
- itemA =a.values.col5.props.children.props.value;
- itemB =b.values.col5.props.children.props.value;
-}
-if(itemA === "MVP" || itemA ==="..."){
-  aValue = 0;
-}else if(itemA === "V2"  || itemA ==="Could have"){
-  aValue = 1;
+      // console.log(aValue + " " + bValue)
 
-}else if(itemA === "V3+"  || itemA ==="Should have"){
-  aValue = 2;
-}else if(itemA === "Back burner"  || itemA ==="Must have"){
-  aValue = 3;
-
-}else{
-  aValue=4;
-}
-if(itemB === "MVP" || itemB ==="..."){
-  bValue = 0;
-}else if(itemB === "V2"  || itemB ==="Could have"){
-  bValue = 1;
-}else if(itemB === "V3+"  || itemB ==="Should have"){
-  bValue = 2;
-
-}else if(itemB === "Back burner"  || itemB ==="Must have"){
-  bValue = 3;
-}else{
-  bValue=4;
-}
-
-// console.log(aValue + " " + bValue)
-
-if (aValue > bValue) return 1; 
-       if (bValue > aValue) return -1;
-        return 0;
+      if (aValue > bValue) return 1;
+      if (bValue > aValue) return -1;
+      return 0;
     };
   });
 
@@ -415,7 +398,7 @@ if (aValue > bValue) return 1;
                   borderRadius: "2em",
                 }}
                 onClickOutside={() => setIsPopoverOpen(false)}
-                positions={["bottom", "left", "right"]} // preferred positions by priority
+                positions={["bottom", "left", "right"]}
                 content={({ position, childRect, popoverRect }) => (
                   <ArrowContainer
                     position={position}
@@ -446,7 +429,7 @@ if (aValue > bValue) return 1;
               </Popover>
             </div>
             <h1 className="heading-top">Feature Selection</h1>
-            
+
             <div className="flex items-center justify-between w-full">
               <button
                 className="card__btn save_button left-[5%]  flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick"
@@ -456,20 +439,20 @@ if (aValue > bValue) return 1;
                 Back
               </button>
               <div className="normal-box-soft">
-              <h3 className="heading">
-                Time to pick the features defined in the last step.
-              </h3>
-            </div>
-            <div className="relative group">
-      <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
-              <button
-                className="w-[5em] h-[3em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-t-bd/50 md:hover:shadow-xl m-1 drop-shadow-xl "
-                onClick={() => props.goToStep(5)}
-              >
-                Next
-                <FaLongArrowAltRight className="ml-1 text-[24px]" />
-              </button>
-            </div>
+                <h3 className="heading">
+                  Time to pick the features defined in the last step.
+                </h3>
+              </div>
+              <div className="relative group">
+                <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
+                <button
+                  className="w-[5em] h-[3em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-t-bd/50 md:hover:shadow-xl m-1 drop-shadow-xl "
+                  onClick={() => props.goToStep(5)}
+                >
+                  Next
+                  <FaLongArrowAltRight className="ml-1 text-[24px]" />
+                </button>
+              </div>
             </div>
             <div className="flex flex-col w-full">
               <Styles>
@@ -638,7 +621,6 @@ if (aValue > bValue) return 1;
                 later.
               </p> */}
             </div>
-            
           </div>
         </div>
       </div>
@@ -647,6 +629,3 @@ if (aValue > bValue) return 1;
 }
 
 export default SRankFeatures;
-
-
-

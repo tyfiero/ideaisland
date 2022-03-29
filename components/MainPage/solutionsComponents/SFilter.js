@@ -41,7 +41,7 @@ function SFilter(props) {
                 borderRadius: "2em",
               }}
               onClickOutside={() => setIsPopoverOpen(false)}
-              positions={["bottom", "left", "right"]} // preferred positions by priority
+              positions={["bottom", "left", "right"]}
               content={({ position, childRect, popoverRect }) => (
                 <ArrowContainer
                   position={position}
@@ -68,7 +68,6 @@ function SFilter(props) {
                 </ArrowContainer>
               )}
             >
-              
               <div
                 onClick={() => setIsPopoverOpen(!isPopoverOpen)}
                 className="w-5"
@@ -77,12 +76,13 @@ function SFilter(props) {
               </div>
             </Popover>
           </div>
-          <div className="flex flex-col items-center justify-center  fade-effect-quick w-full">
+          <div className="flex flex-col items-center justify-center w-full fade-effect-quick">
             <h1 className="heading-top !m-0">Filter</h1>
             <div className="normal-box-soft !p-2">
               <h3 className="heading !m-0">Time to choose an idea to evolve</h3>
-              <p className="m-0">You can always come back here to select another idea. </p>
-
+              <p className="m-0">
+                You can always come back here to select another idea.{" "}
+              </p>
             </div>
 
             <div className="flex gap-5">
@@ -105,13 +105,8 @@ function SFilter(props) {
               </button> */}
             </div>
 
-             
-
-              <div className="flex flex-col w-full">
-                <SFilterIdeas />
-              
-              
-              
+            <div className="flex flex-col w-full">
+              <SFilterIdeas />
             </div>
             <div className="flex items-center justify-between w-full mt-4">
               <button
@@ -122,15 +117,15 @@ function SFilter(props) {
                 Back
               </button>
               <div className="relative group">
-      <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
-              <button
-                className="w-[5em] h-[3em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-t-bd/50 md:hover:shadow-xl m-1 drop-shadow-xl "
-                onClick={() => props.goToStep(3)}
-              >
-                Next
-                <FaLongArrowAltRight className="ml-1 text-[24px]" />
-              </button>
-            </div>
+                <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
+                <button
+                  className="w-[5em] h-[3em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-t-bd/50 md:hover:shadow-xl m-1 drop-shadow-xl "
+                  onClick={() => props.goToStep(3)}
+                >
+                  Next
+                  <FaLongArrowAltRight className="ml-1 text-[24px]" />
+                </button>
+              </div>
             </div>
           </div>
         </div>

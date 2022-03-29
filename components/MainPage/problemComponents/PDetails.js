@@ -13,12 +13,14 @@ import toast from "react-hot-toast";
 
 import { useSelector, useDispatch } from "react-redux";
 import { pFormAction } from "../../../redux/actions";
+import { useRouter } from "next/router";
 
 function PDetails(props) {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [titleContent, setTitleContent] = useState("");
   const dispatch = useDispatch();
   const pFormRedux = useSelector((state) => state.pForm);
+  const router = useRouter();
 
   const update = (e) => {
     let updated = pFormRedux;
@@ -55,7 +57,7 @@ function PDetails(props) {
                   borderRadius: "2em",
                 }}
                 onClickOutside={() => setIsPopoverOpen(false)}
-                positions={["bottom", "left", "right"]} // preferred positions by priority
+                positions={["bottom", "left", "right"]}
                 content={({ position, childRect, popoverRect }) => (
                   <ArrowContainer
                     position={position}
@@ -189,7 +191,13 @@ function PDetails(props) {
                          <button
                   type="submit"
                   className="card__btn_next h-[3em]  right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect !w-[15em] drop-shadow-xl m-3"
-                  onClick={props.saveProblemForm}
+                  onClick={()=>{
+                    // props.saveProblemForm
+                  update();
+                  toast.success("Updated Successfully!");
+                  
+                  router.push("/Problem/progress")
+                  }}
                 >
                   Submit and Continue
                   <FaLongArrowAltRight className="ml-1 text-[24px]" />
