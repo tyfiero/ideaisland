@@ -105,27 +105,15 @@ function SFilter(props) {
               </button> */}
             </div>
 
-            <div className="flex flex-col">
-              {/* <textarea
-                // type="text"
-                className="textarea-box h-[10em] whitespace-normal"
-                name="what"
-                placeholder="What are you building?"
-                onChange={update}
-              /> */}
+             
 
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col w-full">
                 <SFilterIdeas />
-                <div className="flex items-center normal-box-soft">
-                  <input type="radio" id="html" name="fav_language" value="" />
-
-                  <div className="w-full ml-5 normal-box">Idea 1</div>
-                </div>
               
-              </div>
+              
               
             </div>
-            <div className="flex items-center justify-between w-full">
+            <div className="flex items-center justify-between w-full mt-4">
               <button
                 className="card__btn save_button left-[5%]  flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick"
                 onClick={() => props.goToStep(1)}

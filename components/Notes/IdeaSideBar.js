@@ -27,16 +27,21 @@ import {
   FaExclamationTriangle,
   FaStickyNote,
   FaPlus,
+  FaRegTimesCircle,
+  FaSearch,
 } from "react-icons/fa";
 // import SwitchSelector from "react-switch-selector";
 
 export default function IdeaSideBar() {
   const [currentNote, setCurrentNote] = useState("ideas");
+  const [searchValue, setSearchValue] = useState("");
+
   const editModeRedux = useSelector((state) => state.editMode);
   const dispatch = useDispatch();
   // dispatch(editModeAction("new"))
 
   return (
+    <div className="overflow-hidden">
     <div className="normal-box-soft fade-effect-quick flex flex-col items-center !h-[80vh] overflow-y-auto overflow-x-hidden !rounded-2xl">
       {currentNote === "ideas" && (
         <>
@@ -136,29 +141,50 @@ export default function IdeaSideBar() {
         Create New Idea
       </button>
       </div> */}
-     
-    <div className="relative mt-2 group">
-      <div className="absolute transition duration-1000 rounded-full opacity-25 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
-      {/* <div className="relative flex justify-start rounded-lg ring-1 items-top"> */}
+
+      <div className="relative mt-2 group">
+        <div className="absolute transition duration-1000 rounded-full opacity-25 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
+        {/* <div className="relative flex justify-start rounded-lg ring-1 items-top"> */}
+
+        <button
+          // type="submit"
+          // disabled={!isValid}
+          onClick={() => {
+            dispatch(editModeAction("new"));
+            // dispatch(currentDocAction(idea.identifier))
+          }}
+          className=" w-[12em] h-[2em] m-2 rounded-3xl bg-t-bl flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer md:hover:shadow-xl shadow-t-bd/50"
+        >
+          <FaPlus className="text-[20px]" />
+          Create New Idea
+        </button>
+      </div>
+      <div className="w-full flex justify-center">
+      <FaRegTimesCircle className="relative right-6 -top-[13px] mt-[1.2rem] mr-4 text-t-pm md:hover:scale-125 text-xl opacity-0" />
+      
+        <input
+          className="border-2 border-gray-300 bg-white h-8 px-5 pr-16 rounded-full text-sm focus:outline-none w-[100%]"
+          type="search"
+          name="search"
+          placeholder="Search"
+          onChange={(e) => setSearchValue(e.target.value)}
+          value={searchValue}
+        />
+  {searchValue ? (
+          <button onClick={() => setSearchValue("")}>
+            <FaRegTimesCircle className="relative right-6 -top-[13px] mt-[1.2rem] mr-4 text-t-pm md:hover:scale-125 text-xl" />
+          </button>
+        ) : (
+          <button className="relative right-6 -top-3 mt-5 mr-4 text-slate-300">
+            <FaSearch />
+          </button>
+        )}
        
-          
-          <button
-        // type="submit"
-        // disabled={!isValid}
-        onClick={() => {
-          dispatch(editModeAction("new"));
-          // dispatch(currentDocAction(idea.identifier))
-        }}
-        className=" w-[12em] h-[2em] m-2 rounded-3xl bg-t-bl flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer md:hover:shadow-xl shadow-t-bd/50"
-      >
-        <FaPlus className="text-[20px]" />
-        Create New Idea
-      </button>
-    </div>
-    
+      </div>
+
       {currentNote === "ideas" && (
         <>
-          <IdeasList />
+          <IdeasList searchValue={searchValue}/>
         </>
       )}
       {currentNote === "problems" && (
@@ -172,16 +198,21 @@ export default function IdeaSideBar() {
         </>
       )}
     </div>
+    </div>
   );
 }
 
-function IdeasList() {
+function IdeasList(props) {
   const statsRedux = useSelector((state) => state.stats);
   const dispatch = useDispatch();
   const userUIDRedux = useSelector((state) => state.userUID);
+  const [searchValue, setSearchValue] = useState("");
 
- 
 
+  useEffect(() => {
+    setSearchValue(props.searchValue);
+
+}, [props.searchValue])
   //Done? idk. that was traumatic. Make sure it still works.THIS MUST BE EDITED WHEN THE PERSISTENCE IS FIXED priceart cant stay!!!  TODO
   //TODO memoize this so that firebase reads less
   console.log(userUIDRedux);
@@ -191,26 +222,29 @@ function IdeasList() {
     console.log("it actually worked");
   } else if (auth.currentUser?.uid) {
     uid = auth.currentUser.uid;
-  }else{
+  } else {
     uid = null;
     console.log("it fucked up");
   }
-// console.log(auth.currentUser);
-const ref = collection(getFirestore(), "users", uid, "ideas");
-const postQuery = query(ref, orderBy("createdAt", "desc"));
+  // console.log(auth.currentUser);
+  const ref = collection(getFirestore(), "users", uid, "ideas");
+  const postQuery = query(ref, orderBy("createdAt", "desc"));
 
-const [querySnapshot] = useCollection(postQuery);
+  const [querySnapshot] = useCollection(postQuery);
 
-const ideas = querySnapshot?.docs.map((doc) => doc.data());
+  const ideas = querySnapshot?.docs.map((doc) => doc.data());
 
-return (
-  <>
-    <IdeaFeed ideas={ideas} admin />
-  </>
-);
-  
-  
-  
+  let ideaSearch = ideas?.filter(obj => {
+    // console.log(obj.title.toLowerCase());
+   return (obj.title.toLowerCase().includes(searchValue?.toLowerCase()) || obj.content.toLowerCase().includes(searchValue?.toLowerCase()));});
+
+// console.log(ideaSearch);
+
+  return (
+    <>
+      <IdeaFeed ideas={ideaSearch} admin />
+    </>
+  );
 }
 
 // function CreateNewIdea() {

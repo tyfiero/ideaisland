@@ -45,6 +45,7 @@ import userDisplayName from "./reducers/userDisplayName";
 import logOutReducer from "./reducers/logOutReducer";
 import pFormReducer from "./reducers/pFormReducer";
 import sFormReducer from "./reducers/sFormReducer";
+import sUpdateReducer from "./reducers/sUpdate";
 //OTHER REDUCERS GO HERE
 
 // let devTools;
@@ -89,6 +90,7 @@ const appReducer = combineReducers({
   logOut: logOutReducer,
   pForm: pFormReducer,
   sForm: sFormReducer,
+  sUpdate: sUpdateReducer
   //other reducers go here
 });
 // console.log(rootReducer);

@@ -59,6 +59,12 @@ export const sFormAction = (data) => {
     payload: data,
   };
 };
+export const sUpdateAction = (data) => {
+  return {
+    type: "sUPDATE",
+    payload: data,
+  };
+};
 export const pFormAction = (data) => {
   return {
     type: "pFORM_UPDATE",
