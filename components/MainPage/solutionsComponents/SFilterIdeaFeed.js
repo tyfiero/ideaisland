@@ -109,7 +109,7 @@ function IdeaItem({ idea, admin = false }) {
   // console.log(idea.documentID)
   return (
     <div
-      className="flex items-center justify-center px-4 pt-2 sm:px-6 lg:px-8 drop-shadow-sm  cursor-pointer w-full"
+      className="flex items-center justify-center w-full px-4 pt-2 cursor-pointer sm:px-6 lg:px-8 drop-shadow-sm"
       onClick={() => {
         if (sFormRedux.idea) {
           // console.log("Idea in form");
@@ -149,7 +149,7 @@ function IdeaItem({ idea, admin = false }) {
 
         <input
           type="checkbox"
-          className="form-checkbox h-5 w-5 text-t-bl"
+          className="w-5 h-5 form-checkbox text-t-bl"
           checked={clicked}
           onChange={() => {
 
@@ -180,7 +180,7 @@ function IdeaItem({ idea, admin = false }) {
                     {TimeDisplay(idea.createdAt)}
                   </p>
                   <div className="flex ">
-                    <span className="flex  bg-slate-400/30 pl-1 rounded-xl items-center">
+                    <span className="flex items-center pl-1 bg-slate-400/30 rounded-xl">
                       {idea.rating || 0}
                       <OneStar className="ml-5" />
                     </span>

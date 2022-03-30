@@ -106,7 +106,7 @@ function SFilter(props) {
             </div>
 
             <div className="flex flex-col w-full">
-              <SFilterIdeas />
+              <SFilterIdeas cookieUID={props.cookieUID}/>
             </div>
             <div className="flex items-center justify-between w-full mt-4">
               <button

@@ -10,6 +10,8 @@ function DarkModeToggle() {
 
 
   const darkModeFunc = () => {
+
+    if(typeof window !== "undefined"){
     const body = document.body;
     const blob = document.querySelector("body > div.blobs");
     dispatch(darkMode(!darkRedux));
@@ -21,6 +23,7 @@ function DarkModeToggle() {
       body.setAttribute("style", "background-color: white");
       blob.setAttribute("style", "opacity: 1");
     }
+  }
   };
 
 

@@ -29,6 +29,7 @@ import { Toaster } from "react-hot-toast";
 // import Loader from "./Loader";
 import FullLoader from "./FullLoader";
 
+
 export default function Layout({ children }) {
   // console.log("Layout Rerendered")
 
@@ -44,7 +45,7 @@ export default function Layout({ children }) {
   const userDisplayNameRedux = useSelector((state) => state.userDisplayName);
 
   const userNameRedux = useSelector((state) => state.userName);
-  console.log(userNameRedux + "unr")
+  // console.log(userNameRedux + "unr")
 
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);
 
@@ -120,17 +121,17 @@ export default function Layout({ children }) {
           dispatch(userUIDAction(userData.user.uid));
         }
         if (userPhotoRedux === null) {
-          console.log("LAYOUT IS SETTING USER REDUX VALUES")
+          // console.log("LAYOUT IS SETTING USER REDUX VALUES")
   
           dispatch(userPhotoAction(userData.user.photoURL));
         }
         if (userDisplayNameRedux === null) {
-          console.log("LAYOUT IS SETTING USER REDUX VALUES")
+          // console.log("LAYOUT IS SETTING USER REDUX VALUES")
   
           dispatch(userDisplayNameAction(userData.user.displayName));
         }
         if (userNameRedux === null) {
-          console.log("LAYOUT IS SETTING USER REDUX VALUES")
+          // console.log("LAYOUT IS SETTING USER REDUX VALUES")
   
           dispatch(userNameAction(userData.username));
         }
@@ -141,10 +142,12 @@ export default function Layout({ children }) {
       //   // dispatch(logIn(true));
       // }
     } else {
-      console.log("Somehow userData (useContext) === null  ???????");
+      // console.log("Somehow userData (useContext) === null  ???????");
       // if (localStorage.getItem("userLocal") !== null) {
       //   user = localStorage.getItem("userLocal");
-
+      if (userUIDRedux === null) {
+        console.log("Layout doesnt have user Redux values");
+      }
       //   //   // console.log("USERDATA EXISTS");
       //   //   // user = JSON.parse(localStorage.getItem("userLocal"));
       //   //   // console.log(user);

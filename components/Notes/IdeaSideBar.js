@@ -32,7 +32,18 @@ import {
 } from "react-icons/fa";
 // import SwitchSelector from "react-switch-selector";
 
-export default function IdeaSideBar() {
+
+
+
+
+
+
+
+
+
+
+
+export default function IdeaSideBar(props) {
   const [currentNote, setCurrentNote] = useState("ideas");
   const [searchValue, setSearchValue] = useState("");
 
@@ -159,7 +170,7 @@ export default function IdeaSideBar() {
           Create New Idea
         </button>
       </div>
-      <div className="w-full flex justify-center">
+      <div className="flex justify-center w-full">
       <FaRegTimesCircle className="relative right-6 -top-[13px] mt-[1.2rem] mr-4 text-t-pm md:hover:scale-125 text-xl opacity-0" />
       
         <input
@@ -175,7 +186,7 @@ export default function IdeaSideBar() {
             <FaRegTimesCircle className="relative right-6 -top-[13px] mt-[1.2rem] mr-4 text-t-pm md:hover:scale-125 text-xl" />
           </button>
         ) : (
-          <button className="relative right-6 -top-3 mt-5 mr-4 text-slate-300">
+          <button className="relative mt-5 mr-4 right-6 -top-3 text-slate-300">
             <FaSearch />
           </button>
         )}
@@ -184,7 +195,7 @@ export default function IdeaSideBar() {
 
       {currentNote === "ideas" && (
         <>
-          <IdeasList searchValue={searchValue}/>
+          <IdeasList searchValue={searchValue} cookieUID={props.cookieUID}/>
         </>
       )}
       {currentNote === "problems" && (
@@ -208,15 +219,18 @@ function IdeasList(props) {
   const userUIDRedux = useSelector((state) => state.userUID);
   const [searchValue, setSearchValue] = useState("");
 
-
+console.log()
   useEffect(() => {
     setSearchValue(props.searchValue);
 
 }, [props.searchValue])
-  //Done? idk. that was traumatic. Make sure it still works.THIS MUST BE EDITED WHEN THE PERSISTENCE IS FIXED priceart cant stay!!!  TODO
+  //Done? I think it works now after adding nextjs firebase cookies. 
   //TODO memoize this so that firebase reads less
-  console.log(userUIDRedux);
   let uid;
+  if(props.cookieUID){
+    uid = props.cookieUID;
+  }else{
+    
   if (userUIDRedux) {
     uid = userUIDRedux;
     console.log("it actually worked");
@@ -224,8 +238,10 @@ function IdeasList(props) {
     uid = auth.currentUser.uid;
   } else {
     uid = null;
-    console.log("it fucked up");
+    console.log("no uid available :(");
   }
+}
+
   // console.log(auth.currentUser);
   const ref = collection(getFirestore(), "users", uid, "ideas");
   const postQuery = query(ref, orderBy("createdAt", "desc"));

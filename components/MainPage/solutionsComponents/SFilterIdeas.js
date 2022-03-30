@@ -15,7 +15,7 @@ import {
 import { useCollection } from "react-firebase-hooks/firestore";
 import { FaRegTimesCircle, FaSearch } from "react-icons/fa";
 
-function SFilterIdeas() {
+function SFilterIdeas(props) {
 const [searchValue, setSearchValue] = useState("");
 
   return (
@@ -28,16 +28,16 @@ const [searchValue, setSearchValue] = useState("");
         {/* <h1 className=" !text-xl whitespace-nowrap !mb-0 mr-5">All Ideas</h1> */}
 
       </div>
-        <input className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-full text-sm focus:outline-none w-full"
+        <input className="w-full h-10 px-5 pr-16 text-sm bg-white border-2 border-gray-300 rounded-full focus:outline-none"
           type="search" name="search" placeholder="Search" onChange={(e)=>setSearchValue(e.target.value)} value={searchValue}/>
         
-        {searchValue ? <button onClick={()=>setSearchValue("")}><FaRegTimesCircle className="absolute right-0 top-0 mt-[1.2rem] mr-4 text-t-pm md:hover:scale-125 text-xl"/></button> : <button className="absolute right-0 top-0 mt-5 mr-4">
+        {searchValue ? <button onClick={()=>setSearchValue("")}><FaRegTimesCircle className="absolute right-0 top-0 mt-[1.2rem] mr-4 text-t-pm md:hover:scale-125 text-xl"/></button> : <button className="absolute top-0 right-0 mt-5 mr-4">
          
          <FaSearch />
        </button>}
       </div>
       <div className="glass-box fade-effect-quick flex flex-col items-center min-h-[20em] max-h-[30em] overflow-y-auto overflow-x-hidden !rounded-2xl !pt-4 gap-3 w-[98%]">
-        <IdeasList searchTerm={searchValue}/>
+        <IdeasList searchTerm={searchValue} cookieUID={props.cookieUID}/>
       </div>
     </div>
   );
@@ -62,20 +62,25 @@ useEffect(() => {
 }, [props.searchTerm])
 
 
-  //Done? idk. that was traumatic. Make sure it still works.THIS MUST BE EDITED WHEN THE PERSISTENCE IS FIXED priceart cant stay!!!  TODO
+    //Done? I think it works now after adding nextjs firebase cookies. 
+
   //TODO memoize this so that firebase reads less
   //   console.log(userUIDRedux);
   let uid;
+  if(props.cookieUID){
+    uid = props.cookieUID;
+  }else{
+    
   if (userUIDRedux) {
     uid = userUIDRedux;
-    // console.log("it actually worked");
+    console.log("it actually worked");
   } else if (auth.currentUser?.uid) {
     uid = auth.currentUser.uid;
   } else {
     uid = null;
-    // console.log("it fucked up");
-    return null;
+    console.log("no uid available :(");
   }
+}
   // console.log(auth.currentUser);1
 
   //   let ideas =null;
