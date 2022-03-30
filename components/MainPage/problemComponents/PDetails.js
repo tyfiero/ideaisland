@@ -33,6 +33,7 @@ function PDetails(props) {
     } else if (e.target.name === "pq3") {
       updated.pq3 = e.target.value;
     }
+    // let updated = pFormRedux;
 
     dispatch(pFormAction(updated));
     // props.update(e.target.name, e.target.value);
@@ -185,25 +186,27 @@ function PDetails(props) {
               </button>
 
               {titleContent ? (
-                 <div className="relative group">
-                 <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
-                        
-                         <button
-                  type="submit"
-                  className="card__btn_next h-[3em]  right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect !w-[15em] drop-shadow-xl m-3"
-                  onClick={()=>{
-                    // props.saveProblemForm
-                  update();
-                  toast.success("Updated Successfully!");
-                  
-                  router.push("/Problem/progress")
-                  }}
-                >
-                  Submit and Continue
-                  <FaLongArrowAltRight className="ml-1 text-[24px]" />
-                </button>
-                       </div>
-                
+                <div className="relative group">
+                  <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
+
+                  <button
+                    type="submit"
+                    className="card__btn_next h-[3em]  right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect !w-[15em] drop-shadow-xl m-3"
+                    onClick={() => {
+                      // props.saveProblemForm
+                      // update();
+                      let updated = pFormRedux;
+
+                      dispatch(pFormAction(updated));
+                      toast.success("Updated Successfully!");
+
+                      router.push("/Problem/progress");
+                    }}
+                  >
+                    Submit and Continue
+                    <FaLongArrowAltRight className="ml-1 text-[24px]" />
+                  </button>
+                </div>
               ) : (
                 <button
                   type="submit"
@@ -215,14 +218,6 @@ function PDetails(props) {
                   Add title to continue
                   {/* <FaLongArrowAltRight className="ml-1 text-[24px]" /> */}
                 </button>
-                
-                  
-
-
-
-
-
-
               )}
             </div>
           </div>
