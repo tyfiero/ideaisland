@@ -17,12 +17,12 @@ import Script from "next/script";
 import Head from "../components/Header";
 import Header from "../components/Header";
 import { wrapper } from "../redux/store";
+import { AuthProvider } from "../lib/firebaseContext";
 // import { useStore } from 'react-redux';
 
 // import splitbee from '@splitbee/web';
 
 function MyApp({ Component, pageProps }) {
-  const userData = useUserData();
   // splitbee.init()
 
   const [loading, setLoading] = useState(false);
@@ -40,24 +40,30 @@ function MyApp({ Component, pageProps }) {
   }, [router]);
 
   const store = useStore((state) => state);
+  const userData = useUserData();
+
   return process.browser ? (
     <PersistGate persistor={store.__persistor} >
       {() => (
       <UserContext.Provider value={userData}>
+            <AuthProvider>
         <Layout>
           <Component {...pageProps} />
         </Layout>
+        </AuthProvider>
       </UserContext.Provider>
       )}
     </PersistGate>
   ) : (
     <PersistGate persistor={store}>
       {() => (
+            <AuthProvider>
       <UserContext.Provider value={userData}>
         <Layout>
           <Component {...pageProps} />
         </Layout>
       </UserContext.Provider>
+      </AuthProvider>
          )}
     </PersistGate>
   );

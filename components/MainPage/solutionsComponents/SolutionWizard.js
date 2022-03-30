@@ -36,7 +36,7 @@ import SFilter from "./SFilter";
 import SRankFeatures from "./SRankFeatures";
 import STechStack from "./STechStack";
 import SIdeate from "./CombinatorialComponents/SIdeate";
-function SolutionWizard() {
+function SolutionWizard(props) {
   const { username } = useContext(UserContext);
 
   const [formContent, setFormContent] = useState({ form: {} });
@@ -124,7 +124,7 @@ function SolutionWizard() {
       >
         {/* <ProblemPage /> */}
         <SIdeate hashKey={"ideate"} update={updateForm} />
-        <SFilter hashKey={"select-idea"} update={updateForm} />
+        <SFilter hashKey={"select-idea"} update={updateForm} cookieUID={props.cookieUID} />
         <SFeatures hashKey={"add-features"} update={updateForm} form={formContent}/>
         <SRankFeatures hashKey={"rank-features"} update={updateForm} form={formContent}/>
         <STechStack hashKey={"tech-stack"} update={updateForm} />
@@ -132,6 +132,7 @@ function SolutionWizard() {
           hashKey={"Details"}
           update={updateForm}
           saveProblemForm={saveProblemForm}
+          cookieUID={props.cookieUID}
         />
       </StepWizard>
     </div>
