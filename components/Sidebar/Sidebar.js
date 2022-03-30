@@ -12,7 +12,6 @@ import { isMobile, browserName } from "react-device-detect";
 // import { useLocation } from "react-router-dom";
 
 const Nav = styled.div`
-  //   background: #15171c;
   height: 80px;
   display: flex;
   justify-content: flex-start;
@@ -30,7 +29,6 @@ const Nav = styled.div`
 let SidebarNav;
 
 SidebarNav = styled.nav`
-  //   background: #15171c;
   background: linear-gradient(
     20deg,
     var(--colorLight1) 0%,
@@ -40,25 +38,20 @@ SidebarNav = styled.nav`
   );
   box-shadow: 0 0 12px 5px white;
 
-  /* margin-left: 1rem; */
-  /* border-radius: 2rem; */
+
   border-top-right-radius: 2rem;
   border-bottom-right-radius: 2rem;
   border-top: solid 2px black;
   color: black;
-  //   height: 50vh;
   display: flex;
-  //   justify-content: center;
   justify-content: space-evenly;
   align-items: center;
-  //   padding-right: 58px;
 
   position: fixed;
   top: 25%;
   left: ${({ sidebar }) => (sidebar ? "0" : "-100%")};
   transition: 350ms;
   z-index: 10;
-  //   font-size: 1rem;
   &:hover {
     width: 200px;
   }

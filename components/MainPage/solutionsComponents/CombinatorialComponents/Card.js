@@ -187,7 +187,7 @@ function Card({ cardNum }) {
 
       setCardCurrentWord("Innovation");
     }
-  }, []);
+  }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
   //RANDOM WORD IN ARRAY PROP
 

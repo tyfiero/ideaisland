@@ -2353,6 +2353,7 @@ textarea {
 }
 .help-text {
   font-size: var(--fontSizeText-sm);
+  color: black !important;
 }
 
 .accordion {
