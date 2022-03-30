@@ -138,7 +138,7 @@ const HelpPage = () => {
         <h4 className="help-header">Tips and Tricks</h4>
 
         <p>Pointers to help you come up with your best ideas.</p>
-        <div className="normal-box !w-[90%] flex flex-col items-center m0-auto ">
+        <div className="normal-box !w-[90%] flex flex-col items-center m-auto ">
           <ul className="my-1">
             <li>Tip or trick long explanation placeholder</li>
             <li>Tip or trick long explanation placeholder</li>
@@ -157,7 +157,7 @@ const HelpPage = () => {
           A quick start guide that will have you well on your way to awesome
           &quot;Aha&quot;! moments
         </p>
-        <div className="normal-box !w-[90%] flex flex-col items-center m0-auto ">
+        <div className="normal-box !w-[90%] flex flex-col items-center m-auto ">
           <ul>
             <li>Get started long explanation placeholder</li>
             <li>Get started long explanation placeholder</li>

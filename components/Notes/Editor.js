@@ -48,7 +48,7 @@ const QuillNoSSRWrapper = dynamic(import("react-quill"), {
 //     { ssr: false }
 //   );
 
-function Editor() {
+function Editor(props) {
   //   const [editMode, setEditMode] = useState(false);
   const [editDocDetails, setEditDocDetails] = useState([]);
 
@@ -84,11 +84,12 @@ function Editor() {
               {/* <div className="heading">Edit Idea</div> */}
               <CreateNewIdea
               // mode={editModeRedux}
-
+              cookieUID={props.cookieUID}
               //I might be missing this piece of logic in my code
               // setEditDocDetails={
               //   editModeRedux === "new" ? null : editDocDetails
               // }
+              
               />
               {/* <div>
                 <button
@@ -120,7 +121,7 @@ function Editor() {
 
 export default Editor;
 
-function CreateNewIdea() {
+function CreateNewIdea(props) {
   const router = useRouter();
   const { username } = useContext(UserContext);
   //   const [newIdea, setNewIdea] = useState(false);
@@ -138,6 +139,7 @@ function CreateNewIdea() {
   const [publish, setPublish] = useState(false);
   const editModeRedux = useSelector((state) => state.editMode);
   const unsavedChangesRedux = useSelector((state) => state.unsavedChanges);
+  const userUIDRedux = useSelector((state) => state.userUID);
 
   const [rating, setRating] = useState(0);
   // console.log(setEditDocDetails.length + "docdeets");
@@ -220,7 +222,21 @@ function CreateNewIdea() {
 
   const deleteIdea = async (e) => {
     //Should I be using redux? Or auth.current user? If I do use redux, delete all instances of auth.currentUser @auth
-    const uid = auth.currentUser.uid;
+    let uid;
+    if(props.cookieUID){
+      uid = props.cookieUID;
+    }else{
+      
+    if (userUIDRedux) {
+      uid = userUIDRedux;
+      console.log("it actually worked");
+    } else if (auth.currentUser?.uid) {
+      uid = auth.currentUser.uid;
+    } else {
+      uid = null;
+      console.log("no uid available :(");
+    }
+  }
     const ref = doc(getFirestore(), "users", uid, "ideas", ideaID);
     await deleteDoc(ref)
       .then(() => {
@@ -248,7 +264,21 @@ function CreateNewIdea() {
     if (unsavedChangesRedux) {
       e.preventDefault();
  //Should I be using redux? Or auth.current user? If I do use redux, delete all instances of auth.currentUser @auth
-      const uid = auth.currentUser.uid;
+ let uid;
+ if(props.cookieUID){
+   uid = props.cookieUID;
+ }else{
+   
+ if (userUIDRedux) {
+   uid = userUIDRedux;
+   console.log("it actually worked");
+ } else if (auth.currentUser?.uid) {
+   uid = auth.currentUser.uid;
+ } else {
+   uid = null;
+   console.log("no uid available :(");
+ }
+}
       const ref = doc(getFirestore(), "users", uid, "ideas", ideaID);
       await updateDoc(ref, {
         title: title,
@@ -287,7 +317,21 @@ function CreateNewIdea() {
 
 
  //Should I be using redux? Or auth.current user? If I do use redux, delete all instances of auth.currentUser @auth
-    const uid = auth.currentUser.uid;
+ let uid;
+ if(props.cookieUID){
+   uid = props.cookieUID;
+ }else{
+   
+ if (userUIDRedux) {
+   uid = userUIDRedux;
+   console.log("it actually worked");
+ } else if (auth.currentUser?.uid) {
+   uid = auth.currentUser.uid;
+ } else {
+   uid = null;
+   console.log("no uid available :(");
+ }
+}
     const d = Number(new Date());
     const timeID = d.valueOf().toString();
     // let timeIDNum = timeID.stringify()

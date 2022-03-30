@@ -6,7 +6,7 @@ import AuthError from "./AuthError";
 // import Spinner from "../Spinner";
 import Link from "next/link";
 // import useStore from "../StateManagement";
-// import { auth, googleAuthProvider } from "../../OLD/oldComponents/firebase-init";
+
 import { FaEnvelope, FaChevronLeft } from "react-icons/fa";
 // import { UserContext } from "../../lib/context";
 // import { auth, googleAuthProvider } from "../../lib/firebase";

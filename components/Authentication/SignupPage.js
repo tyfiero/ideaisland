@@ -10,14 +10,13 @@ import {
 // import { LightningBoltIcon } from "@heroicons/react/solid";
 import { useRouter } from "next/router";
 import AuthError from "./AuthError";
-import Spinner from "../Spinner";
 import { FaEnvelope, FaChevronLeft } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 
 import Link from "next/link";
-// import { auth } from "../../OLD/oldComponents/firebase-init";
+
 import { auth, googleAuthProvider } from "../../lib/firebase";
-import collectAnalyticsEvent from "../../OLD/oldComponents/Analytics/collectAnalyticsEvent";
+
 import { UserContext } from "../../lib/context";
 import {
   userPhotoAction,

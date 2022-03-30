@@ -28,7 +28,7 @@ function ToolBar(props) {
   },[sUpdate]);// eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div className="flex justify-between z-[1000] bg-white/90 shadow-xl sticky top-0 rounded-xl border-b-2 border-t-0 items-center ">
+    <div className="sticky top-0 z-40 flex items-center justify-between border-t-0 border-b-2 shadow-xl bg-white/90 rounded-xl ">
       
       {ideaBar ? ( <div className="whitespace-nowrap flex w-[30em] ml-4"><p className="text-t-bl">Current Idea: </p><p className="ml-2 truncate text-t-pd">{ideaBar}</p></div>) : <div></div>}
       

@@ -144,7 +144,7 @@ export default ProblemWizard;
 /** Demo of using instance */
 const InstanceDemo = ({ SW }) => (
   <>
-    <div className="flex float-right gap-5 py-1 pl-3 pr-5 text-xl border-b-2 border-l-2 rounded-bl-md z-[100] hover:scale-150">
+    <div className="z-50 flex float-right gap-5 py-1 pl-3 pr-5 text-xl border-b-2 border-l-2 rounded-bl-md hover:scale-150">
       <FaRedo className="cursor-pointer text-t-bd md:hover:scale-110" onClick={() => SW.goToStep(1)}/>
       <FaChevronLeft className="cursor-pointer text-t-pm md:hover:scale-110" />
       <FaChevronRight className="cursor-pointer text-t-bl md:hover:scale-110" />

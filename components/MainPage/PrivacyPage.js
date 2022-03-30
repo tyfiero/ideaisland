@@ -1,4 +1,8 @@
-import Footer from "../../OLD/oldComponents/LandingPage/Footer";
+
+
+
+
+
 //TODO UPdate both privacy and legal pages and add cookie notice
 function PrivacyPage() {
   return (

@@ -15,17 +15,7 @@ import {
 } from "react-icons/fa";
 
 const SolutionProgressStepper = (props) => {
-  // const dots = [];
-  // for (let i = 1; i <= props.totalSteps; i += 1) {
-  //     const isActive = props.currentStep === i;
-  //     dots.push((
-  //         <span
-  //             key={`step-${i}`}
-  //             className={`dot ${isActive ? " active" : ''}`}
-  //             onClick={() => props.goToStep(i)}
-  //         >&bull; {props.hashKey}</span>
-  //     ));
-  // }
+ 
 
   return (
     <div className="absolute w-16 mt-[2em] right-10 normal-box-soft z-50">

@@ -40,7 +40,7 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 
 
-export default function IdeaDisplay() {
+export default function IdeaDisplay(props) {
   const currentDocRedux = useSelector((state) => state.currentDoc);
   const [cleanContent, setCleanContent] = useState("");
   const [loading, setLoading] = useState(false);
@@ -48,6 +48,7 @@ export default function IdeaDisplay() {
   const [showImgPopUp, setShowImgPopUp] = useState(false);
   const [pexels, setPexels] = useState(false);
   const [pageCounter, setPageCounter] = useState(1);
+  const userUIDRedux = useSelector((state) => state.userUID);
 
   const [pics, setPics] = useState([
     {
@@ -374,7 +375,21 @@ export default function IdeaDisplay() {
     }
   };
   const updateImagetoDB = async () => {
-    const uid = auth.currentUser.uid;
+    let uid;
+ if(props.cookieUID){
+   uid = props.cookieUID;
+ }else{
+   
+ if (userUIDRedux) {
+   uid = userUIDRedux;
+   console.log("it actually worked");
+ } else if (auth.currentUser?.uid) {
+   uid = auth.currentUser.uid;
+ } else {
+   uid = null;
+   console.log("no uid available :(");
+ }
+}
     const ref = doc(
       getFirestore(),
       "users",
@@ -533,7 +548,7 @@ export default function IdeaDisplay() {
       <div
         className={
           "h-[10em] w-[100%] flex items-center overflow-hidden rounded-2xl image-cover-div  " +
-          (isPic ? null : " !hidden")
+          (isPic ? "" : " !hidden")
         }
       >
         <button
@@ -595,69 +610,7 @@ export default function IdeaDisplay() {
 
             </div>
 
-            {/* <div className="flex items-center justify-center gap-3 normal-box">
-              <button
-                onClick={() => {
-                //   setPosition(`0px ${(imgHeightUnit * 2)}px`);
-                //   setDbImgPosition(2);
-                setPosition(imgHeightUnit * 2);
-
-                console.log(position)
-                }}
-              >
-                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-t-bl/30 md:hover:scale-105">
-                  <FaAngleDoubleUp className="text-t-bl" />
-                </div>{" "}
-              </button>
-              <button
-                onClick={() => {
-                //   setPosition(`object-[0px,${imgHeightUnit}px]`);
-                  setPosition(imgHeightUnit);
-
-                  setDbImgPosition(1);
-                }}
-              >
-                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-t-bl/40 md:hover:scale-105">
-                  <FaAngleUp className="text-t-bl" />
-                </div>{" "}
-              </button>
-              <button
-                onClick={() => {
-                //   setPosition("object-[0px,0px]");
-                setPosition(0);
-
-                  setDbImgPosition(0);
-                }}
-              >
-                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-black/10 md:hover:scale-105">
-                  <FaGripLines className="text-t-bl" />
-                </div>{" "}
-              </button>
-              <button
-                onClick={() => {
-                //   setPosition("object-[0px,-110px]");
-                setPosition(imgHeightUnit * -1);
-
-                  setDbImgPosition(-1);
-                }}
-              >
-                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-t-pl/50 md:hover:scale-105">
-                  <FaAngleDown className="text-t-pm" />
-                </div>{" "}
-              </button>
-              <button
-                onClick={() => {
-                //   setPosition("object-[0px,-210px]");
-                setPosition(imgHeightUnit * -2);
-
-                  setDbImgPosition(-2);
-                }}
-              >
-                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-t-pl/30 md:hover:scale-105">
-                  <FaAngleDoubleDown className="text-t-pm" />
-                </div>{" "}
-              </button>
-            </div> */}
+           
 
             <p className="mx-4">Set Image URL:</p>
 
@@ -675,7 +628,7 @@ export default function IdeaDisplay() {
 
             <div className="flex flex-col items-center justify-center w-full">
             {/* <p className="mx-4">Or</p> */}
-            <div className={"flex items-center justify-center w-full" + (pexels ? " flex-row gap-10" : " flex-col")}>
+            <div className={"flex items-center justify-center w-full " + (pexels ? " flex-row gap-10" : " flex-col")}>
               <button
                 className="w-[12em] h-[2em] rounded-3xl bg-t-bpop flex items-center justify-center text-black gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer mb-2"
                 onClick={() => {

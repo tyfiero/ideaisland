@@ -17,6 +17,9 @@ import Link from "next/link";
 import { useUserData } from "../../lib/hooks";
 import { UserContext } from "../../lib/context";
 import { useSelector } from "react-redux";
+import { useRouter } from "next/dist/client/router";
+
+
 
 const Sidebar2 = (props) => {
   const { user, username } = useContext(UserContext);
@@ -27,24 +30,26 @@ const Sidebar2 = (props) => {
   const userRedux = useSelector((state) => state.userData);
   const userNameRedux = useSelector((state) => state.userName);
   const loggedIn = useSelector((state) => state.loggedIn);
+  const router = useRouter();
 
-  // useEffect(() => {
-  //   //I fixed it, this code can be deleted i think
 
-  //   if (userRedux) {
-  //     setUsernameSlug(userNameRedux);
-  //     console.log(usernameSlug + "redux");
-  //     console.log(userRedux);
+  useEffect(() => {
+   
+if(router.asPath === "/Home" || router.asPath === "/"){
+setSelected(0)
+}else if(router.asPath === "/notes"){
+  setSelected(4)
+}else if(router.asPath === "/Problem"){
+  setSelected(1)
+}else if(router.asPath === "/Solutions"){
+  setSelected(2)
+}else if(router.asPath === "/Implementation"){
+  setSelected(3)
+}else if(router.asPath === "/Help"){
+  setSelected(5)
+}
 
-  //     return usernameSlug;
-  //   } else if (username) {
-  //     setUsernameSlug(username);
-  //     console.log(usernameSlug + "username context");
-  //     return usernameSlug;
-  //   } else {
-  //     console.log("Dammit");
-  //   }
-  // }, []);
+  }, [router.asPath]);
 
   let clickStyle = {
     color: "#fbf0ff",

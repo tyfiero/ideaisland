@@ -1,4 +1,4 @@
-import Footer from "../../OLD/oldComponents/LandingPage/Footer";
+
 
 function LegalPage() {
   return (
