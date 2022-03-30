@@ -18,7 +18,6 @@ export default function UsernameForm(props) {
   const userNameRedux = useSelector((state) => state.userNameRedux);
   const dispatch = useDispatch();
 
-  // const { user, username } = useContext(UserContext);
 
   const onSubmit = async (e) => {
     e.preventDefault();

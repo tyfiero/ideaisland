@@ -12,7 +12,6 @@ import {
 } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { soundSetting } from "../../redux/actions";
-// import "./styles.css";
 import toast from "react-hot-toast";
 import useVisible from "../../lib/useVisible";
 

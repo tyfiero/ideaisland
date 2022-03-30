@@ -381,7 +381,7 @@ function SRankFeatures(props) {
   "
       >
         <div
-          className="w-full p-10 space-y-8 shadow rounded-xl bg-blues-100 drop-shadow-xl container-style normal-box-soft"
+          className="w-full p-10 space-y-8  normal-box-soft"
           onLoad={() => {
             console.log("table render");
             setRerender(!rerender);

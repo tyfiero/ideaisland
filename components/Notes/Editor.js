@@ -77,7 +77,7 @@ function Editor() {
 
 "
       >
-        <div className="w-full max-w-[82rem] p-10 space-y-8 shadow h-[40em]  bg-blues-100 drop-shadow-xl container-style normal-box-soft items-center flex flex-col !rounded-2xl">
+        <div className="w-full max-w-[82rem] p-10 space-y-8 shadow   normal-box-soft items-center flex flex-col !rounded-2xl">
           {(editModeRedux === "edit" || editModeRedux === "new") && (
             <>
               {" "}

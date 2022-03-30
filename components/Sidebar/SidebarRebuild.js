@@ -54,80 +54,78 @@ const Sidebar2 = (props) => {
   };
 
   return (
-    <div className="sidebardiv md:border-l-0 flex md:left-0 md:top-[25%] sm:bottom-0  md:bottom-[30%] sm:w-full md:w-[3.5em] md:flex-col sm:flex-row md:rounded-r-[3rem] sm:rounded-t-[3rem]  md:rounded-tl-none sm:rounded-b-1xl md:absolute sm:fixed bg-gradient-to-t from-clear-bl  to-clear-pl border-black border-[0px] content-center md:items-left  justify-evenly	md:py-4 sm:pb-1 sm:pt-4 sm:overflow-visible  z-10">
+    <div className="sidebar-container md:border-l-0 flex md:left-0 md:top-[25%] sm:bottom-0  md:bottom-[30%] sm:w-full md:w-[3.5em] md:flex-col sm:flex-row md:rounded-r-[3rem] sm:rounded-t-[3rem]  md:rounded-tl-none sm:rounded-b-1xl md:absolute sm:fixed bg-gradient-to-t from-clear-bl  to-clear-pl border-black border-[0px] content-center md:items-left  justify-evenly	md:py-4 sm:pb-1 sm:pt-4 sm:overflow-visible  z-10">
       <Link href="/Home">
         <a>
           <div
-            className="sidebarunittcontainer flex rounded-[4rem] h-12 md:flex-row sm:flex-col  hover:bg-clear-w4 sm:items-center  md:rounded-l-none"
+            className="sidebar-unit-container flex rounded-[4rem] h-12 md:flex-row sm:flex-col  hover:bg-clear-w4 sm:items-center  md:rounded-l-none"
             style={selected === 0 ? clickStyle : unClickStyle}
             onClick={() => {
               setSelected(0);
             }}
           >
-            <FaHome className=" sideicon" />
-            <p className="sidebartext ml-2 text-[14px]">Home</p>
+            <FaHome className=" side-icon" />
+            <p className="sidebar-text ml-2 text-[14px]">Home</p>
           </div>
         </a>
       </Link>
 
       {/* <Link href={loggedIn ?  `user/${userNameRedux}/notes` :  "/login"}>
        */}
-     {/* <Link href={`user/${userNameRedux || null}/notes`}> */}
-     <Link href={`/notes`} passHref>
-
-      
+      {/* <Link href={`user/${userNameRedux || null}/notes`}> */}
+      <Link href={`/notes`} passHref>
         <a>
           <div
-            className=" sidebarunittcontainer flex rounded-[4rem] h-12 md:flex-row sm:flex-col  hover:bg-clear-w1 sm:items-center md:rounded-l-none"
+            className=" sidebar-unit-container flex rounded-[4rem] h-12 md:flex-row sm:flex-col  hover:bg-clear-w1 sm:items-center md:rounded-l-none"
             style={selected === 4 ? clickStyle : unClickStyle}
             onClick={() => {
               setSelected(4);
             }}
           >
-            <FaBook className="sideicon" />
-            <p className="sidebartext sm:text-[14px] ml-2">Notes</p>
+            <FaBook className="side-icon" />
+            <p className="sidebar-text sm:text-[14px] ml-2">Notes</p>
           </div>
         </a>
       </Link>
       <Link href="/Problem">
         <a>
           <div
-            className="sidebarunittcontainer flex rounded-[4rem] h-12 md:flex-row sm:flex-col   hover:bg-clear-w3 sm:items-center md:rounded-l-none"
+            className="sidebar-unit-container flex rounded-[4rem] h-12 md:flex-row sm:flex-col   hover:bg-clear-w3 sm:items-center md:rounded-l-none"
             style={selected === 1 ? clickStyle : unClickStyle}
             onClick={() => {
               setSelected(1);
             }}
           >
-            <FaBug className="sideicon" />
-            <p className="sidebartext sm:text-[14px] ml-2">Problem</p>
+            <FaBug className="side-icon" />
+            <p className="sidebar-text sm:text-[14px] ml-2">Problem</p>
           </div>
         </a>
       </Link>
       <Link href="/Solutions">
         <a>
           <div
-            className="sidebarunittcontainer flex rounded-[4rem] h-12 md:flex-row sm:flex-col   hover:bg-clear-w2 sm:items-center md:rounded-l-none"
+            className="sidebar-unit-container flex rounded-[4rem] h-12 md:flex-row sm:flex-col   hover:bg-clear-w2 sm:items-center md:rounded-l-none"
             style={selected === 2 ? clickStyle : unClickStyle}
             onClick={() => {
               setSelected(2);
             }}
           >
-            <FaBrain className="sideicon" />
-            <p className="sidebartext sm:text-[14px] ml-2">Solutions</p>
+            <FaBrain className="side-icon" />
+            <p className="sidebar-text sm:text-[14px] ml-2">Solutions</p>
           </div>
         </a>
       </Link>
       <Link href="/Implementation">
         <a>
           <div
-            className=" sidebarunittcontainer flex rounded-[4rem] h-12 md:flex-row sm:flex-col  hover:bg-clear-w1 sm:items-center md:rounded-l-none"
+            className=" sidebar-unit-container flex rounded-[4rem] h-12 md:flex-row sm:flex-col  hover:bg-clear-w1 sm:items-center md:rounded-l-none"
             style={selected === 3 ? clickStyle : unClickStyle}
             onClick={() => {
               setSelected(3);
             }}
           >
-            <FaSitemap className="sideicon" />
-            <p className="sidebartext sm:text-[14px] ml-2">Plan</p>
+            <FaSitemap className="side-icon" />
+            <p className="sidebar-text sm:text-[14px] ml-2">Plan</p>
           </div>
         </a>
       </Link>
@@ -135,14 +133,14 @@ const Sidebar2 = (props) => {
       <Link href="/Help">
         <a>
           <div
-            className="sidebarunittcontainer flex rounded-[4rem] h-12 md:flex-row sm:flex-col hover:text-white  hover:bg-clear-w sm:items-center md:rounded-l-none "
+            className="sidebar-unit-container flex rounded-[4rem] h-12 md:flex-row sm:flex-col hover:text-white  hover:bg-clear-w sm:items-center md:rounded-l-none "
             style={selected === 5 ? clickStyle : unClickStyle}
             onClick={() => {
               setSelected(5);
             }}
           >
-            <FaQuestion className="z-10 sideicon" />
-            <p className=" sidebartext sm:text-[14px] ml-2">Help</p>
+            <FaQuestion className="z-10 side-icon" />
+            <p className=" sidebar-text sm:text-[14px] ml-2">Help</p>
           </div>
         </a>
       </Link>

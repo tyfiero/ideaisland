@@ -1,5 +1,6 @@
-import "tailwindcss/tailwind.css";
 import "../styles/globals.css";
+import "tailwindcss/tailwind.css";
+
 import { Provider, useStore } from "react-redux";
 import { PersistGate } from "redux-persist/lib/integration/react";
 // import { ReactDOM } from "react";
@@ -165,7 +166,6 @@ export default wrapper.withRedux(MyApp);
 // //   });
 // // }
 
-// export default MyApp;
 
 
 

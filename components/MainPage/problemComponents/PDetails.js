@@ -46,7 +46,7 @@ function PDetails(props) {
 
   "
       >
-        <div className="w-full max-w-[42rem] p-10 space-y-8 shadow rounded-xl bg-blues-100 drop-shadow-xl container-style normal-box-soft">
+        <div className="w-full max-w-[42rem] p-10 space-y-8   normal-box-soft">
           <div className="flex flex-col items-center justify-center problem-page fade-effect-quick">
             <div className="absolute top-5 right-5">
               <Popover

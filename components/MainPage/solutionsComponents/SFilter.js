@@ -30,7 +30,7 @@ function SFilter(props) {
 
   "
       >
-        <div className="w-full max-w-[72rem] p-10  shadow rounded-xl bg-blues-100 drop-shadow-xl container-style normal-box-soft">
+        <div className="w-full max-w-[72rem] p-10  normal-box-soft">
           <div className="absolute top-5 right-5">
             <Popover
               isOpen={isPopoverOpen}

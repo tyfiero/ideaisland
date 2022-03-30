@@ -165,7 +165,7 @@ function STechStack(props) {
 
   "
       >
-        <div className="w-full p-10 space-y-8 shadow !rounded-2xl bg-blues-100 drop-shadow-xl container-style normal-box-soft">
+        <div className="w-full p-10 space-y-8  !rounded-2xl  normal-box-soft">
           <div className="flex">
             <div className="flex flex-col items-center justify-center w-full problem-page fade-effect-quick">
               <div className="absolute top-5 right-12">
