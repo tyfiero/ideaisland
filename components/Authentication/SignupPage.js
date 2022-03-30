@@ -257,7 +257,7 @@ export default function SignupPage() {
             </Link>
           </div>
         ) : null}
-        {signUpMethod === 1 && emailForm}
+        {/* {signUpMethod === 1 && emailForm} */}
       </div>
     </div>
   );

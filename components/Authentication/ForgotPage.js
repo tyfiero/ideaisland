@@ -54,8 +54,10 @@ function ForgotPage() {
   "
   >
       <div className="flex max-w-md p-10 space-y-8 shadow rounded-xl bg-blues-100 drop-shadow-xl">
-      <Link href="/login">
+      <Link href="/login" passHref>
+        <a>
         <FaChevronLeft className="fixed cursor-pointer text-[24px]" />
+        </a>
        </Link>
     <div className="flex flex-col justify-center sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">

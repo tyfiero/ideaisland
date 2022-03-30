@@ -29,7 +29,7 @@ function VersionChip({
       setColor(" bg-pink-200  text-pink-600 shadow-md shadow-pink-300");
       setContent("Back burner");
     }
-  }, [clicked]);
+  }, [clicked]);// eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="flex justify-center" >

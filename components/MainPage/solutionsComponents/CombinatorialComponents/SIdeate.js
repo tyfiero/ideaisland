@@ -39,7 +39,7 @@ function SIdeate(props) {
           <div className="flex flex-col items-center justify-center problem-page fade-effect-quick">
             <h1 className="heading-top">Ideate</h1>
             <div className="normal-box-soft">
-              <h3 className="heading">Oh yes, it's idea time 😎</h3>
+              <h3 className="heading">Oh yes, it&apos;s idea time 😎</h3>
             </div>
 
             <div className="flex gap-5">
@@ -141,7 +141,7 @@ function SIdeate(props) {
             </div>
             <div className="flex items-center justify-between w-full">
               <button
-                className="card__btn save_button left-[5%]  flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick !w-[10em]"
+                className=" save_button card__btn_prev left-[5%]  flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick !w-[10em]"
                 onClick={() => router.push("/Problem")}
               >
                 <FaLongArrowAltLeft className="mr-1 text-[24px]" />

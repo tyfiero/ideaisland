@@ -10,7 +10,7 @@ function TopBar(props) {
   return (
     <nav id="navbar">
       <div className="flex nav-wrapper">
-        <Link href="/">
+        <Link href="/" passHref>
           <img
             src="/bulb.svg"
             alt="logo"
@@ -21,8 +21,9 @@ function TopBar(props) {
           />
         </Link>
         {/* <Link href="/"> */}
-
+        {/* <Link href="/" passHref> */}
         <p className="pt-4 logo">ideaisland</p>
+        {/* </Link> */}
         {/* </Link> */}
       </div>
     </nav>

@@ -49,7 +49,7 @@ function SFeatures(props) {
 
     // setFeatureArray(featureArray)
     setRerender(!rerender);
-  }, [sFormRedux, featureArray]);
+  }, [sFormRedux, featureArray]);// eslint-disable-line react-hooks/exhaustive-deps
 
   const updateArray = (data) => {
     // console.log(featureArray);
@@ -589,7 +589,7 @@ function SFeatures(props) {
               <div className="flex flex-col"></div>
               <div className="flex items-center justify-between w-full">
                 <button
-                  className="card__btn save_button left-[5%]  flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick"
+                  className="card__btn_prev save_button left-[5%]  flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick"
                   onClick={() => props.goToStep(2)}
                 >
                   <FaLongArrowAltLeft className="mr-1 text-[24px]" />

@@ -122,7 +122,6 @@ function SolutionWizard(props) {
         nav={<SolutionProgressStepper />}
         instance={setInstance}
       >
-        {/* <ProblemPage /> */}
         <SIdeate hashKey={"ideate"} update={updateForm} />
         <SFilter hashKey={"select-idea"} update={updateForm} cookieUID={props.cookieUID} />
         <SFeatures hashKey={"add-features"} update={updateForm} form={formContent}/>

@@ -163,7 +163,7 @@ export default function Layout({ children }) {
     }
 
     // setIsLoggedIn(true)
-  }, [userData]);
+  }, [userData]);// eslint-disable-line react-hooks/exhaustive-deps
 
   let notes = "Notes";
 

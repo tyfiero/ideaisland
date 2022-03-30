@@ -57,7 +57,7 @@ function SFilter(props) {
                     className="!opacity-100 bg-white w-[25em] rounded-xl p-3"
                     onClick={() => setIsPopoverOpen(!isPopoverOpen)}
                   >
-                    You can't bring all of your ideas to market. Selecting the
+                    You can&apos;t bring all of your ideas to market. Selecting the
                     most promising idea is a difficult, but important step. By
                     choosing one, you can explore that idea further and run it
                     through the idea evolution process to see if this idea is
@@ -110,7 +110,7 @@ function SFilter(props) {
             </div>
             <div className="flex items-center justify-between w-full mt-4">
               <button
-                className="card__btn save_button left-[5%]  flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick"
+                className="card__btn_prev save_button left-[5%]  flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick"
                 onClick={() => props.goToStep(1)}
               >
                 <FaLongArrowAltLeft className="mr-1 text-[24px]" />

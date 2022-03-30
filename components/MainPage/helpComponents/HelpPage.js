@@ -25,7 +25,7 @@ const HelpPage = () => {
       content: (
         <p>
           Combinatorial thinking allows us to force combinations in our brains
-          that wouldn't normally happen. It gets different parts of your brain
+          that wouldn&apos;t normally happen. It gets different parts of your brain
           working together, and naturally leads you to truly novel ideas.
         </p>
       ),
@@ -73,7 +73,7 @@ const HelpPage = () => {
           <h4 className="help-header">FAQs</h4>
           <p className="help-text">The most common community questions.</p>
         </div>
-        <Link href="/">
+        <Link href="/profile" passHref>
           <div className="help-box">
             <div className="help-circle">
               <FaUserAlt className="help-icons" />
@@ -155,7 +155,7 @@ const HelpPage = () => {
 
         <p>
           A quick start guide that will have you well on your way to awesome
-          "Aha!" moments
+          &quot;Aha&quot;! moments
         </p>
         <div className="normal-box !w-[90%] flex flex-col items-center m0-auto ">
           <ul>
@@ -175,7 +175,7 @@ const HelpPage = () => {
           </div>
           <h4 className="help-header ">Contact Us</h4>
           <p className="help-text">
-            Still have questions? We'd love to hear from you!
+            Still have questions? We&apos;d love to hear from you!
           </p>
         </div>
       </a>

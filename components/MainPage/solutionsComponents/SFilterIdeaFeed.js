@@ -105,7 +105,8 @@ function IdeaItem({ idea, admin = false }) {
         setClicked(false);
       }
     }
-  }, [sUpdate]);
+  }, [sUpdate]);// eslint-disable-line react-hooks/exhaustive-deps
+  
   // console.log(idea.documentID)
   return (
     <div

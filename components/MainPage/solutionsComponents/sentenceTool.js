@@ -86,7 +86,7 @@ function SentenceTool(props) {
 
   var hadABaby = (
     <div className="sentence-wrapper">
-      <h1>It's like if&nbsp;</h1>
+      <h1>It&apos;s like if&nbsp;</h1>
       <h1 onClick={wordClickHandler1} className="sentence_word">
         {sWord1Value}
       </h1>

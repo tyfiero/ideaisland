@@ -344,7 +344,7 @@ export default function IdeaDisplay() {
       }
       setPosition(currentDocRedux.imgPosition);
     }
-  }, [currentDocRedux]);
+  }, [currentDocRedux]);// eslint-disable-line react-hooks/exhaustive-deps
 
   const reSizeImgBounds = () => {
     // console.log(e);

@@ -196,7 +196,7 @@ function STechStack(props) {
                       >
                         What infrastructure does your application need?
                         Selecting the right stack to build your product is
-                        tough. It's deeply personal, given what you are talented
+                        tough. It&apos;s deeply personal, given what you are talented
                         in, yet it is also objective, what infrastructure
                         provider allows your users to benefit most? PLEASE
                         rewrite this its bad lol
@@ -595,7 +595,7 @@ function STechStack(props) {
               </div>
               <div className="flex items-center justify-between w-full">
                 <button
-                  className="card__btn save_button left-[5%]  flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick"
+                  className="card__btn_prev save_button left-[5%]  flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick"
                   onClick={() => props.goToStep(4)}
                 >
                   <FaLongArrowAltLeft className="mr-1 text-[24px]" />
@@ -780,9 +780,9 @@ function ItemCard({ name, color, bColor, iconColor, update, cost, url, type }) {
             alt="logo"
             className="object-cover"
           />
-          <div className="opacity-0 transition duration-200 z-100 group-hover:opacity-100 absolute top-0 right-0">
+          <div className="absolute top-0 right-0 transition duration-200 opacity-0 z-100 group-hover:opacity-100">
             <div
-              className="flex items-center justify-center rounded-full bg-t-pl/60 h-6 w-6 "
+              className="flex items-center justify-center w-6 h-6 rounded-full bg-t-pl/60 "
               onClick={() => setHeartClicked(!heartClicked)}
             >
               {heartClicked ? (
@@ -801,7 +801,7 @@ function ItemCard({ name, color, bColor, iconColor, update, cost, url, type }) {
               href={url || "https://www.google.com"}
               target="_blank"
               rel="noreferrer"
-              className="flex gap-1 transition   md:hover:scale-125 md:hover:text-blue-200"
+              className="flex gap-1 transition md:hover:scale-125 md:hover:text-blue-200"
             >
               Link
               <FaLink />

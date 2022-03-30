@@ -147,7 +147,7 @@ const NotePopUp = (props) => {
               <label htmlFor="cheese-status">Autosave</label> */}
 
           <button
-            className="card__btn save_button fade-effect"
+            className="card__btn_prev save_button fade-effect"
             onClick={saveHandler}
           >
             Save

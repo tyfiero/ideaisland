@@ -119,7 +119,8 @@ function CardImage(props) {
       });
     //photo attribution to be rendered
     photoCreditStatement = `Photo by ${isPhotographer}`;
-  }, [props.word, nextPhoto]); // This will only run when one of those variables change
+  }, [props.word, nextPhoto]);// eslint-disable-line react-hooks/exhaustive-deps
+   // This will only run when one of those variables change
   // let imgSrc = `"${photoUrl}"`;
   // let imgSrc = String(photoUrl);
 

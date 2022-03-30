@@ -24,12 +24,13 @@ function WordsCard(props) {
     "Innovate",
   ]);
   const [showRelatedWord, setShowRelatedWord] = useState(true);
+  const [similarWordsWord, setSimilarWordsWord] = useState(true);
   var datamuseConfig = {
     method: "get",
     url: `https://api.datamuse.com/words?ml=${props.word}`,
     headers: {},
   };
-  let similarWordsWord;
+
 
   useEffect(() => {
     axios(datamuseConfig)
@@ -58,14 +59,15 @@ function WordsCard(props) {
         // console.log(response.data[2].word);
 
         // console.log(similarWordsItemOne);
-        similarWordsWord = similarWordsItemOne.word;
-
+        setSimilarWordsWord(similarWordsItemOne.word)
         setIsRelatedWord(testArray);
       })
       .catch(function (error) {
         console.log(error);
       });
-  }, [props.word]); // This will only run when one of those variables change
+  }, [props.word]);// eslint-disable-line react-hooks/exhaustive-deps
+  
+  // This will only run when one of those variables change
 
   let simWordMessage = <p className="simWordMessage">Similar Words:</p>;
   // let simWords = <p className="simWordMessage2">Show Similar Words</p>;

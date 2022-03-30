@@ -60,15 +60,15 @@ function Editor() {
   useEffect(() => {
     // console.log("UE START");
 
-    if (currentDocRedux) {
-    } else {
+    if (!currentDocRedux) {
+    // } else {
       // setEditDocDetails(details);
       dispatch(editModeAction("new"));
 
       console.log("no note change");
     }
     // console.log("UE END");
-  }, [currentDocRedux]);
+  }, [currentDocRedux]);// eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div>
@@ -154,7 +154,7 @@ function CreateNewIdea() {
         }
       }
     };
-  }, []);
+  }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (editModeRedux === "new") {
@@ -190,7 +190,7 @@ function CreateNewIdea() {
       return;
     }
     // }
-  }, [currentDocRedux]);
+  }, [currentDocRedux]);// eslint-disable-line react-hooks/exhaustive-deps
   // console.log("🚀 ~ file: Editor.js ~ line 170 ~ CreateNewIdea ~ setEditDocDetails", setEditDocDetails)
 
   // Ensure slug is URL safe

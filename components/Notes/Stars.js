@@ -19,7 +19,7 @@ useEffect(()=>{
     setPointer("")
 
     }
-},[])
+},[])// eslint-disable-line react-hooks/exhaustive-deps
 
 //   console.log(hoverStars)
 useEffect(()=>{

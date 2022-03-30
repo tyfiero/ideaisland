@@ -151,8 +151,8 @@ function SRankFeatures(props) {
     // console.log(updatedObj)
   };
 
-  useEffect(() => {
-    // console.log("shit changed")
+  useEffect(() => {// eslint-disable-line react-hooks/exhaustive-deps
+    console.log("shit changed")
     // setRerender(!rerender)
     if (tableContent.length !== sFormRedux.features?.length) {
       setRefresh(!refresh);
@@ -253,7 +253,7 @@ function SRankFeatures(props) {
     } else {
       console.log(":(");
     }
-  }, [sFormRedux, refresh]);
+  }, [sFormRedux, refresh]);// eslint-disable-line react-hooks/exhaustive-deps
 
   const columns = React.useMemo(
     () => [
@@ -432,7 +432,7 @@ function SRankFeatures(props) {
 
             <div className="flex items-center justify-between w-full">
               <button
-                className="card__btn save_button left-[5%]  flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick"
+                className="card__btn_prev save_button left-[5%]  flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick"
                 onClick={() => props.goToStep(3)}
               >
                 <FaLongArrowAltLeft className="mr-1 text-[24px]" />

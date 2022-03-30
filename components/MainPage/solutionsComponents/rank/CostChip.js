@@ -31,7 +31,7 @@ function CostChip({
       setColor(" bg-red-200  text-red-600 shadow-md shadow-red-300");
       setContent("$$$$$");
     }
-  }, [clicked]);
+  }, [clicked]);// eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="flex justify-center">

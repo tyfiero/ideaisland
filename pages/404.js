@@ -19,10 +19,12 @@ export default function Custom404() {
           <div className="image-error"></div>
         </div>
         <div className="fourohfour-image"></div>
-        <Link href="/">
+        <Link href="/" passHref>
+          <a>
           <button className="w-[18em] h-12 rounded-3xl bg-t-bl flex items-center mt-3 justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 text-2xl">
             Back to ideaisland!
           </button>
+          </a>
         </Link>
       </div>
     </main>

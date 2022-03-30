@@ -25,7 +25,7 @@ function ToolBar(props) {
     }else{
       setIdeaBar(null)
     }
-  },[sUpdate]);
+  },[sUpdate]);// eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="flex justify-between z-[1000] bg-white/90 shadow-xl sticky top-0 rounded-xl border-b-2 border-t-0 items-center ">

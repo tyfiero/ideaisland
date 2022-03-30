@@ -125,7 +125,7 @@ function Card({ cardNum }) {
   const [DDListChanged, setDDListChanged] = React.useState(false); // the lifted state
 
   const [listContent, setListContent] = React.useState(allWordLists.industry); // the lifted state
-
+  const [dropdownWord, setDropdownWord] = React.useState(0);
   const sendDataToParent = (index) => {
     // console.log(index + "CHILD DATA");
 
@@ -133,8 +133,7 @@ function Card({ cardNum }) {
     setDDListChanged(index[1]);
   };
 
-  //set dropdown initial word
-  let dropdownWord = 0;
+ 
 
   const [cardCurrentWord, setCardCurrentWord] = React.useState("innovation");
   useEffect(() => {
@@ -143,7 +142,7 @@ function Card({ cardNum }) {
       wordClickHandler();
       dispatch(randomizeAction(false));
     }
-  }, [isRandomized]);
+  }, [isRandomized]);// eslint-disable-line react-hooks/exhaustive-deps
   //THIS useEffect runs once to set the initial state of the cards
   useEffect(() => {
     console.log("UE1");
@@ -154,7 +153,7 @@ function Card({ cardNum }) {
 
       setDDList(0);
 
-      dropdownWord = 0;
+      setDropdownWord(0)
       // defaultWord = "Innovation";
       setCardCurrentWord("Innovation");
       // console.log(0 + "AHHHHHHHHH");
@@ -162,8 +161,9 @@ function Card({ cardNum }) {
     } else if (cardNum === "1") {
       // list = allWordLists.idZone;
       setListContent(allWordLists.idZone);
+      setDropdownWord(1)
 
-      dropdownWord = 1;
+
       setDDList(1);
 
       // defaultWord = "Generation";
@@ -174,7 +174,8 @@ function Card({ cardNum }) {
 
       setDDList(2);
 
-      dropdownWord = 2;
+      setDropdownWord(2)
+
       // defaultWord = "Virtual Reality";
       setCardCurrentWord("Virtual Reality");
     } else {
@@ -182,8 +183,8 @@ function Card({ cardNum }) {
       setListContent(allWordLists.industry);
 
       setDDList(3);
+      setDropdownWord(3)
 
-      dropdownWord = 0;
       setCardCurrentWord("Innovation");
     }
   }, []);
@@ -282,7 +283,7 @@ function Card({ cardNum }) {
       wordClickHandler();
       setDDListChanged(false);
     }
-  }, [DDListChanged, DDList, allWordLists, listContent, wordClickHandler]);
+  }, [DDListChanged, DDList]);// eslint-disable-line react-hooks/exhaustive-deps
 
   //Hamburger menu
   const [isOpen, setOpen] = useState(false);

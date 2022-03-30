@@ -14,8 +14,8 @@ import {
   gpt3OutputAction,
   gptJOutputAction,
 } from "../../../../redux/actions";
-import GPT3TextArea from "./GPTJTextArea";
-import GPTJTextArea from "./GPT3TextArea";
+// import GPT3TextArea from "./GPTJTextArea";
+// import GPTJTextArea from "./GPT3TextArea";
 import { gptJInputAction } from "../../../../redux/actions";
 // import FullLoader from "../../../FullLoader";
 
@@ -152,7 +152,7 @@ const GPTtool = () => {
         {/* <p>{charLength + "/100"}</p> */}
 
         <button
-          className="card__btn w-[10rem] items-center flex  rainbow-effect "
+          className="card__btn_prev w-[10rem] items-center flex  rainbow-effect "
           type="submit"
           onClick={() => {
             setGPTJStatus(true);
@@ -202,7 +202,7 @@ const GPTtool = () => {
           {...register("input", { required: "Required" })}
         ></textarea>
         <button
-          className="card__btn w-[10rem] items-center flex  rainbow-effect "
+          className="card__btn_prev w-[10rem] items-center flex  rainbow-effect "
           type="submit"
           onClick={() => {
             //   console.log("button input" + GPT3Input);
@@ -227,7 +227,7 @@ const GPTtool = () => {
     <div className="flex items-center">
       <div className="flex flex-col">
       <button
-        className="card__btn w-[8rem]  flex px-3 items-center rainbow-effect "
+        className="card__btn_prev w-[8rem]  flex px-3 items-center rainbow-effect "
         onClick={() => {
           setGPTJorGPT3(!GPTJorGPT3);
           setResponseRecieved(false);

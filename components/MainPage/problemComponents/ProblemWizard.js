@@ -5,7 +5,6 @@ import PWhat from "./PWhat";
 import PWho from "./PWho";
 import PWhy from "./PWhy";
 import PDetails from "./PDetails";
-import ProblemPage from "./ProblemPage";
 import ToolBar from "./ToolBar";
 import ProgressStepper from "./ProgressStepper";
 import {
@@ -126,7 +125,6 @@ function ProblemWizard() {
         nav={<ProgressStepper />}
         // instance={setInstance}
       >
-        {/* <ProblemPage /> */}
 
         <PWhy hashKey={"Why"}  />
         <PWhat hashKey={"What"}  />

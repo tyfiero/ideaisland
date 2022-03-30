@@ -31,14 +31,14 @@ export default function IdeaFeed({ ideas, admin }) {
   // console.log(ideas);
 
   useEffect(() => {
-
+//TODO, ensure the logic of the stats is working properly. Is it actually keeping track of idea number?
     if(ideas){
       let num = ideas.length;
       dispatch(statsAction({ideaNum: num}))
     }
   
    
-  }, [])
+  }, [])// eslint-disable-line react-hooks/exhaustive-deps
   
   return ideas
     ? ideas.map((idea) => (

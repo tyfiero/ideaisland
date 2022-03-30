@@ -111,7 +111,7 @@ const Sidebar = (props) => {
       setSidebar(false);
       setShowText(true);
     }
-  }, [isMobile]);
+  }, [isMobile]);// eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (isMobile) {

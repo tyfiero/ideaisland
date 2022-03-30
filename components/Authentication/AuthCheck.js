@@ -23,18 +23,21 @@ export default function AuthCheck(props) {
       <h2 className="mt-1 text-3xl font-extrabold text-center text-gray-900">
       You must be signed in to access this content.
       </h2>
-     <p>You're only a few clicks away from your best idea!</p>
+     <p>You&apos;re only a few clicks away from your best idea!</p>
         <div className="flex flex-col items-center gap-2 pt-3">
-          <Link href="/login">
+          <Link href="/login" passHref>
+            <a>
           <button
             className="w-[18em] h-12 rounded-3xl bg-t-bl flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95"
           >
            
              <FaSignInAlt style={{color: "white", fontSize: "29px"}}/>
             Login
-          </button>
+          </button> 
+          </a>
           </Link>
-          <Link href="/signup">
+          <Link href="/signup" passHref>
+          <a>
           <button
             className="w-[18em] h-12 rounded-3xl bg-t-pl flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95"
           >
@@ -42,6 +45,8 @@ export default function AuthCheck(props) {
              <FaIdCard style={{color: "white", fontSize: "29px"}}/>
             Sign Up
           </button>
+          </a>
+
           </Link>
         </div>
     </div>

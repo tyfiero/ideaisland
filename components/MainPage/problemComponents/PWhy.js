@@ -76,7 +76,7 @@ function PWhy(props) {
                     >
                       Starting with why helps keep the end in mind. It helps
                       frame the entire reason you embark on the innovation
-                      journey. <br /> Check out Simon Sinek's{" "}
+                      journey. <br /> Check out Simon Sinek&apos;s
                       <a
                         className="underline text-blues-300"
                         href="https://www.youtube.com/watch?v=u4ZoJKF_VuA&ab_channel=TEDxTalks"
@@ -148,13 +148,7 @@ function PWhy(props) {
               
             </div>
             <div className="flex items-center justify-end w-full">
-              <button
-                className="card__btn save_button left-[5%]  items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick !hidden float-right"
-                onClick={() => props.goToStep(2)}
-              >
-                <FaLongArrowAltLeft className="mr-1 text-[24px]" />
-                Back
-              </button>
+             
               <div className="relative group">
       <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
               <button

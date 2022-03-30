@@ -6,7 +6,7 @@ import { withTheme } from 'styled-components';
 
 export default function darkMode() {
     const bgColor = {
-        backgroundColor: white,
+        backgroundColor: "white",
     }
 
   return bgColor;

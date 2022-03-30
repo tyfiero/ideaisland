@@ -983,6 +983,19 @@ p {
 
   font-size: var(--fontSizeHeading-sm);
 }
+.card__btn_prev {
+ 
+  color: black;
+  border-radius: 3em;
+  /* transition: background 200ms ease-in, color 200ms ease-in; */
+  cursor: pointer;
+  background: linear-gradient(145deg, #f8f8f8, #e4c2df);
+  box-shadow: 5px 5px 13px #c5a8c1, -3px -3px 11px #ffffff;
+  /* position: relative; */
+  height: 60px;
+
+  font-size: var(--fontSizeHeading-sm);
+}
 .notes-btn-sm {
   /* border: 3px solid var(--colorDark1); */
   /* background: var(--colorLight1); */

@@ -64,11 +64,11 @@ export default function UsernameForm(props) {
 
   useEffect(() => {
     checkUsername(formValue);
-  }, [formValue]);
+  }, [formValue]);// eslint-disable-line react-hooks/exhaustive-deps
 
   // Hit the database for username match after each debounced change
   // useCallback is required for debounce to work
-  const checkUsername = useCallback(
+  const checkUsername = useCallback( () =>{
     debounce(async (username) => {
       if (username.length >= 3) {
         const ref = doc(getFirestore(), 'usernames', username);
@@ -79,7 +79,7 @@ export default function UsernameForm(props) {
         setIsValid(!snap.exists());
         setLoading(false);
       }
-    }, 500),
+    }, 500)},
     []
   );
 
