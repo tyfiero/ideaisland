@@ -1,41 +1,24 @@
-import Footer from "./Footer";
+import Footer from "../../OLD/oldComponents/LandingPage/Footer";
 
 function LegalPage() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen glass-box">
       <div className="relative overflow-hidden">
         <div className="mx-auto">
-          <img
-            srcSet="johannes-plenio-E-Zuyev2XWo-unsplash-1024w.jpg 1024w,
-                  johannes-plenio-E-Zuyev2XWo-unsplash-1600w.jpg 1600w,
-                  johannes-plenio-E-Zuyev2XWo-unsplash-2640w.jpg 2640w"
-            sizes="100vw"
-            className="h-52 w-full object-cover"
-            src="johannes-plenio-E-Zuyev2XWo-unsplash-2640w.jpg"
-            alt="Lightning"
-          />
+         
         </div>
         <main>
-          <div className="relative px-4 sm:px-6 lg:px-8 py-8 mt-4 sm:mt-12">
-            <div className="text-lg max-w-prose mx-auto ">
+          <div className="relative px-4 py-8 mt-4 sm:px-6 lg:px-8 sm:mt-12 normal-box">
+            <div className="mx-auto text-lg max-w-prose ">
               <h1>
-                <span className="mt-2 block text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                <span className="block mt-2 text-3xl font-extrabold leading-8 tracking-tight text-center text-gray-900 sm:text-4xl">
                   Legal notice
                 </span>
               </h1>
-              <p className="mt-8 text-xl text-gray-500 leading-8">
-                Your legal notice here
-              </p>
+           
             </div>
-            <div className="mt-6 prose prose-cerulean prose-lg text-gray-500 mx-auto">
-              <p>
-                Responsible for the content of{" "}
-                <a href="https://example.com">www.example.com</a> and any
-                services offered via this site is:
-              </p>
-              <p>
-                <strong>Your name</strong>
-              </p>
+            <div className="mx-auto mt-6 prose prose-lg text-gray-500 prose-cerulean">
+             
 
               <h2>Disclaimer</h2>
               <p>
@@ -62,7 +45,6 @@ function LegalPage() {
               </p>
             </div>
           </div>
-          <Footer />
         </main>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import PrivacyPage from "../components/LandingPage/PrivacyPage";
+import PrivacyPage from "../components/MainPage/PrivacyPage";
 
 const Privacy = () => {
   return <PrivacyPage />;

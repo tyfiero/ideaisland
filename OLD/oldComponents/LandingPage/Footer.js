@@ -3,16 +3,16 @@ import { LightningBoltIcon } from "@heroicons/react/solid";
 
 function Footer() {
   return (
-    <div className="bg-gray-800 w-full h-40 flex flex-col justify-between p-4 mt-10">
-      <div className="grid grid-cols-2 w-full items-center">
-        <div className="mx-auto p-4 flex-row flex align-middle  h-16 items-center">
+    <div className="flex flex-col justify-between w-full h-40 p-4 mt-10 bg-gray-800">
+      <div className="grid items-center w-full grid-cols-2">
+        <div className="flex flex-row items-center h-16 p-4 mx-auto align-middle">
           <Link href="/">
             <a aria-label="Home">
-              <LightningBoltIcon className="h-8 w-auto transform rotate-12 scale-y-110 stroke-blues-500 text-blues-200" />
+              <LightningBoltIcon className="w-auto h-8 transform scale-y-110 rotate-12 stroke-blues-500 text-blues-200" />
             </a>
           </Link>
 
-          <span className=" tracking-tight font-extrabold text-gray-900 ml-2">
+          <span className="ml-2 font-extrabold tracking-tight text-gray-900 ">
             <span className="block text-blues-600 ">Ultimate</span>
             <span className="block text-gray-300">React.js starter</span>
           </span>
@@ -36,7 +36,7 @@ function Footer() {
           </ul>
         </div>
       </div>
-      <div className="text-gray-400 text-center">© Copyright AppHafen 2022</div>
+      <div className="text-center text-gray-400">© Copyright AppHafen 2022</div>
     </div>
   );
 }

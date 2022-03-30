@@ -1,4 +1,5 @@
-import LegalPage from "../components/LandingPage/LegalPage";
+import LegalPage from "../components/MainPage/LegalPage";
+
 
 const Legal = () => {
   return <LegalPage />;

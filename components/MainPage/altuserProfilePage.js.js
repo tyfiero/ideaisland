@@ -1,11 +1,11 @@
 import React from "react";
-import ProfilePage from "../../../components/ProfilePage";
-import IdeaFeed from "../../../components/Notes/IdeaFeed";
+import ProfilePage from "../ProfilePage";
+import IdeaFeed from "../Notes/IdeaFeed";
 import {
   getUserWithUsername,
   postToJSON,
   firestore,
-} from "../../../lib/firebase";
+} from "../../lib/firebase";
 import {
   query,
   collection,
@@ -16,7 +16,7 @@ import {
   getFirestore,
 } from "firebase/firestore";
 
-import AuthCheck from "../../../components/Authentication/AuthCheck";
+import AuthCheck from "../Authentication/AuthCheck";
 
 export async function getServerSideProps({ query: urlQuery }) {
   const { username } = urlQuery;
