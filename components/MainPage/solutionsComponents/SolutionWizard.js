@@ -36,8 +36,10 @@ import SFilter from "./SFilter";
 import SRankFeatures from "./SRankFeatures";
 import STechStack from "./STechStack";
 import SIdeate from "./CombinatorialComponents/SIdeate";
+import { useSelector } from "react-redux";
 function SolutionWizard(props) {
   const { username } = useContext(UserContext);
+  const userUIDRedux = useSelector((state) => state.userUID);
 
   const [formContent, setFormContent] = useState({ form: {} });
   const updateForm = (key, value) => {
@@ -51,11 +53,25 @@ function SolutionWizard(props) {
     // console.log(form.details)
   };
 
-  // console.log(formContent);
+  console.log(props.cookieUID);
   // Create a new post in firestore
   const saveProblemForm = async (e) => {
     e?.preventDefault();
-    const uid = auth.currentUser.uid;
+    let uid;
+    if(props.cookieUID){
+      uid = props.cookieUID;
+    }else{
+      
+    if (userUIDRedux) {
+      uid = userUIDRedux;
+      console.log("it actually worked");
+    } else if (auth.currentUser?.uid) {
+      uid = auth.currentUser.uid;
+    } else {
+      uid = null;
+      console.log("no uid available :(");
+    }
+  }
 
     const ref = doc(
       getFirestore(),
