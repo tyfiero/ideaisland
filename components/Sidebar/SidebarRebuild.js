@@ -35,7 +35,7 @@ const Sidebar2 = (props) => {
 
   useEffect(() => {
    
-if(router.asPath === "/Home" || router.asPath === "/"){
+if(router.asPath === "/home" || router.asPath === "/"){
 setSelected(0)
 }else if(router.asPath === "/notes"){
   setSelected(4)
@@ -60,7 +60,7 @@ setSelected(0)
 
   return (
     <div className="sidebar-container md:border-l-0 flex md:left-0 md:top-[25%] sm:bottom-0  md:bottom-[30%] sm:w-full md:w-[3.5em] md:flex-col sm:flex-row md:rounded-r-[3rem] sm:rounded-t-[3rem]  md:rounded-tl-none sm:rounded-b-1xl md:absolute sm:fixed bg-gradient-to-t from-clear-bl  to-clear-pl border-black border-[0px] content-center md:items-left  justify-evenly	md:py-4 sm:pb-1 sm:pt-4 sm:overflow-visible  z-10">
-      <Link href="/Home">
+      <Link href="/home">
         <a>
           <div
             className="sidebar-unit-container flex rounded-[4rem] h-12 md:flex-row sm:flex-col  hover:bg-clear-w4 sm:items-center  md:rounded-l-none"
