@@ -50,7 +50,7 @@ setSelected(0)
 }
 
   }, [router.asPath]);
-
+  
   let clickStyle = {
     color: "#fbf0ff",
   };

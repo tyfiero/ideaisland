@@ -1,5 +1,4 @@
 import SentenceTool from "../../components/MainPage/solutionsComponents/SentenceTool";
-import { useRouter } from "next/router";
 
 const SentencePage = () => {
   //THESE are for dynamic routing

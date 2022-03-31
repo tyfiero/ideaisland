@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import  { useState, React } from "react";
 import { useSelector, useDispatch } from "react-redux";
-// import { allLists, sWord1Action, sWord2Action } from "../../../redux/reducers/allLists";
-import { allLists, sWord1Action, sWord2Action } from "../../../redux/actions";
+import { sWord1Action, sWord2Action } from "../../../redux/actions";
 
 // import {
 //   allLists,

@@ -1,4 +1,4 @@
-import SolutionsPage from "../../components/MainPage/solutionsComponents/SolutionsPage";
+
 import SolutionWizard from "../../components/MainPage/solutionsComponents/SolutionWizard";
 
 import { firebaseAdmin } from "../../lib/firebaseAdmin";

@@ -1,6 +1,4 @@
 import { React, useState } from "react";
-import SentenceTool from "../../components/MainPage/solutionsComponents/SentenceTool";
-import { useRouter } from "next/router";
 import { FaDice, FaPlus } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import Card from "../../components/MainPage/solutionsComponents/CombinatorialComponents/Card";
@@ -8,9 +6,7 @@ import GPTtool from "../../components/MainPage/solutionsComponents/AI/GPT3";
 import { randomizeAction } from "../../redux/actions";
 
 const CombinatorialPage = (props) => {
-  //THESE are for dynamic routing
-  // const router = useRouter();
-  // const { id } = router.query;
+
   const isRandomized = useSelector((state) => state.randomize);
 
   const dispatch = useDispatch();
