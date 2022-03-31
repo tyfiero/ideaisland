@@ -4,7 +4,7 @@
 // import Hero from "./Hero";
 // import FeaturesCont from "./FeaturesCont";
 // import CTA from "./CTA";
-import SentencePage from "../../pages/Solutions/Sentence";
+import SentencePage from "../../pages/solutions/sentence";
 
 function MainPage() {
   return (

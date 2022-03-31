@@ -31,7 +31,7 @@ export const getServerSideProps = async (ctx) => {
     ctx.res.end();
     // The props returned here don't matter because we've
     // already redirected the user.
-    return { props: {} };
+    return { props: {error: err} };
   }
 };
 
@@ -39,7 +39,7 @@ const NotePage = (props) => {
   const unsavedChangesRedux = useSelector((state) => state.unsavedChanges);
   // const [ID, setID] = useState(null);
 // useEffect(() => {
-
+console.log(props.error)
 //   if(unsavedChangesRedux){
 //     window.onbeforeunload = function (e) {
 //       var message = "Your confirmation message goes here.",

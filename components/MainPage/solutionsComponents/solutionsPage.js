@@ -10,7 +10,7 @@ function SolutionsPage() {
     <div className="text-black solution-page fade-effect-quick">
       <h1 className="heading-top">Solution Page</h1>
       <h4>Tools:</h4>
-      <Link href="/Solutions/Combinatorial">
+      <Link href="/solutions/combinatorial">
         <a>
           <div className="flex solution-button">
             <FaRandom className="text-2xl" />
@@ -19,7 +19,7 @@ function SolutionsPage() {
         </a>
       </Link>
 
-      <Link href="/Solutions/Sentence">
+      <Link href="/solutions/sentence">
         <a>
           <div className="solution-button">
             <FaAlignLeft className="text-2xl" />
@@ -28,7 +28,7 @@ function SolutionsPage() {
         </a>
       </Link>
 
-      <Link href="/Solutions/Ai">
+      <Link href="/solutions/ai">
         <a>
           <div className="solution-button">
             <FaPastafarianism className="text-3xl" />
@@ -36,7 +36,7 @@ function SolutionsPage() {
           </div>
         </a>
       </Link>
-      <Link href="/Solutions/Wizard">
+      <Link href="/solutions/wizard">
         <a>
           <div className="solution-button">
             <FaWalking className="text-3xl" />

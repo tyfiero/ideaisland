@@ -200,7 +200,7 @@ function PDetails(props) {
                       dispatch(pFormAction(updated));
                       toast.success("Updated Successfully!");
 
-                      router.push("/Problem/progress");
+                      router.push("/problem/progress");
                     }}
                   >
                     Submit and Continue

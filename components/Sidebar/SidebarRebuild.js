@@ -39,13 +39,13 @@ if(router.asPath === "/home" || router.asPath === "/"){
 setSelected(0)
 }else if(router.asPath === "/notes"){
   setSelected(4)
-}else if(router.asPath === "/Problem"){
+}else if(router.asPath === "/problem"){
   setSelected(1)
-}else if(router.asPath === "/Solutions"){
+}else if(router.asPath === "/solutions"){
   setSelected(2)
-}else if(router.asPath === "/Implementation"){
+}else if(router.asPath === "/implementation"){
   setSelected(3)
-}else if(router.asPath === "/Help"){
+}else if(router.asPath === "/help"){
   setSelected(5)
 }
 
@@ -75,9 +75,7 @@ setSelected(0)
         </a>
       </Link>
 
-      {/* <Link href={loggedIn ?  `user/${userNameRedux}/notes` :  "/login"}>
-       */}
-      {/* <Link href={`user/${userNameRedux || null}/notes`}> */}
+    
       <Link href={`/notes`} passHref>
         <a>
           <div
@@ -92,7 +90,7 @@ setSelected(0)
           </div>
         </a>
       </Link>
-      <Link href="/Problem">
+      <Link href="/problem">
         <a>
           <div
             className="sidebar-unit-container flex rounded-[4rem] h-12 md:flex-row sm:flex-col   hover:bg-clear-w3 sm:items-center md:rounded-l-none"
@@ -106,7 +104,7 @@ setSelected(0)
           </div>
         </a>
       </Link>
-      <Link href="/Solutions">
+      <Link href="/solutions">
         <a>
           <div
             className="sidebar-unit-container flex rounded-[4rem] h-12 md:flex-row sm:flex-col   hover:bg-clear-w2 sm:items-center md:rounded-l-none"
@@ -120,7 +118,7 @@ setSelected(0)
           </div>
         </a>
       </Link>
-      <Link href="/Implementation">
+      <Link href="/implementation">
         <a>
           <div
             className=" sidebar-unit-container flex rounded-[4rem] h-12 md:flex-row sm:flex-col  hover:bg-clear-w1 sm:items-center md:rounded-l-none"
@@ -135,7 +133,7 @@ setSelected(0)
         </a>
       </Link>
 
-      <Link href="/Help">
+      <Link href="/help">
         <a>
           <div
             className="sidebar-unit-container flex rounded-[4rem] h-12 md:flex-row sm:flex-col hover:text-white  hover:bg-clear-w sm:items-center md:rounded-l-none "

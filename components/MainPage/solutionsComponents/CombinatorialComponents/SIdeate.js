@@ -62,7 +62,7 @@ function SIdeate(props) {
               </button> */}
               <div className="flex flex-col gap-5">
                 <h4>Tools:</h4>
-                <Link href="/Solutions/Combinatorial">
+                <Link href="/solutions/combinatorial">
                   <a>
                     <div className="flex solution-button">
                       <FaRandom className="text-2xl" />
@@ -71,7 +71,7 @@ function SIdeate(props) {
                   </a>
                 </Link>
 
-                <Link href="/Solutions/Sentence">
+                <Link href="/solutions/sentence">
                   <a>
                     <div className="solution-button">
                       <FaAlignLeft className="text-2xl" />
@@ -80,7 +80,7 @@ function SIdeate(props) {
                   </a>
                 </Link>
 
-                <Link href="/Solutions/Ai">
+                <Link href="/solutions/ai">
                   <a>
                     <div className="solution-button">
                       <FaPastafarianism className="text-3xl" />
@@ -142,7 +142,7 @@ function SIdeate(props) {
             <div className="flex items-center justify-between w-full">
               <button
                 className=" save_button card__btn_prev left-[5%]  flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick !w-[10em]"
-                onClick={() => router.push("/Problem")}
+                onClick={() => router.push("/problem")}
               >
                 <FaLongArrowAltLeft className="mr-1 text-[24px]" />
                 Back to Problem
