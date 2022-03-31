@@ -21,8 +21,12 @@ export const getServerSideProps = async (ctx) => {
     // either the `token` cookie didn't exist
     // or token verification failed
     // either way: redirect to the login page
-    ctx.res.writeHead(302, { Location: '/login' });
-    ctx.res.end();
+
+     //TODO: add logic to redirect to login page if token is invalid, if that is needed. confirm uid exists on client side.
+     
+    // ctx.res.writeHead(302, { Location: '/login' });
+    // ctx.res.end();
+    
     // The props returned here don't matter because we've
     // already redirected the user.
     return { props: {} };

@@ -29,7 +29,7 @@ export const getServerSideProps = async (ctx) => {
     // or token verification failed
     // either way: redirect to the login page
 
-    
+    //TODO: add logic to redirect to login page if token is invalid, if that is needed. confirm uid exists on client side.
     // ctx.res.writeHead(302, { Location: '/login' });
     // ctx.res.end();
 
