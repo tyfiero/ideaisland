@@ -25,11 +25,21 @@ export const getServerSideProps = async (ctx) => {
     // either the `token` cookie didn't exist
     // or token verification failed
     // either way: redirect to the login page
+
+
+
+    
     // ctx.res.writeHead(302, { Location: '/login' });
     // ctx.res.end();
+
+
+
+    
+    
     // The props returned here don't matter because we've
     // already redirected the user.
-    return { props: { error: err } };
+    return { props: { error: err,
+    context: ctx } };
   }
 };
 
@@ -38,20 +48,7 @@ const NotePage = (props) => {
   // const [ID, setID] = useState(null);
   // useEffect(() => {
   console.log(props.error);
-  //   if(unsavedChangesRedux){
-  //     window.onbeforeunload = function (e) {
-  //       var message = "Your confirmation message goes here.",
-  //       e = e || window.event;
-  //       // For IE and Firefox
-  //       if (e) {
-  //         e.returnValue = message;
-  //       }
-
-  //       // For Safari
-  //       return message;
-  //     };
-  //   }
-  // }, [])
+  console.log(props.context)
 
   return (
     <div className="flex flex-col mt-3 fade-effect-quick">
