@@ -26,8 +26,6 @@ export const getServerSideProps = async (ctx) => {
     // or token verification failed
     // either way: redirect to the login page
 
-
-
     
     // ctx.res.writeHead(302, { Location: '/login' });
     // ctx.res.end();
@@ -38,8 +36,7 @@ export const getServerSideProps = async (ctx) => {
     
     // The props returned here don't matter because we've
     // already redirected the user.
-    return { props: { error: err,
-    context: ctx } };
+    return { props: { error: err } };
   }
 };
 
@@ -47,8 +44,7 @@ const NotePage = (props) => {
   const unsavedChangesRedux = useSelector((state) => state.unsavedChanges);
   // const [ID, setID] = useState(null);
   // useEffect(() => {
-  console.log(props.error);
-  console.log(props.context)
+
 
   return (
     <div className="flex flex-col mt-3 fade-effect-quick">
