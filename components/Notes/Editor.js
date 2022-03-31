@@ -35,9 +35,8 @@ import IdeaDisplay from "./IdeaDisplay";
 import { useSelector, useDispatch } from "react-redux";
 import { currentDocAction } from "../../redux/actions";
 
-const QuillNoSSRWrapper = dynamic(import("react-quill"), {
+const QuillNoSSRWrapper = dynamic( () => import("react-quill"), {
   ssr: false,
-  loading: () => <p>Loading ...</p>,
 });
 
 // const ClientQuill = dynamic(
