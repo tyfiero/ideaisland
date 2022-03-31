@@ -55,60 +55,64 @@ function SolutionWizard(props) {
   const saveProblemForm = async (e) => {
     e?.preventDefault();
     let uid;
-    if(props.cookieUID){
+    if (props.cookieUID) {
       uid = props.cookieUID;
-    }else{
-      
-    if (userUIDRedux) {
-      uid = userUIDRedux;
-      console.log("it actually worked");
-    } else if (auth.currentUser?.uid) {
-      uid = auth.currentUser.uid;
     } else {
-      uid = null;
-      console.log("no uid available :(");
+      if (userUIDRedux) {
+        uid = userUIDRedux;
+        console.log("it actually worked");
+      } else if (auth.currentUser?.uid) {
+        uid = auth.currentUser.uid;
+      } else {
+        uid = null;
+        console.log("no uid available :(");
+      }
     }
-  }
 
-    const ref = doc(
-      getFirestore(),
-      "users",
-      uid,
-      "solution",
-      formContent.form.title
-    );
+    if (uid) {
+      const ref = doc(
+        getFirestore(),
+        "users",
+        uid,
+        "solution",
+        formContent.form.title
+      );
 
-    // Tip: give all fields a default value here
-    const data = {
-      problemTitle: formContent.form.title,
-      uid,
-      username,
-      productType: formContent.form.productType || null,
-      whyOptions: formContent.form.whyOptions || null,
-      why: formContent.form.why || null,
-      what: formContent.form.what || null,
-      who: formContent.form.who || null,
-      details: formContent.form.details || null,
-      createdAt: serverTimestamp(),
-      updatedAt: serverTimestamp(),
-    };
-    // console.log(timeID);
+      // Tip: give all fields a default value here
+      const data = {
+        problemTitle: formContent.form.title,
+        uid,
+        username,
+        productType: formContent.form.productType || null,
+        whyOptions: formContent.form.whyOptions || null,
+        why: formContent.form.why || null,
+        what: formContent.form.what || null,
+        who: formContent.form.who || null,
+        details: formContent.form.details || null,
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp(),
+      };
+      // console.log(timeID);
 
-    await setDoc(ref, data)
-      // await addDoc(collection(getFirestore(), "users", uid, "ideas"), data)
-      .then(() => {
-        toast.success("Progress saved!");
-        // dispatch(unsavedChangesAction(false));
-        // dispatch(editModeAction("display"));
-        // // console.log("It Worked!");
-        // // console.log(ref.id);
-        // dispatch(currentDocAction(data));
-      })
-      .catch((error) => {
-        toast.error("Error occured :( " + error);
-        console.log("It failed!" + error);
-      });
-
+      await setDoc(ref, data)
+        // await addDoc(collection(getFirestore(), "users", uid, "ideas"), data)
+        .then(() => {
+          toast.success("Progress saved!");
+          // dispatch(unsavedChangesAction(false));
+          // dispatch(editModeAction("display"));
+          // // console.log("It Worked!");
+          // // console.log(ref.id);
+          // dispatch(currentDocAction(data));
+        })
+        .catch((error) => {
+          toast.error("Error occured :( " + error);
+          console.log("It failed!" + error);
+        });
+    } else {
+      console.log(
+        "no uid, no firestore writes. This is expected behavior on server"
+      );
+    }
     // Imperative navigation after doc is set
     // router.push(`/admin/${slug}`);
   };
@@ -136,9 +140,21 @@ function SolutionWizard(props) {
         instance={setInstance}
       >
         <SIdeate hashKey={"ideate"} update={updateForm} />
-        <SFilter hashKey={"select-idea"} update={updateForm} cookieUID={props.cookieUID} />
-        <SFeatures hashKey={"add-features"} update={updateForm} form={formContent}/>
-        <SRankFeatures hashKey={"rank-features"} update={updateForm} form={formContent}/>
+        <SFilter
+          hashKey={"select-idea"}
+          update={updateForm}
+          cookieUID={props.cookieUID}
+        />
+        <SFeatures
+          hashKey={"add-features"}
+          update={updateForm}
+          form={formContent}
+        />
+        <SRankFeatures
+          hashKey={"rank-features"}
+          update={updateForm}
+          form={formContent}
+        />
         <STechStack hashKey={"tech-stack"} update={updateForm} />
         <SDetails
           hashKey={"Details"}
