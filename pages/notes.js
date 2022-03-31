@@ -11,7 +11,10 @@ import nookies from "nookies";
 export const getServerSideProps = async (ctx) => {
   try {
     const cookies = nookies.get(ctx);
+
+    console.log(ctx)
     const token = await firebaseAdmin.auth().verifyIdToken(cookies.token);
+    // console.log(token)
 
     // the user is authenticated!
     const { uid } = token;

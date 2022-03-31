@@ -50,7 +50,6 @@ function SolutionWizard(props) {
     // console.log(form.details)
   };
 
-  console.log(props.cookieUID);
   // Create a new post in firestore
   const saveProblemForm = async (e) => {
     e?.preventDefault();
@@ -60,7 +59,6 @@ function SolutionWizard(props) {
     } else {
       if (userUIDRedux) {
         uid = userUIDRedux;
-        console.log("it actually worked");
       } else if (auth.currentUser?.uid) {
         uid = auth.currentUser.uid;
       } else {
