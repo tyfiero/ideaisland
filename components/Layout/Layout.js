@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import TopBar from "./TopBar";
 import TopBarRight from "./TopBarRight";
-import Sidebar from "../SideBar/Sidebar";
-import Sidebar2 from "../SideBar/SidebarRebuild";
+import Sidebar2 from "../Sidebar/SidebarRebuild";
 import { FaBook, FaTimes } from "react-icons/fa";
 
 import NotePopUp from "../MainPage/NoteBubble/NotePopUp";

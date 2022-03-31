@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { Popover, ArrowContainer } from "react-tiny-popover";
 
@@ -13,8 +13,7 @@ import {
   FaTimes,
   FaInfoCircle,
 } from "react-icons/fa";
-import Chip from "./CombinatorialComponents/chip";
-import { useEffect } from "react";
+import Chip from "./CombinatorialComponents/Chip";
 import { useSelector, useDispatch } from "react-redux";
 import { sFormAction } from "../../../redux/actions";
 

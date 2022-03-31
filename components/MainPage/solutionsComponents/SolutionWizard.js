@@ -1,6 +1,4 @@
-import React from "react";
 import StepWizard from "react-step-wizard";
-import { useState } from "react";
 
 import SolutionProgressStepper from "./SolutionProgressStepper";
 import {
@@ -19,7 +17,7 @@ import {
   getDoc,
 } from "firebase/firestore";
 import { firestore, auth } from "../../../lib/firebase";
-import { useContext, useEffect } from "react";
+import { useContext, useState, useEffect, React } from "react";
 import { UserContext } from "../../../lib/context";
 import toast from "react-hot-toast";
 import {
@@ -31,7 +29,6 @@ import {
 import ToolBar from "../problemComponents/ToolBar";
 import SDetails from "./SDetails";
 import SFeatures from "./SFeatures";
-import CombinatorialPage from "../../../pages/Solutions/Combinatorial";
 import SFilter from "./SFilter";
 import SRankFeatures from "./SRankFeatures";
 import STechStack from "./STechStack";
