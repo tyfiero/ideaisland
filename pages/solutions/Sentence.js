@@ -1,4 +1,4 @@
-import SentenceTool from "../../components/MainPage/solutionsComponents/SentenceTool";
+import SentenceTool from "../../components/MainPage/solutionsComponents/sentenceTool";
 
 const SentencePage = () => {
   //THESE are for dynamic routing
