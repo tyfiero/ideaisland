@@ -27,10 +27,14 @@ import CircleTimer from "./Timer";
 import { Toaster } from "react-hot-toast";
 // import Loader from "./Loader";
 import FullLoader from "./FullLoader";
+import { isMobile } from "react-device-detect";
+import { Router } from "next/router";
+import { useRouter } from "next/router";
 
 
 export default function Layout({ children }) {
   // console.log("Layout Rerendered")
+  const router = useRouter();
 
   const userData = useUserData();
 
@@ -53,6 +57,13 @@ export default function Layout({ children }) {
   };
 
   // let user;
+
+  useEffect(() => {
+
+    if(isMobile){
+      router.push("/mobile")
+    }
+  }, []);
 
 
   // if(typeof window === "undefined"){

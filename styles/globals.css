@@ -2354,3 +2354,94 @@ input[type="range"]::-moz-range-thumb:active {
   box-shadow: 2px 2px 11px #bebebe, -2px -2px 11px #ffffff;
   border: none;
 }
+.darkBG {
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+}
+
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal {
+  width: 30em;
+  height: 15em;
+  background: rgba(255, 255, 255, 0.89);
+  z-index: 10;
+  border-radius: 16px;
+  padding: 1em;
+}
+
+.modalHeader {
+  height: 50px;
+}
+
+
+
+
+.modalActions {
+  position: absolute;
+  bottom: 2px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.actionsContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.closeBtn {
+  cursor: pointer;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 3em;
+  font-size: 18px;
+  color: #ffffff;
+  background: var(--colorDark1);
+  transition: all 0.25s ease;
+  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.06);
+  position: absolute;
+  right: 0;
+  top: 0;
+  align-self: flex-end;
+  margin-top: -7px;
+  margin-right: -7px;
+  width: 2em;
+  height: 2em;
+}
+
+.closeBtn:hover {
+  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
+  transform: translate(-2px, 4px);
+}
+
+.copyBtn {
+  cursor: pointer;
+  font-weight: 500;
+  padding: 11px 28px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  border: none;
+  color: #fff;
+  background: var(--colorDark1);
+  transition: all 0.25s ease;
+}
+
+.copyBtn:hover {
+  box-shadow: 0 10px 20px -10px rgba(82, 177, 245, 0.6);
+  transform: translateY(-5px);
+  background: var(--colorDark1);
+
+}
+

@@ -6,14 +6,20 @@ import {
   FaBook,
   FaRegLightbulb,
   FaLightbulb,
+  FaFileExport,
+  FaShareAlt,
 } from "react-icons/fa";
 import Link from "next/link";
 import DarkModeToggle from "./DarkModeToggle";
 import { useSelector } from "react-redux";
 // import { auth } from "../lib/firebase";
 
+import Modal from "./Modal";
+
 export default function TopBarDropDown() {
   const [activeMenu, setActiveMenu] = useState("main");
+  const [openShareMenu, setOpenShareMenu] = useState(false);
+
   // const [menuHeight, setMenuHeight] = useState(null);
   const dropdownRef = useRef(null);
   const darkRedux = useSelector((state) => state.darkMode);
@@ -29,6 +35,10 @@ export default function TopBarDropDown() {
   //   setMenuHeight(height);
   // }
 
+
+
+
+  
   // eslint-disable-next-line
   const DropdownItem = React.forwardRef(
     ({ onClick, href, leftIcon, rightIcon, goToMenu, children }, ref) => {
@@ -47,6 +57,8 @@ export default function TopBarDropDown() {
   );
 
   return (
+    
+    <>
     <div
       className="dropdown fade-effect-fast md:left-[85%] lg:left-[88%] xl:left-[92%] absolute z-100"
       ref={dropdownRef}
@@ -99,7 +111,17 @@ export default function TopBarDropDown() {
               </div>
             </a>
           </Link>
-
+          {/* <Link href={`/profile`} passHref> */}
+            {/* <a> */}
+              <div onClick={()=>{setOpenShareMenu(!openShareMenu)}}>
+                {/* <a> */}
+                <DropdownItem leftIcon={<FaShareAlt className="text-t-bpop" />}>
+                  Share with Friends!
+                </DropdownItem>
+              </div>
+            {/* </a> */}
+            {/* </a> */}
+          {/* </Link> */}
           <div className="flex flex-col items-center pt-5">
             <p>Dark Mode</p>
 
@@ -154,5 +176,7 @@ export default function TopBarDropDown() {
         </div>
       </CSSTransition>
     </div>
+    {openShareMenu && <Modal setOpenShareMenu={setOpenShareMenu} />}
+    </>
   );
 }
