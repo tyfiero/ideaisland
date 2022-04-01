@@ -102,7 +102,7 @@ function IdeaItem({ idea, admin = false }) {
             {/* <Link href={`/${idea.username}/${idea.slug}`}>
               <a> */}
             <div className="cursor-pointer">
-              <h2 className="text-t-bd truncate text-[18px]">{idea.title}</h2>
+              <h2 className="text-t-bd truncate text-[18px]">{idea.title || "*Unnamed Idea"}</h2>
               {/* <p className="truncate text-[14px]">{idea.content}</p> */}
               <div
                 className="overflow-hidden max-h-[3em]"

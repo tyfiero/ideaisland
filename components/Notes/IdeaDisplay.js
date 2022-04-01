@@ -675,7 +675,7 @@ export default function IdeaDisplay(props) {
       {/* )} */}
       {/* </div> */}
       <div className="normal-box-soft text-t-bd text-[28px] p-5 mt-3">
-        <h2 className="mx-3 ">{currentDocRedux?.title}</h2>
+        <h2 className="mx-3 ">{currentDocRedux?.title || "*Unnamed Idea"}</h2>
       </div>
       <div className="flex items-center my-2 justify-between w-[98%]">
         <div className="flex items-center gap-1 ">

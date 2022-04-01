@@ -19,12 +19,15 @@ import {
   FaRedo,
 } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
+import PStartMenu from "./PStartMenu";
 
 function ProblemWizard(props) {
   const { username } = useContext(UserContext);
   const pFormRedux = useSelector((state) => state.pForm);
   const dispatch = useDispatch();
   const [changes, setChanges] = useState(false);
+  const [reset, setReset] = useState(false);
+
 
 
   // Do something on step change
@@ -49,15 +52,16 @@ function ProblemWizard(props) {
         nav={<ProgressStepper />}
         // instance={setInstance}
       >
-
-        <PWhy hashKey={"Why"} setChanges={setChanges} />
-        <PWhat hashKey={"What"}  setChanges={setChanges}/>
-        <PWho hashKey={"Who"} setChanges={setChanges}/>
+        <PStartMenu hashKey={"Start"} setChanges={setChanges} reset={reset} setReset={setReset}/>
+        <PWhy hashKey={"Why"} setChanges={setChanges} reset={reset}/>
+        <PWhat hashKey={"What"}  setChanges={setChanges} reset={reset}/>
+        <PWho hashKey={"Who"} setChanges={setChanges} reset={reset}/>
         <PDetails
           hashKey={"Details"}
           cookieUID={props.cookieUID}
           setChanges={setChanges}
           changes={changes}
+          reset={reset}
         />
       </StepWizard>
     </div>

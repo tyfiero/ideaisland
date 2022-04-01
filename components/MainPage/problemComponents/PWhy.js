@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import {
   FaBuilding,
@@ -17,29 +17,48 @@ import { pFormAction } from "../../../redux/actions";
 
 function PWhy(props) {
   // console.log(props.update)
+  const pFormRedux = useSelector((state) => state.pForm);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const [startMenu, setStartMenu] = useState(true);
+  const [content, setContent] = useState("");
+
   const [button1, setButton1] = useState(false);
   const [button2, setButton2] = useState(false);
   const dispatch = useDispatch();
-  const pFormRedux = useSelector((state) => state.pForm);
 
   const update = (e) => {
     let updated = pFormRedux;
     updated.why = e.target.value;
     dispatch(pFormAction(updated));
+    setContent(e.target.value);
     props.setChanges(true);
+    if (!props.changes) {
+      props.setChanges(true);
+    }
     // props.update(e.target.name, e.target.value);
   };
   const updateButton = (e) => {
     let updated = pFormRedux;
     updated.whyOptions = e.target.value;
     dispatch(pFormAction(updated));
+
     if (!props.changes) {
       props.setChanges(true);
     }
-    // props.update("whyOptions", e.target.value);
+    
   };
-
+  useEffect(() => {
+    if(props.reset){
+    setContent("")
+    setButton1(false)
+    setButton2(false)
+    }else{
+      if(pFormRedux.why){
+      setContent(pFormRedux.why)
+        
+      }
+    }
+  }, [props.reset]);
   return (
     <div>
       <div
@@ -100,6 +119,7 @@ function PWhy(props) {
                 </div>
               </Popover>
             </div>
+            <button></button>
             <h1 className="heading-top">Why?</h1>
             <div className="normal-box-soft">
               <h3 className="heading">
@@ -160,7 +180,7 @@ function PWhy(props) {
                 // type="text"
                 className="textarea-box h-[10em] whitespace-normal"
                 // name="why"
-                defaultValue={pFormRedux.why}
+                value={content}
                 placeholder="Enter your why..."
                 onChange={update}
               />
@@ -169,12 +189,19 @@ function PWhy(props) {
                 later.
               </p>
             </div>
-            <div className="flex items-center justify-end w-full">
+            <div className="flex items-center justify-between w-full">
+            <button
+                className="card__btn_prev save_button left-[5%]  flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick"
+                onClick={() => props.goToStep(1)}
+              >
+                <FaLongArrowAltLeft className="mr-1 text-[24px]" />
+                Back
+              </button>
               <div className="relative group">
                 <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
                 <button
                   className="w-[5em] h-[3em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-t-bd/50 md:hover:shadow-xl m-1 drop-shadow-xl "
-                  onClick={() => props.goToStep(2)}
+                  onClick={() => props.goToStep(3)}
                 >
                   Next
                   <FaLongArrowAltRight className="ml-1 text-[24px]" />

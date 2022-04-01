@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { Popover, ArrowContainer } from "react-tiny-popover";
 
@@ -32,6 +32,10 @@ import { firestore, auth } from "../../../lib/firebase";
 
 function PDetails(props) {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const [content1, setContent1] = useState("");
+  const [content2, setContent2] = useState("");
+  const [content3, setContent3] = useState("");
+  
   const [titleContent, setTitleContent] = useState("");
   const dispatch = useDispatch();
   const pFormRedux = useSelector((state) => state.pForm);
@@ -43,12 +47,17 @@ function PDetails(props) {
     let updated = pFormRedux;
     if (e.target.name === "title") {
       updated.title = e.target.value;
+    setTitleContent(e.target.value);
     } else if (e.target.name === "pq1") {
       updated.pq1 = e.target.value;
+    setContent1(e.target.value);
     } else if (e.target.name === "pq2") {
       updated.pq2 = e.target.value;
+    setContent2(e.target.value);
     } else if (e.target.name === "pq3") {
       updated.pq3 = e.target.value;
+    setContent3(e.target.value);
+
     }
     // let updated = pFormRedux;
 
@@ -58,6 +67,32 @@ function PDetails(props) {
     }
     // props.update(e.target.name, e.target.value);
   };
+
+
+  useEffect(() => {
+    if(props.reset){
+    setTitleContent("")
+    setContent1("")
+    setContent2("")
+    setContent3("")
+
+    
+    }else{
+      if(pFormRedux.title){
+      setTitleContent(pFormRedux.title)
+      }else if(pFormRedux.pq1){
+      setContent1("")
+      }else if(pFormRedux.pq2){
+      setContent2("")
+      }else if(pFormRedux.pq3){
+      setContent3("")
+      }
+    }
+  }, [props.reset]);
+
+
+
+  
 
   // Create a new post in firestore
   const saveProblemForm = async (e) => {
@@ -214,7 +249,7 @@ function PDetails(props) {
                 className="textarea-box h-[3em] !rounded-xl"
                 name="title"
                 placeholder="Title"
-                defaultValue={pFormRedux.title}
+                value={titleContent}
                 onChange={(e) => {
                   setTitleContent(e.target.value);
                   if (!props.changes) {
@@ -252,7 +287,8 @@ function PDetails(props) {
                 // type="text"
                 className="textarea-box h-[5em] whitespace-normal"
                 name="pq1"
-                defaultValue={pFormRedux.pq1}
+                value={content1}
+
                 placeholder="..."
                 onChange={update}
               />
@@ -265,7 +301,8 @@ function PDetails(props) {
                 // type="text"
                 className="textarea-box h-[5em] whitespace-normal"
                 name="pq2"
-                defaultValue={pFormRedux.pq2}
+                value={content2}
+
                 placeholder="..."
                 onChange={update}
               />
@@ -278,7 +315,7 @@ function PDetails(props) {
                 className="textarea-box h-[5em] whitespace-normal"
                 name="pq3"
                 placeholder="..."
-                defaultValue={pFormRedux.pq3}
+                value={content3}
                 onChange={update}
               />
               <p>
@@ -289,7 +326,7 @@ function PDetails(props) {
             <div className="flex items-center justify-between w-full">
               <button
                 className="card__btn_prev save_button left-[5%]  flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick"
-                onClick={() => props.goToStep(2)}
+                onClick={() => props.goToStep(4)}
               >
                 <FaLongArrowAltLeft className="mr-1 text-[24px]" />
                 Back

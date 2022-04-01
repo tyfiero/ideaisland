@@ -22,7 +22,7 @@ function SFeatures(props) {
   const dispatch = useDispatch();
   const sFormRedux = useSelector((state) => state.sForm);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-  const [showCommonFeatures, setShowCommonFeatures] = useState(false);
+  const [showCommonFeatures, setShowCommonFeatures] = useState(true);
   const [button2, setButton2] = useState(false);
   const [rerender, setRerender] = useState(false);
 

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
 
 import { Popover, ArrowContainer } from "react-tiny-popover";
 import { FaInfoCircle, FaLongArrowAltLeft, FaLongArrowAltRight } from "react-icons/fa";
@@ -7,6 +8,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { pFormAction } from "../../../redux/actions";
 // import { FaLaptopCode, FaShoppingBag } from "react-icons/fa";
 function PWho(props) {
+  const [content, setContent] = useState("");
+
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const dispatch = useDispatch();
   const pFormRedux = useSelector((state) => state.pForm);
@@ -16,11 +19,23 @@ function PWho(props) {
     let updated = pFormRedux;
     updated.who = e.target.value;
     dispatch(pFormAction(updated))
+    setContent(e.target.value);
+
     if(!props.changes){
       props.setChanges(true);
       
     }
   };
+
+  useEffect(() => {
+    if(props.reset){
+    setContent("")
+    }else{
+      if(pFormRedux.who){
+      setContent(pFormRedux.who)
+      }
+    }
+  }, [props.reset]);
   return (
     <div>
       <div
@@ -87,7 +102,7 @@ function PWho(props) {
                 // type="text"
                 className="textarea-box h-[10em] whitespace-normal"
                 placeholder="Who is your audience?"
-                defaultValue={pFormRedux.who}
+                value={content}
                 onChange={update}
               />
               <p>
@@ -99,7 +114,7 @@ function PWho(props) {
             <div className="flex items-center justify-between w-full">
               <button
                 className="card__btn_prev save_button left-[5%]  flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick"
-                onClick={() => props.goToStep(2)}
+                onClick={() => props.goToStep(3)}
               >
                 <FaLongArrowAltLeft className="mr-1 text-[24px]" />
                 Back
@@ -108,7 +123,7 @@ function PWho(props) {
       <div className="absolute transition duration-1000 opacity-0 rounded-3xl -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
               <button
                 className="w-[5em] h-[3em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-t-bd/50 md:hover:shadow-xl m-1 drop-shadow-xl "
-                onClick={() => props.goToStep(4)}
+                onClick={() => props.goToStep(5)}
               >
                 Next
                 <FaLongArrowAltRight className="ml-1 text-[24px]" />

@@ -71,6 +71,7 @@ export const pFormAction = (data) => {
     payload: data,
   };
 };
+
 export const statsAction = (data) => {
   return {
     type: "STATS_UPDATE",

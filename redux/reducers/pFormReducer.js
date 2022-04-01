@@ -14,8 +14,9 @@ const pFormReducer = (
   action
 ) => {
   switch (action.type) {
-    case "pForm_UPDATE":
+    case "pFORM_UPDATE":
       return action.payload;
+ 
 
     default:
       return state;

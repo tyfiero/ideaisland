@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { Popover, ArrowContainer } from "react-tiny-popover";
 import { pFormAction } from "../../../redux/actions";
@@ -14,6 +14,8 @@ import {
 } from "react-icons/fa";
 function PWhat(props) {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const [content, setContent] = useState("");
+
   const [button1, setButton1] = useState(false);
   const [button2, setButton2] = useState(false);
   const dispatch = useDispatch();
@@ -23,6 +25,7 @@ function PWhat(props) {
     let updated = pFormRedux;
     updated.what = e.target.value;
     dispatch(pFormAction(updated));
+    setContent(e.target.value);
     if (!props.changes) {
       props.setChanges(true);
     }
@@ -37,6 +40,19 @@ function PWhat(props) {
     }
     // props.update("productType", e.target.value);
   };
+
+  useEffect(() => {
+    if(props.reset){
+    setContent("")
+    setButton1(false)
+    setButton2(false)
+    }else{
+      if(pFormRedux.what){
+      setContent(pFormRedux.what)
+      }
+    }
+  }, [props.reset]);
+  
   return (
     <div>
       <div
@@ -145,7 +161,7 @@ function PWhat(props) {
                 // type="text"
                 className="textarea-box h-[10em] whitespace-normal"
                 // name="what"
-                defaultValue={pFormRedux.what}
+                value={content}
                 placeholder="What are you building?"
                 onChange={update}
               />
@@ -157,7 +173,7 @@ function PWhat(props) {
             <div className="flex items-center justify-between w-full">
               <button
                 className="card__btn_prev save_button left-[5%]  flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick"
-                onClick={() => props.goToStep(1)}
+                onClick={() => props.goToStep(2)}
               >
                 <FaLongArrowAltLeft className="mr-1 text-[24px]" />
                 Back
@@ -166,7 +182,7 @@ function PWhat(props) {
                 <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
                 <button
                   className="w-[5em] h-[3em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-t-bd/50 md:hover:shadow-xl m-1 drop-shadow-xl "
-                  onClick={() => props.goToStep(3)}
+                  onClick={() => props.goToStep(4)}
                 >
                   Next
                   <FaLongArrowAltRight className="ml-1 text-[24px]" />
