@@ -51,7 +51,7 @@ function PWhat(props) {
       setContent(pFormRedux.what)
       }
     }
-  }, [props.reset]);
+  }, [props.reset]);// eslint-disable-line react-hooks/exhaustive-deps
   
   return (
     <div>

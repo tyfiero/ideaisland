@@ -58,7 +58,7 @@ function PWhy(props) {
         
       }
     }
-  }, [props.reset]);
+  }, [props.reset]);// eslint-disable-line react-hooks/exhaustive-deps
   return (
     <div>
       <div

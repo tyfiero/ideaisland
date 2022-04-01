@@ -35,7 +35,7 @@ function PWho(props) {
       setContent(pFormRedux.who)
       }
     }
-  }, [props.reset]);
+  }, [props.reset]);// eslint-disable-line react-hooks/exhaustive-deps
   return (
     <div>
       <div

@@ -88,7 +88,7 @@ function PDetails(props) {
       setContent3("")
       }
     }
-  }, [props.reset]);
+  }, [props.reset]);// eslint-disable-line react-hooks/exhaustive-deps
 
 
 
