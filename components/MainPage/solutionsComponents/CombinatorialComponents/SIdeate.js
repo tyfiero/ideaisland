@@ -11,6 +11,7 @@ import {
   FaAlignLeft,
   FaLongArrowAltRight,
   FaCheck,
+  FaInfoCircle,
   FaRobot,
   FaRandom,
 } from "react-icons/fa";
@@ -35,7 +36,48 @@ function SIdeate(props) {
 
   "
       >
-        <div className="w-full max-w-[42rem] p-10 space-y-8  normal-box-soft">
+        <div className="w-full max-w-[42rem] p-10 space-y-8  normal-box-soft relative">
+          <div className="absolute top-5 left-5">
+            <Popover
+              isOpen={isPopoverOpen}
+              containerStyle={{
+                zIndex: 100,
+                boxShadow: "5px 13px 28px 0px rgba(0,0,0,0.48)",
+                backgroundColor: "white",
+                borderRadius: "2em",
+              }}
+              onClickOutside={() => setIsPopoverOpen(false)}
+              positions={["bottom", "left", "right"]}
+              content={({ position, childRect, popoverRect }) => (
+                <ArrowContainer
+                  position={position}
+                  childRect={childRect}
+                  popoverRect={popoverRect}
+                  arrowColor={"white"}
+                  arrowSize={10}
+                  arrowStyle={{ opacity: 1, top: "-6px" }}
+                  className="popover-arrow-container"
+                  arrowClassName="popover-arrow"
+                >
+                  <div
+                    className="!opacity-100 bg-white w-[25em] rounded-xl p-3"
+                    onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+                  >
+                    It all starts with an idea. With quantity comes quality.
+                    This is the time to set judgement to the side, and put on
+                    your creativity hat.
+                  </div>
+                </ArrowContainer>
+              )}
+            >
+              <div
+                onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+                className="w-5"
+              >
+                <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 md:hover:scale-110" />
+              </div>
+            </Popover>
+          </div>
           <div className="flex flex-col items-center justify-center problem-page fade-effect-quick">
             <h1 className="heading-top">Ideate</h1>
             <div className="normal-box-soft">
@@ -91,58 +133,10 @@ function SIdeate(props) {
               </div>
             </div>
 
-            <div className="flex flex-col">
-              {/* <p>If neither, describe what you are looking to innovate:</p>
-              <textarea
-                // type="text"
-                className="textarea-box h-[10em] whitespace-normal"
-                name="what"
-                placeholder="What are you building?"
-                onChange={update}
-              />
-              <p>
-                *This note will be saved to your Idea Page for your review
-                later.
-              </p> */}
-              <Popover
-                isOpen={isPopoverOpen}
-                padding={2} // adjust padding here!
-                onClickOutside={() => setIsPopoverOpen(false)}
-                positions={["bottom", "left", "right"]}
-                content={({ position, childRect, popoverRect }) => (
-                  <ArrowContainer
-                    position={position}
-                    childRect={childRect}
-                    popoverRect={popoverRect}
-                    arrowColor={"white"}
-                    arrowSize={10}
-                    arrowStyle={{ opacity: 1 }}
-                    className="popover-arrow-container"
-                    arrowClassName="popover-arrow"
-                  >
-                    <div
-                      className="!opacity-100 bg-white w-[25em] rounded-xl p-5"
-                      onClick={() => setIsPopoverOpen(!isPopoverOpen)}
-                    >
-                      It all starts with an idea. With quantity comes quality.
-                      This is the time to set judgement to the side, and put on
-                      your creativity hat.
-                    </div>
-                  </ArrowContainer>
-                )}
-              >
-                <p
-                  onClick={() => setIsPopoverOpen(!isPopoverOpen)}
-                  className="underline cursor-pointer text-blues-100 md:hover:scale-110"
-                >
-                  Why this step?
-                </p>
-              </Popover>
-            </div>
             <div className="flex items-center justify-between w-full">
               <button
                 className=" save_button card__btn_prev left-[5%]  flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick !w-[10em]"
-                onClick={() => router.push("/problem")}
+                onClick={() => router.push("/problem/progress")}
               >
                 <FaLongArrowAltLeft className="mr-1 text-[24px]" />
                 Back to Problem

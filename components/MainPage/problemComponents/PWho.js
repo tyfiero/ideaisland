@@ -16,7 +16,10 @@ function PWho(props) {
     let updated = pFormRedux;
     updated.who = e.target.value;
     dispatch(pFormAction(updated))
-    // props.update(e.target.name, e.target.value);
+    if(!props.changes){
+      props.setChanges(true);
+      
+    }
   };
   return (
     <div>
@@ -26,8 +29,8 @@ function PWho(props) {
   "
       >
         <div className="w-full max-w-[42rem] p-10 space-y-8  normal-box-soft">
-          <div className="flex flex-col items-center justify-center problem-page fade-effect-quick">
-          <div className="absolute top-5 right-5">
+          <div className="relative flex flex-col items-center justify-center problem-page fade-effect-quick">
+          <div className="absolute -top-5 -left-5">
             <Popover
               isOpen={isPopoverOpen}
               containerStyle={{
@@ -84,6 +87,7 @@ function PWho(props) {
                 // type="text"
                 className="textarea-box h-[10em] whitespace-normal"
                 placeholder="Who is your audience?"
+                defaultValue={pFormRedux.who}
                 onChange={update}
               />
               <p>

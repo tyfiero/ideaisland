@@ -1,4 +1,5 @@
 import StepWizard from "react-step-wizard";
+import loadable from '@loadable/component'
 
 import SolutionProgressStepper from "./SolutionProgressStepper";
 import {
@@ -27,13 +28,18 @@ import {
   FaRedo,
 } from "react-icons/fa";
 import ToolBar from "../problemComponents/ToolBar";
-import SDetails from "./SDetails";
-import SFeatures from "./SFeatures";
-import SFilter from "./SFilter";
-import SRankFeatures from "./SRankFeatures";
-import STechStack from "./STechStack";
+
+
 import SIdeate from "./CombinatorialComponents/SIdeate";
 import { useSelector } from "react-redux";
+
+const SFilter = loadable(() => import("./SFilter"));
+const SRankFeatures = loadable(() => import("./SRankFeatures"));
+const SFeatures = loadable(() => import("./SFeatures"));
+const STechStack = loadable(() => import("./STechStack"));
+const SDetails = loadable(() => import("./SDetails"));
+
+
 function SolutionWizard(props) {
   const { username } = useContext(UserContext);
   const userUIDRedux = useSelector((state) => state.userUID);
@@ -137,7 +143,7 @@ function SolutionWizard(props) {
         nav={<SolutionProgressStepper />}
         instance={setInstance}
       >
-        <SIdeate hashKey={"ideate"} update={updateForm} />
+        <SIdeate  update={updateForm} />
         <SFilter
           hashKey={"select-idea"}
           update={updateForm}

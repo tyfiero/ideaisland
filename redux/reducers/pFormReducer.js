@@ -1,6 +1,7 @@
 const pFormReducer = (
   state = {
     title: null,
+    id: null,
     what: null,
     why: null,
     whyOptions: null,
@@ -9,7 +10,6 @@ const pFormReducer = (
     pq1: null,
     pq2: null,
     pq3: null,
-
   },
   action
 ) => {

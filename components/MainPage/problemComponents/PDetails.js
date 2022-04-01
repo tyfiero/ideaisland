@@ -10,10 +10,25 @@ import {
   FaInfoCircle,
 } from "react-icons/fa";
 import toast from "react-hot-toast";
-
+import {
+  serverTimestamp,
+  query,
+  where,
+  collection,
+  orderBy,
+  doc,
+  getFirestore,
+  updateDoc,
+  addDoc,
+  onSnapshot,
+  deleteDoc,
+  setDoc,
+  getDoc,
+} from "firebase/firestore";
 import { useSelector, useDispatch } from "react-redux";
 import { pFormAction } from "../../../redux/actions";
 import { useRouter } from "next/router";
+import { firestore, auth } from "../../../lib/firebase";
 
 function PDetails(props) {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -21,6 +36,8 @@ function PDetails(props) {
   const dispatch = useDispatch();
   const pFormRedux = useSelector((state) => state.pForm);
   const router = useRouter();
+  const userUIDRedux = useSelector((state) => state.userUID);
+  const userNameRedux = useSelector((state) => state.userName);
 
   const update = (e) => {
     let updated = pFormRedux;
@@ -36,7 +53,93 @@ function PDetails(props) {
     // let updated = pFormRedux;
 
     dispatch(pFormAction(updated));
+    if (!props.changes) {
+      props.setChanges(true);
+    }
     // props.update(e.target.name, e.target.value);
+  };
+
+  // Create a new post in firestore
+  const saveProblemForm = async (e) => {
+    e?.preventDefault() || null;
+    let uid;
+    if (props.cookieUID) {
+      uid = props.cookieUID;
+    } else {
+      if (userUIDRedux) {
+        uid = userUIDRedux;
+        console.log("it actually worked");
+      } else if (auth.currentUser?.uid) {
+        uid = auth.currentUser.uid;
+      } else {
+        uid = null;
+        console.log("no uid available :(");
+      }
+    }
+    if (!pFormRedux.id) {
+      const d = Number(new Date());
+      const timeID = d.valueOf().toString();
+      const ref = doc(getFirestore(), "users", uid, "problem", timeID);
+      // Tip: give all fields a default value here
+      const data = {
+        id: timeID,
+        title: pFormRedux.title,
+        uid,
+        username: userNameRedux,
+        productType: pFormRedux.productType || null,
+        whyOptions: pFormRedux.whyOptions || null,
+        why: pFormRedux.why || null,
+        what: pFormRedux.what || null,
+        who: pFormRedux.who || null,
+        pq1: pFormRedux.pq1 || null,
+        pq2: pFormRedux.pq2 || null,
+        pq3: pFormRedux.pq3 || null,
+
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp(),
+      };
+      await setDoc(ref, data)
+        .then(() => {
+          if (!pFormRedux.id) {
+            let updated = pFormRedux;
+            updated.id = timeID;
+            dispatch(pFormAction(updated));
+          }
+          toast.success("Progress saved!");
+          props.setChanges(false);
+          router.push("/problem/progress");
+        })
+        .catch((error) => {
+          toast.error("Error occured :( ");
+          console.log("It failed!" + error);
+        });
+    } else {
+      const ref = doc(getFirestore(), "users", uid, "problem", pFormRedux.id);
+
+      const data = {
+        id: pFormRedux.id,
+        title: pFormRedux.title,
+        productType: pFormRedux.productType,
+        whyOptions: pFormRedux.whyOptions,
+        why: pFormRedux.why,
+        what: pFormRedux.what,
+        who: pFormRedux.who,
+        pq1: pFormRedux.pq1,
+        pq2: pFormRedux.pq2,
+        pq3: pFormRedux.pq3,
+        updatedAt: serverTimestamp(),
+      };
+      await updateDoc(ref, data)
+        .then(() => {
+          toast.success("Progress saved!");
+          props.setChanges(false);
+          router.push("/problem/progress");
+        })
+        .catch((error) => {
+          toast.error("Error occured :( ");
+          console.log("It failed!" + error);
+        });
+    }
   };
 
   return (
@@ -47,8 +150,8 @@ function PDetails(props) {
   "
       >
         <div className="w-full max-w-[42rem] p-10 space-y-8   normal-box-soft">
-          <div className="flex flex-col items-center justify-center problem-page fade-effect-quick">
-            <div className="absolute top-5 right-5">
+          <div className="relative flex flex-col items-center justify-center problem-page fade-effect-quick">
+            <div className="absolute -top-5 -left-5">
               <Popover
                 isOpen={isPopoverOpen}
                 containerStyle={{
@@ -108,11 +211,15 @@ function PDetails(props) {
               <input
                 type="text"
                 required
-                className="textarea-box h-[3em]"
+                className="textarea-box h-[3em] !rounded-xl"
                 name="title"
                 placeholder="Title"
+                defaultValue={pFormRedux.title}
                 onChange={(e) => {
                   setTitleContent(e.target.value);
+                  if (!props.changes) {
+                    props.setChanges(true);
+                  }
                   update(e);
                 }}
               />
@@ -145,6 +252,7 @@ function PDetails(props) {
                 // type="text"
                 className="textarea-box h-[5em] whitespace-normal"
                 name="pq1"
+                defaultValue={pFormRedux.pq1}
                 placeholder="..."
                 onChange={update}
               />
@@ -157,6 +265,7 @@ function PDetails(props) {
                 // type="text"
                 className="textarea-box h-[5em] whitespace-normal"
                 name="pq2"
+                defaultValue={pFormRedux.pq2}
                 placeholder="..."
                 onChange={update}
               />
@@ -169,6 +278,7 @@ function PDetails(props) {
                 className="textarea-box h-[5em] whitespace-normal"
                 name="pq3"
                 placeholder="..."
+                defaultValue={pFormRedux.pq3}
                 onChange={update}
               />
               <p>
@@ -185,25 +295,26 @@ function PDetails(props) {
                 Back
               </button>
 
-              {titleContent ? (
+              {titleContent || pFormRedux.title ? (
                 <div className="relative group">
                   <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
 
                   <button
                     type="submit"
-                    className="card__btn_next h-[3em]  right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect !w-[15em] drop-shadow-xl m-3"
+                    className="card__btn_next h-[3em]  right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect !w-[15em] drop-shadow-xl m-3 !bg-t-bl text-white"
                     onClick={() => {
-                      // props.saveProblemForm
-                      // update();
                       let updated = pFormRedux;
 
                       dispatch(pFormAction(updated));
-                      toast.success("Updated Successfully!");
 
-                      router.push("/problem/progress");
+                      if (props.changes) {
+                        saveProblemForm();
+                      } else {
+                        router.push("/problem/progress");
+                      }
                     }}
                   >
-                    Submit and Continue
+                    {props.changes ? <p>Save and Continue</p> : <p>Continue</p>}
                     <FaLongArrowAltRight className="ml-1 text-[24px]" />
                   </button>
                 </div>

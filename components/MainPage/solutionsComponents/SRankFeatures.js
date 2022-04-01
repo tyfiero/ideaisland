@@ -151,8 +151,9 @@ function SRankFeatures(props) {
     // console.log(updatedObj)
   };
 
-  useEffect(() => {// eslint-disable-line react-hooks/exhaustive-deps
-    console.log("shit changed")
+  useEffect(() => {
+    // eslint-disable-line react-hooks/exhaustive-deps
+    console.log("shit changed");
     // setRerender(!rerender)
     if (tableContent.length !== sFormRedux.features?.length) {
       setRefresh(!refresh);
@@ -253,7 +254,7 @@ function SRankFeatures(props) {
     } else {
       console.log(":(");
     }
-  }, [sFormRedux, refresh]);// eslint-disable-line react-hooks/exhaustive-deps
+  }, [sFormRedux, refresh]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const columns = React.useMemo(
     () => [
@@ -381,14 +382,14 @@ function SRankFeatures(props) {
   "
       >
         <div
-          className="w-full p-10 space-y-8  normal-box-soft"
+          className="w-full p-10 space-y-8 normal-box-soft"
           onLoad={() => {
             console.log("table render");
             setRerender(!rerender);
           }}
         >
-          <div className="flex flex-col items-center justify-center problem-page fade-effect-quick">
-            <div className="absolute top-5 right-5">
+          <div className="relative flex flex-col items-center justify-center problem-page fade-effect-quick">
+            <div className="absolute -top-5 -left-5">
               <Popover
                 isOpen={isPopoverOpen}
                 containerStyle={{

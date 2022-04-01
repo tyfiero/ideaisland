@@ -30,8 +30,8 @@ function SFilter(props) {
 
   "
       >
-        <div className="w-full max-w-[72rem] p-10  normal-box-soft">
-          <div className="absolute top-5 right-5">
+        <div className="w-full max-w-[72rem] p-10  normal-box-soft relative">
+          <div className="absolute top-5 left-5">
             <Popover
               isOpen={isPopoverOpen}
               containerStyle={{
@@ -41,7 +41,7 @@ function SFilter(props) {
                 borderRadius: "2em",
               }}
               onClickOutside={() => setIsPopoverOpen(false)}
-              positions={["bottom", "left", "right"]}
+              positions={["bottom", "right"]}
               content={({ position, childRect, popoverRect }) => (
                 <ArrowContainer
                   position={position}
@@ -57,10 +57,10 @@ function SFilter(props) {
                     className="!opacity-100 bg-white w-[25em] rounded-xl p-3"
                     onClick={() => setIsPopoverOpen(!isPopoverOpen)}
                   >
-                    You can&apos;t bring all of your ideas to market. Selecting the
-                    most promising idea is a difficult, but important step. By
-                    choosing one, you can explore that idea further and run it
-                    through the idea evolution process to see if this idea is
+                    You can&apos;t bring all of your ideas to market. Selecting
+                    the most promising idea is a difficult, but important step.
+                    By choosing one, you can explore that idea further and run
+                    it through the idea evolution process to see if this idea is
                     worth pursuing. If so, Great!! You have your idea and a
                     plan. If not, thats ok! Evolve another idea and repeat the
                     process.
@@ -106,7 +106,7 @@ function SFilter(props) {
             </div>
 
             <div className="flex flex-col w-full">
-              <SFilterIdeas cookieUID={props.cookieUID}/>
+              <SFilterIdeas cookieUID={props.cookieUID} />
             </div>
             <div className="flex items-center justify-between w-full mt-4">
               <button

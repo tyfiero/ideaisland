@@ -7,21 +7,7 @@ import PWhy from "./PWhy";
 import PDetails from "./PDetails";
 import ToolBar from "./ToolBar";
 import ProgressStepper from "./ProgressStepper";
-import {
-  serverTimestamp,
-  query,
-  where,
-  collection,
-  orderBy,
-  doc,
-  getFirestore,
-  updateDoc,
-  addDoc,
-  onSnapshot,
-  deleteDoc,
-  setDoc,
-  getDoc,
-} from "firebase/firestore";
+
 import { firestore, auth } from "../../../lib/firebase";
 import { useContext, useEffect } from "react";
 import { UserContext } from "../../../lib/context";
@@ -34,75 +20,13 @@ import {
 } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 
-function ProblemWizard() {
+function ProblemWizard(props) {
   const { username } = useContext(UserContext);
   const pFormRedux = useSelector((state) => state.pForm);
   const dispatch = useDispatch();
-
-  // const [formContent, setFormContent] = useState({ form: {} });
-  // console.log(formContent)
+  const [changes, setChanges] = useState(false);
 
 
-  
-  // const updateForm = (key, value) => {
-  //   const { form } = formContent;
-
-  //   form[key] = value;
-  //   setFormContent({
-  //     ...formContent,
-  //     form,
-  //   });
-  //   // console.log(form.details)
-  // };
-
-  // console.log(formContent);
-  // Create a new post in firestore
-  const saveProblemForm = async (e) => {
-    e?.preventDefault() || null;
-    const uid = auth.currentUser.uid;
-
-    const ref = doc(
-      getFirestore(),
-      "users",
-      uid,
-      "problem",
-      pFormRedux.title
-    );
-
-    // Tip: give all fields a default value here
-    const data = {
-      problemTitle: pFormRedux.title,
-      uid,
-      username,
-      productType: pFormRedux.productType || null,
-      whyOptions: pFormRedux.whyOptions || null,
-      why: pFormRedux.why || null,
-      what: pFormRedux.what || null,
-      who: pFormRedux.who || null,
-      details: pFormRedux.details || null,
-      createdAt: serverTimestamp(),
-      updatedAt: serverTimestamp(),
-    };
-    // console.log(timeID);
-
-    await setDoc(ref, data)
-      // await addDoc(collection(getFirestore(), "users", uid, "ideas"), data)
-      .then(() => {
-        toast.success("Progress saved!");
-        // dispatch(unsavedChangesAction(false));
-        // dispatch(editModeAction("display"));
-        // // console.log("It Worked!");
-        // // console.log(ref.id);
-        // dispatch(currentDocAction(data));
-      })
-      .catch((error) => {
-        toast.error("Error occured :( " + error);
-        console.log("It failed!" + error);
-      });
-
-    // Imperative navigation after doc is set
-    // router.push(`/admin/${slug}`);
-  };
   // Do something on step change
   const onStepChange = (stats) => {
     // console.log(stats);
@@ -126,13 +50,14 @@ function ProblemWizard() {
         // instance={setInstance}
       >
 
-        <PWhy hashKey={"Why"}  />
-        <PWhat hashKey={"What"}  />
-        <PWho hashKey={"Who"} />
+        <PWhy hashKey={"Why"} setChanges={setChanges} />
+        <PWhat hashKey={"What"}  setChanges={setChanges}/>
+        <PWho hashKey={"Who"} setChanges={setChanges}/>
         <PDetails
           hashKey={"Details"}
-          
-          saveProblemForm={saveProblemForm}
+          cookieUID={props.cookieUID}
+          setChanges={setChanges}
+          changes={changes}
         />
       </StepWizard>
     </div>
