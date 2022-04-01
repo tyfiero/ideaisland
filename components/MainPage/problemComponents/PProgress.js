@@ -58,7 +58,6 @@ function ProblemProgressPage(props) {
   const router = useRouter();
 
   const saveOrContinue = async (e) => {
-
     //update firestore problem
     e?.preventDefault() || null;
 
@@ -77,15 +76,8 @@ function ProblemProgressPage(props) {
           console.log("no uid available :(");
         }
       }
-      
 
-      const ref = doc(
-        getFirestore(),
-        "users",
-        uid,
-        "problem",
-        pFormRedux.id
-      );
+      const ref = doc(getFirestore(), "users", uid, "problem", pFormRedux.id);
 
       const data = {
         title: contentTitle,
@@ -126,6 +118,7 @@ function ProblemProgressPage(props) {
       >
         <div className="w-full max-w-[95%]  space-y-8   normal-box-soft p-3">
           <div className="flex flex-col items-center justify-center p-0 problem-page fade-effect-quick">
+          
             <h1 className="heading-top">Progress so far:</h1>
             <div className="flex flex-col w-full gap-4">
               <div className="p-5 normal-box-soft !rounded-xl w-full group">
@@ -163,7 +156,10 @@ function ProblemProgressPage(props) {
                   <h3 className="heading">{contentTitle}</h3>
                 )}
               </div>
+             
               <div className="flex flex-wrap justify-center gap-4">
+                
+
                 <div className="p-5 normal-box-soft !rounded-xl min-w-[25em] group !bg-t-bl/10">
                   <button
                     className="absolute flex items-center gap-1 p-1 px-2 text-white transition duration-500 opacity-0 bg-t-bl rounded-2xl group-hover:opacity-100 hover:scale-110 active:scale-95"
@@ -192,8 +188,8 @@ function ProblemProgressPage(props) {
                         onChange={(e) => {
                           setContentWhy(e.target.value);
                           let updated = pFormRedux;
-                      updated.why = e.target.value;
-                      dispatch(pFormAction(updated));
+                          updated.why = e.target.value;
+                          dispatch(pFormAction(updated));
                           setChanges(true);
                         }}
                       ></TextareaAutosize>
@@ -231,8 +227,8 @@ function ProblemProgressPage(props) {
                         onChange={(e) => {
                           setContentWhat(e.target.value);
                           let updated = pFormRedux;
-                      updated.what = e.target.value;
-                      dispatch(pFormAction(updated));
+                          updated.what = e.target.value;
+                          dispatch(pFormAction(updated));
                           setChanges(true);
                         }}
                       ></TextareaAutosize>
@@ -269,8 +265,8 @@ function ProblemProgressPage(props) {
                         onChange={(e) => {
                           setContentWho(e.target.value);
                           let updated = pFormRedux;
-                      updated.who = e.target.value;
-                      dispatch(pFormAction(updated));
+                          updated.who = e.target.value;
+                          dispatch(pFormAction(updated));
                           setChanges(true);
                         }}
                       ></TextareaAutosize>
@@ -312,8 +308,8 @@ function ProblemProgressPage(props) {
                           onChange={(e) => {
                             setContentPq1(e.target.value);
                             let updated = pFormRedux;
-                      updated.pq1 = e.target.value;
-                      dispatch(pFormAction(updated));
+                            updated.pq1 = e.target.value;
+                            dispatch(pFormAction(updated));
                             setChanges(true);
                           }}
                         ></TextareaAutosize>
@@ -333,8 +329,8 @@ function ProblemProgressPage(props) {
                           onChange={(e) => {
                             setContentPq2(e.target.value);
                             let updated = pFormRedux;
-                      updated.pq2 = e.target.value;
-                      dispatch(pFormAction(updated));
+                            updated.pq2 = e.target.value;
+                            dispatch(pFormAction(updated));
                             setChanges(true);
                           }}
                         ></TextareaAutosize>
@@ -353,8 +349,8 @@ function ProblemProgressPage(props) {
                           onChange={(e) => {
                             setContentPq3(e.target.value);
                             let updated = pFormRedux;
-                      updated.pq3 = e.target.value;
-                      dispatch(pFormAction(updated));
+                            updated.pq3 = e.target.value;
+                            dispatch(pFormAction(updated));
                             setChanges(true);
                           }}
                         ></TextareaAutosize>
@@ -367,21 +363,28 @@ function ProblemProgressPage(props) {
               </div>
             </div>
             <div className="flex flex-col">
-              <div className="my-8 glass-box ">
+            <div className="my-8 mb-[5em] glass-box">
                 <p className="text-xl text-t-bd">
                   You&apos;ve come a long way! Now is when the real fun starts.
                   It&apos;s time to ideate. 💡
                 </p>
-              </div>
             </div>
+            <div className="flex justify-center w-full mt-[2em]">
+                  <img src="../island-pic.png" alt="palm" className="absolute  -bottom-[20rem] scale-[0.3] -z-10"/>
+                </div>
+              </div>
+
+             
+           
             <div className="flex items-center justify-between w-full mb-8">
-            <button
+              <button
                 className="card__btn_prev save_button left-[5%]  flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick"
                 onClick={() => router.push("/problem#Details")}
               >
                 <FaLongArrowAltLeft className="mr-1 text-[24px]" />
                 Back
               </button>
+              
               <div className="relative group">
                 <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
                 <button

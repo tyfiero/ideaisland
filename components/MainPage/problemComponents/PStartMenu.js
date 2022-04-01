@@ -21,12 +21,14 @@ function PStartMenu(props) {
   console.log("RERENDER");
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [reRender, setRerender] = useState(false);
+  const [loadMenu, setLoadMenu] = useState(false);
+
 
   const dispatch = useDispatch();
   const pFormRedux = useSelector((state) => state.pForm);
 
   useEffect(() => {
-    setRerender(true);
+    setRerender(!reRender);
   }, [props.reset]);
 
   return (
@@ -156,13 +158,16 @@ function PStartMenu(props) {
                   onClick={() => {
                     //open menu to load existing problem
                     //make button disappear after click, and create new button that continues to step 2 after problem selection
-                    props.goToStep(2);
+                    // props.goToStep(2);
+                    setLoadMenu(!loadMenu);
                   }}
                 >
                   Load Existing Problem
                   <FaFolderOpen className="ml-1 text-[24px] text-blues-100" />
                 </button>
               </div>
+
+              {loadMenu && (<div>MENU TO LOAD SHIT</div>)}
             </div>
           </div>
         </div>
