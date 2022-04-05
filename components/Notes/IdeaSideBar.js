@@ -44,32 +44,33 @@ import {
 
 
 export default function IdeaSideBar(props) {
-  const [currentNote, setCurrentNote] = useState("ideas");
+  // const [currentNote, setCurrentNote] = useState("ideas");
   const [searchValue, setSearchValue] = useState("");
 
   const editModeRedux = useSelector((state) => state.editMode);
   const dispatch = useDispatch();
   // dispatch(editModeAction("new"))
+let type = props.type;
 
   return (
     <div className="overflow-hidden">
     <div className="normal-box-soft fade-effect-quick flex flex-col items-center !h-[80vh] overflow-y-auto overflow-x-hidden !rounded-2xl">
-      {currentNote === "ideas" && (
+      {type === "ideas" && (
         <>
           <h1 className="heading-top">Ideas</h1>
         </>
       )}
-      {currentNote === "problems" && (
+      {type === "problem" && (
         <>
           <h1 className="heading-top">Problems</h1>
         </>
       )}
-      {currentNote === "notes" && (
+      {type === "notes" && (
         <>
           <h1 className="heading-top">Notes</h1>
         </>
       )}
-      <div className="flex w-[20em] h-[3.5em] items-center justify-evenly text-center normal-box-soft">
+      <div className="flex w-[20em] p-2 gap-2 items-center justify-evenly text-center normal-box-soft">
         {/* <SwitchSelector
           onChange={onChangeHandler}
           options={options}
@@ -80,16 +81,16 @@ export default function IdeaSideBar(props) {
         <button
           className={
             "w-[6em] h-[2em] rounded-3xl  flex items-center justify-center text-white gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer " +
-            (currentNote === "ideas" ? " bg-t-bl" : " bg-slate-300")
+            (type === "ideas" ? " bg-t-bl" : " bg-slate-300")
           }
-          onClick={() => setCurrentNote("ideas")}
+          onClick={() => props.setCurrentNote("ideas")}
         >
           <FaLightbulb className="text-[18px] text-t-bd" />
 
           <p
             className={
               "mr-1  mb-0 " +
-              (currentNote === "ideas"
+              (type === "ideas"
                 ? "text-white text-[20px]"
                 : "text-black text-[18px]")
             }
@@ -99,17 +100,17 @@ export default function IdeaSideBar(props) {
         </button>
         <button
           className={
-            "w-[7em] h-[2em] rounded-3xl bg-t-bl flex items-center justify-center text-white gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer " +
-            (currentNote === "problems" ? " bg-t-bl" : " bg-slate-300")
+            "w-[7em] h-[2em] rounded-3xl px-1 bg-t-bl flex items-center justify-center text-white gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95  cursor-pointer " +
+            (type === "problem" ? " bg-t-pm" : " bg-slate-300")
           }
-          onClick={() => setCurrentNote("problems")}
+          onClick={() => props.setCurrentNote("problem")}
         >
           <FaExclamationTriangle className="text-[18px] text-t-bd" />
 
           <p
             className={
               "mr-1  mb-0 " +
-              (currentNote === "problems"
+              (type === "problem"
                 ? "text-white text-[20px]"
                 : "text-black text-[18px]")
             }
@@ -120,16 +121,16 @@ export default function IdeaSideBar(props) {
         <button
           className={
             "w-[6em] h-[2em] rounded-3xl bg-t-bl flex items-center justify-center text-white gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer " +
-            (currentNote === "notes" ? " bg-t-bl" : " bg-slate-300")
+            (type === "notes" ? " bg-t-bpop/80" : " bg-slate-300")
           }
-          onClick={() => setCurrentNote("notes")}
+          onClick={() => props.setCurrentNote("notes")}
         >
           <FaStickyNote className="text-[18px] text-t-bd" />
 
           <p
             className={
               "mr-1 mb-0 " +
-              (currentNote === "notes"
+              (type === "notes"
                 ? "text-white text-[20px]"
                 : "text-black text-[18px]")
             }
@@ -167,7 +168,11 @@ export default function IdeaSideBar(props) {
           className=" w-[12em] h-[2em] m-2 rounded-3xl bg-t-bl flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer md:hover:shadow-xl shadow-t-bd/50"
         >
           <FaPlus className="text-[20px]" />
-          Create New Idea
+          <p> {type === "ideas" ? ("Create New Idea"
+      ) : (type === "problem" ? "Create Problem" : "Create New Note")}</p>
+
+         
+          
         </button>
       </div>
       <div className="flex justify-center w-full">
@@ -193,19 +198,19 @@ export default function IdeaSideBar(props) {
        
       </div>
 
-      {currentNote === "ideas" && (
+      {type === "ideas" && (
         <>
-          <IdeasList searchValue={searchValue} cookieUID={props.cookieUID}/>
+          <IdeasList searchValue={searchValue} cookieUID={props.cookieUID} type="ideas"/>
         </>
       )}
-      {currentNote === "problems" && (
+      {type === "problem" && (
         <>
-          <p>No problems to display</p>
+         <IdeasList searchValue={searchValue} cookieUID={props.cookieUID} type="problem"/>
         </>
       )}
-      {currentNote === "notes" && (
+      {type === "notes" && (
         <>
-          <p>No notes to display</p>
+           <IdeasList searchValue={searchValue} cookieUID={props.cookieUID} type="notes"/>
         </>
       )}
     </div>
@@ -242,8 +247,11 @@ console.log()
   }
 }
 
+let type = props.type
+
+
   // console.log(auth.currentUser);
-  const ref = collection(getFirestore(), "users", uid, "ideas");
+  const ref = collection(getFirestore(), "users", uid, type);
   const postQuery = query(ref, orderBy("createdAt", "desc"));
 
   const [querySnapshot] = useCollection(postQuery);
@@ -252,13 +260,26 @@ console.log()
 
   let ideaSearch = ideas?.filter(obj => {
     // console.log(obj.title.toLowerCase());
-   return (obj.title.toLowerCase().includes(searchValue?.toLowerCase()) || obj.content.toLowerCase().includes(searchValue?.toLowerCase()));});
+
+
+    if(props.type === "ideas"){
+      return (obj.title.toLowerCase().includes(searchValue?.toLowerCase()) || obj.content?.toLowerCase().includes(searchValue?.toLowerCase()));
+    }else if(props.type === "problem"){
+      return (obj.title.toLowerCase().includes(searchValue?.toLowerCase()) || obj.why?.toLowerCase().includes(searchValue?.toLowerCase()) || obj.what?.toLowerCase().includes(searchValue?.toLowerCase()) || obj.who?.toLowerCase().includes(searchValue?.toLowerCase()) || obj.pq1?.toLowerCase().includes(searchValue?.toLowerCase()) || obj.pq2?.toLowerCase().includes(searchValue?.toLowerCase())|| obj.pq3?.toLowerCase().includes(searchValue?.toLowerCase()));
+    }else if(props.type === "notes"){
+      return (obj.title.toLowerCase().includes(searchValue?.toLowerCase()) || obj.content?.toLowerCase().includes(searchValue?.toLowerCase())
+    
+  )}
+    });
 
 // console.log(ideaSearch);
 
   return (
     <>
-      <IdeaFeed ideas={ideaSearch} admin />
+      <IdeaFeed ideas={ideaSearch} admin type={props.type}/>
+
+      
+      {searchValue?.length > 0 && ideas?.length > 0 ? <p className="mt-2 text-xs text-slate-400">Displaying {ideaSearch?.length} of {ideas?.length}</p> : <p className="mt-2 text-xs text-slate-400">{ideas?.length}{(props.type === "problem" ? " problems" : (props.type === "ideas" ? "ideas" : " notes"))}</p>}
     </>
   );
 }

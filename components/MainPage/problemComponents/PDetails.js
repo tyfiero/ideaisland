@@ -92,6 +92,27 @@ function PDetails(props) {
 
 
 
+  useEffect(() => {
+    if(pFormRedux.title){
+      setTitleContent(pFormRedux.title)
+      }
+      
+      if(pFormRedux.pq1){
+      setContent1(pFormRedux.pq1)
+      }
+      
+      if(pFormRedux.pq2){
+      setContent2(pFormRedux.pq2)
+      }
+      
+      if(pFormRedux.pq3){
+      setContent3(pFormRedux.pq3)
+      }
+}, [props.loadData]);// eslint-disable-line react-hooks/exhaustive-deps
+
+
+
+
   
 
   // Create a new post in firestore

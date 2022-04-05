@@ -50,6 +50,8 @@ export default function IdeaDisplay(props) {
   const [pageCounter, setPageCounter] = useState(1);
   const userUIDRedux = useSelector((state) => state.userUID);
 
+  let type = props.type;
+  
   const [pics, setPics] = useState([
     {
         "id": 188029,
@@ -394,7 +396,7 @@ export default function IdeaDisplay(props) {
       getFirestore(),
       "users",
       uid,
-      "ideas",
+      type,
       currentDocRedux.identifier
     );
     await updateDoc(ref, {

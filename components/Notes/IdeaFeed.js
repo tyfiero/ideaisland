@@ -14,7 +14,7 @@ import { useState, useEffect } from "react";
 import { editModeAction } from "../../redux/actions";
 import { statsAction } from "../../redux/actions";
 
-export default function IdeaFeed({ ideas, admin }) {
+export default function IdeaFeed({ ideas, admin, type }) {
   const statsRedux = useSelector((state) => state.stats);
   const dispatch = useDispatch()
   // const docRef = doc(firestore, ", "idea-1");
@@ -41,13 +41,13 @@ export default function IdeaFeed({ ideas, admin }) {
   }, [])// eslint-disable-line react-hooks/exhaustive-deps
   
   return ideas
-    ? ideas.map((idea) => (
-        <IdeaItem idea={idea} key={idea.identifier} admin={admin} />
+    ? ideas.map((idea, key) => (
+        <IdeaItem idea={idea} key={key} admin={admin} type={type}/>
       ))
     : null;
 }
 
-function IdeaItem({ idea, admin = false }) {
+function IdeaItem({ idea, admin = false, type }) {
   const [hover, setHover] = useState(false);
   const [nav, setNav] = useState(null);
   const currentDocRedux = useSelector((state) => state.currentDoc);
@@ -87,7 +87,7 @@ function IdeaItem({ idea, admin = false }) {
       }}
     >
       <div
-        className="w-[22em]  p-1  shadow !rounded-xl normal-box-soft drop-shadow-xl flex-col  items-center "
+        className={"w-[22em]  p-1  shadow !rounded-xl normal-box-soft drop-shadow-xl flex-col  items-center " + (type === "ideas" ? "bg-blues-100/70" : (type === "problem" ? "bg-t-pl/70" : "bg-t-bpop/30"))}
         // onMouseOver={() => setHover(true)}
         // onMouseOut={() => setHover(false)}
       >
@@ -104,14 +104,26 @@ function IdeaItem({ idea, admin = false }) {
             <div className="cursor-pointer">
               <h2 className="text-t-bd truncate text-[18px]">{idea.title || "*Unnamed Idea"}</h2>
               {/* <p className="truncate text-[14px]">{idea.content}</p> */}
-              <div
+            
+            {type === "problem" && (<><p
+                className="overflow-hidden max-h-[3em]"
+              >Why:{" " +idea.why}</p><p
+              className="overflow-hidden max-h-[3em]"
+            >What:{" " +idea.what}</p><p
+            className="overflow-hidden max-h-[3em]"
+          >Who:{" " +idea.who}</p><p
+          className="overflow-hidden max-h-[3em]"
+        >Root Cause:{" " +idea.pq3}</p></>)}
+
+        
+             {type !== "problem" && (   <div
                 className="overflow-hidden max-h-[3em]"
                 dangerouslySetInnerHTML={{
                   __html: sanitize(idea.content, {
                     USE_PROFILES: { html: true },
                   }),
                 }}
-              ></div>
+              ></div>)}
             </div>
             {/* </a>
             </Link> */}
@@ -124,16 +136,18 @@ function IdeaItem({ idea, admin = false }) {
         <div className="flex items-center justify-between ">
           {/* If admin view, show extra controls for user */}
 
+         
+          <p className="text-slate-500 text-[12px] ml-1 mb-0">
+            {TimeDisplay(idea.createdAt)}
+          </p>
+          {type === "ideas" && ( 
           <div className="flex ">
             <span className="flex ml-auto ">
               {idea.rating || 0}
               <OneStar className="ml-5" />
             </span>
-          </div>
-          <p className="text-slate-400 text-[12px] ml-1 mb-0">
-            {TimeDisplay(idea.createdAt)}
-          </p>
-          {admin && (
+          </div>)}
+          {/* {admin && (
             <>
               {idea.published ? (
                 <div className="flex items-center">
@@ -141,15 +155,13 @@ function IdeaItem({ idea, admin = false }) {
                     {idea.heartCount || 0}
                     <p className="mr-1 ">💗</p>
                   </span>
-                  {/* <p >Public</p> */}
                   <FaGlobeAmericas className="text-t-bl" />
                 </div>
               ) : (
-                // <p >Private</p>
                 <FaLock className="text-t-pd" />
               )}
             </>
-          )}
+          )} */}
         </div>
         <div className="flex">
           {/* {hover && (

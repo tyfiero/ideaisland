@@ -7,9 +7,7 @@ function ProblemNote() {
   return (
     <div>
       <p> Problem Title</p>
-      <TextArea rows="1" ph="Problem" />
       <p>Details</p>
-      <TextArea rows="6" ph="Details" />
 
      
     </div>

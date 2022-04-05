@@ -18,6 +18,8 @@ class MyDocument extends Document {
             <div className="svg-blob2 rotate-effect scale-effect"></div>
             <div className="svg-blob3 rotate-effect scale-effect"></div>
             <div className="svg-blob4 rotate-effect scale-effect"></div>
+            <div className="svg-blob5 rotate-effect scale-effect"></div>
+
           </div>
 
           <Main />

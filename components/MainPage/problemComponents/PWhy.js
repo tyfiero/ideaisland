@@ -59,6 +59,16 @@ function PWhy(props) {
       }
     }
   }, [props.reset]);// eslint-disable-line react-hooks/exhaustive-deps
+
+
+  useEffect(() => {
+    
+      if(pFormRedux.why){
+      setContent(pFormRedux.why)
+      }
+  }, [props.loadData]);// eslint-disable-line react-hooks/exhaustive-deps
+
+  
   return (
     <div>
       <div

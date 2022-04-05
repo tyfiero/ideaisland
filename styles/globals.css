@@ -138,7 +138,21 @@ p {
   top: 10%;
   height: 50%;
 }
+.svg-blob5 {
+  border-top-left-radius: 15rem;
+  border-top-right-radius: 8rem;
+  border-bottom-right-radius: 8rem;
+  border-bottom-left-radius: 9rem;
+  z-index: -9;
+  opacity: 70%;
 
+  background-color: var(--colorPop);
+  position: absolute;
+  width: 25em;
+  left: 30%;
+  top: 40%;
+  height: 30%;
+}
 .scale-effect {
   animation: crescendo 60s alternate infinite ease-in;
 }

@@ -12,24 +12,65 @@ import {
   FaFolderOpen,
   FaPlus,
 } from "react-icons/fa";
+import {
+  serverTimestamp,
+  query,
+  collection,
+  orderBy,
+  getFirestore,
+  setDoc,
+  doc,
+} from "firebase/firestore";
+import { useCollection } from "react-firebase-hooks/firestore";
 
 import { Popover, ArrowContainer } from "react-tiny-popover";
 import { useSelector, useDispatch } from "react-redux";
 import { pFormAction } from "../../../redux/actions";
+import { firestore, auth } from "../../../lib/firebase";
 
 function PStartMenu(props) {
   console.log("RERENDER");
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [reRender, setRerender] = useState(false);
   const [loadMenu, setLoadMenu] = useState(false);
-
+  const [problems, setProblems] = useState(null);
 
   const dispatch = useDispatch();
   const pFormRedux = useSelector((state) => state.pForm);
+  const userUIDRedux = useSelector((state) => state.userUID);
 
   useEffect(() => {
     setRerender(!reRender);
   }, [props.reset]);
+
+  //Done? I think it works now after adding nextjs firebase cookies.
+  //TODO memoize this so that firebase reads less
+  let uid;
+  if (props.cookieUID) {
+    uid = props.cookieUID;
+  } else {
+    if (userUIDRedux) {
+      uid = userUIDRedux;
+      console.log("it actually worked");
+    } else if (auth.currentUser?.uid) {
+      uid = auth.currentUser.uid;
+    } else {
+      uid = null;
+      console.log("no uid available :(");
+    }
+  }
+
+  // console.log(auth.currentUser);
+  const ref = collection(getFirestore(), "users", uid, "problem");
+  const postQuery = query(ref, orderBy("createdAt", "desc"));
+
+  const [querySnapshot] = useCollection(postQuery);
+
+  const getProblems = () => {
+    const problems = querySnapshot?.docs.map((doc) => doc.data());
+
+    setProblems(problems);
+  };
 
   return (
     <div>
@@ -97,12 +138,12 @@ function PStartMenu(props) {
               )}
             </div>
 
-            <div className="flex flex-col gap-5 mt-5">
+            <div className="flex flex-col items-center w-full gap-5 mt-5">
               {pFormRedux.title && (
-                <div className="relative group">
-                  <div className="absolute transition duration-1000 rounded-full opacity-90 -inset-1 bg-gradient-to-r from-t-bl via-blues-100 to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
+                <div className="relative group !w-[25em]">
+                  <div className="absolute w-full transition duration-1000 rounded-full opacity-90 -inset-1 bg-gradient-to-r from-t-bl via-blues-100 to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
                   <button
-                    className="w-[15em] h-[3em] bg-gradient-to-r from-t-bl via-t-bl to-t-bpop  flex items-center justify-between px-5 md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-t-bd/50 md:hover:shadow-xl m-1 drop-shadow-xl rounded-full text-xl text-white"
+                    className="w-[95%] h-[3em] bg-gradient-to-r from-t-bl via-t-bl to-t-bpop  flex items-center justify-between px-5 md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-t-bd/50 md:hover:shadow-xl m-1 drop-shadow-xl rounded-full text-xl text-white"
                     onClick={() => {
                       props.goToStep(2);
                     }}
@@ -117,10 +158,10 @@ function PStartMenu(props) {
                   </button>
                 </div>
               )}
-              <div className="relative group">
-                <div className="absolute transition duration-1000 rounded-full opacity-90 -inset-1 bg-gradient-to-r from-t-bl via-blues-200 to-blues-50 blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
+              <div className="relative group !w-[25em]">
+                <div className="absolute w-full transition duration-1000 rounded-full opacity-90 -inset-1 bg-gradient-to-r from-t-bl via-blues-200 to-blues-50 blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
                 <button
-                  className="w-[15em] h-[3em] bg-gradient-to-r from-t-bl via-blues-300 to-blues-100  flex items-center justify-between px-5 md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-t-bd/50 md:hover:shadow-xl m-1 drop-shadow-xl rounded-full text-xl text-white"
+                  className="w-[95%] h-[3em] bg-gradient-to-r from-t-bl via-blues-300 to-blues-100  flex items-center justify-between px-5 md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-t-bd/50 md:hover:shadow-xl m-1 drop-shadow-xl rounded-full text-xl text-white"
                   onClick={() => {
                     //CLEAR pformredux to all null values
                     // then go to step 2
@@ -138,11 +179,11 @@ function PStartMenu(props) {
                       pq3: null,
                     };
                     dispatch(pFormAction(clearedForm));
-                    
-                    props.setReset(true)
+
+                    props.setReset(true);
                     setTimeout(() => {
-                    props.setReset(false)
-                    } , 1000)
+                      props.setReset(false);
+                    }, 1000);
                     props.goToStep(2);
                   }}
                 >
@@ -151,15 +192,16 @@ function PStartMenu(props) {
                 </button>
               </div>
 
-              <div className="relative group">
-                <div className="absolute transition duration-1000 rounded-full opacity-50 -inset-1 bg-gradient-to-r from-blues-100 via-t-bl to-t-bd blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
+              <div className="relative group !w-[25em]">
+                <div className="absolute w-full transition duration-1000 rounded-full opacity-50 -inset-1 bg-gradient-to-r from-blues-100 via-t-bl to-t-bd blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
                 <button
-                  className="w-[15em] h-[3em] bg-gradient-to-r from-t-bl via-t-bl to-t-bd  flex items-center justify-between px-5 md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-t-bd/50 md:hover:shadow-xl m-1 drop-shadow-xl rounded-full text-xl text-white"
+                  className="w-[95%] h-[3em] bg-gradient-to-r from-t-bl via-t-bl to-t-bd  flex items-center justify-between px-5 md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-t-bd/50 md:hover:shadow-xl m-1 drop-shadow-xl rounded-full text-xl text-white"
                   onClick={() => {
                     //open menu to load existing problem
                     //make button disappear after click, and create new button that continues to step 2 after problem selection
                     // props.goToStep(2);
                     setLoadMenu(!loadMenu);
+                    getProblems();
                   }}
                 >
                   Load Existing Problem
@@ -167,7 +209,16 @@ function PStartMenu(props) {
                 </button>
               </div>
 
-              {loadMenu && (<div>MENU TO LOAD SHIT</div>)}
+              {loadMenu && (
+                <div className="p-2 border-2 rounded-xl border-t-pm h-[20em] overflow-auto">
+                  <p>{problems?.length} Problem{problems?.length >1 && "s"}</p>
+                  {problems
+                    ? problems.map((idea, key) => (
+                    <ProblemItem idea={idea} key={key} goToStep={props.goToStep} setLoadMenu={setLoadMenu} setReset={props.setReset} loadData={props.loadData} setLoadData={props.setLoadData}/>
+                      ))
+                    : "No problems to load"}
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -177,3 +228,89 @@ function PStartMenu(props) {
 }
 
 export default PStartMenu;
+
+function ProblemItem({ idea, goToStep, setLoadMenu, setReset, setLoadData, loadData }) {
+  const [hover, setHover] = useState(false);
+  const [nav, setNav] = useState(null);
+  const currentDocRedux = useSelector((state) => state.currentDoc);
+
+  const dispatch = useDispatch();
+
+  const TimeDisplay = (time) => {
+    let formattedTime = new Date(
+      time?.seconds * 1000 + time?.nanoseconds / 1000000
+    );
+    let date = formattedTime.toLocaleDateString();
+    // let clockTime = formattedTime.toLocaleString(navigator.language, {
+    //   hour: "2-digit",
+    //   minute: "2-digit",
+    // });
+    let clockTime = formattedTime.toLocaleString("en-us", {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+    return date + ", " + clockTime;
+  };
+
+  // console.log(idea.documentID)
+  return (
+    <div
+      className="flex items-center justify-center px-4 pt-2 sm:px-6 lg:px-8 drop-shadow-xl "
+      onClick={() => {
+        // dispatch(currentDocAction(idea.identifier));
+        // dispatch(currentDocAction(idea));
+        dispatch(pFormAction(idea));
+        setLoadData(!loadData)
+        goToStep(2);
+        setLoadMenu(false)
+        
+      }}
+    >
+      <div
+        className={
+          "w-[22em]  p-1  shadow !rounded-xl normal-box-soft drop-shadow-xl flex-col  items-center  bg-t-pl/70"
+        }
+    
+      >
+        <div className="flex">
+          <div className="normal-box !rounded-xl w-[100%] ">
+        
+            <div className="cursor-pointer">
+              <h2 className="text-t-bd truncate text-[18px] text-left">
+                {idea.title || "*Unnamed Problem*"}
+              </h2>
+              {/* <p className="truncate text-[14px]">{idea.content}</p> */}
+
+              {/* <p className="overflow-hidden max-h-[3em]">
+                Why:{" " + idea.why}
+              </p>
+              <p className="overflow-hidden max-h-[3em]">
+                What:{" " + idea.what}
+              </p>
+              <p className="overflow-hidden max-h-[3em]">
+                Who:{" " + idea.who}
+              </p>
+              <p className="overflow-hidden max-h-[3em]">
+                Root Cause:{" " + idea.pq3}
+              </p> */}
+
+           
+            </div>
+          
+          </div>
+
+          <div></div>
+        </div>
+
+        <div className="flex items-center justify-between ">
+
+          <p className="text-slate-500 text-[12px] ml-1 mb-0">
+            {TimeDisplay(idea.createdAt)}
+          </p>
+         
+      
+      </div>
+      </div>
+    </div>
+  );
+}

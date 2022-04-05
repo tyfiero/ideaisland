@@ -53,6 +53,17 @@ function PWhat(props) {
     }
   }, [props.reset]);// eslint-disable-line react-hooks/exhaustive-deps
   
+
+
+  useEffect(() => {
+    
+    if(pFormRedux.what){
+    setContent(pFormRedux.what)
+    }
+}, [props.loadData]);// eslint-disable-line react-hooks/exhaustive-deps
+
+
+
   return (
     <div>
       <div

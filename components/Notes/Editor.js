@@ -35,7 +35,7 @@ import IdeaDisplay from "./IdeaDisplay";
 import { useSelector, useDispatch } from "react-redux";
 import { currentDocAction } from "../../redux/actions";
 
-const QuillNoSSRWrapper = dynamic( () => import("react-quill"), {
+const QuillNoSSRWrapper = dynamic(() => import("react-quill"), {
   ssr: false,
 });
 
@@ -56,18 +56,20 @@ function Editor(props) {
 
   const dispatch = useDispatch();
 
+  let type = props.type;
+
   useEffect(() => {
     // console.log("UE START");
 
     if (!currentDocRedux) {
-    // } else {
+      // } else {
       // setEditDocDetails(details);
       dispatch(editModeAction("new"));
 
       console.log("no note change");
     }
     // console.log("UE END");
-  }, [currentDocRedux]);// eslint-disable-line react-hooks/exhaustive-deps
+  }, [currentDocRedux]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div>
@@ -82,13 +84,13 @@ function Editor(props) {
               {" "}
               {/* <div className="heading">Edit Idea</div> */}
               <CreateNewIdea
-              // mode={editModeRedux}
-              cookieUID={props.cookieUID}
-              //I might be missing this piece of logic in my code
-              // setEditDocDetails={
-              //   editModeRedux === "new" ? null : editDocDetails
-              // }
-              
+                // mode={editModeRedux}
+                type={props.type}
+                cookieUID={props.cookieUID}
+                //I might be missing this piece of logic in my code
+                // setEditDocDetails={
+                //   editModeRedux === "new" ? null : editDocDetails
+                // }
               />
               {/* <div>
                 <button
@@ -109,7 +111,7 @@ function Editor(props) {
           {editModeRedux === "display" && (
             <>
               {" "}
-              <IdeaDisplay />
+              <IdeaDisplay type={props.type} />
             </>
           )}
         </div>
@@ -134,29 +136,47 @@ function CreateNewIdea(props) {
   const [addImg, setAddImg] = useState(false);
 
   const [content, setContent] = useState("");
+  const [refresh, setRefresh] = useState("");
+
 
   const [publish, setPublish] = useState(false);
   const editModeRedux = useSelector((state) => state.editMode);
   const unsavedChangesRedux = useSelector((state) => state.unsavedChanges);
   const userUIDRedux = useSelector((state) => state.userUID);
 
+  let type = props.type;
+
+  if (process.browser) {
+    if (unsavedChangesRedux) {
+      window.onbeforeunload = function () {
+        return "There are unsaved changes. Are you sure you want to leave?";
+      };
+    }
+  }
+
   const [rating, setRating] = useState(0);
   // console.log(setEditDocDetails.length + "docdeets");
   // console.log(serverTimestamp());
+  // useEffect(() => {
+  //   return () => {
+  //     // console.log("Here, you can add clean up code - componentWillUnmount");
+
+  //     if (unsavedChangesRedux) {
+  //       if (editModeRedux === "edit") {
+  //         // updateIdea()
+  //       } else if (editModeRedux === "new") {
+  //         createIdea();
+  //       }
+  //     }
+  //   };
+  // }, []);// eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => {
-    return () => {
-      // console.log("Here, you can add clean up code - componentWillUnmount");
+  setRefresh(!refresh)
+  }, [props.type]);
 
-      if (unsavedChangesRedux) {
-        if (editModeRedux === "edit") {
-          // updateIdea()
-        } else if (editModeRedux === "new") {
-          createIdea();
-        }
-      }
-    };
-  }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
+
+  
   useEffect(() => {
     if (editModeRedux === "new") {
       setTitle("");
@@ -171,27 +191,30 @@ function CreateNewIdea(props) {
 
   useEffect(() => {
     if (currentDocRedux && editModeRedux === "edit") {
-      //   if (setEditDocDetails.length >= 1) {
-      // console.log("ARRAY IS full");
-
-      //   console.log(setEditDocDetails[0].title);
-      setIdeaID(currentDocRedux.identifier);
-      //   console.log(ideaID + "THIS IS ID");
-      setTitle(currentDocRedux.title);
-      //   console.log(title + "2");
-
-      setContent(currentDocRedux.content);
-      setRating(currentDocRedux.rating);
-      setPublish(currentDocRedux.published);
-      setImgUrl(currentDocRedux.imgUrl);
-      if (currentDocRedux.imgUrl) {
-        setAddImg(true);
+      if (type === "ideas") {
+        setIdeaID(currentDocRedux.identifier);
+        setTitle(currentDocRedux.title);
+        setContent(currentDocRedux.content);
+        setRating(currentDocRedux.rating);
+        setPublish(currentDocRedux.published);
+        setImgUrl(currentDocRedux.imgUrl);
+        if (currentDocRedux.imgUrl) {
+          setAddImg(true);
+        }
+      } else if (type === "notes") {
+        setIdeaID(currentDocRedux.identifier);
+        setTitle(currentDocRedux.title);
+        setContent(currentDocRedux.content);
+        setImgUrl(currentDocRedux.imgUrl);
+        if (currentDocRedux.imgUrl) {
+          setAddImg(true);
+        }
       }
     } else {
       return;
     }
     // }
-  }, [currentDocRedux]);// eslint-disable-line react-hooks/exhaustive-deps
+  }, [currentDocRedux]); // eslint-disable-line react-hooks/exhaustive-deps
   // console.log("🚀 ~ file: Editor.js ~ line 170 ~ CreateNewIdea ~ setEditDocDetails", setEditDocDetails)
 
   // Ensure slug is URL safe
@@ -222,21 +245,20 @@ function CreateNewIdea(props) {
   const deleteIdea = async (e) => {
     //Should I be using redux? Or auth.current user? If I do use redux, delete all instances of auth.currentUser @auth
     let uid;
-    if(props.cookieUID){
+    if (props.cookieUID) {
       uid = props.cookieUID;
-    }else{
-      
-    if (userUIDRedux) {
-      uid = userUIDRedux;
-      console.log("it actually worked");
-    } else if (auth.currentUser?.uid) {
-      uid = auth.currentUser.uid;
     } else {
-      uid = null;
-      console.log("no uid available :(");
+      if (userUIDRedux) {
+        uid = userUIDRedux;
+        console.log("it actually worked");
+      } else if (auth.currentUser?.uid) {
+        uid = auth.currentUser.uid;
+      } else {
+        uid = null;
+        console.log("no uid available :(");
+      }
     }
-  }
-    const ref = doc(getFirestore(), "users", uid, "ideas", ideaID);
+    const ref = doc(getFirestore(), "users", uid, type, ideaID);
     await deleteDoc(ref)
       .then(() => {
         toast.success("Idea Deleted 🗑️");
@@ -262,34 +284,48 @@ function CreateNewIdea(props) {
 
     if (unsavedChangesRedux) {
       e.preventDefault();
- //Should I be using redux? Or auth.current user? If I do use redux, delete all instances of auth.currentUser @auth
- let uid;
- if(props.cookieUID){
-   uid = props.cookieUID;
- }else{
-   
- if (userUIDRedux) {
-   uid = userUIDRedux;
-   console.log("it actually worked");
- } else if (auth.currentUser?.uid) {
-   uid = auth.currentUser.uid;
- } else {
-   uid = null;
-   console.log("no uid available :(");
- }
-}
-      const ref = doc(getFirestore(), "users", uid, "ideas", ideaID);
-      await updateDoc(ref, {
-        title: title,
-        content: sanitize(content),
-        published: publish,
-        rating: rating,
-        //   slug,
-        updatedAt: serverTimestamp(),
-      })
+      //Should I be using redux? Or auth.current user? If I do use redux, delete all instances of auth.currentUser @auth
+      let uid;
+      if (props.cookieUID) {
+        uid = props.cookieUID;
+      } else {
+        if (userUIDRedux) {
+          uid = userUIDRedux;
+          console.log("it actually worked");
+        } else if (auth.currentUser?.uid) {
+          uid = auth.currentUser.uid;
+        } else {
+          uid = null;
+          console.log("no uid available :(");
+        }
+      }
+      const ref = doc(getFirestore(), "users", uid, type, ideaID);
+
+      let data;
+      if (type === "ideas") {
+        data = {
+          title: title,
+          content: sanitize(content),
+          published: publish,
+          rating: rating,
+          updatedAt: serverTimestamp(),
+        };
+      } else if (type === "notes") {
+        data = {
+          title: title,
+          content: sanitize(content),
+          updatedAt: serverTimestamp(),
+        };
+      }
+
+      await updateDoc(ref, data)
         .then(() => {
-          // toast.success("Idea created!");
-          toast.success("Idea updated successfully!");
+          if (type === "ideas") {
+            toast.success("Idea updated successfully!");
+          } else if (type === "notes") {
+            toast.success("Note updated successfully!");
+          }
+
           dispatch(unsavedChangesAction(false));
           // setEditMode(false)
           // console.log("It Worked!");
@@ -308,66 +344,77 @@ function CreateNewIdea(props) {
   // Create a new post in firestore
   const createIdea = async (e) => {
     // toast.success("new");
-// console.log(e)
+    // console.log(e)
 
-//TODO Is this needed? preventdefault?
-//     e.preventDefault() ?? null;
+    //TODO Is this needed? preventdefault?
+    //     e.preventDefault() ?? null;
 
-
-
- //Should I be using redux? Or auth.current user? If I do use redux, delete all instances of auth.currentUser @auth
- let uid;
- if(props.cookieUID){
-   uid = props.cookieUID;
- }else{
-   
- if (userUIDRedux) {
-   uid = userUIDRedux;
-   console.log("it actually worked");
- } else if (auth.currentUser?.uid) {
-   uid = auth.currentUser.uid;
- } else {
-   uid = null;
-   console.log("no uid available :(");
- }
-}
+    //Should I be using redux? Or auth.current user? If I do use redux, delete all instances of auth.currentUser @auth
+    let uid;
+    if (props.cookieUID) {
+      uid = props.cookieUID;
+    } else {
+      if (userUIDRedux) {
+        uid = userUIDRedux;
+        console.log("it actually worked");
+      } else if (auth.currentUser?.uid) {
+        uid = auth.currentUser.uid;
+      } else {
+        uid = null;
+        console.log("no uid available :(");
+      }
+    }
     const d = Number(new Date());
     const timeID = d.valueOf().toString();
     // let timeIDNum = timeID.stringify()
     // console.log(timeID);
     // const ref = doc(getFirestore(), "users", uid, "ideas", timeID);
-    const ref = doc(getFirestore(), "users", uid, "ideas", timeID);
+    const ref = doc(getFirestore(), "users", uid, type, timeID);
     // id: (serverTimestamp.seconds + serverTimestamp.nanoseconds),
 
     // Tip: give all fields a default value here
-
     //Username needs replacing with redux here @auth
-    const data = {
-      title,
-      rating: rating,
-      identifier: timeID,
-      uid,
-      imgUrl: imgUrl,
-      imgPosition: position,
-      username,
-      published: publish,
-      content: sanitize(content),
-      createdAt: serverTimestamp(),
-      updatedAt: serverTimestamp(),
-      heartCount: 0,
-      problem: null,
-    };
+
+    let dataForCreation;
+    if (type === "ideas") {
+      dataForCreation = {
+        title: title,
+        rating: rating,
+        identifier: timeID,
+        uid: uid,
+        imgUrl: imgUrl,
+        imgPosition: position,
+        username: username,
+        published: publish,
+        content: sanitize(content),
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp(),
+        heartCount: 0,
+        problem: null,
+      };
+    } else if (type === "notes") {
+      dataForCreation = {
+        title: title,
+        identifier: timeID,
+        content: sanitize(content),
+        updatedAt: serverTimestamp(),
+        createdAt: serverTimestamp(),
+        imgPosition: position,
+        imgUrl: imgUrl,
+      };
+    }
+
     // console.log(timeID);
 
-    await setDoc(ref, data)
+    await setDoc(ref, dataForCreation)
       // await addDoc(collection(getFirestore(), "users", uid, "ideas"), data)
       .then(() => {
-        toast.success("Idea created! 💡");
+        type === "ideas"
+          ? toast.success("Idea created! 💡")
+          : toast.success("Note created!");
         dispatch(unsavedChangesAction(false));
         dispatch(editModeAction("display"));
-        // console.log("It Worked!");
-        // console.log(ref.id);
-        dispatch(currentDocAction(data));
+        dispatch(currentDocAction(dataForCreation));
       })
       .catch((error) => {
         toast.error("Error occured :( " + error);
@@ -395,14 +442,17 @@ function CreateNewIdea(props) {
         <h1 className="heading-top">My Ideas & Notes</h1>
       </div>  */}
       <div className="flex flex-col items-center w-[98%] md:mx-3 sm:mx-1 normal-box-soft">
-        <form
-          onSubmit={editModeRedux === "new" ? createIdea : updateIdea}
-          className=" w-[99%] mb-2"
-        >
+        <div className=" w-[99%] mb-2">
           <div className="flex flex-col items-center w-full gap-1 ">
-            <h5 className="text-[22px] text-t-bd">
-              {editModeRedux === "edit" ? "Edit Idea" : "New Idea"}
-            </h5>
+            {type === "ideas" ? (
+              <h5 className="text-[22px] text-t-bd">
+                {editModeRedux === "edit" ? "Edit Idea" : "New Idea"}
+              </h5>
+            ) : (
+              <h5 className="text-[22px] text-t-bd">
+                {editModeRedux === "edit" ? "Edit Note" : "New Note"}
+              </h5>
+            )}
             <input
               className="w-[96%] textarea-box"
               value={title}
@@ -418,7 +468,7 @@ function CreateNewIdea(props) {
                   toast.error("Max character length reached (150)");
                 }
               }}
-              placeholder="Idea title"
+              placeholder="Title"
               minLength={3}
               maxLength={150}
               // className={styles.input}
@@ -432,54 +482,62 @@ function CreateNewIdea(props) {
             {/* <h5 className="text-[22px] text-t-bd">Notes</h5> */}
 
             <div className="flex justify-between w-[90%] items-end ">
-              <div className="flex items-center gap-1 ">
-                <p className="text-[22px] text-t-bd">Rating</p>
-                <Stars hover={true} rating={rating} sendRating={sendRating} />
-              </div>
-              <div className="flex items-center justify-center gap-1 ml-16">
-                <p className="text-[22px]  text-t-bd">Publish?</p>
-                <div className="flex gap-3 ">
-                  <Toggle
-                    className="dark-toggle fade-effect"
-                    // defaultChecked={publish}
-                    checked={publish}
-                    icons={{
-                      unchecked: (
-                        <FaLock
-                          style={{
-                            fontSize: "1em",
-                            color: "white",
-                            paddingBottom: "3px",
-                            paddingTop: "1px !important",
-                          }}
-                        />
-                      ),
-                      checked: (
-                        <FaGlobeAmericas
-                          style={{
-                            fontSize: "1em",
-                            color: "white",
-                            paddingBottom: "2px",
-                            paddingTop: "1px !important",
-                          }}
-                        />
-                      ),
-                    }}
-                    onChange={() => {
-                      dispatch(unsavedChangesAction(true));
+              {type === "ideas" && (
+                <>
+                  {" "}
+                  <div className="flex items-center gap-1 ">
+                    <p className="text-[22px] text-t-bd">Rating</p>
+                    <Stars
+                      hover={true}
+                      rating={rating}
+                      sendRating={sendRating}
+                    />
+                  </div>
+                  <div className="flex items-center justify-center gap-1 ml-16">
+                    <p className="text-[22px]  text-t-bd">Publish?</p>
+                    <div className="flex gap-3 ">
+                      <Toggle
+                        className="dark-toggle fade-effect"
+                        // defaultChecked={publish}
+                        checked={publish}
+                        icons={{
+                          unchecked: (
+                            <FaLock
+                              style={{
+                                fontSize: "1em",
+                                color: "white",
+                                paddingBottom: "3px",
+                                paddingTop: "1px !important",
+                              }}
+                            />
+                          ),
+                          checked: (
+                            <FaGlobeAmericas
+                              style={{
+                                fontSize: "1em",
+                                color: "white",
+                                paddingBottom: "2px",
+                                paddingTop: "1px !important",
+                              }}
+                            />
+                          ),
+                        }}
+                        onChange={() => {
+                          dispatch(unsavedChangesAction(true));
 
-                      setPublish(!publish);
-                    }}
-                  />
-                  {publish ? (
-                    <p className="text-t-bl">Public&nbsp;&nbsp; </p>
-                  ) : (
-                    <p className="text-t-pd">Private</p>
-                  )}
-                </div>
-              </div>
+                          setPublish(!publish);
+                        }}
+                      />
+                      {publish ? (
+                        <p className="text-t-bl">Public&nbsp;&nbsp; </p>
+                      ) : (
+                        <p className="text-t-pd">Private</p>
+                      )}
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
-
             <div
               className="normal-box !rounded-lg  mt-1 !rounded-b-3xl w-[97%]
 
@@ -560,8 +618,7 @@ function CreateNewIdea(props) {
                 )}
               </div>
               <button
-                type="submit"
-                disabled={!isValid}
+                onClick={editModeRedux === "new" ? createIdea : updateIdea}
                 className=" w-[12em] h-[3em] rounded-3xl bg-t-bl flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer "
               >
                 {editModeRedux === "edit" ? (
@@ -574,7 +631,7 @@ function CreateNewIdea(props) {
               </button>
             </div>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );

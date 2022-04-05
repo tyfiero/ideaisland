@@ -27,6 +27,8 @@ function ProblemWizard(props) {
   const dispatch = useDispatch();
   const [changes, setChanges] = useState(false);
   const [reset, setReset] = useState(false);
+  const [loadData, setLoadData] = useState(false);
+
 
 
 
@@ -52,16 +54,17 @@ function ProblemWizard(props) {
         nav={<ProgressStepper />}
         // instance={setInstance}
       >
-        <PStartMenu hashKey={"Start"} setChanges={setChanges} reset={reset} setReset={setReset}/>
-        <PWhy hashKey={"Why"} setChanges={setChanges} reset={reset}/>
-        <PWhat hashKey={"What"}  setChanges={setChanges} reset={reset}/>
-        <PWho hashKey={"Who"} setChanges={setChanges} reset={reset}/>
+        <PStartMenu hashKey={"Start"} setChanges={setChanges} reset={reset} setReset={setReset} cookieUID={props.cookieUID} loadData={loadData} setLoadData={setLoadData}/>
+        <PWhy hashKey={"Why"} setChanges={setChanges} reset={reset} loadData={loadData}/>
+        <PWhat hashKey={"What"}  setChanges={setChanges} reset={reset} loadData={loadData}/>
+        <PWho hashKey={"Who"} setChanges={setChanges} reset={reset} loadData={loadData}/>
         <PDetails
           hashKey={"Details"}
           cookieUID={props.cookieUID}
           setChanges={setChanges}
           changes={changes}
           reset={reset}
+          loadData={loadData}
         />
       </StepWizard>
     </div>
