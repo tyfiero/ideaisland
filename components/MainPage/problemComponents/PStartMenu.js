@@ -210,7 +210,7 @@ function PStartMenu(props) {
               </div>
 
               {loadMenu && (
-                <div className="p-2 border-2 rounded-xl border-t-pm h-[20em] overflow-auto">
+                <div className="p-2 border-2 rounded-xl border-t-pm h-[20em] overflow-auto scrollbar-w-2 scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-t-bl scrollbar-track-blues-50">
                   <p>{problems?.length} Problem{problems?.length >1 && "s"}</p>
                   {problems
                     ? problems.map((idea, key) => (
@@ -257,8 +257,6 @@ function ProblemItem({ idea, goToStep, setLoadMenu, setReset, setLoadData, loadD
     <div
       className="flex items-center justify-center px-4 pt-2 sm:px-6 lg:px-8 drop-shadow-xl "
       onClick={() => {
-        // dispatch(currentDocAction(idea.identifier));
-        // dispatch(currentDocAction(idea));
         dispatch(pFormAction(idea));
         setLoadData(!loadData)
         goToStep(2);

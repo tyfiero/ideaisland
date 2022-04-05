@@ -234,7 +234,7 @@ export default function Layout({ children }) {
           )}
         </div>
         <div className="button-holder">
-          <button className="notepad-button fade-effect" onClick={togglePopup}>
+          <button className="notepad-button fade-effect text-t-pd" onClick={togglePopup}>
             {!isPopUpOpen ? (
               <FaBook style={{ fontSize: "2.2em" }} />
             ) : (

@@ -78,7 +78,7 @@ function Editor(props) {
 
 "
       >
-        <div className="w-full max-w-[82rem] p-10 space-y-8 shadow   normal-box-soft items-center flex flex-col !rounded-2xl">
+        <div className="w-full max-w-[82rem] space-y-8 shadow   normal-box-soft items-center flex flex-col !rounded-2xl">
           {(editModeRedux === "edit" || editModeRedux === "new") && (
             <>
               {" "}
@@ -137,6 +137,7 @@ function CreateNewIdea(props) {
 
   const [content, setContent] = useState("");
   const [refresh, setRefresh] = useState("");
+  const [rating, setRating] = useState(0);
 
 
   const [publish, setPublish] = useState(false);
@@ -154,7 +155,6 @@ function CreateNewIdea(props) {
     }
   }
 
-  const [rating, setRating] = useState(0);
   // console.log(setEditDocDetails.length + "docdeets");
   // console.log(serverTimestamp());
   // useEffect(() => {
@@ -396,6 +396,7 @@ function CreateNewIdea(props) {
       dataForCreation = {
         title: title,
         identifier: timeID,
+        uid: uid,
         content: sanitize(content),
         updatedAt: serverTimestamp(),
         createdAt: serverTimestamp(),

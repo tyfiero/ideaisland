@@ -16,19 +16,9 @@ import { statsAction } from "../../redux/actions";
 
 export default function IdeaFeed({ ideas, admin, type }) {
   const statsRedux = useSelector((state) => state.stats);
+  const currentDocRedux = useSelector((state) => state.currentDoc);
+
   const dispatch = useDispatch()
-  // const docRef = doc(firestore, ", "idea-1");
-  // getDoc(docRef).then((doc) => {
-  //   console.log(doc.data(), doc.id);
-  // })
-  // // const docSnap = async  () => { await getDoc(docRef)};
-  // // if (docSnap.exists()) {
-  //   // console.log("Document data:", docSnap.data());
-  // // } else {
-  // //   // doc.data() will be undefined in this case
-  // //   console.log("No such document!");
-  // // }
-  // console.log(ideas);
 
   useEffect(() => {
 //TODO, ensure the logic of the stats is working properly. Is it actually keeping track of idea number?
@@ -39,6 +29,28 @@ export default function IdeaFeed({ ideas, admin, type }) {
   
    
   }, [])// eslint-disable-line react-hooks/exhaustive-deps
+
+
+
+  //This useeffect changes the default current note on tab change, ideas, problems, or notes.
+  useEffect(() => {
+
+    if(ideas){
+
+      if(type === "ideas" && currentDocRedux.rating >= 0){
+        //empty blank func
+        const blah = () => void 0;
+      }else if(type === "notes" && !currentDocRedux.rating){
+        //empty blank func
+        const blah = () => void 0;
+      }else{
+        let currentNote = ideas[0];
+        dispatch(currentDocAction(currentNote))
+        
+      }
+          
+        }
+      }, [type, ideas])// eslint-disable-line react-hooks/exhaustive-deps
   
   return ideas
     ? ideas.map((idea, key) => (
@@ -75,16 +87,31 @@ function IdeaItem({ idea, admin = false, type }) {
     return date + ", " +clockTime;
   };
 
+
+  let clickTimer;
+  const onClickHandler = (event) => {
+    clearTimeout(clickTimer);
+    if (event.detail === 1) {
+      clickTimer = setTimeout(() => {
+        // console.log("SINGLE CLICK");
+        dispatch(currentDocAction(idea));
+        dispatch(editModeAction("display"));
+      }, 200);
+    } else if (event.detail === 2) {
+      // console.log("DOUBLE CLICK");
+      dispatch(currentDocAction(idea));
+      dispatch(editModeAction("edit"));
+    }
+  };
+
+
+  
   // console.log(idea.documentID)
   return (
     <div
       className="flex items-center justify-center px-4 pt-2 sm:px-6 lg:px-8 drop-shadow-xl md:w-[80em]  "
-      onClick={() => {
-        // dispatch(currentDocAction(idea.identifier));
-        dispatch(currentDocAction(idea));
-
-        dispatch(editModeAction("display"));
-      }}
+      onClick={onClickHandler
+      }
     >
       <div
         className={"w-[22em]  p-1  shadow !rounded-xl normal-box-soft drop-shadow-xl flex-col  items-center " + (type === "ideas" ? "bg-blues-100/70" : (type === "problem" ? "bg-t-pl/70" : "bg-t-bpop/30"))}

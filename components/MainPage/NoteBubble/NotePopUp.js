@@ -12,7 +12,10 @@ import {
   FaPlus,
   FaExclamationTriangle,
   FaStickyNote,
+  FaExternalLinkAlt,
 } from "react-icons/fa";
+
+import { useRouter } from "next/router";
 
 const Label = styled.label`
   font-weight: bold;
@@ -25,35 +28,36 @@ const Label = styled.label`
 `;
 const NotePopUp = (props) => {
   //redux
+  const router = useRouter();
   const notesRedux = useSelector((state) => state.notes);
   const [isSaved, setIsSaved] = useState(false);
-  const [noteType, setnoteType] = useState("note");
+  const [noteType, setnoteType] = useState("idea");
 
   const [isAutoSaved, setIsAutoSaved] = useState(false);
 
   //   console.log(notesRedux);
 
   //   const [textAreaContent, setTextAreaContent] = useState("");
-  let current = new Date();
-  let cTime =
-    current.getHours() +
-    ":" +
-    current.getMinutes() +
-    ":" +
-    current.getSeconds();
-  let savedMessage = "Saved at: " + cTime;
+  // let current = new Date();
+  // let cTime =
+  //   current.getHours() +
+  //   ":" +
+  //   current.getMinutes() +
+  //   ":" +
+  //   current.getSeconds();
+  // let savedMessage = "Saved at: " + cTime;
 
-  const saveHandler = () => {
-    localStorage.setItem("notes", notesRedux);
-    setIsSaved(true);
+  // const saveHandler = () => {
+  //   localStorage.setItem("notes", notesRedux);
+  //   setIsSaved(true);
 
-    setTimeout(function () {
-      //   console.log(event.target.value + " LONG");
+  //   setTimeout(function () {
+  //     //   console.log(event.target.value + " LONG");
 
-      setIsSaved(false);
-    }, 3000);
-    // console.log(notesRedux);
-  };
+  //     setIsSaved(false);
+  //   }, 3000);
+  //   // console.log(notesRedux);
+  // };
 
   //AUTOSAVE
   //   setInterval(function () {
@@ -85,14 +89,15 @@ const NotePopUp = (props) => {
   // let idea =
 
   return (
-    <div className="popup-box fade-effect-fast">
+    <div className="popup-box fade-effect-turbo">
       <div className="box fade-effect-fast">
         {/* <span className="close-icon" onClick={props.handleClose}>
           x
         </span> */}
-        <p className="text-[22px]">Notes</p>
-        <div className="flex items-center justify-center w-full gap-3 py-2 align-middle fade-effect-fast note-button-div">
-          <button
+        {/* <p className="text-[22px]">{noteType=== "idea" ? "Quick Idea" :"Quick Note"}</p> */}
+
+        <div className="flex items-center justify-center w-full gap-3 pb-3 align-middle fade-effect-fast note-button-div">
+          {/* <button
             // className="flex items-center notes-btn-sm"
             className={
               noteType === "idea"
@@ -105,55 +110,69 @@ const NotePopUp = (props) => {
             <FaPlus style={{ fontSize: "16px" }} />
             <p className="pl-2 pr-1">Idea</p>
             <FaLightbulb style={{ fontSize: "16px" }} />
-          </button>
+          </button> */}
+
+          <div className="flex w-[20em] p-2 gap-2 items-center justify-evenly text-center normal-box-soft">
+            <button
+              className={
+                "w-[8em] h-[2em] rounded-3xl  flex items-center justify-center text-white gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer " +
+                (noteType === "idea"
+                  ? " bg-t-bl shadow-lg shadow-t-bl/60"
+                  : " bg-slate-300 shadow-inner")
+              }
+              onClick={() => setnoteType("idea")}
+            >
+              <FaLightbulb className="text-[18px] text-t-bd" />
+
+              <p
+                className={
+                  "mr-1  mb-0 " +
+                  (noteType === "idea"
+                    ? "text-white text-[20px]"
+                    : "text-black text-[18px]")
+                }
+              >
+                Quick Idea
+              </p>
+            </button>
+
+            <button
+              className={
+                "w-[8em] h-[2em] rounded-3xl bg-t-bl flex items-center justify-center text-white gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer " +
+                (noteType === "note"
+                  ? " bg-t-bpop/80 shadow-lg shadow-t-bpop/50"
+                  : " bg-slate-300 shadow-inner")
+              }
+              onClick={() => setnoteType("note")}
+            >
+              <FaStickyNote className="text-[18px] text-t-bd" />
+
+              <p
+                className={
+                  "mr-1 mb-0 " +
+                  (noteType === "note"
+                    ? "text-white text-[20px]"
+                    : "text-black text-[18px]")
+                }
+              >
+                Quick Note
+              </p>
+            </button>
+          </div>
+        </div>
+        <div className="absolute top-5 right-3">
           <button
-            // className="flex items-center notes-btn-sm"
             className={
-              noteType === "problem"
-                ? "flex items-center notes-btn-sm notes-btn-sm-selected"
-                : "flex items-center notes-btn-sm"
+              "w-[6em] h-[2em] rounded-3xl bg-t-pl flex items-center justify-center text-t-pd gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer "
             }
-            onClick={() => setnoteType("problem")}
+            onClick={() => {router.push("/notes")}}
           >
-            <FaPlus style={{ fontSize: "16px" }} />
-            <p className="pl-1 pr-1 text-[16px]">Problem</p>
-            <FaExclamationTriangle style={{ fontSize: "16px" }} />
-          </button>
-          <button
-            // className="flex items-center notes-btn-sm"
-            className={
-              noteType === "note"
-                ? "flex items-center notes-btn-sm notes-btn-sm-selected"
-                : "flex items-center notes-btn-sm"
-            }
-            onClick={() => setnoteType("note")}
-          >
-            <FaPlus style={{ fontSize: "16px" }} />
-            <p className="pl-1 pr-1 text-[16px]">Note</p>
-            <FaStickyNote style={{ fontSize: "16px" }} />
+            {noteType === "idea" ? "All Ideas" : "All Notes"} <FaExternalLinkAlt />
           </button>
         </div>
         {noteType === "idea" && <IdeaNote />}
-        {noteType === "problem" && <ProblemNote />}
+        {/* {noteType === "problem" && <ProblemNote />} */}
         {noteType === "note" && <NoteNote />}
-
-        <div className="save-wrapper">
-          {/* <Toggle
-                id="cheese-status"
-                icons={false}
-                defaultChecked={isAutoSaved}
-                onChange={handleToggleChange}
-              />
-              <label htmlFor="cheese-status">Autosave</label> */}
-
-          {/* <button
-            className="card__btn_prev save_button fade-effect"
-            onClick={saveHandler}
-          >
-            Save
-          </button> */}
-        </div>
-        {isSaved && <p className="saved-message">{savedMessage}</p>}
       </div>
     </div>
   );

@@ -12,7 +12,7 @@ class MyDocument extends Document {
         <Head >
         <Header />
         </Head >
-        <body>
+        <body >
           <div className="blobs rotate-effect-slow">
             <div className="svg-blob1 rotate-effect scale-effect"></div>
             <div className="svg-blob2 rotate-effect scale-effect"></div>

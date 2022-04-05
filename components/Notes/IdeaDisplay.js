@@ -661,26 +661,23 @@ export default function IdeaDisplay(props) {
       
           </div>
         )}
-        {/* <div className="h-[20em] w-full"> */}
         <img
           ref={imgRef}
           // onLoad={()=>{console.log("IMG LOADED")}}
-
           style={{ objectPosition: "0px " + position + "px" }}
           className={" w-full fade-effect-turbo "}
-          // src={currentDocRedux?.imgUrl || defaultPic}
           src={imgSrc}
 
           alt="cover image"
         />
       </div>
-      {/* )} */}
-      {/* </div> */}
       <div className="normal-box-soft text-t-bd text-[28px] p-5 mt-3">
         <h2 className="mx-3 ">{currentDocRedux?.title || "*Unnamed Idea"}</h2>
       </div>
-      <div className="flex items-center my-2 justify-between w-[98%]">
-        <div className="flex items-center gap-1 ">
+     
+     
+     <div className={"flex items-center my-2  w-[98%] " + (type=== "ideas" ? "justify-between" : "justify-end")}>
+     {type === "ideas" && (<><div className="flex items-center gap-1 ">
           <p className="text-[22px] text-t-bd">Rating</p>
           <Stars  hover={false} rating={currentDocRedux?.rating} />
         </div>
@@ -696,12 +693,14 @@ export default function IdeaDisplay(props) {
               <p className="text-t-pd">Private</p>
             </div>
           )}
-        </div>
+        </div></>)}
+
+
+        
         <div>
           <button
             className="w-[9em] h-[2em] rounded-3xl bg-t-bl flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer"
             onClick={() => {
-              // setEditMode(!editMode);
               dispatch(editModeAction("edit"));
             }}
           >
@@ -710,12 +709,9 @@ export default function IdeaDisplay(props) {
           </button>
         </div>
       </div>
-      {/* <div>
-            <p>{ "current position:" + position}</p>
-            <p>{ "dbimg position:" + dbImgPosition}</p>
 
-        </div> */}
-      <div className="normal-box-soft w-full !rounded-2xl">
+      
+      <div className={"normal-box-soft w-full !rounded-2xl first-letter:" + (type === "ideas" ? " !bg-blues-100/70" : " !bg-t-bpop/30")}>
         <div className="normal-box mt-1 mx-1 min-h-[15em] !rounded-2xl mb-4 ">
           <div
             className="mx-2"
@@ -726,5 +722,6 @@ export default function IdeaDisplay(props) {
         </div>
       </div>
     </div>
+
   );
 }

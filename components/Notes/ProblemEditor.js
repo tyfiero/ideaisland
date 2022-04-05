@@ -95,7 +95,7 @@ function ProblemEditor(props) {
 
 "
       >
-        <div className="w-full max-w-[82rem] p-3 space-y-8 shadow   normal-box-soft items-center flex flex-col !rounded-2xl">
+        <div className="w-full max-w-[82rem] p-3 space-y-8 shadow   normal-box-soft items-center flex flex-col !rounded-2xl !bg-t-pl/30">
             <>
               {/* <div className="heading">Edit Idea</div> */}
               <CreateNewProblem
@@ -416,7 +416,7 @@ function CreateNewProblem(props) {
       {/* <div className="flex items-center justify-center">
         <h1 className="heading-top">My Ideas & Notes</h1>
       </div>  */}
-      <div className="flex flex-col items-center w-[100%] normal-box-soft !rounded-xl">
+      <div className="flex flex-col items-center w-[100%] normal-box-soft !rounded-xl !bg-white/60">
 
 
         <FullLoader show={loading} />

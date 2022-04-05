@@ -67,7 +67,7 @@ console.log(currentNote)
           <IdeaSideBar cookieUID={props.cookieUID} type={currentNote} setCurrentNote={setCurrentNote}/>
         </div>
 
-        <div className="mt-1 note-grid-2">
+        <div className="note-grid-2">
          {currentNote !== "problem"  && <Editor cookieUID={props.cookieUID} type={currentNote}/>} 
          {currentNote === "problem" && <ProblemEditor cookieUID={props.cookieUID} type={currentNote}/>} 
   

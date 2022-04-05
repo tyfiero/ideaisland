@@ -1002,7 +1002,7 @@ p {
   top: 0;
   right: 0%;
   margin-top: 48vh;
-  z-index: 10;
+  z-index: 1000;
 }
 @media screen and (min-width: 480px) {
   body {
@@ -1016,7 +1016,7 @@ p {
   .notepad-button {
     display: flex;
     flex-direction: column;
-    padding-top: 0.5em;
+    padding-top: 0.9em;
     background: linear-gradient(145deg, #f5eef8, var(--colorLight1));
     box-shadow: 5px 5px 11px #b3b3b3, -5px -5px 5px #ece4eb;
     height: 5em;
@@ -1033,7 +1033,7 @@ p {
     height: 30%;
     top: 0;
     left: 0%;
-    z-index: 200;
+    z-index: 2000;
     padding-right: 1.5em;
     margin: 1em;
     margin-top: 40% !important;
@@ -1045,7 +1045,7 @@ p {
     margin: 0 auto;
     height: auto;
     max-height: 70vh;
-    z-index: 7;
+    z-index: 700;
     text-align: center;
 
     padding: 10px;
@@ -1079,7 +1079,7 @@ p {
   .notepad-button {
     display: flex;
     flex-direction: column;
-    padding-top: 0.5em;
+    padding-top: 0.9em;
 
     border-radius: 130px;
     background: linear-gradient(145deg, #f5eef8, var(--colorLight1));

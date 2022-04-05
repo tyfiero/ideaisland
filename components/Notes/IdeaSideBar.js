@@ -54,7 +54,7 @@ let type = props.type;
 
   return (
     <div className="overflow-hidden">
-    <div className="normal-box-soft fade-effect-quick flex flex-col items-center !h-[80vh] overflow-y-auto overflow-x-hidden !rounded-2xl">
+    <div className="normal-box-soft fade-effect-quick flex flex-col items-center !h-[80vh] overflow-y-auto overflow-x-hidden !rounded-2xl scrollbar-w-2 scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-t-bl scrollbar-track-blues-50">
       {type === "ideas" && (
         <>
           <h1 className="heading-top">Ideas</h1>
@@ -279,7 +279,7 @@ let type = props.type
       <IdeaFeed ideas={ideaSearch} admin type={props.type}/>
 
       
-      {searchValue?.length > 0 && ideas?.length > 0 ? <p className="mt-2 text-xs text-slate-400">Displaying {ideaSearch?.length} of {ideas?.length}</p> : <p className="mt-2 text-xs text-slate-400">{ideas?.length}{(props.type === "problem" ? " problems" : (props.type === "ideas" ? "ideas" : " notes"))}</p>}
+      {searchValue?.length > 0 && ideas?.length > 0 ? <p className="mt-2 text-xs text-slate-400">Displaying {ideaSearch?.length} of {ideas?.length}</p> : <p className="mt-2 text-xs text-slate-400">{ideas?.length}{(props.type === "problem" ? " problems" : (props.type === "ideas" ? " ideas" : " notes"))}</p>}
     </>
   );
 }

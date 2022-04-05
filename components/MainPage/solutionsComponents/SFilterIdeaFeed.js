@@ -18,7 +18,6 @@ import sanitize from "../../../lib/sanitize";
 import { useState, useEffect } from "react";
 import {
   statsAction,
-  currentDocAction,
   editModeAction,
 } from "../../../redux/actions";
 import { sFormAction, sUpdateAction } from "../../../redux/actions";
@@ -62,7 +61,6 @@ function IdeaItem({ idea, admin = false }) {
   // const [hover, setHover] = useState(false);
   const [clicked, setClicked] = useState(false);
 
-  const currentDocRedux = useSelector((state) => state.currentDoc);
   const sFormRedux = useSelector((state) => state.sForm);
   const sUpdate = useSelector((state) => state.sUpdate);
 
