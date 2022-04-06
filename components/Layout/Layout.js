@@ -63,7 +63,7 @@ export default function Layout({ children }) {
     if(isMobile){
       router.push("/mobile")
     }
-  }, []);
+  }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
 
   // if(typeof window === "undefined"){
@@ -215,7 +215,7 @@ export default function Layout({ children }) {
           <Sidebar2 toggle={isToggled} />
           <CircleTimer />
         </div>
-        <div className="fade-effect-quick content">
+        <div className="overflow-y-auto fade-effect-quick content ">
           <main>{children}</main>
         </div>
         <div>

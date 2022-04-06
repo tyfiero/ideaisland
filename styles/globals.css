@@ -55,6 +55,7 @@ body {
   background-size: 100% 100%;
   background-attachment: fixed;
   background-repeat: no-repeat;
+  overflow-y: auto;
 }
 
 *,
@@ -73,6 +74,38 @@ body {
 p {
   margin-bottom: 0 !important;
 }
+
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  /* display: none; */
+
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #e7f4fe;
+  border-radius: 15px;
+
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--colorDark1);
+  border-radius: 15px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--colorDark2);
+}
+
+
+
+
+
 
 .svg-blob1 {
   background-color: var(--colorLight1);
@@ -532,7 +565,6 @@ p {
   justify-content: center;
   align-items: center;
   padding: 2em;
-  gap: 2em;
 }
 .help-page {
   display: flex;

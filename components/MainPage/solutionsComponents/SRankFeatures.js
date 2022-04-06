@@ -150,7 +150,7 @@ function SRankFeatures(props) {
     // props.update("Features", );
     // console.log(updatedObj)
   };
-
+// eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     // eslint-disable-line react-hooks/exhaustive-deps
     console.log("shit changed");

@@ -172,7 +172,7 @@ function CreateNewIdea(props) {
   // }, []);// eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => {
   setRefresh(!refresh)
-  }, [props.type]);
+  }, [props.type]);// eslint-disable-line react-hooks/exhaustive-deps
 
 
 

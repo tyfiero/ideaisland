@@ -41,7 +41,7 @@ function PStartMenu(props) {
 
   useEffect(() => {
     setRerender(!reRender);
-  }, [props.reset]);
+  }, [props.reset]);// eslint-disable-line react-hooks/exhaustive-deps
 
   //Done? I think it works now after adding nextjs firebase cookies.
   //TODO memoize this so that firebase reads less
