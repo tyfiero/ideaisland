@@ -23,6 +23,7 @@
 
 :root {
   --colorPop: #00fff8;
+  --colorLight3: #d662bf;
 
   --colorLight2: #be0081;
   --colorLight1: #eec3fd;
@@ -2288,17 +2289,29 @@ ul {
   border-radius: 2em;
 }
 
-input[type="range"]::-webkit-slider-runnable-track {
-  -webkit-appearance: none;
+.blue{
   background: var(--colorDark1);
-
   background: linear-gradient(
     45deg,
     var(--colorDark2) 0%,
     var(--colorDark1) 25%,
-    var(--colorLight1) 61%,
-    var(--colorLight2) 100%
+    var(--colorDark1) 31%,
+    var(--colorPop) 100%
   );
+}
+.pink-range{
+  background: var(--colorDark1);
+  background: linear-gradient(
+    45deg,
+    var(--colorLight2) 0%,
+    var(--colorLight3) 25%,
+    var(--colorLight1) 81%,
+    var(--colorLight1) 100%
+  );
+}
+input[type="range"]::-webkit-slider-runnable-track {
+  -webkit-appearance: none;
+
   height: 22px;
   border-radius: 3em;
   box-shadow: inset 2px 2px 4px #00000080, inset -2px -2px 4px #ffffffc0;

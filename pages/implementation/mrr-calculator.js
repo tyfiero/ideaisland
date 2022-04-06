@@ -340,7 +340,7 @@ let profitAmount;
 <div className="flex items-center ">
   <input
     type="range"
-    className="mr-8 blue range"
+    className="mr-8 pink-range range"
     min={0}
     max={10000}
     value={infrastructureCost}
@@ -370,7 +370,7 @@ let profitAmount;
 <div className="flex items-center ">
   <input
     type="range"
-    className="mr-8 blue range"
+    className="mr-8 pink-range range"
     min={0}
     max={50000}
     value={laborCost}
@@ -400,7 +400,7 @@ let profitAmount;
 <div className="flex items-center ">
   <input
     type="range"
-    className="mr-8 blue range"
+    className="mr-8 pink-range range"
     min={0}
     max={5000}
     value={marketingCost}
@@ -429,7 +429,7 @@ let profitAmount;
 <div className="flex items-center ">
   <input
     type="range"
-    className="mr-8 blue range"
+    className="mr-8 pink-range range"
     min={0}
     max={50000}
     value={otherCosts}
