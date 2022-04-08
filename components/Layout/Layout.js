@@ -63,6 +63,11 @@ export default function Layout({ children }) {
       router.push("/mobile");
     }
 
+
+    //set bg opacity
+    let opacityNum = localStorage.getItem("colorOpacity") || 0.6;
+
+    document.documentElement.style.setProperty("--blobOpacity", opacityNum);
     //set bg colors
     let blobc1 = localStorage.getItem("blob1") || "#4eaef7";
     let blobc2 = localStorage.getItem("blob2") || "#2549a8";
@@ -70,13 +75,9 @@ export default function Layout({ children }) {
     let blobc4 = localStorage.getItem("blob4") || "#eec3fd";
     let blobc5 = localStorage.getItem("blob5") || "#00fff8";
     document.documentElement.style.setProperty("--blob1", blobc1);
-
     document.documentElement.style.setProperty("--blob2", blobc2);
-
     document.documentElement.style.setProperty("--blob3", blobc3);
-
     document.documentElement.style.setProperty("--blob4", blobc4);
-
     document.documentElement.style.setProperty("--blob5", blobc5);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
