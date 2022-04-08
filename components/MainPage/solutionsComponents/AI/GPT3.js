@@ -224,7 +224,7 @@ const GPTtool = () => {
   var gpt3Button = "GPT-3";
 
   return (
-    <div className="flex items-center">
+    <div className="flex flex-col items-center">
       <div className="flex flex-col">
       <button
         className="card__btn_prev w-[8rem]  flex px-3 items-center rainbow-effect "

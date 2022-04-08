@@ -18,7 +18,7 @@ const SolutionProgressStepper = (props) => {
  
 
   return (
-    <div className="absolute w-16 mt-[2em] right-10 normal-box-soft z-50">
+    <div className="absolute w-16 mt-[2em] right-10 normal-box-soft z-50 select-none">
       <div className={"mb-2 flex flex-col   items-center "}>
         <div className="flex flex-col items-center">
           <div

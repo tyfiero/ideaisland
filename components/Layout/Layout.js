@@ -2,7 +2,7 @@ import styled from "styled-components";
 import TopBar from "./TopBar";
 import TopBarRight from "./TopBarRight";
 import Sidebar2 from "../Sidebar/SidebarRebuild";
-import { FaBook, FaTimes } from "react-icons/fa";
+import { FaBook, FaPlus, FaTimes } from "react-icons/fa";
 
 import NotePopUp from "../MainPage/NoteBubble/NotePopUp";
 import NotePopUpModal from "../MainPage/NoteBubble/NotePopUpModal";
@@ -31,7 +31,6 @@ import { isMobile } from "react-device-detect";
 import { Router } from "next/router";
 import { useRouter } from "next/router";
 
-
 export default function Layout({ children }) {
   // console.log("Layout Rerendered")
   const router = useRouter();
@@ -59,12 +58,27 @@ export default function Layout({ children }) {
   // let user;
 
   useEffect(() => {
-
-    if(isMobile){
-      router.push("/mobile")
+    //if mobile, redirect to mobile page
+    if (isMobile) {
+      router.push("/mobile");
     }
-  }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
+    //set bg colors
+    let blobc1 = localStorage.getItem("blob1") || "#4eaef7";
+    let blobc2 = localStorage.getItem("blob2") || "#2549a8";
+    let blobc3 = localStorage.getItem("blob3") || "#be0081";
+    let blobc4 = localStorage.getItem("blob4") || "#eec3fd";
+    let blobc5 = localStorage.getItem("blob5") || "#00fff8";
+    document.documentElement.style.setProperty("--blob1", blobc1);
+
+    document.documentElement.style.setProperty("--blob2", blobc2);
+
+    document.documentElement.style.setProperty("--blob3", blobc3);
+
+    document.documentElement.style.setProperty("--blob4", blobc4);
+
+    document.documentElement.style.setProperty("--blob5", blobc5);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // if(typeof window === "undefined"){
   //   // console.log("SERVER DATA")
@@ -123,31 +137,30 @@ export default function Layout({ children }) {
     //UPDATE: I think I cleaned it up. Time to test it a bunch.  @auth...
 
     if (userData.user !== null) {
-
       // setTimeout(()=>{
 
-        if (userUIDRedux === null) {
-          console.log("LAYOUT IS SETTING USER REDUX VALUES")
-          dispatch(userUIDAction(userData.user.uid));
-        }
-        if (userPhotoRedux === null) {
-          // console.log("LAYOUT IS SETTING USER REDUX VALUES")
-  
-          dispatch(userPhotoAction(userData.user.photoURL));
-        }
-        if (userDisplayNameRedux === null) {
-          // console.log("LAYOUT IS SETTING USER REDUX VALUES")
-  
-          dispatch(userDisplayNameAction(userData.user.displayName));
-        }
-        if (userNameRedux === null) {
-          // console.log("LAYOUT IS SETTING USER REDUX VALUES")
-  
-          dispatch(userNameAction(userData.username));
-        }
-  
+      if (userUIDRedux === null) {
+        console.log("LAYOUT IS SETTING USER REDUX VALUES");
+        dispatch(userUIDAction(userData.user.uid));
+      }
+      if (userPhotoRedux === null) {
+        // console.log("LAYOUT IS SETTING USER REDUX VALUES")
+
+        dispatch(userPhotoAction(userData.user.photoURL));
+      }
+      if (userDisplayNameRedux === null) {
+        // console.log("LAYOUT IS SETTING USER REDUX VALUES")
+
+        dispatch(userDisplayNameAction(userData.user.displayName));
+      }
+      if (userNameRedux === null) {
+        // console.log("LAYOUT IS SETTING USER REDUX VALUES")
+
+        dispatch(userNameAction(userData.username));
+      }
+
       // },[2000])
-      
+
       // if (!loggedIn) {
       //   // dispatch(logIn(true));
       // }
@@ -173,7 +186,7 @@ export default function Layout({ children }) {
     }
 
     // setIsLoggedIn(true)
-  }, [userData]);// eslint-disable-line react-hooks/exhaustive-deps
+  }, [userData]); // eslint-disable-line react-hooks/exhaustive-deps
 
   let notes = "Notes";
 
@@ -234,13 +247,11 @@ export default function Layout({ children }) {
           )}
         </div>
         <div className="button-holder">
-          <button className="notepad-button fade-effect text-t-pd" onClick={togglePopup}>
-            {!isPopUpOpen ? (
-              <FaBook style={{ fontSize: "2.2em" }} />
-            ) : (
-              <FaTimes style={{ fontSize: "3.2em" }} />
-            )}
-            {!isPopUpOpen && notes}
+          <button
+            className="z-10 flex items-center justify-center w-[4em] h-[4em]  delay-200 transform rounded-full notepad-button fade-effect text-t-pd hover:scale-125 hover:rotate-90 bg-gradient-to-br from-white to-pink-300 hover:shadow-2xl duration-1000 ease-in-out"
+            onClick={togglePopup}
+          >
+            <FaPlus style={{ fontSize: "1.8em" }} />
           </button>
         </div>
       </div>

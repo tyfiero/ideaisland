@@ -1,18 +1,14 @@
-import DarkModeToggle from "../components/Layout/DarkModeToggle";
-import AuthCheck from "../components/Authentication/AuthCheck";
 
-const settings = () => {
-
+import React from 'react'
+import dynamic from 'next/dynamic';
+// import SettingsPage from '../components/MainPage/SettingsPage';
+const SettingsPageNoSSR = dynamic(() => import('../components/MainPage/SettingsPage'), {
+  ssr: false
+})
+function Settings() {
   return (
-    <AuthCheck>
-    <div className="sentence-container fade-effect-quick">
-      <h1 className="heading-top">Settings</h1>
-      <p>Dark Mode: </p>
-      <DarkModeToggle />
+    <SettingsPageNoSSR/>
+  )
+}
 
-    </div>
-    </AuthCheck>
-  );
-};
-
-export default settings;
+export default Settings;

@@ -105,10 +105,10 @@ function IdeaNote() {
     }
   }
   return (
-    <div>
+    <div className="h-full">
       {/* <Editor /> */}
 
-      <div className="flex flex-col items-center w-full gap-1 ">
+      <div className="flex flex-col items-center w-full h-full gap-1">
 
 
       <input
@@ -143,9 +143,9 @@ function IdeaNote() {
               </button>
               </div>
 
-              <div className="flex justify-center w-full p-2 rounded-b-3xl rounded-t-xl bg-blues-100/70">
+              <div className="flex justify-center w-full h-full p-2 rounded-b-3xl rounded-t-xl bg-blues-100/70">
       <div
-        className="normal-box !rounded-lg  mt-1 !rounded-b-3xl w-[97%]
+        className="normal-box !rounded-lg  mt-1 !rounded-b-3xl w-[97%] h-full
 
 "
       >
@@ -166,7 +166,7 @@ function IdeaNote() {
           formats={Editor.formats}
           theme="snow"
           // readOnly= "true"
-          className="w-[100%] !bg-white/90"
+          className="w-[100%] !bg-white/90 h-full"
           placeholder={"Describe your idea..."}
         />
       </div>

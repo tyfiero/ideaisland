@@ -22,7 +22,7 @@ function TopBar(props) {
         </Link>
         {/* <Link href="/"> */}
         {/* <Link href="/" passHref> */}
-        <p className="pt-4 logo">ideaisland</p>
+        <h4 className="pt-4 logo">ideaisland</h4>
         {/* </Link> */}
         {/* </Link> */}
       </div>

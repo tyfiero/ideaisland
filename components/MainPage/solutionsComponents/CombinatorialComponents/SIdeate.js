@@ -17,6 +17,9 @@ import {
 } from "react-icons/fa";
 import Link from "next/link";
 
+import Image from "next/image";
+
+
 function SIdeate(props) {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [button1, setButton1] = useState(false);
@@ -83,7 +86,18 @@ function SIdeate(props) {
             <div className="normal-box-soft">
               <h3 className="heading">Oh yes, it&apos;s idea time 😎</h3>
             </div>
+<div className="bg-white/60 rounded-xl">
 
+{/* <Image
+        alt="Next.js logo"
+        src="/palmnobgoptimized.png"
+        width={2802}
+        height={1487}
+        priority={true}
+      /> */}
+
+      <img src="/palmnobgoptimized.png" alt="palm" />
+</div>
             <div className="flex gap-5">
               {/* <button
                 className={"w-[12em] h-[4em] rounded-3xl  flex items-center justify-center text-black gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " + (button1 ? " border-4 border-t-bl bg-blues-200" : "bg-blues-100")}

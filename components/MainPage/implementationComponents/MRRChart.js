@@ -9,9 +9,13 @@ import {
   Title,
   Tooltip,
   Legend,
+  Scale,
   Scales,
   Animations,
 } from "chart.js";
+
+
+
 
 // import faker from 'faker';
 const { faker } = require("@faker-js/faker");
@@ -79,9 +83,13 @@ const MRRChart = (props) => {
   };
 
   return (
-    <div className="w-[35em]  bg-clear-snow rounded-2xl">
+    <div className="w-[35em]  bg-clear-snow rounded-2xl items-center flex-col flex">
+
+      <div className="flex items-center w-full">
+      <p className="mt-10 ml-2">$</p>
       <Line
         data={chartData}
+        className="mr-2"
         options={{
           responsive: true,
           
@@ -97,26 +105,15 @@ const MRRChart = (props) => {
             },
             legend: {
               display: true,
-              position: "bottom",
+              position: "top",
             },
             scales: {
-              x: {
-                display: true,
-                title: {
-                  display: true,
-                  text: 'Month'
-                }
-              },
-              y: {
-                display: true,
-                title: {
-                  display: true,
-                  text: '$'
-                }
-              }
-            }
+             
+            }   
         }}}
       />
+      </div>
+      <p>Months</p>
     </div>
   );
 };

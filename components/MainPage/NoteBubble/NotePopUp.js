@@ -112,10 +112,10 @@ const NotePopUp = (props) => {
             <FaLightbulb style={{ fontSize: "16px" }} />
           </button> */}
 
-          <div className="flex w-[20em] p-2 gap-2 items-center justify-evenly text-center normal-box-soft">
+          <div className="flex w-[22em] p-2 gap-2 items-center justify-evenly text-center normal-box-soft">
             <button
               className={
-                "w-[8em] h-[2em] rounded-3xl  flex items-center justify-center text-white gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer " +
+                "w-[10em] h-[2em] rounded-3xl  flex items-center justify-center text-white gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer " +
                 (noteType === "idea"
                   ? " bg-t-bl shadow-lg shadow-t-bl/60"
                   : " bg-slate-300 shadow-inner")
@@ -138,7 +138,7 @@ const NotePopUp = (props) => {
 
             <button
               className={
-                "w-[8em] h-[2em] rounded-3xl bg-t-bl flex items-center justify-center text-white gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer " +
+                "w-[10em] h-[2em] rounded-3xl bg-t-bl flex items-center justify-center text-white gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer " +
                 (noteType === "note"
                   ? " bg-t-bpop/80 shadow-lg shadow-t-bpop/50"
                   : " bg-slate-300 shadow-inner")
