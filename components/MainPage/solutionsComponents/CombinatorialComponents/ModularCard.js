@@ -8,8 +8,8 @@ import {
   nounOptions,
   outcomeOptions,
 } from "./ListData";
-import useKeyboardShortcut from 'use-keyboard-shortcut'
-
+// import useKeyboardShortcut from 'use-keyboard-shortcut'
+import useKeyboardShortcut from "../../../../lib/useKeyboardShortcut";
 function ModularCard({ card }) {
   const [type, setType] = useState("Intro");
   const [list, setList] = useState("List");
