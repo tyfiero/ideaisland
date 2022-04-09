@@ -8,7 +8,7 @@ function TopBar(props) {
   //   console.log("Clicked Logo");
   //   };
   return (
-    <nav id="navbar">
+    <nav id="navbar ">
       <div className="flex nav-wrapper">
         <Link href="/" passHref>
           <img
@@ -22,7 +22,7 @@ function TopBar(props) {
         </Link>
         {/* <Link href="/"> */}
         {/* <Link href="/" passHref> */}
-        <h4 className="pt-4 logo">ideaisland</h4>
+        <h4 className="z-50 pt-4 logo">ideaisland</h4>
         {/* </Link> */}
         {/* </Link> */}
       </div>

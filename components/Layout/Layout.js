@@ -31,6 +31,8 @@ import { isMobile } from "react-device-detect";
 import { Router } from "next/router";
 import { useRouter } from "next/router";
 
+import FullSidebar from "../Sidebar/FullSidebar";
+
 export default function Layout({ children }) {
   // console.log("Layout Rerendered")
   const router = useRouter();
@@ -214,20 +216,20 @@ export default function Layout({ children }) {
         <div>
           <Toaster />
         </div>
-        <div className="logo-bar">
+        <div className="logo-bar bg-white/40">
           <TopBar />
         </div>
-        <div className="top-bar">
+        <div className="bg-white/40 top-bar">
           {/* {loading ? <FullLoader />: <TopBarRight user={user} />} */}
 
           <TopBarRight />
         </div>
 
-        <div className="side-nav-bar">
+        <div className="side-nav-bar bg-white/40">
           {/* <Sidebar toggle={isToggled} />
            */}
           <Sidebar2 toggle={isToggled} />
-          <CircleTimer />
+          {/* <FullSidebar /> */}
         </div>
         <div className="overflow-y-auto fade-effect-quick content ">
           <main>{children}</main>
@@ -249,7 +251,7 @@ export default function Layout({ children }) {
         </div>
         <div className="button-holder">
           <button
-            className="z-10 flex items-center justify-center w-[4em] h-[4em]  delay-200 transform rounded-full notepad-button fade-effect text-t-pd hover:scale-125 hover:rotate-90 bg-gradient-to-br from-white to-pink-300 hover:shadow-2xl duration-1000 ease-in-out"
+            className="z-100 flex items-center justify-center w-[4em] h-[4em]  delay-200 transform rounded-full notepad-button fade-effect text-t-pd hover:scale-125 hover:rotate-90 bg-gradient-to-br from-white to-pink-300 hover:shadow-2xl duration-1000 ease-in-out"
             onClick={togglePopup}
           >
             <FaPlus style={{ fontSize: "1.8em" }} />

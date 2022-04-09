@@ -30,6 +30,9 @@ const SettingsPage = () => {
   const [color4, setColor4] = useState(blobc4);
   const [color5, setColor5] = useState(blobc5);
 
+  const [imgSrc, setImgSrc] = useState("https://images.unsplash.com/photo-1499796683658-b659bc751db1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80");
+
+
 //   console.log([color, color2, color3, color4, color5]);
 
   useEffect(() => {
@@ -47,18 +50,28 @@ const SettingsPage = () => {
     //if localstorage color is not the same as the color state, set the localstorage to the color state
 
     document.documentElement.style.setProperty("--blob1", color);
+    document.documentElement.style.setProperty("--colorDark1", color);
+
     localStorage.setItem("blob1", color);
 
     document.documentElement.style.setProperty("--blob2", color2);
+    document.documentElement.style.setProperty("--colorDark2", color2);
+
     localStorage.setItem("blob2", color2);
 
     document.documentElement.style.setProperty("--blob3", color3);
+    document.documentElement.style.setProperty("--colorLight2", color3);
+
     localStorage.setItem("blob3", color3);
 
     document.documentElement.style.setProperty("--blob4", color4);
+    document.documentElement.style.setProperty("--colorLight1", color4);
+
     localStorage.setItem("blob4", color4);
 
     document.documentElement.style.setProperty("--blob5", color5);
+    document.documentElement.style.setProperty("--colorPop", color5);
+
     localStorage.setItem("blob5", color5);
   }, [color, color2, color3, color4, color5]);// eslint-disable-line react-hooks/exhaustive-deps
 
@@ -104,6 +117,18 @@ const SettingsPage = () => {
     localStorage.setItem("colorOpacity", colorOpacity);
   }, [colorOpacity]);
 
+
+
+
+  useEffect(() => {
+ 
+
+    document.querySelector('body').style.backgroundImage = (`url(${imgSrc})`);
+  }, [imgSrc]);
+
+
+
+  
   return (
     //  <AuthCheck>
     <div className="sentence-container fade-effect-quick">
@@ -143,9 +168,43 @@ const SettingsPage = () => {
                 {changeColor ? "Done" : "Change"}
               </button>
             </div>
+            <div className="flex items-center gap-5">
+              <p>Background image</p>
+              <input
+              className="w-[96%] textarea-box"
+              value={imgSrc}
+              onChange={(e) => {
+                setImgSrc(e.target.value);
+               
+              }}
+              placeholder="Image Url"
+              minLength={3}
+              maxLength={150}
+              // className={styles.input}
+            />
+             {imgSrc && <button
+                onClick={() => setImgSrc("")}
+                className="p-1 text-white bg-t-pm rounded-xl"
+              >
+                  Delete
+              </button>}
+            </div>
           </div>
-          <p>Your username is: {username}</p>
-          <p>Your uid is: {user?.uid}</p>
+          {/* <p>Your username is: {username}</p>
+          <p>Your uid is: {user?.uid}</p> */}
+          {/* {changeColor && <div className="text-left rounded-2xl">
+          <p className="pl-5 bg-t-bpop rounded-t-xl">Accent Color</p>
+
+          <p className="pl-5 bg-t-bd">Color 1 dark</p>
+          <p className="pl-5 bg-t-pl">Color 2 light</p>
+          <p className="pl-5 bg-t-pm">Color 2 medium</p>
+          <p className="pl-5 bg-t-pd rounded-b-xl">Color 2 dark</p>
+
+        
+          </div>} */}
+
+
+
           {loading && <div className="h-[20em] w-[35em] bg-t-bl">LOADING</div>}
           {!user && (
             <div className="h-[40em] w-[35em] bg-t-pm">
@@ -166,23 +225,29 @@ const SettingsPage = () => {
 
           <div className="flex flex-wrap items-center justify-center gap-5">
             <div className="flex flex-col items-center">
-              <p>Color 1</p>
+          <p className="p-2 rounded-xl bg-t-bl ">Color 1 light</p>
+
               <ChromePicker color={color} onChange={(x) => setColor(x.hex)} />
             </div>
             <div className="flex flex-col items-center">
-              <p>Color 2</p>
+          <p className="p-2 text-white rounded-xl bg-t-bd">Color 1 dark</p>
+
               <ChromePicker color={color2} onChange={(x) => setColor2(x.hex)} />
             </div>
+           
             <div className="flex flex-col items-center">
-              <p>Color 3</p>
+          <p className="p-2 rounded-xl bg-t-pl ">Color 2 light</p>
+
+              <ChromePicker color={color4} onChange={(x) => setColor4(x.hex)} />
+            </div>
+             <div className="flex flex-col items-center">
+          <p className="p-2 text-white rounded-xl bg-t-pd">Color 2 dark</p>
+
               <ChromePicker color={color3} onChange={(x) => setColor3(x.hex)} />
             </div>
             <div className="flex flex-col items-center">
-              <p>Color 4</p>
-              <ChromePicker color={color4} onChange={(x) => setColor4(x.hex)} />
-            </div>
-            <div className="flex flex-col items-center">
-              <p>Color 5</p>
+          <p className="p-2 rounded-xl bg-t-bpop ">Accent Color</p>
+
               <ChromePicker color={color5} onChange={(x) => setColor5(x.hex)} />
             </div>
           </div>

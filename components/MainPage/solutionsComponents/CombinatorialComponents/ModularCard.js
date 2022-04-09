@@ -9,6 +9,7 @@ import {
   nounOptions,
   outcomeOptions,
 } from "./ListData";
+import useKeyboardShortcut from 'use-keyboard-shortcut'
 
 function ModularCard({ card }) {
   const [type, setType] = useState("Intro");
@@ -23,6 +24,24 @@ function ModularCard({ card }) {
   const [colorClass, setColorClass] = useState(" blue-card");
   const focusTextInput = useRef(null);
 
+  const { flushHeldKeys } = useKeyboardShortcut(
+    ["Enter"],
+    (shortcutKeys) => {
+        
+        if(contentEdit){
+            setContentEdit(false);
+            
+        }
+    },
+    { 
+      overrideSystem: false,
+      ignoreInputFields: false, 
+      repeatOnHold: false 
+    }
+  );
+
+
+  
   console.log(card);
 useEffect(() => {
     if(contentEdit){

@@ -129,7 +129,7 @@ function IdeaItem({ idea, admin = false, type }) {
             {/* <Link href={`/${idea.username}/${idea.slug}`}>
               <a> */}
             <div className="cursor-pointer">
-              <h2 className="text-t-bd truncate text-[18px]">{idea.title || "*Unnamed Idea"}</h2>
+              <h2 className="text-t-bd truncate text-[18px] nun ">{idea.title || "*Unnamed Idea"}</h2>
               {/* <p className="truncate text-[14px]">{idea.content}</p> */}
             
             {type === "problem" && (<><p

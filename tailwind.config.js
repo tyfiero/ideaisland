@@ -43,18 +43,49 @@ module.exports = {
           900: "#691b74",
         },
         t: {
-          bpop: "#00fff8",
-          bd: "#2549A8",
-          bl: "#4EAEF7",
-          pd: "#be0081",
-          pm: "#d662bf",
-          pl: "#EEC3FD",
+          bpop: "var(--colorPop)",
+          bd: "var(--colorDark2)",
+          bl: "var(--colorDark1)",
+          pd: "var(--colorLight2)",
+          pm: "var(--colorLight3)",
+          pl: "var(--colorLight1)",
         },
         clear: {
           bd: "RGBA(37, 73, 165, 0.3)",
-          bl: "RGBA(78, 174, 247, 0.7)",
+          bl: "RGBA(78, 174, 247, 0.9)",
           pd: "RGBA(178, 92, 201, 0.3)",
-          pl: "RGBA(238, 195, 253, 0.6)",
+          pl5: "RGBA(var(--colorLight1base), 0.9)",
+          pl4: "RGBA(var(--colorLight1base), 0.7)",
+          pl3: "RGBA(var(--colorLight1base), 0.5)",
+          pl2: "RGBA(var(--colorLight1base), 0.3)",
+          pl1: "RGBA(var(--colorLight1base), 0.1)",
+
+          pm5: "RGBA(var(--colorLight3base), 0.9)",
+          pm4: "RGBA(var(--colorLight3base), 0.7)",
+          pm3: "RGBA(var(--colorLight3base), 0.5)",
+          pm2: "RGBA(var(--colorLight3base), 0.3)",
+          pm1: "RGBA(var(--colorLight3base), 0.1)",
+
+          pd5: "RGBA(var(--colorLight2base), 0.9)",
+          pd4: "RGBA(var(--colorLight2base), 0.7)",
+          pd3: "RGBA(var(--colorLight2base), 0.5)",
+          pd2: "RGBA(var(--colorLight2base), 0.3)",
+          pd1: "RGBA(var(--colorLight2base), 0.1)",
+
+          bl5: "RGBA(var(--colorDark1base), 0.9)",
+          bl4: "RGBA(var(--colorDark1base), 0.7)",
+          bl3: "RGBA(var(--colorDark1base), 0.5)",
+          bl2: "RGBA(var(--colorDark1base), 0.3)",
+          bl1: "RGBA(var(--colorDark1base), 0.1)",
+
+          bd5: "RGBA(var(--colorDark2base), 0.9)",
+          bd4: "RGBA(var(--colorDark2base), 0.7)",
+          bd3: "RGBA(var(--colorDark2base), 0.5)",
+          bd2: "RGBA(var(--colorDark2base), 0.3)",
+          bd1: "RGBA(var(--colorDark2base), 0.1)",
+        
+
+
           w: "RGBA(182, 240, 255, 0.25)",
           w1: "RGBA(182, 240, 255, 0.3)",
           w2: "RGBA(182, 240, 255, 0.35)",
@@ -115,14 +146,21 @@ module.exports = {
               'background-size':'200% 200%',
               'background-position': 'right center'
           }
-      }
+      },
       },
       boxShadow: {
         "3xl": "0 35px 60px -15px rgba(0, 0, 0, 0.3)",
       },
       scale: {
         '-1': '-1'
-      }
+      },
+      backgroundSize: {
+        'size-200': '200% 200%',
+      },
+      backgroundPosition: {
+        'pos-0': '0% 0%',
+        'pos-100': '100% 100%',
+      },
     },
   },
   plugins: [

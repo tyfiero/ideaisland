@@ -32,7 +32,8 @@ function ToolBar(props) {
 
   
   return (
-    <div className="sticky top-0 z-40 flex items-center justify-between border-t-0 border-b-2 shadow-xl bg-white/90 rounded-xl ">
+    <div className="sticky top-0 z-40 flex items-center justify-between bg-white border-t-0 border-b-2 shadow-xl">
+      <div className="w-full h-full bg-gradient-to-r from-t-pl/20 to-t-bl/10">
       
       {ideaBar ? ( <div className="whitespace-nowrap flex w-[30em] ml-4"><p className="text-t-bl">Current Idea: </p><p className="ml-2 truncate text-t-pd">{ideaBar}</p></div>) : <div></div>}
       
@@ -44,6 +45,7 @@ function ToolBar(props) {
         <FaChevronRight className="cursor-pointer text-t-bl md:hover:scale-110" />
         <FaShareSquare className="cursor-pointer text-t-bd md:hover:scale-110" />
       </div>
+    </div>
     </div>
     </div>
 

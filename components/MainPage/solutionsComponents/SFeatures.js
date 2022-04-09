@@ -12,6 +12,7 @@ import {
   FaPlus,
   FaTimes,
   FaInfoCircle,
+  FaUser,
 } from "react-icons/fa";
 import Chip from "./CombinatorialComponents/Chip";
 import { useSelector, useDispatch } from "react-redux";
@@ -179,7 +180,9 @@ function SFeatures(props) {
                   conversion, or actively generate or process revenue.
                 </p>
               </div>
-
+              <p>
+                  EDIT THIS to make one button per categorybelow. that way folks can quickly add the big features and tehn be shown the detailed version of their selection in the box below.
+                </p>
               <div className="flex gap-4">
                 <button
                   className={
@@ -203,17 +206,37 @@ function SFeatures(props) {
                 </button>
                 <button
                   className={
+                    "w-[7em] h-[4em] rounded-3xl  flex items-center justify-center text-black gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
+                    (showCommonFeatures
+                      ? " border-4 border-yellow-500/70 bg-yellow-200/80"
+                      : "bg-yellow-100/80")
+                  }
+                  onClick={(e) => {
+                    setShowCommonFeatures(!showCommonFeatures);
+                    setButton2(false);
+                  }}
+                >
+                  <FaLaptopCode />
+                  Data
+                  {showCommonFeatures ? (
+                    <span className="absolute flex items-center justify-center w-6 h-6 leading-none text-center text-black rounded-full -top-2 -left-2 bg-t-pm">
+                      <FaTimes />
+                    </span>
+                  ) : null}
+                </button>
+                <button
+                  className={
                     "w-[12em] h-[4em] rounded-3xl  flex items-center justify-center text-black gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
                     (button2
-                      ? " border-4 border-t-bl bg-blues-200"
-                      : "bg-blues-100")
+                      ? " border-4 border-green-400 bg-green-200"
+                      : "bg-green-100")
                   }
                   onClick={(e) => {
                     setButton2(!button2);
                     setShowCommonFeatures(false);
                   }}
                 >
-                  <FaStar /> Feature Inspirations{" "}
+                  <FaUser /> Authentication
                   {button2 ? (
                     <span className="absolute flex items-center justify-center w-6 h-6 leading-none text-center text-black rounded-full -top-2 -left-2 bg-t-pm">
                       <FaTimes />

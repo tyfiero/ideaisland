@@ -8,6 +8,9 @@ import IdeaNote from "../../components/MainPage/NoteBubble/Idea";
 import RandomPics from "../../components/MainPage/solutionsComponents/CombinatorialComponents/RandomPics";
 import TemplateBar from "../../components/MainPage/solutionsComponents/CombinatorialComponents/TemplateBar";
 import ModularCard from "../../components/MainPage/solutionsComponents/CombinatorialComponents/ModularCard";
+import { useHotkeys } from "react-hotkeys-hook";
+import { GlobalHotKeys } from "react-hotkeys";
+import useKeyboardShortcut from 'use-keyboard-shortcut'
 
 const CombinatorialPage = (props) => {
   const isRandomized = useSelector((state) => state.randomize);
@@ -18,8 +21,30 @@ const CombinatorialPage = (props) => {
   const [aiOpen, setAiOpen] = useState(true);
   const [randomImageOpen, setRandomImageOpen] = useState(false);
   const [notesOpen, setNotesOpen] = useState(true);
+  useHotkeys('ctrl+n', (e) =>{ setNotesOpen(!notesOpen)
+  console.log(e)});
 
+const noteHandler = () => {
 
+  if(notesOpen){
+
+    setNotesOpen(true);
+    console.log("notesopen")
+
+  }else{
+    setNotesOpen(false);
+  console.log("NAH")
+    
+  }
+}
+  const keyMap = {
+    NOTES: "space",
+  };
+  const handlers = {
+    NOTES: noteHandler,
+  };
+
+ 
   // const [card0Word, setCard0Word] = useState("");
   // const [card1Word, setCard1Word] = useState("Efficiency");
   // const [card2Word, setCard2Word] = useState("Virtual Reality");
@@ -73,7 +98,10 @@ const CombinatorialPage = (props) => {
     setInputList(inputList.concat(<ModularCard card={cardInc} key={cardInc} />));
   };
   return (
+
     <div>
+    <GlobalHotKeys keyMap={keyMap} handlers={handlers} />
+
       <div className="card-container fade-effect-quick">
         {/* div that holds all the cards, note the img prop where the url lives, as well as the array thats passed in to Card.js as a prop */}
         <h1 className="heading-top">Combinatorial Tool</h1>
@@ -201,6 +229,7 @@ const CombinatorialPage = (props) => {
 </div>
       </div>
     </div>
+
   );
 };
 

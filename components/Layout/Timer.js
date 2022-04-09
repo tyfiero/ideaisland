@@ -84,7 +84,7 @@ function CircleTimer() {
         {/* <input type="number" min="1" max="60"></input> */}
         <div className="flex flex-wrap items-center justify-center gap-1 mb-3">
           <button
-            className="w-[3em] h-6 rounded-3xl bg-blues-200 flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95"
+            className="w-[3em] h-6 rounded-3xl bg-blues-200 flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 "
             onClick={() => {
               setKey((prevKey) => prevKey + 1);
               setDuration(2);
@@ -327,7 +327,7 @@ function CircleTimer() {
       <div ref={ref}>{isVisible && timerMenuContent}</div>
       {/* {timerMenuContent} */}
       <div
-        className="cursor-pointer timer-wrapper"
+        className="z-10 scale-75 cursor-pointer timer-wrapper bg-t-pl/80"
         onClick={onClickHandler}
         // onMouseEnter={() => setTimerMenuOpen(true)}
         // onMouseLeave={() => setTimerMenuOpen(false)}
@@ -340,7 +340,7 @@ function CircleTimer() {
           strokeWidth={16}
           updateInterval={0.01}
           rotation="counterclockwise"
-          colors={["#4eaef7", "#2549a8", "#eec3fd", "#be0081"]}
+          colors={["var(--colorLight2)", "#be0081", "#4eaef7", "#2549a8", ]}
           colorsTime={[10, 6, 3, 0]}
           onComplete={() => {
             setPlay(false);
