@@ -340,7 +340,7 @@ function CircleTimer() {
           strokeWidth={16}
           updateInterval={0.01}
           rotation="counterclockwise"
-          colors={["var(--colorLight2)", "#be0081", "#4eaef7", "#2549a8", ]}
+          colors={["var(--colorLight2)", "var(--colorLight1)", "#4eaef7", "#2549a8", ]}
           colorsTime={[10, 6, 3, 0]}
           onComplete={() => {
             setPlay(false);

@@ -3,7 +3,6 @@ import { Cascader } from "antd";
 import "antd/dist/antd.css";
 import { FaCheck, FaChevronDown } from "react-icons/fa";
 import {
-  options,
   verbOptions,
   introOptions,
   nounOptions,
@@ -14,7 +13,7 @@ import useKeyboardShortcut from 'use-keyboard-shortcut'
 function ModularCard({ card }) {
   const [type, setType] = useState("Intro");
   const [list, setList] = useState("List");
-  const [listOptions, setListOptions] = useState(options);
+  const [listOptions, setListOptions] = useState(introOptions);
 
   const [content, setContent] = useState("How might we");
   const [contentEdit, setContentEdit] = useState(false);
