@@ -71,16 +71,25 @@ export default function Layout({ children }) {
 
     document.documentElement.style.setProperty("--blobOpacity", opacityNum);
     //set bg colors
-    let blobc1 = localStorage.getItem("blob1") || "#4eaef7";
-    let blobc2 = localStorage.getItem("blob2") || "#2549a8";
-    let blobc3 = localStorage.getItem("blob3") || "#be0081";
-    let blobc4 = localStorage.getItem("blob4") || "#eec3fd";
-    let blobc5 = localStorage.getItem("blob5") || "#00fff8";
+    let blobc1 = localStorage.getItem("blob1") || "hsla(206,91%,64%,1)";
+    let blobc2 = localStorage.getItem("blob2") || "hsla(224,64%,40%,1)";
+    let blobc3 = localStorage.getItem("blob3") || " hsla(319,100%,37%,1)";
+    let blobc4 = localStorage.getItem("blob4") || "hsla(284,94%,88%,1)";
+    let blobc5 = localStorage.getItem("blob5") || "hsla(178,100%,50%,1)";
+    let blobc6 = localStorage.getItem("blob6") || "hsla(312,59%,61%,1)";
+
     document.documentElement.style.setProperty("--blob1", blobc1);
     document.documentElement.style.setProperty("--blob2", blobc2);
     document.documentElement.style.setProperty("--blob3", blobc3);
     document.documentElement.style.setProperty("--blob4", blobc4);
     document.documentElement.style.setProperty("--blob5", blobc5);
+    document.documentElement.style.setProperty("--blob6", blobc6);
+
+
+
+    //set img
+  let img1 = localStorage.getItem("bgImg") || "";
+  document.querySelector('body').style.backgroundImage = (`url(${img1})`);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // if(typeof window === "undefined"){
@@ -251,7 +260,7 @@ export default function Layout({ children }) {
         </div>
         <div className="button-holder">
           <button
-            className="z-100 flex items-center justify-center w-[4em] h-[4em]  delay-200 transform rounded-full notepad-button fade-effect text-t-pd hover:scale-125 hover:rotate-90 bg-gradient-to-br from-white to-pink-300 hover:shadow-2xl duration-1000 ease-in-out"
+            className="z-100 flex items-center justify-center w-[4em] h-[4em]  delay-200 transform rounded-full notepad-button fade-effect text-t-pd hover:scale-125 hover:rotate-90 bg-gradient-to-br from-white to-t-pl hover:shadow-2xl duration-1000 ease-in-out"
             onClick={togglePopup}
           >
             <FaPlus style={{ fontSize: "1.8em" }} />

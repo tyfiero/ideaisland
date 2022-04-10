@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+
 import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -21,7 +22,15 @@ import {
 const { faker } = require("@faker-js/faker");
 
 const MRRChart = (props) => {
+  const [color, setColor] = useState("hsla(206,91%,64%,1)");
+const [color2, setColor2] = useState("hsla(178,100%,50%,1)");
 
+  useEffect(() => {
+    let blobc1 = localStorage.getItem("blob1") || "hsla(206,91%,64%,1)";
+      let blobc5 = localStorage.getItem("blob5") || "hsla(178,100%,50%,1)";
+  setColor(blobc1);
+  setColor2(blobc5);
+  },[]);
   let passedData = props.chartDataPoints;
 
   ChartJS.register(
@@ -55,8 +64,8 @@ const MRRChart = (props) => {
         label: "MRR Growth",
         // data: labels.map(() => faker.datatype.number({ min: 0, max: 20 })),
         data: passedData[0],
-        borderColor: "#4EAEF7",
-        backgroundColor: "#4EAEF7",
+        borderColor: color,
+        backgroundColor: color,
         borderWidth: 6,
         hoverBorderWidth: 15,
         // pointStyle: "circle",
@@ -69,8 +78,8 @@ const MRRChart = (props) => {
         label: "Profit Growth",
         // data: labels.map(() => faker.datatype.number({ min: 0, max: 20 })),
         data: passedData[1],
-        borderColor: "#00fff8",
-        backgroundColor: "#00fff8",
+        borderColor: color2,
+        backgroundColor: color2,
         borderWidth: 6,
         hoverBorderWidth: 15,
         // pointStyle: "circle",
