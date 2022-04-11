@@ -242,7 +242,7 @@ function IdeasList(props) {
   }else if(auth.currentUser?.uid){
     uid = auth.currentUser?.uid;
   }else{
-    uid = null;
+    uid = "default";
       console.log("no uid available :(");
   }
 
@@ -251,7 +251,7 @@ function IdeasList(props) {
 
   // console.log(auth.currentUser);
 let ideas, ideaSearch;
-  if (uid) {
+  // if (uid) {
     const ref = collection(getFirestore(), "users", uid, type);
     const postQuery = query(ref, orderBy("createdAt", "desc"));
 
@@ -285,9 +285,9 @@ let ideas, ideaSearch;
       );
     }
   });
-} else {
-  ideaSearch= null;
-}
+// } else {
+//   ideaSearch= null;
+// }
   // console.log(ideaSearch);
 
   return (

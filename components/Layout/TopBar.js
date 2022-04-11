@@ -1,16 +1,28 @@
 // import { useNavigate } from "react-router-dom";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 function TopBar(props) {
+  const [path, setPath] = useState("/");
   //   const navigate = useNavigate();
   //   const clickHandler = (event) => {
   //     // navigate("/");
   //   console.log("Clicked Logo");
   //   };
+
+  useEffect(() => {
+
+    if(props.signedIn){
+      setPath("/");
+    }else{
+      setPath("/login");
+    }
+  },[props.signedIn]);
+
   return (
     <nav id="navbar ">
       <div className="flex nav-wrapper">
-        <Link href="/" passHref>
+        <Link href={path} passHref>
           <img
             src="/bulb.svg"
             alt="logo"

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { UserContext } from "../../../lib/context";
 
 import {
   FaBuilding,
@@ -27,9 +28,12 @@ import { Popover, ArrowContainer } from "react-tiny-popover";
 import { useSelector, useDispatch } from "react-redux";
 import { pFormAction } from "../../../redux/actions";
 import { firestore, auth } from "../../../lib/firebase";
+import { defaults } from "lodash";
 
 function PStartMenu(props) {
-  console.log("RERENDER");
+  // console.log("RERENDER");
+  const { user, username } = useContext(UserContext);
+
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [reRender, setRerender] = useState(false);
   const [loadMenu, setLoadMenu] = useState(false);
@@ -43,35 +47,33 @@ function PStartMenu(props) {
     setRerender(!reRender);
   }, [props.reset]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  //Done? I think it works now after adding nextjs firebase cookies.
+  //Done? Using context api, any content component will only mount if the user variable is defined.
   //TODO memoize this so that firebase reads less
   let uid;
-  if (props.cookieUID) {
-    uid = props.cookieUID;
+
+  if (user?.uid) {
+    uid = user?.uid;
+  } else if (userUIDRedux) {
+    uid = userUIDRedux;
+  } else if (auth.currentUser?.uid) {
+    uid = auth.currentUser?.uid;
   } else {
-    if (userUIDRedux) {
-      uid = userUIDRedux;
-      console.log("it actually worked");
-    } else if (auth.currentUser?.uid) {
-      uid = auth.currentUser.uid;
-    } else {
-      uid = null;
-      console.log("no uid available :(");
-    }
+    uid = "default";
+    console.log("no uid available :(");
   }
-
+  let problemsFromDb;
   // console.log(auth.currentUser);
-  const ref = collection(getFirestore(), "users", uid, "problem");
-  const postQuery = query(ref, orderBy("createdAt", "desc"));
+    const ref = collection(getFirestore(), "users", uid, "problem");
+    const postQuery = query(ref, orderBy("createdAt", "desc"));
 
-  const [querySnapshot] = useCollection(postQuery);
+    const [querySnapshot] = useCollection(postQuery);
 
-  const getProblems = () => {
-    const problems = querySnapshot?.docs.map((doc) => doc.data());
+    const getProblems = () => {
+      problemsFromDb = querySnapshot?.docs.map((doc) => doc.data());
 
-    setProblems(problems);
-  };
-
+      setProblems(problemsFromDb);
+    };
+  
   return (
     <div>
       <div
@@ -110,7 +112,8 @@ function PStartMenu(props) {
                       The problem section is where you will identify and
                       describe the problem you want to solve.
                       <br />
-                      You can load a previous problem or start a new problem on this page. 
+                      You can load a previous problem or start a new problem on
+                      this page.
                     </div>
                   </ArrowContainer>
                 )}

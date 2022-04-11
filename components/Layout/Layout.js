@@ -42,11 +42,13 @@ export default function Layout({ children }) {
   const router = useRouter();
 
   const userData = useUserData();
-  const { user, username } = useContext(UserContext);
+  const { user, username, loading } = useContext(UserContext);
 
   const dispatch = useDispatch();
   const [isToggled, setIsToggled] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loadingUI, setLoadingUI] = useState(false);
+  const [signedIn, setSignedIn] = useState(false);
+
 
   const loggedIn = useSelector((state) => state.loggedIn);
   const userUIDRedux = useSelector((state) => state.userUID);
@@ -68,10 +70,12 @@ export default function Layout({ children }) {
 
 //This use effect is importat! It waits for firebase auth to load the current user object, feed it to the userContext hook, then display content.
 useEffect(() => {
+console.log(loading)
 
 if(user?.uid){
   console.log(user.uid)
-  setLoading(false)
+  setLoadingUI(false)
+  setSignedIn(true)
   if (userUIDRedux === null) {
     console.log("LAYOUT IS SETTING USER REDUX VALUES");
     dispatch(userUIDAction(userData.user.uid));
@@ -86,13 +90,22 @@ if(user?.uid){
     dispatch(userNameAction(userData.username));
   }
   }else{
-  console.log("NO UID AVAILABLE :(((((")
-    setLoading(true)
+
+    if(loading){
+     setLoadingUI(true) 
+  setSignedIn(false)
+  console.log("uid not available yet")
+    }else{
+  console.log("User is not logged in")
+  setLoadingUI(false) 
+  setSignedIn(false)
+      router.push("/login")
+    }
   }
 
 
   
-}, [user, username])
+}, [user, username, loading])
   useEffect(() => {
     //if mobile, redirect to mobile page
     if (isMobile) {
@@ -203,65 +216,65 @@ if(user?.uid){
   // }
   // })
 
-  useEffect(() => {
-    // console.log("USEEFFECT Layout Rerendered")
-    // console.timeEnd("redux")
+  // useEffect(() => {
+  //   // console.log("USEEFFECT Layout Rerendered")
+  //   // console.timeEnd("redux")
 
-    // console.time("redux")
+  //   // console.time("redux")
 
-    //UPDATE: I think I cleaned it up. Time to test it a bunch.  @auth...
+  //   //UPDATE: I think I cleaned it up. Time to test it a bunch.  @auth...
 
-    if (userData.user !== null) {
-      // setTimeout(()=>{
+  //   if (userData.user !== null) {
+  //     // setTimeout(()=>{
 
-      // if (userUIDRedux === null) {
-      //   console.log("LAYOUT IS SETTING USER REDUX VALUES");
-      //   dispatch(userUIDAction(userData.user.uid));
-      // }
-      // if (userPhotoRedux === null) {
-      //   // console.log("LAYOUT IS SETTING USER REDUX VALUES")
+  //     // if (userUIDRedux === null) {
+  //     //   console.log("LAYOUT IS SETTING USER REDUX VALUES");
+  //     //   dispatch(userUIDAction(userData.user.uid));
+  //     // }
+  //     // if (userPhotoRedux === null) {
+  //     //   // console.log("LAYOUT IS SETTING USER REDUX VALUES")
 
-      //   dispatch(userPhotoAction(userData.user.photoURL));
-      // }
-      // if (userDisplayNameRedux === null) {
-      //   // console.log("LAYOUT IS SETTING USER REDUX VALUES")
+  //     //   dispatch(userPhotoAction(userData.user.photoURL));
+  //     // }
+  //     // if (userDisplayNameRedux === null) {
+  //     //   // console.log("LAYOUT IS SETTING USER REDUX VALUES")
 
-      //   dispatch(userDisplayNameAction(userData.user.displayName));
-      // }
-      // if (userNameRedux === null) {
-      //   // console.log("LAYOUT IS SETTING USER REDUX VALUES")
+  //     //   dispatch(userDisplayNameAction(userData.user.displayName));
+  //     // }
+  //     // if (userNameRedux === null) {
+  //     //   // console.log("LAYOUT IS SETTING USER REDUX VALUES")
 
-      //   dispatch(userNameAction(userData.username));
-      // }
+  //     //   dispatch(userNameAction(userData.username));
+  //     // }
 
-      // },[2000])
+  //     // },[2000])
 
-      // if (!loggedIn) {
-      //   // dispatch(logIn(true));
-      // }
-    } else {
-      // console.log("Somehow userData (useContext) === null  ???????");
-      // if (localStorage.getItem("userLocal") !== null) {
-      //   user = localStorage.getItem("userLocal");
-      if (userUIDRedux === null) {
-        console.log("Layout doesnt have user Redux values");
-      }
-      //   //   // console.log("USERDATA EXISTS");
-      //   //   // user = JSON.parse(localStorage.getItem("userLocal"));
-      //   //   // console.log(user);
+  //     // if (!loggedIn) {
+  //     //   // dispatch(logIn(true));
+  //     // }
+  //   } else {
+  //     // console.log("Somehow userData (useContext) === null  ???????");
+  //     // if (localStorage.getItem("userLocal") !== null) {
+  //     //   user = localStorage.getItem("userLocal");
+  //     // if (userUIDRedux === null) {
+  //     //   console.log("Layout doesnt have user Redux values");
+  //     // }
+  //     //   //   // console.log("USERDATA EXISTS");
+  //     //   //   // user = JSON.parse(localStorage.getItem("userLocal"));
+  //     //   //   // console.log(user);
 
-      //   dispatch(userDataRedux(user));
-      // } else {
-      //   console.log("NOT logged in");
-      //   user = {
-      //     username: "notSignedIn",
-      //   };
-      // }
-      // dispatch(logIn(false));
-    }
+  //     //   dispatch(userDataRedux(user));
+  //     // } else {
+  //     //   console.log("NOT logged in");
+  //     //   user = {
+  //     //     username: "notSignedIn",
+  //     //   };
+  //     // }
+  //     // dispatch(logIn(false));
+  //   }
 
-    // setIsLoggedIn(true)
-  }, [userData]); // eslint-disable-line react-hooks/exhaustive-deps
+  //   // setIsLoggedIn(true)
+  // }, [userData]); // eslint-disable-line react-hooks/exhaustive-deps
 
   let notes = "Notes";
 
@@ -289,10 +302,10 @@ if(user?.uid){
           <Toaster />
         </div>
         <div className="logo-bar bg-white/40">
-          <TopBar />
+          <TopBar signedIn={signedIn} />
         </div>
         <div className="bg-white/40 top-bar">
-          {/* {loading ? <Loader show={true}/>: "NOT LOADING YO"} */}
+          {/* {loadingUI ? <Loader show={true}/>: "NOT LOADING YO"} */}
           
 
           <TopBarRight />
@@ -301,15 +314,15 @@ if(user?.uid){
         <div className="side-nav-bar ">
           {/* <Sidebar toggle={isToggled} />
            */}
-          <Sidebar2 toggle={isToggled} />
+       {signedIn &&   <Sidebar2 toggle={isToggled} />}
           {/* <FullSidebar /> */}
         </div>
         <div className="overflow-y-auto fade-effect-quick content ">
-       {loading ? <FullLoader  show={true}/> : <main>{children}</main>}   
+       {loadingUI ? <FullLoader  show={true}/> : <main>{children}</main>}   
           {/* <Footer /> */}
         </div>
         <div>
-          {isPopUpOpen && !loading ? (
+          {isPopUpOpen  ? (
             <>
               {" "}
               <div className="notepad-container">
@@ -323,14 +336,14 @@ if(user?.uid){
             </>
           )}
         </div>
-        <div className="button-holder">
+        {!loadingUI && signedIn && <div className="button-holder">
           <button
             className="z-100 flex items-center justify-center w-[4em] h-[4em]  delay-200 transform rounded-full notepad-button fade-effect text-t-pd hover:scale-125 hover:rotate-90 bg-gradient-to-br from-white/60 to-clear-pl5 hover:shadow-2xl duration-1000 ease-in-out"
             onClick={togglePopup}
           >
             <FaPlus style={{ fontSize: "1.8em" }} />
           </button>
-        </div>
+        </div>}
       </div>
     </>
   );

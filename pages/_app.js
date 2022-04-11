@@ -43,6 +43,7 @@ function MyApp({ Component, pageProps }) {
   const store = useStore((state) => state);
   const userData = useUserData();
 
+
   return process.browser ? (
     <PersistGate persistor={store.__persistor} >
       {() => (
