@@ -65,7 +65,7 @@ function Footer() {
     <div className="flex flex-wrap items-center justify-center md:justify-between">
       <div className="w-full px-4 mx-auto text-center md:w-4/12">
         <div className="py-1 text-sm font-semibold text-blues-500">
-          Copyright © <span id="get-current-year">2021</span><a href="https://www.creative-tim.com/product/notus-js" className="text-blues-500 hover:text-gray-800" target="_blank"></a> Notus JS by
+          Copyright © <span id="get-current-year">2021</span><a href="https://www.creative-tim.com/product/notus-js" className="text-blues-500 hover:text-gray-800" target="_blank" rel="noreferrer"></a> Notus JS by
           <a href="https://www.creative-tim.com?ref=njs-profile" className="text-blues-500 hover:text-blues-800">Creative Tim</a>.
           </div>
       </div>
