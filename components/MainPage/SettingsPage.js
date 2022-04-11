@@ -6,6 +6,7 @@ import { ColorPicker, useColor } from "react-color-palette";
 import "react-color-palette/lib/css/styles.css";
 import { ChromePicker } from "react-color";
 import { SketchPicker, Slider } from "react-color";
+import { FaRedo } from "react-icons/fa";
 var { Hue } = require("react-color/lib/components/common");
 
 const SettingsPage = () => {
@@ -16,6 +17,10 @@ const SettingsPage = () => {
   const [reset, setReset] = useState(false);
 
   const [colorOpacity, setColorOpacity] = useState(0.6);
+  const [menuOpacity, setMenuOpacity] = useState(0.6);
+  const [opacityChange, setOpacityChange] = useState(false);
+
+
   const [changeColor, setChangeColor] = useState(false);
   const [addImage, setAddImage] = useState(false);
 
@@ -121,19 +126,34 @@ return slicedAgain;
   useEffect(() => {
     if (typeof window !== "undefined") {
       document.documentElement.style.setProperty("--blobOpacity", colorOpacity);
+    localStorage.setItem("colorOpacity", colorOpacity);
     }
   }, [colorOpacity]);
+  //change menu opacity variable
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("menuOpacity", menuOpacity);
+let base= "hsla(200,100%,100%,";
+let concat = base + menuOpacity + ")";
+      document.documentElement.style.setProperty("--menuColor", concat);
+    }
+  }, [menuOpacity]);
 
   //next two useEffects save to local storage
   //This one loads from local storage
   useEffect(() => {
     let opacityNum = localStorage.getItem("colorOpacity");
+    let menuOpacityNum = localStorage.getItem("menuOpacity");
+
     let imgSrcLS = localStorage.getItem("bgImg");
 
    
 
     if (colorOpacity !== opacityNum) {
       setColorOpacity(opacityNum);
+    }
+    if (menuOpacity !== menuOpacityNum) {
+      setMenuOpacity(menuOpacityNum);
     }
     if (imgSrc !== imgSrcLS) {
         setImgSrc(imgSrcLS);
@@ -151,9 +171,7 @@ return slicedAgain;
 
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem("colorOpacity", colorOpacity);
-  }, [colorOpacity]);
+
 
 
 
@@ -204,13 +222,43 @@ if(imgSrc ){
               />
             </div>
             <div className="flex items-center gap-5">
-              <p>Background colors</p>
+              <p>Change UI Colors</p>
               <button
                 onClick={() => setChangeColor(!changeColor)}
                 className="p-1 text-white bg-t-bl rounded-xl"
               >
                 {changeColor ? "Done" : "Change"}
               </button>
+            </div>
+            <div className="flex gap-5">
+              <p className=" whitespace-nowrap">Menu opacity: </p>
+           <button
+                onClick={() => {
+                  if(opacityChange){
+                  setMenuOpacity(0.5)
+                  setOpacityChange(false)
+                    
+                  }else{
+                    setOpacityChange(true)
+                  }
+                
+                }}
+                className="flex items-center gap-2 p-1 text-sm text-white whitespace-nowrap bg-t-bl rounded-xl"
+              >
+                  {!opacityChange ? "Change" : <><FaRedo /> Reset</>}
+              </button>
+          {opacityChange &&     <input
+                type="range"
+                className="mr-8 opacity-range range"
+                min={0}
+                max={1}
+                value={menuOpacity}
+                step="0.01"
+                onChange={(e) => {
+                  setMenuOpacity(e.target.valueAsNumber);
+                }}
+              />}
+              
             </div>
             <div className="flex items-center gap-5">
               <p className="whitespace-nowrap">Background image</p>

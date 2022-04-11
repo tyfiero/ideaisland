@@ -45,6 +45,7 @@
 
 
 
+  --menuColor: hsla(200,100%,100%,0.7);
 
 
 
@@ -282,12 +283,18 @@ p {
   display: flex;
   flex-direction: row;
   height: 100%;
+  background-color: var(--menuColor);
 }
 .top-bar {
   grid-area: top-bar;
+  background-color: var(--menuColor);
 }
 .side-nav-bar {
   grid-area: side-nav-bar;
+
+}
+.sidebar-container{
+  background-color: var(--menuColor);
 }
 
 .content {
@@ -2299,6 +2306,15 @@ ul {
     #ffffff 25%,
     var(--colorLight1) 60%,
     var(--colorPop) 100%
+  );
+}
+
+.opacity-range {
+  background: var(--colorDark1);
+  background: linear-gradient(
+    90deg,
+    #ffffff1e 0%,
+    white 100%
   );
 }
 input[type="range"]::-webkit-slider-runnable-track {

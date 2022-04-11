@@ -67,7 +67,7 @@ const Sidebar2 = (props) => {
   };
 
   return (
-    <div className="sidebar-container md:border-l-0 flex md:left-0  h-full   md:w-[4.5em] md:flex-col md:rounded-br-[1.5rem]  md:rounded-br-[3px] md:rounded-tl-none  md:absolute  bg-gradient-to-t  from-clear-pl2 border-black border-[0px] content-center items-center justify-between	md:py-4  z-10 bg-white/40">
+    <div className="sidebar-container md:border-l-0 flex md:left-0  h-full   md:w-[4.5em] md:flex-col md:rounded-br-[1.5rem]  md:rounded-br-[3px] md:rounded-tl-none  md:absolute  bg-gradient-to-t  from-clear-pl2 border-black border-[0px] content-center items-center justify-between	md:py-4  z-10 ">
       <div className="flex flex-col items-center gap-3">
         <Link href="/home">
           <a>

@@ -118,8 +118,13 @@ export default function Layout({ children }) {
     };
     //set bg opacity
     let opacityNum = localStorage.getItem("colorOpacity") || 0.6;
+    let menuOpacityNum = localStorage.getItem("menuOpacity") || 0.7;
+    let base = "hsla(200,100%,100%,";
+    let concat = base + menuOpacityNum + ")";
 
     document.documentElement.style.setProperty("--blobOpacity", opacityNum);
+    document.documentElement.style.setProperty("--menuColor", concat);
+
     //set bg colors
     let blobc1 = localStorage.getItem("blob1") || "hsla(206,91%,64%,1)";
     let blobc2 = localStorage.getItem("blob2") || "hsla(224,64%,40%,1)";
@@ -194,10 +199,10 @@ export default function Layout({ children }) {
         <div>
           <Toaster />
         </div>
-        <div className="logo-bar bg-white/40">
+        <div className="logo-bar ">
           <TopBar signedIn={signedIn} />
         </div>
-        <div className="bg-white/40 top-bar">
+        <div className=" top-bar">
           {/* {loadingUI ? <Loader show={true}/>: "NOT LOADING YO"} */}
 
           <TopBarRight />
