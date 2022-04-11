@@ -40,7 +40,7 @@ import { useRouter } from "next/router";
 const ImplementationPage = (props) => {
   return (
     <div className="implementation-page fade-effect-quick">
-      <h1 className="heading-top">Implementation</h1>
+      <h1 className="heading-top">Next Steps</h1>
 
       <div className="flex flex-col items-center w-full">
         <div className="flex flex-wrap items-center w-[90%]  px-5 pb-5 rounded-2xl">
@@ -138,7 +138,7 @@ const ImplementationPage = (props) => {
      
         </div>
 
-        <div className="flex mt-5 mb-10">
+        <div className="flex p-2 mt-5 mb-10 rounded-xl bg-clear-pl4">
           <p>
             {"More tools coming soon! Have a suggestion for a tool you want?"}{" "}
           </p>

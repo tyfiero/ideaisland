@@ -33,7 +33,8 @@ const QuillNoSSRWrapper = dynamic(() => import("react-quill"), {
   ssr: false,
 });
 function NoteNote() {
-  const { username } = useContext(UserContext);
+  const { user, username } = useContext(UserContext);
+
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const userUIDRedux = useSelector((state) => state.userUID);
@@ -43,17 +44,19 @@ function NoteNote() {
   // Create a new post in firestore
   const createIdea = async (e) => {
 
-    //Should I be using redux? Or auth.current user? If I do use redux, delete all instances of auth.currentUser @auth
+
 
     if(typeof window !== 'undefined'){
-    let uid;
-      if (userUIDRedux) {
+      let uid;
+
+      if (user?.uid) {
+        uid = user?.uid;
+      } else if (userUIDRedux) {
         uid = userUIDRedux;
-        console.log("it actually worked");
       } else if (auth.currentUser?.uid) {
-        uid = auth.currentUser.uid;
+        uid = auth.currentUser?.uid;
       } else {
-        uid = null;
+        uid = "default";
         console.log("no uid available :(");
       }
     const d = Number(new Date());
@@ -61,7 +64,6 @@ function NoteNote() {
     
     const ref = doc(getFirestore(), "users", uid, "notes", timeID);
 
-    //Username needs replacing with redux here @auth
     let dataForCreation = {
         title: title,
         identifier: timeID,

@@ -53,7 +53,7 @@ const HelpPage = () => {
     },
   ];
   return (
-    <div className="help-page fade-effect-quick">
+    <div className="pt-8 help-page fade-effect-quick">
       <h1 className="heading-top">Help</h1>
 
       <div className="help-boxes-div-container">
@@ -180,9 +180,10 @@ const HelpPage = () => {
         </div>
       </a>
 
-      <p className="text-[18px]">Made with ♥️ in Seattle</p>
+<div className="w-full h-[6em] pt-5 bg-clear-pl4 flex  flex-col gap-5">
+      <p className="text-[18px] ">Made with ♥️ in Seattle</p>
       <p className="text-[11px]">Copyright © {date} Digital Masonry LLC</p>
-
+      </div>
     </div>
   );
 };

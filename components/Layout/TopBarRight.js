@@ -31,7 +31,7 @@ export default function TopBarRight({ user }) {
 
   // console.log(user);
 
-  //Now that the image thing is fixed, can I remove userRedux from the dependency array here? How can this UE be cleaned up? @auth
+  //Now that the image thing is fixed, can I remove userRedux from the dependency array here? How can this UE be cleaned up? 
   //UPDATE, it might be best to leave it, in case userphotoredux isnt defined, and so that it updates correctly on change. 
   useEffect(() => {
     if (userPhotoRedux !== null) {

@@ -603,7 +603,6 @@ p {
   text-align: center;
   justify-content: center;
   align-items: center;
-  padding: 2em;
   gap: 2em;
 }
 .solution-button {
@@ -1791,6 +1790,7 @@ box-shadow: 4px 8px 20px -2px var(--colorLight1);
   border-radius: 3em;
   transition: background var(--speed);
   padding: 0.5rem;
+  margin: 0.2rem;
 }
 
 .menu-item .icon-button {

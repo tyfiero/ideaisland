@@ -84,7 +84,7 @@ function CircleTimer({setTimerOpen}) {
       <div className="flex flex-col items-center">
         {play ? (
           <FaPause
-            className="text-2xl cursor-pointer md:hover:scale-110 md:transition-transform md:active:scale-95 text-t-bl bg-t-bl"
+            className="text-2xl cursor-pointer md:hover:scale-110 md:transition-transform md:active:scale-95 text-t-pm "
             onClick={() => {
               setPlay(false);
             }}
@@ -106,7 +106,7 @@ function CircleTimer({setTimerOpen}) {
               });
             }}
           />
-        )} <p className="text-xs">{play ? "Stop" : "Start"}</p>
+        )} <p className="text-xs">{play ? "Pause" : "Start"}</p>
         </div>
         <div className="flex flex-col items-center">
         <FaUndo

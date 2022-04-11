@@ -332,15 +332,13 @@ function CreateNewProblem(props) {
     // toast.success("new");
     // console.log(e)
     setLoading(true);
-    //TODO Is this needed? preventdefault?
-    //     e.preventDefault() ?? null;
+  
 
     const d = Number(new Date());
     const timeID = d.valueOf().toString();
 
     const ref = doc(getFirestore(), "users", uidValue, "problem", timeID);
 
-    //Username needs replacing with redux here @auth
     const data = {
       identifier: timeID,
       uid: uidValue,

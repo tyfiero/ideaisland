@@ -1,6 +1,7 @@
-import React from "react";
+import {React, useContext} from "react";
 import { useUserData } from "../lib/hooks";
 import { useSelector, useDispatch } from "react-redux";
+import { UserContext } from "../lib/context";
 
 import { auth } from "../lib/firebase";
 // import { logIn } from "../../redux/actions";
@@ -8,8 +9,9 @@ import { logIn } from "../redux/actions";
 
 import Link from "next/link";
 import LogOutButton from "./Authentication/LogOutButton";
-function ProfilePage({ user }) {
-  //THIS WHOLE PAGE needs cleaning with redux user @auth
+function ProfilePage(props) {
+  const { user, username } = useContext(UserContext);
+
   const userData = useUserData();
   const userRedux = useSelector((state) => state.userData);
   const userPhotoRedux = useSelector((state) => state.userPhoto);
@@ -29,21 +31,12 @@ function ProfilePage({ user }) {
         />
       </div>
       <div>
-        <i className="italic text-blues-100">@{userNameRedux || "username"}</i>
+        <i className="italic text-blues-100">@{username || userNameRedux || "username"}</i>
       </div>
       <div className="text-xl">
-        {/* {userData.user !== null
-          ? "Hello " + userData.user.displayName + "!"
-          : "Hello"} */}
-        {/* <h3>{user.displayName || "Anonymous User"} </h3> */}
-        {/* <h3>{"Hello " + (user.displayName || 'Anonymous User') + "!"} </h3> */}
+       
       </div>
-      {/* <div>
-        {" "}
-        {userData.user !== null
-          ? "Email: " + userData.user.email
-          : "Email not visible, please sign in."}
-      </div> */}
+    
 
       <button
         className="hidden w-[12em] px-3 py-2 font-medium rounded-full md:block md:space-x-6 fade-effect text-white hover:text-t-bd bg-t-bl my-5"

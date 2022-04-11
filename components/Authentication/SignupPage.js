@@ -46,7 +46,6 @@ export default function SignupPage() {
 
     const signInWithGoogle = async () => {
       console.log("tried");
-      //DONE @auth ADD USERDATA DISPATCH... I think i fixed it?
       try {
         await auth.signInWithPopup(googleAuthProvider).then((result) => {
           console.log(result)

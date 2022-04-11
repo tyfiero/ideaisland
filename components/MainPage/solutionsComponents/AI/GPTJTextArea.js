@@ -19,7 +19,6 @@
 
 //   // let identifier = "gpt3InputLS";
 //   useEffect(() => {
-//     //FIX THIS if side effects of no localStorage @Auth
 
 //     // localGPTJPrompt = localStorage.getItem("gptJInputLS");
 //   }, []);
@@ -46,7 +45,6 @@
 //       dispatch(gptJInputAction(event.target.value));
 
 //       //   sendDataToParent(textContent);
-//     //FIX THIS if side effects of no localStorage @Auth
 
 //       // localStorage.setItem("gptJInputLS", gptJInputRedux);
 //     }, longDelay);
@@ -57,7 +55,6 @@
 //       //   dispatch(noteAction(event.target.value));
 //       setTextContent(event.target.value);
 //       dispatch(gptJInputAction(event.target.value));
-//     //FIX THIS if side effects of no localStorage @Auth
 
 //       // localStorage.setItem("gptJInputLS", gptJInputRedux);
 //       // setCharLength(gpt3InputRedux.length);

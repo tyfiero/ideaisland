@@ -20,7 +20,6 @@
 //   useEffect(() => {
 
 
-//     //FIX THIS if side effects of no localStorage @Auth TODO Refactor this to not have this overly complicated text area
 
     
 //     // localGPT3Prompt = localStorage.getItem("gpt3InputLS");
@@ -48,7 +47,6 @@
 //       dispatch(gpt3InputAction(event.target.value));
 
 //       //   sendDataToParent(textContent);
-//     //FIX THIS if side effects of no localStorage @Auth
 
 //       // localStorage.setItem("gpt3InputLS", gpt3InputRedux);
 //     }, longDelay);
@@ -59,7 +57,6 @@
 //       //   dispatch(noteAction(event.target.value));
 //       setTextContent(event.target.value);
 //       dispatch(gpt3InputAction(event.target.value));
-//     //FIX THIS if side effects of no localStorage @Auth
 
 //       // localStorage.setItem("gpt3InputLS", gpt3InputRedux);
 //       // setCharLength(gpt3InputRedux.length);

@@ -311,7 +311,7 @@ function CreateNewIdea(props) {
   };
 
   const deleteIdea = async (e) => {
-    //Should I be using redux? Or auth.current user? If I do use redux, delete all instances of auth.currentUser @auth
+  
 
     const ref = doc(getFirestore(), "users", uidValue, type, ideaID);
     await deleteDoc(ref)
@@ -387,8 +387,6 @@ function CreateNewIdea(props) {
     // toast.success("new");
     // console.log(e)
 
-    //TODO Is this needed? preventdefault?
-    //     e.preventDefault() ?? null;
 
     const d = Number(new Date());
     const timeID = d.valueOf().toString();
@@ -399,7 +397,6 @@ function CreateNewIdea(props) {
     // id: (serverTimestamp.seconds + serverTimestamp.nanoseconds),
 
     // Tip: give all fields a default value here
-    //Username needs replacing with redux here @auth
 
     let dataForCreation;
     if (type === "ideas") {
