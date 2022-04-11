@@ -37,7 +37,7 @@ const SolutionsPageIndex = (props) => {
   // return <SolutionsPage />;
   return (
     <div className="TBD-container fade-effect">
-        <SolutionWizard cookieUID={props.cookieUID}/>
+        <SolutionWizard />
     </div>
   );
 };

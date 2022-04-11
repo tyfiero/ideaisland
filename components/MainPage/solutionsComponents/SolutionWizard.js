@@ -1,5 +1,5 @@
 import StepWizard from "react-step-wizard";
-import loadable from '@loadable/component'
+import loadable from "@loadable/component";
 
 import SolutionProgressStepper from "./SolutionProgressStepper";
 import {
@@ -29,7 +29,6 @@ import {
 } from "react-icons/fa";
 import ToolBar from "../problemComponents/ToolBar";
 
-
 import SIdeate from "./CombinatorialComponents/SIdeate";
 import { useSelector } from "react-redux";
 
@@ -39,9 +38,9 @@ const SFeatures = loadable(() => import("./SFeatures"));
 const STechStack = loadable(() => import("./STechStack"));
 const SDetails = loadable(() => import("./SDetails"));
 
-
 function SolutionWizard(props) {
-  const { username } = useContext(UserContext);
+  const { user, username } = useContext(UserContext);
+
   const userUIDRedux = useSelector((state) => state.userUID);
 
   const [formContent, setFormContent] = useState({ form: {} });
@@ -60,17 +59,16 @@ function SolutionWizard(props) {
   const saveProblemForm = async (e) => {
     e?.preventDefault();
     let uid;
-    if (props.cookieUID) {
-      uid = props.cookieUID;
+
+    if (user?.uid) {
+      uid = user?.uid;
+    } else if (userUIDRedux) {
+      uid = userUIDRedux;
+    } else if (auth.currentUser?.uid) {
+      uid = auth.currentUser?.uid;
     } else {
-      if (userUIDRedux) {
-        uid = userUIDRedux;
-      } else if (auth.currentUser?.uid) {
-        uid = auth.currentUser.uid;
-      } else {
-        uid = null;
-        console.log("no uid available :(");
-      }
+      uid = "default";
+      console.log("no uid available :(");
     }
 
     if (uid) {
@@ -143,12 +141,8 @@ function SolutionWizard(props) {
         nav={<SolutionProgressStepper />}
         instance={setInstance}
       >
-        <SIdeate  update={updateForm} />
-        <SFilter
-          hashKey={"select-idea"}
-          update={updateForm}
-          cookieUID={props.cookieUID}
-        />
+        <SIdeate update={updateForm} />
+        <SFilter hashKey={"select-idea"} update={updateForm} />
         <SFeatures
           hashKey={"add-features"}
           update={updateForm}
@@ -164,7 +158,6 @@ function SolutionWizard(props) {
           hashKey={"Details"}
           update={updateForm}
           saveProblemForm={saveProblemForm}
-          cookieUID={props.cookieUID}
         />
       </StepWizard>
     </div>

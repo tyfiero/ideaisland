@@ -38,7 +38,7 @@ export const getServerSideProps = async (ctx) => {
   }
 };
 const ProblemProgress = (props) => {
-  return <><ProblemProgressPage cookieUID={props.cookieUID}/></>;
+  return <><ProblemProgressPage /></>;
 
 };
 

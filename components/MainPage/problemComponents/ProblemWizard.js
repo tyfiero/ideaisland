@@ -54,13 +54,13 @@ function ProblemWizard(props) {
         nav={<ProgressStepper />}
         // instance={setInstance}
       >
-        <PStartMenu hashKey={"Start"} setChanges={setChanges} reset={reset} setReset={setReset} cookieUID={props.cookieUID} loadData={loadData} setLoadData={setLoadData}/>
+        <PStartMenu hashKey={"Start"} setChanges={setChanges} reset={reset} setReset={setReset}  loadData={loadData} setLoadData={setLoadData}/>
         <PWhy hashKey={"Why"} setChanges={setChanges} reset={reset} loadData={loadData}/>
         <PWhat hashKey={"What"}  setChanges={setChanges} reset={reset} loadData={loadData}/>
         <PWho hashKey={"Who"} setChanges={setChanges} reset={reset} loadData={loadData}/>
         <PDetails
           hashKey={"Details"}
-          cookieUID={props.cookieUID}
+          
           setChanges={setChanges}
           changes={changes}
           reset={reset}

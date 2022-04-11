@@ -190,29 +190,17 @@ export default function IdeaSideBar(props) {
 
         {type === "ideas" && (
           <>
-            <IdeasList
-              searchValue={searchValue}
-              cookieUID={props.cookieUID}
-              type="ideas"
-            />
+            <IdeasList searchValue={searchValue} type="ideas" />
           </>
         )}
         {type === "problem" && (
           <>
-            <IdeasList
-              searchValue={searchValue}
-              cookieUID={props.cookieUID}
-              type="problem"
-            />
+            <IdeasList searchValue={searchValue} type="problem" />
           </>
         )}
         {type === "notes" && (
           <>
-            <IdeasList
-              searchValue={searchValue}
-              cookieUID={props.cookieUID}
-              type="notes"
-            />
+            <IdeasList searchValue={searchValue} type="notes" />
           </>
         )}
       </div>
@@ -231,36 +219,34 @@ function IdeasList(props) {
   useEffect(() => {
     setSearchValue(props.searchValue);
   }, [props.searchValue]);
-  //Done? Using context api, any content component will only mount if the user variable is defined. 
+  //Done? Using context api, any content component will only mount if the user variable is defined.
   //TODO memoize this so that firebase reads less
   let uid;
 
-  if(user?.uid){
+  if (user?.uid) {
     uid = user?.uid;
-  }else if(userUIDRedux){
-    uid = userUIDRedux;  
-  }else if(auth.currentUser?.uid){
+  } else if (userUIDRedux) {
+    uid = userUIDRedux;
+  } else if (auth.currentUser?.uid) {
     uid = auth.currentUser?.uid;
-  }else{
+  } else {
     uid = "default";
-      console.log("no uid available :(");
+    console.log("no uid available :(");
   }
-
 
   let type = props.type;
 
   // console.log(auth.currentUser);
-let ideas, ideaSearch;
+  let ideas, ideaSearch;
   // if (uid) {
-    const ref = collection(getFirestore(), "users", uid, type);
-    const postQuery = query(ref, orderBy("createdAt", "desc"));
+  const ref = collection(getFirestore(), "users", uid, type);
+  const postQuery = query(ref, orderBy("createdAt", "desc"));
 
-    const [querySnapshot] = useCollection(postQuery);
+  const [querySnapshot] = useCollection(postQuery);
 
-     ideas = querySnapshot?.docs.map((doc) => doc.data());
-  
+  ideas = querySnapshot?.docs.map((doc) => doc.data());
 
-   ideaSearch = ideas?.filter((obj) => {
+  ideaSearch = ideas?.filter((obj) => {
     // console.log(obj.title.toLowerCase());
 
     if (props.type === "ideas") {
@@ -285,9 +271,9 @@ let ideas, ideaSearch;
       );
     }
   });
-// } else {
-//   ideaSearch= null;
-// }
+  // } else {
+  //   ideaSearch= null;
+  // }
   // console.log(ideaSearch);
 
   return (

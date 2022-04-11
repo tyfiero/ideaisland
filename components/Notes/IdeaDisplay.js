@@ -1,4 +1,6 @@
 import { firestore, auth } from "../../lib/firebase";
+import { UserContext } from "../../lib/context";
+
 import {
   serverTimestamp,
   query,
@@ -26,7 +28,7 @@ import {
   FaSearch,
   FaUndo,
 } from "react-icons/fa";
-import { useEffect, useState, useLayoutEffect, useRef } from "react";
+import { useEffect, useState, useLayoutEffect, useRef, useContext } from "react";
 // import DOMPurify from "isomorphic-dompurify";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
@@ -44,6 +46,7 @@ export default function IdeaDisplay(props) {
   const currentDocRedux = useSelector((state) => state.currentDoc);
   const [cleanContent, setCleanContent] = useState("");
   const [loading, setLoading] = useState(false);
+  const { user, username } = useContext(UserContext);
 
   const [showImgPopUp, setShowImgPopUp] = useState(false);
   const [pexels, setPexels] = useState(false);
@@ -378,20 +381,17 @@ export default function IdeaDisplay(props) {
   };
   const updateImagetoDB = async () => {
     let uid;
- if(props.cookieUID){
-   uid = props.cookieUID;
- }else{
-   
- if (userUIDRedux) {
-   uid = userUIDRedux;
-   console.log("it actually worked");
- } else if (auth.currentUser?.uid) {
-   uid = auth.currentUser.uid;
- } else {
-   uid = null;
-   console.log("no uid available :(");
- }
-}
+
+    if (user?.uid) {
+      uid = user?.uid;
+    } else if (userUIDRedux) {
+      uid = userUIDRedux;
+    } else if (auth.currentUser?.uid) {
+      uid = auth.currentUser?.uid;
+    } else {
+      uid = "default";
+      console.log("no uid available :(");
+    }
     const ref = doc(
       getFirestore(),
       "users",

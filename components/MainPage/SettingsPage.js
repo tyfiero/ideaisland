@@ -238,12 +238,16 @@ if(imgSrc ){
                 className="p-1 text-white bg-t-pm rounded-xl"
               >
                   Delete
-              </button>}</>}
+              </button>}
+              </>}
+          
+            
             </div>
+            {addImage && <p>For best results use a light image with a landscape orientation.</p>}
           </div>
-          <p>Your username is: {username}</p>
-          <p>Your uid is: {user?.uid}</p>
-          {loading && <div className="w-full h-[45em] bg-t-pm">LOADING</div>}
+          {/* <p>Your username is: {username}</p> */}
+          {/* <p>Your uid is: {user?.uid}</p>
+          {loading && <div className="w-full h-[45em] bg-t-pm">LOADING</div>} */}
           {/* {changeColor && <div className="text-left rounded-2xl">
           <p className="pl-5 bg-t-bpop rounded-t-xl">Accent Color</p>
 

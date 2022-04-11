@@ -3,7 +3,14 @@ import { useContext, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { UserContext } from "../../lib/context";
 import kebabCase from "lodash.kebabcase";
-import { FaCheck, FaEdit, FaImage, FaPlus, FaSave, FaTrash } from "react-icons/fa";
+import {
+  FaCheck,
+  FaEdit,
+  FaImage,
+  FaPlus,
+  FaSave,
+  FaTrash,
+} from "react-icons/fa";
 import Stars from "./Stars";
 import { firestore, auth } from "../../lib/firebase";
 import Toggle from "react-toggle";
@@ -37,21 +44,7 @@ import IdeaDisplay from "./IdeaDisplay";
 import { useSelector, useDispatch } from "react-redux";
 import { currentDocAction } from "../../redux/actions";
 
-
-
-
-
-
-
-
 import TextareaAutosize from "react-textarea-autosize";
-
-
-
-
-
-
-
 
 // const ClientQuill = dynamic(
 //     () => {
@@ -60,9 +53,6 @@ import TextareaAutosize from "react-textarea-autosize";
 //     },
 //     { ssr: false }
 //   );
-
-
-
 
 function ProblemEditor(props) {
   //   const [editMode, setEditMode] = useState(false);
@@ -96,17 +86,17 @@ function ProblemEditor(props) {
 "
       >
         <div className="w-full max-w-[82rem] p-3 space-y-8 shadow   normal-box-soft items-center flex flex-col !rounded-2xl !bg-clear-pl2">
-            <>
-              {/* <div className="heading">Edit Idea</div> */}
-              <CreateNewProblem
-                // mode={editModeRedux}
-                cookieUID={props.cookieUID}
-                //I might be missing this piece of logic in my code
-                // setEditDocDetails={
-                //   editModeRedux === "new" ? null : editDocDetails
-                // }
-              />
-            </>
+          <>
+            {/* <div className="heading">Edit Idea</div> */}
+            <CreateNewProblem
+            // mode={editModeRedux}
+
+            //I might be missing this piece of logic in my code
+            // setEditDocDetails={
+            //   editModeRedux === "new" ? null : editDocDetails
+            // }
+            />
+          </>
           {/* {editModeRedux === "display" && (
             <>
               <IdeaDisplay />
@@ -122,8 +112,8 @@ export default ProblemEditor;
 
 function CreateNewProblem(props) {
   const router = useRouter();
-  const { username } = useContext(UserContext);
   //   const [newIdea, setNewIdea] = useState(false);
+  const { user, username } = useContext(UserContext);
 
   const dispatch = useDispatch();
   const currentDocRedux = useSelector((state) => state.currentDoc);
@@ -133,6 +123,7 @@ function CreateNewProblem(props) {
   const [addImg, setAddImg] = useState(false);
   const [title, setTitle] = useState("");
   const [loading, setLoading] = useState(false);
+  const [uidValue, setUidValue] = useState("default");
 
   const [contentWhy, setContentWhy] = useState("");
   const [contentWho, setContentWho] = useState("");
@@ -149,38 +140,54 @@ function CreateNewProblem(props) {
 
   const [edit, setEdit] = useState(true);
 
-
-
-
-  if(process.browser) {
-    if(unsavedChangesRedux){
-    window.onbeforeunload = function() {
-        return 'There are unsaved changes. Are you sure you want to leave?';
+  if (process.browser) {
+    if (unsavedChangesRedux) {
+      window.onbeforeunload = function () {
+        return "There are unsaved changes. Are you sure you want to leave?";
+      };
     }
-    }}
+  }
 
-
-
-
-    const { flushHeldKeys } = useKeyboardShortcut(
-      ["Meta", "Enter"],
-      (shortcutKeys) => {
-          
-          if(title || contentWhy || contentWho || contentWhat || contentPq1 || contentPq2 || contentPq3){
-            if( editModeRedux === "new"){
-              createIdea()
-            }else{
-              updateIdea()  
-            } 
-          }
-      },
-      { 
-        overrideSystem: true,
-        ignoreInputFields: false, 
-        repeatOnHold: false 
+  const { flushHeldKeys } = useKeyboardShortcut(
+    ["Meta", "Enter"],
+    (shortcutKeys) => {
+      if (
+        title ||
+        contentWhy ||
+        contentWho ||
+        contentWhat ||
+        contentPq1 ||
+        contentPq2 ||
+        contentPq3
+      ) {
+        if (editModeRedux === "new") {
+          createIdea();
+        } else {
+          updateIdea();
+        }
       }
-    );
-  
+    },
+    {
+      overrideSystem: true,
+      ignoreInputFields: false,
+      repeatOnHold: false,
+    }
+  );
+
+  // console.log(uidValue)
+
+  useEffect(() => {
+    if (user?.uid) {
+      setUidValue(user?.uid);
+    } else if (userUIDRedux) {
+      setUidValue(userUIDRedux);
+    } else if (auth.currentUser?.uid) {
+      setUidValue(auth.currentUser?.uid);
+    } else {
+      setUidValue("default");
+      console.log("no uid available :(");
+    }
+  }, [user, userUIDRedux]);
   // // console.log(setEditDocDetails.length + "docdeets");
   // // console.log(serverTimestamp());
   // useEffect(() => {
@@ -213,11 +220,16 @@ function CreateNewProblem(props) {
   }, [editModeRedux]);
 
   useEffect(() => {
-    if (currentDocRedux && editModeRedux === "edit"  || editModeRedux === "display") {
+    if (
+      (currentDocRedux && editModeRedux === "edit") ||
+      editModeRedux === "display"
+    ) {
       //   if (setEditDocDetails.length >= 1) {
 
       //   console.log(setEditDocDetails[0].title);
-      setProblemID(currentDocRedux.id);
+      setProblemID(currentDocRedux.identifier);
+      console.log(problemID);
+
       //   console.log(ideaID + "THIS IS ID");
       setTitle(currentDocRedux.title);
       //   console.log(title + "2");
@@ -228,7 +240,7 @@ function CreateNewProblem(props) {
       setContentPq1(currentDocRedux.pq1);
       setContentPq2(currentDocRedux.pq2);
       setContentPq3(currentDocRedux.pq3);
-  
+
       setImgUrl(currentDocRedux.imgUrl);
       if (currentDocRedux.imgUrl) {
         setAddImg(true);
@@ -255,43 +267,26 @@ function CreateNewProblem(props) {
     }
     setAddImg(!addImg);
   };
-
   const deleteIdea = async (e) => {
-    //Should I be using redux? Or auth.current user? If I do use redux, delete all instances of auth.currentUser @auth
-    let uid;
-    if (props.cookieUID) {
-      uid = props.cookieUID;
-    } else {
-      if (userUIDRedux) {
-        uid = userUIDRedux;
-        console.log("it actually worked");
-      } else if (auth.currentUser?.uid) {
-        uid = auth.currentUser.uid;
-      } else {
-        uid = null;
-        console.log("no uid available :(");
-      }
-    }
-    const ref = doc(getFirestore(), "users", uid, "problem", problemID);
+    const ref = doc(getFirestore(), "users", uidValue, "problem", problemID);
     await deleteDoc(ref)
       .then(() => {
         toast.success("Idea Deleted 🗑️");
         dispatch(unsavedChangesAction(false));
         setTitle("");
-      setContentWhy("");
-      setContentWho("");
-      setContentWhat("");
-      setContentPq1("");
-      setContentPq2("");
-      setContentPq3("");
-      setProblemID("");
-      setImgUrl("");
-      setPosition(0);
+        setContentWhy("");
+        setContentWho("");
+        setContentWhat("");
+        setContentPq1("");
+        setContentPq2("");
+        setContentPq3("");
+        setProblemID("");
+        setImgUrl("");
+        setPosition(0);
         setAddImg(false);
         // console.log(ref.id);
-      dispatch(editModeAction("display"));
-      // dispatch(currentDocRedux());
-
+        dispatch(editModeAction("display"));
+        // dispatch(currentDocRedux());
       })
       .catch((error) => {
         toast.error("Error occured 😩" + error);
@@ -299,27 +294,11 @@ function CreateNewProblem(props) {
       });
   };
   const updateIdea = async (e) => {
-
     if (unsavedChangesRedux) {
       e.preventDefault();
-    setLoading(true);
+      setLoading(true);
 
-      //Should I be using redux? Or auth.current user? If I do use redux, delete all instances of auth.currentUser @auth
-      let uid;
-      if (props.cookieUID) {
-        uid = props.cookieUID;
-      } else {
-        if (userUIDRedux) {
-          uid = userUIDRedux;
-          console.log("it actually worked");
-        } else if (auth.currentUser?.uid) {
-          uid = auth.currentUser.uid;
-        } else {
-          uid = null;
-          console.log("no uid available :(");
-        }
-      }
-      const ref = doc(getFirestore(), "users", uid, "problem", problemID);
+      const ref = doc(getFirestore(), "users", uidValue, "problem", problemID);
       await updateDoc(ref, {
         title: title,
         why: contentWhy,
@@ -332,7 +311,7 @@ function CreateNewProblem(props) {
       })
         .then(() => {
           // toast.success("Idea created!");
-    setLoading(false);
+          setLoading(false);
 
           toast.success("Problem updated successfully!");
           dispatch(unsavedChangesAction(false));
@@ -356,30 +335,15 @@ function CreateNewProblem(props) {
     //TODO Is this needed? preventdefault?
     //     e.preventDefault() ?? null;
 
-    //Should I be using redux? Or auth.current user? If I do use redux, delete all instances of auth.currentUser @auth
-    let uid;
-    if (props.cookieUID) {
-      uid = props.cookieUID;
-    } else {
-      if (userUIDRedux) {
-        uid = userUIDRedux;
-        console.log("it actually worked");
-      } else if (auth.currentUser?.uid) {
-        uid = auth.currentUser.uid;
-      } else {
-        uid = null;
-        console.log("no uid available :(");
-      }
-    }
     const d = Number(new Date());
     const timeID = d.valueOf().toString();
-    
-    const ref = doc(getFirestore(), "users", uid, "problem", timeID);
+
+    const ref = doc(getFirestore(), "users", uidValue, "problem", timeID);
 
     //Username needs replacing with redux here @auth
     const data = {
       identifier: timeID,
-      uid: uid,
+      uid: uidValue,
       imgUrl: imgUrl,
       imgPosition: position,
       username: username,
@@ -400,7 +364,7 @@ function CreateNewProblem(props) {
     await setDoc(ref, data)
       // await addDoc(collection(getFirestore(), "users", uid, "ideas"), data)
       .then(() => {
-        setLoading(false)
+        setLoading(false);
         toast.success("Problem created!");
         dispatch(unsavedChangesAction(false));
         dispatch(editModeAction("display"));
@@ -411,19 +375,18 @@ function CreateNewProblem(props) {
         console.log("It failed!" + error);
       });
 
-      setTitle("");
-      setContentWhy("");
-      setContentWho("");
-      setContentWhat("");
-      setContentPq1("");
-      setContentPq2("");
-      setContentPq3("");
-      setProblemID("");
-      setImgUrl("");
-      setPosition(0);
+    setTitle("");
+    setContentWhy("");
+    setContentWho("");
+    setContentWhat("");
+    setContentPq1("");
+    setContentPq2("");
+    setContentPq3("");
+    setProblemID("");
+    setImgUrl("");
+    setPosition(0);
     setProblemID("");
     setAddImg(false);
-
   };
 
   return (
@@ -434,64 +397,56 @@ function CreateNewProblem(props) {
         <h1 className="heading-top">My Ideas & Notes</h1>
       </div>  */}
       <div className="flex flex-col items-center w-[100%] normal-box-soft !rounded-xl !bg-white/60">
-
-
         <FullLoader show={loading} />
-        <div
-          className=" w-[99%] mb-2"
-        >
+        <div className=" w-[99%] mb-2">
           <div className="flex flex-col items-center w-full gap-1 ">
             <h5 className="text-[22px] text-t-bd">
               {editModeRedux === "edit" && "Edit Problem"}
               {editModeRedux === "new" && "New Problem"}
             </h5>
-           
-        
-{editModeRedux === "edit" || editModeRedux === "new"? (<div className="absolute flex gap-5 right-10 top-5">
-{editModeRedux === "edit" &&  <div
-                onClick={deleteIdea}
-                className=" w-[6em] h-[2.5em] rounded-3xl bg-t-pd flex items-center justify-center text-white gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer "
-              >
-                <FaTrash className="text-[20px]" />
-                Delete
-              </div>}
 
-             
-              <button
-                onClick={editModeRedux === "new" ? createIdea : updateIdea}
-                className=" w-[10em] h-[2.5em] rounded-3xl bg-t-bl flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer "
-              >
-                {editModeRedux === "edit" ? (
-                  <FaSave className="text-[20px]" />
-                ) : (
-                  <FaPlus className="text-[20px]" />
+            {editModeRedux === "edit" || editModeRedux === "new" ? (
+              <div className="absolute flex gap-5 right-10 top-5">
+                {editModeRedux === "edit" && (
+                  <div
+                    onClick={deleteIdea}
+                    className=" w-[6em] h-[2.5em] rounded-3xl bg-t-pd flex items-center justify-center text-white gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer "
+                  >
+                    <FaTrash className="text-[20px]" />
+                    Delete
+                  </div>
                 )}
 
-                {editModeRedux === "edit" ? "Save Changes" : "Save Problem"}
-              </button>
-            </div>
+                <button
+                  onClick={editModeRedux === "new" ? createIdea : updateIdea}
+                  className=" w-[10em] h-[2.5em] rounded-3xl bg-t-bl flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer "
+                >
+                  {editModeRedux === "edit" ? (
+                    <FaSave className="text-[20px]" />
+                  ) : (
+                    <FaPlus className="text-[20px]" />
+                  )}
 
-
-
-          ) : (<div className="absolute flex gap-5 right-10 top-5">
-            <button
-              className="w-[9em] h-[2em] rounded-3xl bg-t-bl flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer"
-              onClick={() => {
-                dispatch(editModeAction("edit"));
-              }}
-            >
-              <FaEdit />
-              Edit Problem
-            </button>
-          </div>)}
-            
+                  {editModeRedux === "edit" ? "Save Changes" : "Save Problem"}
+                </button>
+              </div>
+            ) : (
+              <div className="absolute flex gap-5 right-10 top-5">
+                <button
+                  className="w-[9em] h-[2em] rounded-3xl bg-t-bl flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer"
+                  onClick={() => {
+                    dispatch(editModeAction("edit"));
+                  }}
+                >
+                  <FaEdit />
+                  Edit Problem
+                </button>
+              </div>
+            )}
           </div>
-             
 
-              <div className="flex flex-col items-center justify-center p-0 problem-page fade-effect-quick">
-          
-          <div className="flex flex-col w-full gap-4 mt-5">
-        
+          <div className="flex flex-col items-center justify-center p-0 problem-page fade-effect-quick">
+            <div className="flex flex-col w-full gap-4 mt-5">
               {editModeRedux === "edit" || editModeRedux === "new" ? (
                 <TextareaAutosize
                   className="w-[95%] rounded-md "
@@ -499,164 +454,139 @@ function CreateNewProblem(props) {
                   placeholder="..."
                   onChange={(e) => {
                     setTitle(e.target.value);
-        dispatch(unsavedChangesAction(true));
+                    dispatch(unsavedChangesAction(true));
                   }}
                 ></TextareaAutosize>
               ) : (
                 <h3 className="heading">{title}</h3>
               )}
-           
-            <div className="flex flex-wrap justify-center w-full gap-4">
-              
 
-<div className="flex flex-col xl:w-[48%] sm:w-full gap-3">
-
-              <div className="p-5 normal-box-soft !rounded-xl min-w-[15em]  !bg-clear-bl2">
-               
-                <h3 className="heading"> Why:</h3>
-                {/* <hr className="border-t-bd"></hr> */}
-                <div className="w-full glass-box !bg-white/90">
-                  {editModeRedux === "edit" || editModeRedux === "new" ? (
-                    <TextareaAutosize
-                      className="w-full rounded-md"
-                      value={contentWhy}
-                      placeholder="..."
-                      onChange={(e) => {
-                        setContentWhy(e.target.value);
-        dispatch(unsavedChangesAction(true));
-
-                      }}
-                    ></TextareaAutosize>
-                  ) : (
-                    <p>{contentWhy || "..."}</p>
-                  )}
-                </div>
-              </div>
-              <div className="p-5 normal-box-soft !rounded-xl min-w-[15em]  !bg-clear-pl2">
-                
-
-                <h3 className="heading"> What:</h3>
-                {/* <hr className="border-t-bd"></hr> */}
-                <div className="w-full glass-box !bg-white/90">
-                  {editModeRedux === "edit" || editModeRedux === "new" ? (
-                    <TextareaAutosize
-                      className="w-[95%] rounded-md"
-                      value={contentWhat}
-                      placeholder="..."
-                      onChange={(e) => {
-                        setContentWhat(e.target.value);
-        dispatch(unsavedChangesAction(true));
-                      }}
-                    ></TextareaAutosize>
-                  ) : (
-                    <p>{contentWhat || "..."}</p>
-                  )}
-                </div>
-              </div>
-              <div className="p-5 normal-box-soft !rounded-xl min-w-[25em]  !bg-clear-bpop2">
-                
-                <h3 className="heading">Who:</h3>
-                {/* <hr className="border-t-bd"></hr> */}
-                <div className="w-full glass-box !bg-white/90">
-                  {editModeRedux === "edit"  || editModeRedux === "new" ? (
-                    <TextareaAutosize
-                      className="w-[95%] rounded-md"
-                      value={contentWho}
-                      placeholder="..."
-                      onChange={(e) => {
-                        setContentWho(e.target.value);
-                        dispatch(unsavedChangesAction(true));
-
-                      }}
-                    ></TextareaAutosize>
-                  ) : (
-                    <p>{contentWho || "..."}</p>
-                  )}
-                </div>
-              </div>
-
-              </div>
-              <div className="p-5 normal-box-soft !rounded-xl min-w-[25em] xl:w-[45%] sm:w-full !bg-clear-pm2 sm:mt-4">
-               
-                <h3 className="heading"> Problem:</h3>
-                {/* <hr className="border-t-bd"></hr> */}
-                <div className="flex flex-col gap-1">
-                  <p className="mt-4 text-xl text-white">
-                    Probem you want to solve:
-                  </p>
-
-                  <div className="w-full glass-box !bg-white/90">
-                    {editModeRedux === "edit"  || editModeRedux === "new"? (
-                      <TextareaAutosize
-                        className="w-[95%] rounded-md"
-                        value={contentPq1}
-                        placeholder="..."
-                        onChange={(e) => {
-                          setContentPq1(e.target.value);
-        dispatch(unsavedChangesAction(true));
-
-                        }}
-                      ></TextareaAutosize>
-                    ) : (
-                      <p>{contentPq1 || "..."}</p>
-                    )}
+              <div className="flex flex-wrap justify-center w-full gap-4">
+                <div className="flex flex-col xl:w-[48%] sm:w-full gap-3">
+                  <div className="p-5 normal-box-soft !rounded-xl min-w-[15em]  !bg-clear-bl2">
+                    <h3 className="heading"> Why:</h3>
+                    {/* <hr className="border-t-bd"></hr> */}
+                    <div className="w-full glass-box !bg-white/90">
+                      {editModeRedux === "edit" || editModeRedux === "new" ? (
+                        <TextareaAutosize
+                          className="w-full rounded-md"
+                          value={contentWhy}
+                          placeholder="..."
+                          onChange={(e) => {
+                            setContentWhy(e.target.value);
+                            dispatch(unsavedChangesAction(true));
+                          }}
+                        ></TextareaAutosize>
+                      ) : (
+                        <p>{contentWhy || "..."}</p>
+                      )}
+                    </div>
                   </div>
-
-                  <p className="mt-4 text-xl text-white">Potential Cause:</p>
-
-                  <div className="w-full glass-box !bg-white/90">
-                    {editModeRedux === "edit"  || editModeRedux === "new"? (
-                      <TextareaAutosize
-                        className="w-[95%] rounded-md"
-                        value={contentPq2}
-                        placeholder="..."
-                        onChange={(e) => {
-                          setContentPq2(e.target.value);
-        dispatch(unsavedChangesAction(true));
-
-                        }}
-                      ></TextareaAutosize>
-                    ) : (
-                      <p>{contentPq2 || "..."}</p>
-                    )}
+                  <div className="p-5 normal-box-soft !rounded-xl min-w-[15em]  !bg-clear-pl2">
+                    <h3 className="heading"> What:</h3>
+                    {/* <hr className="border-t-bd"></hr> */}
+                    <div className="w-full glass-box !bg-white/90">
+                      {editModeRedux === "edit" || editModeRedux === "new" ? (
+                        <TextareaAutosize
+                          className="w-[95%] rounded-md"
+                          value={contentWhat}
+                          placeholder="..."
+                          onChange={(e) => {
+                            setContentWhat(e.target.value);
+                            dispatch(unsavedChangesAction(true));
+                          }}
+                        ></TextareaAutosize>
+                      ) : (
+                        <p>{contentWhat || "..."}</p>
+                      )}
+                    </div>
                   </div>
-                  <p className="mt-4 text-xl text-white">Root Cause:</p>
+                  <div className="p-5 normal-box-soft !rounded-xl min-w-[25em]  !bg-clear-bpop2">
+                    <h3 className="heading">Who:</h3>
+                    {/* <hr className="border-t-bd"></hr> */}
+                    <div className="w-full glass-box !bg-white/90">
+                      {editModeRedux === "edit" || editModeRedux === "new" ? (
+                        <TextareaAutosize
+                          className="w-[95%] rounded-md"
+                          value={contentWho}
+                          placeholder="..."
+                          onChange={(e) => {
+                            setContentWho(e.target.value);
+                            dispatch(unsavedChangesAction(true));
+                          }}
+                        ></TextareaAutosize>
+                      ) : (
+                        <p>{contentWho || "..."}</p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+                <div className="p-5 normal-box-soft !rounded-xl min-w-[25em] xl:w-[45%] sm:w-full !bg-clear-pm2 sm:mt-4">
+                  <h3 className="heading"> Problem:</h3>
+                  {/* <hr className="border-t-bd"></hr> */}
+                  <div className="flex flex-col gap-1">
+                    <p className="mt-4 text-xl text-white">
+                      Probem you want to solve:
+                    </p>
 
-                  <div className="w-full glass-box !bg-white/90">
-                    {editModeRedux === "edit"  || editModeRedux === "new" ? (
-                      <TextareaAutosize
-                        className="w-[95%] rounded-md"
-                        value={contentPq3}
-                        placeholder="..."
-                        onChange={(e) => {
-                          setContentPq3(e.target.value);
-        dispatch(unsavedChangesAction(true));
+                    <div className="w-full glass-box !bg-white/90">
+                      {editModeRedux === "edit" || editModeRedux === "new" ? (
+                        <TextareaAutosize
+                          className="w-[95%] rounded-md"
+                          value={contentPq1}
+                          placeholder="..."
+                          onChange={(e) => {
+                            setContentPq1(e.target.value);
+                            dispatch(unsavedChangesAction(true));
+                          }}
+                        ></TextareaAutosize>
+                      ) : (
+                        <p>{contentPq1 || "..."}</p>
+                      )}
+                    </div>
 
-                        }}
-                      ></TextareaAutosize>
-                    ) : (
-                      <p>{contentPq3 || "..."}</p>
-                    )}
+                    <p className="mt-4 text-xl text-white">Potential Cause:</p>
+
+                    <div className="w-full glass-box !bg-white/90">
+                      {editModeRedux === "edit" || editModeRedux === "new" ? (
+                        <TextareaAutosize
+                          className="w-[95%] rounded-md"
+                          value={contentPq2}
+                          placeholder="..."
+                          onChange={(e) => {
+                            setContentPq2(e.target.value);
+                            dispatch(unsavedChangesAction(true));
+                          }}
+                        ></TextareaAutosize>
+                      ) : (
+                        <p>{contentPq2 || "..."}</p>
+                      )}
+                    </div>
+                    <p className="mt-4 text-xl text-white">Root Cause:</p>
+
+                    <div className="w-full glass-box !bg-white/90">
+                      {editModeRedux === "edit" || editModeRedux === "new" ? (
+                        <TextareaAutosize
+                          className="w-[95%] rounded-md"
+                          value={contentPq3}
+                          placeholder="..."
+                          onChange={(e) => {
+                            setContentPq3(e.target.value);
+                            dispatch(unsavedChangesAction(true));
+                          }}
+                        ></TextareaAutosize>
+                      ) : (
+                        <p>{contentPq3 || "..."}</p>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+            <div className="flex flex-col"></div>
           </div>
-          <div className="flex flex-col">
-         
-          
-            </div>
-            </div>
-
-
-           
-         
-         
-              
-          
         </div>
       </div>
     </div>
   );
 }
-

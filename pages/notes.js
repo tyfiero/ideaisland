@@ -34,15 +34,12 @@ export const getServerSideProps = async (ctx) => {
     // ctx.res.writeHead(302, { Location: '/login' });
     // ctx.res.end();
 
+    console.log(err);
 
-
-    console.log(err)
-    
     // The props returned here don't matter because we've
     // already redirected the user.
     // return { props: { error: err } };
     return { props: {} };
-
   }
 };
 
@@ -53,10 +50,8 @@ const NotePage = (props) => {
   // const [ID, setID] = useState(null);
   // useEffect(() => {
 
-// console.log(currentNote)
- 
+  // console.log(currentNote)
 
-  
   return (
     <div className="flex flex-col mt-3 fade-effect-quick">
       {/* <div className="flex flex-col items-center "> */}
@@ -64,13 +59,12 @@ const NotePage = (props) => {
       {/* </div> */}
       <div className="note-grid">
         <div className="note-grid-1 normal-box-soft h-full !rounded-2xl  min-w-[240px]">
-          <IdeaSideBar cookieUID={props.cookieUID} type={currentNote} setCurrentNote={setCurrentNote}/>
+          <IdeaSideBar type={currentNote} setCurrentNote={setCurrentNote} />
         </div>
 
         <div className="note-grid-2">
-         {currentNote !== "problem"  && <Editor cookieUID={props.cookieUID} type={currentNote}/>} 
-         {currentNote === "problem" && <ProblemEditor cookieUID={props.cookieUID} type={currentNote}/>} 
-  
+          {currentNote !== "problem" && <Editor type={currentNote} />}
+          {currentNote === "problem" && <ProblemEditor type={currentNote} />}
         </div>
       </div>
     </div>

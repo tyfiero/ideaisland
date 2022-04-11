@@ -36,7 +36,7 @@ export const getServerSideProps = async (ctx) => {
 };
 
 const ProblemPageIndex = (props) => {
-  return <><ProblemWizard cookieUID={props.cookieUID}/></>;
+  return <><ProblemWizard /></>;
 
 };
 

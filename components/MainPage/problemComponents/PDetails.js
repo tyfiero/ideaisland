@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { UserContext } from "../../../lib/context";
 
 import { Popover, ArrowContainer } from "react-tiny-popover";
 
@@ -35,6 +36,7 @@ function PDetails(props) {
   const [content1, setContent1] = useState("");
   const [content2, setContent2] = useState("");
   const [content3, setContent3] = useState("");
+  const { user, username } = useContext(UserContext);
   
   const [titleContent, setTitleContent] = useState("");
   const dispatch = useDispatch();
@@ -119,19 +121,17 @@ function PDetails(props) {
   const saveProblemForm = async (e) => {
     e?.preventDefault() || null;
     let uid;
-    if (props.cookieUID) {
-      uid = props.cookieUID;
-    } else {
-      if (userUIDRedux) {
-        uid = userUIDRedux;
-        console.log("it actually worked");
-      } else if (auth.currentUser?.uid) {
-        uid = auth.currentUser.uid;
-      } else {
-        uid = null;
-        console.log("no uid available :(");
-      }
-    }
+
+  if (user?.uid) {
+    uid = user?.uid;
+  } else if (userUIDRedux) {
+    uid = userUIDRedux;
+  } else if (auth.currentUser?.uid) {
+    uid = auth.currentUser?.uid;
+  } else {
+    uid = "default";
+    console.log("no uid available :(");
+  }
     if (!pFormRedux.id) {
       const d = Number(new Date());
       const timeID = d.valueOf().toString();

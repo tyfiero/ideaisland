@@ -1,4 +1,6 @@
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, useContext } from "react";
+import { UserContext } from "../../../lib/context";
+
 import {
   FaBuilding,
   FaLaptopCode,
@@ -38,6 +40,7 @@ function SolutionProgressPage(props) {
   const userNameRedux = useSelector((state) => state.userName);
   const userUIDRedux = useSelector((state) => state.userUID);
   const [confetti, setConfetti] = useState(true);
+  const { user, username } = useContext(UserContext);
 
   const [contentWhy, setContentWhy] = useState(pFormRedux.why);
   const [contentWhat, setContentWhat] = useState(pFormRedux.what);
@@ -71,18 +74,16 @@ function SolutionProgressPage(props) {
 
     if (changes) {
       let uid;
-      if (props.cookieUID) {
-        uid = props.cookieUID;
+
+      if (user?.uid) {
+        uid = user?.uid;
+      } else if (userUIDRedux) {
+        uid = userUIDRedux;
+      } else if (auth.currentUser?.uid) {
+        uid = auth.currentUser?.uid;
       } else {
-        if (userUIDRedux) {
-          uid = userUIDRedux;
-          console.log("it actually worked");
-        } else if (auth.currentUser?.uid) {
-          uid = auth.currentUser.uid;
-        } else {
-          uid = null;
-          console.log("no uid available :(");
-        }
+        uid = "default";
+        console.log("no uid available :(");
       }
 
       const ref = doc(getFirestore(), "users", uid, "problem", pFormRedux.id);

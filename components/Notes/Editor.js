@@ -59,37 +59,37 @@ function Editor(props) {
   const dispatch = useDispatch();
 
   let type = props.type;
-  
-
 
   const { flushHeldKeys } = useKeyboardShortcut(
     ["Control", "E"],
     (shortcutKeys) => {
-        // console.log("ctrl E")
-        if(editModeRedux === "display"){
-      dispatch(editModeAction("edit")); 
-        }
+      // console.log("ctrl E")
+      if (editModeRedux === "display") {
+        dispatch(editModeAction("edit"));
+      }
     },
-    { 
-      overrideSystem: true,
-      ignoreInputFields: false, 
-      repeatOnHold: false 
+    {
+      overrideSystem: false,
+      ignoreInputFields: false,
+      repeatOnHold: false,
     }
   );
   const hotkey2 = useKeyboardShortcut(
     ["Escape"],
     (shortcutKeys) => {
-        console.log("Escape")
-        if(editModeRedux === "edit" && !unsavedChangesRedux){
-      dispatch(editModeAction("display")); 
-        }else{
-          toast.error("You have unsaved changes. Please save before exiting edit mode.");
-        }
+      console.log("Escape");
+      if (editModeRedux === "edit" && !unsavedChangesRedux) {
+        dispatch(editModeAction("display"));
+      } else {
+        toast.error(
+          "You have unsaved changes. Please save before exiting edit mode."
+        );
+      }
     },
-    { 
+    {
       overrideSystem: true,
-      ignoreInputFields: false, 
-      repeatOnHold: false 
+      ignoreInputFields: false,
+      repeatOnHold: false,
     }
   );
   useEffect(() => {
@@ -126,7 +126,7 @@ function Editor(props) {
               <CreateNewIdea
                 // mode={editModeRedux}
                 type={props.type}
-                cookieUID={props.cookieUID}
+
                 //I might be missing this piece of logic in my code
                 // setEditDocDetails={
                 //   editModeRedux === "new" ? null : editDocDetails
@@ -164,8 +164,9 @@ export default Editor;
 
 function CreateNewIdea(props) {
   const router = useRouter();
-  const { username } = useContext(UserContext);
+  const { username, user } = useContext(UserContext);
   //   const [newIdea, setNewIdea] = useState(false);
+  const [uidValue, setUidValue] = useState("default");
 
   const dispatch = useDispatch();
   const currentDocRedux = useSelector((state) => state.currentDoc);
@@ -194,27 +195,37 @@ function CreateNewIdea(props) {
     }
   }
 
-
-
   const { flushHeldKeys } = useKeyboardShortcut(
     ["Meta", "Enter"],
     (shortcutKeys) => {
-        console.log("META ENTER")
-        if(title || content){
-          if( editModeRedux === "new"){
-            createIdea()
-          }else{
-            updateIdea()  
-          } 
+      console.log("META ENTER");
+      if (title || content) {
+        if (editModeRedux === "new") {
+          createIdea();
+        } else {
+          updateIdea();
         }
+      }
     },
-    { 
+    {
       overrideSystem: true,
-      ignoreInputFields: false, 
-      repeatOnHold: false 
+      ignoreInputFields: false,
+      repeatOnHold: false,
     }
   );
-  
+
+  useEffect(() => {
+    if (user?.uid) {
+      setUidValue(user?.uid);
+    } else if (userUIDRedux) {
+      setUidValue(userUIDRedux);
+    } else if (auth.currentUser?.uid) {
+      setUidValue(auth.currentUser?.uid);
+    } else {
+      setUidValue("default");
+      console.log("no uid available :(");
+    }
+  }, [user, userUIDRedux]);
   // console.log(setEditDocDetails.length + "docdeets");
   // console.log(serverTimestamp());
   // useEffect(() => {
@@ -301,21 +312,8 @@ function CreateNewIdea(props) {
 
   const deleteIdea = async (e) => {
     //Should I be using redux? Or auth.current user? If I do use redux, delete all instances of auth.currentUser @auth
-    let uid;
-    if (props.cookieUID) {
-      uid = props.cookieUID;
-    } else {
-      if (userUIDRedux) {
-        uid = userUIDRedux;
-        console.log("it actually worked");
-      } else if (auth.currentUser?.uid) {
-        uid = auth.currentUser.uid;
-      } else {
-        uid = null;
-        console.log("no uid available :(");
-      }
-    }
-    const ref = doc(getFirestore(), "users", uid, type, ideaID);
+
+    const ref = doc(getFirestore(), "users", uidValue, type, ideaID);
     await deleteDoc(ref)
       .then(() => {
         toast.success("Idea Deleted 🗑️");
@@ -341,22 +339,8 @@ function CreateNewIdea(props) {
 
     if (unsavedChangesRedux) {
       // e.preventDefault();
-      //Should I be using redux? Or auth.current user? If I do use redux, delete all instances of auth.currentUser @auth
-      let uid;
-      if (props.cookieUID) {
-        uid = props.cookieUID;
-      } else {
-        if (userUIDRedux) {
-          uid = userUIDRedux;
-          console.log("it actually worked");
-        } else if (auth.currentUser?.uid) {
-          uid = auth.currentUser.uid;
-        } else {
-          uid = null;
-          console.log("no uid available :(");
-        }
-      }
-      const ref = doc(getFirestore(), "users", uid, type, ideaID);
+
+      const ref = doc(getFirestore(), "users", uidValue, type, ideaID);
 
       let data;
       if (type === "ideas") {
@@ -406,27 +390,12 @@ function CreateNewIdea(props) {
     //TODO Is this needed? preventdefault?
     //     e.preventDefault() ?? null;
 
-    //Should I be using redux? Or auth.current user? If I do use redux, delete all instances of auth.currentUser @auth
-    let uid;
-    if (props.cookieUID) {
-      uid = props.cookieUID;
-    } else {
-      if (userUIDRedux) {
-        uid = userUIDRedux;
-        console.log("it actually worked");
-      } else if (auth.currentUser?.uid) {
-        uid = auth.currentUser.uid;
-      } else {
-        uid = null;
-        console.log("no uid available :(");
-      }
-    }
     const d = Number(new Date());
     const timeID = d.valueOf().toString();
     // let timeIDNum = timeID.stringify()
     // console.log(timeID);
     // const ref = doc(getFirestore(), "users", uid, "ideas", timeID);
-    const ref = doc(getFirestore(), "users", uid, type, timeID);
+    const ref = doc(getFirestore(), "users", uidValue, type, timeID);
     // id: (serverTimestamp.seconds + serverTimestamp.nanoseconds),
 
     // Tip: give all fields a default value here
@@ -438,7 +407,7 @@ function CreateNewIdea(props) {
         title: title,
         rating: rating,
         identifier: timeID,
-        uid: uid,
+        uid: uidValue,
         imgUrl: imgUrl,
         imgPosition: position,
         username: username,
@@ -453,7 +422,7 @@ function CreateNewIdea(props) {
       dataForCreation = {
         title: title,
         identifier: timeID,
-        uid: uid,
+        uid: uidValue,
         content: sanitize(content),
         updatedAt: serverTimestamp(),
         createdAt: serverTimestamp(),
@@ -626,8 +595,7 @@ function CreateNewIdea(props) {
                 theme="snow"
                 // readOnly= "true"
                 className="w-[100%] "
-              tabIndex="2"
-
+                tabIndex="2"
                 placeholder={"Describe your idea..."}
               />
             </div>
