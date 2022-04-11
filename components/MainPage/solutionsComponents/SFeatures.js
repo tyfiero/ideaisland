@@ -49,7 +49,7 @@ function SFeatures(props) {
 
     // setFeatureArray(featureArray)
     setRerender(!rerender);
-  }, [sFormRedux, featureArray]);// eslint-disable-line react-hooks/exhaustive-deps
+  }, [sFormRedux, featureArray]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const updateArray = (data) => {
     // console.log(featureArray);
@@ -127,7 +127,7 @@ function SFeatures(props) {
       >
         <div className="w-full p-10 space-y-8  !rounded-2xl  normal-box-soft">
           <div className="flex">
-            <div className="relative flex flex-col items-center justify-center problem-page fade-effect-quick">
+            <div className="relative flex flex-col items-center justify-center gap-3 px-2 problem-page fade-effect-quick">
               <div className="absolute -top-5 -left-5">
                 <Popover
                   isOpen={isPopoverOpen}
@@ -181,8 +181,10 @@ function SFeatures(props) {
                 </p>
               </div>
               <p>
-                  EDIT THIS to make one button per categorybelow. that way folks can quickly add the big features and tehn be shown the detailed version of their selection in the box below.
-                </p>
+                EDIT THIS to make one button per categorybelow. that way folks
+                can quickly add the big features and tehn be shown the detailed
+                version of their selection in the box below.
+              </p>
               <div className="flex gap-4">
                 <button
                   className={
@@ -620,7 +622,7 @@ function SFeatures(props) {
                 <div className="relative group">
                   <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
                   <button
-                    className="w-[5em] h-[3em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-t-bd/50 md:hover:shadow-xl m-1 drop-shadow-xl "
+                    className="w-[5em] h-[3em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-clear-bd3 md:hover:shadow-xl m-1 drop-shadow-xl "
                     onClick={() => props.goToStep(4)}
                   >
                     Next

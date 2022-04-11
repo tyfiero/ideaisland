@@ -67,7 +67,7 @@ const Sidebar2 = (props) => {
   };
 
   return (
-    <div className="sidebar-container md:border-l-0 flex md:left-0  h-full   md:w-[4.5em] md:flex-col md:rounded-br-[1.5rem]  md:rounded-br-[3px] md:rounded-tl-none  md:absolute  bg-gradient-to-b from-t-pl/20 to-t-bl/40 border-black border-[0px] content-center items-center justify-between	md:py-4  z-10 ">
+    <div className="sidebar-container md:border-l-0 flex md:left-0  h-full   md:w-[4.5em] md:flex-col md:rounded-br-[1.5rem]  md:rounded-br-[3px] md:rounded-tl-none  md:absolute  bg-gradient-to-t  from-clear-pl2 border-black border-[0px] content-center items-center justify-between	md:py-4  z-10 bg-white/40">
       <div className="flex flex-col items-center gap-3">
         <Link href="/home">
           <a>
@@ -177,20 +177,20 @@ const Sidebar2 = (props) => {
       <div className="flex flex-col items-center mb-[4.5em] group">
       <div className="flex flex-col items-center group">
 
-<div
-  className={"flex flex-col items-center p-2 transition-all duration-700 rounded-lg shadow-lg sidebar-unit-container bg-gradient-to-br from-white/20 via-t-pl to-t-pd bg-size-200  drop-shadow-xl group-hover:bg-pos-100 " + (selected === 5 ? " bg-pos-100" : " bg-pos-0")}
+   {!timerOpen && <> <div
+  className={"flex flex-col items-center p-1 transition-all duration-700 rounded-full shadow-lg sidebar-unit-container bg-gradient-to-br from-white/20 via-t-pl to-t-pd bg-size-200  drop-shadow-xl group-hover:bg-pos-100  bg-pos-0"}
   onClick={() => {
-    setSelected(5);
+    // setSelected(5);
     setTimerOpen(!timerOpen);
   }}
 >
-  <IoIosTimer className={"text-2xl transition duration-1000  group-hover:text-pink-50 " + (selected === 5 ? " text-pinks-50" : "text-pinks-700") } />
+  <IoIosTimer className={"text-2xl transition duration-1000  group-hover:text-pink-50 text-pinks-700" } />
   
   </div>
-<p className="text-xs text-black transition duration-1000 opacity-50 group-hover:opacity-100">Timer</p>
+<p className="text-xs text-black transition duration-1000 opacity-50 group-hover:opacity-100">Timer</p></>} 
 </div>
       
-      {timerOpen && <CircleTimer className="fade-effect-quick"/>}
+      {timerOpen && <CircleTimer setTimerOpen={setTimerOpen} className="fade-effect-quick"/>}
 
       </div>
     </div>

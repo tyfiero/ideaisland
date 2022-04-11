@@ -32,17 +32,6 @@ import {
 } from "react-icons/fa";
 // import SwitchSelector from "react-switch-selector";
 
-
-
-
-
-
-
-
-
-
-
-
 export default function IdeaSideBar(props) {
   // const [currentNote, setCurrentNote] = useState("ideas");
   const [searchValue, setSearchValue] = useState("");
@@ -50,96 +39,96 @@ export default function IdeaSideBar(props) {
   const editModeRedux = useSelector((state) => state.editMode);
   const dispatch = useDispatch();
   // dispatch(editModeAction("new"))
-let type = props.type;
+  let type = props.type;
 
   return (
     <div className="overflow-hidden">
-    <div className="normal-box-soft fade-effect-quick flex flex-col items-center !h-[80vh] overflow-y-auto overflow-x-hidden !rounded-2xl scrollbar-w-2 scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-t-bl scrollbar-track-blues-50">
-      {type === "ideas" && (
-        <>
-          <h1 className="heading-top">Ideas</h1>
-        </>
-      )}
-      {type === "problem" && (
-        <>
-          <h1 className="heading-top">Problems</h1>
-        </>
-      )}
-      {type === "notes" && (
-        <>
-          <h1 className="heading-top">Notes</h1>
-        </>
-      )}
-      <div className="flex w-[20em] p-2 gap-2 items-center justify-evenly text-center normal-box-soft">
-        {/* <SwitchSelector
+      <div className="normal-box-soft fade-effect-quick flex flex-col items-center !h-[80vh] overflow-y-auto overflow-x-hidden !rounded-2xl scrollbar-w-2 scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-t-bl scrollbar-track-blues-50">
+        {type === "ideas" && (
+          <>
+            <h1 className="heading-top">Ideas</h1>
+          </>
+        )}
+        {type === "problem" && (
+          <>
+            <h1 className="heading-top">Problems</h1>
+          </>
+        )}
+        {type === "notes" && (
+          <>
+            <h1 className="heading-top">Notes</h1>
+          </>
+        )}
+        <div className="flex w-[20em] p-2 gap-2 items-center justify-evenly text-center normal-box-soft">
+          {/* <SwitchSelector
           onChange={onChangeHandler}
           options={options}
           initialSelectedIndex={initialSelectedIndex}
           backgroundColor={"#ffffff6e"}
           fontColor={"black"}
         /> */}
-        <button
-          className={
-            "w-[6em] h-[2em] rounded-3xl  flex items-center justify-center text-white gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer " +
-            (type === "ideas" ? " bg-t-bl" : " bg-slate-300")
-          }
-          onClick={() => props.setCurrentNote("ideas")}
-        >
-          <FaLightbulb className="text-[18px] text-t-bd" />
-
-          <p
+          <button
             className={
-              "mr-1  mb-0 " +
-              (type === "ideas"
-                ? "text-white text-[20px]"
-                : "text-black text-[18px]")
+              "w-[6em] h-[2em] rounded-3xl  flex items-center justify-center text-white gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer " +
+              (type === "ideas" ? " bg-t-bl" : " bg-slate-300")
             }
+            onClick={() => props.setCurrentNote("ideas")}
           >
-            Ideas
-          </p>
-        </button>
-        <button
-          className={
-            "w-[7em] h-[2em] rounded-3xl px-1 bg-t-bl flex items-center justify-center text-white gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95  cursor-pointer " +
-            (type === "problem" ? " bg-t-pm" : " bg-slate-300")
-          }
-          onClick={() => props.setCurrentNote("problem")}
-        >
-          <FaExclamationTriangle className="text-[18px] text-t-bd" />
+            <FaLightbulb className="text-[18px] text-t-bd" />
 
-          <p
+            <p
+              className={
+                "mr-1  mb-0 " +
+                (type === "ideas"
+                  ? "text-white text-[20px]"
+                  : "text-black text-[18px]")
+              }
+            >
+              Ideas
+            </p>
+          </button>
+          <button
             className={
-              "mr-1  mb-0 " +
-              (type === "problem"
-                ? "text-white text-[20px]"
-                : "text-black text-[18px]")
+              "w-[7.5em] h-[2em] rounded-3xl px-1 bg-t-bl flex items-center justify-center text-white gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95  cursor-pointer " +
+              (type === "problem" ? " bg-t-pm" : " bg-slate-300")
             }
+            onClick={() => props.setCurrentNote("problem")}
           >
-            Problems
-          </p>
-        </button>
-        <button
-          className={
-            "w-[6em] h-[2em] rounded-3xl bg-t-bl flex items-center justify-center text-white gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer " +
-            (type === "notes" ? " bg-t-bpop/80" : " bg-slate-300")
-          }
-          onClick={() => props.setCurrentNote("notes")}
-        >
-          <FaStickyNote className="text-[18px] text-t-bd" />
+            <FaExclamationTriangle className="text-[18px] text-t-bd" />
 
-          <p
+            <p
+              className={
+                "mr-1  mb-0 " +
+                (type === "problem"
+                  ? "text-white text-[20px]"
+                  : "text-black text-[18px]")
+              }
+            >
+              Problems
+            </p>
+          </button>
+          <button
             className={
-              "mr-1 mb-0 " +
-              (type === "notes"
-                ? "text-white text-[20px]"
-                : "text-black text-[18px]")
+              "w-[6em] h-[2em] rounded-3xl bg-t-bl flex items-center justify-center text-white gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer " +
+              (type === "notes" ? " bg-clear-bpop3" : " bg-slate-300")
             }
+            onClick={() => props.setCurrentNote("notes")}
           >
-            Notes
-          </p>
-        </button>
-      </div>
-      {/* <div className="transition duration-1000 rounded-lg -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 blur">
+            <FaStickyNote className="text-[18px] text-t-bd" />
+
+            <p
+              className={
+                "mr-1 mb-0 " +
+                (type === "notes"
+                  ? "text-white text-[20px]"
+                  : "text-black text-[18px]")
+              }
+            >
+              Notes
+            </p>
+          </button>
+        </div>
+        {/* <div className="transition duration-1000 rounded-lg -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 blur">
       <button
         // type="submit"
         // disabled={!isValid}
@@ -154,66 +143,80 @@ let type = props.type;
       </button>
       </div> */}
 
-      <div className="relative mt-2 group">
-        <div className="absolute transition duration-1000 rounded-full opacity-25 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
-        {/* <div className="relative flex justify-start rounded-lg ring-1 items-top"> */}
+        <div className="relative mt-2 group">
+          <div className="absolute transition duration-1000 rounded-full opacity-25 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
+          {/* <div className="relative flex justify-start rounded-lg ring-1 items-top"> */}
 
-        <button
-          // type="submit"
-          // disabled={!isValid}
-          onClick={() => {
-            dispatch(editModeAction("new"));
-            // dispatch(currentDocAction(idea.identifier))
-          }}
-          className=" w-[12em] h-[2em] m-2 rounded-3xl bg-t-bl flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer md:hover:shadow-xl shadow-t-bd/50"
-        >
-          <FaPlus className="text-[20px]" />
-          <p> {type === "ideas" ? ("Create New Idea"
-      ) : (type === "problem" ? "Create Problem" : "Create New Note")}</p>
+          <button
+            // type="submit"
+            // disabled={!isValid}
+            onClick={() => {
+              dispatch(editModeAction("new"));
+              // dispatch(currentDocAction(idea.identifier))
+            }}
+            className=" w-[12em] h-[2em] m-2 rounded-3xl bg-t-bl flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer md:hover:shadow-xl shadow-clear-bd3"
+          >
+            <FaPlus className="text-[20px]" />
+            <p>
+              {" "}
+              {type === "ideas"
+                ? "Create New Idea"
+                : type === "problem"
+                ? "Create Problem"
+                : "Create New Note"}
+            </p>
+          </button>
+        </div>
+        <div className="flex justify-center w-full">
+          <FaRegTimesCircle className="relative right-6 -top-[13px] mt-[1.2rem] mr-4 text-t-pm md:hover:scale-125 text-xl opacity-0" />
 
-         
-          
-        </button>
-      </div>
-      <div className="flex justify-center w-full">
-      <FaRegTimesCircle className="relative right-6 -top-[13px] mt-[1.2rem] mr-4 text-t-pm md:hover:scale-125 text-xl opacity-0" />
-      
-        <input
-          className="border-2 border-gray-300 bg-white h-8 px-5 pr-16 rounded-full text-sm focus:outline-none w-[100%]"
-          type="search"
-          name="search"
-          placeholder="Search"
-          onChange={(e) => setSearchValue(e.target.value)}
-          value={searchValue}
-        />
-  {searchValue ? (
-          <button onClick={() => setSearchValue("")}>
-            <FaRegTimesCircle className="relative right-6 -top-[13px] mt-[1.2rem] mr-4 text-t-pm md:hover:scale-125 text-xl" />
-          </button>
-        ) : (
-          <button className="relative mt-5 mr-4 right-6 -top-3 text-slate-300">
-            <FaSearch />
-          </button>
+          <input
+            className="border-2 border-gray-300 bg-white h-8 px-5 pr-16 rounded-full text-sm focus:outline-none w-[100%]"
+            type="search"
+            name="search"
+            placeholder="Search"
+            onChange={(e) => setSearchValue(e.target.value)}
+            value={searchValue}
+          />
+          {searchValue ? (
+            <button onClick={() => setSearchValue("")}>
+              <FaRegTimesCircle className="relative right-6 -top-[13px] mt-[1.2rem] mr-4 text-t-pm md:hover:scale-125 text-xl" />
+            </button>
+          ) : (
+            <button className="relative mt-5 mr-4 right-6 -top-3 text-slate-300">
+              <FaSearch />
+            </button>
+          )}
+        </div>
+
+        {type === "ideas" && (
+          <>
+            <IdeasList
+              searchValue={searchValue}
+              cookieUID={props.cookieUID}
+              type="ideas"
+            />
+          </>
         )}
-       
+        {type === "problem" && (
+          <>
+            <IdeasList
+              searchValue={searchValue}
+              cookieUID={props.cookieUID}
+              type="problem"
+            />
+          </>
+        )}
+        {type === "notes" && (
+          <>
+            <IdeasList
+              searchValue={searchValue}
+              cookieUID={props.cookieUID}
+              type="notes"
+            />
+          </>
+        )}
       </div>
-
-      {type === "ideas" && (
-        <>
-          <IdeasList searchValue={searchValue} cookieUID={props.cookieUID} type="ideas"/>
-        </>
-      )}
-      {type === "problem" && (
-        <>
-         <IdeasList searchValue={searchValue} cookieUID={props.cookieUID} type="problem"/>
-        </>
-      )}
-      {type === "notes" && (
-        <>
-           <IdeasList searchValue={searchValue} cookieUID={props.cookieUID} type="notes"/>
-        </>
-      )}
-    </div>
     </div>
   );
 }
@@ -224,31 +227,28 @@ function IdeasList(props) {
   const userUIDRedux = useSelector((state) => state.userUID);
   const [searchValue, setSearchValue] = useState("");
 
-console.log()
+  console.log();
   useEffect(() => {
     setSearchValue(props.searchValue);
-
-}, [props.searchValue])
-  //Done? I think it works now after adding nextjs firebase cookies. 
+  }, [props.searchValue]);
+  //Done? I think it works now after adding nextjs firebase cookies.
   //TODO memoize this so that firebase reads less
   let uid;
-  if(props.cookieUID){
+  if (props.cookieUID) {
     uid = props.cookieUID;
-  }else{
-    
-  if (userUIDRedux) {
-    uid = userUIDRedux;
-    console.log("it actually worked");
-  } else if (auth.currentUser?.uid) {
-    uid = auth.currentUser.uid;
   } else {
-    uid = null;
-    console.log("no uid available :(");
+    if (userUIDRedux) {
+      uid = userUIDRedux;
+      console.log("it actually worked");
+    } else if (auth.currentUser?.uid) {
+      uid = auth.currentUser.uid;
+    } else {
+      uid = null;
+      console.log("no uid available :(");
+    }
   }
-}
 
-let type = props.type
-
+  let type = props.type;
 
   // console.log(auth.currentUser);
   const ref = collection(getFirestore(), "users", uid, type);
@@ -258,28 +258,52 @@ let type = props.type
 
   const ideas = querySnapshot?.docs.map((doc) => doc.data());
 
-  let ideaSearch = ideas?.filter(obj => {
+  let ideaSearch = ideas?.filter((obj) => {
     // console.log(obj.title.toLowerCase());
 
+    if (props.type === "ideas") {
+      return (
+        obj.title.toLowerCase().includes(searchValue?.toLowerCase()) ||
+        obj.content?.toLowerCase().includes(searchValue?.toLowerCase())
+      );
+    } else if (props.type === "problem") {
+      return (
+        obj.title.toLowerCase().includes(searchValue?.toLowerCase()) ||
+        obj.why?.toLowerCase().includes(searchValue?.toLowerCase()) ||
+        obj.what?.toLowerCase().includes(searchValue?.toLowerCase()) ||
+        obj.who?.toLowerCase().includes(searchValue?.toLowerCase()) ||
+        obj.pq1?.toLowerCase().includes(searchValue?.toLowerCase()) ||
+        obj.pq2?.toLowerCase().includes(searchValue?.toLowerCase()) ||
+        obj.pq3?.toLowerCase().includes(searchValue?.toLowerCase())
+      );
+    } else if (props.type === "notes") {
+      return (
+        obj.title.toLowerCase().includes(searchValue?.toLowerCase()) ||
+        obj.content?.toLowerCase().includes(searchValue?.toLowerCase())
+      );
+    }
+  });
 
-    if(props.type === "ideas"){
-      return (obj.title.toLowerCase().includes(searchValue?.toLowerCase()) || obj.content?.toLowerCase().includes(searchValue?.toLowerCase()));
-    }else if(props.type === "problem"){
-      return (obj.title.toLowerCase().includes(searchValue?.toLowerCase()) || obj.why?.toLowerCase().includes(searchValue?.toLowerCase()) || obj.what?.toLowerCase().includes(searchValue?.toLowerCase()) || obj.who?.toLowerCase().includes(searchValue?.toLowerCase()) || obj.pq1?.toLowerCase().includes(searchValue?.toLowerCase()) || obj.pq2?.toLowerCase().includes(searchValue?.toLowerCase())|| obj.pq3?.toLowerCase().includes(searchValue?.toLowerCase()));
-    }else if(props.type === "notes"){
-      return (obj.title.toLowerCase().includes(searchValue?.toLowerCase()) || obj.content?.toLowerCase().includes(searchValue?.toLowerCase())
-    
-  )}
-    });
-
-// console.log(ideaSearch);
+  // console.log(ideaSearch);
 
   return (
     <>
-      <IdeaFeed ideas={ideaSearch} admin type={props.type}/>
+      <IdeaFeed ideas={ideaSearch} admin type={props.type} />
 
-      
-      {searchValue?.length > 0 && ideas?.length > 0 ? <p className="mt-2 text-xs text-slate-400">Displaying {ideaSearch?.length} of {ideas?.length}</p> : <p className="mt-2 text-xs text-slate-400">{ideas?.length}{(props.type === "problem" ? " problems" : (props.type === "ideas" ? " ideas" : " notes"))}</p>}
+      {searchValue?.length > 0 && ideas?.length > 0 ? (
+        <p className="mt-2 text-xs text-slate-400">
+          Displaying {ideaSearch?.length} of {ideas?.length}
+        </p>
+      ) : (
+        <p className="mt-2 text-xs text-slate-400">
+          {ideas?.length}
+          {props.type === "problem"
+            ? " problems"
+            : props.type === "ideas"
+            ? " ideas"
+            : " notes"}
+        </p>
+      )}
     </>
   );
 }

@@ -9,6 +9,7 @@ import {
   FaPlay,
   FaPause,
   FaUndo,
+  FaTimes,
 } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { soundSetting } from "../../redux/actions";
@@ -49,7 +50,7 @@ const RenderTime = ({ remainingTime }) => {
   );
 };
 
-function CircleTimer() {
+function CircleTimer({setTimerOpen}) {
   const [play, setPlay] = useState(false);
   const [timerMenuOpen, setTimerMenuOpen] = useState(false);
   const [soundOn, setSoundOn] = useState(true);
@@ -77,12 +78,88 @@ function CircleTimer() {
   // const [, forceUpdate] = useReducer(x => x + 1, 0);
 
   let timerMenuContent = (
-    <div className="flex flex-col items-center timer-menu normal-box fade-effect-fast">
-      <h5 className="text-[22px]">Timer Settings</h5>
-      <div className="normal-box w-[100%] flex flex-col items-center mt-1">
+    <div className="flex flex-col items-center timer-menu glass-box fade-effect-fast !rounded-2xl bg-white/50 ">
+      <h5 className="text-[22px] !m-0 text-t-bd">Timer Settings</h5>
+      <div className="normal-box w-[80%] flex justify-evenly items-center pt-2">
+      <div className="flex flex-col items-center">
+        {play ? (
+          <FaPause
+            className="text-2xl cursor-pointer md:hover:scale-110 md:transition-transform md:active:scale-95 text-t-bl bg-t-bl"
+            onClick={() => {
+              setPlay(false);
+            }}
+          />
+        ) : (
+          <FaPlay
+            className="text-2xl cursor-pointer md:hover:scale-110 md:transition-transform md:active:scale-95 text-t-bl"
+            
+            onClick={() => {
+              setPlay(true);
+              setIsVisible(false);
+
+              toast.success("Timer Started!", {
+                iconTheme: {
+                  primary: "#4eaef7",
+                  secondary: "#FFFAEE",
+                },
+                position: "top-center",
+              });
+            }}
+          />
+        )} <p className="text-xs">{play ? "Stop" : "Start"}</p>
+        </div>
+        <div className="flex flex-col items-center">
+        <FaUndo
+          className="text-2xl cursor-pointer md:hover:scale-110 md:transition-transform md:active:scale-95 text-t-bd"
+          
+          onClick={() => {
+            setKey((prevKey) => prevKey + 1);
+            setPlay(false);
+          }}
+        />
+        
+<p className="text-xs">Reset</p>
+</div>
+
+        <div className="flex flex-col items-center">
+        <Toggle
+          className="dark-toggle "
+          defaultChecked={soundOn}
+          onChange={() => {
+            dispatch(soundSetting(!soundRedux));
+          }}
+          icons={{
+            unchecked: (
+              <FaVolumeMute
+                style={{
+                  fontSize: "1em",
+                  color: "white",
+                  paddingBottom: "3px",
+                  paddingTop: "1px !important",
+                }}
+              />
+            ),
+            checked: (
+              <FaVolumeUp
+                style={{
+                  fontSize: "1em",
+                  color: "white",
+                  paddingBottom: "2px",
+                  paddingTop: "1px !important",
+                }}
+              />
+            ),
+          }}
+        />
+<p className="text-xs">Sound</p>
+          
+        </div>
+
+      </div>
+      <div className="normal-box w-[100%] flex flex-col items-center mt-1 !rounded-2xl">
         <p className="text-[18px]">Length</p>
         {/* <input type="number" min="1" max="60"></input> */}
-        <div className="flex flex-wrap items-center justify-center gap-1 mb-3">
+        <div className="flex flex-wrap items-center justify-center gap-1 mb-1">
           <button
             className="w-[3em] h-6 rounded-3xl bg-blues-200 flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 "
             onClick={() => {
@@ -238,87 +315,12 @@ function CircleTimer() {
         </div>
       </div>
 
-      <div className="normal-box w-[50%] flex flex-col items-center mt-2">
-        <p className="text-[18px] ">Sound</p>
-        <Toggle
-          className="dark-toggle "
-          defaultChecked={soundOn}
-          onChange={() => {
-            dispatch(soundSetting(!soundRedux));
-          }}
-          icons={{
-            unchecked: (
-              <FaVolumeMute
-                style={{
-                  fontSize: "1em",
-                  color: "white",
-                  paddingBottom: "3px",
-                  paddingTop: "1px !important",
-                }}
-              />
-            ),
-            checked: (
-              <FaVolumeUp
-                style={{
-                  fontSize: "1em",
-                  color: "white",
-                  paddingBottom: "2px",
-                  paddingTop: "1px !important",
-                }}
-              />
-            ),
-          }}
-        />
-      </div>
-      <div className="normal-box w-[50%] flex justify-evenly items-center mt-2">
-        {play ? (
-          <FaPause
-            className="md:hover:scale-110 md:transition-transform md:active:scale-95"
-            style={{
-              fontSize: "2em",
-              color: "#4eaef7",
-              cursor: "pointer",
-            }}
-            onClick={() => {
-              setPlay(false);
-            }}
-          />
-        ) : (
-          <FaPlay
-            className="md:hover:scale-110 md:transition-transform md:active:scale-95"
-            style={{
-              fontSize: "2em",
-              color: "#4eaef7",
-              cursor: "pointer",
-            }}
-            onClick={() => {
-              setPlay(true);
-              setIsVisible(false);
-
-              toast.success("Timer Started!", {
-                iconTheme: {
-                  primary: "#4eaef7",
-                  secondary: "#FFFAEE",
-                },
-                position: "top-center",
-              });
-            }}
-          />
-        )}
-        <FaUndo
-          className="md:hover:scale-110 md:transition-transform md:active:scale-95"
-          style={{
-            fontSize: "1.7em",
-            color: "#4eaef7",
-            cursor: "pointer",
-          }}
-          onClick={() => {
-            setKey((prevKey) => prevKey + 1);
-            setPlay(false);
-          }}
-        />
-      </div>
-      <p className="text-[12px] pt-2">Tip: Double click timer to play/pause</p>
+    
+     
+      <p className="text-[12px] py-1">Tip: Double click timer to play/pause</p>
+      <button onClick={() => {setIsVisible(false);
+      setTimerOpen(false)}}
+      className="flex bg-t-pm gap-2 items-center !rounded-2xl py-1 px-2 md:hover:scale-110 transition text-white mb-2  "><FaTimes className="text-xl text-white cursor-pointer"/> Close Timer</button>
     </div>
   );
   return (
@@ -327,7 +329,7 @@ function CircleTimer() {
       <div ref={ref}>{isVisible && timerMenuContent}</div>
       {/* {timerMenuContent} */}
       <div
-        className="z-10 scale-75 cursor-pointer timer-wrapper bg-t-pl/80"
+        className="z-10 scale-75 cursor-pointer timer-wrapper bg-clear-pl4"
         onClick={onClickHandler}
         // onMouseEnter={() => setTimerMenuOpen(true)}
         // onMouseLeave={() => setTimerMenuOpen(false)}
@@ -340,7 +342,12 @@ function CircleTimer() {
           strokeWidth={16}
           updateInterval={0.01}
           rotation="counterclockwise"
-          colors={["var(--colorLight2)", "var(--colorLight1)", "#4eaef7", "#2549a8", ]}
+          colors={[
+            "var(--colorLight2)",
+            "var(--colorLight1)",
+            "var(--colorDark1)",
+            "var(--colorDark2)",
+          ]}
           colorsTime={[10, 6, 3, 0]}
           onComplete={() => {
             setPlay(false);

@@ -19,7 +19,6 @@ import Link from "next/link";
 
 import Image from "next/image";
 
-
 function SIdeate(props) {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [button1, setButton1] = useState(false);
@@ -81,14 +80,13 @@ function SIdeate(props) {
               </div>
             </Popover>
           </div>
-          <div className="flex flex-col items-center justify-center problem-page fade-effect-quick">
+          <div className="flex flex-col items-center justify-center gap-3 p-3 problem-page fade-effect-quick !m-0">
             <h1 className="heading-top">Ideate</h1>
             <div className="normal-box-soft">
               <h3 className="heading">Oh yes, it&apos;s idea time 😎</h3>
             </div>
-<div className="bg-white/60 rounded-xl">
-
-{/* <Image
+            <div className="bg-white/60 rounded-xl">
+              {/* <Image
         alt="Next.js logo"
         src="/palmnobgoptimized.png"
         width={2802}
@@ -96,8 +94,8 @@ function SIdeate(props) {
         priority={true}
       /> */}
 
-      <img src="/palmnobgoptimized.png" alt="palm" />
-</div>
+              <img src="/palmnobgoptimized.png" alt="palm" />
+            </div>
             <div className="flex gap-5">
               {/* <button
                 className={"w-[12em] h-[4em] rounded-3xl  flex items-center justify-center text-black gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " + (button1 ? " border-4 border-t-bl bg-blues-200" : "bg-blues-100")}
@@ -158,7 +156,7 @@ function SIdeate(props) {
               <div className="relative group">
                 <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
                 <button
-                  className="w-[5em] h-[3em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-t-bd/50 md:hover:shadow-xl m-1 drop-shadow-xl "
+                  className="w-[5em] h-[3em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-clear-bd3 md:hover:shadow-xl m-1 drop-shadow-xl "
                   onClick={() => props.goToStep(2)}
                 >
                   Next

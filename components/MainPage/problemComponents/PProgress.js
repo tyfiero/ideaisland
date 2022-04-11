@@ -117,8 +117,7 @@ function ProblemProgressPage(props) {
 "
       >
         <div className="w-full max-w-[95%]  space-y-8   normal-box-soft p-3">
-          <div className="flex flex-col items-center justify-center p-0 problem-page fade-effect-quick">
-          
+          <div className="flex flex-col items-center justify-center gap-1 p-0 problem-page fade-effect-quick">
             <h1 className="heading-top">Progress so far:</h1>
             <div className="flex flex-col w-full gap-4">
               <div className="p-5 normal-box-soft !rounded-xl w-full group">
@@ -156,11 +155,9 @@ function ProblemProgressPage(props) {
                   <h3 className="heading">{contentTitle}</h3>
                 )}
               </div>
-             
-              <div className="flex flex-wrap justify-center gap-4">
-                
 
-                <div className="p-5 normal-box-soft !rounded-xl min-w-[25em] group !bg-t-bl/10">
+              <div className="flex flex-wrap justify-center gap-4">
+                <div className="p-5 normal-box-soft !rounded-xl min-w-[25em] group !bg-clear-bl2">
                   <button
                     className="absolute flex items-center gap-1 p-1 px-2 text-white transition duration-500 opacity-0 bg-t-bl rounded-2xl group-hover:opacity-100 hover:scale-110 active:scale-95"
                     onClick={() => setEditWhy(!editWhy)}
@@ -198,7 +195,7 @@ function ProblemProgressPage(props) {
                     )}
                   </div>
                 </div>
-                <div className="p-5 normal-box-soft !rounded-xl w-[35em] group !bg-t-pl/30">
+                <div className="p-5 normal-box-soft !rounded-xl w-[35em] group !bg-clear-pl3">
                   <button
                     className="absolute flex items-center gap-1 p-1 px-2 text-white transition duration-500 opacity-0 bg-t-bl rounded-2xl group-hover:opacity-100 hover:scale-110 active:scale-95"
                     onClick={() => setEditWhat(!editWhat)}
@@ -237,7 +234,7 @@ function ProblemProgressPage(props) {
                     )}
                   </div>
                 </div>
-                <div className="p-5 normal-box-soft !rounded-xl w-[35em] group !bg-t-bpop/20">
+                <div className="p-5 normal-box-soft !rounded-xl w-[35em] group !bg-clear-bpop1">
                   <button
                     className="absolute flex items-center gap-1 p-1 px-2 text-white transition duration-500 opacity-0 bg-t-bl rounded-2xl group-hover:opacity-100 hover:scale-110 active:scale-95"
                     onClick={() => setEditWho(!editWho)}
@@ -275,7 +272,7 @@ function ProblemProgressPage(props) {
                     )}
                   </div>
                 </div>
-                <div className="p-5 normal-box-soft !rounded-xl min-w-[35em] group !bg-t-pm/20">
+                <div className="p-5 normal-box-soft !rounded-xl min-w-[35em] group !bg-clear-pm2">
                   <button
                     className="absolute flex items-center gap-1 p-1 px-2 text-white transition duration-500 opacity-0 bg-t-bl rounded-2xl group-hover:opacity-100 hover:scale-110 active:scale-95"
                     onClick={() => setEditProblem(!editProblem)}
@@ -363,19 +360,21 @@ function ProblemProgressPage(props) {
               </div>
             </div>
             <div className="flex flex-col">
-            <div className="my-8 mb-[5em] glass-box">
+              <div className="my-8 mb-[5em] glass-box">
                 <p className="text-xl text-t-bd">
                   You&apos;ve come a long way! Now is when the real fun starts.
                   It&apos;s time to ideate. 💡
                 </p>
-            </div>
-            <div className="flex justify-center w-full mt-[2em]">
-                  <img src="../island-pic.png" alt="palm" className="absolute  -bottom-[20rem] scale-[0.3] -z-10"/>
-                </div>
               </div>
+              <div className="flex justify-center w-full mt-[2em]">
+                <img
+                  src="../island-pic.png"
+                  alt="palm"
+                  className="absolute  -bottom-[20rem] scale-[0.3] -z-10"
+                />
+              </div>
+            </div>
 
-             
-           
             <div className="flex items-center justify-between w-full mb-8">
               <button
                 className="card__btn_prev save_button left-[5%]  flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick"
@@ -384,11 +383,11 @@ function ProblemProgressPage(props) {
                 <FaLongArrowAltLeft className="mr-1 text-[24px]" />
                 Back
               </button>
-              
+
               <div className="relative group">
                 <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
                 <button
-                  className="w-[16em] h-[4em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-t-bd/50 md:hover:shadow-xl m-1 drop-shadow-xl "
+                  className="w-[16em] h-[4em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-clear-bd3 md:hover:shadow-xl m-1 drop-shadow-xl "
                   onClick={saveOrContinue}
                 >
                   Continue to Solutions

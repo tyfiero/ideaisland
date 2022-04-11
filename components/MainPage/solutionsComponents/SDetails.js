@@ -36,7 +36,7 @@ const router = useRouter();
       >
         <div className="w-full max-w-[42rem] p-10 space-y-8  normal-box-soft">
          {confetti && <ConfettiComponent />}
-          <div className="relative flex flex-col items-center justify-center problem-page fade-effect-quick">
+          <div className="relative flex flex-col items-center justify-center p-2 problem-page fade-effect-quick">
             <div className="absolute -top-5 -left-5">
               <Popover
                 isOpen={isPopoverOpen}

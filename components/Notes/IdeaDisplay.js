@@ -671,7 +671,7 @@ export default function IdeaDisplay(props) {
           alt="cover image"
         />
       </div>
-      <div className="normal-box-soft text-t-bd text-[28px] p-5 mt-3">
+      <div className="text-t-bd text-[28px] p-5 mt-3">
         <h2 className="mx-3 ">{currentDocRedux?.title || "*Unnamed Idea"}</h2>
       </div>
      
@@ -711,7 +711,7 @@ export default function IdeaDisplay(props) {
       </div>
 
       
-      <div className={"normal-box-soft w-full !rounded-2xl first-letter:" + (type === "ideas" ? " !bg-blues-100/70" : " !bg-t-bpop/30")}>
+      <div className={"normal-box-soft w-full !rounded-2xl first-letter:" + (type === "ideas" ? " !bg-clear-bl2" : " !bg-clear-bpop2")}>
         <div className="normal-box mt-1 mx-1 min-h-[15em] !rounded-2xl mb-4 ">
           <div
             className="mx-2"

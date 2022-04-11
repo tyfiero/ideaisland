@@ -71,21 +71,21 @@ const ImplementationPage = (props) => {
       <h1 className="heading-top">Implementation</h1>
 
       <div className="flex flex-col items-center w-full">
-        <div className="flex flex-wrap items-center w-[90%] border-4 border-t-bd px-5 pb-5 rounded-2xl">
+        <div className="flex flex-wrap items-center w-[90%]  px-5 pb-5 rounded-2xl">
           <div className="flex w-full">
-            <p className="m-0 text-t-bd">All Tools</p>
           </div>
 
           <div></div>
 
-          <div className="flex flex-wrap items-center w-full px-5 pb-5 border-8 border-t-bl rounded-2xl bg-t-bl/20">
-            <div className="flex w-full">
+          <div className="relative flex flex-wrap items-center justify-center w-full px-5 pb-5 border-8 border-t-bl rounded-2xl bg-clear-bl2">
+            <div className="flex w-full ">
               <p className="pb-3 text-t-bl">Web2 Tools</p>
             </div>
+            <div className="flex">
             <ImplementTool
               route="/implementation/mrr-calculator"
               color={"bg-blues-100"}
-              bColor="md:hover:ring-t-bl/50"
+              bColor="md:hover:ring-clear-bd3"
               textColor=" text-t-bl"
               title="MRR Calculator"
               description="This tool helps you accurately forecast future revenue growth from a subscription based business model."
@@ -94,7 +94,7 @@ const ImplementationPage = (props) => {
             <ImplementTool
               route="/implementation/mrr-calculator"
               color={"bg-blues-100"}
-              bColor="md:hover:ring-t-bl/50"
+              bColor="md:hover:ring-clear-bd3"
               textColor=" text-t-bl"
               title="Pricing Tool"
               description="This tool helps you price your products and services."
@@ -103,7 +103,7 @@ const ImplementationPage = (props) => {
             <ImplementTool
               route="/implementation/mrr-calculator"
               color={"bg-blues-100"}
-              bColor="md:hover:ring-t-bl/50"
+              bColor="md:hover:ring-clear-bd3"
               textColor=" text-t-bl"
               title="Runway Calculator"
               description="How long can you operate without revenue? This tool aims to show you."
@@ -112,17 +112,19 @@ const ImplementationPage = (props) => {
             <ImplementTool
               route="/implementation/mrr-calculator"
               color={"bg-blues-100"}
-              bColor="md:hover:ring-t-bl/50"
+              bColor="md:hover:ring-clear-bd3"
               textColor=" text-t-bl"
               title="Marketing plan"
               description="Build a simple marketing plan to help you grow your business."
               imgSrc="https://images.unsplash.com/photo-1611926653458-09294b3142bf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDd8fG1hcmtldGluZ3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
             />
-          </div>
-          <div className="flex flex-wrap items-center w-full px-5 pb-5 mt-2 border-4 border-t-pm rounded-2xl bg-t-pm/20">
+          </div></div>
+          <div className="flex flex-wrap items-center justify-center w-full px-5 pb-5 mt-2 border-4 border-t-pm rounded-2xl bg-clear-pm2">
             <div className="flex w-full">
               <p className="pb-3 text-t-pm">Web3 Tools</p>
             </div>
+            <div className="flex">
+
             <ImplementTool
               route="/implementation/mrr-calculator"
               color={"bg-t-pl"}
@@ -159,6 +161,7 @@ const ImplementationPage = (props) => {
               description="A tool to map out crypto ecosystems and identify gaps in the market."
               imgSrc="https://images.unsplash.com/photo-1634704760994-96e3ccf2ae85?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGV0aGVyZXVtfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
             />
+          </div>
           </div>
      
         </div>
@@ -197,7 +200,7 @@ const ImplementTool = ({
   return (
     <div
       className={
-        "flex flex-col items-center justify-center w-[15em] h-[25em] p-1 bg-white/80 rounded-xl md:hover:scale-105 transition duration-500 md:hover:ring-8  ring-t-bl/5 mx-2 " +
+        "flex flex-col items-center justify-center w-[15em] h-[25em] p-1 bg-white/80 rounded-xl md:hover:scale-105 transition duration-500 md:hover:ring-8  ring-clear-bd3 mx-2 " +
         bColor
       }
     >

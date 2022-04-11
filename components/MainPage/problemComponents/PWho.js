@@ -54,7 +54,7 @@ function PWho(props) {
   "
       >
         <div className="w-full max-w-[42rem] p-10 space-y-8  normal-box-soft">
-          <div className="relative flex flex-col items-center justify-center problem-page fade-effect-quick">
+          <div className="relative flex flex-col items-center justify-center gap-3 p-3 problem-page fade-effect-quick">
           <div className="absolute -top-5 -left-5">
             <Popover
               isOpen={isPopoverOpen}
@@ -83,7 +83,16 @@ function PWho(props) {
                   >
                     Understanding your audience is a key step in buidling a
                       product. It helps to frame your target market and how your
-                      end users will use your product.
+                      end users will use your product. <br/>
+                      <a
+                        className="underline text-blues-300"
+                        href="https://www.shopify.com/blog/target-market"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {" "}
+                        Here&apos;s an article from Shopify
+                      </a>{" "} if you want to learn more.
                   </div>
                 </ArrowContainer>
               )}
@@ -132,7 +141,7 @@ function PWho(props) {
               <div className="relative group">
       <div className="absolute transition duration-1000 opacity-0 rounded-3xl -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
               <button
-                className="w-[5em] h-[3em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-t-bd/50 md:hover:shadow-xl m-1 drop-shadow-xl "
+                className="w-[5em] h-[3em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-clear-bd3 md:hover:shadow-xl m-1 drop-shadow-xl "
                 onClick={() => props.goToStep(5)}
               >
                 Next

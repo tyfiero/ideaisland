@@ -36,6 +36,7 @@
   --colorLight3base: 312,59%,61%;
 
   --colorDark1: hsla(206,91%,64%,1);
+
   --colorDark1base: 206,91%,64%;
   --colorDark1HslBase: 206,91%;
   
@@ -83,7 +84,7 @@ body {
   background-size: 100% 100%;
   background-attachment: fixed;
   background-repeat: no-repeat;
-  background-image: url("/tony-panici-PdNoXi1Q9AI-unsplash.jpg");
+  background-image: none;
   overflow-y: auto;
 }
 
@@ -111,7 +112,7 @@ p {
 
 /* width */
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 8px;
   /* display: none; */
 }
 
@@ -119,6 +120,7 @@ p {
 ::-webkit-scrollbar-track {
   background: #e7f4fe;
   border-radius: 15px;
+
 }
 
 /* Handle */
@@ -261,7 +263,7 @@ p {
 }
 
 .wrapper {
-  width: 100vw;
+  width: 100.8vw;
   height: 100vh;
   display: grid;
 
@@ -442,11 +444,11 @@ p {
 }
 
 .dash-stat {
-  padding: 1em;
+  padding: 0.25em;
 
   min-width: 12em;
   box-shadow: 0 2px 30px #e1e5eebb;
-  border-radius: 3em;
+  border-radius: 0.5em;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -455,16 +457,16 @@ p {
   text-align: center;
   background-color: #ffffff71;
 
-  box-shadow: 9px 9px 17px #9898986e, -9px -9px 17px #ffffff65;
+  box-shadow: 3px 3px 17px #9898986e, -3px -3px 17px #ffffff65;
 }
 
 .dash-graph-holder {
   display: flex;
-  box-shadow: 9px 9px 17px #9898986e, -9px -9px 17px #ffffff65;
+  box-shadow: 3px 3px 17px #9898986e, -3px -3px 17px #ffffff65;
   background-color: #ffffff2c;
   text-align: center;
   margin: 1em 3em;
-  border-radius: 2em;
+  border-radius: 1em;
   padding: 1em;
 }
 
@@ -476,14 +478,16 @@ p {
   flex-direction: column;
   justify-content: space-evenly;
   width: 30%;
+  gap: 0.5em;
 }
 .graph-stat {
   display: flex;
   flex-direction: column;
-  box-shadow: 9px 9px 17px #9898986e, -9px -9px 17px #ffffff65;
+  box-shadow: 3px 3px 17px #9898986e, -3px -3px 17px #ffffff65;
   background-color: #ffffff2c;
-  border-radius: 2em;
+  border-radius: 0.5em;
   background-color: #ffffff94;
+  
 }
 .dash-notes {
   gap: 1em;
@@ -573,8 +577,6 @@ p {
   text-align: center;
   justify-content: center;
   align-items: center;
-  padding: 2em;
-  gap: 1em;
 }
 .solution-page {
   display: flex;
@@ -849,7 +851,7 @@ p {
   color: black;
   border-radius: 3em;
   cursor: pointer;
-  background: linear-gradient(145deg, #c6f0fd, var(--colorDark1));
+  background: linear-gradient(145deg, #ffffff, var(--colorDark1));
   box-shadow: 5px 5px 13px var(--colorDark1), -3px -3px 11px #ffffff;
   font-size: var(--fontSizeHeading-sm);
 }
@@ -857,8 +859,8 @@ p {
   color: black;
   border-radius: 3em;
   cursor: pointer;
-  background: linear-gradient(145deg, #f8f8f8, #e4c2df);
-  box-shadow: 5px 5px 13px #c5a8c1, -3px -3px 11px #ffffff;
+  background: linear-gradient(145deg, #f8f8f8, var(--colorLight1));
+  box-shadow: 2px 2px 12px var(--colorLight2), -3px -3px 11px #ffffff;
   height: 60px;
   font-size: var(--fontSizeHeading-sm);
 }
@@ -1112,7 +1114,7 @@ p {
     left: 94%;
   }
   .notepad-button {
-    box-shadow: 5px 5px 11px #b3b3b3, -5px -5px 5px #ece4eb;
+    box-shadow: 5px 5px 11px #b3b3b36e, -5px -5px 5px #ece4eb6e;
    
   }
 
@@ -2000,7 +2002,7 @@ box-shadow: 4px 8px 20px -2px var(--colorLight1);
 .help-box {
   background: rgba(255, 255, 255, 0.664);
   border-radius: 3rem;
-  width: 12em;
+  width: 13em;
   height: 10em;
   padding: 1em;
   display: flex;
@@ -2153,7 +2155,7 @@ box-shadow: 4px 8px 20px -2px var(--colorLight1);
 .normal-box {
   background: rgba(255, 255, 255, 0.764);
   padding: 4px;
-  border-radius: 3em;
+  border-radius: 1em;
   box-shadow: 9px 9px 17px #9898986e, -9px -9px 17px #ffffff65;
 }
 .glass-box {
@@ -2168,8 +2170,8 @@ box-shadow: 4px 8px 20px -2px var(--colorLight1);
 .normal-box-soft {
   background: rgba(255, 255, 255, 0.364);
   padding: 4px;
-  border-radius: 3em;
-  box-shadow: 9px 9px 17px #9898986e, -9px -9px 17px #ffffff65;
+  border-radius: 1em;
+  box-shadow: 5px 5px 17px #9898986e, -5px -5px 17px #ffffff65;
 }
 
 .ii-shadow {
@@ -2224,7 +2226,6 @@ ul {
 .timer-menu {
   z-index: 250;
   width: 16em;
-  height: 18em;
   position: absolute;
   top: 62%;
   left: 5em;

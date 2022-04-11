@@ -53,7 +53,7 @@ const NotePage = (props) => {
   // const [ID, setID] = useState(null);
   // useEffect(() => {
 
-console.log(currentNote)
+// console.log(currentNote)
  
 
   

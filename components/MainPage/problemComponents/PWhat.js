@@ -42,27 +42,22 @@ function PWhat(props) {
   };
 
   useEffect(() => {
-    if(props.reset){
-    setContent("")
-    setButton1(false)
-    setButton2(false)
-    }else{
-      if(pFormRedux.what){
-      setContent(pFormRedux.what)
+    if (props.reset) {
+      setContent("");
+      setButton1(false);
+      setButton2(false);
+    } else {
+      if (pFormRedux.what) {
+        setContent(pFormRedux.what);
       }
     }
-  }, [props.reset]);// eslint-disable-line react-hooks/exhaustive-deps
-  
-
+  }, [props.reset]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    
-    if(pFormRedux.what){
-    setContent(pFormRedux.what)
+    if (pFormRedux.what) {
+      setContent(pFormRedux.what);
     }
-}, [props.loadData]);// eslint-disable-line react-hooks/exhaustive-deps
-
-
+  }, [props.loadData]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div>
@@ -72,7 +67,7 @@ function PWhat(props) {
   "
       >
         <div className="w-full max-w-[42rem] p-10 space-y-8  normal-box-soft">
-          <div className="relative flex flex-col items-center justify-center problem-page fade-effect-quick">
+          <div className="relative flex flex-col items-center justify-center gap-3 p-3 problem-page fade-effect-quick">
             <div className="absolute -top-5 -left-5">
               <Popover
                 isOpen={isPopoverOpen}
@@ -99,8 +94,18 @@ function PWhat(props) {
                       className="!opacity-100 bg-white w-[25em] rounded-xl p-3"
                       onClick={() => setIsPopoverOpen(!isPopoverOpen)}
                     >
-                      This helps to frame what kinds of solutions would work for
-                      your product.
+                      This helps to frame what kinds of solutions would work for your product. What form your solution will take on will impact how it gets built and tested.  <br /> <br />  Check out  
+                    
+                      <a
+                        className="underline text-blues-300"
+                        href="http://productdesignmanagement.com/physical-vs-virtual-products/#:~:text=Software%20products%20are%20never%20standalone,connections%20(like%20electric%20power"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {" "}
+                        this blog post 
+                      </a>{" "}
+                      from the accomplished Product Manager and Co-Founder of Igloo Design, Yariv Sade.
                     </div>
                   </ArrowContainer>
                 )}
@@ -192,7 +197,7 @@ function PWhat(props) {
               <div className="relative group">
                 <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
                 <button
-                  className="w-[5em] h-[3em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-t-bd/50 md:hover:shadow-xl m-1 drop-shadow-xl "
+                  className="w-[5em] h-[3em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-clear-bd3 md:hover:shadow-xl m-1 drop-shadow-xl "
                   onClick={() => props.goToStep(4)}
                 >
                   Next

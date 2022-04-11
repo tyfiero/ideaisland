@@ -32,8 +32,8 @@ function ToolBar(props) {
 
   
   return (
-    <div className="sticky top-0 z-40 flex items-center justify-between bg-white border-t-0 border-b-2 shadow-xl">
-      <div className="w-full h-full bg-gradient-to-r from-t-pl/20 to-t-bl/10">
+    <div className="sticky top-0 z-40 flex items-center justify-between border-t-0 shadow-xl bg-white/30">
+      <div className="w-full h-full bg-gradient-to-l from-clear-pl2 ">
       
       {ideaBar ? ( <div className="whitespace-nowrap flex w-[30em] ml-4"><p className="text-t-bl">Current Idea: </p><p className="ml-2 truncate text-t-pd">{ideaBar}</p></div>) : <div></div>}
       

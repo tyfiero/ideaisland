@@ -85,7 +85,11 @@ module.exports = {
           bd2: "hsla(var(--colorDark2base), 0.3)",
           bd1: "hsla(var(--colorDark2base), 0.1)",
         
-
+          bpop5: "hsla(var(--colorPopbase), 0.9)",
+          bpop4: "hsla(var(--colorPopbase), 0.7)",
+          bpop3: "hsla(var(--colorPopbase), 0.5)",
+          bpop2: "hsla(var(--colorPopbase), 0.3)",
+          bpop1: "hsla(var(--colorPopbase), 0.1)",
 
           w: "RGBA(182, 240, 255, 0.25)",
           w1: "RGBA(182, 240, 255, 0.3)",

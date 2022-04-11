@@ -273,8 +273,7 @@ if(imgSrc ){
             Reset to default
           </button>
           <p>Note: this will affect the way the site is intended to look.</p>
-          <div className="h-16 rounded-xl w-[12.5rem] bg-pinks-300"></div>
-          <div className="h-16 rounded-xl w-[12.5rem] bg-blues-300"></div>
+          
 
           <div className="flex flex-wrap items-center justify-center gap-5">
             <div className="flex flex-col items-center">

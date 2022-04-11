@@ -35,7 +35,7 @@ const Dashboard = () => {
           <h2 className="heading">Ideas</h2>
           <h2 className="text-[40px]">{statsRedux?.ideaNum || 10}</h2>
         </div>
-        <div className="dash-stat">
+        <div className="dash-stat !rounded-xl ">
           <h2 className="heading">Evolved Ideas</h2>
           <h2 className="text-[40px]">3</h2>
         </div>
@@ -48,11 +48,14 @@ const Dashboard = () => {
           <h2 className="text-[40px]">10</h2>
         </div>
       </div>
+      <p>Include buttons to quickly launch favorite tools from dahsboard and display recent notes. Maybe a hop back in to where you were last button too </p>
+
       <div className="dash-graph-holder">
-        <div className="dash-graph">
+        <div className="dash-graph ">
           {/* <img className="w-[35em] rounded-xl drop-shadow-2xl shadow-2xl" src="./dummygraph.png" alt="graph" /> */}
           <ChartIdeas />
         </div>
+        
         <div className="graph-stats-holder ml-[6em]">
           <div className="graph-stat">
             <p>Ideas per day</p>
@@ -62,10 +65,7 @@ const Dashboard = () => {
             <p>Problems per day</p>
             <h4 className="graph-stat-num">0.15</h4>
           </div>
-          <div className="graph-stat">
-            <p>Time since last idea</p>
-            <h4 className="graph-stat-num">33m</h4>
-          </div>
+         
           <div className="graph-stat">
             <p>Average problem to solution time</p>
             <h4 className="graph-stat-num">1h 8m</h4>

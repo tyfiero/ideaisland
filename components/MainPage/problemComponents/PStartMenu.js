@@ -41,7 +41,7 @@ function PStartMenu(props) {
 
   useEffect(() => {
     setRerender(!reRender);
-  }, [props.reset]);// eslint-disable-line react-hooks/exhaustive-deps
+  }, [props.reset]); // eslint-disable-line react-hooks/exhaustive-deps
 
   //Done? I think it works now after adding nextjs firebase cookies.
   //TODO memoize this so that firebase reads less
@@ -80,7 +80,7 @@ function PStartMenu(props) {
   "
       >
         <div className="w-full max-w-[48rem] p-10 space-y-8   normal-box-soft">
-          <div className="relative flex flex-col items-center justify-center problem-page fade-effect-quick">
+          <div className="relative flex flex-col items-center justify-center p-5 problem-page fade-effect-quick">
             <div className="absolute -top-5 -left-5">
               <Popover
                 isOpen={isPopoverOpen}
@@ -110,6 +110,7 @@ function PStartMenu(props) {
                       The problem section is where you will identify and
                       describe the problem you want to solve.
                       <br />
+                      You can load a previous problem or start a new problem on this page. 
                     </div>
                   </ArrowContainer>
                 )}
@@ -143,7 +144,7 @@ function PStartMenu(props) {
                 <div className="relative group !w-[25em]">
                   <div className="absolute w-full transition duration-1000 rounded-full opacity-90 -inset-1 bg-gradient-to-r from-t-bl via-blues-100 to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
                   <button
-                    className="w-[95%] h-[3em] bg-gradient-to-r from-t-bl via-t-bl to-t-bpop  flex items-center justify-between px-5 md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-t-bd/50 md:hover:shadow-xl m-1 drop-shadow-xl rounded-full text-xl text-white"
+                    className="w-[95%] h-[3em] bg-gradient-to-r from-t-bl via-t-bl to-t-bpop  flex items-center justify-between px-5 md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-clear-bd3 md:hover:shadow-xl m-1 drop-shadow-xl rounded-full text-xl text-white"
                     onClick={() => {
                       props.goToStep(2);
                     }}
@@ -161,7 +162,7 @@ function PStartMenu(props) {
               <div className="relative group !w-[25em]">
                 <div className="absolute w-full transition duration-1000 rounded-full opacity-90 -inset-1 bg-gradient-to-r from-t-bl via-blues-200 to-blues-50 blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
                 <button
-                  className="w-[95%] h-[3em] bg-gradient-to-r from-t-bl via-blues-300 to-blues-100  flex items-center justify-between px-5 md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-t-bd/50 md:hover:shadow-xl m-1 drop-shadow-xl rounded-full text-xl text-white"
+                  className="w-[95%] h-[3em] bg-gradient-to-r from-t-bl via-blues-300 to-blues-100  flex items-center justify-between px-5 md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-clear-bd3 md:hover:shadow-xl m-1 drop-shadow-xl rounded-full text-xl text-white"
                   onClick={() => {
                     //CLEAR pformredux to all null values
                     // then go to step 2
@@ -195,7 +196,7 @@ function PStartMenu(props) {
               <div className="relative group !w-[25em]">
                 <div className="absolute w-full transition duration-1000 rounded-full opacity-50 -inset-1 bg-gradient-to-r from-blues-100 via-t-bl to-t-bd blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
                 <button
-                  className="w-[95%] h-[3em] bg-gradient-to-r from-t-bl via-t-bl to-t-bd  flex items-center justify-between px-5 md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-t-bd/50 md:hover:shadow-xl m-1 drop-shadow-xl rounded-full text-xl text-white"
+                  className="w-[95%] h-[3em] bg-gradient-to-r from-t-bl via-t-bl to-t-bd  flex items-center justify-between px-5 md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-clear-bd3 md:hover:shadow-xl m-1 drop-shadow-xl rounded-full text-xl text-white"
                   onClick={() => {
                     //open menu to load existing problem
                     //make button disappear after click, and create new button that continues to step 2 after problem selection
@@ -211,10 +212,20 @@ function PStartMenu(props) {
 
               {loadMenu && (
                 <div className="p-2 border-2 rounded-xl border-t-pm h-[20em] overflow-auto scrollbar-w-2 scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-t-bl scrollbar-track-blues-50">
-                  <p>{problems?.length} Problem{problems?.length >1 && "s"}</p>
+                  <p>
+                    {problems?.length} Problem{problems?.length > 1 && "s"}
+                  </p>
                   {problems
                     ? problems.map((idea, key) => (
-                    <ProblemItem idea={idea} key={key} goToStep={props.goToStep} setLoadMenu={setLoadMenu} setReset={props.setReset} loadData={props.loadData} setLoadData={props.setLoadData}/>
+                        <ProblemItem
+                          idea={idea}
+                          key={key}
+                          goToStep={props.goToStep}
+                          setLoadMenu={setLoadMenu}
+                          setReset={props.setReset}
+                          loadData={props.loadData}
+                          setLoadData={props.setLoadData}
+                        />
                       ))
                     : "No problems to load"}
                 </div>
@@ -229,7 +240,14 @@ function PStartMenu(props) {
 
 export default PStartMenu;
 
-function ProblemItem({ idea, goToStep, setLoadMenu, setReset, setLoadData, loadData }) {
+function ProblemItem({
+  idea,
+  goToStep,
+  setLoadMenu,
+  setReset,
+  setLoadData,
+  loadData,
+}) {
   const [hover, setHover] = useState(false);
   const [nav, setNav] = useState(null);
   const currentDocRedux = useSelector((state) => state.currentDoc);
@@ -258,21 +276,18 @@ function ProblemItem({ idea, goToStep, setLoadMenu, setReset, setLoadData, loadD
       className="flex items-center justify-center px-4 pt-2 sm:px-6 lg:px-8 drop-shadow-xl "
       onClick={() => {
         dispatch(pFormAction(idea));
-        setLoadData(!loadData)
+        setLoadData(!loadData);
         goToStep(2);
-        setLoadMenu(false)
-        
+        setLoadMenu(false);
       }}
     >
       <div
         className={
-          "w-[22em]  p-1  shadow !rounded-xl normal-box-soft drop-shadow-xl flex-col  items-center  bg-t-pl/70"
+          "w-[22em]  p-1  shadow !rounded-xl normal-box-soft drop-shadow-xl flex-col  items-center  bg-clear-pl4"
         }
-    
       >
         <div className="flex">
           <div className="normal-box !rounded-xl w-[100%] ">
-        
             <div className="cursor-pointer">
               <h2 className="text-t-bd truncate text-[18px] text-left">
                 {idea.title || "*Unnamed Problem*"}
@@ -291,23 +306,17 @@ function ProblemItem({ idea, goToStep, setLoadMenu, setReset, setLoadData, loadD
               <p className="overflow-hidden max-h-[3em]">
                 Root Cause:{" " + idea.pq3}
               </p> */}
-
-           
             </div>
-          
           </div>
 
           <div></div>
         </div>
 
         <div className="flex items-center justify-between ">
-
           <p className="text-slate-500 text-[12px] ml-1 mb-0">
             {TimeDisplay(idea.createdAt)}
           </p>
-         
-      
-      </div>
+        </div>
       </div>
     </div>
   );

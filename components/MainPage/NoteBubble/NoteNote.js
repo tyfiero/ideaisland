@@ -109,6 +109,8 @@ function NoteNote() {
               placeholder="Note Title"
               minLength={3}
               maxLength={150}
+              tabIndex="1"
+
             />
 
 <div className="flex justify-end w-[95%]">
@@ -125,7 +127,7 @@ function NoteNote() {
               </div>
 
 
-              <div className="flex justify-center w-full p-2 rounded-b-3xl rounded-t-xl bg-t-bpop/50">
+              <div className="flex justify-center w-full p-2 rounded-b-3xl rounded-t-xl bg-clear-bpop2">
       <div
         className="normal-box !rounded-lg  mt-1 !rounded-b-3xl w-[97%]
 
@@ -147,6 +149,8 @@ function NoteNote() {
           modules={Editor.modules}
           formats={Editor.formats}
           theme="snow"
+          tabIndex="2"
+
           // readOnly= "true"
           className="w-[100%] !bg-white/90"
           placeholder={"Note content..."}

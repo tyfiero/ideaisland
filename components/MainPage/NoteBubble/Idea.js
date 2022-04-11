@@ -114,6 +114,8 @@ function IdeaNote() {
       <input
               className="w-[96%] textarea-box"
               value={title}
+              tabIndex="1"
+
               onChange={(e) => {
                 setTitle(e.target.value);
                 let charLength = e.target.value.length;
@@ -143,7 +145,7 @@ function IdeaNote() {
               </button>
               </div>
 
-              <div className="flex justify-center w-full h-full p-2 rounded-b-3xl rounded-t-xl bg-blues-100/70">
+              <div className="flex justify-center w-full h-full p-2 rounded-b-3xl rounded-t-xl bg-clear-bl3">
       <div
         className="normal-box !rounded-lg  mt-1 !rounded-b-3xl w-[97%] h-full
 
@@ -165,6 +167,8 @@ function IdeaNote() {
           modules={Editor.modules}
           formats={Editor.formats}
           theme="snow"
+          tabIndex="2"
+
           // readOnly= "true"
           className="w-[100%] !bg-white/90 h-full"
           placeholder={"Describe your idea..."}

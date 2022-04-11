@@ -107,7 +107,7 @@ const CombinatorialPage = (props) => {
           <TemplateBar />
         </div>
         <div className="w-[98%] rounded-xl cards ring-4 p-5 mt-5">
-          <div className="w-[98%] rounded-xl cards  p-5 mt-5 relative group glass-box !border-4 !border-t-bl">
+          <div className="max-w-[98%] rounded-xl cards  p-5 mt-5 relative group glass-box !border-4 !border-t-bl">
             <div className="absolute top-0 right-0 flex justify-between gap-2 px-3 py-1 transition duration-500 border-b-2 border-l-2 opacity-0 rounded-bl-md border-t-bl group-hover:opacity-100">
               <button
                 className="flex items-center justify-center gap-4 p-2 text-white cursor-pointer rounded-3xl bg-t-pd drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95"
@@ -136,7 +136,7 @@ const CombinatorialPage = (props) => {
                 className={
                   "w-[9em] h-[2em] rounded-3xl  flex items-center justify-between px-4 text-white gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer " +
                   (aiOpen
-                    ? " bg-t-bl/70 shadow-lg shadow-t-bl/60 ring-4 ring-blues-500"
+                    ? " bg-clear-bl4 shadow-lg shadow-clear-bl4 ring-4 ring-blues-500"
                     : " bg-blues-100 shadow-inner")
                 }
                 onClick={() => setAiOpen(!aiOpen)}
@@ -162,7 +162,7 @@ const CombinatorialPage = (props) => {
                 className={
                   "w-[12em] h-[2em] rounded-3xl  flex items-center justify-between px-3 text-white gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer " +
                   (notesOpen
-                    ? " bg-pinks-400/70 shadow-lg shadow-pinks-300/60 ring-4 ring-pinks-700"
+                    ? " bg-clear-pm4 shadow-lg shadow-clear-pm2 ring-4 ring-pinks-700"
                     : " bg-pinks-200 shadow-inner")
                 }
                 onClick={() => setNotesOpen(!notesOpen)}
@@ -236,7 +236,7 @@ const CombinatorialPage = (props) => {
               )}
 
               {aiOpen && (
-                <div className="h-full px-5 py-2 ring-4 rounded-xl ring-t-pl bg-t-pl/40">
+                <div className="h-full px-5 py-2 ring-4 rounded-xl ring-t-pl bg-clear-pl3">
                   <p className="text-lg text-left text-t-pd">Innovation AI</p>
                   <GPTtool />
                 </div>

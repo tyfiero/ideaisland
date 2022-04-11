@@ -34,6 +34,7 @@ import { FaLock, FaGlobeAmericas } from "react-icons/fa";
 import IdeaDisplay from "./IdeaDisplay";
 import { useSelector, useDispatch } from "react-redux";
 import { currentDocAction } from "../../redux/actions";
+import useKeyboardShortcut from "../../lib/useKeyboardShortcut";
 
 const QuillNoSSRWrapper = dynamic(() => import("react-quill"), {
   ssr: false,
@@ -53,11 +54,44 @@ function Editor(props) {
 
   const currentDocRedux = useSelector((state) => state.currentDoc);
   const editModeRedux = useSelector((state) => state.editMode);
+  const unsavedChangesRedux = useSelector((state) => state.unsavedChanges);
 
   const dispatch = useDispatch();
 
   let type = props.type;
+  
 
+
+  const { flushHeldKeys } = useKeyboardShortcut(
+    ["Control", "E"],
+    (shortcutKeys) => {
+        // console.log("ctrl E")
+        if(editModeRedux === "display"){
+      dispatch(editModeAction("edit")); 
+        }
+    },
+    { 
+      overrideSystem: true,
+      ignoreInputFields: false, 
+      repeatOnHold: false 
+    }
+  );
+  const hotkey2 = useKeyboardShortcut(
+    ["Escape"],
+    (shortcutKeys) => {
+        console.log("Escape")
+        if(editModeRedux === "edit" && !unsavedChangesRedux){
+      dispatch(editModeAction("display")); 
+        }else{
+          toast.error("You have unsaved changes. Please save before exiting edit mode.");
+        }
+    },
+    { 
+      overrideSystem: true,
+      ignoreInputFields: false, 
+      repeatOnHold: false 
+    }
+  );
   useEffect(() => {
     // console.log("UE START");
 
@@ -71,6 +105,12 @@ function Editor(props) {
     // console.log("UE END");
   }, [currentDocRedux]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  // useEffect(() => {
+  //   var tabHideEls = document.querySelectorAll(".ql-toolbar .qlsnow");
+  //   tabHideEls.forEach(function (item) {
+  //     item.setAttribute("tabindex", -1);
+  //   });
+  // }, []);
   return (
     <div>
       <div
@@ -139,7 +179,6 @@ function CreateNewIdea(props) {
   const [refresh, setRefresh] = useState("");
   const [rating, setRating] = useState(0);
 
-
   const [publish, setPublish] = useState(false);
   const editModeRedux = useSelector((state) => state.editMode);
   const unsavedChangesRedux = useSelector((state) => state.unsavedChanges);
@@ -155,6 +194,27 @@ function CreateNewIdea(props) {
     }
   }
 
+
+
+  const { flushHeldKeys } = useKeyboardShortcut(
+    ["Meta", "Enter"],
+    (shortcutKeys) => {
+        console.log("META ENTER")
+        if(title || content){
+          if( editModeRedux === "new"){
+            createIdea()
+          }else{
+            updateIdea()  
+          } 
+        }
+    },
+    { 
+      overrideSystem: true,
+      ignoreInputFields: false, 
+      repeatOnHold: false 
+    }
+  );
+  
   // console.log(setEditDocDetails.length + "docdeets");
   // console.log(serverTimestamp());
   // useEffect(() => {
@@ -171,12 +231,9 @@ function CreateNewIdea(props) {
   //   };
   // }, []);// eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => {
-  setRefresh(!refresh)
-  }, [props.type]);// eslint-disable-line react-hooks/exhaustive-deps
+    setRefresh(!refresh);
+  }, [props.type]); // eslint-disable-line react-hooks/exhaustive-deps
 
-
-
-  
   useEffect(() => {
     if (editModeRedux === "new") {
       setTitle("");
@@ -283,7 +340,7 @@ function CreateNewIdea(props) {
     // toast.success("update");
 
     if (unsavedChangesRedux) {
-      e.preventDefault();
+      // e.preventDefault();
       //Should I be using redux? Or auth.current user? If I do use redux, delete all instances of auth.currentUser @auth
       let uid;
       if (props.cookieUID) {
@@ -442,6 +499,7 @@ function CreateNewIdea(props) {
       {/* <div className="flex items-center justify-center">
         <h1 className="heading-top">My Ideas & Notes</h1>
       </div>  */}
+
       <div className="flex flex-col items-center w-[98%] md:mx-3 sm:mx-1 normal-box-soft">
         <div className=" w-[99%] mb-2">
           <div className="flex flex-col items-center w-full gap-1 ">
@@ -472,6 +530,7 @@ function CreateNewIdea(props) {
               placeholder="Title"
               minLength={3}
               maxLength={150}
+              tabIndex="1"
               // className={styles.input}
             />
             {/* <p>
@@ -500,6 +559,7 @@ function CreateNewIdea(props) {
                       <Toggle
                         className="dark-toggle fade-effect"
                         // defaultChecked={publish}
+                        tabIndex="-1"
                         checked={publish}
                         icons={{
                           unchecked: (
@@ -566,6 +626,8 @@ function CreateNewIdea(props) {
                 theme="snow"
                 // readOnly= "true"
                 className="w-[100%] "
+              tabIndex="2"
+
                 placeholder={"Describe your idea..."}
               />
             </div>

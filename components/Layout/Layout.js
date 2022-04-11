@@ -65,7 +65,16 @@ export default function Layout({ children }) {
       router.push("/mobile");
     }
 
-
+    const sliceHsl = (fullString) =>{
+      let sliced = fullString.slice(5);
+  let slicedAgain = sliced.slice(0, -7);
+  return slicedAgain;
+  }
+  const sliceHslAlpha = (fullString) =>{
+      let sliced = fullString.slice(5);
+  let slicedAgain = sliced.slice(0, -3);
+  return slicedAgain;
+  }
     //set bg opacity
     let opacityNum = localStorage.getItem("colorOpacity") || 0.6;
 
@@ -79,12 +88,32 @@ export default function Layout({ children }) {
     let blobc6 = localStorage.getItem("blob6") || "hsla(312,59%,61%,1)";
 
     document.documentElement.style.setProperty("--blob1", blobc1);
-    document.documentElement.style.setProperty("--blob2", blobc2);
-    document.documentElement.style.setProperty("--blob3", blobc3);
-    document.documentElement.style.setProperty("--blob4", blobc4);
-    document.documentElement.style.setProperty("--blob5", blobc5);
-    document.documentElement.style.setProperty("--blob6", blobc6);
+    document.documentElement.style.setProperty("--colorDark1", blobc1);
+    document.documentElement.style.setProperty("--colorDark1HslBase", sliceHsl(blobc1));
+    document.documentElement.style.setProperty("--colorDark1base", sliceHslAlpha(blobc1));
 
+    
+    document.documentElement.style.setProperty("--blob2", blobc2);
+    document.documentElement.style.setProperty("--colorDark2", blobc2);
+    document.documentElement.style.setProperty("--colorDark2base", sliceHslAlpha(blobc2));
+
+    
+    document.documentElement.style.setProperty("--blob3", blobc3);
+    document.documentElement.style.setProperty("--colorLight2", blobc3);
+    document.documentElement.style.setProperty("--colorLight2base", sliceHslAlpha(blobc3));
+    
+    document.documentElement.style.setProperty("--blob4", blobc4);
+    document.documentElement.style.setProperty("--colorLight1", blobc4);
+    document.documentElement.style.setProperty("--colorLight1base", sliceHslAlpha(blobc4));
+    document.documentElement.style.setProperty("--colorLight1HslBase", sliceHsl(blobc4));
+    
+    document.documentElement.style.setProperty("--blob5", blobc5);
+    document.documentElement.style.setProperty("--colorPop", blobc5);
+
+    
+    document.documentElement.style.setProperty("--blob6", blobc6);
+    document.documentElement.style.setProperty("--colorLight3", blobc6);
+    document.documentElement.style.setProperty("--colorLight3base", sliceHslAlpha(blobc6));
 
 
     //set img
@@ -234,7 +263,7 @@ export default function Layout({ children }) {
           <TopBarRight />
         </div>
 
-        <div className="side-nav-bar bg-white/40">
+        <div className="side-nav-bar ">
           {/* <Sidebar toggle={isToggled} />
            */}
           <Sidebar2 toggle={isToggled} />
@@ -260,7 +289,7 @@ export default function Layout({ children }) {
         </div>
         <div className="button-holder">
           <button
-            className="z-100 flex items-center justify-center w-[4em] h-[4em]  delay-200 transform rounded-full notepad-button fade-effect text-t-pd hover:scale-125 hover:rotate-90 bg-gradient-to-br from-white to-t-pl hover:shadow-2xl duration-1000 ease-in-out"
+            className="z-100 flex items-center justify-center w-[4em] h-[4em]  delay-200 transform rounded-full notepad-button fade-effect text-t-pd hover:scale-125 hover:rotate-90 bg-gradient-to-br from-white/60 to-clear-pl5 hover:shadow-2xl duration-1000 ease-in-out"
             onClick={togglePopup}
           >
             <FaPlus style={{ fontSize: "1.8em" }} />

@@ -117,7 +117,7 @@ const NotePopUp = (props) => {
               className={
                 "w-[10em] h-[2em] rounded-3xl  flex items-center justify-center text-white gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer " +
                 (noteType === "idea"
-                  ? " bg-t-bl shadow-lg shadow-t-bl/60"
+                  ? " bg-t-bl shadow-lg shadow-clear-bl3"
                   : " bg-slate-300 shadow-inner")
               }
               onClick={() => setnoteType("idea")}
@@ -140,7 +140,7 @@ const NotePopUp = (props) => {
               className={
                 "w-[10em] h-[2em] rounded-3xl bg-t-bl flex items-center justify-center text-white gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer " +
                 (noteType === "note"
-                  ? " bg-t-bpop/80 shadow-lg shadow-t-bpop/50"
+                  ? " bg-clear-bpop4 shadow-lg shadow-clear-bpop2"
                   : " bg-slate-300 shadow-inner")
               }
               onClick={() => setnoteType("note")}

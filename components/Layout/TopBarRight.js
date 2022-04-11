@@ -128,11 +128,11 @@ export default function TopBarRight({ user }) {
   );
 
   return (
-    <div>
+    <div >
       {/* {profilePic} */}
       {/* {!user && login} */}
       {loggedIn ? profilePic : login}
-      <div ref={ref}>{isVisible && <TopBarDropDown />}</div>
+      <div  ref={ref}>{isVisible && <TopBarDropDown />}</div>
     </div>
   );
 }

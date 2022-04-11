@@ -167,7 +167,7 @@ function STechStack(props) {
       >
         <div className="w-full p-10 space-y-8  !rounded-2xl  normal-box-soft">
           <div className="flex">
-            <div className="relative flex flex-col items-center justify-center w-full problem-page fade-effect-quick">
+            <div className="relative flex flex-col items-center justify-center w-full px-4 problem-page fade-effect-quick">
               <div className="absolute -top-5 -left-5">
                 <Popover
                   isOpen={isPopoverOpen}
@@ -242,7 +242,7 @@ function STechStack(props) {
                       Faves
                     </button>
                     {/* <button
-                    className="w-[5em] h-[3em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-t-bd/50 md:hover:shadow-xl m-1 drop-shadow-xl "
+                    className="w-[5em] h-[3em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-clear-bd3 md:hover:shadow-xl m-1 drop-shadow-xl "
                     onClick={() => props.goToStep(6)}
                   >
                     Next
@@ -604,7 +604,7 @@ function STechStack(props) {
                 <div className="relative group">
                   <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
                   <button
-                    className="w-[5em] h-[3em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-t-bd/50 md:hover:shadow-xl m-1 drop-shadow-xl "
+                    className="w-[5em] h-[3em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-clear-bd3 md:hover:shadow-xl m-1 drop-shadow-xl "
                     onClick={() => props.goToStep(6)}
                   >
                     Next
@@ -782,7 +782,7 @@ function ItemCard({ name, color, bColor, iconColor, update, cost, url, type }) {
           />
           <div className="absolute top-0 right-0 transition duration-200 opacity-0 z-100 group-hover:opacity-100">
             <div
-              className="flex items-center justify-center w-6 h-6 rounded-full bg-t-pl/60 "
+              className="flex items-center justify-center w-6 h-6 rounded-full bg-clear-pl3 "
               onClick={() => setHeartClicked(!heartClicked)}
             >
               {heartClicked ? (
@@ -822,7 +822,7 @@ function ItemCard({ name, color, bColor, iconColor, update, cost, url, type }) {
           {clicked && (
             <div
               className={
-                "flex items-center gap-1 h-fit w-fit rounded-md  border-2 border-t-pm  md:hover:scale-105 md:active:scale-95 whitespace-nowrap transition cursor-pointer h-[1.5em] w-fit bg-t-pl/70"
+                "flex items-center gap-1 h-fit w-fit rounded-md  border-2 border-t-pm  md:hover:scale-105 md:active:scale-95 whitespace-nowrap transition cursor-pointer h-[1.5em] w-fit bg-clear-pl5"
               }
             >
               <p className="m-0 ml-1">Delete</p>

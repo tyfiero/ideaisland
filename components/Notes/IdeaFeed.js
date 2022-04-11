@@ -114,7 +114,7 @@ function IdeaItem({ idea, admin = false, type }) {
       }
     >
       <div
-        className={"w-[22em]  p-1  shadow !rounded-xl normal-box-soft drop-shadow-xl flex-col  items-center " + (type === "ideas" ? "bg-blues-100/70" : (type === "problem" ? "bg-t-pl/70" : "bg-t-bpop/30"))}
+        className={"w-[22em]  p-1  shadow !rounded-xl normal-box-soft drop-shadow-xl flex-col  items-center " + (type === "ideas" ? "bg-clear-bl3" : (type === "problem" ? "bg-clear-pl4" : "bg-clear-bpop3"))}
         // onMouseOver={() => setHover(true)}
         // onMouseOut={() => setHover(false)}
       >

@@ -29,7 +29,7 @@ import {
   setDoc,
   getDoc,
 } from "firebase/firestore";
-
+import useKeyboardShortcut from "../../lib/useKeyboardShortcut";
 import { editModeAction, unsavedChangesAction } from "../../redux/actions";
 import toast from "react-hot-toast";
 import { FaLock, FaGlobeAmericas } from "react-icons/fa";
@@ -95,7 +95,7 @@ function ProblemEditor(props) {
 
 "
       >
-        <div className="w-full max-w-[82rem] p-3 space-y-8 shadow   normal-box-soft items-center flex flex-col !rounded-2xl !bg-t-pl/30">
+        <div className="w-full max-w-[82rem] p-3 space-y-8 shadow   normal-box-soft items-center flex flex-col !rounded-2xl !bg-clear-pl2">
             <>
               {/* <div className="heading">Edit Idea</div> */}
               <CreateNewProblem
@@ -162,7 +162,24 @@ function CreateNewProblem(props) {
 
 
 
-
+    const { flushHeldKeys } = useKeyboardShortcut(
+      ["Meta", "Enter"],
+      (shortcutKeys) => {
+          
+          if(title || contentWhy || contentWho || contentWhat || contentPq1 || contentPq2 || contentPq3){
+            if( editModeRedux === "new"){
+              createIdea()
+            }else{
+              updateIdea()  
+            } 
+          }
+      },
+      { 
+        overrideSystem: true,
+        ignoreInputFields: false, 
+        repeatOnHold: false 
+      }
+    );
   
   // // console.log(setEditDocDetails.length + "docdeets");
   // // console.log(serverTimestamp());
@@ -494,7 +511,7 @@ function CreateNewProblem(props) {
 
 <div className="flex flex-col xl:w-[48%] sm:w-full gap-3">
 
-              <div className="p-5 normal-box-soft !rounded-xl min-w-[15em]  !bg-t-bl/10">
+              <div className="p-5 normal-box-soft !rounded-xl min-w-[15em]  !bg-clear-bl2">
                
                 <h3 className="heading"> Why:</h3>
                 {/* <hr className="border-t-bd"></hr> */}
@@ -515,7 +532,7 @@ function CreateNewProblem(props) {
                   )}
                 </div>
               </div>
-              <div className="p-5 normal-box-soft !rounded-xl min-w-[15em]  !bg-t-pl/30">
+              <div className="p-5 normal-box-soft !rounded-xl min-w-[15em]  !bg-clear-pl2">
                 
 
                 <h3 className="heading"> What:</h3>
@@ -536,7 +553,7 @@ function CreateNewProblem(props) {
                   )}
                 </div>
               </div>
-              <div className="p-5 normal-box-soft !rounded-xl min-w-[25em]  !bg-t-bpop/20">
+              <div className="p-5 normal-box-soft !rounded-xl min-w-[25em]  !bg-clear-bpop2">
                 
                 <h3 className="heading">Who:</h3>
                 {/* <hr className="border-t-bd"></hr> */}
@@ -559,7 +576,7 @@ function CreateNewProblem(props) {
               </div>
 
               </div>
-              <div className="p-5 normal-box-soft !rounded-xl min-w-[25em] xl:w-[45%] sm:w-full !bg-t-pm/20 sm:mt-4">
+              <div className="p-5 normal-box-soft !rounded-xl min-w-[25em] xl:w-[45%] sm:w-full !bg-clear-pm2 sm:mt-4">
                
                 <h3 className="heading"> Problem:</h3>
                 {/* <hr className="border-t-bd"></hr> */}

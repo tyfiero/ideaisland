@@ -201,7 +201,7 @@ function MrrCalculator() {
         <div className="flex items-center w-full gap-0 p-2 text-center justify-evenly normal-box-soft">
           <div className="flex flex-col normal-box-soft w-[40%] !rounded-xl items-center text-left gap-2">
             <p>Revenue</p>
-            <div className="flex flex-col normal-box-soft w-[90%] !rounded-xl   p-3 !bg-t-bl/30">
+            <div className="flex flex-col normal-box-soft w-[90%] !rounded-xl   p-3 !bg-clear-bl2">
               <p className="text-md">Monthly price for product</p>
               <div className="flex items-center">
                 <input
@@ -231,7 +231,7 @@ function MrrCalculator() {
                 ></input>
               </div>
             </div>
-            <div className="flex flex-col normal-box-soft !rounded-xl gap-0 p-3 !bg-t-bl/30   w-[90%] ">
+            <div className="flex flex-col normal-box-soft !rounded-xl gap-0 p-3 !bg-clear-bl2   w-[90%] ">
               <p className="text-md">Total Current Users</p>
               <div className="flex items-center ">
                 <input
@@ -259,7 +259,7 @@ function MrrCalculator() {
               </div>
             </div>
 
-            <div className="flex flex-col normal-box-soft w-[90%] !rounded-xl gap-0 p-3 !bg-t-bl/30 ">
+            <div className="flex flex-col normal-box-soft w-[90%] !rounded-xl gap-0 p-3 !bg-clear-bl2 ">
               <p className="text-md">New users monthly</p>
               <div className="flex items-center gap-0">
                 <input
@@ -287,7 +287,7 @@ function MrrCalculator() {
               </div>
             </div>
 
-            <div className="flex flex-col normal-box-soft w-[90%] !rounded-xl gap-0 p-3 !bg-t-bl/30">
+            <div className="flex flex-col normal-box-soft w-[90%] !rounded-xl gap-0 p-3 !bg-clear-bl2">
               <p className="text-md">Churn Rate</p>
               <div className="flex items-center ">
                 <input
@@ -316,10 +316,10 @@ function MrrCalculator() {
             </div>
           </div>
 
-          <div className="flex flex-col normal-box-soft w-[40%] !rounded-xl items-center text-left">
+          <div className="flex flex-col normal-box-soft w-[40%] !rounded-xl items-center text-left gap-2">
             <p className="text-left">Costs</p>
 
-            <div className="flex flex-col normal-box-soft w-[90%] !rounded-xl gap-0 p-2 !bg-t-pl/30">
+            <div className="flex flex-col normal-box-soft w-[90%] !rounded-xl gap-0 p-2 !bg-clear-pl2">
               <p className="text-md">Monthly Infrastructure Costs</p>
               <div className="flex items-center ">
                 <input
@@ -348,7 +348,7 @@ function MrrCalculator() {
               </div>
             </div>
 
-            <div className="flex flex-col normal-box-soft w-[90%] !rounded-xl gap-0 p-3 !bg-t-pl/30">
+            <div className="flex flex-col normal-box-soft w-[90%] !rounded-xl gap-0 p-3 !bg-clear-pl2">
               <p className="text-md">Labor costs</p>
               <div className="flex items-center ">
                 <input
@@ -377,7 +377,7 @@ function MrrCalculator() {
               </div>
             </div>
 
-            <div className="flex flex-col normal-box-soft w-[90%] !rounded-xl gap-0 p-3 !bg-t-pl/30">
+            <div className="flex flex-col normal-box-soft w-[90%] !rounded-xl gap-0 p-3 !bg-clear-pl2">
               <p className="text-md">Marketing Spend</p>
               <div className="flex items-center ">
                 <input
@@ -405,7 +405,7 @@ function MrrCalculator() {
               </div>
             </div>
 
-            <div className="flex flex-col normal-box-soft w-[90%] !rounded-xl gap-0 p-3 !bg-t-pl/30">
+            <div className="flex flex-col normal-box-soft w-[90%] !rounded-xl gap-0 p-3 !bg-clear-pl2">
               <p className="text-md">Other Costs</p>
               <div className="flex items-center ">
                 <input
