@@ -293,8 +293,9 @@ p {
   grid-area: content;
   border-radius: 1em;
   border-top-left-radius: 2px;
-  box-shadow: 9px 9px 17px #9898986e, -9px -9px 17px #ffffff65;
+  box-shadow: 4px 4px 17px #9898986e, -4px -4px 17px #ffffff65;
   overflow: auto;
+
 }
 
 .loginbutton {
@@ -1409,9 +1410,12 @@ textarea {
   /* -webkit-box-shadow: 10px 0px 20px -2px #4eaef77e;
 -moz-box-shadow: 10px 0px 20px -2px #4eaef77e;
 box-shadow: 10px 0px 20px -2px #4eaef77e; */
+/* box-shadow: 10px 0 5px -2px #888; */
+
 -webkit-box-shadow: 10px 0px 20px -2px var(--colorLight1);
 -moz-box-shadow: 10px 0px 20px -2px var(--colorLight1);
 box-shadow: 4px 8px 20px -2px var(--colorLight1);
+
 }
   /* .sidebar-container:hover {
     width: 8rem;
@@ -1741,9 +1745,8 @@ box-shadow: 4px 8px 20px -2px var(--colorLight1);
 }
 
 .icon-button {
-  width: 30px;
-  height: 30px;
-  background-color: #cccccc;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   padding: 5px;
   margin: 2px;
@@ -1765,11 +1768,10 @@ box-shadow: 4px 8px 20px -2px var(--colorLight1);
 .dropdown {
   position: absolute;
   top: 58px;
-  width: 200px;
-  height: 260px;
+  width: 210px;
   transform: translateX(-45%);
-  background-color: rgba(255, 255, 255, 0.94);
-  box-shadow: 14px 14px 28px #989898, -14px -14px 28px #ffffff;
+  /* background-color: rgba(255, 255, 255, 0.94);
+  box-shadow: 14px 14px 28px #989898, -14px -14px 28px #ffffff; */
   z-index: 1000;
   border-radius: 2em;
   padding: 1rem;
@@ -1798,9 +1800,7 @@ box-shadow: 4px 8px 20px -2px var(--colorLight1);
   filter: none;
 }
 
-.menu-item:hover {
-  background-color: var(--colorDark1);
-}
+
 
 .icon-right {
   margin-left: auto;

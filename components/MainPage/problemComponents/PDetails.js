@@ -234,7 +234,15 @@ function PDetails(props) {
                       onClick={() => setIsPopoverOpen(!isPopoverOpen)}
                     >
                       Finding the root cause of your problem helps to clarify
-                      what you&apos;re actually trying to solve.
+                      what you&apos;re actually trying to solve. Ensuring that your ideas are solutions to a problem is the key to building a business from the idea. The more frustrating and annoying the problem is, the better, especially if you have a solution that greatly improves the associated user experience. Check out <a
+                        className="underline text-blues-300"
+                        href="https://www.forbes.com/sites/stephanieburns/2019/05/28/solution-looking-for-a-problem/?sh=1031dac83835"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {" "}
+                        this article in forbes
+                      </a>{" "} for more in depth information.
                     </div>
                   </ArrowContainer>
                 )}

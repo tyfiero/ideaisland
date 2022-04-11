@@ -8,11 +8,16 @@ import {
   FaLightbulb,
   FaFileExport,
   FaShareAlt,
+  FaRegUser,
 } from "react-icons/fa";
 import Link from "next/link";
 import DarkModeToggle from "./DarkModeToggle";
 import { useSelector } from "react-redux";
 // import { auth } from "../lib/firebase";
+import { HiOutlineCog } from "react-icons/hi";
+import { FiShare2 } from "react-icons/fi";
+
+
 
 import Modal from "./Modal";
 
@@ -45,10 +50,10 @@ export default function TopBarDropDown() {
       return (
         <div
           href={href}
-          className="cursor-pointer menu-item"
+          className="cursor-pointer menu-item md:hover:bg-clear-bl2"
           onClick={() => goToMenu && setActiveMenu(goToMenu)}
         >
-          <span className="icon-button">{leftIcon}</span>
+          <span className="icon-button bg-clear-bl2">{leftIcon}</span>
           {children}
           <span className="icon-right">{rightIcon}</span>
         </div>
@@ -60,7 +65,7 @@ export default function TopBarDropDown() {
     
     <>
     <div
-      className="dropdown fade-effect-fast md:left-[85%] lg:left-[88%] xl:left-[92%] absolute z-100"
+      className="dropdown fade-effect-fast md:left-[85%] lg:left-[88%] xl:left-[92%] absolute z-100 glass-box "
       ref={dropdownRef}
     >
       <CSSTransition
@@ -69,69 +74,53 @@ export default function TopBarDropDown() {
         classNames="menu-primary"
         unmountOnExit
       >
-        <div className="menu">
+        <div className=" menu">
           {/* <Link href={`/${user.username}`}> */}
-          {/* <Link href="/user/priceart" passHref> */}
 
           <Link href={`/profile`} passHref>
             <a>
               <div>
                 {/* <a> */}
-                <DropdownItem leftIcon={<FaUserAlt className="text-t-bl" />}>
-                  My Profile
+                <DropdownItem leftIcon={<FaRegUser className="text-t-bd ml-[1px]" />}>
+                  
+                <p className="text-blues-700">My Profile</p>  
+
                 </DropdownItem>
               </div>
             </a>
             {/* </a> */}
           </Link>
-          {/* <Link href="/user/priceart/settings" passHref> */}
+          <hr/>
           <Link href={`/settings`} passHref>
             <a>
               <div>
                 <DropdownItem
-                  leftIcon={<FaCog className="text-t-bd" />}
+                  leftIcon={<HiOutlineCog className="scale-125 text-t-bd" />}
                   //   goToMenu="settings"
                 >
-                  Settings
+                <p className="text-blues-700">Settings</p>  
                 </DropdownItem>
               </div>
             </a>
           </Link>
+          <hr/>
 
-          {/* <Link href="/user/priceart/notes" passHref> */}
-          <Link href={`/notes`} passHref>
-            <a>
-              <div>
-                <DropdownItem
-                  leftIcon={<FaBook className="text-t-pd" />}
-                  //   goToMenu="settings"
-                >
-                  Ideas + Notes
-                </DropdownItem>
-              </div>
-            </a>
-          </Link>
+         
+
           {/* <Link href={`/profile`} passHref> */}
             {/* <a> */}
               <div onClick={()=>{setOpenShareMenu(!openShareMenu)}}>
                 {/* <a> */}
-                <DropdownItem leftIcon={<FaShareAlt className="text-t-bpop" />}>
-                  Share with Friends!
+                <DropdownItem leftIcon={<FiShare2 className="text-t-bd" />}>
+                 
+                <p className=" text-blues-700"> Share</p>  
+
                 </DropdownItem>
               </div>
             {/* </a> */}
             {/* </a> */}
           {/* </Link> */}
-          <div className="flex flex-col items-center pt-5">
-            <p>Dark Mode</p>
-
-            <DarkModeToggle />
-            {darkRedux ? (
-              <FaRegLightbulb />
-            ) : (
-              <FaLightbulb className="bulb-glow" style={{ color: "orange" }} />
-            )}
-          </div>
+          
           {/* <DropdownItem
             leftIcon="🦧"
             rightIcon={<FaUserAlt />}
