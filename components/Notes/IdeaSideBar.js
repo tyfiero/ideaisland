@@ -11,7 +11,6 @@ import {
 } from "firebase/firestore";
 // import { firestore, auth } from '@lib/firebase';
 import { firestore, auth } from "../../lib/firebase";
-
 import { useContext, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
@@ -222,6 +221,7 @@ export default function IdeaSideBar(props) {
 }
 
 function IdeasList(props) {
+  const { user, username } = useContext(UserContext);
   const statsRedux = useSelector((state) => state.stats);
   const dispatch = useDispatch();
   const userUIDRedux = useSelector((state) => state.userUID);
@@ -231,34 +231,36 @@ function IdeasList(props) {
   useEffect(() => {
     setSearchValue(props.searchValue);
   }, [props.searchValue]);
-  //Done? I think it works now after adding nextjs firebase cookies.
+  //Done? Using context api, any content component will only mount if the user variable is defined. 
   //TODO memoize this so that firebase reads less
   let uid;
-  if (props.cookieUID) {
-    uid = props.cookieUID;
-  } else {
-    if (userUIDRedux) {
-      uid = userUIDRedux;
-      console.log("it actually worked");
-    } else if (auth.currentUser?.uid) {
-      uid = auth.currentUser.uid;
-    } else {
-      uid = null;
+
+  if(user?.uid){
+    uid = user?.uid;
+  }else if(userUIDRedux){
+    uid = userUIDRedux;  
+  }else if(auth.currentUser?.uid){
+    uid = auth.currentUser?.uid;
+  }else{
+    uid = null;
       console.log("no uid available :(");
-    }
   }
+
 
   let type = props.type;
 
   // console.log(auth.currentUser);
-  const ref = collection(getFirestore(), "users", uid, type);
-  const postQuery = query(ref, orderBy("createdAt", "desc"));
+let ideas, ideaSearch;
+  if (uid) {
+    const ref = collection(getFirestore(), "users", uid, type);
+    const postQuery = query(ref, orderBy("createdAt", "desc"));
 
-  const [querySnapshot] = useCollection(postQuery);
+    const [querySnapshot] = useCollection(postQuery);
 
-  const ideas = querySnapshot?.docs.map((doc) => doc.data());
+     ideas = querySnapshot?.docs.map((doc) => doc.data());
+  
 
-  let ideaSearch = ideas?.filter((obj) => {
+   ideaSearch = ideas?.filter((obj) => {
     // console.log(obj.title.toLowerCase());
 
     if (props.type === "ideas") {
@@ -283,7 +285,9 @@ function IdeasList(props) {
       );
     }
   });
-
+} else {
+  ideaSearch= null;
+}
   // console.log(ideaSearch);
 
   return (

@@ -6,10 +6,11 @@ import { FaBook, FaPlus, FaTimes } from "react-icons/fa";
 
 import NotePopUp from "../MainPage/NoteBubble/NotePopUp";
 import NotePopUpModal from "../MainPage/NoteBubble/NotePopUpModal";
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState, useContext, React } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // import { logIn, userDataRedux } from "../../redux/actions";
 import { useUserData } from "../../lib/hooks";
+import { UserContext } from "../../lib/context";
 // import firebase from "firebase/compat";
 import { auth } from "../../lib/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -32,12 +33,16 @@ import { Router } from "next/router";
 import { useRouter } from "next/router";
 
 import FullSidebar from "../Sidebar/FullSidebar";
+import Footer from "./Footer";
+import Loader from "./Loader";
+
 
 export default function Layout({ children }) {
   // console.log("Layout Rerendered")
   const router = useRouter();
 
   const userData = useUserData();
+  const { user, username } = useContext(UserContext);
 
   const dispatch = useDispatch();
   const [isToggled, setIsToggled] = useState(false);
@@ -58,7 +63,36 @@ export default function Layout({ children }) {
   };
 
   // let user;
+// console.log(userData)
+// console.log(user)
 
+//This use effect is importat! It waits for firebase auth to load the current user object, feed it to the userContext hook, then display content.
+useEffect(() => {
+
+if(user?.uid){
+  console.log(user.uid)
+  setLoading(false)
+  if (userUIDRedux === null) {
+    console.log("LAYOUT IS SETTING USER REDUX VALUES");
+    dispatch(userUIDAction(userData.user.uid));
+  }
+  if (userPhotoRedux === null) {
+    dispatch(userPhotoAction(userData.user.photoURL));
+  }
+  if (userDisplayNameRedux === null) {
+    dispatch(userDisplayNameAction(userData.user.displayName));
+  }
+  if (userNameRedux === null) {
+    dispatch(userNameAction(userData.username));
+  }
+  }else{
+  console.log("NO UID AVAILABLE :(((((")
+    setLoading(true)
+  }
+
+
+  
+}, [user, username])
   useEffect(() => {
     //if mobile, redirect to mobile page
     if (isMobile) {
@@ -180,25 +214,25 @@ export default function Layout({ children }) {
     if (userData.user !== null) {
       // setTimeout(()=>{
 
-      if (userUIDRedux === null) {
-        console.log("LAYOUT IS SETTING USER REDUX VALUES");
-        dispatch(userUIDAction(userData.user.uid));
-      }
-      if (userPhotoRedux === null) {
-        // console.log("LAYOUT IS SETTING USER REDUX VALUES")
+      // if (userUIDRedux === null) {
+      //   console.log("LAYOUT IS SETTING USER REDUX VALUES");
+      //   dispatch(userUIDAction(userData.user.uid));
+      // }
+      // if (userPhotoRedux === null) {
+      //   // console.log("LAYOUT IS SETTING USER REDUX VALUES")
 
-        dispatch(userPhotoAction(userData.user.photoURL));
-      }
-      if (userDisplayNameRedux === null) {
-        // console.log("LAYOUT IS SETTING USER REDUX VALUES")
+      //   dispatch(userPhotoAction(userData.user.photoURL));
+      // }
+      // if (userDisplayNameRedux === null) {
+      //   // console.log("LAYOUT IS SETTING USER REDUX VALUES")
 
-        dispatch(userDisplayNameAction(userData.user.displayName));
-      }
-      if (userNameRedux === null) {
-        // console.log("LAYOUT IS SETTING USER REDUX VALUES")
+      //   dispatch(userDisplayNameAction(userData.user.displayName));
+      // }
+      // if (userNameRedux === null) {
+      //   // console.log("LAYOUT IS SETTING USER REDUX VALUES")
 
-        dispatch(userNameAction(userData.username));
-      }
+      //   dispatch(userNameAction(userData.username));
+      // }
 
       // },[2000])
 
@@ -258,7 +292,8 @@ export default function Layout({ children }) {
           <TopBar />
         </div>
         <div className="bg-white/40 top-bar">
-          {/* {loading ? <FullLoader />: <TopBarRight user={user} />} */}
+          {/* {loading ? <Loader show={true}/>: "NOT LOADING YO"} */}
+          
 
           <TopBarRight />
         </div>
@@ -270,10 +305,11 @@ export default function Layout({ children }) {
           {/* <FullSidebar /> */}
         </div>
         <div className="overflow-y-auto fade-effect-quick content ">
-          <main>{children}</main>
+       {loading ? <FullLoader  show={true}/> : <main>{children}</main>}   
+          {/* <Footer /> */}
         </div>
         <div>
-          {isPopUpOpen ? (
+          {isPopUpOpen && !loading ? (
             <>
               {" "}
               <div className="notepad-container">

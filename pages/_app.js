@@ -49,6 +49,7 @@ function MyApp({ Component, pageProps }) {
       <UserContext.Provider value={userData}>
             <AuthProvider>
         <Layout>
+            <FullLoader show={loading} />
           <Component {...pageProps} />
         </Layout>
         </AuthProvider>
@@ -80,7 +81,6 @@ export default wrapper.withRedux(MyApp);
 //         {/* <PersistGate loading={(<FullLoader from="persist"/>)} persistor={persistor}> */}
 //           <UserContext.Provider value={userData}>
 //             <Layout>
-//               <FullLoader show={loading} />
 //               <Component {...pageProps} />
 //               {/* <CookieBanner
 //             privacyPolicyLink={"/privacy"}

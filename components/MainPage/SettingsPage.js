@@ -241,8 +241,9 @@ if(imgSrc ){
               </button>}</>}
             </div>
           </div>
-          {/* <p>Your username is: {username}</p>
-          <p>Your uid is: {user?.uid}</p> */}
+          <p>Your username is: {username}</p>
+          <p>Your uid is: {user?.uid}</p>
+          {loading && <div className="w-full h-[45em] bg-t-pm">LOADING</div>}
           {/* {changeColor && <div className="text-left rounded-2xl">
           <p className="pl-5 bg-t-bpop rounded-t-xl">Accent Color</p>
 
