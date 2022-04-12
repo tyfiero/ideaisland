@@ -158,7 +158,7 @@ export default function IdeaSideBar(props) {
             className=" w-[12em] h-[2em] m-2 rounded-3xl bg-t-bl flex items-center justify-center text-slate-100 gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer md:hover:shadow-xl shadow-clear-bd3"
           >
             <FaPlus className="text-[20px]" />
-            <p>
+            <p className="text-white">
               {" "}
               {type === "ideas"
                 ? "Create New Idea"

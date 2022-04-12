@@ -61,7 +61,7 @@ const HelpPage = () => {
       <div className="help-boxes-div-container">
         <div className="help-boxes-div">
           <div className="help-box  bg-[hsla(200,0%,100%,0.764)]  dark:bg-[hsla(200,0%,20%,0.764)] ">
-            <div className="help-circle">
+            <div className="help-circle bg-blues-100 dark:bg-t-bl">
               <FaUserGraduate className="help-icons" />
             </div>
             <h4 className="help-header text-t-bd dark:text-blues-100">
@@ -72,7 +72,7 @@ const HelpPage = () => {
             </p>
           </div>
           <div className="help-box  bg-[hsla(200,0%,100%,0.764)]  dark:bg-[hsla(200,0%,20%,0.764)] ">
-            <div className="help-circle">
+            <div className="help-circle bg-blues-100 dark:bg-t-bl">
               <FaRegListAlt className="help-icons" />
             </div>
             <h4 className="help-header text-t-bd dark:text-blues-100">FAQs</h4>
@@ -80,7 +80,7 @@ const HelpPage = () => {
           </div>
           <Link href="/profile" passHref>
             <div className="help-box  bg-[hsla(200,0%,100%,0.764)]  dark:bg-[hsla(200,0%,20%,0.764)] ">
-              <div className="help-circle">
+              <div className="help-circle bg-blues-100 dark:bg-t-bl">
                 <FaUserAlt className="help-icons" />
               </div>
               <h4 className="help-header text-t-bd dark:text-blues-100">
@@ -95,7 +95,7 @@ const HelpPage = () => {
         <div className="help-boxes-div">
           <a target="_blank" href="https://tally.so/r/wA9xow" rel="noreferrer">
             <div className="help-box  bg-[hsla(200,0%,100%,0.764)]  dark:bg-[hsla(200,0%,20%,0.764)] ">
-              <div className="help-circle help-circle-alt">
+              <div className="help-circle help-circle-alt bg-pinks-100 dark:bg-t-pl">
                 <FaRegCommentDots className="help-icons help-icons-alt" />
               </div>
               <h4 className="help-header help-header-alt text-t-pd dark:text-pinks-100">
@@ -108,7 +108,7 @@ const HelpPage = () => {
           </a>
           <a target="_blank" href="https://tally.so/r/m6z0Ym" rel="noreferrer">
             <div className="help-box  bg-[hsla(200,0%,100%,0.764)]  dark:bg-[hsla(200,0%,20%,0.764)] ">
-              <div className="help-circle help-circle-alt">
+              <div className="help-circle help-circle-alt bg-pinks-100 dark:bg-t-pl">
                 <FaBug className="help-icons help-icons-alt" />
               </div>
               <h4 className="help-header help-header-alt text-t-pd dark:text-pinks-100">
@@ -119,7 +119,7 @@ const HelpPage = () => {
           </a>
           <a target="_blank" href="https://ideaisland.io" rel="noreferrer">
             <div className="help-box  bg-[hsla(200,0%,100%,0.764)]  dark:bg-[hsla(200,0%,20%,0.764)] ">
-              <div className="help-circle help-circle-alt">
+              <div className="help-circle help-circle-alt bg-pinks-100 dark:bg-t-pl">
                 <img
                   src="/bulb.svg"
                   alt="logo"
@@ -200,7 +200,7 @@ const HelpPage = () => {
       </a>
 
       <div className="w-full h-[6em] pt-5 bg-clear-pl4 flex  flex-col gap-5">
-        <p className="text-[18px] ">Made with ♥️ in Seattle</p>
+        <p className="text-[18px] ">Made with ♥️ &nbsp;in Seattle</p>
         <p className="text-[11px]">Copyright © {date} Digital Masonry LLC</p>
       </div>
     </div>

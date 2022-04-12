@@ -58,8 +58,8 @@ export default function TopBarDropDown() {
   return (
     <>
       <div
-        className="dropdown fade-effect-fast md:left-[85%] lg:left-[88%] xl:left-[92%] absolute z-100 glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   "
         ref={dropdownRef}
+        className="dropdown fade-effect-fast md:left-[85%] lg:left-[88%] xl:left-[92%] absolute z-100 glass-box bg-white/70 dark:bg-[hsla(200,0%,5%,0.35)]   "
       >
         <CSSTransition
           in={activeMenu === "main"}

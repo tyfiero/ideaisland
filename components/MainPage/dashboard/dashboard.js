@@ -7,6 +7,7 @@ import PieChart from "./PieChart";
 import ChartIdeas from "./ChartIdeas";
 import IdeaSideBar from "../../Notes/IdeaSideBar";
 import statsAction from "../../../redux/actions";
+import FullLoader from "../../Layout/FullLoader";
 // import statsAction
 // export async function getServerSideProps(context) {
 //   return {
@@ -26,7 +27,7 @@ const Dashboard = () => {
   return (
     <div className="overflow-auto fade-effect-quick">
       <div className="dash-title">
-        <h1 className="text-3xl  text-t-bd dark:text-blues-100">
+        <h1 className="text-3xl text-t-bd dark:text-blues-100">
           Dashboard
         </h1>
       </div>
