@@ -230,10 +230,11 @@ if (darkRedux) {
         <div>
           <Toaster />
         </div>
-        <div className="logo-bar ">
+        
+        <div className=" logo-bar">
           <TopBar signedIn={signedIn} />
         </div>
-        <div className=" top-bar">
+        <div className="top-bar ">
           {/* {loadingUI ? <Loader show={true}/>: "NOT LOADING YO"} */}
 
           <TopBarRight />

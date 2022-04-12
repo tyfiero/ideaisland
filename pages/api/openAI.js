@@ -6,9 +6,9 @@ const OpenAI = require("openai-api");
 const openai = new OpenAI(process.env.OPENAI_API_KEY);
 // import gpt3APIRequest from "./gpt";
 
-// console.log(process.env.NEXT_PUBLIC_OPENAI_API_KEY);
 async function gpt3APIRequest(req) {
   //   console.log(req.body.input);
+  console.log(process.env.OPENAI_API_KEY);
 
   let userInput = req.body.input;
 
