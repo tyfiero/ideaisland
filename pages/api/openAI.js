@@ -40,7 +40,6 @@ export default async function handler(req, res) {
       console.log("req initiated!");
       gpt3APIRequest(req);
       let gptRes = await gpt3APIRequest(req);
-      // console.log("1+" + gptRes);
       res.status(200).json({ results: gptRes });
       console.log("req successful!");
     } catch (err) {
