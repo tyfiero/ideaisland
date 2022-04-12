@@ -425,11 +425,13 @@ function SRankFeatures(props) {
                   onClick={() => setIsPopoverOpen(!isPopoverOpen)}
                   className="w-5"
                 >
-                  <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 md:hover:scale-110" />
+                  <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 dark:text-blues-100  md:hover:scale-110" />
                 </div>
               </Popover>
             </div>
-            <h1 className="heading-top">Feature Selection</h1>
+            <h1 className=" text-3xl text-t-bd dark:text-blues-100 ">
+              Feature Selection
+            </h1>
 
             <div className="flex items-center justify-between w-full">
               <button
@@ -612,7 +614,7 @@ function SRankFeatures(props) {
               {/* <p>If neither, describe what you are looking to innovate:</p>
               <textarea
                 // type="text"
-                className="textarea-box h-[10em] whitespace-normal"
+                className="textarea-box  textarea-tw   h-[10em] whitespace-normal"
                 name="what"
                 placeholder="What are you building?"
                 onChange={update}

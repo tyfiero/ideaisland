@@ -20,16 +20,16 @@ const AccordionItem = ({
   }) => {
     return (
       <div className={"shadow-0 accordionItem" + (isActive ? "active" : "")}>
-        <div className="accordionTitle" onClick={onItemClick}>
-          <h3>
+        <div className="bg-white/80 dark:bg-slate-400 accordionTitle" onClick={onItemClick}>
+          <h3 className="text-t-bd dark:text-blues-100">
             {title}
             <span >{isActive ? <FaChevronUp className="accordion-icon"/> : <FaChevronDown className="accordion-icon"/>}</span>
           </h3>
       
-          {!!subtitle && <p className="accordionSubtitle">{subtitle}</p>}
+          {!!subtitle && <p className="accordionSubtitle text-slate-700 dark:text-slate-100">{subtitle}</p>}
         </div>
         
-        <div className="accordionContent">{children}</div>
+        <div className=" accordionContent"><p className="p-8 ">{children}</p></div>
       </div>
     );
   };
@@ -83,7 +83,7 @@ const HelpAccordion = ({
   };
 
   return (
-    <div className="accordion">
+    <div className="bg-white/80 dark:bg-slate-700 accordion">
       {!!header && <div className="accordionHeader">{header}</div>}
       {items.map((item, index) => {
         return (

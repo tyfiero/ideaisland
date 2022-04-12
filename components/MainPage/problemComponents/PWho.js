@@ -102,11 +102,11 @@ function PWho(props) {
                 onClick={() => setIsPopoverOpen(!isPopoverOpen)}
                 className="w-5"
               >
-                <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 md:hover:scale-110" />
+                <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 dark:text-blues-100  md:hover:scale-110" />
               </div>
             </Popover>
           </div>
-            <h1 className="heading-top">Who?</h1>
+            <h1 className=" text-3xl text-t-bd dark:text-blues-100 ">Who?</h1>
 
             <div className=" normal-box-soft">
               <h3 className="heading">Who is your audience?</h3>
@@ -119,7 +119,7 @@ function PWho(props) {
               <p>Answer:</p>
               <textarea
                 // type="text"
-                className="textarea-box h-[10em] whitespace-normal"
+                className="textarea-box  textarea-tw   h-[10em] whitespace-normal"
                 placeholder="Who is your audience?"
                 value={content}
                 onChange={update}

@@ -332,7 +332,6 @@ function CreateNewProblem(props) {
     // toast.success("new");
     // console.log(e)
     setLoading(true);
-  
 
     const d = Number(new Date());
     const timeID = d.valueOf().toString();
@@ -392,7 +391,7 @@ function CreateNewProblem(props) {
     // className="my-8 w-[62em]">
     <div className="w-full">
       {/* <div className="flex items-center justify-center">
-        <h1 className="heading-top">My Ideas & Notes</h1>
+        <h1 className=" text-3xl text-t-bd dark:text-blues-100 ">My Ideas & Notes</h1>
       </div>  */}
       <div className="flex flex-col items-center w-[100%] normal-box-soft !rounded-xl !bg-white/60">
         <FullLoader show={loading} />
@@ -464,7 +463,7 @@ function CreateNewProblem(props) {
                   <div className="p-5 normal-box-soft !rounded-xl min-w-[15em]  !bg-clear-bl2">
                     <h3 className="heading"> Why:</h3>
                     {/* <hr className="border-t-bd"></hr> */}
-                    <div className="w-full glass-box !bg-white/90">
+                    <div className="w-full glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   !bg-white/90">
                       {editModeRedux === "edit" || editModeRedux === "new" ? (
                         <TextareaAutosize
                           className="w-full rounded-md"
@@ -483,7 +482,7 @@ function CreateNewProblem(props) {
                   <div className="p-5 normal-box-soft !rounded-xl min-w-[15em]  !bg-clear-pl2">
                     <h3 className="heading"> What:</h3>
                     {/* <hr className="border-t-bd"></hr> */}
-                    <div className="w-full glass-box !bg-white/90">
+                    <div className="w-full glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   !bg-white/90">
                       {editModeRedux === "edit" || editModeRedux === "new" ? (
                         <TextareaAutosize
                           className="w-[95%] rounded-md"
@@ -502,7 +501,7 @@ function CreateNewProblem(props) {
                   <div className="p-5 normal-box-soft !rounded-xl min-w-[25em]  !bg-clear-bpop2">
                     <h3 className="heading">Who:</h3>
                     {/* <hr className="border-t-bd"></hr> */}
-                    <div className="w-full glass-box !bg-white/90">
+                    <div className="w-full glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   !bg-white/90">
                       {editModeRedux === "edit" || editModeRedux === "new" ? (
                         <TextareaAutosize
                           className="w-[95%] rounded-md"
@@ -527,7 +526,7 @@ function CreateNewProblem(props) {
                       Probem you want to solve:
                     </p>
 
-                    <div className="w-full glass-box !bg-white/90">
+                    <div className="w-full glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   !bg-white/90">
                       {editModeRedux === "edit" || editModeRedux === "new" ? (
                         <TextareaAutosize
                           className="w-[95%] rounded-md"
@@ -545,7 +544,7 @@ function CreateNewProblem(props) {
 
                     <p className="mt-4 text-xl text-white">Potential Cause:</p>
 
-                    <div className="w-full glass-box !bg-white/90">
+                    <div className="w-full glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   !bg-white/90">
                       {editModeRedux === "edit" || editModeRedux === "new" ? (
                         <TextareaAutosize
                           className="w-[95%] rounded-md"
@@ -562,7 +561,7 @@ function CreateNewProblem(props) {
                     </div>
                     <p className="mt-4 text-xl text-white">Root Cause:</p>
 
-                    <div className="w-full glass-box !bg-white/90">
+                    <div className="w-full glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   !bg-white/90">
                       {editModeRedux === "edit" || editModeRedux === "new" ? (
                         <TextareaAutosize
                           className="w-[95%] rounded-md"

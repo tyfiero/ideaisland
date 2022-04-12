@@ -129,7 +129,9 @@ function SolutionProgressPage(props) {
 
         <div className="w-full max-w-[95%]  space-y-8   normal-box-soft p-3">
           <div className="flex flex-col items-center justify-center p-0 problem-page fade-effect-quick">
-            <h1 className="heading-top">Progress so far:</h1>
+            <h1 className=" text-3xl text-t-bd dark:text-blues-100 ">
+              Progress so far:
+            </h1>
             <div className="flex flex-col w-full gap-4">
               <div className="p-5 normal-box-soft !rounded-xl w-full group">
                 <button
@@ -187,7 +189,7 @@ function SolutionProgressPage(props) {
                   </button>
                   <h3 className="heading"> Why:</h3>
                   {/* <hr className="border-t-bd"></hr> */}
-                  <div className="w-full glass-box !bg-white/90">
+                  <div className="w-full glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   !bg-white/90">
                     {editWhy ? (
                       <TextareaAutosize
                         className="w-full rounded-md"
@@ -226,7 +228,7 @@ function SolutionProgressPage(props) {
 
                   <h3 className="heading"> What:</h3>
                   {/* <hr className="border-t-bd"></hr> */}
-                  <div className="w-full glass-box !bg-white/90">
+                  <div className="w-full glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   !bg-white/90">
                     {editWhat ? (
                       <TextareaAutosize
                         className="w-[95%] rounded-md"
@@ -264,7 +266,7 @@ function SolutionProgressPage(props) {
                   </button>
                   <h3 className="heading">Who:</h3>
                   {/* <hr className="border-t-bd"></hr> */}
-                  <div className="w-full glass-box !bg-white/90">
+                  <div className="w-full glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   !bg-white/90">
                     {editWho ? (
                       <TextareaAutosize
                         className="w-[95%] rounded-md"
@@ -307,7 +309,7 @@ function SolutionProgressPage(props) {
                       Probem you want to solve:
                     </p>
 
-                    <div className="w-full glass-box !bg-white/90">
+                    <div className="w-full glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   !bg-white/90">
                       {editProblem ? (
                         <TextareaAutosize
                           className="w-[95%] rounded-md"
@@ -328,7 +330,7 @@ function SolutionProgressPage(props) {
 
                     <p className="mt-4 text-xl text-white">Potential Cause:</p>
 
-                    <div className="w-full glass-box !bg-white/90">
+                    <div className="w-full glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   !bg-white/90">
                       {editProblem ? (
                         <TextareaAutosize
                           className="w-[95%] rounded-md"
@@ -348,7 +350,7 @@ function SolutionProgressPage(props) {
                     </div>
                     <p className="mt-4 text-xl text-white">Root Cause:</p>
 
-                    <div className="w-full glass-box !bg-white/90">
+                    <div className="w-full glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   !bg-white/90">
                       {editProblem ? (
                         <TextareaAutosize
                           className="w-[95%] rounded-md"
@@ -371,7 +373,7 @@ function SolutionProgressPage(props) {
               </div>
             </div>
             <div className="flex flex-col">
-              <div className="my-8 mb-[5em] glass-box">
+              <div className="my-8 mb-[5em] glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]  ">
                 <p className="text-xl text-t-bd">
                   You&apos;ve come a long way! Now is when the real fun starts.
                   It&apos;s time to ideate. 💡

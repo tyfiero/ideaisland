@@ -1,12 +1,8 @@
-
-
 function LegalPage() {
   return (
-    <div className="min-h-screen glass-box">
+    <div className="min-h-screen glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]  ">
       <div className="relative overflow-hidden">
-        <div className="mx-auto">
-         
-        </div>
+        <div className="mx-auto"></div>
         <main>
           <div className="relative px-4 py-8 mt-4 sm:px-6 lg:px-8 sm:mt-12 normal-box">
             <div className="mx-auto text-lg max-w-prose ">
@@ -15,11 +11,8 @@ function LegalPage() {
                   Legal notice
                 </span>
               </h1>
-           
             </div>
             <div className="mx-auto mt-6 prose prose-lg text-gray-500 prose-cerulean">
-             
-
               <h2>Disclaimer</h2>
               <p>
                 The information provided by us on this website is for general

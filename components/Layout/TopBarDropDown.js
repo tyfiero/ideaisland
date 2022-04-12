@@ -17,8 +17,6 @@ import { useSelector } from "react-redux";
 import { HiOutlineCog } from "react-icons/hi";
 import { FiShare2 } from "react-icons/fi";
 
-
-
 import Modal from "./Modal";
 
 export default function TopBarDropDown() {
@@ -40,10 +38,6 @@ export default function TopBarDropDown() {
   //   setMenuHeight(height);
   // }
 
-
-
-
-  
   // eslint-disable-next-line
   const DropdownItem = React.forwardRef(
     ({ onClick, href, leftIcon, rightIcon, goToMenu, children }, ref) => {
@@ -62,110 +56,109 @@ export default function TopBarDropDown() {
   );
 
   return (
-    
     <>
-    <div
-      className="dropdown fade-effect-fast md:left-[85%] lg:left-[88%] xl:left-[92%] absolute z-100 glass-box "
-      ref={dropdownRef}
-    >
-      <CSSTransition
-        in={activeMenu === "main"}
-        timeout={500}
-        classNames="menu-primary"
-        unmountOnExit
+      <div
+        className="dropdown fade-effect-fast md:left-[85%] lg:left-[88%] xl:left-[92%] absolute z-100 glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   "
+        ref={dropdownRef}
       >
-        <div className=" menu">
-          {/* <Link href={`/${user.username}`}> */}
+        <CSSTransition
+          in={activeMenu === "main"}
+          timeout={500}
+          classNames="menu-primary"
+          unmountOnExit
+        >
+          <div className=" menu">
+            {/* <Link href={`/${user.username}`}> */}
 
-          <Link href={`/profile`} passHref>
-            <a>
-              <div>
-                {/* <a> */}
-                <DropdownItem leftIcon={<FaRegUser className="text-t-bd ml-[1px]" />}>
-                  
-                <p className="text-blues-700">My Profile</p>  
+            <Link href={`/profile`} passHref>
+              <a>
+                <div>
+                  {/* <a> */}
+                  <DropdownItem
+                    leftIcon={<FaRegUser className="text-t-bd dark:text-t-bl ml-[1px]" />}
+                  >
+                    <p className="text-blues-700">My Profile</p>
+                  </DropdownItem>
+                </div>
+              </a>
+              {/* </a> */}
+            </Link>
+            <hr />
+            <Link href={`/settings`} passHref>
+              <a>
+                <div>
+                  <DropdownItem
+                    leftIcon={<HiOutlineCog className="scale-125 text-t-bd dark:text-t-bl" />}
+                    //   goToMenu="settings"
+                  >
+                    <p className="text-blues-700">Settings</p>
+                  </DropdownItem>
+                </div>
+              </a>
+            </Link>
+            <hr />
 
-                </DropdownItem>
-              </div>
-            </a>
-            {/* </a> */}
-          </Link>
-          <hr/>
-          <Link href={`/settings`} passHref>
-            <a>
-              <div>
-                <DropdownItem
-                  leftIcon={<HiOutlineCog className="scale-125 text-t-bd" />}
-                  //   goToMenu="settings"
-                >
-                <p className="text-blues-700">Settings</p>  
-                </DropdownItem>
-              </div>
-            </a>
-          </Link>
-          <hr/>
-
-         
-
-          {/* <Link href={`/profile`} passHref> */}
+            {/* <Link href={`/profile`} passHref> */}
             {/* <a> */}
-              <div onClick={()=>{setOpenShareMenu(!openShareMenu)}}>
-                {/* <a> */}
-                <DropdownItem leftIcon={<FiShare2 className="text-t-bd" />}>
-                 
-                <p className=" text-blues-700"> Share</p>  
+            <div
+              onClick={() => {
+                setOpenShareMenu(!openShareMenu);
+              }}
+            >
+              {/* <a> */}
+              <DropdownItem leftIcon={<FiShare2 className="text-t-bd dark:text-t-bl" />}>
+                <p className=" text-blues-700"> Share</p>
+              </DropdownItem>
+            </div>
+            {/* </a> */}
+            {/* </a> */}
+            {/* </Link> */}
 
-                </DropdownItem>
-              </div>
-            {/* </a> */}
-            {/* </a> */}
-          {/* </Link> */}
-          
-          {/* <DropdownItem
+            {/* <DropdownItem
             leftIcon="🦧"
             rightIcon={<FaUserAlt />}
             goToMenu="animals"
           >
             Animals
           </DropdownItem> */}
-        </div>
-      </CSSTransition>
+          </div>
+        </CSSTransition>
 
-      <CSSTransition
-        in={activeMenu === "settings"}
-        timeout={500}
-        classNames="menu-secondary"
-        unmountOnExit
-      >
-        <div className="menu">
-          {/* <DropdownItem goToMenu="main" leftIcon={<FaUserAlt />}>
+        <CSSTransition
+          in={activeMenu === "settings"}
+          timeout={500}
+          classNames="menu-secondary"
+          unmountOnExit
+        >
+          <div className="menu">
+            {/* <DropdownItem goToMenu="main" leftIcon={<FaUserAlt />}>
             <h2>My Tutorial</h2>
           </DropdownItem>
           <DropdownItem leftIcon={<FaUserAlt />}>HTML</DropdownItem>
           <DropdownItem leftIcon={<FaUserAlt />}>CSS</DropdownItem>
           <DropdownItem leftIcon={<FaUserAlt />}>JavaScript</DropdownItem>
           <DropdownItem leftIcon={<FaUserAlt />}>Awesome!</DropdownItem> */}
-        </div>
-      </CSSTransition>
+          </div>
+        </CSSTransition>
 
-      <CSSTransition
-        in={activeMenu === "animals"}
-        timeout={500}
-        classNames="menu-secondary"
-        unmountOnExit
-      >
-        <div className="menu">
-          {/* <DropdownItem goToMenu="main" leftIcon={<FaUserAlt />}>
+        <CSSTransition
+          in={activeMenu === "animals"}
+          timeout={500}
+          classNames="menu-secondary"
+          unmountOnExit
+        >
+          <div className="menu">
+            {/* <DropdownItem goToMenu="main" leftIcon={<FaUserAlt />}>
             <h2>Animals</h2>
           </DropdownItem>
           <DropdownItem leftIcon="🦘">Kangaroo</DropdownItem>
           <DropdownItem leftIcon="🐸">Frog</DropdownItem>
           <DropdownItem leftIcon="🦋">Horse?</DropdownItem>
           <DropdownItem leftIcon="🦔">Hedgehog</DropdownItem> */}
-        </div>
-      </CSSTransition>
-    </div>
-    {openShareMenu && <Modal setOpenShareMenu={setOpenShareMenu} />}
+          </div>
+        </CSSTransition>
+      </div>
+      {openShareMenu && <Modal setOpenShareMenu={setOpenShareMenu} />}
     </>
   );
 }

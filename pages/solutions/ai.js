@@ -8,7 +8,7 @@ const AIPage = () => {
   // const { id } = router.query;
   return (
     <div className="TBD-container fade-effect-quick">
-      <h1 className="heading-top">AI Ideation TOOL</h1>
+      <h1 className=" text-3xl text-t-bd dark:text-blues-100 ">AI Ideation TOOL</h1>
       <h4>
         Harness the power of advanced AI with this GPT3 product idea tool!{" "}
       </h4>

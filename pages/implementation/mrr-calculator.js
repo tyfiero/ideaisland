@@ -110,66 +110,66 @@ function MrrCalculator() {
   return (
     <div className="flex flex-col items-center w-full h-full">
       <div className="flex flex-col items-center w-[98%] h-full m-5 normal-box-soft relative">
-        <h3 className="text-3xl blue-gradient-text">MRR Calculator</h3>
+        <p className="text-3xl blue-gradient-text">MRR Calculator</p>
 
         <div className="flex gap-5 m-5">
           <MRRChart chartDataPoints={chartDataPoints} />
 
-          <div className="normal-box w-[30em] flex-col flex !rounded-xl  nun ">
+          <div className="normal-box bg-[hsla(200,0%,100%,0.764)]  dark:bg-[hsla(200,0%,20%,0.764)] w-[30em] flex-col flex !rounded-xl  nun ">
             <div className="flex justify-between">
-              <h3>Growth Rate </h3>
+              <p>Growth Rate </p>
               <div className="flex">
-                <h3>%</h3>
-              <h3
-                className={growthRate > 0 ? "text-green-400" : "text-red-400"}
-              >
-                {growthRate.toFixed(2)}
-              </h3>
-            </div>
+                <p>%</p>
+                <h3
+                  className={growthRate > 0 ? "text-green-400" : "text-red-400"}
+                >
+                  {growthRate.toFixed(2)}
+                </h3>
+              </div>
             </div>
 
             <div className="flex justify-between">
-              <h3>Total Costs: </h3>
+              <p>Total Costs: </p>
               <div className="flex">
-                <h3>$</h3>
+                <p>$</p>
                 <h3 className="text-red-400">{numberWithCommas(totalCost)}</h3>
               </div>
             </div>
 
             <hr />
             <div className="flex justify-between">
-              <h3>Monthly Recurring Revenue: </h3>
+              <p>Monthly Recurring Revenue: </p>
 
               <div className="flex">
-                <h3>$</h3>
+                <p>$</p>
                 <h3 className="text-t-bl">{numberWithCommas(mrr)}</h3>
               </div>
             </div>
 
             <div className="flex justify-between">
-              <h3>Annual Recurring Revenue: </h3>
+              <p>Annual Recurring Revenue: </p>
 
               <div className="flex">
-                <h3>$</h3>
+                <p>$</p>
                 <h3 className="text-t-bl">{numberWithCommas(arr)}</h3>
               </div>
             </div>
             <hr />
 
             <div className="flex justify-between">
-              <h3>Profit Margin: </h3>
+              <p>Profit Margin: </p>
               <div className="flex">
-                <h3>%</h3>
-                <h3 className={yProfit > 0 ? "text-green-400" : "text-red-400"}>
+                <p>%</p>
+                <p className={yProfit > 0 ? "text-green-400" : "text-red-400"}>
                   {margin}
-                </h3>
+                </p>
               </div>
             </div>
             <div className="flex justify-between">
-              <h3>Monthly Profit: </h3>
+              <p>Monthly Profit: </p>
 
               <div className="flex">
-                <h3>$</h3>
+                <p>$</p>
                 <h3 className={mProfit > 0 ? "text-green-400" : "text-red-400"}>
                   {numberWithCommas(mProfit)}
                 </h3>
@@ -177,9 +177,9 @@ function MrrCalculator() {
             </div>
 
             <div className="flex justify-between">
-              <h3>Annual Profit: </h3>
+              <p>Annual Profit: </p>
               <div className="flex">
-                <h3>$</h3>
+                <p>$</p>
                 <h3 className={yProfit > 0 ? "text-green-400" : "text-red-400"}>
                   {numberWithCommas(yProfit)}
                 </h3>

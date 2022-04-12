@@ -15,8 +15,6 @@ function Chip({
 
   // console.log(formContent);
 
-
-
   //Attempted fix to have chips be 'unclicked' when the feature is deleted from feature list. I failed at this one. useEffect is not working as expected, it should be running this function every time formContent changes, but its not for some reason.
   // useEffect(() => {
   //   console.log(
@@ -28,12 +26,11 @@ function Chip({
   //       if (formContent.name === text) {
   //         console.log("FOUND INDEX @ " + index + text + " clicked? " + clicked);
 
-        
   //       } else {
   //         console.log("not found " + text + " clicked? " + clicked);
   //         if(clicked){
   //           setClicked(false);
-            
+
   //         }
   //       }
   //     });
@@ -71,7 +68,7 @@ function Chip({
             <FaPlus className={iconColor} />
           ))}
 
-        <p className="m-0 text-xs">{text}</p>
+        <h7 className={"m-0 text-xs  nun "  + iconColor}>{text}</h7>
       </button>
     </div>
   );

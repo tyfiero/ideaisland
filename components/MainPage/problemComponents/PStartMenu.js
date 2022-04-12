@@ -63,17 +63,17 @@ function PStartMenu(props) {
   }
   let problemsFromDb;
   // console.log(auth.currentUser);
-    const ref = collection(getFirestore(), "users", uid, "problem");
-    const postQuery = query(ref, orderBy("createdAt", "desc"));
+  const ref = collection(getFirestore(), "users", uid, "problem");
+  const postQuery = query(ref, orderBy("createdAt", "desc"));
 
-    const [querySnapshot] = useCollection(postQuery);
+  const [querySnapshot] = useCollection(postQuery);
 
-    const getProblems = () => {
-      problemsFromDb = querySnapshot?.docs.map((doc) => doc.data());
+  const getProblems = () => {
+    problemsFromDb = querySnapshot?.docs.map((doc) => doc.data());
 
-      setProblems(problemsFromDb);
-    };
-  
+    setProblems(problemsFromDb);
+  };
+
   return (
     <div>
       <div
@@ -122,7 +122,7 @@ function PStartMenu(props) {
                   onClick={() => setIsPopoverOpen(!isPopoverOpen)}
                   className="w-5"
                 >
-                  <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 md:hover:scale-110" />
+                  <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 dark:text-blues-100 md:hover:scale-110" />
                 </div>
               </Popover>
             </div>
@@ -290,7 +290,7 @@ function ProblemItem({
         }
       >
         <div className="flex">
-          <div className="normal-box !rounded-xl w-[100%] ">
+          <div className="normal-box bg-[hsla(200,0%,100%,0.764)]  dark:bg-[hsla(200,0%,20%,0.764)] !rounded-xl w-[100%] ">
             <div className="cursor-pointer">
               <h2 className="text-t-bd truncate text-[18px] text-left">
                 {idea.title || "*Unnamed Problem*"}

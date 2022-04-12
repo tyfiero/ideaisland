@@ -13,15 +13,11 @@ import toast from "react-hot-toast";
 
 import { useRouter } from "next/router";
 
-
-
 function SDetails(props) {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [titleContent, setTitleContent] = useState("");
   const [confetti, setConfetti] = useState(false);
-const router = useRouter();
-
-
+  const router = useRouter();
 
   const update = (e) => {
     props.update(e.target.name, e.target.value);
@@ -35,7 +31,7 @@ const router = useRouter();
   "
       >
         <div className="w-full max-w-[42rem] p-10 space-y-8  normal-box-soft">
-         {confetti && <ConfettiComponent />}
+          {confetti && <ConfettiComponent />}
           <div className="relative flex flex-col items-center justify-center p-2 problem-page fade-effect-quick">
             <div className="absolute -top-5 -left-5">
               <Popover
@@ -72,11 +68,13 @@ const router = useRouter();
                   onClick={() => setIsPopoverOpen(!isPopoverOpen)}
                   className="w-5"
                 >
-                  <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 md:hover:scale-110" />
+                  <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 dark:text-blues-100  md:hover:scale-110" />
                 </div>
               </Popover>
             </div>
-            <h1 className="heading-top">Details</h1>
+            <h1 className=" text-3xl text-t-bd dark:text-blues-100 ">
+              Details
+            </h1>
             <div className="normal-box-soft">
               <h3 className="heading">
                 Placeholder tab for another screen here
@@ -98,7 +96,7 @@ const router = useRouter();
               <input
                 type="text"
                 required
-                className="textarea-box h-[3em]"
+                className="textarea-box  textarea-tw   h-[3em]"
                 name="title"
                 placeholder="Title"
                 onChange={(e) => {
@@ -130,7 +128,7 @@ const router = useRouter();
 
               <textarea
                 // type="text"
-                className="textarea-box h-[10em] whitespace-normal"
+                className="textarea-box  textarea-tw   h-[10em] whitespace-normal"
                 name="details"
                 placeholder="Other details to add?"
                 onChange={update}
@@ -157,9 +155,8 @@ const router = useRouter();
                     type="submit"
                     className="card__btn_next h-[3em]  right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect !w-[15em] drop-shadow-xl m-3"
                     onClick={() => {
-                      router.push("/solutions/progress")
-                    }
-                    }
+                      router.push("/solutions/progress");
+                    }}
                   >
                     Submit and Continue
                     <FaLongArrowAltRight className="ml-1 text-[24px]" />

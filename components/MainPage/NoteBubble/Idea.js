@@ -112,7 +112,7 @@ function IdeaNote() {
 
 
       <input
-              className="w-[96%] textarea-box"
+              className="w-[96%] textarea-box  textarea-tw  "
               value={title}
               tabIndex="1"
 
@@ -147,7 +147,7 @@ function IdeaNote() {
 
               <div className="flex justify-center w-full h-full p-2 rounded-b-3xl rounded-t-xl bg-clear-bl3">
       <div
-        className="normal-box !rounded-lg  mt-1 !rounded-b-3xl w-[97%] h-full
+        className="normal-box bg-[hsla(200,0%,100%,0.764)]  dark:bg-[hsla(200,0%,20%,0.764)] !rounded-lg  mt-1 !rounded-b-3xl w-[97%] h-full
 
 "
       >

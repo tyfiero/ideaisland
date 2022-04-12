@@ -8,7 +8,7 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html lang="en" style={{ scrollBehavior: "smooth" }}>
+      <Html lang="en" style={{ scrollBehavior: "smooth" }} >
         <Head >
         <Header />
         </Head >

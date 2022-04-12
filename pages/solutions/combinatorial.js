@@ -101,13 +101,13 @@ const CombinatorialPage = (props) => {
 
       <div className="card-container fade-effect-quick">
         {/* div that holds all the cards, note the img prop where the url lives, as well as the array thats passed in to Card.js as a prop */}
-        <h1 className="heading-top">Combinatorial Tool</h1>
+        <h1 className=" text-3xl text-t-bd dark:text-blues-100 ">Combinatorial Tool</h1>
         <div className="flex flex-col items-center w-full">
           <p className="text-left">Template:</p>
           <TemplateBar />
         </div>
         <div className="w-[98%] rounded-xl cards ring-4 p-5 mt-5">
-          <div className="max-w-[98%] rounded-xl cards  p-5 mt-5 relative group glass-box !border-4 !border-t-bl">
+          <div className="max-w-[98%] rounded-xl cards  p-5 mt-5 relative group glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   !border-4 !border-t-bl">
             <div className="absolute top-0 right-0 flex justify-between gap-2 px-3 py-1 transition duration-500 border-b-2 border-l-2 opacity-0 rounded-bl-md border-t-bl group-hover:opacity-100">
               <button
                 className="flex items-center justify-center gap-4 p-2 text-white cursor-pointer rounded-3xl bg-t-pd drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95"
@@ -215,7 +215,7 @@ const CombinatorialPage = (props) => {
             </div>
 
             {randomImageOpen && (
-              <div className="px-2 pb-5 glass-box ring-4 ring-green-200 bg-t-bl/10 min-w-[42em] h-full !border-0 mb-5 bg-green-400/20">
+              <div className="px-2 pb-5 glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   ring-4 ring-green-200 bg-t-bl/10 min-w-[42em] h-full !border-0 mb-5 bg-green-400/20">
                 <p className="text-lg text-left text-green-600">Random Cues</p>
                 <p className="text-sm text-left text-green-800">
                   For inspiration and lateral thinking
@@ -226,7 +226,7 @@ const CombinatorialPage = (props) => {
 
             <div className="flex flex-wrap justify-center w-full h-full gap-5">
               {notesOpen && (
-                <div className="px-2 pb-5 glass-box ring-4 ring-t-bl bg-t-bl/10 min-w-[42em] h-full !border-0">
+                <div className="px-2 pb-5 glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   ring-4 ring-t-bl bg-t-bl/10 min-w-[42em] h-full !border-0">
                   <p className="pb-2 text-lg text-left text-t-bl">
                     {" "}
                     Idea NotePad

@@ -26,36 +26,46 @@ const Dashboard = () => {
   return (
     <div className="overflow-auto fade-effect-quick">
       <div className="dash-title">
-        <h1 className="heading-top">Dashboard</h1>
+        <h1 className="text-3xl  text-t-bd dark:text-blues-100">
+          Dashboard
+        </h1>
       </div>
-      <div className="stat-holder">
+      <div className="stat-holder dark:bg-red">
         {/* <button onClick={()=>{ dispatch(statsAction(5))}}>inc</button> */}
         {/* <p>userName: {userNameRedux}</p> */}
         <div className="dash-stat">
-          <h2 className="heading">Ideas</h2>
+          <h2 className="heading text-t-bd dark:text-blues-100">Ideas</h2>
           <h2 className="text-[40px]">{statsRedux?.ideaNum || 10}</h2>
         </div>
         <div className="dash-stat !rounded-xl ">
-          <h2 className="heading">Evolved Ideas</h2>
+          <h2 className="heading text-t-bd dark:text-blues-100">
+            Evolved Ideas
+          </h2>
           <h2 className="text-[40px]">3</h2>
         </div>
         <div className="dash-stat">
-          <h2 className="heading">Problems</h2>
+          <h2 className="heading text-t-bd dark:text-blues-100">Problems</h2>
           <h2 className="text-[40px]">2</h2>
         </div>
         <div className="dash-stat">
-          <h2 className="heading">Implementations</h2>
+          <h2 className="heading text-t-bd dark:text-blues-100">
+            Implementations
+          </h2>
           <h2 className="text-[40px]">10</h2>
         </div>
       </div>
-      <p>Include buttons to quickly launch favorite tools from dahsboard and display recent notes. Maybe a hop back in to where you were last button too </p>
+      <p>
+        Include buttons to quickly launch favorite tools from dahsboard and
+        display recent notes. Maybe a hop back in to where you were last button
+        too{" "}
+      </p>
 
       <div className="dash-graph-holder">
         <div className="dash-graph ">
           {/* <img className="w-[35em] rounded-xl drop-shadow-2xl shadow-2xl" src="./dummygraph.png" alt="graph" /> */}
           <ChartIdeas />
         </div>
-        
+
         <div className="graph-stats-holder ml-[6em]">
           <div className="graph-stat">
             <p>Ideas per day</p>
@@ -65,7 +75,7 @@ const Dashboard = () => {
             <p>Problems per day</p>
             <h4 className="graph-stat-num">0.15</h4>
           </div>
-         
+
           <div className="graph-stat">
             <p>Average problem to solution time</p>
             <h4 className="graph-stat-num">1h 8m</h4>

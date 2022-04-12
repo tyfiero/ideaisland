@@ -311,8 +311,6 @@ function CreateNewIdea(props) {
   };
 
   const deleteIdea = async (e) => {
-  
-
     const ref = doc(getFirestore(), "users", uidValue, type, ideaID);
     await deleteDoc(ref)
       .then(() => {
@@ -386,7 +384,6 @@ function CreateNewIdea(props) {
   const createIdea = async (e) => {
     // toast.success("new");
     // console.log(e)
-
 
     const d = Number(new Date());
     const timeID = d.valueOf().toString();
@@ -463,7 +460,7 @@ function CreateNewIdea(props) {
     // className="my-8 w-[62em]">
     <div className="w-full">
       {/* <div className="flex items-center justify-center">
-        <h1 className="heading-top">My Ideas & Notes</h1>
+        <h1 className=" text-3xl text-t-bd dark:text-blues-100 ">My Ideas & Notes</h1>
       </div>  */}
 
       <div className="flex flex-col items-center w-[98%] md:mx-3 sm:mx-1 normal-box-soft">
@@ -479,7 +476,7 @@ function CreateNewIdea(props) {
               </h5>
             )}
             <input
-              className="w-[96%] textarea-box"
+              className="w-[96%] textarea-box  textarea-tw  "
               value={title}
               onChange={(e) => {
                 if (!unsavedChangesRedux) {
@@ -566,7 +563,7 @@ function CreateNewIdea(props) {
               )}
             </div>
             <div
-              className="normal-box !rounded-lg  mt-1 !rounded-b-3xl w-[97%]
+              className="normal-box bg-[hsla(200,0%,100%,0.764)]  dark:bg-[hsla(200,0%,20%,0.764)] !rounded-lg  mt-1 !rounded-b-3xl w-[97%]
 
 "
             >
@@ -624,7 +621,7 @@ function CreateNewIdea(props) {
                   <div className="flex items-center justify-center gap-2">
                     <input
                       type="text"
-                      className=" text-[12px] textarea-box"
+                      className=" text-[12px] textarea-box  textarea-tw  "
                       placeholder={"Paste image url here"}
                       onChange={(e) => {
                         setImgUrl(e.target.value);
@@ -634,7 +631,7 @@ function CreateNewIdea(props) {
                       }}
                     />
                     {imgUrl.length > 5 && (
-                      <div className="w-[5em] h-[5em] normal-box flex items-center !rounded-md">
+                      <div className="w-[5em] h-[5em] normal-box bg-[hsla(200,0%,100%,0.764)]  dark:bg-[hsla(200,0%,20%,0.764)] flex items-center !rounded-md">
                         <img
                           className={"object-contain "}
                           src={imgUrl}

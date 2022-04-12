@@ -52,6 +52,7 @@ export default function Layout({ children }) {
   const userUIDRedux = useSelector((state) => state.userUID);
   const userPhotoRedux = useSelector((state) => state.userPhoto);
   const userDisplayNameRedux = useSelector((state) => state.userDisplayName);
+  const darkRedux = useSelector((state) => state.darkMode);
 
   const userNameRedux = useSelector((state) => state.userName);
   // console.log(userNameRedux + "unr")
@@ -66,7 +67,7 @@ export default function Layout({ children }) {
   // console.log(userData)
   // console.log(user)
 
-  //This use effect is importat! It waits for firebase auth to load the current user object, feed it to the userContext hook, then display content.
+  //This use effect is important! It waits for firebase auth to load the current user object, feed it to the userContext hook, then display content.
   useEffect(() => {
     console.log(loading);
 
@@ -100,6 +101,36 @@ export default function Layout({ children }) {
       }
     }
   }, [user, username, loading]);
+
+
+
+  //dark mode
+  useEffect(() => {
+console.log(darkRedux + "dark")
+const body = document.body;
+let menuOpacityNum = localStorage.getItem("menuOpacity") || 0.7;
+
+let base = darkRedux ? "hsla(200,0%,50%," : "hsla(200,0%,100%,";
+let concat = base + menuOpacityNum + ")";
+
+
+if (darkRedux) {
+  body.setAttribute("style", "background-color: RGBA(30, 41, 59, 1)")
+  ;
+  document.documentElement.classList.add('dark')
+    document.documentElement.style.setProperty("--menuColor", concat);
+
+} else {
+  body.setAttribute("style", "background-color: white");
+  document.documentElement.classList.remove('dark')
+  document.documentElement.style.setProperty("--menuColor", concat);
+
+}
+  }, [darkRedux]);
+
+
+
+  
   useEffect(() => {
     //if mobile, redirect to mobile page
     if (isMobile) {

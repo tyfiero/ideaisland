@@ -165,11 +165,13 @@ function SFeatures(props) {
                     onClick={() => setIsPopoverOpen(!isPopoverOpen)}
                     className="w-5"
                   >
-                    <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 md:hover:scale-110" />
+                    <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 dark:text-blues-100  md:hover:scale-110" />
                   </div>
                 </Popover>
               </div>
-              <h1 className="heading-top">Features</h1>
+              <h1 className="text-3xl text-t-bd dark:text-blues-100">
+                Features
+              </h1>
               <div className="normal-box-soft">
                 <h3 className="heading">
                   What features do you want to include? What features MUST your
@@ -261,14 +263,14 @@ function SFeatures(props) {
 
               {showCommonFeatures && (
                 <div
-                  className="glass-box border-2 border-t-pm w-[90%] !p-2  !rounded-xl gap-2"
+                  className="glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.65)]   border-2 border-t-pm w-[90%] !p-2  !rounded-xl gap-2"
                   onClick={() => {
                     // console.log("click")
                     setRerender(!rerender);
                   }}
                 >
                   {/* <p>Common Features</p> */}
-                  <div className="flex flex-col items-start p-1 mb-2 border-2 border-teal-400 rounded-2xl">
+                  <div className="flex flex-col items-start p-1 mb-2 border-2 border-teal-400 bg-teal-400/30 rounded-2xl">
                     <p className="pl-3 m-0">Authentication</p>
                     <div className="flex flex-wrap gap-1">
                       <Chip
@@ -303,7 +305,7 @@ function SFeatures(props) {
                       />
                     </div>
                   </div>
-                  <div className="flex flex-col items-start p-1 my-2 border-2 border-yellow-400 rounded-2xl">
+                  <div className="flex flex-col items-start p-1 my-2 border-2 border-yellow-400 bg-yellow-400/30 rounded-2xl">
                     <p className="pl-3 m-0">Data</p>
                     <div className="flex flex-wrap gap-1">
                       <Chip
@@ -336,7 +338,7 @@ function SFeatures(props) {
                       />
                     </div>
                   </div>
-                  <div className="flex flex-col items-start p-1 my-2 border-2 border-sky-400 rounded-2xl">
+                  <div className="flex flex-col items-start p-1 my-2 border-2 border-sky-400 bg-sky-400/30 rounded-2xl">
                     <p className="pl-3 m-0">Social</p>
                     <div className="flex flex-wrap gap-1">
                       <Chip
@@ -396,7 +398,7 @@ function SFeatures(props) {
                       />
                     </div>
                   </div>
-                  <div className="flex flex-col items-start p-1 mt-2 border-2 border-pink-400 rounded-2xl">
+                  <div className="flex flex-col items-start p-1 mt-2 border-2 border-pink-400 bg-pink-400/30 rounded-2xl">
                     <p className="pl-3 m-0">Web3</p>
                     <div className="flex flex-wrap gap-1">
                       <Chip
@@ -447,7 +449,7 @@ function SFeatures(props) {
                       />
                     </div>
                   </div>
-                  <div className="flex flex-col items-start p-1 mt-2 border-2 border-orange-400 rounded-2xl">
+                  <div className="flex flex-col items-start p-1 mt-2 border-2 border-orange-400 bg-orange-400/30 rounded-2xl">
                     <p className="pl-3 m-0">Security</p>
                     <div className="flex flex-wrap gap-1">
                       <Chip
@@ -480,7 +482,7 @@ function SFeatures(props) {
                       />
                     </div>
                   </div>
-                  <div className="flex flex-col items-start p-1 mt-2 border-2 border-violet-400 rounded-2xl">
+                  <div className="flex flex-col items-start p-1 mt-2 border-2 border-violet-400 bg-violet-400/30 rounded-2xl">
                     <p className="pl-3 m-0">Misc</p>
                     <div className="flex flex-wrap gap-1">
                       <Chip
@@ -632,7 +634,7 @@ function SFeatures(props) {
               </div>
             </div>
             <div className="normal-box-soft !rounded-xl w-[30em]">
-              <div className="normal-box !rounded-xl text-left">
+              <div className="normal-box bg-[hsla(200,0%,100%,0.764)]  dark:bg-[hsla(200,0%,20%,0.764)] !rounded-xl text-left">
                 <h3 className="heading2">Feature List:</h3>
                 {/* <p>featureString:</p>
                   <p>{featureString}</p>
@@ -658,7 +660,7 @@ function SFeatures(props) {
               <div className="flex items-center gap-2">
                 <textarea
                   // type="text"
-                  className="textarea-box h-[5em] !w-full whitespace-normal"
+                  className="textarea-box  textarea-tw   h-[5em] !w-full whitespace-normal"
                   name="feature"
                   placeholder="Write feature here"
                   value={featureContent}

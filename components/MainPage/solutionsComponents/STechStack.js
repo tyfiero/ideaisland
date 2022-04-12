@@ -196,10 +196,10 @@ function STechStack(props) {
                       >
                         What infrastructure does your application need?
                         Selecting the right stack to build your product is
-                        tough. It&apos;s deeply personal, given what you are talented
-                        in, yet it is also objective, what infrastructure
-                        provider allows your users to benefit most? PLEASE
-                        rewrite this its bad lol
+                        tough. It&apos;s deeply personal, given what you are
+                        talented in, yet it is also objective, what
+                        infrastructure provider allows your users to benefit
+                        most? PLEASE rewrite this its bad lol
                       </div>
                     </ArrowContainer>
                   )}
@@ -208,11 +208,13 @@ function STechStack(props) {
                     onClick={() => setIsPopoverOpen(!isPopoverOpen)}
                     className="w-5"
                   >
-                    <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 md:hover:scale-110" />
+                    <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 dark:text-blues-100  md:hover:scale-110" />
                   </div>
                 </Popover>
               </div>
-              <h1 className="heading-top">Tech Stack</h1>
+              <h1 className=" text-3xl text-t-bd dark:text-blues-100 ">
+                Tech Stack
+              </h1>
               {/* <div className="normal-box-soft">
                 <h3 className="heading">
                   What infrastructure does your application need?
@@ -522,7 +524,7 @@ function STechStack(props) {
                         <textarea
                           // type="text"
                           id="namebox"
-                          className="textarea-box h-[3em] !w-[20em] whitespace-normal"
+                          className="textarea-box  textarea-tw   h-[3em] !w-[20em] whitespace-normal"
                           name="tool"
                           placeholder="..."
                           value={toolContent}
@@ -541,7 +543,7 @@ function STechStack(props) {
                             step="0.01"
                             placeholder="0.00"
                             value={toolCost}
-                            className="textarea-box h-[2.7em] !w-[7em] "
+                            className="textarea-box  textarea-tw   h-[2.7em] !w-[7em] "
                             onChange={(e) => {
                               console.log(e.target.valueAsNumber);
                               // if (toolCost) {
@@ -614,7 +616,7 @@ function STechStack(props) {
               </div>
             </div>
             <div className="normal-box-soft !rounded-xl w-[30em]">
-              <div className="normal-box !rounded-xl text-left">
+              <div className="normal-box bg-[hsla(200,0%,100%,0.764)]  dark:bg-[hsla(200,0%,20%,0.764)] !rounded-xl text-left">
                 <h3 className="heading2">Tech Stack:</h3>
                 {/* <p>featureString:</p>
                   <p>{featureString}</p>
@@ -767,7 +769,7 @@ function ItemCard({ name, color, bColor, iconColor, update, cost, url, type }) {
       }}
       // value={"BUTTON"}
       className={
-        "group flex gap-1 items-center rounded-xl !p-0 border-2   overflow-hidden  whitespace-nowrap transition cursor-pointer h-[9em] w-[6em] glass-box" +
+        "group flex gap-1 items-center rounded-xl !p-0 border-2   overflow-hidden  whitespace-nowrap transition cursor-pointer h-[9em] w-[6em] glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]  " +
         (clicked
           ? " bg-slate-200  border-slate-500"
           : " " + color + " " + bColor)

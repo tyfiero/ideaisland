@@ -72,7 +72,7 @@
 //     >
 //       <div className="w-full max-w-[42rem] p-10 space-y-8 shadow rounded-xl bg-blues-100 drop-shadow-xl container-style normal-box-soft">
 //         <div className="flex flex-col items-center justify-center problem-page fade-effect-quick">
-//           <h1 className="heading-top">Problem Page</h1>
+//           <h1 className=" text-3xl text-t-bd dark:text-blues-100 ">Problem Page</h1>
 //           {currentQ === 1 && (
 //             <>
 //               <div className="ai-output-box">

@@ -26,27 +26,23 @@ function ModularCard({ card }) {
   const { flushHeldKeys } = useKeyboardShortcut(
     ["Enter"],
     (shortcutKeys) => {
-        
-        if(contentEdit){
-            setContentEdit(false);
-            
-        }
+      if (contentEdit) {
+        setContentEdit(false);
+      }
     },
-    { 
+    {
       overrideSystem: false,
-      ignoreInputFields: false, 
-      repeatOnHold: false 
+      ignoreInputFields: false,
+      repeatOnHold: false,
     }
   );
 
-
-  
   console.log(card);
-useEffect(() => {
-    if(contentEdit){
-        focusTextInput.current.focus()
+  useEffect(() => {
+    if (contentEdit) {
+      focusTextInput.current.focus();
     }
-}, [contentEdit])
+  }, [contentEdit]);
   useEffect(() => {
     if (type === "Intro") {
       setRingColor(" ring-blues-600");
@@ -136,39 +132,42 @@ useEffect(() => {
 
         {contentEdit ? (
           <>
-          <div>
-            <div
-              className="normal-box !rounded-xl w-full flex flex-col items-center"
-            >
-              <input
-                className="w-[94%] textarea-box"
-                value={content}
-                ref={focusTextInput}
-                onChange={(e) => {
-                  setContent(e.target.value);
-                }}
-                placeholder={content}
-              />
-              <button
-              className=" w-[90%] h-[2em] mt-1 rounded-3xl bg-t-bl flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer "
-                onClick={() => {
-                  setContentEdit(false);
-                }}
-              >
-                Done <FaCheck />
-              </button>
+            <div>
+              <div className="normal-box bg-[hsla(200,0%,100%,0.764)]  dark:bg-[hsla(200,0%,20%,0.764)] !rounded-xl w-full flex flex-col items-center">
+                <input
+                  className="w-[94%] textarea-box  textarea-tw  "
+                  value={content}
+                  ref={focusTextInput}
+                  onChange={(e) => {
+                    setContent(e.target.value);
+                  }}
+                  placeholder={content}
+                />
+                <button
+                  className=" w-[90%] h-[2em] mt-1 rounded-3xl bg-t-bl flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer "
+                  onClick={() => {
+                    setContentEdit(false);
+                  }}
+                >
+                  Done <FaCheck />
+                </button>
+              </div>
+              <p className="text-xs">Note: This will not save.</p>
             </div>
-            <p className="text-xs">Note: This will not save.</p>
-         </div>
-
           </>
         ) : (
           <>
             <div
-              className="normal-box !rounded-xl w-full"
-              onClick={() => {setContentEdit(true)}}
+              className="normal-box bg-[hsla(200,0%,100%,0.764)]  dark:bg-[hsla(200,0%,20%,0.764)] !rounded-xl w-full"
+              onClick={() => {
+                setContentEdit(true);
+              }}
             >
-              <p className={"text-xl select-none " + (card > 0 ? " lowercase" : "")}>
+              <p
+                className={
+                  "text-xl select-none " + (card > 0 ? " lowercase" : "")
+                }
+              >
                 {content}
               </p>
             </div>

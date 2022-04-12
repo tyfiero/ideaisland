@@ -29,7 +29,7 @@ function SFilterIdeas(props) {
           {/* <h1 className=" !text-xl whitespace-nowrap !mb-0 mr-5">All Ideas</h1> */}
         </div>
         <input
-          className="w-full h-10 px-5 pr-16 text-sm bg-white border-2 border-gray-300 rounded-full focus:outline-none"
+          className="w-full h-10 px-5 pr-16 text-sm bg-white border-2 border-gray-300 rounded-full dark:bg-slate-500 focus:outline-none placeholder:text-slate-400 dark:placeholder:text-slate-300 text-slate-700 dark:text-slate-100 "
           type="search"
           name="search"
           placeholder="Search"
@@ -39,15 +39,15 @@ function SFilterIdeas(props) {
 
         {searchValue ? (
           <button onClick={() => setSearchValue("")}>
-            <FaRegTimesCircle className="absolute right-0 top-0 mt-[1.2rem] mr-4 text-t-pm md:hover:scale-125 text-xl" />
+            <FaRegTimesCircle className="absolute right-0 top-0 mt-[1.2rem] mr-4 text-t-pm md:hover:scale-125 text-xl text-slate-700 dark:text-slate-100" />
           </button>
         ) : (
-          <button className="absolute top-0 right-0 mt-5 mr-4">
+          <button className="absolute top-0 right-0 mt-5 mr-4 text-slate-700 dark:text-slate-100">
             <FaSearch />
           </button>
         )}
       </div>
-      <div className="glass-box fade-effect-quick flex flex-col items-center min-h-[20em] max-h-[30em] overflow-y-auto overflow-x-hidden !rounded-2xl !pt-4 gap-3 w-[98%]">
+      <div className="glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.85)]   fade-effect-quick flex flex-col items-center min-h-[20em] max-h-[30em] overflow-y-auto overflow-x-hidden !rounded-2xl !pt-4 gap-3 w-[98%]">
         <IdeasList searchTerm={searchValue} />
       </div>
     </div>

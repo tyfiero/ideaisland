@@ -1,4 +1,4 @@
-import {React, useContext} from "react";
+import { React, useContext } from "react";
 import { useUserData } from "../lib/hooks";
 import { useSelector, useDispatch } from "react-redux";
 import { UserContext } from "../lib/context";
@@ -21,7 +21,7 @@ function ProfilePage(props) {
 
   return (
     <div className="flex flex-col items-center pt-12 fade-effect">
-      <h2 className="heading-top">Profile</h2>
+      <h2 className=" text-3xl text-t-bd dark:text-blues-100 ">Profile</h2>
       <div className="bg-white rounded-full profile-pic-page-holder">
         <img
           src={userPhotoRedux || "/profilefallback.png"}
@@ -31,12 +31,11 @@ function ProfilePage(props) {
         />
       </div>
       <div>
-        <i className="italic text-blues-100">@{username || userNameRedux || "username"}</i>
+        <i className="italic text-blues-100">
+          @{username || userNameRedux || "username"}
+        </i>
       </div>
-      <div className="text-xl">
-       
-      </div>
-    
+      <div className="text-xl"></div>
 
       <button
         className="hidden w-[12em] px-3 py-2 font-medium rounded-full md:block md:space-x-6 fade-effect text-white hover:text-t-bd bg-t-bl my-5"

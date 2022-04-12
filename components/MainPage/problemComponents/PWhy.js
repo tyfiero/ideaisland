@@ -120,12 +120,12 @@ function PWhy(props) {
                   onClick={() => setIsPopoverOpen(!isPopoverOpen)}
                   className="w-5"
                 >
-                  <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 md:hover:scale-110" />
+                  <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 dark:text-blues-100  md:hover:scale-110" />
                 </div>
               </Popover>
             </div>
             <button></button>
-            <h1 className="heading-top">Why?</h1>
+            <h1 className=" text-3xl text-t-bd dark:text-blues-100 ">Why?</h1>
             <div className="normal-box-soft">
               <h3 className="heading">
                 Why are you building something? Why are you innovating?
@@ -183,7 +183,7 @@ function PWhy(props) {
               </p>
               <textarea
                 // type="text"
-                className="textarea-box h-[10em] whitespace-normal"
+                className="textarea-box  textarea-tw   h-[10em] whitespace-normal"
                 // name="why"
                 value={content}
                 placeholder="Enter your why..."

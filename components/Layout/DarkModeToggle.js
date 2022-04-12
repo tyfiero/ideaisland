@@ -12,17 +12,8 @@ function DarkModeToggle() {
   const darkModeFunc = () => {
 
     if(typeof window !== "undefined"){
-    const body = document.body;
-    const blob = document.querySelector("body > div.blobs");
     dispatch(darkMode(!darkRedux));
-
-    if (!darkRedux) {
-      body.setAttribute("style", "background-color: RGBA(30, 41, 59, 1)");
-      blob.setAttribute("style", "opacity: 0.4");
-    } else {
-      body.setAttribute("style", "background-color: white");
-      blob.setAttribute("style", "opacity: 1");
-    }
+    localStorage.setItem("darkMode", darkRedux);
   }
   };
 

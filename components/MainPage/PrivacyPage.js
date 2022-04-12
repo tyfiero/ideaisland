@@ -1,16 +1,9 @@
-
-
-
-
-
 //TODO UPdate both privacy and legal pages and add cookie notice
 function PrivacyPage() {
   return (
-    <div className="min-h-screen glass-box">
+    <div className="min-h-screen glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]  ">
       <div className="relative overflow-hidden">
-        <div className="mx-auto">
-         
-        </div>
+        <div className="mx-auto"></div>
         <main>
           <div className="relative px-4 py-8 mt-4 sm:px-6 lg:px-8 sm:mt-12 pb-52">
             <div className="mx-auto text-lg max-w-prose ">
@@ -25,8 +18,7 @@ function PrivacyPage() {
               <p>Text</p>
             </div>
           </div>
-          <div className="fixed bottom-0 w-full">
-          </div>
+          <div className="fixed bottom-0 w-full"></div>
         </main>
       </div>
     </div>

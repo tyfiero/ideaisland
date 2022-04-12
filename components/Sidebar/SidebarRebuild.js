@@ -73,7 +73,7 @@ const Sidebar2 = (props) => {
           <a>
             <div className="flex flex-col items-center group">
             <div
-              className={"flex flex-col items-center p-2 transition-all duration-700 rounded-lg shadow-lg sidebar-unit-container bg-gradient-to-br from-white/20 via-t-pl to-t-pd bg-size-200  drop-shadow-xl group-hover:bg-pos-100 " + (selected === 0 ? " bg-pos-100" : " bg-pos-0")}
+              className={"flex flex-col items-center p-2 min-h-10 min-w-10 transition-all duration-700 rounded-lg shadow-lg sidebar-unit-container bg-gradient-to-br from-white/20 via-t-pl to-t-pd bg-size-200  drop-shadow-xl group-hover:bg-pos-100 " + (selected === 0 ? " bg-pos-100" : " bg-pos-0")}
               onClick={() => {
                 setSelected(0);
               }}
@@ -82,18 +82,18 @@ const Sidebar2 = (props) => {
               <HiOutlineHome className={"text-2xl transition duration-1000  group-hover:text-pink-50 " + (selected === 0 ? " text-pinks-50" : "text-pinks-700") } />
              
             </div>
-            <p className="text-xs text-black transition duration-1000 opacity-50 group-hover:opacity-100">Home</p>
+            <p className="text-xs text-black transition duration-1000 opacity-50 group-hover:opacity-100 dark:text-slate-50">Home</p>
             </div>
           </a>
         </Link>
        
-
+        
         <Link href={`/notes`} passHref>
           <a>
           <div className="flex flex-col items-center group">
 
             <div
-              className={"flex flex-col items-center p-2 transition-all duration-700 rounded-lg shadow-lg sidebar-unit-container bg-gradient-to-br from-white/20 via-t-pl to-t-pd bg-size-200  drop-shadow-xl group-hover:bg-pos-100 " + (selected === 4 ? " bg-pos-100" : " bg-pos-0")}
+              className={"flex flex-col items-center p-2 min-h-10 min-w-10 transition-all duration-700 rounded-lg shadow-lg sidebar-unit-container bg-gradient-to-br from-white/20 via-t-pl to-t-pd bg-size-200  drop-shadow-xl group-hover:bg-pos-100 " + (selected === 4 ? " bg-pos-100" : " bg-pos-0")}
               onClick={() => {
                 setSelected(4);
               }}
@@ -101,7 +101,7 @@ const Sidebar2 = (props) => {
               {/* <FaBook className="side-icon" /> */}
               <FaRegEdit className={"text-2xl ml-[4px] transition duration-1000  group-hover:text-pink-50 " + (selected === 4 ? " text-pinks-50" : "text-pinks-700") } />
               </div>
-            <p className="text-xs text-black transition duration-1000 opacity-50 group-hover:opacity-100">Notes</p>
+            <p className="text-xs text-black transition duration-1000 opacity-50 group-hover:opacity-100 dark:text-slate-50">Notes</p>
             </div>
           </a>
         </Link>
@@ -109,7 +109,7 @@ const Sidebar2 = (props) => {
           <a>
           <div className="flex flex-col items-center group">
             <div
-              className={"flex flex-col items-center p-2 transition-all duration-700 rounded-lg shadow-lg sidebar-unit-container bg-gradient-to-br from-white/20 via-t-pl to-t-pd bg-size-200  drop-shadow-xl group-hover:bg-pos-100 " + (selected === 1 ? " bg-pos-100" : " bg-pos-0")}
+              className={"flex flex-col items-center p-2 min-h-10 min-w-10 transition-all duration-700 rounded-lg shadow-lg sidebar-unit-container bg-gradient-to-br from-white/20 via-t-pl to-t-pd bg-size-200  drop-shadow-xl group-hover:bg-pos-100 " + (selected === 1 ? " bg-pos-100" : " bg-pos-0")}
               onClick={() => {
                 setSelected(1);
               }}
@@ -117,7 +117,7 @@ const Sidebar2 = (props) => {
               {/* <GrBug className={"text-2xl  transition duration-1000  group-hover:text-pink-50 " + (selected === 1 ? " text-pinks-50" : "text-pinks-700") }  /> */}
               <BsBug className={"text-[1.6rem]  transition duration-1000  group-hover:text-pink-50 " + (selected === 1 ? " text-pinks-50" : "text-pinks-700") } />
                </div>
-            <p className="text-xs text-black transition duration-1000 opacity-50 group-hover:opacity-100">Problems</p>
+            <p className="text-xs text-black transition duration-1000 opacity-50 group-hover:opacity-100 dark:text-slate-50">Problems</p>
             </div>
           </a>
         </Link>
@@ -126,14 +126,14 @@ const Sidebar2 = (props) => {
           <div className="flex flex-col items-center group">
 
             <div
-               className={"flex flex-col items-center p-2 transition-all duration-700 rounded-lg shadow-lg sidebar-unit-container bg-gradient-to-br from-white/20 via-t-pl to-t-pd bg-size-200  drop-shadow-xl group-hover:bg-pos-100 " + (selected === 2 ? " bg-pos-100" : " bg-pos-0")}
+               className={"flex flex-col items-center p-2 min-h-10 min-w-10 transition-all duration-700 rounded-lg shadow-lg sidebar-unit-container bg-gradient-to-br from-white/20 via-t-pl to-t-pd bg-size-200  drop-shadow-xl group-hover:bg-pos-100 " + (selected === 2 ? " bg-pos-100" : " bg-pos-0")}
               onClick={() => {
                 setSelected(2);
               }}
             >
               <GoLightBulb className={"text-[1.6rem] leading-8 pr-[1px] transition duration-1000  group-hover:text-pink-50 " + (selected === 2 ? " text-pinks-50" : "text-pinks-700") } />
               </div>
-            <p className="text-xs text-black transition duration-1000 opacity-50 group-hover:opacity-100">Solutions</p>
+            <p className="text-xs text-black transition duration-1000 opacity-50 group-hover:opacity-100 dark:text-slate-50">Solutions</p>
             </div>
           </a>
         </Link>
@@ -142,14 +142,14 @@ const Sidebar2 = (props) => {
           <div className="flex flex-col items-center group">
 
             <div
-               className={"flex flex-col items-center p-2 transition-all duration-700 rounded-lg shadow-lg sidebar-unit-container bg-gradient-to-br from-white/20 via-t-pl to-t-pd bg-size-200  drop-shadow-xl group-hover:bg-pos-100 " + (selected === 3 ? " bg-pos-100" : " bg-pos-0")}
+               className={"flex flex-col items-center p-2 min-h-10 min-w-10 transition-all duration-700 rounded-lg shadow-lg sidebar-unit-container bg-gradient-to-br from-white/20 via-t-pl to-t-pd bg-size-200  drop-shadow-xl group-hover:bg-pos-100 " + (selected === 3 ? " bg-pos-100" : " bg-pos-0")}
               onClick={() => {
                 setSelected(3);
               }}
             >
               <BiRocket className={"text-2xl transition duration-1000 group-hover:text-pink-50 " + (selected === 3 ? "  text-pinks-50" : " text-pinks-700") } />
               </div>
-            <p className="text-xs text-black transition duration-1000 opacity-50 group-hover:opacity-100">Next Steps</p>
+            <p className="text-xs text-black transition duration-1000 opacity-50 group-hover:opacity-100 dark:text-slate-50">Next Steps</p>
             </div>
           </a>
         </Link>
@@ -159,7 +159,7 @@ const Sidebar2 = (props) => {
           <div className="flex flex-col items-center group">
 
             <div
-              className={"flex flex-col items-center p-2 transition-all duration-700 rounded-lg shadow-lg sidebar-unit-container bg-gradient-to-br from-white/20 via-t-pl to-t-pd bg-size-200  drop-shadow-xl group-hover:bg-pos-100 " + (selected === 5 ? " bg-pos-100" : " bg-pos-0")}
+              className={"flex flex-col items-center p-2 min-h-10 min-w-10 transition-all duration-700 rounded-lg shadow-lg sidebar-unit-container bg-gradient-to-br from-white/20 via-t-pl to-t-pd bg-size-200  drop-shadow-xl group-hover:bg-pos-100 " + (selected === 5 ? " bg-pos-100" : " bg-pos-0")}
               onClick={() => {
                 setSelected(5);
               }}
@@ -167,7 +167,7 @@ const Sidebar2 = (props) => {
               <IoMdHelp className={"text-2xl transition duration-1000  group-hover:text-pink-50 " + (selected === 5 ? " text-pinks-50" : "text-pinks-700") } />
               
               </div>
-            <p className="text-xs text-black transition duration-1000 opacity-50 group-hover:opacity-100">Help</p>
+            <p className="text-xs text-black transition duration-1000 opacity-50 group-hover:opacity-100 dark:text-slate-50">Help</p>
             </div>
           </a>
         </Link>
@@ -187,7 +187,7 @@ const Sidebar2 = (props) => {
   <IoIosTimer className={"text-2xl transition duration-1000  group-hover:text-pink-50 text-pinks-700" } />
   
   </div>
-<p className="text-xs text-black transition duration-1000 opacity-50 group-hover:opacity-100">Timer</p></>} 
+<p className="text-xs text-black transition duration-1000 opacity-50 dark:text-slate-50 group-hover:opacity-100">Timer</p></>} 
 </div>
       
       {timerOpen && <CircleTimer setTimerOpen={setTimerOpen} className="fade-effect-quick"/>}

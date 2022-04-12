@@ -94,8 +94,10 @@ function PWhat(props) {
                       className="!opacity-100 bg-white w-[25em] rounded-xl p-3"
                       onClick={() => setIsPopoverOpen(!isPopoverOpen)}
                     >
-                      This helps to frame what kinds of solutions would work for your product. What form your solution will take on will impact how it gets built and tested.  <br /> <br />  Check out  
-                    
+                      This helps to frame what kinds of solutions would work for
+                      your product. What form your solution will take on will
+                      impact how it gets built and tested. <br /> <br /> Check
+                      out
                       <a
                         className="underline text-blues-300"
                         href="http://productdesignmanagement.com/physical-vs-virtual-products/#:~:text=Software%20products%20are%20never%20standalone,connections%20(like%20electric%20power"
@@ -103,9 +105,10 @@ function PWhat(props) {
                         rel="noreferrer"
                       >
                         {" "}
-                        this blog post 
+                        this blog post
                       </a>{" "}
-                      from the accomplished Product Manager and Co-Founder of Igloo Design, Yariv Sade.
+                      from the accomplished Product Manager and Co-Founder of
+                      Igloo Design, Yariv Sade.
                     </div>
                   </ArrowContainer>
                 )}
@@ -114,11 +117,11 @@ function PWhat(props) {
                   onClick={() => setIsPopoverOpen(!isPopoverOpen)}
                   className="w-5"
                 >
-                  <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 md:hover:scale-110" />
+                  <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 dark:text-blues-100  md:hover:scale-110" />
                 </div>
               </Popover>
             </div>
-            <h1 className="heading-top">What?</h1>
+            <h1 className=" text-3xl text-t-bd dark:text-blues-100 ">What?</h1>
             <div className="normal-box-soft">
               <h3 className="heading">
                 Are you building a software product or physical product?
@@ -175,7 +178,7 @@ function PWhat(props) {
               <p>If neither, describe what you are looking to innovate:</p>
               <textarea
                 // type="text"
-                className="textarea-box h-[10em] whitespace-normal"
+                className="textarea-box  textarea-tw   h-[10em] whitespace-normal"
                 // name="what"
                 value={content}
                 placeholder="What are you building?"

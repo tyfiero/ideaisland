@@ -41,21 +41,23 @@ export default function IdeaSideBar(props) {
   let type = props.type;
 
   return (
-    <div className="overflow-hidden">
-      <div className="normal-box-soft fade-effect-quick flex flex-col items-center !h-[80vh] overflow-y-auto overflow-x-hidden !rounded-2xl scrollbar-w-2 scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-t-bl scrollbar-track-blues-50">
+    <div className="overflow-hidden rounded-2xl">
+      <div className="normal-box-soft  bg-[hsla(200,0%,100%,0.764)]  dark:bg-[hsla(200,0%,20%,0.764)] fade-effect-quick flex flex-col items-center !h-[87vh] overflow-y-auto overflow-x-hidden !rounded-2xl !scrollbar-w-1 scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-t-bl scrollbar-track-blues-50">
         {type === "ideas" && (
           <>
-            <h1 className="heading-top">Ideas</h1>
+            <h1 className="text-3xl text-t-bd dark:text-blues-100">Ideas</h1>
           </>
         )}
         {type === "problem" && (
           <>
-            <h1 className="heading-top">Problems</h1>
+            <h1 className="text-3xl text-t-pd dark:text-pinks-100">
+              Problems
+            </h1>
           </>
         )}
         {type === "notes" && (
           <>
-            <h1 className="heading-top">Notes</h1>
+            <h1 className="text-3xl text-teal-600 dark:text-teal-200">Notes</h1>
           </>
         )}
         <div className="flex w-[20em] p-2 gap-2 items-center justify-evenly text-center normal-box-soft">
@@ -68,18 +70,18 @@ export default function IdeaSideBar(props) {
         /> */}
           <button
             className={
-              "w-[6em] h-[2em] rounded-3xl  flex items-center justify-center text-white gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer " +
-              (type === "ideas" ? " bg-t-bl" : " bg-slate-300")
+              "w-[6em] h-[2em] rounded-3xl  flex items-center justify-center text-slate-100 gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer " +
+              (type === "ideas" ? " bg-t-bl" : " bg-slate-300 dark:bg-slate-800")
             }
             onClick={() => props.setCurrentNote("ideas")}
           >
-            <FaLightbulb className="text-[18px] text-t-bd" />
+            <FaLightbulb className="text-[18px] text-t-bd dark:text-blues-100" />
 
             <p
               className={
                 "mr-1  mb-0 " +
                 (type === "ideas"
-                  ? "text-white text-[20px]"
+                  ? "text-slate-100 text-[20px]"
                   : "text-black text-[18px]")
               }
             >
@@ -88,18 +90,18 @@ export default function IdeaSideBar(props) {
           </button>
           <button
             className={
-              "w-[7.5em] h-[2em] rounded-3xl px-1 bg-t-bl flex items-center justify-center text-white gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95  cursor-pointer " +
-              (type === "problem" ? " bg-t-pm" : " bg-slate-300")
+              "w-[7.5em] h-[2em] rounded-3xl px-1 bg-t-bl flex items-center justify-center text-slate-100 gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95  cursor-pointer " +
+              (type === "problem" ? " bg-t-pm" : " bg-slate-300 dark:bg-slate-800")
             }
             onClick={() => props.setCurrentNote("problem")}
           >
-            <FaExclamationTriangle className="text-[18px] text-t-bd" />
+            <FaExclamationTriangle className="text-[18px] text-t-pd dark:text-pinks-100" />
 
             <p
               className={
                 "mr-1  mb-0 " +
                 (type === "problem"
-                  ? "text-white text-[20px]"
+                  ? "text-slate-100 text-[20px]"
                   : "text-black text-[18px]")
               }
             >
@@ -108,18 +110,18 @@ export default function IdeaSideBar(props) {
           </button>
           <button
             className={
-              "w-[6em] h-[2em] rounded-3xl bg-t-bl flex items-center justify-center text-white gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer " +
-              (type === "notes" ? " bg-clear-bpop3" : " bg-slate-300")
+              "w-[6em] h-[2em] rounded-3xl bg-t-bl flex items-center justify-center  gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer " +
+              (type === "notes" ? " bg-clear-bpop3" : " bg-slate-300 dark:bg-slate-800")
             }
             onClick={() => props.setCurrentNote("notes")}
           >
-            <FaStickyNote className="text-[18px] text-t-bd" />
+            <FaStickyNote className="text-[18px] text-teal-400 dark:text-teal-100" />
 
             <p
               className={
                 "mr-1 mb-0 " +
                 (type === "notes"
-                  ? "text-white text-[20px]"
+                  ? "text-slate-100 text-[20px]"
                   : "text-black text-[18px]")
               }
             >
@@ -135,7 +137,7 @@ export default function IdeaSideBar(props) {
           dispatch(editModeAction("new"));
           // dispatch(currentDocAction(idea.identifier))
         }}
-        className=" w-[12em] h-[2em] mt-2 rounded-3xl bg-t-bl flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer "
+        className=" w-[12em] h-[2em] mt-2 rounded-3xl bg-t-bl flex items-center justify-center text-slate-100 gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer "
       >
         <FaPlus className="text-[20px]" />
         Create New Idea
@@ -153,7 +155,7 @@ export default function IdeaSideBar(props) {
               dispatch(editModeAction("new"));
               // dispatch(currentDocAction(idea.identifier))
             }}
-            className=" w-[12em] h-[2em] m-2 rounded-3xl bg-t-bl flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer md:hover:shadow-xl shadow-clear-bd3"
+            className=" w-[12em] h-[2em] m-2 rounded-3xl bg-t-bl flex items-center justify-center text-slate-100 gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer md:hover:shadow-xl shadow-clear-bd3"
           >
             <FaPlus className="text-[20px]" />
             <p>
@@ -170,7 +172,7 @@ export default function IdeaSideBar(props) {
           <FaRegTimesCircle className="relative right-6 -top-[13px] mt-[1.2rem] mr-4 text-t-pm md:hover:scale-125 text-xl opacity-0" />
 
           <input
-            className="border-2 border-gray-300 bg-white h-8 px-5 pr-16 rounded-full text-sm focus:outline-none w-[100%]"
+            className="border-2 border-gray-300 bg-white dark:bg-slate-700 h-8 px-5 pr-16 rounded-full text-sm focus:outline-none w-[100%] placeholder:text-slate-400 dark:placeholder:text-slate-300"
             type="search"
             name="search"
             placeholder="Search"
@@ -182,7 +184,7 @@ export default function IdeaSideBar(props) {
               <FaRegTimesCircle className="relative right-6 -top-[13px] mt-[1.2rem] mr-4 text-t-pm md:hover:scale-125 text-xl" />
             </button>
           ) : (
-            <button className="relative mt-5 mr-4 right-6 -top-3 text-slate-300">
+            <button className="relative mt-4 mr-4 right-6 -top-3 text-slate-300">
               <FaSearch />
             </button>
           )}
@@ -363,7 +365,7 @@ function IdeasList(props) {
 //         <button
 //           type="submit"
 //           disabled={!isValid}
-//           className=" w-[12em] h-[3em] rounded-3xl bg-t-bl flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer"
+//           className=" w-[12em] h-[3em] rounded-3xl bg-t-bl flex items-center justify-center text-slate-100 gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer"
 //         >
 //           <FaPlus className="text-[20px]" />
 //           Create New Idea

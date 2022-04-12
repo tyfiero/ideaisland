@@ -37,7 +37,7 @@ function PDetails(props) {
   const [content2, setContent2] = useState("");
   const [content3, setContent3] = useState("");
   const { user, username } = useContext(UserContext);
-  
+
   const [titleContent, setTitleContent] = useState("");
   const dispatch = useDispatch();
   const pFormRedux = useSelector((state) => state.pForm);
@@ -49,17 +49,16 @@ function PDetails(props) {
     let updated = pFormRedux;
     if (e.target.name === "title") {
       updated.title = e.target.value;
-    setTitleContent(e.target.value);
+      setTitleContent(e.target.value);
     } else if (e.target.name === "pq1") {
       updated.pq1 = e.target.value;
-    setContent1(e.target.value);
+      setContent1(e.target.value);
     } else if (e.target.name === "pq2") {
       updated.pq2 = e.target.value;
-    setContent2(e.target.value);
+      setContent2(e.target.value);
     } else if (e.target.name === "pq3") {
       updated.pq3 = e.target.value;
-    setContent3(e.target.value);
-
+      setContent3(e.target.value);
     }
     // let updated = pFormRedux;
 
@@ -70,68 +69,58 @@ function PDetails(props) {
     // props.update(e.target.name, e.target.value);
   };
 
-
   useEffect(() => {
-    if(props.reset){
-    setTitleContent("")
-    setContent1("")
-    setContent2("")
-    setContent3("")
-
-    
-    }else{
-      if(pFormRedux.title){
-      setTitleContent(pFormRedux.title)
-      }else if(pFormRedux.pq1){
-      setContent1("")
-      }else if(pFormRedux.pq2){
-      setContent2("")
-      }else if(pFormRedux.pq3){
-      setContent3("")
+    if (props.reset) {
+      setTitleContent("");
+      setContent1("");
+      setContent2("");
+      setContent3("");
+    } else {
+      if (pFormRedux.title) {
+        setTitleContent(pFormRedux.title);
+      } else if (pFormRedux.pq1) {
+        setContent1("");
+      } else if (pFormRedux.pq2) {
+        setContent2("");
+      } else if (pFormRedux.pq3) {
+        setContent3("");
       }
     }
-  }, [props.reset]);// eslint-disable-line react-hooks/exhaustive-deps
-
-
+  }, [props.reset]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    if(pFormRedux.title){
-      setTitleContent(pFormRedux.title)
-      }
-      
-      if(pFormRedux.pq1){
-      setContent1(pFormRedux.pq1)
-      }
-      
-      if(pFormRedux.pq2){
-      setContent2(pFormRedux.pq2)
-      }
-      
-      if(pFormRedux.pq3){
-      setContent3(pFormRedux.pq3)
-      }
-}, [props.loadData]);// eslint-disable-line react-hooks/exhaustive-deps
+    if (pFormRedux.title) {
+      setTitleContent(pFormRedux.title);
+    }
 
+    if (pFormRedux.pq1) {
+      setContent1(pFormRedux.pq1);
+    }
 
+    if (pFormRedux.pq2) {
+      setContent2(pFormRedux.pq2);
+    }
 
-
-  
+    if (pFormRedux.pq3) {
+      setContent3(pFormRedux.pq3);
+    }
+  }, [props.loadData]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Create a new post in firestore
   const saveProblemForm = async (e) => {
     e?.preventDefault() || null;
     let uid;
 
-  if (user?.uid) {
-    uid = user?.uid;
-  } else if (userUIDRedux) {
-    uid = userUIDRedux;
-  } else if (auth.currentUser?.uid) {
-    uid = auth.currentUser?.uid;
-  } else {
-    uid = "default";
-    console.log("no uid available :(");
-  }
+    if (user?.uid) {
+      uid = user?.uid;
+    } else if (userUIDRedux) {
+      uid = userUIDRedux;
+    } else if (auth.currentUser?.uid) {
+      uid = auth.currentUser?.uid;
+    } else {
+      uid = "default";
+      console.log("no uid available :(");
+    }
     if (!pFormRedux.id) {
       const d = Number(new Date());
       const timeID = d.valueOf().toString();
@@ -234,7 +223,13 @@ function PDetails(props) {
                       onClick={() => setIsPopoverOpen(!isPopoverOpen)}
                     >
                       Finding the root cause of your problem helps to clarify
-                      what you&apos;re actually trying to solve. Ensuring that your ideas are solutions to a problem is the key to building a business from the idea. The more frustrating and annoying the problem is, the better, especially if you have a solution that greatly improves the associated user experience. Check out <a
+                      what you&apos;re actually trying to solve. Ensuring that
+                      your ideas are solutions to a problem is the key to
+                      building a business from the idea. The more frustrating
+                      and annoying the problem is, the better, especially if you
+                      have a solution that greatly improves the associated user
+                      experience. Check out{" "}
+                      <a
                         className="underline text-blues-300"
                         href="https://www.forbes.com/sites/stephanieburns/2019/05/28/solution-looking-for-a-problem/?sh=1031dac83835"
                         target="_blank"
@@ -242,7 +237,8 @@ function PDetails(props) {
                       >
                         {" "}
                         this article in forbes
-                      </a>{" "} for more in depth information.
+                      </a>{" "}
+                      for more in depth information.
                     </div>
                   </ArrowContainer>
                 )}
@@ -251,11 +247,11 @@ function PDetails(props) {
                   onClick={() => setIsPopoverOpen(!isPopoverOpen)}
                   className="w-5"
                 >
-                  <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 md:hover:scale-110" />
+                  <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 dark:text-blues-100  md:hover:scale-110" />
                 </div>
               </Popover>
             </div>
-            <h1 className="heading-top">Problem</h1>
+            <h1 className="text-3xl text-t-bd dark:text-blues-100">Problem</h1>
             <div className="normal-box-soft">
               <h3 className="heading">Time to find your problem</h3>
             </div>
@@ -275,7 +271,7 @@ function PDetails(props) {
               <input
                 type="text"
                 required
-                className="textarea-box h-[3em] !rounded-xl"
+                className="textarea-box textarea-tw   h-[3em] !rounded-xl"
                 name="title"
                 placeholder="Title"
                 value={titleContent}
@@ -314,10 +310,9 @@ function PDetails(props) {
 
               <textarea
                 // type="text"
-                className="textarea-box h-[5em] whitespace-normal"
+                className="textarea-box textarea-tw  h-[5em] whitespace-normal"
                 name="pq1"
                 value={content1}
-
                 placeholder="..."
                 onChange={update}
               />
@@ -328,10 +323,9 @@ function PDetails(props) {
 
               <textarea
                 // type="text"
-                className="textarea-box h-[5em] whitespace-normal"
+                className="textarea-box textarea-tw  h-[5em] whitespace-normal"
                 name="pq2"
                 value={content2}
-
                 placeholder="..."
                 onChange={update}
               />
@@ -341,7 +335,7 @@ function PDetails(props) {
 
               <textarea
                 // type="text"
-                className="textarea-box h-[5em] whitespace-normal"
+                className="textarea-box textarea-tw  h-[5em] whitespace-normal"
                 name="pq3"
                 placeholder="..."
                 value={content3}

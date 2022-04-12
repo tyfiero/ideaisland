@@ -48,8 +48,8 @@ function RandomPics() {
     }
   }, [refresh]);
 
-   React.useEffect(() => {
-  getWords()
+  React.useEffect(() => {
+    getWords();
   }, [refreshWords]);
 
   const getWords = async () => {
@@ -126,7 +126,7 @@ function RandomPics() {
       </div>
       {words && (
         <>
-          <div className="flex items-center justify-evenly normal-box w-[90%] my-3 min-w-[52em]">
+          <div className="flex items-center justify-evenly normal-box bg-[hsla(200,0%,100%,0.764)]  dark:bg-[hsla(200,0%,20%,0.764)] w-[90%] my-3 min-w-[52em]">
             <button
               onClick={() => {
                 setRefreshWords(!refreshWords);
@@ -149,7 +149,7 @@ function RandomPics() {
       {images && (
         <>
           {" "}
-          <div className="flex flex-wrap w-full gap-5 p-2 !rounded-2xl normal-box items-center justify-center">
+          <div className="flex flex-wrap w-full gap-5 p-2 !rounded-2xl normal-box bg-[hsla(200,0%,100%,0.764)]  dark:bg-[hsla(200,0%,20%,0.764)] items-center justify-center">
             <img
               src={src + "1"}
               alt="logo"

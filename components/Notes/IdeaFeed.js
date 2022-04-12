@@ -18,43 +18,35 @@ export default function IdeaFeed({ ideas, admin, type }) {
   const statsRedux = useSelector((state) => state.stats);
   const currentDocRedux = useSelector((state) => state.currentDoc);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
-//TODO, ensure the logic of the stats is working properly. Is it actually keeping track of idea number?
-    if(ideas){
+    //TODO, ensure the logic of the stats is working properly. Is it actually keeping track of idea number?
+    if (ideas) {
       let num = ideas.length;
-      dispatch(statsAction({ideaNum: num}))
+      dispatch(statsAction({ ideaNum: num }));
     }
-  
-   
-  }, [])// eslint-disable-line react-hooks/exhaustive-deps
-
-
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   //This useeffect changes the default current note on tab change, ideas, problems, or notes.
   useEffect(() => {
-
-    if(ideas){
-
-      if(type === "ideas" && currentDocRedux.rating >= 0){
+    if (ideas) {
+      if (type === "ideas" && currentDocRedux.rating >= 0) {
         //empty blank func
         const blah = () => void 0;
-      }else if(type === "notes" && !currentDocRedux.rating){
+      } else if (type === "notes" && !currentDocRedux.rating) {
         //empty blank func
         const blah = () => void 0;
-      }else{
+      } else {
         let currentNote = ideas[0];
-        dispatch(currentDocAction(currentNote))
-        
+        dispatch(currentDocAction(currentNote));
       }
-          
-        }
-      }, [type, ideas])// eslint-disable-line react-hooks/exhaustive-deps
-  
+    }
+  }, [type, ideas]); // eslint-disable-line react-hooks/exhaustive-deps
+
   return ideas
     ? ideas.map((idea, key) => (
-        <IdeaItem idea={idea} key={key} admin={admin} type={type}/>
+        <IdeaItem idea={idea} key={key} admin={admin} type={type} />
       ))
     : null;
 }
@@ -84,9 +76,8 @@ function IdeaItem({ idea, admin = false, type }) {
       hour: "2-digit",
       minute: "2-digit",
     });
-    return date + ", " +clockTime;
+    return date + ", " + clockTime;
   };
-
 
   let clickTimer;
   const onClickHandler = (event) => {
@@ -104,22 +95,26 @@ function IdeaItem({ idea, admin = false, type }) {
     }
   };
 
-
-  
   // console.log(idea.documentID)
   return (
     <div
       className="flex items-center justify-center px-4 pt-2 sm:px-6 lg:px-8 drop-shadow-xl md:w-[80em]  "
-      onClick={onClickHandler
-      }
+      onClick={onClickHandler}
     >
       <div
-        className={"w-[22em]  p-1  shadow !rounded-xl normal-box-soft drop-shadow-xl flex-col  items-center " + (type === "ideas" ? "bg-clear-bl3" : (type === "problem" ? "bg-clear-pl4" : "bg-clear-bpop3"))}
+        className={
+          "w-[22em]  p-1  shadow !rounded-xl normal-box-soft drop-shadow-xl flex-col  items-center " +
+          (type === "ideas"
+            ? "bg-clear-bl3"
+            : type === "problem"
+            ? "bg-clear-pl4"
+            : "bg-clear-bpop3")
+        }
         // onMouseOver={() => setHover(true)}
         // onMouseOut={() => setHover(false)}
       >
         <div className="flex">
-          <div className="normal-box !rounded-xl w-[100%] ">
+          <div className="normal-box bg-[hsla(200,0%,100%,0.764)]  dark:bg-[hsla(200,0%,20%,0.764)]  !rounded-xl w-[100%] ">
             {/* <Link href={`/${idea.username}`}>
             <a>
               <strong className="italic text-t-bl">@{idea.username}</strong>
@@ -129,28 +124,38 @@ function IdeaItem({ idea, admin = false, type }) {
             {/* <Link href={`/${idea.username}/${idea.slug}`}>
               <a> */}
             <div className="cursor-pointer">
-              <h2 className="text-t-bd truncate text-[18px] nun ">{idea.title || "*Unnamed Idea"}</h2>
+              <h2 className="text-t-bd dark:text-blues-100 truncate text-[18px] nun ">
+                {idea.title || "*Unnamed Idea"}
+              </h2>
               {/* <p className="truncate text-[14px]">{idea.content}</p> */}
-            
-            {type === "problem" && (<><p
-                className="overflow-hidden max-h-[3em]"
-              >Why:{" " +idea.why}</p><p
-              className="overflow-hidden max-h-[3em]"
-            >What:{" " +idea.what}</p><p
-            className="overflow-hidden max-h-[3em]"
-          >Who:{" " +idea.who}</p><p
-          className="overflow-hidden max-h-[3em]"
-        >Root Cause:{" " +idea.pq3}</p></>)}
 
-        
-             {type !== "problem" && (   <div
-                className="overflow-hidden max-h-[3em]"
-                dangerouslySetInnerHTML={{
-                  __html: sanitize(idea.content, {
-                    USE_PROFILES: { html: true },
-                  }),
-                }}
-              ></div>)}
+              {type === "problem" && (
+                <>
+                  <p className="overflow-hidden max-h-[3em]">
+                    Why:{" " + idea.why}
+                  </p>
+                  <p className="overflow-hidden max-h-[3em]">
+                    What:{" " + idea.what}
+                  </p>
+                  <p className="overflow-hidden max-h-[3em]">
+                    Who:{" " + idea.who}
+                  </p>
+                  <p className="overflow-hidden max-h-[3em]">
+                    Root Cause:{" " + idea.pq3}
+                  </p>
+                </>
+              )}
+
+              {type !== "problem" && (
+                <div
+                  className="overflow-hidden max-h-[3em]"
+                  dangerouslySetInnerHTML={{
+                    __html: sanitize(idea.content, {
+                      USE_PROFILES: { html: true },
+                    }),
+                  }}
+                ></div>
+              )}
             </div>
             {/* </a>
             </Link> */}
@@ -163,17 +168,17 @@ function IdeaItem({ idea, admin = false, type }) {
         <div className="flex items-center justify-between ">
           {/* If admin view, show extra controls for user */}
 
-         
-          <p className="text-slate-500 text-[12px] ml-1 mb-0">
+          <p className="!text-slate-500 dark:!text-slate-300 text-[12px] ml-1 mb-0">
             {TimeDisplay(idea.createdAt)}
           </p>
-          {type === "ideas" && ( 
-          <div className="flex ">
-            <span className="flex ml-auto ">
-              {idea.rating || 0}
-              <OneStar className="ml-5" />
-            </span>
-          </div>)}
+          {type === "ideas" && (
+            <div className="flex ">
+              <span className="flex ml-auto !text-slate-700 dark:!text-slate-300 nun">
+                {idea.rating || 0}
+                <OneStar className="ml-5" />
+              </span>
+            </div>
+          )}
           {/* {admin && (
             <>
               {idea.published ? (

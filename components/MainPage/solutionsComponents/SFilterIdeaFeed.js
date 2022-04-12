@@ -16,10 +16,7 @@ import Stars from "../../Notes/Stars";
 // import DOMPurify from "dompurify";
 import sanitize from "../../../lib/sanitize";
 import { useState, useEffect } from "react";
-import {
-  statsAction,
-  editModeAction,
-} from "../../../redux/actions";
+import { statsAction, editModeAction } from "../../../redux/actions";
 import { sFormAction, sUpdateAction } from "../../../redux/actions";
 import { updateCurrentUser } from "firebase/auth";
 
@@ -103,8 +100,8 @@ function IdeaItem({ idea, admin = false }) {
         setClicked(false);
       }
     }
-  }, [sUpdate]);// eslint-disable-line react-hooks/exhaustive-deps
-  
+  }, [sUpdate]); // eslint-disable-line react-hooks/exhaustive-deps
+
   // console.log(idea.documentID)
   return (
     <div
@@ -145,25 +142,18 @@ function IdeaItem({ idea, admin = false }) {
           (clicked ? " border-4 border-t-bl" : "")
         }
       >
-
         <input
           type="checkbox"
           className="w-5 h-5 form-checkbox text-t-bl"
           checked={clicked}
-          onChange={() => {
-
-           }}
+          onChange={() => {}}
         />
 
-        <div
-          className="w-full   p-1  shadow !rounded-xl normal-box-soft drop-shadow-sm flex-col  items-center "
-       
-        >
+        <div className="w-full   p-1  shadow !rounded-xl normal-box-soft drop-shadow-sm flex-col  items-center ">
           <div className="flex">
-            <div className="glass-box !bg-white/90 !rounded-xl w-[100%] ">
-           
+            <div className="glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   !bg-white/90 dark:!bg-slate-600 !rounded-xl w-[100%] ">
               <div className="">
-                <h2 className="text-t-bd truncate text-[18px] m-0 text-left">
+                <h2 className="text-t-bd dark:text-blues-100 truncate text-[18px] m-0 text-left">
                   {idea.title}
                 </h2>
                 <div
@@ -184,19 +174,14 @@ function IdeaItem({ idea, admin = false }) {
                       <OneStar className="ml-5" />
                     </span>
                   </div>
-
-           
                 </div>
               </div>
-           
             </div>
 
             <div></div>
           </div>
 
-          <div className="flex">
-          
-          </div>
+          <div className="flex"></div>
         </div>
       </div>
     </div>

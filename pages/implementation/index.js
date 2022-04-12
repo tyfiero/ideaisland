@@ -40,7 +40,7 @@ import { useRouter } from "next/router";
 const ImplementationPage = (props) => {
   return (
     <div className="implementation-page fade-effect-quick">
-      <h1 className="heading-top">Next Steps</h1>
+      <h1 className="text-3xl text-t-bd dark:text-blues-100">Next Steps</h1>
 
       <div className="flex flex-col items-center w-full">
         <div className="flex flex-wrap items-center w-[90%]  px-5 pb-5 rounded-2xl">
@@ -172,7 +172,7 @@ const ImplementTool = ({
   return (
     <div
       className={
-        "flex flex-col items-center justify-center w-[15em] h-[25em] p-1 bg-white/80 rounded-xl md:hover:scale-105 transition duration-500 md:hover:ring-8  ring-clear-bd3 mx-2 " +
+        "flex flex-col items-center justify-center w-[15em] h-[25em] p-1 bg-white/80 dark:bg-slate-800 rounded-xl md:hover:scale-105 transition duration-500 md:hover:ring-8  ring-clear-bd3 mx-2 " +
         bColor
       }
     >

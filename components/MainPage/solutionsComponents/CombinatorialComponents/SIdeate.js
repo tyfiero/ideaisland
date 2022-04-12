@@ -76,12 +76,12 @@ function SIdeate(props) {
                 onClick={() => setIsPopoverOpen(!isPopoverOpen)}
                 className="w-5"
               >
-                <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 md:hover:scale-110" />
+                <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 dark:text-blues-100  md:hover:scale-110" />
               </div>
             </Popover>
           </div>
           <div className="flex flex-col items-center justify-center gap-3 p-3 problem-page fade-effect-quick !m-0">
-            <h1 className="heading-top">Ideate</h1>
+            <h1 className=" text-3xl text-t-bd dark:text-blues-100 ">Ideate</h1>
             <div className="normal-box-soft">
               <h3 className="heading">Oh yes, it&apos;s idea time 😎</h3>
             </div>
