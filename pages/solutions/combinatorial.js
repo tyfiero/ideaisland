@@ -15,7 +15,7 @@ import { randomizeAction, sArrayAction } from "../../redux/actions";
 import IdeaNote from "../../components/MainPage/NoteBubble/Idea";
 import RandomPics from "../../components/MainPage/solutionsComponents/CombinatorialComponents/RandomPics";
 import TemplateBar from "../../components/MainPage/solutionsComponents/CombinatorialComponents/TemplateBar";
-import ModularCard from "../../components/MainPage/solutionsComponents/CombinatorialComponents/ModularCard";
+// import ModularCard from "../../components/MainPage/solutionsComponents/CombinatorialComponents/ModularCard";
 import { useHotkeys } from "react-hotkeys-hook";
 import { GlobalHotKeys } from "react-hotkeys";
 import useKeyboardShortcut from "../../lib/useKeyboardShortcut";
@@ -330,14 +330,14 @@ console.log(sArray)
 
                 {sArray.length +" list length"}
 
-                {
+                {/* {
                   sArray.map((data, index) => {
                     return(
                       <ModularCard  key={index} card={index} id={data.id} variant={data.type} text={data.text} listProp={data.list} deleteSegment={deleteSegment} updateSegment={updateSegment}/>
                     )
                   }
                   )
-                }
+                } */}
               </div>
             </div>
 
