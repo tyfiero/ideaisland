@@ -19,7 +19,7 @@ import ModularCard from "../../components/MainPage/solutionsComponents/Combinato
 import { useHotkeys } from "react-hotkeys-hook";
 import { GlobalHotKeys } from "react-hotkeys";
 import useKeyboardShortcut from "../../lib/useKeyboardShortcut";
-// import ToolTip from "../../components/Layout/ToolTip";
+import ToolTip from "../../components/Layout/ToolTip";
 
 const CombinatorialPage = (props) => {
   // console.log("RERENDER");
@@ -287,11 +287,11 @@ const CombinatorialPage = (props) => {
                   onClick={randomizeAll}
                 >
                   <FaDice className="text-2xl" />
-                  {/* <ToolTip
+                  <ToolTip
                     text="Randomize all unlocked segments"
                     id="random"
                     w="15"
-                  /> */}
+                  />
                 </button>
                 <button
                   data-tip
@@ -300,7 +300,7 @@ const CombinatorialPage = (props) => {
                   onClick={onAddBtnClick}
                 >
                   <FaPlus className="text-2xl" />
-                  {/* <ToolTip text="Add new segment" id="add" w="10" /> */}
+                  <ToolTip text="Add new segment" id="add" w="10" />
                 </button>
               </div>
               <div className="flex flex-wrap gap-2 ">
