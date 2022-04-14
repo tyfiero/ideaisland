@@ -31,10 +31,10 @@ export default function IdeaFeed({ ideas, admin, type }) {
   //This useeffect changes the default current note on tab change, ideas, problems, or notes.
   useEffect(() => {
     if (ideas) {
-      if (type === "ideas" && currentDocRedux.rating >= 0) {
+      if (type === "ideas" && currentDocRedux?.rating >= 0) {
         //empty blank func
         const blah = () => void 0;
-      } else if (type === "notes" && !currentDocRedux.rating) {
+      } else if (type === "notes" && !currentDocRedux?.rating) {
         //empty blank func
         const blah = () => void 0;
       } else {
