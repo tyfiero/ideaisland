@@ -19,8 +19,7 @@ import ModularCard from "../../components/MainPage/solutionsComponents/Combinato
 import { useHotkeys } from "react-hotkeys-hook";
 import { GlobalHotKeys } from "react-hotkeys";
 import useKeyboardShortcut from "../../lib/useKeyboardShortcut";
-// import ToolTip from "../../components/Layout/ToolTip";
-// import ReactTooltip from "react-tooltip";
+
 
 const CombinatorialPage = (props) => {
   // console.log("RERENDER");
@@ -182,18 +181,13 @@ const CombinatorialPage = (props) => {
         </div>
         <div
           className="flex flex-col items-center w-full"
-          data-tip
-          data-for="template"
+         
         >
-          <p data-for="template" className="text-left">
+          <p  className="text-left">
             Template:
           </p>
           <TemplateBar />
-          {/* <ToolTip
-            text="Select a sentence template to start with"
-            id="template"
-            w="25"
-          /> */}
+         
         </div>
 
         <div className="w-[98%] rounded-xl cards ring-2 p-5 mt-5 relative">
@@ -282,34 +276,20 @@ const CombinatorialPage = (props) => {
             <div className="max-w-[98%] rounded-xl cards  p-5 mt-5 relative group glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   !border-4 !border-t-bl">
               <div className="absolute top-0 right-0 flex justify-between gap-2 px-3 py-1 transition duration-500 border-b-2 border-l-2 opacity-0 rounded-bl-md border-t-bl group-hover:opacity-100 bg-clear-bl2">
                 <button
-                  data-tip
-                  data-for="random"
+              
                   className="flex items-center justify-center gap-4 p-2 text-white cursor-pointer rounded-3xl bg-t-pd drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 "
                   onClick={randomizeAll}
                 >
                   <FaDice className="text-2xl" />
-                  {/* <ToolTip
-                    text="Randomize all unlocked segments"
-                    id="random"
-                    w="15"
-                  /> */}
+                 
                 </button>
                 <button
-                  data-tip
-                  data-for="add"
+            
                   className="flex items-center justify-center gap-4 p-2 text-white cursor-pointer rounded-3xl bg-t-bl drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95"
                   onClick={onAddBtnClick}
                 >
                   <FaPlus className="text-2xl" />
-                  {/* <ToolTip text="Add new segment" id="add" w="10" /> */}
-                  {/* <ReactTooltip
-      id="add"
-      place="bottom"
-      effect="solid"
-      delayShow={300}
-    >
-      <p>add stuff</p>
-    </ReactTooltip> */}
+                 
                 </button>
               </div>
               <div className="flex flex-wrap gap-2 ">
