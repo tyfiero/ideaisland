@@ -19,10 +19,6 @@ import Head from "../components/Header";
 import Header from "../components/Header";
 import { wrapper } from "../redux/store";
 import { AuthProvider } from "../lib/firebaseContext";
-import LogRocket from 'logrocket';
-
-
-LogRocket.init('90vvpm/ideaisland');
 // import { useStore } from 'react-redux';
 
 // import splitbee from '@splitbee/web';

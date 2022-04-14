@@ -69,9 +69,10 @@ export default function Layout({ children }) {
 
   //This use effect is important! It waits for firebase auth to load the current user object, feed it to the userContext hook, then display content.
   useEffect(() => {
-    // console.log(loading);
+    console.log(loading);
 
     if (user?.uid) {
+      console.log(user.uid);
       setLoadingUI(false);
       setSignedIn(true);
       if (userUIDRedux === null) {
@@ -105,6 +106,7 @@ export default function Layout({ children }) {
 
   //dark mode
   useEffect(() => {
+console.log(darkRedux + "dark")
 const body = document.body;
 let menuOpacityNum = localStorage.getItem("menuOpacity") || 0.7;
 

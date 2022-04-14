@@ -961,18 +961,18 @@ p {
 }
 
 .blue-card {
-  -webkit-box-shadow: 0 0 20px hsla(224, 64%, 40%, 1);
-  -moz-box-shadow: 0 0 20px hsla(224, 64%, 40%, 1);
-  box-shadow: 0 0 20px hsla(224, 64%, 40%, 1);
+  -webkit-box-shadow: 0 0 20px var(--colorDark2);
+  -moz-box-shadow: 0 0 20px var(--colorDark2);
+  box-shadow: 0 0 20px var(--colorDark2);
 
   background: #4eaef76e;
 }
 .pink-card {
-  -webkit-box-shadow: 0 0 20px hsla(319, 100%, 37%, 1);
-  -moz-box-shadow: 0 0 20px hsla(319, 100%, 37%, 1);
-  box-shadow: 0 0 20px hsla(319, 100%, 37%, 1);
+  -webkit-box-shadow: 0 0 20px var(--colorDark2);
+  -moz-box-shadow: 0 0 20px var(--colorDark2);
+  box-shadow: 0 0 20px var(--colorLight2);
 
-  background: #eec3fd9e;
+  background: #eec3fd6e;
 }
 
 .green-card {
@@ -987,12 +987,7 @@ p {
   box-shadow: 0 0 20px #ea580c;
   background: #fb923c7e;
 }
-.blank-card {
-  -webkit-box-shadow: 0 0 20px #ffffff;
-  -moz-box-shadow: 0 0 20px #ffffff;
-  box-shadow: 0 0 20px #ffffff;
-  background: #cbd5e17e;
-}
+
 .card:hover {
   transition: transform 2.5s 0s ease-in-out;
   transform: scale(1.001);
@@ -1216,17 +1211,17 @@ p {
 
 textarea {
   background: rgb(255, 255, 255);
-  box-shadow: inset 2px 2px 14px #b4b4b4, inset -2px -2px 14px #cee9f0;
+  box-shadow: inset 4px 4px 14px #b4b4b4, inset -4px -4px 14px #cee9f0;
   border: none;
 }
 
-.textarea-box {
+.textarea-box textarea-tw {
   /* background: rgb(243, 243, 243); */
-  box-shadow: inset 2px 2px 4px #c2c2c2, inset -2px -2px 4px #d6d6d69f;
+  box-shadow: inset 4px 4px 4px #c2c2c2, inset -4px -4px 4px #d6d6d69f;
   border: none;
   padding: 10px;
   /* width: 40em; */
-  border-radius: 0.7em;
+  border-radius: 1em;
 }
 .toggles {
   display: flex;
@@ -2514,5 +2509,3 @@ input[type="range"]::-moz-range-thumb:active {
   -moz-text-fill-color: transparent;
   -webkit-text-fill-color: transparent;
 }
-
-
