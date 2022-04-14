@@ -20,7 +20,7 @@ import { useHotkeys } from "react-hotkeys-hook";
 import { GlobalHotKeys } from "react-hotkeys";
 import useKeyboardShortcut from "../../lib/useKeyboardShortcut";
 // import ToolTip from "../../components/Layout/ToolTip";
-import ReactTooltip from "react-tooltip";
+// import ReactTooltip from "react-tooltip";
 
 const CombinatorialPage = (props) => {
   // console.log("RERENDER");
@@ -302,14 +302,14 @@ const CombinatorialPage = (props) => {
                 >
                   <FaPlus className="text-2xl" />
                   {/* <ToolTip text="Add new segment" id="add" w="10" /> */}
-                  <ReactTooltip
+                  {/* <ReactTooltip
       id="add"
       place="bottom"
       effect="solid"
       delayShow={300}
     >
       <p>add stuff</p>
-    </ReactTooltip>
+    </ReactTooltip> */}
                 </button>
               </div>
               <div className="flex flex-wrap gap-2 ">
