@@ -35,6 +35,12 @@ export const userNameAction = (data) => {
     payload: data,
   };
 };
+export const sArrayAction = (array) => {
+  return {
+    type: "S_ARRAY_UPDATE",
+    payload: array,
+  };
+};
 export const editModeAction = (data) => {
   return {
     type: "EDIT_MODE",
