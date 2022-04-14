@@ -137,7 +137,7 @@ function NoteNote() {
               theme="snow"
               tabIndex="2"
               // readOnly= "true"
-              className="w-[100%] !bg-white/90"
+              className="w-[100%] !bg-white/90 rounded-2xl"
               placeholder={"Note content..."}
             />
           </div>

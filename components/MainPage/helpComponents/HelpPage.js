@@ -13,6 +13,12 @@ import HelpAccordion from "./Accordion";
 
 const HelpPage = () => {
   let date = new Date().getFullYear();
+
+
+
+
+
+  
   const items = [
     {
       title: "Evolved Idea",

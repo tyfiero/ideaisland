@@ -46,6 +46,7 @@ import logOutReducer from "./reducers/logOutReducer";
 import pFormReducer from "./reducers/pFormReducer";
 import sFormReducer from "./reducers/sFormReducer";
 import sUpdateReducer from "./reducers/sUpdate";
+import sentenceArrayReducer from "./reducers/SentenceArray";
 //OTHER REDUCERS GO HERE
 
 // let devTools;
@@ -90,7 +91,8 @@ const appReducer = combineReducers({
   logOut: logOutReducer,
   pForm: pFormReducer,
   sForm: sFormReducer,
-  sUpdate: sUpdateReducer
+  sUpdate: sUpdateReducer,
+  sArray: sentenceArrayReducer,
   //other reducers go here
 });
 // console.log(rootReducer);
@@ -168,7 +170,9 @@ const makeStore = ({ isServer }) => {
       storage: storage,
       // stateReconciler: autoMergeLevel2, 
       stateReconciler: hardSet,
-      debug: true,
+      // debug: true,
+      debug: false,
+
     };
 
     const persistedReducer = persistReducer(persistConfig, appReducer); // Create a new reducer with our existing reducer
@@ -188,7 +192,7 @@ const makeStore = ({ isServer }) => {
 };
 
 // export an assembled wrapper
-export const wrapper = createWrapper(makeStore, { debug: true });
+export const wrapper = createWrapper(makeStore, { debug: false });
 
 // console.log(store.getState()
 // )

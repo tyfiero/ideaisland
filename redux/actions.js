@@ -110,7 +110,12 @@ export const listChanged = (isChanged) => {
     payload: isChanged,
   };
 };
-
+export const sArrayAction = (array) => {
+  return {
+    type: "S_ARRAY_UPDATE",
+    payload: array,
+  };
+};
 export const wordAction = (text) => {
   return {
     type: "CHANGE",

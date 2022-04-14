@@ -2,12 +2,16 @@ import {React, useState, useEffect} from 'react'
 import { FaCaretDown, FaChevronCircleDown, FaChevronCircleUp } from 'react-icons/fa'
 import { Cascader } from "antd";
 import "antd/dist/antd.css";
+import { useSelector, useDispatch } from "react-redux";
+import { sArrayAction } from "../../../../redux/actions";
 
 
 function TemplateBar() {
 const [template, setTemplate] = useState("How might we improve ______ with ____ to improve user satisfaction?")
 const [menuOpen, setMenuOpen] = useState(false)
 
+const dispatch = useDispatch();
+const sArray = useSelector((state) => state.sArray);
 
 
 
@@ -19,6 +23,7 @@ function onCascadeChange(value, label) {
 
     if(value.length >2){
         setTemplate(label[2].label)
+        dispatch(sArrayAction(value[2]));
 
         
     }else{
@@ -80,8 +85,33 @@ const options = [
           label: "Incremental Improvement",
           children: [
             {
-              value: "fortune5",
-              label: "How might we improve SAAS with encryption to protect privacy?",
+              value: [
+                { id: 0, type: "Intro", list: "How", text: "How would Elon Musk" },
+                { id: 1, type: "Verb", list: "Modifier", text: "change" },
+                { id: 2, type: "Noun", list: "Software", text: "social media" },
+                {
+                  id: 3,
+                  type: "Desired Outcome",
+                  list: "Reduce",
+                  text: "to fight spam?",
+                },
+              ],
+              label: "How would Elon Musk change social media to fight spam?",
+            },
+            {
+              value: [
+                { id: 0, type: "Intro", list: "How", text: "How might we" },
+                { id: 1, type: "Verb", list: "Modifier", text: "improve" },
+                { id: 2, type: "Noun", list: "Software", text: "tech" },
+                { id: 3, type: "Verb", list: "Action", text: "brainstorming" },
+                {
+                  id: 4,
+                  type: "Desired Outcome",
+                  list: "People",
+                  text: "for entrepreneurs?",
+                },
+              ],
+              label: "How might we improve tech brainstorming for entrepreneurs?",
             },
           ],
         },

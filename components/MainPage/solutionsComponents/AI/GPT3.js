@@ -3,7 +3,7 @@
 import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { FaPastafarianism, FaSeedling } from "react-icons/fa";
+import { FaPastafarianism, FaRobot, FaSeedling } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import Loader from "../../../Layout/Loader";
 // const stringSimilarity = require("string-similarity");
@@ -18,6 +18,9 @@ import {
 // import GPTJTextArea from "./GPT3TextArea";
 import { gptJInputAction } from "../../../../redux/actions";
 // import FullLoader from "../../../FullLoader";
+import TextareaAutosize from "react-textarea-autosize";
+import { BiSend } from "react-icons/bi";
+
 
 const GPTtool = () => {
   const gpt3InputRedux = useSelector((state) => state.gpt3Input);
@@ -114,6 +117,8 @@ const GPTtool = () => {
       })
       .catch((error) => {
         console.log(error);
+        setAiLoading(false);
+        setAiResponse("Something went wrong. Please try again later.");
         return "Sorry, an Error occured";
       });
   };
@@ -150,20 +155,49 @@ const GPTtool = () => {
           className="h-[10rem] !w-[25rem] my-5 text-area-note"
           {...register("input", { required: "Required" })}
         ></textarea>
+         <TextareaAutosize
+                    className="w-[98%] rounded-md "
+                    // defaultValue={contentTitle}
+                    placeholder="Content to send to AI"
+                    maxLength="200"
+                    onChange={(e) => {
+                      // setContentTitle(e.target.value);
+                      // let updated = pFormRedux;
+                      // updated.title = e.target.value;
+                      // dispatch(pFormAction(updated));
+                      // setChanges(true);
+                    }}
+          {...register("input", { required: "Required" })}
+
+                  ></TextareaAutosize>
         {/* <GPT3TextArea /> */}
         {/* <p>{charLength + "/100"}</p> */}
+        <div className="relative group">
+                <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-pm via-violet-400 to-t-pd blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
+                <button
+                  className="w-[8em] h-[2.5em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer !shadow-clear-pd3 md:hover:shadow-xl m-1 drop-shadow-xl !bg-gradient-to-br from-white via-t-pl  to-t-pm !shadow-2xl "
+                  type="submit"
+                  onClick={() => {
+                    setGPTJStatus(true);
+                    setAiLoading(true);
+                  }}
+                >
+          <p className="pl-2 text-t-pd">Send to AI</p>
 
-        <button
-          className="card__btn_prev w-[10rem] items-center flex  rainbow-effect "
+              <BiSend style={{ fontSize: "32px" }} className="pl-2 text-t-pd" />
+                </button>
+              </div>
+        {/* <button
+          className=" w-[10rem] items-center flex "
           type="submit"
           onClick={() => {
             setGPTJStatus(true);
             setAiLoading(true);
           }}
         >
-          <FaSeedling style={{ fontSize: "32px" }} className="pl-2" />
-          <p className="pl-2">Send to GPTJ!</p>
-        </button>
+          <FaRobot style={{ fontSize: "32px" }} className="pl-2 text-t-pd" />
+          <p className="pl-2 text-t-pd">Send to AI!</p>
+        </button> */}
       </div>
     </form>
   );
@@ -203,6 +237,8 @@ const GPTtool = () => {
           className="h-[10rem] !w-[25rem] my-5 text-area-note"
           {...register("input", { required: "Required" })}
         ></textarea>
+
+        
         <button
           className="card__btn_prev w-[10rem] items-center flex  rainbow-effect "
           type="submit"

@@ -170,7 +170,7 @@ function IdeaNote() {
           tabIndex="2"
 
           // readOnly= "true"
-          className="w-[100%] !bg-white/90 h-full"
+          className="w-[100%] !bg-white/90 h-full rounded-2xl"
           placeholder={"Describe your idea..."}
         />
       </div>
