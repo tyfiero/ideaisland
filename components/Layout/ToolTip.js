@@ -35,12 +35,12 @@ useEffect(() => {
       place={place || "bottom"}
       type={type}
     //   className={"!rounded-lg " + width}
-    className={"!rounded-lg "}
+    // className={" !rounded-lg "}
 
       effect="solid"
       delayShow={300}
     >
-      <p className={type === "dark" ? "text-slate-50" : "text-slate-700"}>
+      <p className={"" + (type === "dark" ? "text-slate-50" : "text-slate-700")}>
         {text}
       </p>
     </ReactTooltip>
