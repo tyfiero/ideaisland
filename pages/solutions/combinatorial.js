@@ -101,18 +101,10 @@ const CombinatorialPage = (props) => {
 
       <div className="card-container fade-effect-quick">
         {/* div that holds all the cards, note the img prop where the url lives, as well as the array thats passed in to Card.js as a prop */}
-        <h1 className=" text-3xl text-t-bd dark:text-blues-100 ">Combinatorial Tool</h1>
+        <h1 className="text-3xl  text-t-bd dark:text-blues-100">Combinatorial Tool</h1>
         <div className="flex flex-col items-center w-full">
           <p className="text-left">Template:</p>
           <TemplateBar />
-<<<<<<< HEAD
-          {/* <ToolTip
-            text="Select a sentence template to start with"
-            id="template"
-            w="25"
-          /> */}
-=======
->>>>>>> parent of 508df3e (Added logging capabilities)
         </div>
         <div className="w-[98%] rounded-xl cards ring-4 p-5 mt-5">
           <div className="max-w-[98%] rounded-xl cards  p-5 mt-5 relative group glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   !border-4 !border-t-bl">
