@@ -7,8 +7,8 @@ function ToolTip({id, place, text, w}) {
 const [type, setType] = useState("dark")
 
 let widthVal = w ? ` !w-[${w}em] ` : ` !w-[5em] `
-let widthValtoString = widthVal.toString();
-const [width, setWidth] = useState(widthValtoString)
+// let widthValtoString = widthVal.toString();
+// const [width, setWidth] = useState(widthValtoString)
 const darkRedux = useSelector((state) => state.darkMode);
 
 useEffect(() => {
@@ -34,13 +34,13 @@ useEffect(() => {
       id={id}
       place={place || "bottom"}
       type={type}
-    //   className={"!rounded-lg " + width}
+  
     // className={" !rounded-lg "}
 
       effect="solid"
       delayShow={300}
     >
-      <p className={"" + (type === "dark" ? "text-slate-50" : "text-slate-700")}>
+      <p>
         {text}
       </p>
     </ReactTooltip>
