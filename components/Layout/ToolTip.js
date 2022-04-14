@@ -35,7 +35,7 @@ useEffect(() => {
       place={place || "bottom"}
       type={type}
     //   className={"!rounded-lg " + width}
-    className={"!rounded-lg " + width}
+    className={"!rounded-lg "}
 
       effect="solid"
       delayShow={300}
