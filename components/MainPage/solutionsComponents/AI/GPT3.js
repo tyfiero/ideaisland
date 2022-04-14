@@ -76,7 +76,7 @@ const GPTtool = () => {
     })
       .then((response) => {
         // console.log("index response");
-      
+        // console.log(response.data.results);
         setAiResponse(response.data.results);
         dispatch(gpt3OutputAction(aiResponse));
         setResponseRecieved(true);
@@ -86,8 +86,6 @@ const GPTtool = () => {
       })
       .catch((error) => {
         console.log(error);
-        setAiLoading(false);
-        setAiResponse("Something went wrong. Please try again later.");
         return "Sorry, an Error occured";
       });
   };

@@ -8,7 +8,7 @@ const openai = new OpenAI(process.env.OPENAI_API_KEY);
 
 async function gpt3APIRequest(req) {
   //   console.log(req.body.input);
-  // console.log(process.env.OPENAI_API_KEY);
+  console.log(process.env.OPENAI_API_KEY);
 
   let userInput = req.body.input;
 
