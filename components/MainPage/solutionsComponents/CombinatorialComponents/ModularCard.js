@@ -188,7 +188,7 @@ function ModularCard({
     return label[label.length - 1];
   }
   return (
-    <div className={"h-[17em] w-fit  rounded-xl  p-2 nun" + colorClass}>
+    <div className={"h-[17em] w-fit  rounded-xl  p-2 nun  " + colorClass}>
       {type === "Blank" ? (
         <div className="flex flex-col items-center justify-center h-full gap-3">
           <p>Select Segment</p>
