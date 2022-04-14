@@ -9,7 +9,7 @@ import {
   nounOptions,
   outcomeOptions,
 } from "./ListData";
-import ToolTip from "../../../../components/Layout/ToolTip";
+// import ToolTip from "../../../../components/Layout/ToolTip";
 
 // import useKeyboardShortcut from 'use-keyboard-shortcut'
 import useKeyboardShortcut from "../../../../lib/useKeyboardShortcut";
@@ -352,7 +352,7 @@ function ModularCard({
                 // onClick={randomizeAll}
               >
                 <BsDice3 className={"text-lg" + textColor} />
-                <ToolTip text="Randomize segment" id="random1" w="10" />
+                {/* <ToolTip text="Randomize segment" id="random1" w="10" /> */}
               </button>
               <button
                 data-tip
@@ -361,7 +361,7 @@ function ModularCard({
                 onClick={() => deleteSegment(id)}
               >
                 <FiTrash2 className={"text-lg" + textColor} />
-                <ToolTip text="Delete" id="trash" w="6" />
+                {/* <ToolTip text="Delete" id="trash" w="6" /> */}
               </button>
             </div>
           </div>

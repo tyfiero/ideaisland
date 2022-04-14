@@ -1,47 +1,47 @@
 
-import React, { useEffect, useState } from "react";
-import ReactTooltip from "react-tooltip";
-import { useSelector, useDispatch } from "react-redux";
+// import React, { useEffect, useState } from "react";
+// import ReactTooltip from "react-tooltip";
+// import { useSelector, useDispatch } from "react-redux";
 
-function ToolTip({id, place, text, w}) {
-const [type, setType] = useState("dark")
+// function ToolTip({id, place, text, w}) {
+// const [type, setType] = useState("dark")
 
-let widthVal = w ? ` !w-[${w}em] ` : ` !w-[5em] `
-const [width, setWidth] = useState(widthVal)
-const darkRedux = useSelector((state) => state.darkMode);
+// let widthVal = w ? ` !w-[${w}em] ` : ` !w-[5em] `
+// const [width, setWidth] = useState(widthVal)
+// const darkRedux = useSelector((state) => state.darkMode);
 
-useEffect(() => {
-    if(darkRedux){
-        setType("light")
-    }else{
-        setType("dark")
-    }
-}, [darkRedux]);
+// useEffect(() => {
+//     if(darkRedux){
+//         setType("light")
+//     }else{
+//         setType("dark")
+//     }
+// }, [darkRedux]);
 
-    // useEffect(() => {
+//     // useEffect(() => {
 
-    //     if(w){
-    //     let formatted = ` !w-[${w}em] `
-    //    setWidth(formatted)
-    //    console.log(formatted)
-    //    console.log(width)
-    //     }
-    // }, [w]);
+//     //     if(w){
+//     //     let formatted = ` !w-[${w}em] `
+//     //    setWidth(formatted)
+//     //    console.log(formatted)
+//     //    console.log(width)
+//     //     }
+//     // }, [w]);
     
-  return (
-    <ReactTooltip
-      id={id}
-      place={place || "bottom"}
-      type={type}
-      className={"!rounded-lg " + width}
-      effect="solid"
-      delayShow={300}
-    >
-      <p className={type === "dark" ? "text-slate-50" : "text-slate-700"}>
-        {text}
-      </p>
-    </ReactTooltip>
-  );
-}
+//   return (
+//     <ReactTooltip
+//       id={id}
+//       place={place || "bottom"}
+//       type={type}
+//       className={"!rounded-lg " + width}
+//       effect="solid"
+//       delayShow={300}
+//     >
+//       <p className={type === "dark" ? "text-slate-50" : "text-slate-700"}>
+//         {text}
+//       </p>
+//     </ReactTooltip>
+//   );
+// }
 
-export default ToolTip;
+// export default ToolTip;
