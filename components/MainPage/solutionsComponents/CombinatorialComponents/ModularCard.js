@@ -9,7 +9,7 @@ import {
   nounOptions,
   outcomeOptions,
 } from "./ListData";
-import ToolTip from "../../../../components/Layout/ToolTip";
+// import ToolTip from "../../../../components/Layout/ToolTip";
 
 // import useKeyboardShortcut from 'use-keyboard-shortcut'
 import useKeyboardShortcut from "../../../../lib/useKeyboardShortcut";
