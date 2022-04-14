@@ -15,11 +15,11 @@ import { randomizeAction, sArrayAction } from "../../redux/actions";
 import IdeaNote from "../../components/MainPage/NoteBubble/Idea";
 import RandomPics from "../../components/MainPage/solutionsComponents/CombinatorialComponents/RandomPics";
 import TemplateBar from "../../components/MainPage/solutionsComponents/CombinatorialComponents/TemplateBar";
-import ModularCard from "../../components/MainPage/solutionsComponents/CombinatorialComponents/ModularCard";
+// import ModularCard from "../../components/MainPage/solutionsComponents/CombinatorialComponents/ModularCard";
 import { useHotkeys } from "react-hotkeys-hook";
 import { GlobalHotKeys } from "react-hotkeys";
 import useKeyboardShortcut from "../../lib/useKeyboardShortcut";
-// import ToolTip from "../../components/Layout/ToolTip";
+import ToolTip from "../../components/Layout/ToolTip";
 
 const CombinatorialPage = (props) => {
   // console.log("RERENDER");
@@ -283,11 +283,11 @@ console.log(sArray)
                   onClick={randomizeAll}
                 >
                   <FaDice className="text-2xl" />
-                  {/* <ToolTip
+                  <ToolTip
                     text="Randomize all unlocked segments"
                     id="random"
                     w="15"
-                  /> */}
+                  />
                 </button>
                 <button
                   data-tip
@@ -296,7 +296,7 @@ console.log(sArray)
                   onClick={onAddBtnClick}
                 >
                   <FaPlus className="text-2xl" />
-                  {/* <ToolTip text="Add new segment" id="add" w="10" /> */}
+                  <ToolTip text="Add new segment" id="add" w="10" />
                 </button>
               </div>
               <div className="flex flex-wrap gap-2 ">
@@ -330,14 +330,14 @@ console.log(sArray)
 
                 {sArray.length +" list length"}
 
-                {
+                {/* {
                   sArray.map((data, index) => {
                     return(
                       <ModularCard  key={index} card={index} id={data.id} variant={data.type} text={data.text} listProp={data.list} deleteSegment={deleteSegment} updateSegment={updateSegment}/>
                     )
                   }
                   )
-                }
+                } */}
               </div>
             </div>
 
