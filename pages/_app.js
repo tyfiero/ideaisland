@@ -19,15 +19,29 @@ import Head from "../components/Header";
 import Header from "../components/Header";
 import { wrapper } from "../redux/store";
 import { AuthProvider } from "../lib/firebaseContext";
+// import LogRocket from "logrocket";
+// import setupLogRocketReact from "logrocket-react";
 // import { useStore } from 'react-redux';
 
-// import splitbee from '@splitbee/web';
+
+
+if (typeof window !== 'undefined') {
+  const LogRocket = require('logrocket');
+const setupLogRocketReact = require('logrocket-react');
+LogRocket.init('90vvpm/ideaisland');
+  setupLogRocketReact(LogRocket);
+}
+
+
 
 function MyApp({ Component, pageProps }) {
-  // splitbee.init()
-
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+
+
+
+
+
 
   useEffect(() => {
     const handleStart = (url) => {
@@ -43,31 +57,30 @@ function MyApp({ Component, pageProps }) {
   const store = useStore((state) => state);
   const userData = useUserData();
 
-
   return process.browser ? (
-    <PersistGate persistor={store.__persistor} >
+    <PersistGate persistor={store.__persistor}>
       {() => (
-      <UserContext.Provider value={userData}>
-            <AuthProvider>
-        <Layout>
-            <FullLoader show={loading} />
-          <Component {...pageProps} />
-        </Layout>
-        </AuthProvider>
-      </UserContext.Provider>
+        <UserContext.Provider value={userData}>
+          <AuthProvider>
+            <Layout>
+              <FullLoader show={loading} />
+              <Component {...pageProps} />
+            </Layout>
+          </AuthProvider>
+        </UserContext.Provider>
       )}
     </PersistGate>
   ) : (
     <PersistGate persistor={store}>
       {() => (
-            <AuthProvider>
-      <UserContext.Provider value={userData}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </UserContext.Provider>
-      </AuthProvider>
-         )}
+        <AuthProvider>
+          <UserContext.Provider value={userData}>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </UserContext.Provider>
+        </AuthProvider>
+      )}
     </PersistGate>
   );
 }
@@ -97,7 +110,6 @@ export default wrapper.withRedux(MyApp);
 //     </>
 //   );
 // }
-
 
 //   if (typeof window === "undefined") {
 //     // console.log("SERVER");
@@ -166,7 +178,3 @@ export default wrapper.withRedux(MyApp);
 // //     }
 // //   });
 // // }
-
-
-
-

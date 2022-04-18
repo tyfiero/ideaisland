@@ -1,63 +1,4 @@
-export const nounOptions = [
-  {
-    value: "popular",
-    label: "⭐️ Popular",
-    children: [
-      {
-        value: "emoji",
-        label: "Web3",
-      },
-      {
-        value: "companies",
-        label: "Incremental Improvement",
-        children: [
-          {
-            value: "fortune5",
-            label: "Fortune 500",
-          },
-        ],
-      },
-      {
-        value: "blockchain",
-        label: "Disruption ?s",
-        children: [
-          {
-            value: "nft",
-            label: "🖼 NFT",
-          },
-          {
-            value: "consensus",
-            label: "consensus mechanisms",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    value: "industries",
-    label: "💼 Industries",
-    children: [
-      {
-        value: "all",
-        label: "All Industries",
-        children: [
-          {
-            value: "all",
-            label: "💼 All Industries",
-          },
-          {
-            value: "tech",
-            label: "💻 Tech",
-          },
-          {
-            value: "food",
-            label: "🍌 Food",
-          },
-        ],
-      },
-    ],
-  },
-];
+
 
 
 
@@ -1195,6 +1136,1216 @@ export const verbOptions = [
       {
         value: "Prove",
         label: "Prove",
+      },
+    ],
+  },
+];
+
+
+export const nounOptions = [
+  {
+    value: "popular",
+    label: "⭐️ Popular",
+    children: [
+      {
+        value: "emoji",
+        label: "Web3",
+      },
+      {
+        value: "Hardware",
+        label: "💻 Hardware",
+        children: [
+          {
+            "value": "3-D printer",
+            "label": "3-D printer"
+          },
+          {
+            "value": "add-on",
+            "label": "add-on"
+          },
+          {
+            "value": "agnostic",
+            "label": "agnostic"
+          },
+          {
+            "value": "Alt (key)",
+            "label": "Alt (key)"
+          },
+          {
+            "value": "aspect",
+            "label": "aspect"
+          },
+          {
+            "value": "beamer",
+            "label": "beamer"
+          },
+          {
+            "value": "blackberry",
+            "label": "blackberry"
+          },
+          {
+            "value": "Bluetooth",
+            "label": "Bluetooth"
+          },
+          {
+            "value": "brick",
+            "label": "brick"
+          },
+          {
+            "value": "bubblejet",
+            "label": "bubblejet"
+          },
+          {
+            "value": "bus",
+            "label": "bus"
+          },
+          {
+            "value": "cache",
+            "label": "cache"
+          },
+          {
+            "value": "card",
+            "label": "card"
+          },
+          {
+            "value": "card reader",
+            "label": "card reader"
+          },
+          {
+            "value": "carriage return",
+            "label": "carriage return"
+          },
+          {
+            "value": "CD burner",
+            "label": "CD burner"
+          },
+          {
+            "value": "CD writer",
+            "label": "CD writer"
+          },
+          {
+            "value": "chip",
+            "label": "chip"
+          },
+          {
+            "value": "client",
+            "label": "client"
+          },
+          {
+            "value": "client-server",
+            "label": "client-server"
+          },
+          {
+            "value": "codec",
+            "label": "codec"
+          },
+          {
+            "value": "computer",
+            "label": "computer"
+          },
+          {
+            "value": "concentrator",
+            "label": "concentrator"
+          },
+          {
+            "value": "connectivity",
+            "label": "connectivity"
+          },
+          {
+            "value": "console",
+            "label": "console"
+          },
+          {
+            "value": "control",
+            "label": "control"
+          },
+          {
+            "value": "CPU",
+            "label": "CPU"
+          },
+          {
+            "value": "cradle",
+            "label": "cradle"
+          },
+          {
+            "value": "Ctrl (key)",
+            "label": "Ctrl (key)"
+          },
+          {
+            "value": "cursor",
+            "label": "cursor"
+          },
+          {
+            "value": "data center",
+            "label": "data center"
+          },
+          {
+            "value": "data projector",
+            "label": "data projector"
+          },
+          {
+            "value": "dataglove",
+            "label": "dataglove"
+          },
+          {
+            "value": "desktop",
+            "label": "desktop"
+          },
+          {
+            "value": "device",
+            "label": "device"
+          },
+          {
+            "value": "disk drive",
+            "label": "disk drive"
+          },
+          {
+            "value": "dongle",
+            "label": "dongle"
+          },
+          {
+            "value": "drive",
+            "label": "drive"
+          },
+          {
+            "value": "dumb terminal",
+            "label": "dumb terminal"
+          },
+          {
+            "value": "electronic organizer",
+            "label": "electronic organizer"
+          },
+          {
+            "value": "enter",
+            "label": "enter"
+          },
+          {
+            "value": "escape key",
+            "label": "escape key"
+          },
+          {
+            "value": "femtech",
+            "label": "femtech"
+          },
+          {
+            "value": "flash drive",
+            "label": "flash drive"
+          },
+          {
+            "value": "flat screen",
+            "label": "flat screen"
+          },
+          {
+            "value": "flatbed scanner",
+            "label": "flatbed scanner"
+          },
+          {
+            "value": "function key",
+            "label": "function key"
+          },
+          {
+            "value": "game console",
+            "label": "game console"
+          },
+          {
+            "value": "Gameboy",
+            "label": "Gameboy"
+          },
+          {
+            "value": "gamepad",
+            "label": "gamepad"
+          },
+          {
+            "value": "gigabit",
+            "label": "gigabit"
+          },
+          {
+            "value": "graphics card",
+            "label": "graphics card"
+          },
+          {
+            "value": "handheld",
+            "label": "handheld"
+          },
+          {
+            "value": "hard copy",
+            "label": "hard copy"
+          },
+          {
+            "value": "hard disk",
+            "label": "hard disk"
+          },
+          {
+            "value": "hard drive",
+            "label": "hard drive"
+          },
+          {
+            "value": "hardware",
+            "label": "hardware"
+          },
+          {
+            "value": "hardwired",
+            "label": "hardwired"
+          },
+          {
+            "value": "HDD",
+            "label": "HDD"
+          },
+          {
+            "value": "HDR",
+            "label": "HDR"
+          },
+          {
+            "value": "heat sink",
+            "label": "heat sink"
+          },
+          {
+            "value": "inkjet printer",
+            "label": "inkjet printer"
+          },
+          {
+            "value": "interactive whiteboard",
+            "label": "interactive whiteboard"
+          },
+          {
+            "value": "joypad",
+            "label": "joypad"
+          },
+          {
+            "value": "joystick",
+            "label": "joystick"
+          },
+          {
+            "value": "kickstand",
+            "label": "kickstand"
+          },
+          {
+            "value": "LAN",
+            "label": "LAN"
+          },
+          {
+            "value": "laptop",
+            "label": "laptop"
+          },
+          {
+            "value": "laser printer",
+            "label": "laser printer"
+          },
+          {
+            "value": "laser printing",
+            "label": "laser printing"
+          },
+          {
+            "value": "light pen",
+            "label": "light pen"
+          },
+          {
+            "value": "liquid crystal display",
+            "label": "liquid crystal display"
+          },
+          {
+            "value": "mac",
+            "label": "mac"
+          },
+          {
+            "value": "machine",
+            "label": "machine"
+          },
+          {
+            "value": "Macintosh",
+            "label": "Macintosh"
+          },
+          {
+            "value": "mainboard",
+            "label": "mainboard"
+          },
+          {
+            "value": "mainframe",
+            "label": "mainframe"
+          },
+          {
+            "value": "memory",
+            "label": "memory"
+          },
+          {
+            "value": "memory bank",
+            "label": "memory bank"
+          },
+          {
+            "value": "memory card",
+            "label": "memory card"
+          },
+          {
+            "value": "Memory Stick",
+            "label": "Memory Stick"
+          },
+          {
+            "value": "micro",
+            "label": "micro"
+          },
+          {
+            "value": "microchip",
+            "label": "microchip"
+          },
+          {
+            "value": "microcomputer",
+            "label": "microcomputer"
+          },
+          {
+            "value": "microprocessor",
+            "label": "microprocessor"
+          },
+          {
+            "value": "mobile technology",
+            "label": "mobile technology"
+          },
+          {
+            "value": "modder",
+            "label": "modder"
+          },
+          {
+            "value": "modding",
+            "label": "modding"
+          },
+          {
+            "value": "modem",
+            "label": "modem"
+          },
+          {
+            "value": "monitor",
+            "label": "monitor"
+          },
+          {
+            "value": "motherboard",
+            "label": "motherboard"
+          },
+          {
+            "value": "mouse",
+            "label": "mouse"
+          },
+          {
+            "value": "MP3",
+            "label": "MP3"
+          },
+          {
+            "value": "MP3 player",
+            "label": "MP3 player"
+          },
+          {
+            "value": "nanocomputer",
+            "label": "nanocomputer"
+          },
+          {
+            "value": "netbook",
+            "label": "netbook"
+          },
+          {
+            "value": "network",
+            "label": "network"
+          },
+          {
+            "value": "notebook",
+            "label": "notebook"
+          },
+          {
+            "value": "notepad",
+            "label": "notepad"
+          },
+          {
+            "value": "number pad",
+            "label": "number pad"
+          },
+          {
+            "value": "optical",
+            "label": "optical"
+          },
+          {
+            "value": "optical character reader",
+            "label": "optical character reader"
+          },
+          {
+            "value": "optical reader",
+            "label": "optical reader"
+          },
+          {
+            "value": "optically",
+            "label": "optically"
+          },
+          {
+            "value": "palmtop",
+            "label": "palmtop"
+          },
+          {
+            "value": "parallel port",
+            "label": "parallel port"
+          },
+          {
+            "value": "patch",
+            "label": "patch"
+          },
+          {
+            "value": "patch sth into sth",
+            "label": "patch sth into sth"
+          },
+          {
+            "value": "pc",
+            "label": "pc"
+          },
+          {
+            "value": "PDA",
+            "label": "PDA"
+          },
+          {
+            "value": "pen drive",
+            "label": "pen drive"
+          },
+          {
+            "value": "Pentium",
+            "label": "Pentium"
+          },
+          {
+            "value": "peripheral",
+            "label": "peripheral"
+          },
+          {
+            "value": "personal computer",
+            "label": "personal computer"
+          },
+          {
+            "value": "personal digital assistant",
+            "label": "personal digital assistant"
+          },
+          {
+            "value": "personal organizer",
+            "label": "personal organizer"
+          },
+          {
+            "value": "phablet",
+            "label": "phablet"
+          },
+          {
+            "value": "plasma screen",
+            "label": "plasma screen"
+          },
+          {
+            "value": "platform",
+            "label": "platform"
+          },
+          {
+            "value": "plug and play",
+            "label": "plug and play"
+          },
+          {
+            "value": "port",
+            "label": "port"
+          },
+          {
+            "value": "printer",
+            "label": "printer"
+          },
+          {
+            "value": "processor",
+            "label": "processor"
+          },
+          {
+            "value": "proxy server",
+            "label": "proxy server"
+          },
+          {
+            "value": "ram",
+            "label": "ram"
+          },
+          {
+            "value": "reset (button)",
+            "label": "reset (button)"
+          },
+          {
+            "value": "return",
+            "label": "return"
+          },
+          {
+            "value": "ROM",
+            "label": "ROM"
+          },
+          {
+            "value": "router",
+            "label": "router"
+          },
+          {
+            "value": "scanner",
+            "label": "scanner"
+          },
+          {
+            "value": "serial port",
+            "label": "serial port"
+          },
+          {
+            "value": "server",
+            "label": "server"
+          },
+          {
+            "value": "server farm",
+            "label": "server farm"
+          },
+          {
+            "value": "shift key",
+            "label": "shift key"
+          },
+          {
+            "value": "silicon chip",
+            "label": "silicon chip"
+          },
+          {
+            "value": "slate",
+            "label": "slate"
+          },
+          {
+            "value": "Smart Board",
+            "label": "Smart Board"
+          },
+          {
+            "value": "smart card",
+            "label": "smart card"
+          },
+          {
+            "value": "smart glasses",
+            "label": "smart glasses"
+          },
+          {
+            "value": "solid-state drive",
+            "label": "solid-state drive"
+          },
+          {
+            "value": "sound card",
+            "label": "sound card"
+          },
+          {
+            "value": "space bar",
+            "label": "space bar"
+          },
+          {
+            "value": "SSD",
+            "label": "SSD"
+          },
+          {
+            "value": "storage device",
+            "label": "storage device"
+          },
+          {
+            "value": "tablet",
+            "label": "tablet"
+          },
+          {
+            "value": "tech",
+            "label": "tech"
+          },
+          {
+            "value": "tenkey",
+            "label": "tenkey"
+          },
+          {
+            "value": "tenkeyless",
+            "label": "tenkeyless"
+          },
+          {
+            "value": "terminal",
+            "label": "terminal"
+          },
+          {
+            "value": "thumb drive",
+            "label": "thumb drive"
+          },
+          {
+            "value": "TKL",
+            "label": "TKL"
+          },
+          {
+            "value": "toggle",
+            "label": "toggle"
+          },
+          {
+            "value": "touchpad",
+            "label": "touchpad"
+          },
+          {
+            "value": "touchpoint",
+            "label": "touchpoint"
+          },
+          {
+            "value": "touchscreen",
+            "label": "touchscreen"
+          },
+          {
+            "value": "trackball",
+            "label": "trackball"
+          },
+          {
+            "value": "trackpad",
+            "label": "trackpad"
+          },
+          {
+            "value": "underscore",
+            "label": "underscore"
+          },
+          {
+            "value": "USB",
+            "label": "USB"
+          },
+          {
+            "value": "USB stick",
+            "label": "USB stick"
+          },
+          {
+            "value": "VDT",
+            "label": "VDT"
+          },
+          {
+            "value": "VDU",
+            "label": "VDU"
+          },
+          {
+            "value": "video card",
+            "label": "video card"
+          },
+          {
+            "value": "virtual machine",
+            "label": "virtual machine"
+          },
+          {
+            "value": "virtual memory",
+            "label": "virtual memory"
+          },
+          {
+            "value": "virtual reality headset",
+            "label": "virtual reality headset"
+          },
+          {
+            "value": "VM",
+            "label": "VM"
+          },
+          {
+            "value": "wearable",
+            "label": "wearable"
+          },
+          {
+            "value": "whiteboard",
+            "label": "whiteboard"
+          },
+          {
+            "value": "wired",
+            "label": "wired"
+          },
+          {
+            "value": "word processor",
+            "label": "word processor"
+          },
+          {
+            "value": "workstation",
+            "label": "workstation"
+          },
+          {
+            "value": "Zip drive",
+            "label": "Zip drive"
+          }
+         ],
+      },
+      {
+        value: "Gaming",
+        label: "🎮 Gaming",
+        children: [
+          {
+            "value": "AAA",
+            "label": "AAA"
+          },
+          {
+            "value": "Agent",
+            "label": "Agent"
+          },
+          {
+            "value": "AI",
+            "label": "AI"
+          },
+          {
+            "value": "Alpha",
+            "label": "Alpha"
+          },
+          {
+            "value": "Augmented Reality",
+            "label": "Augmented Reality"
+          },
+          {
+            "value": "Virtual Reality",
+            "label": "Virtual Reality"
+          },
+          {
+            "value": "mixed reality",
+            "label": "mixed reality"
+          },
+          {
+            "value": "extended reality",
+            "label": "extended reality"
+          },
+          {
+            "value": "asset",
+            "label": "asset"
+          },
+          {
+            "value": "balance",
+            "label": "balance"
+          },
+          {
+            "value": "beta",
+            "label": "beta"
+          },
+          {
+            "value": "bug ",
+            "label": "bug "
+          },
+          {
+            "value": "build",
+            "label": "build"
+          },
+          {
+            "value": "certification",
+            "label": "certification"
+          },
+          {
+            "value": "cinematics",
+            "label": "cinematics"
+          },
+          {
+            "value": "clipping",
+            "label": "clipping"
+          },
+          {
+            "value": "clipping region",
+            "label": "clipping region"
+          },
+          {
+            "value": "code",
+            "label": "code"
+          },
+          {
+            "value": "code release",
+            "label": "code release"
+          },
+          {
+            "value": "collision",
+            "label": "collision"
+          },
+          {
+            "value": "collision detection",
+            "label": "collision detection"
+          },
+          {
+            "value": "console",
+            "label": "console"
+          },
+          {
+            "value": "content",
+            "label": "content"
+          },
+          {
+            "value": "cross-platform",
+            "label": "cross-platform"
+          },
+          {
+            "value": "culling",
+            "label": "culling"
+          },
+          {
+            "value": "debug",
+            "label": "debug"
+          },
+          {
+            "value": "demo",
+            "label": "demo"
+          },
+          {
+            "value": "dev",
+            "label": "dev"
+          },
+          {
+            "value": "development",
+            "label": "development"
+          },
+          {
+            "value": "edge",
+            "label": "edge"
+          },
+          {
+            "value": "event",
+            "label": "event"
+          },
+          {
+            "value": "engine",
+            "label": "engine"
+          },
+          {
+            "value": "feature",
+            "label": "feature"
+          },
+          {
+            "value": "game design document",
+            "label": "game design document"
+          },
+          {
+            "value": "game designer",
+            "label": "game designer"
+          },
+          {
+            "value": "game development",
+            "label": "game development"
+          },
+          {
+            "value": "gold master",
+            "label": "gold master"
+          },
+          {
+            "value": "hitbox",
+            "label": "hitbox"
+          },
+          {
+            "value": "game engine",
+            "label": "game engine"
+          },
+          {
+            "value": "key framing",
+            "label": "key framing"
+          },
+          {
+            "value": "lightmap",
+            "label": "lightmap"
+          },
+          {
+            "value": "localization",
+            "label": "localization"
+          },
+          {
+            "value": "mechanics",
+            "label": "mechanics"
+          },
+          {
+            "value": "mesh",
+            "label": "mesh"
+          },
+          {
+            "value": "mobile",
+            "label": "mobile"
+          },
+          {
+            "value": "mobile gaming",
+            "label": "mobile gaming"
+          },
+          {
+            "value": "model multiplatform",
+            "label": "model multiplatform"
+          },
+          {
+            "value": "parallax",
+            "label": "parallax"
+          },
+          {
+            "value": "PC",
+            "label": "PC"
+          },
+          {
+            "value": "pixel",
+            "label": "pixel"
+          },
+          {
+            "value": "physics",
+            "label": "physics"
+          },
+          {
+            "value": "pixel art",
+            "label": "pixel art"
+          },
+          {
+            "value": "playtesting",
+            "label": "playtesting"
+          },
+          {
+            "value": "polygon",
+            "label": "polygon"
+          },
+          {
+            "value": "prop",
+            "label": "prop"
+          },
+          {
+            "value": "prototyping",
+            "label": "prototyping"
+          },
+          {
+            "value": "quality assurance",
+            "label": "quality assurance"
+          },
+          {
+            "value": "ray tracing",
+            "label": "ray tracing"
+          },
+          {
+            "value": "render",
+            "label": "render"
+          },
+          {
+            "value": "scripting",
+            "label": "scripting"
+          },
+          {
+            "value": "shaders",
+            "label": "shaders"
+          },
+          {
+            "value": "skeletal animation",
+            "label": "skeletal animation"
+          },
+          {
+            "value": "sprite",
+            "label": "sprite"
+          },
+          {
+            "value": "terrain",
+            "label": "terrain"
+          },
+          {
+            "value": "texture",
+            "label": "texture"
+          },
+          {
+            "value": "texture mapping",
+            "label": "texture mapping"
+          },
+          {
+            "value": "tile",
+            "label": "tile"
+          },
+          {
+            "value": "tilemap",
+            "label": "tilemap"
+          },
+          {
+            "value": "UI/GUI",
+            "label": "UI/GUI"
+          },
+          {
+            "value": "UX",
+            "label": "UX"
+          },
+          {
+            "value": "vector graphic",
+            "label": "vector graphic"
+          },
+          {
+            "value": "vertex",
+            "label": "vertex"
+          },
+          {
+            "value": "vertical slice",
+            "label": "vertical slice"
+          },
+          {
+            "value": "visual scripting",
+            "label": "visual scripting"
+          },
+          {
+            "value": "editor",
+            "label": "editor"
+          },
+          {
+            "value": "instantiation",
+            "label": "instantiation"
+          },
+          {
+            "value": "orthographic camera",
+            "label": "orthographic camera"
+          },
+          {
+            "value": "prefab",
+            "label": "prefab"
+          },
+          {
+            "value": "runtime",
+            "label": "runtime"
+          },
+          {
+            "value": "scene",
+            "label": "scene"
+          },
+          {
+            "value": "probuilder",
+            "label": "probuilder"
+          },
+          {
+            "value": "timeline",
+            "label": "timeline"
+          },
+          {
+            "value": "perspective camera",
+            "label": "perspective camera"
+          },
+          {
+            "value": "action-adventure",
+            "label": "action-adventure"
+          },
+          {
+            "value": "battle royale",
+            "label": "battle royale"
+          },
+          {
+            "value": "bullet hell",
+            "label": "bullet hell"
+          },
+          {
+            "value": "casual",
+            "label": "casual"
+          },
+          {
+            "value": "cooperative",
+            "label": "cooperative"
+          },
+          {
+            "value": "couch co-op",
+            "label": "couch co-op"
+          },
+          {
+            "value": "downloadable content",
+            "label": "downloadable content"
+          },
+          {
+            "value": "educational",
+            "label": "educational"
+          },
+          {
+            "value": "e-sports",
+            "label": "e-sports"
+          },
+          {
+            "value": "fantasy",
+            "label": "fantasy"
+          },
+          {
+            "value": "fighting",
+            "label": "fighting"
+          },
+          {
+            "value": "first person shooter",
+            "label": "first person shooter"
+          },
+          {
+            "value": "free to play",
+            "label": "free to play"
+          },
+          {
+            "value": "horror",
+            "label": "horror"
+          },
+          {
+            "value": "hyper casual",
+            "label": "hyper casual"
+          },
+          {
+            "value": "in app purchases",
+            "label": "in app purchases"
+          },
+          {
+            "value": "MMORPG",
+            "label": "MMORPG"
+          },
+          {
+            "value": "metroidvania",
+            "label": "metroidvania"
+          },
+          {
+            "value": "moba",
+            "label": "moba"
+          },
+          {
+            "value": "non player character (NPC)",
+            "label": "non player character (NPC)"
+          },
+          {
+            "value": "role playing game",
+            "label": "role playing game"
+          },
+          {
+            "value": "sandbox",
+            "label": "sandbox"
+          },
+          {
+            "value": "racing ",
+            "label": "racing "
+          },
+          {
+            "value": "puzzle",
+            "label": "puzzle"
+          },
+          {
+            "value": "shooter",
+            "label": "shooter"
+          },
+          {
+            "value": "simulation",
+            "label": "simulation"
+          },
+          {
+            "value": "souls-like",
+            "label": "souls-like"
+          },
+          {
+            "value": "sports",
+            "label": "sports"
+          },
+          {
+            "value": "strategy",
+            "label": "strategy"
+          },
+          {
+            "value": "survival ",
+            "label": "survival "
+          },
+          {
+            "value": "text-based",
+            "label": "text-based"
+          },
+          {
+            "value": "third person shooter",
+            "label": "third person shooter"
+          },
+          {
+            "value": "tile matching",
+            "label": "tile matching"
+          },
+          {
+            "value": "visual novel",
+            "label": "visual novel"
+          }
+         ],
+      },
+    ],
+  },
+  {
+    value: "industries",
+    label: "💼 Industries",
+    children: [
+      {
+        value: "all",
+        label: "All Industries",
+        children: [
+          {
+            value: "all",
+            label: "💼 All Industries",
+          },
+          {
+            value: "tech",
+            label: "💻 Tech",
+          },
+          {
+            value: "food",
+            label: "🍌 Food",
+          },
+        ],
       },
     ],
   },

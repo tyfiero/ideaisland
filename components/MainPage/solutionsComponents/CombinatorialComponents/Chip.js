@@ -68,7 +68,7 @@ function Chip({
             <FaPlus className={iconColor} />
           ))}
 
-        <h7 className={"m-0 text-xs  nun "  + iconColor}>{text}</h7>
+        <h4 className={"m-0 text-xs  nun "  + iconColor}>{text}</h4>
       </button>
     </div>
   );

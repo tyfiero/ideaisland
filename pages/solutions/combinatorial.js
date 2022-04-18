@@ -19,16 +19,17 @@ import ModularCard from "../../components/MainPage/solutionsComponents/Combinato
 import { useHotkeys } from "react-hotkeys-hook";
 import { GlobalHotKeys } from "react-hotkeys";
 import useKeyboardShortcut from "../../lib/useKeyboardShortcut";
-
+import { useRouter } from "next/router";
 
 const CombinatorialPage = (props) => {
+  const router = useRouter();
   // console.log("RERENDER");
   const isRandomized = useSelector((state) => state.randomize);
   const sArray = useSelector((state) => state.sArray);
 
   const [update, setUpdate] = useState(false);
   // const [counter, setCounter] = useState(false);
-  console.log(sArray);
+  // console.log(sArray);
 
   const dispatch = useDispatch();
   const [inputList, setInputList] = useState([
@@ -103,6 +104,16 @@ const CombinatorialPage = (props) => {
   // };
 
   // console.log(card0Word, card1Word, card2Word);
+
+  const swapPositions = (array, a, b) => {
+
+    [array[a], array[b]] = [array[b], array[a]]
+
+    dispatch(sArrayAction(array));
+setUpdate(!update);
+  }
+
+  
   const randomizeAll = (event) => {
     dispatch(randomizeAction(true));
   };
@@ -161,22 +172,25 @@ const CombinatorialPage = (props) => {
     <div>
       <GlobalHotKeys keyMap={keyMap} handlers={handlers} />
 
-      <div className="card-container fade-effect-quick">
+      <div className="relative card-container fade-effect-quick">
         {/* div that holds all the cards, note the img prop where the url lives, as well as the array thats passed in to Card.js as a prop */}
         <h1 className="text-3xl text-t-bd dark:text-blues-100">
           Combinatorial Tool
         </h1>
-        <div>
+        <div >
           {" "}
+
+          <div className="absolute top-2 right-2">
           <div className="relative group">
             <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
             <button
-              className="w-[5em] h-[3em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-clear-bd3 md:hover:shadow-xl m-1 drop-shadow-xl "
-              onClick={() => props.goToStep(3)}
+              className="w-[5em] h-[2.5em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-clear-bd3 md:hover:shadow-xl m-1 drop-shadow-xl "
+              onClick={() =>router.push("/solutions#select-idea")}
             >
               Next
               <FaLongArrowAltRight className="ml-1 text-[24px]" />
             </button>
+          </div>
           </div>
         </div>
         <div
@@ -321,7 +335,7 @@ const CombinatorialPage = (props) => {
                 {inputList[3]?.type}
                 {inputList[4]?.type} */}
 
-                {sArray.length + " list length"}
+                {/* {sArray.length + " list length"} */}
 
                 {sArray.map((data, index) => {
                   return (
@@ -334,6 +348,7 @@ const CombinatorialPage = (props) => {
                       listProp={data.list}
                       deleteSegment={deleteSegment}
                       updateSegment={updateSegment}
+                      swapPositions={swapPositions}
                     />
                   );
                 })}
@@ -354,7 +369,7 @@ const CombinatorialPage = (props) => {
               {aiOpen && (
                 <div className="h-full px-5 py-2 ring-4 rounded-xl ring-t-pl bg-clear-pl3">
                   <p className="text-lg text-left text-t-pd">Innovation AI</p>
-                  <GPTtool />
+                  <GPTtool showButton={true}/>
                 </div>
               )}
               {notesOpen && (

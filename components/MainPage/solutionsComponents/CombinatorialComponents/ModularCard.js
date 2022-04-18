@@ -2,7 +2,7 @@
 import { React, useEffect, useState, useRef } from "react";
 import { Cascader } from "antd";
 import "antd/dist/antd.css";
-import { FaCheck, FaChevronDown } from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight, FaCheck, FaChevronDown, FaLongArrowAltLeft, FaLongArrowAltRight } from "react-icons/fa";
 import {
   verbOptions,
   introOptions,
@@ -16,7 +16,8 @@ import useKeyboardShortcut from "../../../../lib/useKeyboardShortcut";
 import { BsDice3 } from "react-icons/bs";
 import { FiTrash2 } from "react-icons/fi";
 import { useSelector, useDispatch } from "react-redux";
-import { sArrayAction } from "../../../../redux/actions";
+import { randomizeAction, sArrayAction } from "../../../../redux/actions";
+import { TiLockClosedOutline, TiLockOpenOutline } from "react-icons/ti";
 
 function ModularCard({
   id,
@@ -26,14 +27,20 @@ function ModularCard({
   listProp,
   deleteSegment,
   updateSegment,
+  swapPositions,
 }) {
   // console.log(variant + " " + id + " " + card + " " + text + " " + listProp);
   const sArray = useSelector((state) => state.sArray);
+  const isRandomized = useSelector((state) => state.randomize);
   const dispatch = useDispatch();
 
   // console.log(id)
   const [type, setType] = useState(variant);
   const [typeChanged, setTypeChanged] = useState(false);
+  const [randomized, setRandomized] = useState(false);
+  const [locked, setLocked] = useState(false);
+
+
 
   const [list, setList] = useState(listProp);
   const [listOptions, setListOptions] = useState(introOptions);
@@ -46,6 +53,10 @@ function ModularCard({
   const [colorClass, setColorClass] = useState(" blue-card");
   const focusTextInput = useRef(null);
 
+
+  
+
+  
   const { flushHeldKeys } = useKeyboardShortcut(
     ["Enter"],
     (shortcutKeys) => {
@@ -59,6 +70,8 @@ function ModularCard({
       repeatOnHold: false,
     }
   );
+
+  //Use efffect to focus text input on click
   useEffect(() => {
     if (contentEdit) {
       focusTextInput.current.focus();
@@ -66,11 +79,91 @@ function ModularCard({
   }, [contentEdit]);
   // console.log(content);
 
+
+  //randomize button function
+  useEffect(() => {
+    if(randomized || (isRandomized && !locked)){
+  console.log(listOptions)
+  console.log(list)
+  
+  try{
+    let listContent, randomNumber;
+    //find the index of the list header
+ let index = listOptions.findIndex(x => x.label === list)
+ console.log(index)
+
+
+ //If the index is -1, (not found) then search again
+ if(index === -1){
+ console.log("not found 1")
+
+//TEST SANDBOX
+// let asdf = listOptions[0].children.findIndex(x => x.label === list)
+// console.log(asdf);
+// let asdfff = listOptions[1].children.findIndex(x => x.label === list)
+// console.log(asdfff);
+
+//END SANDBOX
+  
+  let index2 = listOptions[0].children.findIndex(x => x.label === list)
+
+  //if listOptions[0] is not found, then search listOptions[1]
+  if(index2 === -1){
+    console.log("not found 2")
+
+
+    let index3 = listOptions[1].children.findIndex(x => x.label === list)
+    listContent = listOptions[1].children[index3].children
+  }else{
+   listContent = listOptions[0].children[index2].children
+
+  }
+//  console.log(index2)
+//  console.log(listContent)
+//  console.log(listOptions[0].children[index2].children)
+
+ randomNumber = Math.floor(Math.random() * listContent.length -1); 
+ }else{
+   //Index was found, so use that. WORKS
+ listContent = listOptions[index].children
+randomNumber = Math.floor(Math.random() * listContent.length -1);
+ }
+ console.log(listContent.length)
+
+console.log(item);
+
+//Item is the word associated with the random index of the listContent
+let item = listContent[randomNumber].label;
+
+//If the random item is the same as the current item, then use the next item. Prevents duplicates
+if (item === content) {
+      item = listContent[randomNumber + 1].label;
+    }
+setContent(item)
+  }catch (error){
+    console.error(error)
+  }
+
+  if(randomized){
+   setRandomized(false)}
+  }
+   if(isRandomized){
+    dispatch(randomizeAction(false));
+  }
+  }, [randomized, isRandomized]);
+
+  
+//use effect that sets type and runs when the id or variant changes
   useEffect(() => {
     setType(variant);
     setTypeChanged(true);
   }, [id, variant]);
 
+
+
+
+
+  //the big meaty useEffect that sets colors and content after a type switch or template load. It is curently buggy and overwrites content from template
   useEffect(() => {
     // if(typeChanged){
     // console.log(variant +" variant")
@@ -128,14 +221,14 @@ function ModularCard({
       setRingColor(" ring-pink-600");
       setTextColor(" text-pink-600");
       setColorClass(" pink-card");
-      setList(verbOptions[1].label);
+      setList(verbOptions[0].label);
       setListOptions(verbOptions);
       if (typeChanged) {
         let newArray = sArray;
         newArray[card] = {
           id: id,
           type: type,
-          list: verbOptions[1].label,
+          list: verbOptions[0].label,
           text: "verb",
         };
         dispatch(sArrayAction(newArray));
@@ -149,6 +242,7 @@ function ModularCard({
       setTextColor(" text-orange-700");
       setColorClass(" orange-card");
       setListOptions(outcomeOptions);
+      setLocked(true)
       setList(outcomeOptions[1].label);
       if (typeChanged) {
         let newArray = sArray;
@@ -173,19 +267,27 @@ function ModularCard({
     setTypeChanged(false);
   }, [type, id]);
 
+
+  //Function that is run after cascade option picked
   function onCascadeChange(value, label) {
     console.log(value);
     console.log(label);
 
     setContent(value[1]);
     if (type === "Intro") {
-      setList(value[0]);
+      setList(label[0].label);
     } else if (type === "Noun") {
       //thisll be a tricky one
-    } else if (type === "Modifier Verb" || type === "Action Verb") {
-      setList(value[0]);
+      if (value.length > 2) {
+        setList(label[1].label);
+        setContent(value[2]);
+      } else {
+        setList(label[0].label);
+      }
+    } else if (type === "Verb") {
+      setList(label[0].label);
     } else if (type === "Desired Outcome") {
-      setList(value[0]);
+      setList(label[0].label);
     } else {
       if (value.length > 2) {
         setList(label[2].label);
@@ -194,17 +296,18 @@ function ModularCard({
       }
     }
   }
+  //function to change the type
   function onTypeChange(value, label) {
     setTypeChanged(true);
     setType(value[0]);
   }
 
-  // Just show the latest item.k
+  // Just show the latest item. in list display
   function displayRender(label) {
     return label[label.length - 1];
   }
   return (
-    <div className={"h-[17em] w-fit  rounded-xl  p-2 nun  " + colorClass}>
+    <div className={"h-[17em] w-fit  rounded-xl  p-2 nun  group  " + colorClass}>
       {type === "Blank" ? (
         <div className="flex flex-col items-center justify-center h-full gap-3">
           <p>Select Segment</p>
@@ -319,8 +422,50 @@ function ModularCard({
 
           <p className="">card:{card}</p>
 
-          <div className="">
-            <div className="group">
+          <div className="relative flex flex-col items-center w-full">
+          <div className="flex gap-1 transition duration-500 opacity-0 justify-evenly group-hover:opacity-100">
+      
+             {!locked && <button
+                data-tip
+                data-for="random1"
+                className={"flex items-center justify-center gap-4 p-2 text-white  rounded-3xl bg-slate-100/70 drop-shadow-xl  md:transition-transform  md:hover:scale-105 md:active:scale-95 cursor-pointer fade-effect-quick"}
+                onClick={() => {
+                  
+                  if(!locked){
+                    
+                  setRandomized(!randomized)
+                  }
+                  }}
+              >
+                <BsDice3 className={"text-lg" + textColor} />
+                {/* <ToolTip text="Randomize segment" id="random1" w="10" /> */}
+              </button>}
+              <button
+                data-tip
+                data-for="trash"
+                className={"flex items-center justify-center gap-4 p-2 text-white cursor-pointer rounded-3xl  drop-shadow-xl bg-slate-100/70 md:hover:scale-105 md:transition-transform md:active:scale-95 " + (locked ? ("ring-2 bg-slate-300/70 " + ringColor) : "bg-slate-100/70")}
+                onClick={() => setLocked(!locked)}
+              >
+               {locked ? <TiLockClosedOutline className={"text-lg scale-125" + textColor} /> :
+                <TiLockOpenOutline className={"text-lg scale-125" + textColor} /> }
+                
+
+                
+                {/* <ToolTip text="Delete" id="trash" w="6" /> */}
+              </button>
+              {!locked &&  <button
+                data-tip
+                data-for="trash"
+                className="flex items-center justify-center gap-4 p-2 text-white cursor-pointer rounded-3xl bg-slate-100/70 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick "
+                onClick={() => deleteSegment(id)}
+              >
+                <FiTrash2 className={"text-lg" + textColor} />
+                {/* <ToolTip text="Delete" id="trash" w="6" /> */}
+              </button>}
+            
+              
+            </div>
+            <div className="">
               <Cascader
                 // style={{ borderRadius: "59px" }}
                 options={typeOptions}
@@ -333,7 +478,7 @@ function ModularCard({
                 <a href="#" className="">
                   <div
                     className={
-                      "flex items-center justify-between gap-2 px-2 py-1 md:hover:ring-2  w-fit rounded-xl  md:hover:bg-white/50 group " +
+                      "flex items-center justify-between gap-2 px-2 py-1 md:hover:ring-2  w-fit rounded-xl  md:hover:bg-white/50  " +
                       textColor +
                       ringColor
                     }
@@ -344,26 +489,27 @@ function ModularCard({
                 </a>
               </Cascader>
             </div>
-            <div className="flex justify-evenly">
-              <button
-                data-tip
-                data-for="random1"
-                className="flex items-center justify-center gap-4 p-2 text-white cursor-pointer rounded-3xl bg-slate-100/70 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 "
-                // onClick={randomizeAll}
+            {card !== 0 &&   <button
+              
+                className="absolute left-0 flex items-center justify-center cursor-pointer -bottom-2 md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick"
+                onClick={() => {
+
+                  swapPositions(sArray, card, card - 1)
+                    
+
+                }}
               >
-                <BsDice3 className={"text-lg" + textColor} />
-                {/* <ToolTip text="Randomize segment" id="random1" w="10" /> */}
-              </button>
-              <button
-                data-tip
-                data-for="trash"
-                className="flex items-center justify-center gap-4 p-2 text-white cursor-pointer rounded-3xl bg-slate-100/70 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 "
-                onClick={() => deleteSegment(id)}
-              >
-                <FiTrash2 className={"text-lg" + textColor} />
+                <FaLongArrowAltLeft className={"text-2xl" + textColor} />
                 {/* <ToolTip text="Delete" id="trash" w="6" /> */}
-              </button>
-            </div>
+              </button>}
+            {card !== sArray?.length -1 &&     <button
+             
+             className="absolute right-0 flex items-center justify-center cursor-pointer -bottom-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick"
+             onClick={() => swapPositions(sArray, card, card + 1)}
+           >
+             <FaLongArrowAltRight className={"text-2xl" + textColor} />
+             {/* <ToolTip text="Delete" id="trash" w="6" /> */}
+           </button>}
           </div>
         </div>
       )}

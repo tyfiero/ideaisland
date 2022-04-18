@@ -1394,13 +1394,11 @@ textarea {
   padding: 1em;
   height: 100%;
   width: 30em;
-  box-shadow: 0 2px 30px #e1e5eebb;
-  border-radius: 3em;
+  border-radius: 1em;
   display: flex;
   flex-direction: column;
   text-align: center;
-  background-color: #ffffff94;
-  box-shadow: 9px 9px 17px #989898, -9px -9px 17px #ffffff;
+  box-shadow: 2px 2px 7px var(--colorLight3), -2px -2px 7px var(--colorLight1);
   white-space: pre-line;
 }
 
