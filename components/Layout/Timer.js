@@ -78,9 +78,9 @@ function CircleTimer({ setTimerOpen }) {
   // const [, forceUpdate] = useReducer(x => x + 1, 0);
 
   let timerMenuContent = (
-    <div className="flex flex-col items-center timer-menu glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   fade-effect-fast !rounded-2xl bg-white/50 ">
+    <div className="flex flex-col items-center timer-menu glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   fade-effect-fast !rounded-2xl bg-white/50 z-[500]">
       <h5 className="text-[22px] !m-0 text-t-bd dark:text-blues-100">Timer Settings</h5>
-      <div className="normal-box bg-[hsla(200,0%,100%,0.764)]  dark:bg-[hsla(200,0%,20%,0.764)] w-[80%] flex justify-evenly items-center pt-2">
+      <div className="normal-box bg-[hsla(200,0%,100%,0.764)]  dark:bg-[hsla(200,0%,20%,0.764)] w-[80%] flex justify-evenly items-center pt-2 z-[500]">
         <div className="flex flex-col items-center">
           {play ? (
             <FaPause
@@ -327,7 +327,7 @@ function CircleTimer({ setTimerOpen }) {
   return (
     <>
       {/* {timerMenuOpen && timerMenuContent} */}
-      <div ref={ref}>{isVisible && timerMenuContent}</div>
+      <div className="!z-[500]" ref={ref}>{isVisible && timerMenuContent}</div>
       {/* {timerMenuContent} */}
       <div
         className="z-10 scale-75 cursor-pointer timer-wrapper bg-clear-pl4"
