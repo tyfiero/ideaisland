@@ -13,7 +13,9 @@ async function gpt3APIRequest(req) {
   let userInput = req.body.input;
 
   //   let input = ` ${req}`;
-  let prompt = `Brainstorm some ideas combining ${userInput}: `;
+  // let prompt = `Brainstorm some ideas combining ${userInput}: `;
+  let prompt = ` ${userInput}: `;
+
   const gptResponse = await openai.complete({
     // engine: "ada",
     engine: 'davinci',

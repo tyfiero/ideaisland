@@ -20,6 +20,9 @@ import { useHotkeys } from "react-hotkeys-hook";
 import { GlobalHotKeys } from "react-hotkeys";
 import useKeyboardShortcut from "../../lib/useKeyboardShortcut";
 import { useRouter } from "next/router";
+import SentenceTool from "../../components/MainPage/solutionsComponents/sentenceTool";
+
+
 
 const CombinatorialPage = (props) => {
   const router = useRouter();
@@ -354,7 +357,8 @@ setUpdate(!update);
                 })}
               </div>
             </div>
-
+            
+<div><SentenceTool /></div>
             {randomImageOpen && (
               <div className="px-2 pb-5 glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   ring-4 ring-green-200 bg-t-bl/10 min-w-[42em] h-full !border-0 mb-5 bg-green-400/20">
                 <p className="text-lg text-left text-green-600">Random Cues</p>

@@ -9,7 +9,7 @@ const ProgressStepper = (props) => {
 
     
     return (
-        <div className='absolute w-16 mt-[5em] right-10 normal-box-soft z-50 select-none'>
+        <div className='absolute w-16 mt-[5em] right-10 normal-box-soft z-50 select-none fade-effect-quick'>
         <div className={"mb-2 flex flex-col   items-center "}>
      
         <div >

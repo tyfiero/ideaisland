@@ -83,63 +83,45 @@ function ModularCard({
   //randomize button function
   useEffect(() => {
     if(randomized || (isRandomized && !locked)){
-  console.log(listOptions)
-  console.log(list)
-  
+  // console.log(listOptions)
+  // console.log(list)
   try{
     let listContent, randomNumber;
     //find the index of the list header
  let index = listOptions.findIndex(x => x.label === list)
- console.log(index)
-
-
  //If the index is -1, (not found) then search again
  if(index === -1){
- console.log("not found 1")
-
-//TEST SANDBOX
-// let asdf = listOptions[0].children.findIndex(x => x.label === list)
-// console.log(asdf);
-// let asdfff = listOptions[1].children.findIndex(x => x.label === list)
-// console.log(asdfff);
-
-//END SANDBOX
-  
+//  console.log("not found 1")
   let index2 = listOptions[0].children.findIndex(x => x.label === list)
-
   //if listOptions[0] is not found, then search listOptions[1]
   if(index2 === -1){
-    console.log("not found 2")
-
-
+    // console.log("not found 2")
     let index3 = listOptions[1].children.findIndex(x => x.label === list)
     listContent = listOptions[1].children[index3].children
   }else{
    listContent = listOptions[0].children[index2].children
-
   }
-//  console.log(index2)
-//  console.log(listContent)
-//  console.log(listOptions[0].children[index2].children)
-
- randomNumber = Math.floor(Math.random() * listContent.length -1); 
+ randomNumber = Math.floor(Math.random() * (listContent.length -1)); 
  }else{
    //Index was found, so use that. WORKS
  listContent = listOptions[index].children
-randomNumber = Math.floor(Math.random() * listContent.length -1);
+randomNumber = Math.floor(Math.random() * (listContent.length -1));
  }
- console.log(listContent.length)
-
-console.log(item);
-
 //Item is the word associated with the random index of the listContent
 let item = listContent[randomNumber].label;
-
 //If the random item is the same as the current item, then use the next item. Prevents duplicates
-if (item === content) {
+if (item === sArray[card].text) {
       item = listContent[randomNumber + 1].label;
     }
-setContent(item)
+// setContent(item)
+let newArray = sArray;
+  newArray[card] = {
+    id: id,
+    type: type,
+    list: list,
+    text: item,
+  };
+  dispatch(sArrayAction(newArray));
   }catch (error){
     console.error(error)
   }
@@ -170,7 +152,7 @@ setContent(item)
     // console.log(type + " type")
 
     if (type === "Intro") {
-      // console.log("Intro UE RAN")
+      console.log("Intro UE RAN")
 
       setRingColor(" ring-blue-600");
       setTextColor(" text-blue-600");
@@ -186,10 +168,10 @@ setContent(item)
           text: "How might we",
         };
         dispatch(sArrayAction(newArray));
-        setContent("How might we");
+        // setContent("How might we");
       }
     } else if (type === "Noun") {
-      // console.log("Noun UE RAN")
+      console.log("Noun UE RAN")
 
       setRingColor(" ring-green-600");
       setTextColor(" text-green-600");
@@ -213,10 +195,10 @@ setContent(item)
 
         dispatch(sArrayAction(newArray));
         // console.log(sArray)
-        setContent("noun");
+        // setContent("noun");
       }
     } else if (type === "Verb") {
-      // console.log("Verb")
+      console.log("Verb")
 
       setRingColor(" ring-pink-600");
       setTextColor(" text-pink-600");
@@ -233,7 +215,7 @@ setContent(item)
         };
         dispatch(sArrayAction(newArray));
         console.log(sArray);
-        setContent("verb");
+        // setContent("verb");
       }
     } else if (type === "Desired Outcome") {
       // console.log("Outcome UE RAN")
@@ -242,7 +224,7 @@ setContent(item)
       setTextColor(" text-orange-700");
       setColorClass(" orange-card");
       setListOptions(outcomeOptions);
-      setLocked(true)
+      // setLocked(true)
       setList(outcomeOptions[1].label);
       if (typeChanged) {
         let newArray = sArray;
@@ -253,10 +235,10 @@ setContent(item)
           text: "for entrepreneurs?",
         };
         dispatch(sArrayAction(newArray));
-        setContent("for entrepreneurs?");
+        // setContent("for entrepreneurs?");
       }
     } else {
-      // console.log("Blank UE RAN")
+      console.log("Blank UE RAN")
 
       setRingColor(" ring-slate-600");
       setTextColor(" text-slate-700");
@@ -280,7 +262,7 @@ setContent(item)
       //thisll be a tricky one
       if (value.length > 2) {
         setList(label[1].label);
-        setContent(value[2]);
+        // setContent(value[2]);
       } else {
         setList(label[0].label);
       }
@@ -295,6 +277,25 @@ setContent(item)
         setList(label[1].label);
       }
     }
+
+    //This code is meant to determine what content to display based off of what is selected in the tree
+let textValueFromCascade;
+if(value.length > 2){
+textValueFromCascade = value[2]
+}else if(value.length > 1){
+textValueFromCascade = value[1]
+}else{
+textValueFromCascade = value[0]
+}
+    
+    let newArray = sArray;
+  newArray[card] = {
+    id: id,
+    type: type,
+    list: list,
+    text: textValueFromCascade,
+  };
+  dispatch(sArrayAction(newArray));
   }
   //function to change the type
   function onTypeChange(value, label) {
@@ -381,12 +382,20 @@ setContent(item)
                 <div className="normal-box bg-[hsla(200,0%,100%,0.764)]  dark:bg-[hsla(200,0%,20%,0.764)] !rounded-xl w-full flex flex-col items-center">
                   <input
                     className="w-[94%] textarea-box  textarea-tw  "
-                    value={content}
+                    defaultValue={sArray[card].text}
                     ref={focusTextInput}
                     onChange={(e) => {
+                      let newArray = sArray;
+                      newArray[card] = {
+                        id: id,
+                        type: type,
+                        list: list,
+                        text: e.target.value,
+                      };
+                      dispatch(sArrayAction(newArray));
                       setContent(e.target.value);
                     }}
-                    placeholder={content}
+                    placeholder={sArray[card].text}
                   />
                   <button
                     className=" w-[90%] h-[2em] mt-1 rounded-3xl bg-t-bl flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer "
@@ -413,14 +422,16 @@ setContent(item)
                     "text-xl select-none " + (card > 0 ? " lowercase" : "")
                   }
                 >
-                  {content}
+                  {/* {content} */}
+                  {sArray[card].text}
+
                 </p>
               </div>
             </>
           )}
-          <p className="">id:{id}</p>
+          {/* <p className="">id:{id}</p>
 
-          <p className="">card:{card}</p>
+          <p className="">card:{card}</p> */}
 
           <div className="relative flex flex-col items-center w-full">
           <div className="flex gap-1 transition duration-500 opacity-0 justify-evenly group-hover:opacity-100">
@@ -478,7 +489,7 @@ setContent(item)
                 <a href="#" className="">
                   <div
                     className={
-                      "flex items-center justify-between gap-2 px-2 py-1 md:hover:ring-2  w-fit rounded-xl  md:hover:bg-white/50  " +
+                      "flex items-center justify-between gap-2 px-2 py-0 mb-2 md:hover:ring-2  w-fit rounded-xl  md:hover:bg-white/50  " +
                       textColor +
                       ringColor
                     }

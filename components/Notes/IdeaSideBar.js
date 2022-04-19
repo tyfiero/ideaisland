@@ -42,22 +42,22 @@ export default function IdeaSideBar(props) {
 
   return (
     <div className="overflow-hidden rounded-2xl">
-      <div className="normal-box-soft  bg-[hsla(200,0%,100%,0.764)]  dark:bg-[hsla(200,0%,20%,0.764)] fade-effect-quick flex flex-col items-center !h-[87vh] overflow-y-auto overflow-x-hidden !rounded-2xl !scrollbar-w-1 scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-t-bl scrollbar-track-blues-50">
+      <div className="normal-box-soft  bg-[hsla(200,0%,100%,0.764)]  dark:bg-[hsla(200,0%,20%,0.764)] fade-effect-quick flex flex-col items-center !h-[87vh] overflow-y-auto overflow-x-hidden !rounded-2xl !scrollbar-w-1 scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-t-bl scrollbar-track-blues-50 fade-effect-turbo">
         {type === "ideas" && (
           <>
-            <h1 className="text-3xl text-t-bd dark:text-blues-100">Ideas</h1>
+            <h1 className="text-3xl text-t-bd dark:text-blues-100 fade-effect-quick">Ideas</h1>
           </>
         )}
         {type === "problem" && (
           <>
-            <h1 className="text-3xl text-t-pd dark:text-pinks-100">
+            <h1 className="text-3xl text-t-pd dark:text-pinks-100 fade-effect-quick">
               Problems
             </h1>
           </>
         )}
         {type === "notes" && (
           <>
-            <h1 className="text-3xl text-teal-600 dark:text-teal-200">Notes</h1>
+            <h1 className="text-3xl text-teal-600 dark:text-teal-200 fade-effect-quick">Notes</h1>
           </>
         )}
         <div className="flex w-[20em] p-2 gap-2 items-center justify-evenly text-center normal-box-soft">
@@ -283,11 +283,11 @@ function IdeasList(props) {
       <IdeaFeed ideas={ideaSearch} admin type={props.type} />
 
       {searchValue?.length > 0 && ideas?.length > 0 ? (
-        <p className="mt-2 text-xs text-slate-400">
+        <p className="mt-2 text-xs text-slate-400 fade-effect">
           Displaying {ideaSearch?.length} of {ideas?.length}
         </p>
       ) : (
-        <p className="mt-2 text-xs text-slate-400">
+        <p className="mt-2 text-xs text-slate-400 fade-effect">
           {ideas?.length}
           {props.type === "problem"
             ? " problems"

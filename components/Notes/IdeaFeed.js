@@ -98,7 +98,7 @@ function IdeaItem({ idea, admin = false, type }) {
   // console.log(idea.documentID)
   return (
     <div
-      className="flex items-center justify-center px-4 pt-2 sm:px-6 lg:px-8 drop-shadow-xl md:w-[80em]  "
+      className="flex items-center justify-center px-4 pt-2 sm:px-6 lg:px-8 drop-shadow-xl md:w-[80em]  fade-effect-quick"
       onClick={onClickHandler}
     >
       <div
