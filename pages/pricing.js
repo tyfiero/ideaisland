@@ -6,6 +6,7 @@ import dynamic from 'next/dynamic';
 // const PaddleScript = dynamic(() => import("react-quill"), {
 //     ssr: false,
 //   });
+let Paddle;
 function Pricing() {
   const [annual, setAnnual] = React.useState(true);
   
@@ -17,9 +18,9 @@ function Pricing() {
         src="https://cdn.paddle.com/paddle/paddle.js"
         strategy="afterInteractive"
         onLoad={(e) => {
-            console.log("Loaded paddle")
+            // eslint-disable-next-line
           Paddle.Setup({ vendor: Number(process.env.NEXT_PUBLIC_PADDLE_VENDOR_ID) });
-         
+          console.log("Loaded paddle")
         }}
       />
       <div className="items-center min-h-screen mt-5 fade-effect-quick">
@@ -111,6 +112,8 @@ function Pricing() {
               </ul>
               
               <button className="w-full px-3 py-3 text-sm transition-colors duration-700 transform bg-white rounded-lg shadow paddle_button text-t-bl hover:text-white hover:bg-t-bl" data-theme="none" data-product="767575"  onClick={() => {
+
+// eslint-disable-next-line
           Paddle.Checkout.open({
             product: (annual ? "767575" : "767574"),
           });
