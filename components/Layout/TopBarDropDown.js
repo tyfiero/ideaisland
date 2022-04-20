@@ -16,6 +16,7 @@ import { useSelector } from "react-redux";
 // import { auth } from "../lib/firebase";
 import { HiOutlineCog } from "react-icons/hi";
 import { FiShare2 } from "react-icons/fi";
+import { BsCreditCard } from "react-icons/bs";
 
 import Modal from "./Modal";
 
@@ -92,6 +93,19 @@ export default function TopBarDropDown() {
                     //   goToMenu="settings"
                   >
                     <p className="text-blues-700">Settings</p>
+                  </DropdownItem>
+                </div>
+              </a>
+            </Link>
+            <hr />
+            <Link href={`/pricing`} passHref>
+              <a>
+                <div>
+                  <DropdownItem
+                    leftIcon={<BsCreditCard className=" text-t-bd dark:text-t-bl" />}
+                    //   goToMenu="settings"
+                  >
+                    <p className="text-blues-700">Billing</p>
                   </DropdownItem>
                 </div>
               </a>

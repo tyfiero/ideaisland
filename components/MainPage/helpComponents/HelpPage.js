@@ -34,7 +34,7 @@ const HelpPage = () => {
       title: "Island Method",
       subtitle: "Why does it work?",
       content: (
-        <div>
+        <>
           <p>
             In short, the Island Method constitutes a stepwise thinking
             framework that helps frame innovation.
@@ -48,7 +48,7 @@ const HelpPage = () => {
           >
             here
           </a>
-        </div>
+        </>
       ),
     },
   ];
