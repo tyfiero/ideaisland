@@ -10,11 +10,11 @@ async function gptJAPIRequest(req) {
   let userInput = sanitize(req.body.input, {
     USE_PROFILES: { html: true },
   });
-  let prompt = `Write me a list of recipes using ${userInput}: `;
+  let prompt = `Making a new software product about ${userInput} is complex, but worth it! Here is a list of software product ideas in the ${userInput} domain`;
   let promptToSend = {
     prompt: prompt,
     max_tokens: 100,
-    temperature: 1,
+    temperature: 0.89,
     top_k: 40,
     top_p: 0.9,
     stop: null,
