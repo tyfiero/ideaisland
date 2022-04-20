@@ -153,7 +153,7 @@ function SRankFeatures(props) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     // eslint-disable-line react-hooks/exhaustive-deps
-    console.log("shit changed");
+    // console.log("shit changed");
     // setRerender(!rerender)
     if (tableContent.length !== sFormRedux.features?.length) {
       setRefresh(!refresh);
@@ -425,11 +425,11 @@ function SRankFeatures(props) {
                   onClick={() => setIsPopoverOpen(!isPopoverOpen)}
                   className="w-5"
                 >
-                  <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 dark:text-blues-100  md:hover:scale-110" />
+                  <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 dark:text-blues-100 md:hover:scale-110" />
                 </div>
               </Popover>
             </div>
-            <h1 className=" text-3xl text-t-bd dark:text-blues-100 ">
+            <h1 className="text-3xl  text-t-bd dark:text-blues-100">
               Feature Selection
             </h1>
 

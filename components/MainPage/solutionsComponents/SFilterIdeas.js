@@ -99,7 +99,7 @@ function IdeasList(props) {
   const postQuery = query(ref, orderBy("createdAt", "desc"));
 
   const [querySnapshot] = useCollection(postQuery);
-  console.log("ANOTHER FULL FIREBASE READ");
+  // console.log("ANOTHER FULL FIREBASE READ");
   let ideas = querySnapshot?.docs.map((doc) => doc.data());
 
   let ideaSearch = ideas?.filter((obj) => {

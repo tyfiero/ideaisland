@@ -23,10 +23,9 @@ import { AuthProvider } from "../lib/firebaseContext";
 // import setupLogRocketReact from "logrocket-react";
 // import { useStore } from 'react-redux';
 
-
+const LogRocket = require('logrocket');
 
 if (typeof window !== 'undefined') {
-  const LogRocket = require('logrocket');
 const setupLogRocketReact = require('logrocket-react');
 LogRocket.init('90vvpm/ideaisland');
   setupLogRocketReact(LogRocket);
@@ -42,7 +41,7 @@ function MyApp({ Component, pageProps }) {
 
 
 
-
+//Loading animation logic
   useEffect(() => {
     const handleStart = (url) => {
       url !== router.pathname ? setLoading(true) : setLoading(false);
