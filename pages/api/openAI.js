@@ -27,7 +27,7 @@ async function gpt3APIRequest(req) {
   // console.log(user)
   //   let input = ` ${req}`;
   // let prompt = `Brainstorm some ideas combining ${userInput}: `;
-  let prompt = ` ${userInput}, Innovation AI says: `;
+  let prompt = ` Making a new software product about ${userInput} is complex, but worth it. Here is a list of software product ideas in the ${userInput} domain`;
 
   const gptResponse = await openai.complete({
     // engine: "ada",
@@ -35,7 +35,7 @@ async function gpt3APIRequest(req) {
     prompt: prompt,
     maxTokens: 100,
     user: user,
-    temperature: 0.7,
+    temperature: 0.89,
     topP: 1,
     presencePenalty: 1,
     frequencyPenalty: 0.5,
