@@ -24,7 +24,11 @@ import { gptJInputAction } from "../../../../redux/actions";
 import TextareaAutosize from "react-textarea-autosize";
 import { BiSend } from "react-icons/bi";
 import Toggle from "react-toggle";
-import { BsHourglassSplit } from "react-icons/bs";
+import {
+  BsArrow90DegRight,
+  BsArrowRight,
+  BsHourglassSplit,
+} from "react-icons/bs";
 
 const GPTtool = ({ showButton }) => {
   const { user, username } = useContext(UserContext);
@@ -38,13 +42,14 @@ const GPTtool = ({ showButton }) => {
   const dispatch = useDispatch();
 
   const [aiLoading, setAiLoading] = useState(false);
+  const [warning, setWarning] = useState(true);
 
   const [GPT3Input, setGPT3Input] = useState("");
   const [GPTJInput, setGPTJInput] = useState("");
 
   const [GPT3Output, setGPT3Output] = useState("");
-  const [GPT3Status, setGPT3Status] = useState(false);
-  const [GPTJStatus, setGPTJStatus] = useState(false);
+  // const [GPT3Status, setGPT3Status] = useState(false);
+  // const [GPTJStatus, setGPTJStatus] = useState(false);
 
   //FALSE = GPT-3 , true is gptj
   const [GPTJorGPT3, setGPTJorGPT3] = useState(true);
@@ -96,7 +101,9 @@ const GPTtool = ({ showButton }) => {
       // headers: headers,
     })
       .then((response) => {
-        // console.log("index response");
+        // console.log("Status: " + response.status);
+        // console.log("limit: " + response.headers?.get('X-RateLimit-Limit'));
+        // console.log("remaining: " + response.headers?.get('X-RateLimit-Remaining'));
 
         setAiResponse(response.data.results);
         dispatch(gpt3OutputAction(aiResponse));
@@ -106,10 +113,21 @@ const GPTtool = ({ showButton }) => {
         return response;
       })
       .catch((error) => {
-        console.log(error);
-        setAiLoading(false);
-        setAiResponse("Something went wrong. Please try again later.");
-        return "Sorry, an Error occured";
+        if (error.message === "Request failed with status code 429") {
+          setResponseRecieved(true);
+          setAiLoading(false);
+          setAiResponse(
+            "Rate limit exceeded, to many requests sent in one minute "
+          );
+          dispatch(gpt3OutputAction(aiResponse));
+        } else {
+          setResponseRecieved(true);
+          setAiLoading(false);
+          setAiResponse("Something went wrong. Please try again later.");
+          dispatch(gpt3OutputAction(aiResponse));
+        }
+
+        // return "Sorry, an Error occured";
       });
   };
 
@@ -148,20 +166,20 @@ const GPTtool = ({ showButton }) => {
 
   var gptJContent = (
     // <form onSubmit={handleSubmit(onSubmitFormGptJ)} className="w-full">
-      <div className="flex flex-col items-center w-full">
-        {/* gpt3/j switched component names. Why? Idk */}
-        {/* <GPT3TextArea
+    <div className="flex flex-col items-center w-full">
+      {/* gpt3/j switched component names. Why? Idk */}
+      {/* <GPT3TextArea
         q="gptj"
         ph="Prompt for the GPT-J AI to work its magic 👀 "
         // sendDataToParent={sendDataToParent}
       /> */}
-        {/* <input
+      {/* <input
           type="text"
           style={textStyles}
           className="h-[10rem] !w-[25rem] my-5 text-area-note"
           {...register("input", { required: "Required" })}
         /> */}
-        {/* <textarea
+      {/* <textarea
           name="text"
           rows="14"
           // onChange={(e) => {
@@ -178,192 +196,173 @@ const GPTtool = ({ showButton }) => {
           className="h-[10rem] !w-[25rem] my-5 text-area-note"
           {...register("input", { required: "Required" })}
         ></textarea> */}
-        <div className="flex justify-start w-full">
-          <p className="pt-1 text-left text-md text-t-pd">Input:</p>
-        </div>
-        <TextareaAutosize
-          className="w-[99%] rounded-md nun"
-          onChange={(e) => {
-            console.log(e.target.value)
-          setGPTJInput(e.target.value)}
-          }
-          // defaultValue={contentTitle}
-          placeholder="Content to send to AI"
-          maxLength="150"
-          value={GPTJInput}
-           
-          // {...register("input", { required: "Required" })}
-        ></TextareaAutosize>
-        {/* <GPT3TextArea /> */}
-        {/* <p>{charLength + "/100"}</p> */}
-
-        <div className="flex items-center justify-between w-full mt-1">
-          <div className="flex items-center w-[13em] justify-center rounded-xl p-0 ring-t-pm bg-clear-pl3  gap-3 ring-2 h-10">
-            <p
-              className={
-                GPTJorGPT3 ? "text-slate-500  line-through" : "!text-t-pm"
-              }
-            >
-              GPT-3
-            </p>
-            <Toggle
-              className=" fade-effect"
-              defaultChecked={GPTJorGPT3}
-              icons={false}
-              onChange={() => {
-                setGPTJorGPT3(!GPTJorGPT3);
-              }}
-            />
-            <p
-              className={
-                GPTJorGPT3 ? "!text-t-pm" : "text-slate-500 line-through"
-              }
-            >
-              GPT-J
-            </p>
-          </div>
-          <div className="relative group">
-            <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-pm via-violet-400 to-t-pd blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
-            <button
-              className="w-[8em] h-[2em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer !shadow-clear-pd3 md:hover:shadow-xl m-1 drop-shadow-xl !bg-gradient-to-br from-white via-t-pl  to-t-pm !shadow-2xl "
-              type="submit"
-              onClick={() => {
-
-                if(aiLoading){
-                  console.log("Please wait for the first request to load")
-                }else{
-                  setGPTJStatus(true);
-                  setAiLoading(true);
-                  onSubmitFormGptJ({ input: GPTJInput });
-                }
-               
-              }}
-            >
-             {aiLoading ? (<><p className="pl-2 text-t-pd">Sending...</p>
-
-<BsHourglassSplit style={{ fontSize: "32px" }} className="pl-2 text-t-pd" /></>):(<><p className="pl-2 text-t-pd">Send to AI</p>
-
-<BiSend style={{ fontSize: "32px" }} className="pl-2 text-t-pd" /></>) } 
-            </button>
-          </div>
-        </div>
-
-        {/* <button
-          className=" w-[10rem] items-center flex "
-          type="submit"
-          onClick={() => {
-            setGPTJStatus(true);
-            setAiLoading(true);
-          }}
-        >
-          <FaRobot style={{ fontSize: "32px" }} className="pl-2 text-t-pd" />
-          <p className="pl-2 text-t-pd">Send to AI!</p>
-        </button> */}
+      <div className="flex justify-start w-full">
+        <p className="pt-1 text-left text-md text-t-pd">Input:</p>
       </div>
-    // </form>
+      <TextareaAutosize
+        className="w-[99%] rounded-md nun"
+        onChange={(e) => {
+          console.log(e.target.value);
+          setGPTJInput(e.target.value);
+        }}
+        // defaultValue={contentTitle}
+        placeholder="Content to send to AI"
+        maxLength="150"
+        value={GPTJInput}
+
+        // {...register("input", { required: "Required" })}
+      ></TextareaAutosize>
+      {/* <GPT3TextArea /> */}
+      {/* <p>{charLength + "/100"}</p> */}
+
+      <div className="flex items-center justify-between w-full mt-1">
+        <div className="flex items-center w-[13em] justify-center rounded-xl p-0 ring-t-pm bg-clear-pl3  gap-3 ring-2 h-10">
+          <p
+            className={
+              GPTJorGPT3 ? "text-slate-500  line-through" : "!text-t-pm"
+            }
+          >
+            GPT-3
+          </p>
+          <Toggle
+            className=" fade-effect"
+            defaultChecked={GPTJorGPT3}
+            icons={false}
+            onChange={() => {
+              setGPTJorGPT3(!GPTJorGPT3);
+            }}
+          />
+          <p
+            className={
+              GPTJorGPT3 ? "!text-t-pm" : "text-slate-500 line-through"
+            }
+          >
+            GPT-J
+          </p>
+        </div>
+        <div className="relative group">
+          <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-pm via-violet-400 to-t-pd blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
+          <button
+            className="w-[8em] h-[2em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer !shadow-clear-pd3 md:hover:shadow-xl m-1 drop-shadow-xl !bg-gradient-to-br from-white via-t-pl  to-t-pm !shadow-2xl "
+            type="submit"
+            onClick={() => {
+              if (aiLoading) {
+                console.log("Please wait for the first request to load");
+              } else {
+                // setGPTJStatus(true);
+                setAiLoading(true);
+                onSubmitFormGptJ({ input: GPTJInput,
+                type: "new" });
+              }
+            }}
+          >
+            {aiLoading ? (
+              <>
+                <p className="pl-2 text-t-pd">Sending...</p>
+
+                <BsHourglassSplit
+                  style={{ fontSize: "32px" }}
+                  className="pl-2 text-t-pd"
+                />
+              </>
+            ) : (
+              <>
+                <p className="pl-2 text-t-pd">Send to AI</p>
+
+                <BiSend
+                  style={{ fontSize: "32px" }}
+                  className="pl-2 text-t-pd"
+                />
+              </>
+            )}
+          </button>
+        </div>
+      </div>
+
+      
+    </div>
   );
 
   var gpt3Content = (
-    // <form onSubmit={handleSubmit(onSubmitForm)}>
-      <div className="flex flex-col items-center">
-        {/* gpt3/j switched component names. Why? Idk */}
+    <div className="flex flex-col items-center">
+      <div className="flex justify-start w-full">
+        <p className="pt-1 text-left text-md text-t-pd">Input:</p>
+      </div>
+      <TextareaAutosize
+        className="w-[99%] rounded-md nun"
+        // defaultValue={contentTitle}
+        onChange={(e) => {
+          // console.log(e.target.value)
+          setGPT3Input(e.target.value);
+        }}
+        value={GPT3Input}
+        placeholder="Content to send to AI"
+        maxLength="150"
+      ></TextareaAutosize>
 
-        {/* <GPTJTextArea
-          q="gpt3"
-          ph="Prompt for the GPT-3 AI to work its magic 👀 "
-          {...register("input", { required: "Required" })}
-          // sendDataToParent={sendDataToParent}
-        /> */}
-
-        {/* <input
-          type="text"
-          className="text-area-note"
-          {...register("input", { required: "Required" })}
-        /> */}
-
-        {/* <textarea
-          name="text"
-          rows="14"
-          // onChange={(e) => {
-          //   console.log("hi");
-          //   dispatch(gptJInputAction(e.target.value));
-
-          //   setCharLength(gptJInputRedux.length + 1);
-          // }}
-          cols="10"
-          wrap="soft"
-          placeholder="Content to send to AI"
-          maxLength="100"
-          style={textStyles}
-          className="h-[10rem] !w-[25rem] my-5 text-area-note"
-          {...register("input", { required: "Required" })}
-        ></textarea> */}
-        <div className="flex justify-start w-full">
-          <p className="pt-1 text-left text-md text-t-pd">Input:</p>
+      <div className="flex items-center justify-between w-full mt-1">
+        <div className="flex items-center w-[13em] justify-center rounded-xl p-0 ring-t-pm bg-clear-pl3  gap-3 ring-2 h-10">
+          <p
+            className={
+              GPTJorGPT3 ? "text-slate-500  line-through" : "!text-t-pm"
+            }
+          >
+            GPT-3
+          </p>
+          <Toggle
+            className=" fade-effect"
+            defaultChecked={GPTJorGPT3}
+            icons={false}
+            onChange={() => {
+              setGPTJorGPT3(!GPTJorGPT3);
+            }}
+          />
+          <p
+            className={
+              GPTJorGPT3 ? "!text-t-pm" : "text-slate-500 line-through"
+            }
+          >
+            GPT-J
+          </p>
         </div>
-        <TextareaAutosize
-          className="w-[99%] rounded-md nun"
-          // defaultValue={contentTitle}
-          onChange={(e) => {
-            // console.log(e.target.value)
-          setGPT3Input(e.target.value)}
-          }
-          value={GPT3Input}
-          placeholder="Content to send to AI"
-          maxLength="150"
-        ></TextareaAutosize>
-
-        <div className="flex items-center justify-between w-full mt-1">
-          <div className="flex items-center w-[13em] justify-center rounded-xl p-0 ring-t-pm bg-clear-pl3  gap-3 ring-2 h-10">
-            <p
-              className={
-                GPTJorGPT3 ? "text-slate-500  line-through" : "!text-t-pm"
+        <div className="relative group">
+          <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-pm via-violet-400 to-t-pd blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
+          <button
+            className="w-[8em] h-[2em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer !shadow-clear-pd3 md:hover:shadow-xl m-1 drop-shadow-xl !bg-gradient-to-br from-white via-t-pl  to-t-pm !shadow-2xl "
+            type="submit"
+            onClick={() => {
+              if (aiLoading) {
+                console.log("Please wait for the first request to load");
+              } else {
+                // setGPT3Status(true);
+                setAiLoading(true);
+                onSubmitForm({ input: GPT3Input });
               }
-            >
-              GPT-3
-            </p>
-            <Toggle
-              className=" fade-effect"
-              defaultChecked={GPTJorGPT3}
-              icons={false}
-              onChange={() => {
-                setGPTJorGPT3(!GPTJorGPT3);
-              }}
-            />
-            <p
-              className={
-                GPTJorGPT3 ? "!text-t-pm" : "text-slate-500 line-through"
-              }
-            >
-              GPT-J
-            </p>
-          </div>
-          <div className="relative group">
-            <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-pm via-violet-400 to-t-pd blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
-            <button
-              className="w-[8em] h-[2em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer !shadow-clear-pd3 md:hover:shadow-xl m-1 drop-shadow-xl !bg-gradient-to-br from-white via-t-pl  to-t-pm !shadow-2xl "
-              type="submit"
-              onClick={() => {
+            }}
+          >
+            {aiLoading ? (
+              <>
+                <p className="pl-2 text-t-pd">Sending...</p>
 
-                if(aiLoading){
-                  console.log("Please wait for the first request to load")
-                }else{
-                  setGPT3Status(true);
-                  setAiLoading(true);
-                  onSubmitForm({ input: GPT3Input });
-                }
-               
-              }}
-            >
-             {aiLoading ? (<><p className="pl-2 text-t-pd">Sending...</p>
+                <BsHourglassSplit
+                  style={{ fontSize: "32px" }}
+                  className="pl-2 text-t-pd"
+                />
+              </>
+            ) : (
+              <>
+                <p className="pl-2 text-t-pd">Send to AI</p>
 
-<BsHourglassSplit style={{ fontSize: "32px" }} className="pl-2 text-t-pd" /></>):(<><p className="pl-2 text-t-pd">Send to AI</p>
-
-<BiSend style={{ fontSize: "32px" }} className="pl-2 text-t-pd" /></>) } 
-            </button>
-          </div>
+                <BiSend
+                  style={{ fontSize: "32px" }}
+                  className="pl-2 text-t-pd"
+                />
+              </>
+            )}
+          </button>
         </div>
       </div>
+    </div>
     // </form>
   );
 
@@ -372,75 +371,116 @@ const GPTtool = ({ showButton }) => {
 
   return (
     <div className="flex flex-col items-center max-w-[40em] relative">
-     {showButton && (
-          <div>
-            <button className="absolute -top-9 -right-5 w-[8em] h-[1.5em] card__btn_next  flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer !shadow-clear-pd3 md:hover:shadow-xl m-1 drop-shadow-xl !bg-gradient-to-br from-white via-t-pl  to-t-pm !shadow-2xl "
-            onClick={()=>{
-              let concatArray = []
-              let concat = sArray.forEach(x => {
-                concatArray.push(x.text)
+      {showButton && !warning && (
+        <div>
+          <button
+            className="absolute -top-9 -right-5 w-[8em] h-[1.5em] card__btn_next  flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer !shadow-clear-pd3 md:hover:shadow-xl m-1 drop-shadow-xl !bg-gradient-to-br from-white via-t-pl  to-t-pm !shadow-2xl "
+            onClick={() => {
+              let concatArray = [];
+              let concat = sArray.forEach((x) => {
+                concatArray.push(x.text);
               });
               let sentence = concatArray.join(" ");
               let lowercase = sentence.toLowerCase();
-              let capFirst = lowercase.charAt(0).toUpperCase() + lowercase.slice(1);
-              if(GPTJorGPT3){
+              let capFirst =
+                lowercase.charAt(0).toUpperCase() + lowercase.slice(1);
+              if (GPTJorGPT3) {
                 setGPTJInput(capFirst);
-              }else{
-                
+              } else {
                 setGPT3Input(capFirst);
               }
-            
             }}
-            >
-              <FaPlus className="text-sm" />{" "}
-              <p className="text-sm">Current Sentence</p>{" "}
-            </button>
-          </div>
-        )}
-      <div className="flex flex-col w-full ">
-       
-
-        {/* <button
-        className="card__btn_prev w-[8rem]  flex px-3 items-center rainbow-effect "
-        onClick={() => {
-          setGPTJorGPT3(!GPTJorGPT3);
-          setResponseRecieved(false);
-          setResponseRecievedGPTJ(false);
-          //   console.log(GPTJorGPT3);
-        }}
-      >
-        {GPTJorGPT3 ? (
-          <FaSeedling style={{ fontSize: "36px" }} />
-        ) : (
-          <FaPastafarianism style={{ fontSize: "36px" }} />
-        )}
-
-        {GPTJorGPT3 ? gptjButton : gpt3Button}
-      </button> */}
-
-        {GPTJorGPT3 ? gptJContent : gpt3Content}
-      </div>
-      <div className="flex flex-col w-full ">
-        <p className="pt-2 text-left text-md text-t-pd">Results:</p>
-
-        <div className="flex items-center ai-output-box bg-white/80">
-          {/* {GPTJorGPT3 ? <p>{gptJOutputRedux}</p> : <p>{gpt3OutputRedux}</p>} */}
-          {/* <p className="relative">AI:</p> */}
-          {/* {responseRecieved && <p>{gpt3OutputRedux}</p>} */}
-
-          <Loader show={aiLoading} />
-          {/* <Loader show={true} /> */}
-
-          {/* <FullLoader show={true} /> */}
-
-          {responseRecieved && <p>{aiResponse}</p>}
-          {!responseRecieved && !responseRecievedGPTJ && !aiLoading && (
-            <p className="text-gray-400">{"AI output will display here"}</p>
-          )}
-
-          {responseRecievedGPTJ && <p>{"AI:" + aiResponseGPTJ}</p>}
+          >
+            <FaPlus className="text-sm" />{" "}
+            <p className="text-sm">Current Sentence</p>{" "}
+          </button>
         </div>
-      </div>
+      )}
+
+      {warning ? (
+        <>
+          {" "}
+          <div className="flex flex-col w-full ">
+            <div className="flex flex-col w-full ">
+              <div className="flex items-center justify-between ai-output-box bg-white/80 min-h-[20em]">
+                <h3 className="text-2xl text-gray-700 nun">
+                  {"AI Disclaimer"}
+                </h3>
+                <p className="text-gray-700">
+                  {
+                    "This feature is still in beta. You are interacting with AI, not a human. The AI can return some wild content, and anything returned from the AI does not represent the views of ideaisland. Use this feature at your own risk."
+                  }
+                </p>
+                <button
+                  className="w-[14em] h-[2em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer !shadow-clear-pd3 md:hover:shadow-xl m-1 drop-shadow-xl !bg-gradient-to-br from-white via-t-pl  to-t-pm !shadow-2xl "
+                  onClick={() => {
+                    setWarning(!warning);
+                  }}
+                >
+                  <p className="pl-2 text-t-pd">Agree and Continue</p>
+
+                  <BsArrowRight
+                    style={{ fontSize: "32px" }}
+                    className="pl-2 text-t-pd"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+        </>
+      ) : (
+        <>
+          {" "}
+          <div className="flex flex-col w-full ">
+            {GPTJorGPT3 ? gptJContent : gpt3Content}
+          </div>
+          <div className="flex flex-col w-full ">
+            <p className="pt-2 text-left text-md text-t-pd">Results:</p>
+
+            <div className="flex items-center ai-output-box bg-white/80">
+              <Loader show={aiLoading} />
+
+              {responseRecieved && <p>{aiResponse}</p>}
+              {!responseRecieved && !responseRecievedGPTJ && !aiLoading && (
+                <p className="text-gray-400">{"AI output will display here"}</p>
+              )}
+
+              {responseRecievedGPTJ && <p>{"AI:" + aiResponseGPTJ}</p>}
+            </div>
+            {/* <button className="w-[12em] h-[2em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer !shadow-clear-pd3 md:hover:shadow-xl m-1 drop-shadow-xl !bg-gradient-to-br from-white via-t-pl  to-t-pm !shadow-2xl "
+             onClick={() => {
+              if (aiLoading) {
+                console.log("Please wait for the first request to load");
+              } else {
+                if(GPTJorGPT3){
+//  setGPTJStatus(true);
+                setAiLoading(true);
+                onSubmitFormGptJ({ input: aiResponse,
+                type: "expand" });
+              }else {
+                  //  setGPT3Status(true);
+                setAiLoading(true);
+                onSubmitForm({ input: aiResponse,
+                type: "expand" });
+              }
+                }
+               
+            }}>
+              {aiLoading ? (
+                <>
+                  <p className="text-lg ">Expanding...</p>{" "}
+                  
+                </>
+              ) : (
+                <>
+                  <p className="text-lg ">Expand Answer</p>
+                  <p className="ml-2 text-xs text-slate-600">(1 credit)</p>
+                </>
+              )}
+            </button> */}
+          </div>
+        </>
+      )}
     </div>
   );
 };

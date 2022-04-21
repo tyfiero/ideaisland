@@ -8,6 +8,16 @@ const OpenAI = require("openai-api");
 const openai = new OpenAI(process.env.OPENAI_API_KEY);
 // import gpt3APIRequest from "./gpt";
 
+   
+import * as uuid from 'uuid'
+import rateLimit from "../../lib/ratelimit";
+
+const limiter = rateLimit({
+  interval: 60 * 1000, // 60 seconds
+  uniqueTokenPerInterval: 500, // Max 500 users per second
+})
+
+
 async function gpt3APIRequest(req) {
   //   console.log(req.body.input);
   // console.log(process.env.OPENAI_API_KEY);
@@ -17,13 +27,13 @@ async function gpt3APIRequest(req) {
   // console.log(user)
   //   let input = ` ${req}`;
   // let prompt = `Brainstorm some ideas combining ${userInput}: `;
-  let prompt = ` ${userInput}: `;
+  let prompt = ` ${userInput}, Innovation AI says: `;
 
   const gptResponse = await openai.complete({
     // engine: "ada",
     engine: "davinci",
     prompt: prompt,
-    maxTokens: 50,
+    maxTokens: 100,
     user: user,
     temperature: 0.7,
     topP: 1,
@@ -41,8 +51,14 @@ async function gpt3APIRequest(req) {
 }
 
 export default async function handler(req, res) {
+
+  try {
+    await limiter.check(res, 50, 'CACHE_TOKEN') // 50 requests per minute
+
   if (req.method === "POST") {
     try {
+     
+
       console.log("req initiated!");
       let gptRes = await gpt3APIRequest(req);
 
@@ -61,6 +77,8 @@ export default async function handler(req, res) {
      
     } catch (err) {
       console.log("gpt3 api error");
+      console.log(err);
+
 
       res.status(err).json({});
     }
@@ -70,6 +88,20 @@ export default async function handler(req, res) {
     res.status(405);
     res.end();
   }
+
+
+} catch (err) {
+  console.log("Rate limit exceeded");
+  // console.log(err);
+
+
+  // res.status(err).json({});
+  res.status(429).json({ error: 'Rate limit exceeded' })
+
+}
+
+
+
 }
 
 // export default gpt3APIRequest;
