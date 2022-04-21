@@ -62,7 +62,6 @@ export default async function handler(req, res) {
   if (req.method === "POST") {
     try {
       console.log("req initiated!");
-      //   gptJAPIRequest(req);
       let gptRes = await gptJAPIRequest(req);
       //   console.log("1+" + gptRes);
       if (gptRes !== undefined) {

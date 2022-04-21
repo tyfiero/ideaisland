@@ -2,9 +2,12 @@
 // import fetch from "node-fetch";
 import React from "react";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { UserContext } from "../../../../lib/context";
 import { FaPastafarianism, FaPlus, FaRobot, FaSeedling } from "react-icons/fa";
 import { useForm } from "react-hook-form";
+import { auth } from "../../../../lib/firebase";
+
 import Loader from "../../../Layout/Loader";
 // const stringSimilarity = require("string-similarity");
 // const fetch = require("node-fetch");
@@ -21,13 +24,16 @@ import { gptJInputAction } from "../../../../redux/actions";
 import TextareaAutosize from "react-textarea-autosize";
 import { BiSend } from "react-icons/bi";
 import Toggle from "react-toggle";
+import { BsHourglassSplit } from "react-icons/bs";
 
 const GPTtool = ({ showButton }) => {
+  const { user, username } = useContext(UserContext);
   const gpt3InputRedux = useSelector((state) => state.gpt3Input);
   const gpt3OutputRedux = useSelector((state) => state.gpt3Output);
   const gptJInputRedux = useSelector((state) => state.gptJInput);
   const gptJOutputRedux = useSelector((state) => state.gptJOutput);
   const sArray = useSelector((state) => state.sArray);
+  const userUIDRedux = useSelector((state) => state.userUID);
 
   const dispatch = useDispatch();
 
@@ -68,12 +74,24 @@ const GPTtool = ({ showButton }) => {
     let formData = values.input;
     setResponseRecieved(false);
     setResponseRecievedGPTJ(false);
+    let uid;
 
+    if (user?.uid) {
+      uid = user?.uid;
+    } else if (userUIDRedux) {
+      uid = userUIDRedux;
+    } else if (auth.currentUser?.uid) {
+      uid = auth.currentUser?.uid;
+    } else {
+      uid = "1";
+      console.log("no uid available :(");
+    }
     axios({
       method: "POST",
       url: "/api/openAI",
       data: {
         input: formData,
+        user: uid,
       },
       // headers: headers,
     })
@@ -110,8 +128,8 @@ const GPTtool = ({ showButton }) => {
       // headers: headers,
     })
       .then((response) => {
-        console.log("index response");
-        console.log(response.data.results);
+        // console.log("index response");
+        // console.log(response.data.results);
         setAiResponseGPTJ(response.data.results);
         setResponseRecievedGPTJ(true);
         setAiLoading(false);
@@ -210,14 +228,22 @@ const GPTtool = ({ showButton }) => {
               className="w-[8em] h-[2em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer !shadow-clear-pd3 md:hover:shadow-xl m-1 drop-shadow-xl !bg-gradient-to-br from-white via-t-pl  to-t-pm !shadow-2xl "
               type="submit"
               onClick={() => {
-                setGPTJStatus(true);
-                setAiLoading(true);
-                onSubmitFormGptJ({ input: GPTJInput });
+
+                if(aiLoading){
+                  console.log("Please wait for the first request to load")
+                }else{
+                  setGPTJStatus(true);
+                  setAiLoading(true);
+                  onSubmitFormGptJ({ input: GPTJInput });
+                }
+               
               }}
             >
-              <p className="pl-2 text-t-pd">Send to AI</p>
+             {aiLoading ? (<><p className="pl-2 text-t-pd">Sending...</p>
 
-              <BiSend style={{ fontSize: "32px" }} className="pl-2 text-t-pd" />
+<BsHourglassSplit style={{ fontSize: "32px" }} className="pl-2 text-t-pd" /></>):(<><p className="pl-2 text-t-pd">Send to AI</p>
+
+<BiSend style={{ fontSize: "32px" }} className="pl-2 text-t-pd" /></>) } 
             </button>
           </div>
         </div>
@@ -279,7 +305,7 @@ const GPTtool = ({ showButton }) => {
           className="w-[99%] rounded-md nun"
           // defaultValue={contentTitle}
           onChange={(e) => {
-            console.log(e.target.value)
+            // console.log(e.target.value)
           setGPT3Input(e.target.value)}
           }
           value={GPT3Input}
@@ -318,14 +344,22 @@ const GPTtool = ({ showButton }) => {
               className="w-[8em] h-[2em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer !shadow-clear-pd3 md:hover:shadow-xl m-1 drop-shadow-xl !bg-gradient-to-br from-white via-t-pl  to-t-pm !shadow-2xl "
               type="submit"
               onClick={() => {
-                setGPT3Status(true);
-                setAiLoading(true);
-                onSubmitForm({ input: GPT3Input });
+
+                if(aiLoading){
+                  console.log("Please wait for the first request to load")
+                }else{
+                  setGPT3Status(true);
+                  setAiLoading(true);
+                  onSubmitForm({ input: GPT3Input });
+                }
+               
               }}
             >
-              <p className="pl-2 text-t-pd">Send to AI</p>
+             {aiLoading ? (<><p className="pl-2 text-t-pd">Sending...</p>
 
-              <BiSend style={{ fontSize: "32px" }} className="pl-2 text-t-pd" />
+<BsHourglassSplit style={{ fontSize: "32px" }} className="pl-2 text-t-pd" /></>):(<><p className="pl-2 text-t-pd">Send to AI</p>
+
+<BiSend style={{ fontSize: "32px" }} className="pl-2 text-t-pd" /></>) } 
             </button>
           </div>
         </div>

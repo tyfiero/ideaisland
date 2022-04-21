@@ -60,25 +60,25 @@ function MyApp({ Component, pageProps }) {
     <PersistGate persistor={store.__persistor}>
       {() => (
         <UserContext.Provider value={userData}>
-          <AuthProvider>
+          {/* <AuthProvider> */}
             <Layout>
               <FullLoader show={loading} />
               <Component {...pageProps} />
             </Layout>
-          </AuthProvider>
+          {/* </AuthProvider> */}
         </UserContext.Provider>
       )}
     </PersistGate>
   ) : (
     <PersistGate persistor={store}>
       {() => (
-        <AuthProvider>
+        // <AuthProvider>
           <UserContext.Provider value={userData}>
             <Layout>
               <Component {...pageProps} />
             </Layout>
           </UserContext.Provider>
-        </AuthProvider>
+        // </AuthProvider>
       )}
     </PersistGate>
   );
