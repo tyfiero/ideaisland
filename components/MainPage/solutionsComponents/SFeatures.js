@@ -13,17 +13,30 @@ import {
   FaTimes,
   FaInfoCircle,
   FaUser,
+  FaEthereum,
+  FaLock,
 } from "react-icons/fa";
 import Chip from "./CombinatorialComponents/Chip";
 import { useSelector, useDispatch } from "react-redux";
 import { sFormAction } from "../../../redux/actions";
+import { IoIosPeople } from "react-icons/io";
+import { MdOutlineDevicesOther } from "react-icons/md";
 
 function SFeatures(props) {
   // console.log("Rerendered")
   const dispatch = useDispatch();
   const sFormRedux = useSelector((state) => state.sForm);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-  const [showCommonFeatures, setShowCommonFeatures] = useState(true);
+  const [showAuthentication, setShowAuthentication] = useState(false);
+  const [showData, setShowData] = useState(false);
+  const [showPlatform, setShowPlatform] = useState(false);
+
+  const [showSocial, setShowSocial] = useState(false);
+  const [showWeb3, setShowWeb3] = useState(false);
+  const [showSecurity, setShowSecurity] = useState(false);
+  const [showMisc, setShowMisc] = useState(false);
+
+  
   const [button2, setButton2] = useState(false);
   const [rerender, setRerender] = useState(false);
 
@@ -165,7 +178,7 @@ function SFeatures(props) {
                     onClick={() => setIsPopoverOpen(!isPopoverOpen)}
                     className="w-5"
                   >
-                    <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 dark:text-blues-100  md:hover:scale-110" />
+                    <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 dark:text-blues-100 md:hover:scale-110" />
                   </div>
                 </Popover>
               </div>
@@ -174,7 +187,7 @@ function SFeatures(props) {
               </h1>
               <div className="normal-box-soft">
                 <h3 className="heading">
-                  What features do you want to include? What features MUST your
+                  What features do you need? What features MUST your
                   users have?
                 </h3>
                 <p>
@@ -182,67 +195,138 @@ function SFeatures(props) {
                   conversion, or actively generate or process revenue.
                 </p>
               </div>
-              <p>
-                EDIT THIS to make one button per categorybelow. that way folks
-                can quickly add the big features and tehn be shown the detailed
-                version of their selection in the box below.
-              </p>
-              <div className="flex gap-4">
-                <button
-                  className={
-                    "w-[12em] h-[4em] rounded-3xl  flex items-center justify-center text-black gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
-                    (showCommonFeatures
-                      ? " border-4 border-t-bl bg-blues-200"
-                      : "bg-blues-100")
+              <div className="flex w-full gap-2">
+             
+              <div className="flex flex-col flex-wrap gap-2 px-2 py-2 border-2 rounded-xl">
+              <button
+                    className={
+                      "w-[10em] h-[3em] rounded-3xl  flex items-center justify-start pl-3  gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
+                    (showPlatform
+                      ? " border-4 border-sky-700 bg-sky-500 text-white"
+                      : "bg-sky-300")
                   }
                   onClick={(e) => {
-                    setShowCommonFeatures(!showCommonFeatures);
-                    setButton2(false);
+                    setShowPlatform(!showPlatform);
                   }}
                 >
-                  <FaLaptopCode />
-                  Common Features
-                  {showCommonFeatures ? (
-                    <span className="absolute flex items-center justify-center w-6 h-6 leading-none text-center text-black rounded-full -top-2 -left-2 bg-t-pm">
+                  <MdOutlineDevicesOther className="text-2xl"/>
+                  Platform
+                  {showPlatform ? (
+                    <span className="absolute flex items-center justify-center w-6 h-6 leading-none text-center text-black rounded-full -top-2 -left-2 bg-sky-200">
                       <FaTimes />
                     </span>
                   ) : null}
                 </button>
                 <button
-                  className={
-                    "w-[7em] h-[4em] rounded-3xl  flex items-center justify-center text-black gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
-                    (showCommonFeatures
-                      ? " border-4 border-yellow-500/70 bg-yellow-200/80"
-                      : "bg-yellow-100/80")
+                    className={
+                      "w-[10em] h-[3em] rounded-3xl  flex items-center justify-start pl-3  gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
+                    (showSocial
+                      ? " border-4 border-teal-700 bg-teal-500 text-white"
+                      : "bg-teal-300")
                   }
                   onClick={(e) => {
-                    setShowCommonFeatures(!showCommonFeatures);
+                    setShowSocial(!showSocial);
+                    setButton2(false);
+                  }}
+                >
+                  <IoIosPeople className="text-2xl"/>
+                  Social
+                  {showSocial ? (
+                    <span className="absolute flex items-center justify-center w-6 h-6 leading-none text-center text-black bg-teal-200 rounded-full -top-2 -left-2">
+                      <FaTimes />
+                    </span>
+                  ) : null}
+                </button>
+              
+                <button
+                  className={
+                    "w-[10em] h-[3em] rounded-3xl  flex items-center justify-start pl-3  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
+                    (showAuthentication
+                      ? " border-4 border-green-700 text-white bg-green-500 "
+                      : "bg-green-300")
+                  }
+                  onClick={(e) => {
+                    setShowAuthentication(!showAuthentication);
+                  }}
+                >
+                  <FaUser /> Authentication
+                  {showAuthentication ? (
+                    <span className="absolute flex items-center justify-center w-6 h-6 leading-none text-center text-black bg-green-200 rounded-full -top-2 -left-2">
+                      <FaTimes />
+                    </span>
+                  ) : null}
+                </button>
+                <button
+                    className={
+                      "w-[10em] h-[3em] rounded-3xl  flex items-center justify-start pl-3  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
+                    (showData
+                      ? " border-4 border-yellow-500 bg-yellow-400"
+                      : "bg-yellow-200")
+                  }
+                  onClick={(e) => {
+                    setShowData(!showData);
                     setButton2(false);
                   }}
                 >
                   <FaLaptopCode />
                   Data
-                  {showCommonFeatures ? (
-                    <span className="absolute flex items-center justify-center w-6 h-6 leading-none text-center text-black rounded-full -top-2 -left-2 bg-t-pm">
+                  {showData ? (
+                    <span className="absolute flex items-center justify-center w-6 h-6 leading-none text-center text-black bg-yellow-100 rounded-full -top-2 -left-2">
                       <FaTimes />
                     </span>
                   ) : null}
                 </button>
                 <button
                   className={
-                    "w-[12em] h-[4em] rounded-3xl  flex items-center justify-center text-black gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
-                    (button2
-                      ? " border-4 border-green-400 bg-green-200"
-                      : "bg-green-100")
+                    "w-[10em] h-[3em] rounded-3xl  flex items-center justify-start pl-3  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
+                    (showSecurity
+                      ? " border-4 border-orange-700 bg-orange-500 text-white"
+                      : "bg-orange-300")
                   }
                   onClick={(e) => {
-                    setButton2(!button2);
-                    setShowCommonFeatures(false);
+                    setShowSecurity(!showSecurity);
                   }}
                 >
-                  <FaUser /> Authentication
-                  {button2 ? (
-                    <span className="absolute flex items-center justify-center w-6 h-6 leading-none text-center text-black rounded-full -top-2 -left-2 bg-t-pm">
+                  <FaLock /> Security
+                  {showSecurity ? (
+                    <span className="absolute flex items-center justify-center w-6 h-6 leading-none text-center text-black bg-orange-200 rounded-full -top-2 -left-2">
+                      <FaTimes />
+                    </span>
+                  ) : null}
+                </button>
+                <button
+                   className={
+                    "w-[10em] h-[3em] rounded-3xl  flex items-center justify-start pl-3  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
+                    (showWeb3
+                      ? " border-4 border-red-700 bg-red-500 text-white"
+                      : "bg-red-300 text-black")
+                  }
+                  onClick={(e) => {
+                    setShowWeb3(!showWeb3);
+                  }}
+                >
+                  <FaEthereum className="text-xl"/> Web3
+                  {showWeb3 ? (
+                    <span className="absolute flex items-center justify-center w-6 h-6 leading-none text-center text-black bg-red-200 rounded-full -top-2 -left-2">
+                      <FaTimes />
+                    </span>
+                  ) : null}
+                </button>
+               
+                <button
+                   className={
+                    "w-[10em] h-[3em] rounded-3xl  flex items-center justify-start pl-3  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
+                    (showMisc
+                      ? " border-4 border-violet-700 bg-violet-500 text-white"
+                      : "bg-violet-300")
+                  }
+                  onClick={(e) => {
+                    setShowMisc(!showMisc);
+                  }}
+                >
+                  <FaUser /> Other Features
+                  {showMisc ? (
+                    <span className="absolute flex items-center justify-center w-6 h-6 leading-none text-center text-black rounded-full -top-2 -left-2 bg-violet-200">
                       <FaTimes />
                     </span>
                   ) : null}
@@ -261,16 +345,155 @@ function SFeatures(props) {
               alskdjf
             </button> */}
 
-              {showCommonFeatures && (
                 <div
-                  className="glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.65)]   border-2 border-t-pm w-[90%] !p-2  !rounded-xl gap-2"
+                  className="glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.65)]   border-2 border-t-pm w-[40em] !p-2  !rounded-xl gap-2"
                   onClick={() => {
                     // console.log("click")
                     setRerender(!rerender);
                   }}
                 >
                   {/* <p>Common Features</p> */}
-                  <div className="flex flex-col items-start p-1 mb-2 border-2 border-teal-400 bg-teal-400/30 rounded-2xl">
+                 {showPlatform &&  <div className="flex flex-col items-start p-1 mb-2 border-2 border-sky-400 bg-sky-400/30 rounded-2xl">
+                    <p className="pl-3 m-0">Platform</p>
+                    <div className="flex flex-wrap gap-1">
+                      <Chip
+                        // changes={changes}
+                        updateArray={updateArray}
+                        deleteIndex={deleteIndex}
+                        text="Web"
+                        value="Web"
+                        icon="plus"
+                        color="bg-sky-100"
+                        bColor="border-sky-300"
+                        iconColor="text-sky-600"
+                      />
+                      <Chip
+                        updateArray={updateArray}
+                        deleteIndex={deleteIndex}
+                        text="IOS"
+                        icon="plus"
+                        color="bg-sky-100"
+                        bColor="border-sky-300"
+                        iconColor="text-sky-600"
+                      />
+
+                      <Chip
+                        updateArray={updateArray}
+                        deleteIndex={deleteIndex}
+                        text="Android"
+                        icon="plus"
+                        color="bg-sky-100"
+                        bColor="border-sky-300"
+                        iconColor="text-sky-600"
+                      />
+                      <Chip
+                        updateArray={updateArray}
+                        deleteIndex={deleteIndex}
+                        text="MacOS"
+                        icon="plus"
+                        color="bg-sky-100"
+                        bColor="border-sky-300"
+                        iconColor="text-sky-600"
+                      />
+                      <Chip
+                        updateArray={updateArray}
+                        deleteIndex={deleteIndex}
+                        text="Windows"
+                        icon="plus"
+                        color="bg-sky-100"
+                        bColor="border-sky-300"
+                        iconColor="text-sky-600"
+                      />
+                      <Chip
+                        updateArray={updateArray}
+                        deleteIndex={deleteIndex}
+                        text="Linux"
+                        icon="plus"
+                        color="bg-sky-100"
+                        bColor="border-sky-300"
+                        iconColor="text-sky-600"
+                      />
+                      <Chip
+                        updateArray={updateArray}
+                        deleteIndex={deleteIndex}
+                        text="Chrome extension"
+                        icon="plus"
+                        color="bg-sky-100"
+                        bColor="border-sky-300"
+                        iconColor="text-sky-600"
+                      />
+                      <Chip
+                        updateArray={updateArray}
+                        deleteIndex={deleteIndex}
+                        text="Plugin"
+                        icon="plus"
+                        color="bg-sky-100"
+                        bColor="border-sky-300"
+                        iconColor="text-sky-600"
+                      />
+                    </div>
+                  </div>}
+                  {showSocial &&  <div className="flex flex-col items-start p-1 my-2 border-2 border-teal-400 bg-teal-400/30 rounded-2xl">
+                    <p className="pl-3 m-0">Social</p>
+                    <div className="flex flex-wrap gap-1">
+                      <Chip
+                        updateArray={updateArray}
+                        deleteIndex={deleteIndex}
+                        text="Share to Social Media"
+                        icon="plus"
+                        color="bg-teal-100"
+                        bColor="border-teal-300"
+                        iconColor="text-teal-500"
+                      />
+                      <Chip
+                        updateArray={updateArray}
+                        deleteIndex={deleteIndex}
+                        text="Realtime Collaboration"
+                        icon="plus"
+                         color="bg-teal-100"
+                        bColor="border-teal-300"
+                        iconColor="text-teal-500"
+                      />
+
+                      <Chip
+                        updateArray={updateArray}
+                        deleteIndex={deleteIndex}
+                        text="File sharing"
+                        icon="plus"
+                        color="bg-teal-100"
+                        bColor="border-teal-300"
+                        iconColor="text-teal-500"
+                      />
+                      <Chip
+                        updateArray={updateArray}
+                        deleteIndex={deleteIndex}
+                        text="Comments"
+                        icon="plus"
+                        color="bg-teal-100"
+                        bColor="border-teal-300"
+                        iconColor="text-teal-500"
+                      />
+                      <Chip
+                        updateArray={updateArray}
+                        deleteIndex={deleteIndex}
+                        text="Liking/Hearting"
+                        icon="plus"
+                        color="bg-teal-100"
+                        bColor="border-teal-300"
+                        iconColor="text-teal-500"
+                      />
+                      <Chip
+                        updateArray={updateArray}
+                        deleteIndex={deleteIndex}
+                        text="Voting/Polling"
+                        icon="plus"
+                        color="bg-teal-100"
+                        bColor="border-teal-300"
+                        iconColor="text-teal-500"
+                      />
+                    </div>
+                  </div>}
+                  {showAuthentication &&  <div className="flex flex-col items-start p-1 mb-2 border-2 border-green-400 bg-green-400/30 rounded-2xl">
                     <p className="pl-3 m-0">Authentication</p>
                     <div className="flex flex-wrap gap-1">
                       <Chip
@@ -280,18 +503,18 @@ function SFeatures(props) {
                         text="Sign-in with Email/Password"
                         value="Sign-in with Email/Password"
                         icon="plus"
-                        color="bg-teal-100"
-                        bColor="border-teal-300"
-                        iconColor="text-teal-500"
+                        color="bg-green-100"
+                        bColor="border-green-300"
+                        iconColor="text-green-500"
                       />
                       <Chip
                         updateArray={updateArray}
                         deleteIndex={deleteIndex}
                         text="Sign-in with Google/other 3rd party"
                         icon="plus"
-                        color="bg-teal-100"
-                        bColor="border-teal-300"
-                        iconColor="text-teal-500"
+                        color="bg-green-100"
+                        bColor="border-green-300"
+                        iconColor="text-green-500"
                       />
 
                       <Chip
@@ -299,19 +522,22 @@ function SFeatures(props) {
                         deleteIndex={deleteIndex}
                         text="2-factor Auth"
                         icon="plus"
-                        color="bg-teal-100"
-                        bColor="border-teal-300"
-                        iconColor="text-teal-500"
+                        color="bg-green-100"
+                        bColor="border-green-300"
+                        iconColor="text-green-500"
                       />
                     </div>
-                  </div>
-                  <div className="flex flex-col items-start p-1 my-2 border-2 border-yellow-400 bg-yellow-400/30 rounded-2xl">
+                  </div>}
+                 
+               
+                 
+                  {showData &&   <div className="flex flex-col items-start p-1 my-2 border-2 border-yellow-400 bg-yellow-400/30 rounded-2xl">
                     <p className="pl-3 m-0">Data</p>
                     <div className="flex flex-wrap gap-1">
                       <Chip
                         updateArray={updateArray}
                         deleteIndex={deleteIndex}
-                        text="Database"
+                        text="Relational Database"
                         icon="plus"
                         color="bg-yellow-100"
                         bColor="border-yellow-300"
@@ -320,7 +546,16 @@ function SFeatures(props) {
                       <Chip
                         updateArray={updateArray}
                         deleteIndex={deleteIndex}
-                        text="Import Data"
+                        text="No-SQL Database"
+                        icon="plus"
+                        color="bg-yellow-100"
+                        bColor="border-yellow-300"
+                        iconColor="text-yellow-500"
+                      />
+                      <Chip
+                        updateArray={updateArray}
+                        deleteIndex={deleteIndex}
+                        text="Import data"
                         icon="plus"
                         color="bg-yellow-100"
                         bColor="border-yellow-300"
@@ -336,69 +571,51 @@ function SFeatures(props) {
                         bColor="border-yellow-300"
                         iconColor="text-yellow-500"
                       />
+                       <Chip
+                        updateArray={updateArray}
+                        deleteIndex={deleteIndex}
+                        text="File uploading"
+                        icon="plus"
+                        color="bg-yellow-100"
+                        bColor="border-yellow-300"
+                        iconColor="text-yellow-500"
+                      />
                     </div>
-                  </div>
-                  <div className="flex flex-col items-start p-1 my-2 border-2 border-sky-400 bg-sky-400/30 rounded-2xl">
-                    <p className="pl-3 m-0">Social</p>
+                  </div>}
+                  {showSecurity &&    <div className="flex flex-col items-start p-1 mt-2 border-2 border-orange-400 bg-orange-400/30 rounded-2xl">
+                    <p className="pl-3 m-0">Security</p>
                     <div className="flex flex-wrap gap-1">
                       <Chip
                         updateArray={updateArray}
                         deleteIndex={deleteIndex}
-                        text="Share to Social Media"
+                        text="Data Encryption"
                         icon="plus"
-                        color="bg-sky-100"
-                        bColor="border-sky-300"
-                        iconColor="text-sky-500"
+                        color="bg-orange-100"
+                        bColor="border-orange-300"
+                        iconColor="text-orange-500"
                       />
                       <Chip
                         updateArray={updateArray}
                         deleteIndex={deleteIndex}
-                        text="Realtime Collaboration"
+                        text="Cryptography"
                         icon="plus"
-                        color="bg-sky-100"
-                        bColor="border-sky-300"
-                        iconColor="text-sky-500"
+                        color="bg-orange-100"
+                        bColor="border-orange-300"
+                        iconColor="text-orange-500"
                       />
 
                       <Chip
                         updateArray={updateArray}
                         deleteIndex={deleteIndex}
-                        text="File sharing"
+                        text="Biometrics"
                         icon="plus"
-                        color="bg-sky-100"
-                        bColor="border-sky-300"
-                        iconColor="text-sky-500"
-                      />
-                      <Chip
-                        updateArray={updateArray}
-                        deleteIndex={deleteIndex}
-                        text="Comments"
-                        icon="plus"
-                        color="bg-sky-100"
-                        bColor="border-sky-300"
-                        iconColor="text-sky-500"
-                      />
-                      <Chip
-                        updateArray={updateArray}
-                        deleteIndex={deleteIndex}
-                        text="Liking/Hearting"
-                        icon="plus"
-                        color="bg-sky-100"
-                        bColor="border-sky-300"
-                        iconColor="text-sky-500"
-                      />
-                      <Chip
-                        updateArray={updateArray}
-                        deleteIndex={deleteIndex}
-                        text="Voting/Polling"
-                        icon="plus"
-                        color="bg-sky-100"
-                        bColor="border-sky-300"
-                        iconColor="text-sky-500"
+                        color="bg-orange-100"
+                        bColor="border-orange-300"
+                        iconColor="text-orange-500"
                       />
                     </div>
-                  </div>
-                  <div className="flex flex-col items-start p-1 mt-2 border-2 border-pink-400 bg-pink-400/30 rounded-2xl">
+                  </div>}
+                   {showWeb3 &&  <div className="flex flex-col items-start p-1 mt-2 border-2 border-pink-400 bg-pink-400/30 rounded-2xl">
                     <p className="pl-3 m-0">Web3</p>
                     <div className="flex flex-wrap gap-1">
                       <Chip
@@ -448,47 +665,32 @@ function SFeatures(props) {
                         iconColor="text-pink-500"
                       />
                     </div>
-                  </div>
-                  <div className="flex flex-col items-start p-1 mt-2 border-2 border-orange-400 bg-orange-400/30 rounded-2xl">
-                    <p className="pl-3 m-0">Security</p>
-                    <div className="flex flex-wrap gap-1">
-                      <Chip
-                        updateArray={updateArray}
-                        deleteIndex={deleteIndex}
-                        text="Data Encryption"
-                        icon="plus"
-                        color="bg-orange-100"
-                        bColor="border-orange-300"
-                        iconColor="text-orange-500"
-                      />
-                      <Chip
-                        updateArray={updateArray}
-                        deleteIndex={deleteIndex}
-                        text="Cryptography"
-                        icon="plus"
-                        color="bg-orange-100"
-                        bColor="border-orange-300"
-                        iconColor="text-orange-500"
-                      />
-
-                      <Chip
-                        updateArray={updateArray}
-                        deleteIndex={deleteIndex}
-                        text="Biometrics"
-                        icon="plus"
-                        color="bg-orange-100"
-                        bColor="border-orange-300"
-                        iconColor="text-orange-500"
-                      />
-                    </div>
-                  </div>
-                  <div className="flex flex-col items-start p-1 mt-2 border-2 border-violet-400 bg-violet-400/30 rounded-2xl">
+                  </div>}
+                  {showMisc &&     <div className="flex flex-col items-start p-1 mt-2 border-2 border-violet-400 bg-violet-400/30 rounded-2xl">
                     <p className="pl-3 m-0">Misc</p>
                     <div className="flex flex-wrap gap-1">
                       <Chip
                         updateArray={updateArray}
                         deleteIndex={deleteIndex}
                         text="Payment Processing"
+                        icon="plus"
+                        color="bg-violet-100"
+                        bColor="border-violet-300"
+                        iconColor="text-violet-500"
+                      />
+                      <Chip
+                        updateArray={updateArray}
+                        deleteIndex={deleteIndex}
+                        text="Full text search"
+                        icon="plus"
+                        color="bg-violet-100"
+                        bColor="border-violet-300"
+                        iconColor="text-violet-500"
+                      />
+                      <Chip
+                        updateArray={updateArray}
+                        deleteIndex={deleteIndex}
+                        text="Calendar"
                         icon="plus"
                         color="bg-violet-100"
                         bColor="border-violet-300"
@@ -597,6 +799,24 @@ function SFeatures(props) {
                       <Chip
                         updateArray={updateArray}
                         deleteIndex={deleteIndex}
+                        text="Notes"
+                        icon="plus"
+                        color="bg-violet-100"
+                        bColor="border-violet-300"
+                        iconColor="text-violet-500"
+                      />
+                      <Chip
+                        updateArray={updateArray}
+                        deleteIndex={deleteIndex}
+                        text="Tagging"
+                        icon="plus"
+                        color="bg-violet-100"
+                        bColor="border-violet-300"
+                        iconColor="text-violet-500"
+                      />
+                      <Chip
+                        updateArray={updateArray}
+                        deleteIndex={deleteIndex}
                         text="Drag and drop"
                         icon="plus"
                         color="bg-violet-100"
@@ -604,14 +824,11 @@ function SFeatures(props) {
                         iconColor="text-violet-500"
                       />
                     </div>
-                  </div>
+                  </div>}
+                  {!showPlatform && !showWeb3 && !showAuthentication && !showMisc && !showData && !showSocial && !showSecurity && (<p className="py-8 ">Add feature categories to see features here.</p>)}
                 </div>
-              )}
-              {button2 && (
-                <div className="normal-box-soft border-2 border-t-pm w-[90%] p-5 !rounded-xl gap-2">
-                  <p>*Inspirations or other feature set goes here*</p>
-                </div>
-              )}
+        </div>
+            
               <div className="flex flex-col"></div>
               <div className="flex items-center justify-between w-full">
                 <button
@@ -691,10 +908,10 @@ function ListItem({ name, deleteIndex }) {
   return (
     <div className="flex items-center justify-between ml-3">
       <li>{name}</li>
-      <FaTimes
+      {/* <FaTimes
         className="transition cursor-pointer text-t-pm md:hover:scale-125 md:active:scale-110"
         onClick={() => deleteIndex(name)}
-      />
+      /> */}
     </div>
   );
 }
