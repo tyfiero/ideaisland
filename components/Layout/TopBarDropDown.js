@@ -17,7 +17,7 @@ import { useSelector } from "react-redux";
 import { HiOutlineCog } from "react-icons/hi";
 import { FiShare2 } from "react-icons/fi";
 import { BsCreditCard } from "react-icons/bs";
-
+import LogOutButton from "../Authentication/LogOutButton";
 import Modal from "./Modal";
 
 export default function TopBarDropDown() {
@@ -124,6 +124,9 @@ export default function TopBarDropDown() {
                 <p className=" text-blues-700"> Share</p>
               </DropdownItem>
             </div>
+
+          
+             <LogOutButton/>
             {/* </a> */}
             {/* </a> */}
             {/* </Link> */}

@@ -38,8 +38,11 @@ export default function IdeaFeed({ ideas, admin, type }) {
         //empty blank func
         const blah = () => void 0;
       } else {
-        let currentNote = ideas[0];
-        dispatch(currentDocAction(currentNote));
+        if(ideas[0]){
+          let currentNote = ideas[0];
+          dispatch(currentDocAction(currentNote));
+        }
+      
       }
     }
   }, [type, ideas]); // eslint-disable-line react-hooks/exhaustive-deps

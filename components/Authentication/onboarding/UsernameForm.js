@@ -1,5 +1,5 @@
 // import { auth, firestore, googleAuthProvider } from "../../lib/firebase";
-import { UserContext } from "../../lib/context";
+import { UserContext } from "../../../lib/context";
 import { doc, writeBatch, getDoc, getFirestore } from 'firebase/firestore';
 
 import { useEffect, useState, useCallback, useContext } from "react";
@@ -7,7 +7,8 @@ import debounce from "lodash.debounce";
 import { useRouter } from 'next/router'
 import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
-import { userNameAction } from "../../redux/actions";
+import { userNameAction } from "../../../redux/actions";
+import { FaLongArrowAltRight } from "react-icons/fa";
 
 export default function UsernameForm(props) {
   const { user, username } = useContext(UserContext);
@@ -37,7 +38,7 @@ export default function UsernameForm(props) {
     dispatch(userNameAction(formValue));
 
     await batch.commit();
-    await router.push("/");
+    // await router.push("/");
   };
 
   const onChange = (e) => {
@@ -67,18 +68,18 @@ export default function UsernameForm(props) {
 
   // Hit the database for username match after each debounced change
   // useCallback is required for debounce to work
-  const checkUsername = useCallback( () =>{
-    debounce(async (username) => {
-      if (username.length >= 3) {
-        const ref = doc(getFirestore(), 'usernames', username);
-        
+  const checkUsername = useCallback(
+    debounce(async (input) => {
+
+      if (input.length >= 3) {
+        const ref = doc(getFirestore(), 'usernames', input);
         const snap = await getDoc(ref);
 
-        console.log("Firestore read executed!");
+        // console.log("Firestore read executed!", snap.exists());
         setIsValid(!snap.exists());
         setLoading(false);
       }
-    }, 500)},
+    }, 500),
     []
   );
 
@@ -101,6 +102,9 @@ export default function UsernameForm(props) {
             isValid={isValid}
             loading={loading}
           />
+          {/* <p>Must be at least three characters,</p>
+          <p>and have no spaces.</p> */}
+
           <button
             type="submit"
             className="w-[18em] h-12 rounded-3xl bg-t-bl flex items-center mt-3 justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95"
@@ -109,14 +113,14 @@ export default function UsernameForm(props) {
             Choose
           </button>
 
-          <h3 className="text-xl">Debug State</h3>
+          {/* <h3 className="text-xl">Debug State</h3>
           <div>
             Username: {formValue}
             <br />
             Loading: {loading.toString()}
             <br />
             Username Valid: {isValid.toString()}
-          </div>
+          </div> */}
         </div>
       </form>
     </>
@@ -128,18 +132,19 @@ export default function UsernameForm(props) {
         Welcome {username}!! 😄
       </h3>
 
-      <Link href="/">
-        <a>
-          <button className="w-[18em] h-12 rounded-3xl bg-t-bl flex items-center mt-3 justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95">
-            Let&apos;s Go!
+      {/* <Link href="/"> */}
+        {/* <a> */}
+    
+          <button className="w-[18em] h-12 rounded-3xl bg-t-bl flex items-center mt-3 justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95" onClick={()=>props.goToStep(3)}>
+            Continue <FaLongArrowAltRight/>
           </button>
-        </a>
-      </Link>
+        {/* </a> */}
+      {/* </Link> */}
     </>
   );
   return (
     <>
-      <div className="flex items-center justify-center min-h-screen px-4 pb-[12rem] sm:px-6 lg:px-8 drop-shadow-xl">
+      <div className="flex items-center justify-center px-4 sm:px-6 lg:px-8 drop-shadow-xl mt-36">
         <div className="w-full max-w-md p-10 space-y-8 shadow rounded-xl bg-blues-100 drop-shadow-xl ">
           <section className="flex flex-col items-center">
             <img
@@ -159,9 +164,11 @@ function UsernameMessage({ username, isValid, loading }) {
   if (loading) {
     return <p>Checking...</p>;
   } else if (isValid) {
-    return <p className="text-green">{username} is available!</p>;
-  } else if (username && !isValid) {
-    return <p className="text-red">That username is taken!</p>;
+    return <p className="text-green-500">{username} is available!</p>;
+  } else if (username && !isValid && username.length < 4) {
+    return <p className="text-red-500">Must be more than 3 characters</p>;
+  } else if (username && !isValid && username.length > 3) {
+    return <p className="text-red-500">That username is taken!</p>;
   } else {
     return <p></p>;
   }

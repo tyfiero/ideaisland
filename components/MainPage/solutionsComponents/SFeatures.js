@@ -21,6 +21,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { sFormAction } from "../../../redux/actions";
 import { IoIosPeople } from "react-icons/io";
 import { MdOutlineDevicesOther } from "react-icons/md";
+import { HiOutlineDotsCircleHorizontal } from "react-icons/hi";
 
 function SFeatures(props) {
   // console.log("Rerendered")
@@ -260,8 +261,8 @@ function SFeatures(props) {
                     className={
                       "w-[10em] h-[3em] rounded-3xl  flex items-center justify-start pl-3  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
                     (showData
-                      ? " border-4 border-yellow-500 bg-yellow-400"
-                      : "bg-yellow-200")
+                      ? " border-4 border-yellow-500 bg-yellow-400 text-white"
+                      : "bg-yellow-200 text-black")
                   }
                   onClick={(e) => {
                     setShowData(!showData);
@@ -324,7 +325,7 @@ function SFeatures(props) {
                     setShowMisc(!showMisc);
                   }}
                 >
-                  <FaUser /> Other Features
+                  <HiOutlineDotsCircleHorizontal className="text-xl"/> Other Features
                   {showMisc ? (
                     <span className="absolute flex items-center justify-center w-6 h-6 leading-none text-center text-black rounded-full -top-2 -left-2 bg-violet-200">
                       <FaTimes />
@@ -825,7 +826,8 @@ function SFeatures(props) {
                       />
                     </div>
                   </div>}
-                  {!showPlatform && !showWeb3 && !showAuthentication && !showMisc && !showData && !showSocial && !showSecurity && (<p className="py-8 ">Add feature categories to see features here.</p>)}
+                  {!showPlatform && !showWeb3 && !showAuthentication && !showMisc && !showData && !showSocial && !showSecurity && (<div className="flex items-center justify-center gap-3 px-8 py-8"><FaLongArrowAltLeft className="text-xl"/> <p >Add feature categories to see features here.</p></div>)}
+              
                 </div>
         </div>
             

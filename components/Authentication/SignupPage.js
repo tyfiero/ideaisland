@@ -16,19 +16,22 @@ import { useSelector, useDispatch } from "react-redux";
 import Link from "next/link";
 
 import { auth, googleAuthProvider } from "../../lib/firebase";
+import { signInWithPopup } from "firebase/auth";
 
 import { UserContext } from "../../lib/context";
 import {
   userPhotoAction,
   userDisplayNameAction,
   userUIDAction,
+  logIn,
 } from "../../redux/actions";
 
-export default function SignupPage() {
+export default function SignupPage(props) {
   const router = useRouter();
   const userUIDRedux = useSelector((state) => state.userUID);
   const userPhotoRedux = useSelector((state) => state.userPhoto);
   const userDisplayNameRedux = useSelector((state) => state.userDisplayName);
+  const loggedIn = useSelector((state) => state.loggedIn);
   
   const dispatch = useDispatch();
 
@@ -42,37 +45,41 @@ export default function SignupPage() {
   const [signUpMethod, setSignUpMethod] = useState(0);
 
   function googleButton() {
-    console.log("googlebutton clicked");
+    // console.log("googlebutton clicked");
 
     const signInWithGoogle = async () => {
-      console.log("tried");
+      // console.log("tried");
       try {
-        await auth.signInWithPopup(googleAuthProvider).then((result) => {
+        await signInWithPopup(auth, googleAuthProvider).then((result) => {
           console.log(result)
           // dispatch(userDataRedux({result.user}));
           dispatch(userUIDAction(result.user.uid));
           dispatch(userDisplayNameAction(result.user.displayName));
           dispatch(userPhotoAction(result.user.photoURL));
-
+          if (!loggedIn) {
+            dispatch(logIn(true));
+            console.log("logged in");
+          }
         });
+        props.goToStep(2)
       } catch (error) {
         console.log(error);
       }
 
-      await setSignUpMethod(2);
+      // await setSignUpMethod(2);
 
-      await router.push("/usernameform");
+      // await router.push("/signup#select-username");
     };
     signInWithGoogle();
   }
 
-  let backArrow = () => {
-    setSignUpMethod(0);
-  };
+  // let backArrow = () => {
+  //   setSignUpMethod(0);
+  // };
 
-  let emailButton = () => {
-    setSignUpMethod(1);
-  };
+  // let emailButton = () => {
+  //   setSignUpMethod(1);
+  // };
 
   // useEffect(() => {
   //   //Clear the error on page load
@@ -205,14 +212,14 @@ export default function SignupPage() {
   // </form>)
 
   return (
-    <div className="flex items-center justify-center min-h-screen px-4 pb-[12rem] sm:px-6 lg:px-8 drop-shadow-xl ">
+    <div className="flex items-center justify-center px-4 sm:px-6 lg:px-8 drop-shadow-xl mt-36">
       <div className="w-full max-w-md p-10 space-y-8 shadow rounded-xl bg-blues-100 drop-shadow-xl ">
-        {signUpMethod !== 0 ? (
+        {/* {signUpMethod !== 0 ? (
           <FaChevronLeft
             onClick={backArrow}
             className="fixed cursor-pointer text-[24px]"
           />
-        ) : null}
+        ) : null} */}
         <div>
           <img
             src="/bulb.svg"
@@ -246,7 +253,7 @@ export default function SignupPage() {
             <Link href="/login">
               <a>
                 <button
-                  onClick={emailButton}
+                  // onClick={emailButton}
                   className="w-[10em] h-8 rounded-3xl bg-t-pl flex items-center justify-center text-black  flex-col drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95"
                 >
                   <p>Sign in </p>
