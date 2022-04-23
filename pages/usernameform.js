@@ -1,7 +1,7 @@
 import React from "react";
-import UsernameForm from "../components/Authentication/UsernameForm";
+import UsernameForm from "../components/Authentication/onboarding/UsernameForm";
 
-function usernameform() {
+function UsernameformPage() {
   return (
     <div>
       <UsernameForm />
@@ -9,4 +9,4 @@ function usernameform() {
   );
 }
 
-export default usernameform;
+export default UsernameformPage;
