@@ -132,14 +132,14 @@ let newArray = sArray;
    if(isRandomized){
     dispatch(randomizeAction(false));
   }
-  }, [randomized, isRandomized]);
+  }, [randomized, isRandomized]);// eslint-disable-line react-hooks/exhaustive-deps
 
   
 //use effect that sets type and runs when the id or variant changes
   useEffect(() => {
     setType(variant);
     setTypeChanged(true);
-  }, [id, variant]);
+  }, [id, variant]);// eslint-disable-line react-hooks/exhaustive-deps
 
 
 
@@ -247,7 +247,7 @@ let newArray = sArray;
     }
 
     setTypeChanged(false);
-  }, [type, id]);
+  }, [type, id]);// eslint-disable-line react-hooks/exhaustive-deps
 
 
   //Function that is run after cascade option picked

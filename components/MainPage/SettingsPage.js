@@ -153,7 +153,7 @@ const SettingsPage = () => {
       let concat = base + menuOpacity + ")";
       document.documentElement.style.setProperty("--menuColor", concat);
     }
-  }, [menuOpacity]);
+  }, [menuOpacity]);// eslint-disable-line react-hooks/exhaustive-deps
 
   //next two useEffects save to local storage
   //This one loads from local storage
@@ -182,7 +182,7 @@ const SettingsPage = () => {
 
     setColor5(blobc5);
     setColor6(blobc6);
-  }, []);
+  }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (imgSrc) {

@@ -92,7 +92,7 @@ function MrrCalculator() {
     }
 
     setChartDataPoints([calcChartDataPoints, calcProfitChartDataPoints]);
-  }, [
+  }, [// eslint-disable-line react-hooks/exhaustive-deps
     productCost,
     churnRate,
     totalUsers,

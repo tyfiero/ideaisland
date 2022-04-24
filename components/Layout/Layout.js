@@ -100,7 +100,7 @@ export default function Layout({ children }) {
         router.push("/login");
       }
     }
-  }, [user, username, loading]);
+  }, [user, username, loading]);// eslint-disable-line react-hooks/exhaustive-deps
 
 
 
@@ -125,7 +125,7 @@ if (darkRedux) {
   document.documentElement.style.setProperty("--menuColor", concat);
 
 }
-  }, [darkRedux]);
+  }, [darkRedux]);// eslint-disable-line react-hooks/exhaustive-deps
 
 
 

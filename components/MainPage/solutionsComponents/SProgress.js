@@ -66,7 +66,7 @@ function SolutionProgressPage(props) {
       setConfetti(false);
       console.log(confetti);
     }, 10000);
-  }, []);
+  }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
   const saveOrContinue = async (e) => {
     //update firestore problem
@@ -129,7 +129,7 @@ function SolutionProgressPage(props) {
 
         <div className="w-full max-w-[95%]  space-y-8   normal-box-soft p-3">
           <div className="flex flex-col items-center justify-center p-0 problem-page fade-effect-quick">
-            <h1 className=" text-3xl text-t-bd dark:text-blues-100 ">
+            <h1 className="text-3xl  text-t-bd dark:text-blues-100">
               Progress so far:
             </h1>
             <div className="flex flex-col w-full gap-4">
