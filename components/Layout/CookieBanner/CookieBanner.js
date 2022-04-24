@@ -1,7 +1,7 @@
 import { XIcon } from "@heroicons/react/outline";
 import { useEffect, useState } from "react";
-import classNames from "../classnames";
-import useStore from "../StateManagement";
+// import classNames from "../classnames";
+// import useStore from "../StateManagement";
 import CheckboxItem from "./CheckboxItem";
 import CookieDetails from "./CookieDetails";
 import { useCookies } from "react-cookie";
@@ -13,7 +13,7 @@ function PrivacyPolicy({ privacyPolicyLink }) {
       href={privacyPolicyLink}
       target="_blank"
       rel="noreferrer"
-      className="underline font-medium text-gray-500"
+      className="font-medium text-gray-500 underline"
     >
       Privacy Policy
     </a>
@@ -76,8 +76,8 @@ function CookieBanner({
   // variable "cookieChoiceUpdated". With this, we can inform our Analytic Component
   // that should check if the should change their configuration as consent may have
   // been given or removed
-  const set = useStore((state) => state.set);
-  const cookieChoiceUpdated = useStore((state) => state.cookieChoiceUpdated);
+  // const set = useStore((state) => state.set);
+  // const cookieChoiceUpdated = useStore((state) => state.cookieChoiceUpdated);
 
   // Function to set the cookie that the user has made the choice
   const setCookieChoiceDone = () => {
@@ -171,32 +171,32 @@ function CookieBanner({
   };
 
   // Check whether the user was already presented with the cookie Banner and made a choice
-  useEffect(() => {
-    const choiceCookie = cookies.cookieChoiceDone;
-    if (!choiceCookie) {
-      setShowCookies(true);
-    }
-    const statisticCookie = cookies.acceptStatistic;
-    if (statisticCookie) {
-      setStatisticCookies(statisticCookie === "true" ? true : false);
-    } else {
-      setStatisticCookies(false);
-    }
-    const marketingCookie = cookies.acceptMarketing;
+  // useEffect(() => {
+  //   const choiceCookie = cookies.cookieChoiceDone;
+  //   if (!choiceCookie) {
+  //     setShowCookies(true);
+  //   }
+  //   const statisticCookie = cookies.acceptStatistic;
+  //   if (statisticCookie) {
+  //     setStatisticCookies(statisticCookie === "true" ? true : false);
+  //   } else {
+  //     setStatisticCookies(false);
+  //   }
+  //   const marketingCookie = cookies.acceptMarketing;
 
-    if (marketingCookie) {
-      setMarketingCookies(marketingCookie === "true" ? true : false);
-    } else {
-      setMarketingCookies(false);
-    }
-    const externalMediaCookie = cookies.acceptExternalMedia;
+  //   if (marketingCookie) {
+  //     setMarketingCookies(marketingCookie === "true" ? true : false);
+  //   } else {
+  //     setMarketingCookies(false);
+  //   }
+  //   const externalMediaCookie = cookies.acceptExternalMedia;
 
-    if (externalMediaCookie) {
-      setExternalMediaCookies(externalMediaCookie === "true" ? true : false);
-    } else {
-      setExternalMediaCookies(false);
-    }
-  }, [cookieChoiceUpdated]);
+  //   if (externalMediaCookie) {
+  //     setExternalMediaCookies(externalMediaCookie === "true" ? true : false);
+  //   } else {
+  //     setExternalMediaCookies(false);
+  //   }
+  // }, [cookieChoiceUpdated]);
   // We don't return anything when the user has made his choice and the
   // component should not be rendered inline
   if (showCookies === false && isEmbedded === false) return null;
@@ -209,19 +209,19 @@ function CookieBanner({
       <div
         className={classNames(isEmbedded ? "" : " px-4 sm:px-6 ", " relative")}
       >
-        <div className="p-3 rounded-lg bg-white border shadow sm:p-4">
+        <div className="p-3 bg-white border rounded-lg shadow sm:p-4">
           <div>
-            <p className="font-bold text-lg text-gray-700 truncate flex flex-row">
+            <p className="flex flex-row text-lg font-bold text-gray-700 truncate">
               <span>Cookie settings</span>
             </p>
-            <p className=" text-gray-500 text-sm mb-4">
+            <p className="mb-4 text-sm text-gray-500 ">
               <span>
                 This website uses cookies to improve your experience on our
                 website.
               </span>
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 space-y-3 sm:space-y-0">
+          <div className="grid grid-cols-1 space-y-3 sm:grid-cols-2 sm:space-y-0">
             <div className="space-y-2">
               <CheckboxItem category="necessary" value={true} />
               {showStatistic && (
@@ -253,25 +253,25 @@ function CookieBanner({
                 </div>
               )}
             </div>
-            <div className="flex flex-col space-y-2 justify-center">
+            <div className="flex flex-col justify-center space-y-2">
               <button
                 type="button"
                 onClick={handleAcceptAll}
-                className="flex items-center w-full justify-center px-2 py-2 border border-transparent rounded-md shadow-sm sm:text-sm font-medium text-white bg-lightning-500 hover:bg-lightning-600"
+                className="flex items-center justify-center w-full px-2 py-2 font-medium text-white border border-transparent rounded-md shadow-sm sm:text-sm bg-lightning-500 hover:bg-lightning-600"
               >
                 Accept all
               </button>
               <button
                 type="button"
                 onClick={handleAcceptSelection}
-                className="flex items-center w-full justify-center px-2 py-2 border border-transparent rounded-md shadow-sm sm:text-sm font-medium text-white bg-lightning-400 hover:bg-lightning-500"
+                className="flex items-center justify-center w-full px-2 py-2 font-medium text-white border border-transparent rounded-md shadow-sm sm:text-sm bg-lightning-400 hover:bg-lightning-500"
               >
                 Accept selection
               </button>
               <button
                 type="button"
                 onClick={handleOnlyNecessary}
-                className="flex items-center w-full justify-center px-2 py-2 border border-transparent rounded-md shadow-sm sm:text-sm font-medium text-white bg-lightning-400 hover:bg-lightning-500"
+                className="flex items-center justify-center w-full px-2 py-2 font-medium text-white border border-transparent rounded-md shadow-sm sm:text-sm bg-lightning-400 hover:bg-lightning-500"
               >
                 Accept only necessary
               </button>
@@ -279,14 +279,14 @@ function CookieBanner({
           </div>
         </div>
         {!isEmbedded && renderXButton && (
-          <div className="hidden sm:block absolute right-0 top-0">
+          <div className="absolute top-0 right-0 hidden sm:block">
             <button
               type="button"
               onClick={handleDismiss}
-              className="mr-4 sm:mr-8 mt-1 flex p-2 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white"
+              className="flex p-2 mt-1 mr-4 rounded-md sm:mr-8 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white"
             >
               <span className="sr-only">Dismiss</span>
-              <XIcon className="h-6 w-6 text-gray-700" aria-hidden="true" />
+              <XIcon className="w-6 h-6 text-gray-700" aria-hidden="true" />
             </button>
           </div>
         )}

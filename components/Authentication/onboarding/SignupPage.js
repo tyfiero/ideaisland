@@ -9,22 +9,23 @@ import {
 } from "firebase/auth";
 // import { LightningBoltIcon } from "@heroicons/react/solid";
 import { useRouter } from "next/router";
-import AuthError from "./AuthError";
+import AuthError from "../AuthError";
 import { FaEnvelope, FaChevronLeft } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 
 import Link from "next/link";
 
-import { auth, googleAuthProvider } from "../../lib/firebase";
+import { auth, googleAuthProvider } from "../../../lib/firebase";
 import { signInWithPopup } from "firebase/auth";
 
-import { UserContext } from "../../lib/context";
+import { UserContext } from "../../../lib/context";
 import {
   userPhotoAction,
   userDisplayNameAction,
   userUIDAction,
   logIn,
-} from "../../redux/actions";
+} from "../../../redux/actions";
+import CookieBanner from "../../Layout/CookieBanner/CookieBanner";
 
 export default function SignupPage(props) {
   const router = useRouter();
@@ -249,6 +250,9 @@ export default function SignupPage(props) {
               </div>
               Sign up with Google
             </button>
+
+
+            
             <p className="mt-10">Have an account?</p>
             <Link href="/login">
               <a>

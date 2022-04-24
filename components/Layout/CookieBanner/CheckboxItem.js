@@ -1,4 +1,4 @@
-import classNames from "../classnames";
+// import classNames from "../classnames";
 
 function CheckboxItem({ category, changeHandler, value }) {
   // Defines the wording for the checkboxes

@@ -7,7 +7,7 @@ import AuthError from "./AuthError";
 import Link from "next/link";
 // import useStore from "../StateManagement";
 
-import { FaEnvelope, FaChevronLeft, FaSignInAlt, FaUserPlus, FaArrowLeft, FaLongArrowAltLeft } from "react-icons/fa";
+import { FaEnvelope, FaChevronLeft, FaSignInAlt, FaUserPlus, FaArrowLeft, FaLongArrowAltLeft, FaArrowRight } from "react-icons/fa";
 // import { UserContext } from "../../lib/context";
 // import { auth, googleAuthProvider } from "../../lib/firebase";
 // import { useContext } from 'react';
@@ -40,6 +40,8 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [errorAuth, setErrorAuth] = useState(undefined);
   const [loading, setLoading] = useState(false);
+  const [cookiePop, setCookiePop] = useState(false);
+
   const [expandSignIn, setExpandSignIn] = useState(false);
 
   const [signInMethod, setSignInMethod] = useState(0);
@@ -345,16 +347,25 @@ export default function LoginPage() {
               
               ) : (
                 <>
-                <button
+                {!cookiePop &&<button
                   onClick={()=>setExpandSignIn(!expandSignIn)}
                   className="flex items-center justify-center h-16 gap-4 px-12 text-2xl text-blues-50 rounded-3xl bg-t-bl drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95"
                 >
                 
                   Sign in <FaSignInAlt/>
-                </button>
+                </button>}
+
+
+                
+                 
+
+
+                  {cookiePop ? (<div><p className="text-center nun">This website requires cookies to work properly.  By continuing you are agreeing to our use of necessary cookies.</p>
                   <Link href="/signup">
-                    <div className="flex items-center justify-center h-16 gap-4 px-12 text-2xl cursor-pointer text-pinks-50 rounded-3xl bg-t-pm drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95">Sign up<FaUserPlus/></div>
-                  </Link>
+                    <div className="flex items-center justify-center h-16 gap-4 px-12 text-2xl cursor-pointer text-pinks-50 rounded-3xl bg-t-bl drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95"
+                     onClick={()=>setCookiePop(!cookiePop)}>Accept and Continue<FaArrowRight/></div>
+                  </Link></div>) : (<div className="flex items-center justify-center h-16 gap-4 px-12 text-2xl cursor-pointer text-pinks-50 rounded-3xl bg-t-pm drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95"
+                     onClick={()=>setCookiePop(!cookiePop)}>Sign up<FaUserPlus/></div>)}
                 </>
               )}
             </div>

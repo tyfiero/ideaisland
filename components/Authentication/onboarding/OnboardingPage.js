@@ -1,6 +1,6 @@
 import StepWizard from "react-step-wizard";
 import { useState, React } from "react";
-import SignupPage from "../SignupPage";
+import SignupPage from "./SignupPage";
 import StepperOnboarding from "./StepperOnboarding";
 import UsernameForm from "./UsernameForm"
 import Tut1 from "./Tut1";

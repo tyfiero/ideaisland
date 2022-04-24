@@ -4,7 +4,7 @@ const pFormReducer = (
     id: null,
     what: null,
     why: null,
-    whyOptions: null,
+    whyOptions: [],
     who: null,
     productType: null,
     pq1: null,

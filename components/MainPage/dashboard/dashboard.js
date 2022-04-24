@@ -8,6 +8,7 @@ import ChartIdeas from "./ChartIdeas";
 import IdeaSideBar from "../../Notes/IdeaSideBar";
 import statsAction from "../../../redux/actions";
 import FullLoader from "../../Layout/FullLoader";
+import AuthCheck from "../../Authentication/AuthCheck";
 // import statsAction
 // export async function getServerSideProps(context) {
 //   return {
@@ -25,6 +26,7 @@ const Dashboard = () => {
   // console.log(auth.currentUser);
 
   return (
+    <AuthCheck >
     <div className="overflow-auto fade-effect-quick">
       <div className="dash-title">
         <h1 className="text-3xl text-t-bd dark:text-blues-100">
@@ -152,6 +154,7 @@ const Dashboard = () => {
       </div>
       {/* <PublicIdeaFeed /> */}
     </div>
+    </AuthCheck>
   );
 };
 

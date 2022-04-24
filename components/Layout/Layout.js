@@ -236,7 +236,7 @@ if (darkRedux) {
         <div className="top-bar ">
           {/* {loadingUI ? <Loader show={true}/>: "NOT LOADING YO"} */}
 
-          <TopBarRight />
+          {signedIn && <TopBarRight />}
         </div>
 
         <div className="side-nav-bar ">

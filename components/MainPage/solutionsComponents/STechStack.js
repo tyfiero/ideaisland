@@ -53,15 +53,20 @@ function STechStack(props) {
   const update = (data) => {
     console.log(data);
 
-
-    let toolObj = { name: data[0], cost: data[1], type: data[2], url: data[3], isOpenSource: data[4] };
+    let toolObj = {
+      name: data[0],
+      cost: data[1],
+      type: data[2],
+      url: data[3],
+      isOpenSource: data[4],
+    };
 
     setToolArray([...toolArray, toolObj]);
   };
 
   const deleteItem = (data) => {
     console.log(data);
-    let newArray= toolArray;
+    let newArray = toolArray;
     for (var i = toolArray.length - 1; i >= 0; i--) {
       if (newArray[i].name === data) {
         // console.log(featureArray);
@@ -69,7 +74,7 @@ function STechStack(props) {
         // console.log(featureArray);
 
         setToolArray(newArray);
-        setRefresh(!refresh)
+        setRefresh(!refresh);
       }
     }
   };
@@ -169,9 +174,13 @@ function STechStack(props) {
       url: "https://scala-lang.org/",
       isOpenSource: false,
     },
-    { name: "Dart", cost: 0.0, type: "Monthly", url: "https://dart.dev/",
-    isOpenSource: false,
-  },
+    {
+      name: "Dart",
+      cost: 0.0,
+      type: "Monthly",
+      url: "https://dart.dev/",
+      isOpenSource: false,
+    },
     {
       name: "Elixir",
       cost: 0.0,
@@ -193,12 +202,20 @@ function STechStack(props) {
       url: "https://clojure.org/",
       isOpenSource: false,
     },
-    { name: "Elm", cost: 0.0, type: "Monthly", url: "https://elm-lang.org/",
-    isOpenSource: false,
-  },
-    { name: "F#", cost: 0.0, type: "Monthly", url: "https://fsharp.org/",
-    isOpenSource: false,
-  },
+    {
+      name: "Elm",
+      cost: 0.0,
+      type: "Monthly",
+      url: "https://elm-lang.org/",
+      isOpenSource: false,
+    },
+    {
+      name: "F#",
+      cost: 0.0,
+      type: "Monthly",
+      url: "https://fsharp.org/",
+      isOpenSource: false,
+    },
   ];
 
   useEffect(() => {
@@ -246,7 +263,7 @@ function STechStack(props) {
                       arrowClassName="popover-arrow"
                     >
                       <div
-                        className="!opacity-100 bg-white w-[25em] rounded-xl p-3"
+                        className="!opacity-100 bg-white w-[25em] nun rounded-xl p-3 nun "
                         onClick={() => setIsPopoverOpen(!isPopoverOpen)}
                       >
                         What infrastructure does your application need?
@@ -254,7 +271,7 @@ function STechStack(props) {
                         tough. It&apos;s deeply personal, given what you are
                         talented in, yet it is also objective, what
                         infrastructure provider allows your users to benefit
-                        most? PLEASE rewrite this its bad lol
+                        most?
                       </div>
                     </ArrowContainer>
                   )}
@@ -298,7 +315,7 @@ function STechStack(props) {
                       <FaHeart className="text-t-pd" />
                       Faves
                     </button> */}
-                    {/* <button
+                  {/* <button
                     className="w-[5em] h-[3em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-clear-bd3 md:hover:shadow-xl m-1 drop-shadow-xl "
                     onClick={() => props.goToStep(6)}
                   >
@@ -310,8 +327,8 @@ function STechStack(props) {
                     className={
                       "w-[12em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
                       (selected === "Languages"
-                      ? " border-4 border-blue-700 text-white bg-blue-500 "
-                      : "bg-blue-300 text-black")
+                        ? " border-4 border-blue-700 text-white bg-blue-500 "
+                        : "bg-blue-300 text-black")
                     }
                     onClick={() => {
                       if (selected !== "Languages") {
@@ -328,8 +345,8 @@ function STechStack(props) {
                     className={
                       "w-[12em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
                       (selected === "Dev Tools"
-                      ? " border-4 border-sky-700 text-white bg-sky-500 "
-                      : "bg-sky-300 text-black")
+                        ? " border-4 border-sky-700 text-white bg-sky-500 "
+                        : "bg-sky-300 text-black")
                     }
                     onClick={() => {
                       if (selected !== "Dev Tools") {
@@ -346,8 +363,8 @@ function STechStack(props) {
                     className={
                       "w-[12em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
                       (selected === "No/Low Code"
-                      ? " border-4 border-cyan-700 text-white bg-cyan-500 "
-                      : "bg-cyan-300 text-black")
+                        ? " border-4 border-cyan-700 text-white bg-cyan-500 "
+                        : "bg-cyan-300 text-black")
                     }
                     onClick={() => {
                       if (selected !== "No/Low Code") {
@@ -364,8 +381,8 @@ function STechStack(props) {
                     className={
                       "w-[12em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
                       (selected === "Authentication"
-                      ? " border-4 border-teal-700 text-white bg-teal-500 "
-                      : "bg-teal-300 text-black")
+                        ? " border-4 border-teal-700 text-white bg-teal-500 "
+                        : "bg-teal-300 text-black")
                     }
                     onClick={() => {
                       if (selected !== "Authentication") {
@@ -378,13 +395,13 @@ function STechStack(props) {
                     <FaUser />
                     Authentication
                   </button>
-                  
+
                   <button
                     className={
                       "w-[12em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
                       (selected === "UI Framework"
                         ? " border-4 border-green-700 text-white bg-green-500 "
-                      : "bg-green-300 text-black")
+                        : "bg-green-300 text-black")
                     }
                     onClick={() => {
                       if (selected !== "UI Framework") {
@@ -401,8 +418,8 @@ function STechStack(props) {
                     className={
                       "w-[12em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
                       (selected === "UI Component Library"
-                      ? " border-4 border-lime-700 !text-white bg-lime-500 "
-                      : "bg-lime-300 !text-black")
+                        ? " border-4 border-lime-700 !text-white bg-lime-500 "
+                        : "bg-lime-300 !text-black")
                     }
                     onClick={() => {
                       if (selected !== "UI Component Library") {
@@ -413,16 +430,23 @@ function STechStack(props) {
                     }}
                   >
                     <FaPalette />
-                    <p className={"m-0 fre text-sm " +  (selected === "UI Component Library"
-                      ? " !text-white "
-                      : "!text-black")}>UI Component Library</p>
+                    <p
+                      className={
+                        "m-0 fre text-sm " +
+                        (selected === "UI Component Library"
+                          ? " !text-white "
+                          : "!text-black")
+                      }
+                    >
+                      UI Component Library
+                    </p>
                   </button>
                   <button
                     className={
                       "w-[12em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
                       (selected === "CSS Framework"
-                       ? " border-4 border-yellow-700 text-white bg-yellow-500 "
-                      : "bg-yellow-300 text-black")
+                        ? " border-4 border-yellow-700 text-white bg-yellow-500 "
+                        : "bg-yellow-300 text-black")
                     }
                     onClick={() => {
                       if (selected !== "CSS Framework") {
@@ -439,8 +463,8 @@ function STechStack(props) {
                     className={
                       "w-[12em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
                       (selected === "Data"
-                       ? " border-4 border-amber-700 text-white bg-amber-500 "
-                      : "bg-amber-300 text-black")
+                        ? " border-4 border-amber-700 text-white bg-amber-500 "
+                        : "bg-amber-300 text-black")
                     }
                     onClick={() => {
                       if (selected !== "Data") {
@@ -457,8 +481,8 @@ function STechStack(props) {
                     className={
                       "w-[12em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
                       (selected === "Backend Framework"
-                         ? " border-4 border-orange-700 text-white bg-orange-500 "
-                      : "bg-orange-300 text-black")
+                        ? " border-4 border-orange-700 text-white bg-orange-500 "
+                        : "bg-orange-300 text-black")
                     }
                     onClick={() => {
                       if (selected !== "Backend Framework") {
@@ -470,16 +494,23 @@ function STechStack(props) {
                   >
                     <AiOutlineCluster />
 
-                    <p className={"m-0 fre text-sm " +  (selected === "Backend Framework"
-                      ? " !text-white "
-                      : "!text-black")}>Backend Framework</p>
+                    <p
+                      className={
+                        "m-0 fre text-sm " +
+                        (selected === "Backend Framework"
+                          ? " !text-white "
+                          : "!text-black")
+                      }
+                    >
+                      Backend Framework
+                    </p>
                   </button>
                   <button
                     className={
                       "w-[12em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
                       (selected === "Web3/Blockchain"
-                      ? " border-4 border-red-700 bg-red-500 text-white"
-                      : "bg-red-300 text-black")
+                        ? " border-4 border-red-700 bg-red-500 text-white"
+                        : "bg-red-300 text-black")
                     }
                     onClick={() => {
                       if (selected !== "Web3/Blockchain") {
@@ -492,13 +523,13 @@ function STechStack(props) {
                     <FaEthereum />
                     Web3/Blockchain
                   </button>
-                 
+
                   <button
                     className={
                       "w-[12em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
                       (selected === "Hosting"
-                      ? " border-4 border-pink-700 text-white bg-pink-500 "
-                      : "bg-pink-300 text-black")
+                        ? " border-4 border-pink-700 text-white bg-pink-500 "
+                        : "bg-pink-300 text-black")
                     }
                     onClick={() => {
                       if (selected !== "Hosting") {
@@ -511,13 +542,13 @@ function STechStack(props) {
                     <FaServer />
                     Hosting
                   </button>
-                
+
                   <button
                     className={
                       "w-[12em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
                       (selected === "Version Control"
-                      ? " border-4 border-fuchsia-700 text-white bg-fuchsia-500 "
-                      : "bg-fuchsia-300 text-black")
+                        ? " border-4 border-fuchsia-700 text-white bg-fuchsia-500 "
+                        : "bg-fuchsia-300 text-black")
                     }
                     onClick={() => {
                       if (selected !== "Version Control") {
@@ -530,15 +561,13 @@ function STechStack(props) {
                     <FaGitAlt />
                     Version Control
                   </button>
-                  
-                 
-                  
+
                   <button
                     className={
                       "w-[12em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
                       (selected === "DevOps"
-                      ? " border-4 border-purple-700 text-white bg-purple-500 "
-                      : "bg-purple-300 text-black")
+                        ? " border-4 border-purple-700 text-white bg-purple-500 "
+                        : "bg-purple-300 text-black")
                     }
                     onClick={() => {
                       if (selected !== "DevOps") {
@@ -555,8 +584,8 @@ function STechStack(props) {
                     className={
                       "w-[12em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
                       (selected === "Other"
-                      ? " border-4 border-indigo-700 text-white bg-indigo-500 "
-                      : "bg-indigo-300 text-black")
+                        ? " border-4 border-indigo-700 text-white bg-indigo-500 "
+                        : "bg-indigo-300 text-black")
                     }
                     onClick={() => {
                       if (selected !== "Other") {
@@ -587,7 +616,7 @@ function STechStack(props) {
                               cost={data.cost}
                               url={data.url}
                               type={data.type}
-                    isOpenSource={data.isOpenSource}
+                              isOpenSource={data.isOpenSource}
                               update={update}
                               deleteItem={deleteItem}
                               color=" bg-blue-200 "
@@ -604,7 +633,7 @@ function STechStack(props) {
                         </div>
                       </>
                     )}
-{selected === "Dev Tools" && (
+                    {selected === "Dev Tools" && (
                       <>
                         <div className="flex flex-wrap content-start justify-center gap-4">
                           {languages.map((data, index) => (
@@ -614,7 +643,7 @@ function STechStack(props) {
                               cost={data.cost}
                               url={data.url}
                               type={data.type}
-                    isOpenSource={data.isOpenSource}
+                              isOpenSource={data.isOpenSource}
                               update={update}
                               deleteItem={deleteItem}
                               color=" bg-sky-200 "
@@ -630,7 +659,8 @@ function STechStack(props) {
                           ))}
                         </div>
                       </>
-                    )}{selected === "No/Low Code" && (
+                    )}
+                    {selected === "No/Low Code" && (
                       <>
                         <div className="flex flex-wrap content-start justify-center gap-4">
                           {languages.map((data, index) => (
@@ -640,7 +670,7 @@ function STechStack(props) {
                               cost={data.cost}
                               url={data.url}
                               type={data.type}
-                    isOpenSource={data.isOpenSource}
+                              isOpenSource={data.isOpenSource}
                               update={update}
                               deleteItem={deleteItem}
                               color=" bg-teal-200 "
@@ -656,7 +686,8 @@ function STechStack(props) {
                           ))}
                         </div>
                       </>
-                    )}{selected === "Authentication" && (
+                    )}
+                    {selected === "Authentication" && (
                       <>
                         <div className="flex flex-wrap content-start justify-center gap-4">
                           {languages.map((data, index) => (
@@ -666,7 +697,7 @@ function STechStack(props) {
                               cost={data.cost}
                               url={data.url}
                               type={data.type}
-                    isOpenSource={data.isOpenSource}
+                              isOpenSource={data.isOpenSource}
                               update={update}
                               deleteItem={deleteItem}
                               color=" bg-teal-200 "
@@ -682,7 +713,8 @@ function STechStack(props) {
                           ))}
                         </div>
                       </>
-                    )}{selected === "UI Framework" && (
+                    )}
+                    {selected === "UI Framework" && (
                       <>
                         <div className="flex flex-wrap content-start justify-center gap-4">
                           {languages.map((data, index) => (
@@ -692,7 +724,7 @@ function STechStack(props) {
                               cost={data.cost}
                               url={data.url}
                               type={data.type}
-                    isOpenSource={data.isOpenSource}
+                              isOpenSource={data.isOpenSource}
                               update={update}
                               deleteItem={deleteItem}
                               color=" bg-green-200 "
@@ -708,7 +740,8 @@ function STechStack(props) {
                           ))}
                         </div>
                       </>
-                    )}{selected === "UI Component Library" && (
+                    )}
+                    {selected === "UI Component Library" && (
                       <>
                         <div className="flex flex-wrap content-start justify-center gap-4">
                           {languages.map((data, index) => (
@@ -718,7 +751,7 @@ function STechStack(props) {
                               cost={data.cost}
                               url={data.url}
                               type={data.type}
-                    isOpenSource={data.isOpenSource}
+                              isOpenSource={data.isOpenSource}
                               update={update}
                               deleteItem={deleteItem}
                               color=" bg-lime-200 "
@@ -734,7 +767,8 @@ function STechStack(props) {
                           ))}
                         </div>
                       </>
-                    )}{selected === "CSS Framework" && (
+                    )}
+                    {selected === "CSS Framework" && (
                       <>
                         <div className="flex flex-wrap content-start justify-center gap-4">
                           {languages.map((data, index) => (
@@ -744,7 +778,7 @@ function STechStack(props) {
                               cost={data.cost}
                               url={data.url}
                               type={data.type}
-                    isOpenSource={data.isOpenSource}
+                              isOpenSource={data.isOpenSource}
                               update={update}
                               deleteItem={deleteItem}
                               color=" bg-yellow-200 "
@@ -760,7 +794,8 @@ function STechStack(props) {
                           ))}
                         </div>
                       </>
-                    )}{selected === "Data" && (
+                    )}
+                    {selected === "Data" && (
                       <>
                         <div className="flex flex-wrap content-start justify-center gap-4">
                           {languages.map((data, index) => (
@@ -770,7 +805,7 @@ function STechStack(props) {
                               cost={data.cost}
                               url={data.url}
                               type={data.type}
-                    isOpenSource={data.isOpenSource}
+                              isOpenSource={data.isOpenSource}
                               update={update}
                               deleteItem={deleteItem}
                               color=" bg-amber-200 "
@@ -786,7 +821,8 @@ function STechStack(props) {
                           ))}
                         </div>
                       </>
-                    )}{selected === "Backend Framework" && (
+                    )}
+                    {selected === "Backend Framework" && (
                       <>
                         <div className="flex flex-wrap content-start justify-center gap-4">
                           {languages.map((data, index) => (
@@ -796,7 +832,7 @@ function STechStack(props) {
                               cost={data.cost}
                               url={data.url}
                               type={data.type}
-                    isOpenSource={data.isOpenSource}
+                              isOpenSource={data.isOpenSource}
                               update={update}
                               deleteItem={deleteItem}
                               color=" bg-orange-200 "
@@ -812,7 +848,8 @@ function STechStack(props) {
                           ))}
                         </div>
                       </>
-                    )}{selected === "Web3/Blockchain" && (
+                    )}
+                    {selected === "Web3/Blockchain" && (
                       <>
                         <div className="flex flex-wrap content-start justify-center gap-4">
                           {languages.map((data, index) => (
@@ -822,7 +859,7 @@ function STechStack(props) {
                               cost={data.cost}
                               url={data.url}
                               type={data.type}
-                    isOpenSource={data.isOpenSource}
+                              isOpenSource={data.isOpenSource}
                               update={update}
                               deleteItem={deleteItem}
                               color=" bg-red-200 "
@@ -838,7 +875,8 @@ function STechStack(props) {
                           ))}
                         </div>
                       </>
-                    )}{selected === "Hosting" && (
+                    )}
+                    {selected === "Hosting" && (
                       <>
                         <div className="flex flex-wrap content-start justify-center gap-4">
                           {languages.map((data, index) => (
@@ -848,7 +886,7 @@ function STechStack(props) {
                               cost={data.cost}
                               url={data.url}
                               type={data.type}
-                    isOpenSource={data.isOpenSource}
+                              isOpenSource={data.isOpenSource}
                               update={update}
                               deleteItem={deleteItem}
                               color=" bg-pink-200 "
@@ -864,7 +902,8 @@ function STechStack(props) {
                           ))}
                         </div>
                       </>
-                    )}{selected === "Version Control" && (
+                    )}
+                    {selected === "Version Control" && (
                       <>
                         <div className="flex flex-wrap content-start justify-center gap-4">
                           {languages.map((data, index) => (
@@ -874,7 +913,7 @@ function STechStack(props) {
                               cost={data.cost}
                               url={data.url}
                               type={data.type}
-                    isOpenSource={data.isOpenSource}
+                              isOpenSource={data.isOpenSource}
                               update={update}
                               deleteItem={deleteItem}
                               color=" bg-fuchsia-200 "
@@ -890,7 +929,8 @@ function STechStack(props) {
                           ))}
                         </div>
                       </>
-                    )}{selected === "DevOps" && (
+                    )}
+                    {selected === "DevOps" && (
                       <>
                         <div className="flex flex-wrap content-start justify-center gap-4">
                           {languages.map((data, index) => (
@@ -900,7 +940,7 @@ function STechStack(props) {
                               cost={data.cost}
                               url={data.url}
                               type={data.type}
-                    isOpenSource={data.isOpenSource}
+                              isOpenSource={data.isOpenSource}
                               update={update}
                               deleteItem={deleteItem}
                               color=" bg-purple-200 "
@@ -916,7 +956,8 @@ function STechStack(props) {
                           ))}
                         </div>
                       </>
-                    )}{selected === "Other" && (
+                    )}
+                    {selected === "Other" && (
                       <>
                         <div className="flex flex-wrap content-start justify-center gap-4">
                           {languages.map((data, index) => (
@@ -926,7 +967,7 @@ function STechStack(props) {
                               cost={data.cost}
                               url={data.url}
                               type={data.type}
-                    isOpenSource={data.isOpenSource}
+                              isOpenSource={data.isOpenSource}
                               update={update}
                               deleteItem={deleteItem}
                               color=" bg-indigo-200 "
@@ -943,10 +984,6 @@ function STechStack(props) {
                         </div>
                       </>
                     )}
-
-
-
-
                   </div>
                   <div className="flex flex-col items-center normal-box-soft ">
                     <p className="mb-1 ">Add custom:</p>
@@ -1026,18 +1063,18 @@ function STechStack(props) {
                       </button>
                     </div>
                     <div className="flex my-1 rounded-xl ">
-          <p>
-            {"Are we missing a dev tool or platform you want?"}{" "}
-          </p>
-          <a
-            className="ml-2 underline text-blues-300"
-            href="https://tally.so/r/3Neg0m"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Let us know!
-          </a>
-        </div>
+                      <p>
+                        {"Are we missing a dev tool or platform you want?"}{" "}
+                      </p>
+                      <a
+                        className="ml-2 underline text-blues-300"
+                        href="https://tally.so/r/3Neg0m"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        Let us know!
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1151,7 +1188,19 @@ function ListItem({ name, deleteIndex, cost, url, type }) {
   );
 }
 
-function ItemChip({ name, color, bColor, iconColor, update, cost, url, type, fromColor, fromLightColor, viaColor }) {
+function ItemChip({
+  name,
+  color,
+  bColor,
+  iconColor,
+  update,
+  cost,
+  url,
+  type,
+  fromColor,
+  fromLightColor,
+  viaColor,
+}) {
   const [clicked, setClicked] = useState(false);
 
   console.log(color);
@@ -1191,7 +1240,22 @@ function ItemChip({ name, color, bColor, iconColor, update, cost, url, type, fro
   );
 }
 
-function ItemCard({ name, color, bColor, iconColor, update, deleteItem, cost, url, type, isOpenSource, fromColor, fromLightColor, viaColor, toColor }) {
+function ItemCard({
+  name,
+  color,
+  bColor,
+  iconColor,
+  update,
+  deleteItem,
+  cost,
+  url,
+  type,
+  isOpenSource,
+  fromColor,
+  fromLightColor,
+  viaColor,
+  toColor,
+}) {
   const [clicked, setClicked] = useState(false);
   const [heartClicked, setHeartClicked] = useState(false);
 
@@ -1217,18 +1281,29 @@ function ItemCard({ name, color, bColor, iconColor, update, deleteItem, cost, ur
       className={
         "group flex gap-1 items-center rounded-xl !p-0      whitespace-nowrap transition   select-none cursor-pointer h-[5.5em] min-w-[5em]    " +
         (clicked
-          ? (" bg-gradient-to-b  via-sky-500  to-sky-700   border-4 " + fromColor + viaColor + toColor + bColor)
-          : ("bg-gradient-to-t border-2 from-blues-200 via-white/20  to-white/70 dark:to-[hsla(200,0%,5%,0.35)] "+ fromLightColor) +
+          ? " bg-gradient-to-b  via-sky-500  to-sky-700   border-4 " +
+            fromColor +
+            viaColor +
+            toColor +
+            bColor
+          : "bg-gradient-to-t border-2 from-blues-200 via-white/20  to-white/70 dark:to-[hsla(200,0%,5%,0.35)] " +
+            fromLightColor +
             " " +
             bColor)
       }
     >
-      
       <div className="relative flex flex-col items-center justify-center w-full h-full">
-        
-      {clicked && <span className={"absolute flex items-center justify-center w-6 h-6 leading-none text-center rounded-full  -top-2 -left-2 " + color + iconColor}>
-                      <FaTimes />
-                    </span>}
+        {clicked && (
+          <span
+            className={
+              "absolute flex items-center justify-center w-6 h-6 leading-none text-center rounded-full  -top-2 -left-2 " +
+              color +
+              iconColor
+            }
+          >
+            <FaTimes />
+          </span>
+        )}
         {/* <div className="w-full h-[70%] bg-white/40  relative"> */}
         {/* <img
             src={"https://picsum.photos/82/52"}
@@ -1250,10 +1325,16 @@ function ItemCard({ name, color, bColor, iconColor, update, deleteItem, cost, ur
         {/* </div> */}
 
         <div className="relative w-full h-full">
-        {isOpenSource && <FaGlobeAmericas  className={"absolute bottom-1 right-1 " +(clicked ? " text-sky-200" : " text-sky-700")}/>}
+          {isOpenSource && (
+            <FaGlobeAmericas
+              className={
+                "absolute bottom-1 right-1 " +
+                (clicked ? " text-sky-200" : " text-sky-700")
+              }
+            />
+          )}
 
-       
-        {/* <FaGlobeAmericas/> */}
+          {/* <FaGlobeAmericas/> */}
           <div className="w-full h-8 px-5 ">
             <p
               className={

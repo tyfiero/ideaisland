@@ -106,7 +106,7 @@ function PStartMenu(props) {
                     arrowClassName="popover-arrow"
                   >
                     <div
-                      className="!opacity-100 bg-white w-[25em] rounded-xl p-5"
+                      className="!opacity-100 bg-white w-[25em] nun rounded-xl p-5"
                       onClick={() => setIsPopoverOpen(!isPopoverOpen)}
                     >
                       The problem section is where you will identify and
@@ -175,7 +175,7 @@ function PStartMenu(props) {
                       id: null,
                       what: null,
                       why: null,
-                      whyOptions: null,
+                      whyOptions: [],
                       who: null,
                       productType: null,
                       pq1: null,

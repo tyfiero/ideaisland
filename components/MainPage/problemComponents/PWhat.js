@@ -91,7 +91,7 @@ function PWhat(props) {
                     arrowClassName="popover-arrow"
                   >
                     <div
-                      className="!opacity-100 bg-white w-[25em] rounded-xl p-3"
+                      className="!opacity-100 bg-white w-[25em] nun rounded-xl p-3"
                       onClick={() => setIsPopoverOpen(!isPopoverOpen)}
                     >
                       This helps to frame what kinds of solutions would work for

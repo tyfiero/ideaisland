@@ -1,20 +1,16 @@
-
+import AuthCheck from "../../components/Authentication/AuthCheck";
 import ProblemWizard from "../../components/MainPage/problemComponents/ProblemWizard";
-import ToolBar from "../../components/MainPage/problemComponents/ToolBar"
-
-
-
+import ToolBar from "../../components/MainPage/problemComponents/ToolBar";
 
 const ProblemPageIndex = (props) => {
-  return <><ProblemWizard /></>;
-
+  return (
+    <>
+        <ProblemWizard />
+    </>
+  );
 };
 
 export default ProblemPageIndex;
-
-
-
-
 
 //Old server side props using cookies:
 //export const getServerSideProps = async (ctx) => {
@@ -35,11 +31,11 @@ export default ProblemPageIndex;
 //     // or token verification failed
 //     // either way: redirect to the login page
 
-//      
-     
+//
+
 //     // ctx.res.writeHead(302, { Location: '/login' });
 //     // ctx.res.end();
-    
+
 //     // The props returned here don't matter because we've
 //     // already redirected the user.
 //     return { props: {} };

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { XIcon } from "@heroicons/react/outline";
-import classNames from "../classnames";
-import useStore from "../StateManagement";
+// import classNames from "../classnames";
+// import useStore from "../StateManagement";
 import CookieTable from "./CookieTable";
 
 function CookieDetails({ setShowDetails, isEmbedded = false }) {
@@ -24,7 +24,7 @@ function CookieDetails({ setShowDetails, isEmbedded = false }) {
           : "px-2 sm:px-4 fixed bottom-0 inset-x-0 pb-4 sm:pb-5 z-40"
       )}
     >
-      <div className="p-3 rounded-lg bg-white border shadow-lg sm:p-4">
+      <div className="p-3 bg-white border rounded-lg shadow-lg sm:p-4">
         <div className="grid sm:grid-cols-4">
           {/* Details navigation */}
           <div className="space-y-1 sm:col-span-1 mt-9 sm:mt-0">
@@ -68,10 +68,10 @@ function CookieDetails({ setShowDetails, isEmbedded = false }) {
             onClick={() => {
               setShowDetails(false);
             }}
-            className=" flex p-2 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white"
+            className="flex p-2 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white"
           >
             <span className="sr-only">Dismiss</span>
-            <XIcon className="h-6 w-6 text-gray-700" aria-hidden="true" />
+            <XIcon className="w-6 h-6 text-gray-700" aria-hidden="true" />
           </button>
         </div>
       )}

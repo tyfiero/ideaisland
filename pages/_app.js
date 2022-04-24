@@ -19,6 +19,7 @@ import Head from "../components/Header";
 import Header from "../components/Header";
 import { wrapper } from "../redux/store";
 import { AuthProvider } from "../lib/firebaseContext";
+import AuthCheck from "../components/Authentication/AuthCheck";
 // import LogRocket from "logrocket";
 // import setupLogRocketReact from "logrocket-react";
 // import { useStore } from 'react-redux';
@@ -62,8 +63,12 @@ function MyApp({ Component, pageProps }) {
         <UserContext.Provider value={userData}>
           {/* <AuthProvider> */}
             <Layout>
+      <AuthCheck>
+
               <FullLoader show={loading} />
               <Component {...pageProps} />
+      </AuthCheck>
+
             </Layout>
           {/* </AuthProvider> */}
         </UserContext.Provider>

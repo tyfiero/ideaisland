@@ -126,6 +126,8 @@ function CreateNewProblem(props) {
   const [uidValue, setUidValue] = useState("default");
 
   const [contentWhy, setContentWhy] = useState("");
+  const [contentWhyOptions, setContentWhyOptions] = useState([]);
+
   const [contentWho, setContentWho] = useState("");
   const [contentWhat, setContentWhat] = useState("");
 
@@ -213,6 +215,7 @@ function CreateNewProblem(props) {
       setContentPq1("");
       setContentPq2("");
       setContentPq3("");
+      setContentWhyOptions([]);
       setProblemID("");
       setImgUrl("");
       setPosition(0);
@@ -235,6 +238,7 @@ function CreateNewProblem(props) {
       //   console.log(title + "2");
 
       setContentWhy(currentDocRedux.why);
+      setContentWhyOptions(currentDocRedux.whyOptions)
       setContentWho(currentDocRedux.who);
       setContentWhat(currentDocRedux.what);
       setContentPq1(currentDocRedux.pq1);
@@ -275,6 +279,7 @@ function CreateNewProblem(props) {
         dispatch(unsavedChangesAction(false));
         setTitle("");
         setContentWhy("");
+        setContentWhyOptions([]);
         setContentWho("");
         setContentWhat("");
         setContentPq1("");
@@ -302,6 +307,7 @@ function CreateNewProblem(props) {
       await updateDoc(ref, {
         title: title,
         why: contentWhy,
+        whyOptions: contentWhyOptions,
         what: contentWhat,
         who: contentWho,
         pq1: contentPq1,
@@ -346,12 +352,12 @@ function CreateNewProblem(props) {
       username: username,
       title: title,
       why: contentWhy,
+      whyOptions: contentWhyOptions,
       what: contentWhat,
       who: contentWho,
       pq1: contentPq1,
       pq2: contentPq2,
       pq3: contentPq3,
-      whyOptions: null,
       productType: null,
       createdAt: serverTimestamp(),
       updatedAt: serverTimestamp(),
@@ -374,6 +380,7 @@ function CreateNewProblem(props) {
 
     setTitle("");
     setContentWhy("");
+    setContentWhyOptions([]);
     setContentWho("");
     setContentWhat("");
     setContentPq1("");
@@ -391,7 +398,7 @@ function CreateNewProblem(props) {
     // className="my-8 w-[62em]">
     <div className="w-full">
       {/* <div className="flex items-center justify-center">
-        <h1 className=" text-3xl text-t-bd dark:text-blues-100 ">My Ideas & Notes</h1>
+        <h1 className="text-3xl text-t-bd dark:text-blues-100">My Ideas & Notes</h1>
       </div>  */}
       <div className="flex flex-col items-center w-[100%] normal-box-soft !rounded-xl !bg-white/60">
         <FullLoader show={loading} />
@@ -463,6 +470,16 @@ function CreateNewProblem(props) {
                   <div className="p-5 normal-box-soft !rounded-xl min-w-[15em]  !bg-clear-bl2">
                     <h3 className="heading"> Why:</h3>
                     {/* <hr className="border-t-bd"></hr> */}
+                  {contentWhyOptions.length >0 &&   <div className="w-full glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   !bg-white/90 flex flex-wrap gap-1 mb-3 justify-center">
+                    {contentWhyOptions?.map((data, index) => (
+                  <ListItem
+                    name={data}
+                    key={index}
+
+                  />
+                ))}
+    </div>}
+
                     <div className="w-full glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   !bg-white/90">
                       {editModeRedux === "edit" || editModeRedux === "new" ? (
                         <TextareaAutosize
@@ -584,6 +601,20 @@ function CreateNewProblem(props) {
           </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+
+
+function ListItem({ name }) {
+  return (
+    <div className="flex items-center justify-between px-2 py-1 bg-clear-bl2 w-fit rounded-xl">
+      <p>{name}</p>
+      {/* <FaTimes
+        className="transition cursor-pointer text-t-pm md:hover:scale-125 md:active:scale-110"
+        onClick={() => deleteIndex(name)}
+      /> */}
     </div>
   );
 }

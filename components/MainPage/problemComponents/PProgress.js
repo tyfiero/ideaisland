@@ -83,7 +83,7 @@ function ProblemProgressPage(props) {
       const data = {
         title: contentTitle,
         productType: pFormRedux.productType || null,
-        whyOptions: pFormRedux.whyOptions || null,
+        whyOptions: pFormRedux.whyOptions || [],
         why: contentWhy,
         what: contentWhat,
         who: contentWho,
@@ -119,7 +119,7 @@ function ProblemProgressPage(props) {
       >
         <div className="w-full max-w-[95%]  space-y-8   normal-box-soft p-3">
           <div className="flex flex-col items-center justify-center gap-1 p-0 problem-page fade-effect-quick">
-            <h1 className=" text-3xl text-t-bd dark:text-blues-100 ">
+            <h1 className="text-3xl text-t-bd dark:text-blues-100">
               Progress so far:
             </h1>
             <div className="flex flex-col w-full gap-4">
@@ -160,7 +160,7 @@ function ProblemProgressPage(props) {
               </div>
 
               <div className="flex flex-wrap justify-center gap-4">
-                <div className="p-5 normal-box-soft !rounded-xl min-w-[25em] group !bg-clear-bl2">
+                <div className="p-5 normal-box-soft !rounded-xl min-w-[25em] max-w-[40em] group !bg-clear-bl2">
                   <button
                     className="absolute flex items-center gap-1 p-1 px-2 text-white transition duration-500 opacity-0 bg-t-bl rounded-2xl group-hover:opacity-100 hover:scale-110 active:scale-95"
                     onClick={() => setEditWhy(!editWhy)}
@@ -179,6 +179,15 @@ function ProblemProgressPage(props) {
                   </button>
                   <h3 className="heading"> Why:</h3>
                   {/* <hr className="border-t-bd"></hr> */}
+                  <div className="w-full glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   !bg-white/90 flex flex-wrap gap-1 mb-3 justify-center">
+                    {pFormRedux.whyOptions?.map((data, index) => (
+                  <ListItem
+                    name={data}
+                    key={index}
+
+                  />
+                ))}
+                  </div>
                   <div className="w-full glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   !bg-white/90">
                     {editWhy ? (
                       <TextareaAutosize
@@ -405,3 +414,17 @@ function ProblemProgressPage(props) {
   );
 }
 export default ProblemProgressPage;
+
+
+
+function ListItem({ name }) {
+  return (
+    <div className="flex items-center justify-between px-2 py-1 bg-clear-bl2 w-fit rounded-xl">
+      <p>{name}</p>
+      {/* <FaTimes
+        className="transition cursor-pointer text-t-pm md:hover:scale-125 md:active:scale-110"
+        onClick={() => deleteIndex(name)}
+      /> */}
+    </div>
+  );
+}

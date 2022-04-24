@@ -54,7 +54,7 @@ function SFilter(props) {
                   arrowClassName="popover-arrow"
                 >
                   <div
-                    className="!opacity-100 bg-white w-[25em] rounded-xl p-3"
+                    className="!opacity-100 bg-white w-[25em] nun rounded-xl p-3"
                     onClick={() => setIsPopoverOpen(!isPopoverOpen)}
                   >
                     You can&apos;t bring all of your ideas to market. Selecting

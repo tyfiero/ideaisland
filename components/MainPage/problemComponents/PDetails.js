@@ -132,7 +132,7 @@ function PDetails(props) {
         uid,
         username: userNameRedux,
         productType: pFormRedux.productType || null,
-        whyOptions: pFormRedux.whyOptions || null,
+        whyOptions: pFormRedux.whyOptions || [],
         why: pFormRedux.why || null,
         what: pFormRedux.what || null,
         who: pFormRedux.who || null,
@@ -219,7 +219,7 @@ function PDetails(props) {
                     arrowClassName="popover-arrow"
                   >
                     <div
-                      className="!opacity-100 bg-white w-[25em] rounded-xl p-3"
+                      className="!opacity-100 bg-white w-[25em] nun rounded-xl p-3"
                       onClick={() => setIsPopoverOpen(!isPopoverOpen)}
                     >
                       Finding the root cause of your problem helps to clarify
@@ -247,7 +247,7 @@ function PDetails(props) {
                   onClick={() => setIsPopoverOpen(!isPopoverOpen)}
                   className="w-5"
                 >
-                  <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 dark:text-blues-100  md:hover:scale-110" />
+                  <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 dark:text-blues-100 md:hover:scale-110" />
                 </div>
               </Popover>
             </div>
