@@ -7,7 +7,8 @@ import { UserContext } from "../../../../lib/context";
 import { FaPastafarianism, FaPlus, FaRobot, FaSeedling } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { auth } from "../../../../lib/firebase";
-
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { getFirestore } from "firebase/firestore";
 import Loader from "../../../Layout/Loader";
 // const stringSimilarity = require("string-similarity");
 // const fetch = require("node-fetch");
@@ -56,6 +57,7 @@ const GPTtool = ({ showButton }) => {
 
   const [responseRecieved, setResponseRecieved] = useState(false);
   const [responseRecievedGPTJ, setResponseRecievedGPTJ] = useState(false);
+  const [credits, setCredits] = useState(0);
 
   const { register, handleSubmit } = useForm({});
   const [aiResponse, setAiResponse] = useState("");
@@ -74,6 +76,55 @@ const GPTtool = ({ showButton }) => {
     width: "99%",
     borderRadius: "1rem",
   };
+
+useEffect(()=>{
+  getTokenAmount()
+},[])
+
+const deduct = async (values) => {
+  let uid;
+  if (user?.uid) {
+    uid = user?.uid;
+  } else if (userUIDRedux) {
+    uid = userUIDRedux;
+  } else if (auth.currentUser?.uid) {
+    uid = auth.currentUser?.uid;
+  } else {
+    uid = "1";
+    console.log("no uid available :(");
+  }
+  let newBalance = (credits - values).toFixed(1)
+  const ref = doc(getFirestore(), "users", uid);
+  const docSnap = await updateDoc(ref, {credits: newBalance});
+  setCredits(newBalance)
+  }
+
+
+
+  const getTokenAmount = async (values) => {
+    let uid;
+    if (user?.uid) {
+      uid = user?.uid;
+    } else if (userUIDRedux) {
+      uid = userUIDRedux;
+    } else if (auth.currentUser?.uid) {
+      uid = auth.currentUser?.uid;
+    } else {
+      uid = "1";
+      console.log("no uid available :(");
+    }
+    const ref = doc(getFirestore(), "users", uid);
+    const docSnap = await getDoc(ref)
+    console.log(docSnap)
+    if (docSnap.exists()) {
+      console.log("Document data:", docSnap.data());
+    setCredits(docSnap.data().credits)
+    } else {
+      // doc.data() will be undefined in this case
+      console.log("No such document!");
+    }
+    }
+
   //gpt3
   const onSubmitForm = async (values) => {
     let formData = values.input;
@@ -108,6 +159,7 @@ const GPTtool = ({ showButton }) => {
         setAiResponse(response.data.results);
         dispatch(gpt3OutputAction(aiResponse));
         setResponseRecieved(true);
+        deduct(1)
         setAiLoading(false);
 
         return response;
@@ -150,6 +202,7 @@ const GPTtool = ({ showButton }) => {
         // console.log(response.data.results);
         setAiResponseGPTJ(response.data.results);
         setResponseRecievedGPTJ(true);
+        deduct(0.2)
         setAiLoading(false);
         dispatch(gptJOutputAction(aiResponseGPTJ));
         return response;
@@ -198,6 +251,7 @@ const GPTtool = ({ showButton }) => {
         ></textarea> */}
       <div className="flex justify-start w-full">
         <p className="pt-1 text-left text-md text-t-pd">Input:</p>
+
       </div>
       <TextareaAutosize
         className="w-[99%] rounded-md nun"
@@ -250,9 +304,22 @@ const GPTtool = ({ showButton }) => {
                 console.log("Please wait for the first request to load");
               } else {
                 // setGPTJStatus(true);
-                setAiLoading(true);
-                onSubmitFormGptJ({ input: GPTJInput,
-                type: "new" });
+                if(credits >= 0.2){
+
+                  setAiLoading(true);
+                  onSubmitFormGptJ({ input: GPTJInput,
+                    type: "new" });
+                  }else{
+                    setResponseRecieved(false);
+                    setResponseRecievedGPTJ(false);
+                    setAiResponse("No credits remaining, you can purchase more or upgrade your plan in the billing menu.");
+                    dispatch(gptJOutputAction(aiResponse));
+                    setResponseRecieved(true);
+                  }
+
+
+                  
+               
               }
             }}
           >
@@ -267,7 +334,7 @@ const GPTtool = ({ showButton }) => {
               </>
             ) : (
               <>
-                <p className="pl-2 text-t-pd">Send to AI</p>
+               <div className="flex flex-col items-center mt-2 leading-3"><p className="pl-2 text-t-pd">Send to AI</p><p className="pl-2 text-xs text-slate-500">(0.2 Credits)</p></div> 
 
                 <BiSend
                   style={{ fontSize: "32px" }}
@@ -335,8 +402,17 @@ const GPTtool = ({ showButton }) => {
                 console.log("Please wait for the first request to load");
               } else {
                 // setGPT3Status(true);
+                if(credits >= 1){
+
                 setAiLoading(true);
                 onSubmitForm({ input: GPT3Input });
+                }else{
+                  setResponseRecieved(false);
+                  setResponseRecievedGPTJ(false);
+                  setAiResponse("No credits remaining, you can purchase more or upgrade your plan in the billing menu.");
+                  dispatch(gpt3OutputAction(aiResponse));
+                  setResponseRecieved(true);
+                }
               }
             }}
           >
@@ -351,7 +427,7 @@ const GPTtool = ({ showButton }) => {
               </>
             ) : (
               <>
-                <p className="pl-2 text-t-pd">Send to AI</p>
+                 <div className="flex flex-col items-center mt-2 leading-3"><p className="pl-2 text-t-pd">Send to AI</p><p className="pl-2 text-xs text-slate-500">(1 Credit)</p></div> 
 
                 <BiSend
                   style={{ fontSize: "32px" }}
@@ -432,6 +508,13 @@ const GPTtool = ({ showButton }) => {
         <>
           {" "}
           <div className="flex flex-col w-full ">
+
+          <div className="flex items-center w-full gap-2">
+            
+          <p className="pt-1 text-lg text-left text-t-pd">{credits}</p>
+        <p className="pt-1 text-xs text-left text-t-pd">Credits Remaining</p>
+          </div>
+
             {GPTJorGPT3 ? gptJContent : gpt3Content}
           </div>
           <div className="flex flex-col w-full ">

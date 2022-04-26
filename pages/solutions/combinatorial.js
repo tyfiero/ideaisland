@@ -1,12 +1,15 @@
 import { React, useState, useEffect } from "react";
 import {
   FaDice,
+  FaEdit,
   FaEquals,
+  FaExpandAlt,
   FaLightbulb,
   FaLongArrowAltRight,
   FaPlus,
   FaRandom,
   FaRobot,
+  FaTimes,
 } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import Card from "../../components/MainPage/solutionsComponents/CombinatorialComponents/Card";
@@ -21,6 +24,10 @@ import { GlobalHotKeys } from "react-hotkeys";
 import useKeyboardShortcut from "../../lib/useKeyboardShortcut";
 import { useRouter } from "next/router";
 import SentenceTool from "../../components/MainPage/solutionsComponents/sentenceTool";
+import { BsDice3 } from "react-icons/bs";
+import { TiLockClosedOutline, TiLockOpenOutline } from "react-icons/ti";
+import WordButton from "../../components/MainPage/solutionsComponents/CombinatorialComponents/WordButton";
+import ProblemStatement from "../../components/MainPage/solutionsComponents/CombinatorialComponents/ProblemStatement";
 
 
 
@@ -51,6 +58,9 @@ const CombinatorialPage = (props) => {
   const [cardNum, setCardNum] = useState(0);
   const [aiOpen, setAiOpen] = useState(true);
 
+
+
+
   const [randomImageOpen, setRandomImageOpen] = useState(false);
   const [notesOpen, setNotesOpen] = useState(true);
   useHotkeys("ctrl+n", (e) => {
@@ -74,6 +84,13 @@ const CombinatorialPage = (props) => {
     NOTES: noteHandler,
   };
 
+// useEffect(() => {
+ 
+//   setSplitTextArray(['How', 'might', 'we', '10X', 'brainstorming', 'for', 'tech', 'companies?'])
+// }, [])
+
+
+ 
   // const [card0Word, setCard0Word] = useState("");
   // const [card1Word, setCard1Word] = useState("Efficiency");
   // const [card2Word, setCard2Word] = useState("Virtual Reality");
@@ -171,6 +188,8 @@ setUpdate(!update);
     //     setUpdate(!update);
   };
 
+  // console.log(selectedWords)
+ 
   return (
     <div>
       <GlobalHotKeys keyMap={keyMap} handlers={handlers} />
@@ -207,7 +226,7 @@ setUpdate(!update);
          
         </div>
 
-        <div className="w-[98%] rounded-xl cards ring-2 p-5 mt-5 relative">
+        <div className="w-[98%] rounded-xl cards ring-0 p-5 mt-5 relative">
           <div className="flex w-[40em] p-2 gap-2 items-center justify-evenly text-center normal-box-soft absolute top-0 right-0">
             <button
               className={
@@ -289,7 +308,9 @@ setUpdate(!update);
               </p>
             </button>
           </div>
-          <div className="relative flex flex-col items-center w-full mt-5">
+
+          {/* Modular card implementation */}
+          {/* <div className="relative flex flex-col items-center w-full mt-5">
             <div className="max-w-[98%] rounded-xl cards  p-5 mt-5 relative group glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   !border-4 !border-t-bl">
               <div className="absolute top-0 right-0 flex justify-between gap-2 px-3 py-1 transition duration-500 border-b-2 border-l-2 opacity-0 rounded-bl-md border-t-bl group-hover:opacity-100 bg-clear-bl2">
                 <button
@@ -310,35 +331,7 @@ setUpdate(!update);
                 </button>
               </div>
               <div className="flex flex-wrap gap-2 ">
-                {/* <ModularCard card={cardNum} key={cardNum}/> */}
-                {/* <Card cardNum="0" key="0" /> */}
-
-                {/* {inputList[0] && (
-                  <ModularCard
-                    key={0}
-                    card={0}
-                    id={inputList[0].id}
-                    variant={inputList[0].type}
-                    text={inputList[0].text}
-                    listProp={inputList[0].list}
-                    deleteSegment={deleteSegment}
-                  />
-                )}
-
-                {inputList[1] && (<ModularCard key={1} card={1} id={inputList[1].id}
-                    variant={inputList[1].type}
-                    text={inputList[1].text}
-                    listProp={inputList[1].list}
-                    deleteSegment={deleteSegment}/>)} */}
-                {/* 
-                {inputList[0]?.type}
-
-                {inputList[1]?.type}
-                {inputList[2]?.type}
-                {inputList[3]?.type}
-                {inputList[4]?.type} */}
-
-                {/* {sArray.length + " list length"} */}
+              
 
                 {sArray.map((data, index) => {
                   return (
@@ -355,10 +348,51 @@ setUpdate(!update);
                     />
                   );
                 })}
-              </div>
+                
+              </div> */}
+
+
+
+
+              
+            {/* </div> */}
+            {/* <p className="my-24 mb-24 text-5xl text-t-pm">{splitText}</p> */}
+         
+          <div className="flex flex-wrap items-start justify-center w-full gap-2 m-10 h-[10em]"> 
+          
+{/* <p className="text-2xl text-t-pm">Problem Statement</p> */}
+        <ProblemStatement
+        randomizeAll={randomizeAll}
+        />
+         {/* <p className="text-2xl text-t-bl">Idea Inspiration</p>
+          <ProblemStatement
+        randomizeAll={randomizeAll}
+        />      
+             <p className="text-2xl text-t-bd">Idea Template</p>
+          <ProblemStatement
+        randomizeAll={randomizeAll}
+        />       */}
+
+                <p>idea: multiple views for this tool You can select problem statement, solution inspiration statement ( , of ), or the three random words, or two words on either side, and an icon in the middle which signifies what the two things should do to each other (scamper etc)</p>
+            <div className="flex items-center gap-3">
+         
+
+          <p className="text-xl">Home improvement</p>
+          <FaRandom className="text-3xl" />
+          <p className="text-xl">Sales Software</p>
+
+
             </div>
-            
-<div><SentenceTool /></div>
+            <div className="flex items-center gap-3">
+         
+
+         <p className="text-xl">Home improvement</p>
+         <FaExpandAlt className="text-3xl" />
+         <p className="text-xl">Sales Software</p>
+
+
+           </div>
+<div className="mt-24"><SentenceTool /></div>
             {randomImageOpen && (
               <div className="px-2 pb-5 glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   ring-4 ring-green-200 bg-t-bl/10 min-w-[42em] h-full !border-0 mb-5 bg-green-400/20">
                 <p className="text-lg text-left text-green-600">Random Cues</p>
@@ -394,3 +428,5 @@ setUpdate(!update);
 };
 
 export default CombinatorialPage;
+
+

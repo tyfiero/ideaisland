@@ -673,13 +673,13 @@ function STechStack(props) {
                               isOpenSource={data.isOpenSource}
                               update={update}
                               deleteItem={deleteItem}
-                              color=" bg-teal-200 "
-                              bColor=" border-teal-500 "
-                              iconColor=" text-teal-500 "
-                              fromColor=" from-teal-300 "
-                              fromLightColor=" from-teal-200 "
-                              viaColor=" via-teal-500 "
-                              toColor=" to-teal-700 "
+                              color=" bg-cyan-200 "
+                              bColor=" border-cyan-500 "
+                              iconColor=" text-cyan-500 "
+                              fromColor=" from-cyan-300 "
+                              fromLightColor=" from-cyan-200 "
+                              viaColor=" via-cyan-500 "
+                              toColor=" to-cyan-700 "
 
                               // deleteIndex={deleteIndex}
                             />
@@ -1279,14 +1279,14 @@ function ItemCard({
       }}
       // value={"BUTTON"}
       className={
-        "group flex gap-1 items-center rounded-xl !p-0      whitespace-nowrap transition   select-none cursor-pointer h-[5.5em] min-w-[5em]    " +
+        "group flex gap-1 items-center rounded-xl !p-0      whitespace-nowrap transition   select-none cursor-pointer h-[6em] min-w-[5em]    " +
         (clicked
-          ? " bg-gradient-to-b  via-sky-500  to-sky-700   border-4 " +
+          ? " bg-gradient-to-b    border-4 " +
             fromColor +
             viaColor +
             toColor +
             bColor
-          : "bg-gradient-to-t border-2 from-blues-200 via-white/20  to-white/70 dark:to-[hsla(200,0%,5%,0.35)] " +
+          : "bg-gradient-to-t border-2  via-white/20  to-white/70 dark:to-[hsla(200,0%,5%,0.35)] " +
             fromLightColor +
             " " +
             bColor)

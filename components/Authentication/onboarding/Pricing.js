@@ -1,16 +1,55 @@
-import React from "react";
+import {React, useContext, useState} from "react";
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 import Toggle from "react-toggle";
 import Script from "next/script";
 import dynamic from 'next/dynamic';
+import { UserContext } from "../../../lib/context";
+import { auth } from "../../../lib/firebase";
+import { useSelector, useDispatch } from "react-redux";
+import toast from "react-hot-toast";
+import {
+  doc,
+  getFirestore,
+  updateDoc,
+} from "firebase/firestore";
 // const PaddleScript = dynamic(() => import("react-quill"), {
 //     ssr: false,
 //   });
 let Paddle;
 function Pricing(props) {
-  const [annual, setAnnual] = React.useState(true);
+  const [annual, setAnnual] = useState(true);
+  const userUIDRedux = useSelector((state) => state.userUID);
+  const { username, user } = useContext(UserContext);
   
+  const updateIdea = async (amount, plan) => {
+    let uid;
 
+    if (user?.uid) {
+      uid = user?.uid;
+    } else if (userUIDRedux) {
+      uid = userUIDRedux;
+    } else if (auth.currentUser?.uid) {
+      uid = auth.currentUser?.uid;
+    } else {
+      uid = "default";
+      // console.log("no uid available :(");
+    }
+    const ref = doc(getFirestore(), "users", uid);
+
+
+    let data = {credits: amount, plan: plan}
+    await updateDoc(ref, data)
+    .then(() => {
+        toast.success(`New AI credit balance: ${amount}`);
+
+    })
+    .catch((error) => {
+      toast.error("Error occured, please contact support");
+      console.log("Update failed!" + error);
+    });
+
+
+    }
   
   return (
     <div>
@@ -33,7 +72,7 @@ function Pricing(props) {
            
           </div>}
 
-          <div className="flex items-center w-[13em] justify-center rounded-xl p-0  gap-3  h-10 mt-2 glass-box bg-white/50">
+          <div className="flex items-center w-[16em] justify-center rounded-xl p-2  gap-3  h-10 mt-2 glass-box bg-white/50">
             <p
               className={
                 annual
@@ -63,7 +102,7 @@ function Pricing(props) {
           </div>
           <div className="flex-wrap items-center justify-center w-full gap-8 my-0 sm:flex">
             {/* Basic */}
-            <div className=" px-4 py-4 mt-6 text-black transition duration-500 rounded-lg shadow-lg bg-white/60 md:hover:bg-clear-bl3 sm:w-1/2 md:w-1/2 lg:w-[23em] group min-h-[36em] flex-col flex justify-between">
+            <div className=" px-4 py-4 mt-6 text-black transition duration-500 rounded-lg shadow-lg bg-white/60 md:hover:bg-clear-bl3 sm:w-1/2 md:w-1/2 lg:w-[23em] group !min-h-[43em] flex-col flex justify-between">
               <div className="p-4">
                 <div className="flex justify-center">
                   <span className="inline-flex px-4 py-1 mb-0 text-3xl font-semibold leading-5 tracking-wide transition rounded-full group-hover:text-white blue-gradient-text">
@@ -116,7 +155,11 @@ function Pricing(props) {
           // Paddle.Checkout.open({
           //   product: (annual ? "767575" : "767574"),
           // });
-          props.goToStep(4)
+          
+              updateIdea(100,"Hobbyist")
+                if(props.onboard){
+                  props.goToStep(4)
+                }
         }}
       >
                   Select this plan
@@ -125,7 +168,7 @@ function Pricing(props) {
 
             {/* <!-- Popular --> */}
 
-            <div className="w-full px-4 py-4 mt-6 text-black transition duration-500 rounded-lg shadow-lg bg-white/60 md:hover:bg-clear-bl3 sm:w-1/2 md:w-1/2 lg:w-[23em] group min-h-[36em] flex-col flex justify-between">
+            <div className="w-full px-4 py-4 mt-6 text-black transition duration-500 rounded-lg shadow-lg bg-white/60 md:hover:bg-clear-bl3 sm:w-1/2 md:w-1/2 lg:w-[23em] group min-h-[43em] flex-col flex justify-between">
               <div className="p-4">
                 <div className="flex justify-center">
                   <span className="inline-flex px-4 py-1 text-3xl font-semibold leading-5 tracking-wide transition rounded-full group-hover:text-white blue-gradient-text">
@@ -172,7 +215,7 @@ function Pricing(props) {
                   <FaTimesCircle className="mr-4 text-xl text-t-pd" />
                     Innovation Consulting
                 </li>
-                <li className="flex items-center mb-3 ">
+                <li className="flex items-center mb-3 opacity-50">
                   <FaTimesCircle className="mr-4 text-xl text-t-pd" />
                     Personalized Idea Report
                 </li>
@@ -185,8 +228,10 @@ function Pricing(props) {
                 onClick={()=>{
 
                   
-          props.goToStep(4)
-
+                  updateIdea(250,"Innovator")
+                  if(props.onboard){
+                    props.goToStep(4)
+                  }
                 }}
               >
                 Select this plan
@@ -194,7 +239,7 @@ function Pricing(props) {
             </div>
 
             {/* <!-- premium --> */}
-            <div className="w-full px-4 py-4 mt-6 text-black transition duration-500 rounded-lg shadow-lg bg-white/60 md:hover:bg-clear-bl3 sm:w-1/2 md:w-1/2 lg:w-[23em] group min-h-[36em] flex-col flex justify-between">
+            <div className="w-full px-4 py-4 mt-6 text-black transition duration-500 rounded-lg shadow-lg bg-white/60 md:hover:bg-clear-bl3 sm:w-1/2 md:w-1/2 lg:w-[23em] group min-h-[43em] flex-col flex justify-between">
               <div className="p-4">
                 <div className="flex justify-center">
                   <span className="inline-flex px-4 py-1 text-3xl font-semibold leading-5 tracking-wide transition rounded-full group-hover:text-white blue-gradient-text">
@@ -253,7 +298,10 @@ function Pricing(props) {
                 onClick={()=>{
 
                   
+                  updateIdea(1000, "Pro")
+                if(props.onboard){
                   props.goToStep(4)
+                }
         
                         }}
               >
@@ -261,6 +309,7 @@ function Pricing(props) {
               </button>
             </div>
           </div>
+          {!props.onboard && <div className="mb-48"></div>  }
         </div>
       </div>
     </div>

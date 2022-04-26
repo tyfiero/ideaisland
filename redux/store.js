@@ -184,13 +184,13 @@ const makeStore = ({ isServer }) => {
 
     store.__persistor = persistStore(store); // This creates a persistor object & push that persisted object to .__persistor, so that we can avail the persistability feature
 
-    console.log(store.getState())
+    // console.log(store.getState())
     return store;
   }
 };
 
 // export an assembled wrapper
-export const wrapper = createWrapper(makeStore, { debug: true });
+export const wrapper = createWrapper(makeStore, { debug: false });
 
 // console.log(store.getState()
 // )

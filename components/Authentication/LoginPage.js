@@ -300,7 +300,7 @@ export default function LoginPage() {
 
     "
     >
-      <div className="relative w-full max-w-md p-10 space-y-8 shadow rounded-xl bg-blues-100 drop-shadow-xl ">
+      <div className="relative w-full max-w-md px-10 pb-10 space-y-8 shadow rounded-xl bg-blues-100 drop-shadow-xl ">
         {signInMethod !== 0 ? (
           <FaChevronLeft
             onClick={backArrow}
@@ -316,9 +316,11 @@ export default function LoginPage() {
               </button>}
         <div className="flex flex-col items-center">
           <img
-            src="/bulb.svg"
+            src="/ii-palm.png"
+            // src="/bulb.svg"
+
             alt="logo"
-            className="w-auto h-20 mx-auto sm:h-30"
+            className="mx-auto "
           />
           <div className="flex mt-1 text-3xl font-extrabold text-center text-gray-900">
           {expandSignIn ? ("Sign in to your account"):(<><p>Welcome to </p><p className="logo fre">&nbsp;ideaisland </p>!</>)}

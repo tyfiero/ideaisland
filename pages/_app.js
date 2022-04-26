@@ -63,11 +63,11 @@ function MyApp({ Component, pageProps }) {
         <UserContext.Provider value={userData}>
           {/* <AuthProvider> */}
             <Layout>
-      <AuthCheck>
+      {/* <AuthCheck> */}
 
               <FullLoader show={loading} />
               <Component {...pageProps} />
-      </AuthCheck>
+      {/* </AuthCheck> */}
 
             </Layout>
           {/* </AuthProvider> */}

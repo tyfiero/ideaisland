@@ -681,32 +681,17 @@ p {
   z-index: 9;
 }
 
-.image_body {
-  margin-top: 0.1em;
-  display: grid;
-}
-.card__image {
-  border-radius: 3em;
-  box-shadow: 9px 9px 17px #989898, -9px -9px 17px #ffffff;
-  height: 12em;
-  width: 100%;
-  grid-column: 1;
-  grid-row: 1;
 
-  object-fit: cover;
+.card__image {
+  
   z-index: 0;
 }
 .photo_credit {
-  grid-column: 1;
-  grid-row: 1;
+ 
   font-size: 10px;
   z-index: 1;
-  color: white;
-  padding-top: 15.3em;
+  /* padding-top: 15.3em; */
   text-align: center;
-}
-.pexels-link {
-  color: var(--colorPop);
 }
 .text-hover {
   display: inline-flex;
@@ -818,7 +803,7 @@ p {
 }
 
 .sim-words {
-  position: relative;
+  position: absolute;
   padding: 0.2em;
   width: 10em;
   margin: auto;
