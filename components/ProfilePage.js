@@ -53,7 +53,58 @@ const [deleteWindow, setDeleteWindow] = useState(false)
 </Link>
       <LogOutButton />
 
+{/* <div className="bg-white/60 glass-box mt-36">
+    <p className="text-t-pm ">Danger Zone:</p>
+    {!deleteWindow && <button  className="flex items-center gap-3 px-3 py-2 font-medium text-black bg-red-400 rounded-full fade-effect hover:text-t-pd"
+    onClick={()=>{
+      setDeleteWindow(true)
+    }}
+    >Delete Account</button>}
 
+
+    {deleteWindow && <><p>Are you sure you want to delete your account?</p><div className="flex gap-3"><button  className="flex items-center gap-3 px-3 py-2 font-medium text-white rounded-full bg-t-bl fade-effect hover:text-t-pd"
+    onClick={()=>{
+      setDeleteWindow(false)
+    }}
+    >No, keep account</button><button  className="flex items-center gap-3 px-3 py-2 font-medium text-black bg-red-400 rounded-full fade-effect hover:text-t-pd"
+    onClick={()=>{
+      const auth = getAuth();
+      const user = auth.currentUser;
+      const userUid = auth.currentUser.uid
+
+
+      const credential = promptForCredentials();
+
+reauthenticateWithCredential(user, credential).then(() => {
+  // User re-authenticated.
+}).catch((error) => {
+  // An error ocurred
+  // ...
+});
+
+
+      const deleteAccount = async (e) => {
+        const ref = doc(getFirestore(), "users", userUid);
+        await deleteDoc(ref)
+          .then(() => {
+            console.log("deleted info");
+          })
+          .catch((error) => {
+            console.log("Delete failed!" + error);
+          });
+      };
+      
+      deleteUser(user).then(()=>{
+        toast.success("Account deleted, sorry to see you go!")
+      setDeleteWindow(false)
+
+        dispatch(logIn(false));
+        dispatch(logOutAction(true));
+        // router.push("/login")
+      })
+    }}
+    >Yes, delete account</button></div></>}
+     </div> */}
     </div>
   );
 }
