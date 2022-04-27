@@ -358,7 +358,7 @@ setUpdate(!update);
       {/* </div> */}
       {/* <p className="my-24 mb-24 text-5xl text-t-pm">{splitText}</p> */}
    
-    <div className="flex flex-wrap items-start justify-center w-full gap-2 m-10 h-[10em]"> 
+    <div className="flex flex-wrap items-start justify-center w-full gap-2 m-10 "> 
     
 {/* <p className="text-2xl text-t-pm">Problem Statement</p> */}
 

@@ -185,6 +185,188 @@ console.log(search)
       }
     >
 
+
+      <button
+        className={"flex"}
+        onClick={() => {
+          // setClicked(!clicked)
+
+          if (clicked) {
+            setClicked(false);
+            updateSelected([displayText, "delete"]);
+          } else {
+            setClicked(true);
+            updateSelected([displayText, "add"]);
+          }
+        }}
+      >
+        <div
+          className={
+            "flex justify-center " +
+            (clicked ? "min-w-[10em]" : " text-slate-600 md:hover:text-t-bl ")
+          }
+        >
+          <p
+            className={
+              "text-5xl  md:hover:scale-[102%] md:active:scale-95 transition duration-500   underline-offset-8  " +
+              (clicked ? textColor : " text-slate-600 md:hover:text-t-bl ")
+            }
+          >
+            {displayText}
+          </p>{" "}
+        </div>
+      </button>
+      {clicked && (
+        <div className={"flex relative "}>
+          {/* {!(!showImage && !showSimWords)  && (
+            <div
+              className={
+                "absolute z-50  flex flex-nowrap items-center gap-1 transition duration-500 justify-evenly rounded-xl glass-box bg-white/40 -top-[14em] -left-20" 
+              }
+            >
+              <div className="relative ">
+               
+              
+
+              {showImage &&  <CardImage alt={displayText} />}
+              {showSimWords && <WordsCard word={displayText} />}
+              </div>
+            </div>
+          )} */}
+          <div
+            className={
+              " z-50  flex flex-nowrap items-center gap-1 transition duration-500 justify-evenly rounded-xl glass-box bg-white/90  -left-[6rem] " 
+            }
+          >
+              <div className="flex flex-col">
+            <div className="flex gap-1 mb-1 transition duration-500 h-9 justify-evenly">
+              {!locked && (
+                <button
+                  data-tip
+                  data-for="random1"
+                  className={
+                    "flex items-center justify-center gap-4 p-2 text-white  rounded-3xl bg-clear-bl5 w-9 drop-shadow-xl  md:transition-transform  md:hover:scale-105 md:active:scale-95 cursor-pointer fade-effect-quick"
+                  }
+                  onClick={() => {
+                    if (!locked) {
+                      setRandomized(!randomized);
+                    }
+                  }}
+                >
+                  <BsDice3 className={"text-lg text-white "} />
+                  {/* <ToolTip text="Randomize" id="random1" w="10" /> */}
+                </button>
+              )}
+
+              <button
+                data-tip
+                data-for="lock"
+                className={
+                  "flex items-center justify-center gap-4 p-2 text-white cursor-pointer rounded-3xl  drop-shadow-xl  md:hover:scale-105 md:transition-transform md:active:scale-95 " +
+                  (locked ? "ring-2 bg-t-bd " : "bg-t-bl")
+                }
+                onClick={() => setLocked(!locked)}
+              >
+                {locked ? (
+                  <TiLockClosedOutline
+                    className={"text-lg scale-125" + textColor}
+                  />
+                ) : (
+                  <TiLockOpenOutline
+                    className={"text-lg scale-125 text-white"}
+                  />
+                )}
+
+                {/* // <ToolTip text="Lock" id="lock"  /> */}
+              </button>
+
+              {/* {!locked &&  <button
+           data-tip
+           data-for="trash"
+           className="flex items-center justify-center gap-4 p-2 pr-1 text-white cursor-pointer w-9 rounded-3xl bg-clear-bpop3 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick "
+          onClick={() =>  setClicked(false)}
+           >
+           <FaEdit className={"text-lg "} />
+         </button>} */}
+         <button
+        data-tip
+        data-for="images"
+       className={"flex items-center justify-center gap-4 px-2 py-4  text-white cursor-pointer rounded-3xl drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95  "  + (!showImage ? (" bg-t-bl " ) :" bg-blues-600 ")}
+       onClick={()=>setShowImage(!showImage)}
+     >
+      {showImage ? <MdOutlineHideImage className="text-xl" /> : <MdOutlineImage className="text-xl" />}
+
+      
+      {/* <ToolTip text="Show Image" id="images"  /> */}
+      
+     </button>
+     <button
+    data-tip
+        data-for="sim"
+       className={"flex items-center justify-center gap-4 px-3 py-4  text-white cursor-pointer rounded-3xl bg-t-bl drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 "  + (!showSimWords ? (" bg-t-bl " ) :" bg-blues-600 ")}
+       onClick={()=>setShowSimWords(!showSimWords)}
+     >
+      {showSimWords ? <p className="text-2xl text-white" >	&#8777;</p> : <p className="text-2xl text-white" >	&#8776;</p>}
+       {/* <ToolTip text="Show Similar Words" id="sim"  /> */}
+     </button>
+              {!locked && (
+                <div
+                data-tip
+                data-for="list">
+                  <Cascader
+                    // style={{ borderRadius: "59px" }}
+                    options={listOptions}
+                    expandTrigger="hover"
+                    displayRender={displayRender}
+                    onChange={onCascadeChange}
+                    style={{ zIndex: 8 }}
+                    placement="bottomLeft"
+                  >
+                    <a href="#" className="">
+                      <button
+                        data-tip
+                        data-for="random1"
+                        className={
+                          "flex items-center justify-center gap-1 p-2 w-fit flex-nowrap text-white  rounded-3xl bg-slate-100/70 drop-shadow-xl  md:transition-transform  md:hover:scale-105 md:active:scale-95 cursor-pointer fade-effect-quick"
+                        }
+                        onClick={() => {
+                          if (!locked) {
+                            setRandomized(!randomized);
+                          }
+                        }}
+                      >
+                        <p className="text-xs !text-slate-600 whitespace-nowrap">
+                          {list ? list : "Select List"}
+                        </p>
+                        <FaChevronDown className={"text-lg !text-slate-600"} />
+
+                        {/* <ToolTip text="Randomize segment" id="random1" w="10" /> */}
+                      </button>
+                    </a>
+                  </Cascader>
+       {/* <ToolTip text="Select List" id="list"  /> */}
+
+                </div>
+              )}
+              {!locked && (
+                <button
+                  data-tip
+                  data-for="trash"
+                  className="flex items-center justify-center gap-4 cursor-pointer text-slate-700 dark:text-white rounded-3xl drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick "
+                  onClick={() => setClicked(false)}
+                >
+                  <FaTimes className={"text-lg"} />
+                </button>
+              )}
+            </div>
+              {showSimWords && <WordsCard word={displayText} />}
+          {showImage &&  <CardImage alt={displayText} />}
+              
+              </div>
+          </div>
+
+        </div>
+      )}
     </div>
   );
 }
