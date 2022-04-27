@@ -17,7 +17,7 @@ import { MdOutlineHideImage, MdOutlineImage } from "react-icons/md";
 import CardImage from "./CardImage";
 import WordsCard from "./WordsCard";
 
-import ToolTip from "../../../Layout/ToolTip";
+// import ToolTip from "../../../Layout/ToolTip";
 function WordButton({
   text,
   word,
@@ -254,7 +254,7 @@ console.log(search)
                   }}
                 >
                   <BsDice3 className={"text-lg text-white "} />
-                  <ToolTip text="Randomize" id="random1" w="10" />
+                  {/* <ToolTip text="Randomize" id="random1" w="10" /> */}
                 </button>
               )}
 
@@ -277,7 +277,7 @@ console.log(search)
                   />
                 )}
 
-                <ToolTip text="Lock" id="lock"  />
+                // <ToolTip text="Lock" id="lock"  />
               </button>
 
               {/* {!locked &&  <button
@@ -289,23 +289,30 @@ console.log(search)
            <FaEdit className={"text-lg "} />
          </button>} */}
          <button
-       
+        data-tip
+        data-for="images"
        className={"flex items-center justify-center gap-4 px-2 py-4  text-white cursor-pointer rounded-3xl drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95  "  + (!showImage ? (" bg-t-bl " ) :" bg-blues-600 ")}
        onClick={()=>setShowImage(!showImage)}
      >
       {showImage ? <MdOutlineHideImage className="text-xl" /> : <MdOutlineImage className="text-xl" />}
+
+      
+      {/* <ToolTip text="Show Image" id="images"  /> */}
       
      </button>
      <button
-   
+    data-tip
+        data-for="sim"
        className={"flex items-center justify-center gap-4 px-3 py-4  text-white cursor-pointer rounded-3xl bg-t-bl drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 "  + (!showSimWords ? (" bg-t-bl " ) :" bg-blues-600 ")}
        onClick={()=>setShowSimWords(!showSimWords)}
      >
       {showSimWords ? <p className="text-2xl text-white" >	&#8777;</p> : <p className="text-2xl text-white" >	&#8776;</p>}
-      
+       {/* <ToolTip text="Show Similar Words" id="sim"  /> */}
      </button>
               {!locked && (
-                <div>
+                <div
+                data-tip
+                data-for="list">
                   <Cascader
                     // style={{ borderRadius: "59px" }}
                     options={listOptions}
@@ -337,6 +344,8 @@ console.log(search)
                       </button>
                     </a>
                   </Cascader>
+       {/* <ToolTip text="Select List" id="list"  /> */}
+
                 </div>
               )}
               {!locked && (
