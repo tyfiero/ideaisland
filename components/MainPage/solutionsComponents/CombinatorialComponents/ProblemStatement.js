@@ -107,9 +107,9 @@ const separateText = () => {
      }
 <div className="flex items-start justify-center w-full py-4 pt-8 glass-box bg-white/70 "> 
    
-  <div className="flex flex-wrap items-start justify-center w-full gap-4 py-4 pt-12 mt-4 mb-8 glass-box bg-white/70 "> 
+  <div className="flex flex-wrap items-start justify-center w-full gap-4 py-4 pt-12 mt-4 mb-8 glass-box bg-pink-50/70 "> 
    
-<div className="absolute right-0 flex justify-between gap-2 px-1 transition duration-500 border-b-2 border-l-2 -top-0 opacity-70 rounded-bl-md border-t-bl rounded-tr-md group-hover:opacity-100 bg-clear-bl2">
+<div className="absolute right-0 flex justify-between gap-2 px-1 transition duration-500 border-b-2 border-l-2 -top-0 opacity-70 rounded-bl-md border-t-pl rounded-tr-md group-hover:opacity-100 bg-clear-pl2">
          <button
        
            className="flex items-center justify-center w-10 gap-4 p-2 px-2 m-1 text-white cursor-pointer rounded-3xl bg-t-pd drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95"
@@ -120,7 +120,7 @@ const separateText = () => {
          </button>
          
          <button
-           className="w-[5em] h-[2em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer !shadow-clear-pd3 md:hover:shadow-xl m-1 drop-shadow-xl !bg-gradient-to-br from-blues-100 via-t-bl  to-t-bpop !shadow-2xl gap-2"
+           className="w-[5em] h-[2em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer !shadow-clear-pd3 md:hover:shadow-xl m-1 drop-shadow-xl !bg-gradient-to-br from-pinks-100 via-t-pl  to-t-pd !shadow-2xl gap-2"
            onClick={() => {
             if(editSentence){
                 separateText();
@@ -134,8 +134,8 @@ const separateText = () => {
 
            }}
          >
-           <p className="text-white">{editSentence ? "Done" : "Edit"}</p>
-           <FaEdit className="text-white"/>
+           <p className="text-t-pd">{editSentence ? "Done" : "Edit"}</p>
+           <FaEdit className="text-t-pd"/>
 
            {/* <BsArrowRight
              style={{ fontSize: "32px" }}
