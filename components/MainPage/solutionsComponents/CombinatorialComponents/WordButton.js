@@ -17,7 +17,7 @@ import { MdOutlineHideImage, MdOutlineImage } from "react-icons/md";
 import CardImage from "./CardImage";
 import WordsCard from "./WordsCard";
 
-
+import ToolTip from "../../../Layout/ToolTip";
 function WordButton({
   text,
   word,
@@ -260,7 +260,7 @@ console.log(search)
 
               <button
                 data-tip
-                data-for="trash"
+                data-for="lock"
                 className={
                   "flex items-center justify-center gap-4 p-2 text-white cursor-pointer rounded-3xl  drop-shadow-xl  md:hover:scale-105 md:transition-transform md:active:scale-95 " +
                   (locked ? "ring-2 bg-t-bd " : "bg-t-bl")
@@ -277,7 +277,7 @@ console.log(search)
                   />
                 )}
 
-                {/* <ToolTip text="Delete" id="trash" w="6" /> */}
+                <ToolTip text="Lock" id="lock"  />
               </button>
 
               {/* {!locked &&  <button
