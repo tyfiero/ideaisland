@@ -3,119 +3,117 @@
 
 
 export const outcomeOptions = [
-    {
-      value: "Financial",
-      label: "💰 Financial",
-      children: [
-        {
-          value: "to increase revenue.",
-          label: "to increase revenue."
-        },
-        {
-          value: "to meet financial goals.",
-          label: "to meet financial goals."
-        },
-        {
-          value: "to increase MRR.",
-          label: "to increase MRR."
-        },
-        {
-          value: "to be more profitable?",
-          label: "to be more profitable?"
-        },
-        {
-          value: "to reduce costs?",
-          label: "to reduce costs?"
-        },
-        {
-          value: "to reduce COGS?",
-          label: "to reduce COGS?"
-        },
-        {
-          value: "to increase profit margin?",
-          label: "to increase profit margin?"
-        },
-        {
-          value: "to increase our average revenue per customer?",
-          label: "to increase our average revenue per customer?"
-        },
-        {
-          value: "to decrease what we spend on labor?",
-          label: "to decrease what we spend on labor?"
-        },
-        {
-          value: "to decrease subscription churn?",
-          label: "to decrease subscription churn?"
-        }
-       ],
-    },
-    {
-      value: "Marketing",
-      label: "📢 Marketing",
-      children: [
-        {
-          value: "to improve our brand awareness?",
-          label: "to improve our brand awareness?"
-        },
-        {
-          value: "to grab our customers attention?",
-          label: "to grab our customers attention?"
-        },
-        {
-          value: "to reduce ad spend but maintain growth?",
-          label: "to reduce ad spend but maintain growth?"
-        },
-        {
-          value: "to motivate customers to convert?",
-          label: "to motivate customers to convert?"
-        },
-        {
-          value: "to increase our SEO scores?",
-          label: "to increase our SEO scores?"
-        },
-        {
-          value: "to rank higher?",
-          label: "to rank higher?"
-        }
-       ],
-    },
-    {
-      value: "Personnel",
-      label: "👥 Personnel",
-      children: [
-        {
-          value: "to improve our team's morale?",
-          label: "to improve our team's morale?"
-        },
-        {
-          value: "to improve our team's productivity?",
-          label: "to improve our team's productivity?"
-        },
-        {
-          value: "to get more output from less labor spend?",
-          label: "to get more output from less labor spend?"
-        },
-        {
-          value: "to improve the quality of our candidates?",
-          label: "to improve the quality of our candidates?"
-        },
-        {
-          value: "to get better talent?",
-          label: "to get better talent?"
-        },
-        {
-          value: "to improve our onboarding process?",
-          label: "to improve our onboarding process?"
-        },
-        {
-          value: "to improve our interview process?",
-          label: "to improve our interview process?"
-        }
-       ],
-    },
-  
-  ];
-
+  {
+    value: "Financial",
+    label: "💰 Financial",
+    children: [
+      {
+        value: "to increase revenue.",
+        label: "to increase revenue.",
+      },
+      {
+        value: "to meet financial goals.",
+        label: "to meet financial goals.",
+      },
+      {
+        value: "to increase MRR.",
+        label: "to increase MRR.",
+      },
+      {
+        value: "to be more profitable?",
+        label: "to be more profitable?",
+      },
+      {
+        value: "to reduce costs?",
+        label: "to reduce costs?",
+      },
+      {
+        value: "to reduce COGS?",
+        label: "to reduce COGS?",
+      },
+      {
+        value: "to increase profit margin?",
+        label: "to increase profit margin?",
+      },
+      {
+        value: "to increase our average revenue per customer?",
+        label: "to increase our average revenue per customer?",
+      },
+      {
+        value: "to decrease what we spend on labor?",
+        label: "to decrease what we spend on labor?",
+      },
+      {
+        value: "to decrease subscription churn?",
+        label: "to decrease subscription churn?",
+      },
+    ],
+  },
+  {
+    value: "Marketing",
+    label: "📢 Marketing",
+    children: [
+      {
+        value: "to improve our brand awareness?",
+        label: "to improve our brand awareness?",
+      },
+      {
+        value: "to grab our customers attention?",
+        label: "to grab our customers attention?",
+      },
+      {
+        value: "to reduce ad spend but maintain growth?",
+        label: "to reduce ad spend but maintain growth?",
+      },
+      {
+        value: "to motivate customers to convert?",
+        label: "to motivate customers to convert?",
+      },
+      {
+        value: "to increase our SEO scores?",
+        label: "to increase our SEO scores?",
+      },
+      {
+        value: "to rank higher?",
+        label: "to rank higher?",
+      },
+    ],
+  },
+  {
+    value: "Personnel",
+    label: "👥 Personnel",
+    children: [
+      {
+        value: "to improve our team's morale?",
+        label: "to improve our team's morale?",
+      },
+      {
+        value: "to improve our team's productivity?",
+        label: "to improve our team's productivity?",
+      },
+      {
+        value: "to get more output from less labor spend?",
+        label: "to get more output from less labor spend?",
+      },
+      {
+        value: "to improve the quality of our candidates?",
+        label: "to improve the quality of our candidates?",
+      },
+      {
+        value: "to get better talent?",
+        label: "to get better talent?",
+      },
+      {
+        value: "to improve our onboarding process?",
+        label: "to improve our onboarding process?",
+      },
+      {
+        value: "to improve our interview process?",
+        label: "to improve our interview process?",
+      },
+    ],
+  },
+];
 
 export const introOptions = [
   {
@@ -1141,7 +1139,6 @@ export const verbOptions = [
   },
 ];
 
-
 export const nounOptions = [
   {
     value: "popular",
@@ -1156,1172 +1153,1172 @@ export const nounOptions = [
         label: "💻 Hardware",
         children: [
           {
-            "value": "3-D printer",
-            "label": "3-D printer"
+            value: "3-D printer",
+            label: "3-D printer",
           },
           {
-            "value": "add-on",
-            "label": "add-on"
+            value: "add-on",
+            label: "add-on",
           },
           {
-            "value": "agnostic",
-            "label": "agnostic"
+            value: "agnostic",
+            label: "agnostic",
           },
           {
-            "value": "Alt (key)",
-            "label": "Alt (key)"
+            value: "Alt (key)",
+            label: "Alt (key)",
           },
           {
-            "value": "aspect",
-            "label": "aspect"
+            value: "aspect",
+            label: "aspect",
           },
           {
-            "value": "beamer",
-            "label": "beamer"
+            value: "beamer",
+            label: "beamer",
           },
           {
-            "value": "blackberry",
-            "label": "blackberry"
+            value: "blackberry",
+            label: "blackberry",
           },
           {
-            "value": "Bluetooth",
-            "label": "Bluetooth"
+            value: "Bluetooth",
+            label: "Bluetooth",
           },
           {
-            "value": "brick",
-            "label": "brick"
+            value: "brick",
+            label: "brick",
           },
           {
-            "value": "bubblejet",
-            "label": "bubblejet"
+            value: "bubblejet",
+            label: "bubblejet",
           },
           {
-            "value": "bus",
-            "label": "bus"
+            value: "bus",
+            label: "bus",
           },
           {
-            "value": "cache",
-            "label": "cache"
+            value: "cache",
+            label: "cache",
           },
           {
-            "value": "card",
-            "label": "card"
+            value: "card",
+            label: "card",
           },
           {
-            "value": "card reader",
-            "label": "card reader"
+            value: "card reader",
+            label: "card reader",
           },
           {
-            "value": "carriage return",
-            "label": "carriage return"
+            value: "carriage return",
+            label: "carriage return",
           },
           {
-            "value": "CD burner",
-            "label": "CD burner"
+            value: "CD burner",
+            label: "CD burner",
           },
           {
-            "value": "CD writer",
-            "label": "CD writer"
+            value: "CD writer",
+            label: "CD writer",
           },
           {
-            "value": "chip",
-            "label": "chip"
+            value: "chip",
+            label: "chip",
           },
           {
-            "value": "client",
-            "label": "client"
+            value: "client",
+            label: "client",
           },
           {
-            "value": "client-server",
-            "label": "client-server"
+            value: "client-server",
+            label: "client-server",
           },
           {
-            "value": "codec",
-            "label": "codec"
+            value: "codec",
+            label: "codec",
           },
           {
-            "value": "computer",
-            "label": "computer"
+            value: "computer",
+            label: "computer",
           },
           {
-            "value": "concentrator",
-            "label": "concentrator"
+            value: "concentrator",
+            label: "concentrator",
           },
           {
-            "value": "connectivity",
-            "label": "connectivity"
+            value: "connectivity",
+            label: "connectivity",
           },
           {
-            "value": "console",
-            "label": "console"
+            value: "console",
+            label: "console",
           },
           {
-            "value": "control",
-            "label": "control"
+            value: "control",
+            label: "control",
           },
           {
-            "value": "CPU",
-            "label": "CPU"
+            value: "CPU",
+            label: "CPU",
           },
           {
-            "value": "cradle",
-            "label": "cradle"
+            value: "cradle",
+            label: "cradle",
           },
           {
-            "value": "Ctrl (key)",
-            "label": "Ctrl (key)"
+            value: "Ctrl (key)",
+            label: "Ctrl (key)",
           },
           {
-            "value": "cursor",
-            "label": "cursor"
+            value: "cursor",
+            label: "cursor",
           },
           {
-            "value": "data center",
-            "label": "data center"
+            value: "data center",
+            label: "data center",
           },
           {
-            "value": "data projector",
-            "label": "data projector"
+            value: "data projector",
+            label: "data projector",
           },
           {
-            "value": "dataglove",
-            "label": "dataglove"
+            value: "dataglove",
+            label: "dataglove",
           },
           {
-            "value": "desktop",
-            "label": "desktop"
+            value: "desktop",
+            label: "desktop",
           },
           {
-            "value": "device",
-            "label": "device"
+            value: "device",
+            label: "device",
           },
           {
-            "value": "disk drive",
-            "label": "disk drive"
+            value: "disk drive",
+            label: "disk drive",
           },
           {
-            "value": "dongle",
-            "label": "dongle"
+            value: "dongle",
+            label: "dongle",
           },
           {
-            "value": "drive",
-            "label": "drive"
+            value: "drive",
+            label: "drive",
           },
           {
-            "value": "dumb terminal",
-            "label": "dumb terminal"
+            value: "dumb terminal",
+            label: "dumb terminal",
           },
           {
-            "value": "electronic organizer",
-            "label": "electronic organizer"
+            value: "electronic organizer",
+            label: "electronic organizer",
           },
           {
-            "value": "enter",
-            "label": "enter"
+            value: "enter",
+            label: "enter",
           },
           {
-            "value": "escape key",
-            "label": "escape key"
+            value: "escape key",
+            label: "escape key",
           },
           {
-            "value": "femtech",
-            "label": "femtech"
+            value: "femtech",
+            label: "femtech",
           },
           {
-            "value": "flash drive",
-            "label": "flash drive"
+            value: "flash drive",
+            label: "flash drive",
           },
           {
-            "value": "flat screen",
-            "label": "flat screen"
+            value: "flat screen",
+            label: "flat screen",
           },
           {
-            "value": "flatbed scanner",
-            "label": "flatbed scanner"
+            value: "flatbed scanner",
+            label: "flatbed scanner",
           },
           {
-            "value": "function key",
-            "label": "function key"
+            value: "function key",
+            label: "function key",
           },
           {
-            "value": "game console",
-            "label": "game console"
+            value: "game console",
+            label: "game console",
           },
           {
-            "value": "Gameboy",
-            "label": "Gameboy"
+            value: "Gameboy",
+            label: "Gameboy",
           },
           {
-            "value": "gamepad",
-            "label": "gamepad"
+            value: "gamepad",
+            label: "gamepad",
           },
           {
-            "value": "gigabit",
-            "label": "gigabit"
+            value: "gigabit",
+            label: "gigabit",
           },
           {
-            "value": "graphics card",
-            "label": "graphics card"
+            value: "graphics card",
+            label: "graphics card",
           },
           {
-            "value": "handheld",
-            "label": "handheld"
+            value: "handheld",
+            label: "handheld",
           },
           {
-            "value": "hard copy",
-            "label": "hard copy"
+            value: "hard copy",
+            label: "hard copy",
           },
           {
-            "value": "hard disk",
-            "label": "hard disk"
+            value: "hard disk",
+            label: "hard disk",
           },
           {
-            "value": "hard drive",
-            "label": "hard drive"
+            value: "hard drive",
+            label: "hard drive",
           },
           {
-            "value": "hardware",
-            "label": "hardware"
+            value: "hardware",
+            label: "hardware",
           },
           {
-            "value": "hardwired",
-            "label": "hardwired"
+            value: "hardwired",
+            label: "hardwired",
           },
           {
-            "value": "HDD",
-            "label": "HDD"
+            value: "HDD",
+            label: "HDD",
           },
           {
-            "value": "HDR",
-            "label": "HDR"
+            value: "HDR",
+            label: "HDR",
           },
           {
-            "value": "heat sink",
-            "label": "heat sink"
+            value: "heat sink",
+            label: "heat sink",
           },
           {
-            "value": "inkjet printer",
-            "label": "inkjet printer"
+            value: "inkjet printer",
+            label: "inkjet printer",
           },
           {
-            "value": "interactive whiteboard",
-            "label": "interactive whiteboard"
+            value: "interactive whiteboard",
+            label: "interactive whiteboard",
           },
           {
-            "value": "joypad",
-            "label": "joypad"
+            value: "joypad",
+            label: "joypad",
           },
           {
-            "value": "joystick",
-            "label": "joystick"
+            value: "joystick",
+            label: "joystick",
           },
           {
-            "value": "kickstand",
-            "label": "kickstand"
+            value: "kickstand",
+            label: "kickstand",
           },
           {
-            "value": "LAN",
-            "label": "LAN"
+            value: "LAN",
+            label: "LAN",
           },
           {
-            "value": "laptop",
-            "label": "laptop"
+            value: "laptop",
+            label: "laptop",
           },
           {
-            "value": "laser printer",
-            "label": "laser printer"
+            value: "laser printer",
+            label: "laser printer",
           },
           {
-            "value": "laser printing",
-            "label": "laser printing"
+            value: "laser printing",
+            label: "laser printing",
           },
           {
-            "value": "light pen",
-            "label": "light pen"
+            value: "light pen",
+            label: "light pen",
           },
           {
-            "value": "liquid crystal display",
-            "label": "liquid crystal display"
+            value: "liquid crystal display",
+            label: "liquid crystal display",
           },
           {
-            "value": "mac",
-            "label": "mac"
+            value: "mac",
+            label: "mac",
           },
           {
-            "value": "machine",
-            "label": "machine"
+            value: "machine",
+            label: "machine",
           },
           {
-            "value": "Macintosh",
-            "label": "Macintosh"
+            value: "Macintosh",
+            label: "Macintosh",
           },
           {
-            "value": "mainboard",
-            "label": "mainboard"
+            value: "mainboard",
+            label: "mainboard",
           },
           {
-            "value": "mainframe",
-            "label": "mainframe"
+            value: "mainframe",
+            label: "mainframe",
           },
           {
-            "value": "memory",
-            "label": "memory"
+            value: "memory",
+            label: "memory",
           },
           {
-            "value": "memory bank",
-            "label": "memory bank"
+            value: "memory bank",
+            label: "memory bank",
           },
           {
-            "value": "memory card",
-            "label": "memory card"
+            value: "memory card",
+            label: "memory card",
           },
           {
-            "value": "Memory Stick",
-            "label": "Memory Stick"
+            value: "Memory Stick",
+            label: "Memory Stick",
           },
           {
-            "value": "micro",
-            "label": "micro"
+            value: "micro",
+            label: "micro",
           },
           {
-            "value": "microchip",
-            "label": "microchip"
+            value: "microchip",
+            label: "microchip",
           },
           {
-            "value": "microcomputer",
-            "label": "microcomputer"
+            value: "microcomputer",
+            label: "microcomputer",
           },
           {
-            "value": "microprocessor",
-            "label": "microprocessor"
+            value: "microprocessor",
+            label: "microprocessor",
           },
           {
-            "value": "mobile technology",
-            "label": "mobile technology"
+            value: "mobile technology",
+            label: "mobile technology",
           },
           {
-            "value": "modder",
-            "label": "modder"
+            value: "modder",
+            label: "modder",
           },
           {
-            "value": "modding",
-            "label": "modding"
+            value: "modding",
+            label: "modding",
           },
           {
-            "value": "modem",
-            "label": "modem"
+            value: "modem",
+            label: "modem",
           },
           {
-            "value": "monitor",
-            "label": "monitor"
+            value: "monitor",
+            label: "monitor",
           },
           {
-            "value": "motherboard",
-            "label": "motherboard"
+            value: "motherboard",
+            label: "motherboard",
           },
           {
-            "value": "mouse",
-            "label": "mouse"
+            value: "mouse",
+            label: "mouse",
           },
           {
-            "value": "MP3",
-            "label": "MP3"
+            value: "MP3",
+            label: "MP3",
           },
           {
-            "value": "MP3 player",
-            "label": "MP3 player"
+            value: "MP3 player",
+            label: "MP3 player",
           },
           {
-            "value": "nanocomputer",
-            "label": "nanocomputer"
+            value: "nanocomputer",
+            label: "nanocomputer",
           },
           {
-            "value": "netbook",
-            "label": "netbook"
+            value: "netbook",
+            label: "netbook",
           },
           {
-            "value": "network",
-            "label": "network"
+            value: "network",
+            label: "network",
           },
           {
-            "value": "notebook",
-            "label": "notebook"
+            value: "notebook",
+            label: "notebook",
           },
           {
-            "value": "notepad",
-            "label": "notepad"
+            value: "notepad",
+            label: "notepad",
           },
           {
-            "value": "number pad",
-            "label": "number pad"
+            value: "number pad",
+            label: "number pad",
           },
           {
-            "value": "optical",
-            "label": "optical"
+            value: "optical",
+            label: "optical",
           },
           {
-            "value": "optical character reader",
-            "label": "optical character reader"
+            value: "optical character reader",
+            label: "optical character reader",
           },
           {
-            "value": "optical reader",
-            "label": "optical reader"
+            value: "optical reader",
+            label: "optical reader",
           },
           {
-            "value": "optically",
-            "label": "optically"
+            value: "optically",
+            label: "optically",
           },
           {
-            "value": "palmtop",
-            "label": "palmtop"
+            value: "palmtop",
+            label: "palmtop",
           },
           {
-            "value": "parallel port",
-            "label": "parallel port"
+            value: "parallel port",
+            label: "parallel port",
           },
           {
-            "value": "patch",
-            "label": "patch"
+            value: "patch",
+            label: "patch",
           },
           {
-            "value": "patch sth into sth",
-            "label": "patch sth into sth"
+            value: "patch sth into sth",
+            label: "patch sth into sth",
           },
           {
-            "value": "pc",
-            "label": "pc"
+            value: "pc",
+            label: "pc",
           },
           {
-            "value": "PDA",
-            "label": "PDA"
+            value: "PDA",
+            label: "PDA",
           },
           {
-            "value": "pen drive",
-            "label": "pen drive"
+            value: "pen drive",
+            label: "pen drive",
           },
           {
-            "value": "Pentium",
-            "label": "Pentium"
+            value: "Pentium",
+            label: "Pentium",
           },
           {
-            "value": "peripheral",
-            "label": "peripheral"
+            value: "peripheral",
+            label: "peripheral",
           },
           {
-            "value": "personal computer",
-            "label": "personal computer"
+            value: "personal computer",
+            label: "personal computer",
           },
           {
-            "value": "personal digital assistant",
-            "label": "personal digital assistant"
+            value: "personal digital assistant",
+            label: "personal digital assistant",
           },
           {
-            "value": "personal organizer",
-            "label": "personal organizer"
+            value: "personal organizer",
+            label: "personal organizer",
           },
           {
-            "value": "phablet",
-            "label": "phablet"
+            value: "phablet",
+            label: "phablet",
           },
           {
-            "value": "plasma screen",
-            "label": "plasma screen"
+            value: "plasma screen",
+            label: "plasma screen",
           },
           {
-            "value": "platform",
-            "label": "platform"
+            value: "platform",
+            label: "platform",
           },
           {
-            "value": "plug and play",
-            "label": "plug and play"
+            value: "plug and play",
+            label: "plug and play",
           },
           {
-            "value": "port",
-            "label": "port"
+            value: "port",
+            label: "port",
           },
           {
-            "value": "printer",
-            "label": "printer"
+            value: "printer",
+            label: "printer",
           },
           {
-            "value": "processor",
-            "label": "processor"
+            value: "processor",
+            label: "processor",
           },
           {
-            "value": "proxy server",
-            "label": "proxy server"
+            value: "proxy server",
+            label: "proxy server",
           },
           {
-            "value": "ram",
-            "label": "ram"
+            value: "ram",
+            label: "ram",
           },
           {
-            "value": "reset (button)",
-            "label": "reset (button)"
+            value: "reset (button)",
+            label: "reset (button)",
           },
           {
-            "value": "return",
-            "label": "return"
+            value: "return",
+            label: "return",
           },
           {
-            "value": "ROM",
-            "label": "ROM"
+            value: "ROM",
+            label: "ROM",
           },
           {
-            "value": "router",
-            "label": "router"
+            value: "router",
+            label: "router",
           },
           {
-            "value": "scanner",
-            "label": "scanner"
+            value: "scanner",
+            label: "scanner",
           },
           {
-            "value": "serial port",
-            "label": "serial port"
+            value: "serial port",
+            label: "serial port",
           },
           {
-            "value": "server",
-            "label": "server"
+            value: "server",
+            label: "server",
           },
           {
-            "value": "server farm",
-            "label": "server farm"
+            value: "server farm",
+            label: "server farm",
           },
           {
-            "value": "shift key",
-            "label": "shift key"
+            value: "shift key",
+            label: "shift key",
           },
           {
-            "value": "silicon chip",
-            "label": "silicon chip"
+            value: "silicon chip",
+            label: "silicon chip",
           },
           {
-            "value": "slate",
-            "label": "slate"
+            value: "slate",
+            label: "slate",
           },
           {
-            "value": "Smart Board",
-            "label": "Smart Board"
+            value: "Smart Board",
+            label: "Smart Board",
           },
           {
-            "value": "smart card",
-            "label": "smart card"
+            value: "smart card",
+            label: "smart card",
           },
           {
-            "value": "smart glasses",
-            "label": "smart glasses"
+            value: "smart glasses",
+            label: "smart glasses",
           },
           {
-            "value": "solid-state drive",
-            "label": "solid-state drive"
+            value: "solid-state drive",
+            label: "solid-state drive",
           },
           {
-            "value": "sound card",
-            "label": "sound card"
+            value: "sound card",
+            label: "sound card",
           },
           {
-            "value": "space bar",
-            "label": "space bar"
+            value: "space bar",
+            label: "space bar",
           },
           {
-            "value": "SSD",
-            "label": "SSD"
+            value: "SSD",
+            label: "SSD",
           },
           {
-            "value": "storage device",
-            "label": "storage device"
+            value: "storage device",
+            label: "storage device",
           },
           {
-            "value": "tablet",
-            "label": "tablet"
+            value: "tablet",
+            label: "tablet",
           },
           {
-            "value": "tech",
-            "label": "tech"
+            value: "tech",
+            label: "tech",
           },
           {
-            "value": "tenkey",
-            "label": "tenkey"
+            value: "tenkey",
+            label: "tenkey",
           },
           {
-            "value": "tenkeyless",
-            "label": "tenkeyless"
+            value: "tenkeyless",
+            label: "tenkeyless",
           },
           {
-            "value": "terminal",
-            "label": "terminal"
+            value: "terminal",
+            label: "terminal",
           },
           {
-            "value": "thumb drive",
-            "label": "thumb drive"
+            value: "thumb drive",
+            label: "thumb drive",
           },
           {
-            "value": "TKL",
-            "label": "TKL"
+            value: "TKL",
+            label: "TKL",
           },
           {
-            "value": "toggle",
-            "label": "toggle"
+            value: "toggle",
+            label: "toggle",
           },
           {
-            "value": "touchpad",
-            "label": "touchpad"
+            value: "touchpad",
+            label: "touchpad",
           },
           {
-            "value": "touchpoint",
-            "label": "touchpoint"
+            value: "touchpoint",
+            label: "touchpoint",
           },
           {
-            "value": "touchscreen",
-            "label": "touchscreen"
+            value: "touchscreen",
+            label: "touchscreen",
           },
           {
-            "value": "trackball",
-            "label": "trackball"
+            value: "trackball",
+            label: "trackball",
           },
           {
-            "value": "trackpad",
-            "label": "trackpad"
+            value: "trackpad",
+            label: "trackpad",
           },
           {
-            "value": "underscore",
-            "label": "underscore"
+            value: "underscore",
+            label: "underscore",
           },
           {
-            "value": "USB",
-            "label": "USB"
+            value: "USB",
+            label: "USB",
           },
           {
-            "value": "USB stick",
-            "label": "USB stick"
+            value: "USB stick",
+            label: "USB stick",
           },
           {
-            "value": "VDT",
-            "label": "VDT"
+            value: "VDT",
+            label: "VDT",
           },
           {
-            "value": "VDU",
-            "label": "VDU"
+            value: "VDU",
+            label: "VDU",
           },
           {
-            "value": "video card",
-            "label": "video card"
+            value: "video card",
+            label: "video card",
           },
           {
-            "value": "virtual machine",
-            "label": "virtual machine"
+            value: "virtual machine",
+            label: "virtual machine",
           },
           {
-            "value": "virtual memory",
-            "label": "virtual memory"
+            value: "virtual memory",
+            label: "virtual memory",
           },
           {
-            "value": "virtual reality headset",
-            "label": "virtual reality headset"
+            value: "virtual reality headset",
+            label: "virtual reality headset",
           },
           {
-            "value": "VM",
-            "label": "VM"
+            value: "VM",
+            label: "VM",
           },
           {
-            "value": "wearable",
-            "label": "wearable"
+            value: "wearable",
+            label: "wearable",
           },
           {
-            "value": "whiteboard",
-            "label": "whiteboard"
+            value: "whiteboard",
+            label: "whiteboard",
           },
           {
-            "value": "wired",
-            "label": "wired"
+            value: "wired",
+            label: "wired",
           },
           {
-            "value": "word processor",
-            "label": "word processor"
+            value: "word processor",
+            label: "word processor",
           },
           {
-            "value": "workstation",
-            "label": "workstation"
+            value: "workstation",
+            label: "workstation",
           },
           {
-            "value": "Zip drive",
-            "label": "Zip drive"
-          }
-         ],
+            value: "Zip drive",
+            label: "Zip drive",
+          },
+        ],
       },
       {
         value: "Gaming",
         label: "🎮 Gaming",
         children: [
           {
-            "value": "AAA",
-            "label": "AAA"
+            value: "AAA",
+            label: "AAA",
           },
           {
-            "value": "Agent",
-            "label": "Agent"
+            value: "Agent",
+            label: "Agent",
           },
           {
-            "value": "AI",
-            "label": "AI"
+            value: "AI",
+            label: "AI",
           },
           {
-            "value": "Alpha",
-            "label": "Alpha"
+            value: "Alpha",
+            label: "Alpha",
           },
           {
-            "value": "Augmented Reality",
-            "label": "Augmented Reality"
+            value: "Augmented Reality",
+            label: "Augmented Reality",
           },
           {
-            "value": "Virtual Reality",
-            "label": "Virtual Reality"
+            value: "Virtual Reality",
+            label: "Virtual Reality",
           },
           {
-            "value": "mixed reality",
-            "label": "mixed reality"
+            value: "mixed reality",
+            label: "mixed reality",
           },
           {
-            "value": "extended reality",
-            "label": "extended reality"
+            value: "extended reality",
+            label: "extended reality",
           },
           {
-            "value": "asset",
-            "label": "asset"
+            value: "asset",
+            label: "asset",
           },
           {
-            "value": "balance",
-            "label": "balance"
+            value: "balance",
+            label: "balance",
           },
           {
-            "value": "beta",
-            "label": "beta"
+            value: "beta",
+            label: "beta",
           },
           {
-            "value": "bug ",
-            "label": "bug "
+            value: "bug ",
+            label: "bug ",
           },
           {
-            "value": "build",
-            "label": "build"
+            value: "build",
+            label: "build",
           },
           {
-            "value": "certification",
-            "label": "certification"
+            value: "certification",
+            label: "certification",
           },
           {
-            "value": "cinematics",
-            "label": "cinematics"
+            value: "cinematics",
+            label: "cinematics",
           },
           {
-            "value": "clipping",
-            "label": "clipping"
+            value: "clipping",
+            label: "clipping",
           },
           {
-            "value": "clipping region",
-            "label": "clipping region"
+            value: "clipping region",
+            label: "clipping region",
           },
           {
-            "value": "code",
-            "label": "code"
+            value: "code",
+            label: "code",
           },
           {
-            "value": "code release",
-            "label": "code release"
+            value: "code release",
+            label: "code release",
           },
           {
-            "value": "collision",
-            "label": "collision"
+            value: "collision",
+            label: "collision",
           },
           {
-            "value": "collision detection",
-            "label": "collision detection"
+            value: "collision detection",
+            label: "collision detection",
           },
           {
-            "value": "console",
-            "label": "console"
+            value: "console",
+            label: "console",
           },
           {
-            "value": "content",
-            "label": "content"
+            value: "content",
+            label: "content",
           },
           {
-            "value": "cross-platform",
-            "label": "cross-platform"
+            value: "cross-platform",
+            label: "cross-platform",
           },
           {
-            "value": "culling",
-            "label": "culling"
+            value: "culling",
+            label: "culling",
           },
           {
-            "value": "debug",
-            "label": "debug"
+            value: "debug",
+            label: "debug",
           },
           {
-            "value": "demo",
-            "label": "demo"
+            value: "demo",
+            label: "demo",
           },
           {
-            "value": "dev",
-            "label": "dev"
+            value: "dev",
+            label: "dev",
           },
           {
-            "value": "development",
-            "label": "development"
+            value: "development",
+            label: "development",
           },
           {
-            "value": "edge",
-            "label": "edge"
+            value: "edge",
+            label: "edge",
           },
           {
-            "value": "event",
-            "label": "event"
+            value: "event",
+            label: "event",
           },
           {
-            "value": "engine",
-            "label": "engine"
+            value: "engine",
+            label: "engine",
           },
           {
-            "value": "feature",
-            "label": "feature"
+            value: "feature",
+            label: "feature",
           },
           {
-            "value": "game design document",
-            "label": "game design document"
+            value: "game design document",
+            label: "game design document",
           },
           {
-            "value": "game designer",
-            "label": "game designer"
+            value: "game designer",
+            label: "game designer",
           },
           {
-            "value": "game development",
-            "label": "game development"
+            value: "game development",
+            label: "game development",
           },
           {
-            "value": "gold master",
-            "label": "gold master"
+            value: "gold master",
+            label: "gold master",
           },
           {
-            "value": "hitbox",
-            "label": "hitbox"
+            value: "hitbox",
+            label: "hitbox",
           },
           {
-            "value": "game engine",
-            "label": "game engine"
+            value: "game engine",
+            label: "game engine",
           },
           {
-            "value": "key framing",
-            "label": "key framing"
+            value: "key framing",
+            label: "key framing",
           },
           {
-            "value": "lightmap",
-            "label": "lightmap"
+            value: "lightmap",
+            label: "lightmap",
           },
           {
-            "value": "localization",
-            "label": "localization"
+            value: "localization",
+            label: "localization",
           },
           {
-            "value": "mechanics",
-            "label": "mechanics"
+            value: "mechanics",
+            label: "mechanics",
           },
           {
-            "value": "mesh",
-            "label": "mesh"
+            value: "mesh",
+            label: "mesh",
           },
           {
-            "value": "mobile",
-            "label": "mobile"
+            value: "mobile",
+            label: "mobile",
           },
           {
-            "value": "mobile gaming",
-            "label": "mobile gaming"
+            value: "mobile gaming",
+            label: "mobile gaming",
           },
           {
-            "value": "model multiplatform",
-            "label": "model multiplatform"
+            value: "model multiplatform",
+            label: "model multiplatform",
           },
           {
-            "value": "parallax",
-            "label": "parallax"
+            value: "parallax",
+            label: "parallax",
           },
           {
-            "value": "PC",
-            "label": "PC"
+            value: "PC",
+            label: "PC",
           },
           {
-            "value": "pixel",
-            "label": "pixel"
+            value: "pixel",
+            label: "pixel",
           },
           {
-            "value": "physics",
-            "label": "physics"
+            value: "physics",
+            label: "physics",
           },
           {
-            "value": "pixel art",
-            "label": "pixel art"
+            value: "pixel art",
+            label: "pixel art",
           },
           {
-            "value": "playtesting",
-            "label": "playtesting"
+            value: "playtesting",
+            label: "playtesting",
           },
           {
-            "value": "polygon",
-            "label": "polygon"
+            value: "polygon",
+            label: "polygon",
           },
           {
-            "value": "prop",
-            "label": "prop"
+            value: "prop",
+            label: "prop",
           },
           {
-            "value": "prototyping",
-            "label": "prototyping"
+            value: "prototyping",
+            label: "prototyping",
           },
           {
-            "value": "quality assurance",
-            "label": "quality assurance"
+            value: "quality assurance",
+            label: "quality assurance",
           },
           {
-            "value": "ray tracing",
-            "label": "ray tracing"
+            value: "ray tracing",
+            label: "ray tracing",
           },
           {
-            "value": "render",
-            "label": "render"
+            value: "render",
+            label: "render",
           },
           {
-            "value": "scripting",
-            "label": "scripting"
+            value: "scripting",
+            label: "scripting",
           },
           {
-            "value": "shaders",
-            "label": "shaders"
+            value: "shaders",
+            label: "shaders",
           },
           {
-            "value": "skeletal animation",
-            "label": "skeletal animation"
+            value: "skeletal animation",
+            label: "skeletal animation",
           },
           {
-            "value": "sprite",
-            "label": "sprite"
+            value: "sprite",
+            label: "sprite",
           },
           {
-            "value": "terrain",
-            "label": "terrain"
+            value: "terrain",
+            label: "terrain",
           },
           {
-            "value": "texture",
-            "label": "texture"
+            value: "texture",
+            label: "texture",
           },
           {
-            "value": "texture mapping",
-            "label": "texture mapping"
+            value: "texture mapping",
+            label: "texture mapping",
           },
           {
-            "value": "tile",
-            "label": "tile"
+            value: "tile",
+            label: "tile",
           },
           {
-            "value": "tilemap",
-            "label": "tilemap"
+            value: "tilemap",
+            label: "tilemap",
           },
           {
-            "value": "UI/GUI",
-            "label": "UI/GUI"
+            value: "UI/GUI",
+            label: "UI/GUI",
           },
           {
-            "value": "UX",
-            "label": "UX"
+            value: "UX",
+            label: "UX",
           },
           {
-            "value": "vector graphic",
-            "label": "vector graphic"
+            value: "vector graphic",
+            label: "vector graphic",
           },
           {
-            "value": "vertex",
-            "label": "vertex"
+            value: "vertex",
+            label: "vertex",
           },
           {
-            "value": "vertical slice",
-            "label": "vertical slice"
+            value: "vertical slice",
+            label: "vertical slice",
           },
           {
-            "value": "visual scripting",
-            "label": "visual scripting"
+            value: "visual scripting",
+            label: "visual scripting",
           },
           {
-            "value": "editor",
-            "label": "editor"
+            value: "editor",
+            label: "editor",
           },
           {
-            "value": "instantiation",
-            "label": "instantiation"
+            value: "instantiation",
+            label: "instantiation",
           },
           {
-            "value": "orthographic camera",
-            "label": "orthographic camera"
+            value: "orthographic camera",
+            label: "orthographic camera",
           },
           {
-            "value": "prefab",
-            "label": "prefab"
+            value: "prefab",
+            label: "prefab",
           },
           {
-            "value": "runtime",
-            "label": "runtime"
+            value: "runtime",
+            label: "runtime",
           },
           {
-            "value": "scene",
-            "label": "scene"
+            value: "scene",
+            label: "scene",
           },
           {
-            "value": "probuilder",
-            "label": "probuilder"
+            value: "probuilder",
+            label: "probuilder",
           },
           {
-            "value": "timeline",
-            "label": "timeline"
+            value: "timeline",
+            label: "timeline",
           },
           {
-            "value": "perspective camera",
-            "label": "perspective camera"
+            value: "perspective camera",
+            label: "perspective camera",
           },
           {
-            "value": "action-adventure",
-            "label": "action-adventure"
+            value: "action-adventure",
+            label: "action-adventure",
           },
           {
-            "value": "battle royale",
-            "label": "battle royale"
+            value: "battle royale",
+            label: "battle royale",
           },
           {
-            "value": "bullet hell",
-            "label": "bullet hell"
+            value: "bullet hell",
+            label: "bullet hell",
           },
           {
-            "value": "casual",
-            "label": "casual"
+            value: "casual",
+            label: "casual",
           },
           {
-            "value": "cooperative",
-            "label": "cooperative"
+            value: "cooperative",
+            label: "cooperative",
           },
           {
-            "value": "couch co-op",
-            "label": "couch co-op"
+            value: "couch co-op",
+            label: "couch co-op",
           },
           {
-            "value": "downloadable content",
-            "label": "downloadable content"
+            value: "downloadable content",
+            label: "downloadable content",
           },
           {
-            "value": "educational",
-            "label": "educational"
+            value: "educational",
+            label: "educational",
           },
           {
-            "value": "e-sports",
-            "label": "e-sports"
+            value: "e-sports",
+            label: "e-sports",
           },
           {
-            "value": "fantasy",
-            "label": "fantasy"
+            value: "fantasy",
+            label: "fantasy",
           },
           {
-            "value": "fighting",
-            "label": "fighting"
+            value: "fighting",
+            label: "fighting",
           },
           {
-            "value": "first person shooter",
-            "label": "first person shooter"
+            value: "first person shooter",
+            label: "first person shooter",
           },
           {
-            "value": "free to play",
-            "label": "free to play"
+            value: "free to play",
+            label: "free to play",
           },
           {
-            "value": "horror",
-            "label": "horror"
+            value: "horror",
+            label: "horror",
           },
           {
-            "value": "hyper casual",
-            "label": "hyper casual"
+            value: "hyper casual",
+            label: "hyper casual",
           },
           {
-            "value": "in app purchases",
-            "label": "in app purchases"
+            value: "in app purchases",
+            label: "in app purchases",
           },
           {
-            "value": "MMORPG",
-            "label": "MMORPG"
+            value: "MMORPG",
+            label: "MMORPG",
           },
           {
-            "value": "metroidvania",
-            "label": "metroidvania"
+            value: "metroidvania",
+            label: "metroidvania",
           },
           {
-            "value": "moba",
-            "label": "moba"
+            value: "moba",
+            label: "moba",
           },
           {
-            "value": "non player character (NPC)",
-            "label": "non player character (NPC)"
+            value: "non player character (NPC)",
+            label: "non player character (NPC)",
           },
           {
-            "value": "role playing game",
-            "label": "role playing game"
+            value: "role playing game",
+            label: "role playing game",
           },
           {
-            "value": "sandbox",
-            "label": "sandbox"
+            value: "sandbox",
+            label: "sandbox",
           },
           {
-            "value": "racing ",
-            "label": "racing "
+            value: "racing ",
+            label: "racing ",
           },
           {
-            "value": "puzzle",
-            "label": "puzzle"
+            value: "puzzle",
+            label: "puzzle",
           },
           {
-            "value": "shooter",
-            "label": "shooter"
+            value: "shooter",
+            label: "shooter",
           },
           {
-            "value": "simulation",
-            "label": "simulation"
+            value: "simulation",
+            label: "simulation",
           },
           {
-            "value": "souls-like",
-            "label": "souls-like"
+            value: "souls-like",
+            label: "souls-like",
           },
           {
-            "value": "sports",
-            "label": "sports"
+            value: "sports",
+            label: "sports",
           },
           {
-            "value": "strategy",
-            "label": "strategy"
+            value: "strategy",
+            label: "strategy",
           },
           {
-            "value": "survival ",
-            "label": "survival "
+            value: "survival ",
+            label: "survival ",
           },
           {
-            "value": "text-based",
-            "label": "text-based"
+            value: "text-based",
+            label: "text-based",
           },
           {
-            "value": "third person shooter",
-            "label": "third person shooter"
+            value: "third person shooter",
+            label: "third person shooter",
           },
           {
-            "value": "tile matching",
-            "label": "tile matching"
+            value: "tile matching",
+            label: "tile matching",
           },
           {
-            "value": "visual novel",
-            "label": "visual novel"
-          }
-         ],
+            value: "visual novel",
+            label: "visual novel",
+          },
+        ],
       },
     ],
   },
@@ -2350,3 +2347,87 @@ export const nounOptions = [
     ],
   },
 ];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//BACKUP

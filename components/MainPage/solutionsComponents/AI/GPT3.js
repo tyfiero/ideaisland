@@ -115,9 +115,9 @@ const deduct = async (values) => {
     }
     const ref = doc(getFirestore(), "users", uid);
     const docSnap = await getDoc(ref)
-    console.log(docSnap)
+    // console.log(docSnap)
     if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data());
+      // console.log("Document data:", docSnap.data());
     setCredits(docSnap.data().credits)
     } else {
       // doc.data() will be undefined in this case
@@ -449,7 +449,7 @@ const deduct = async (values) => {
     <div className="flex flex-col items-center max-w-[40em] relative">
       {showButton && !warning && (
         <div>
-          <button
+          {/* <button
             className="absolute -top-9 -right-5 w-[8em] h-[1.5em] card__btn_next  flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer !shadow-clear-pd3 md:hover:shadow-xl m-1 drop-shadow-xl !bg-gradient-to-br from-white via-t-pl  to-t-pm !shadow-2xl "
             onClick={() => {
               let concatArray = [];
@@ -469,7 +469,7 @@ const deduct = async (values) => {
           >
             <FaPlus className="text-sm" />{" "}
             <p className="text-sm">Current Sentence</p>{" "}
-          </button>
+          </button> */}
         </div>
       )}
 

@@ -419,7 +419,7 @@ textValueFromCascade = value[0]
               >
                 <p
                   className={
-                    "text-xl select-none " + (card > 0 ? " lowercase" : "")
+                    "text-xl select-none " + (card > 0 && " lowercase")
                   }
                 >
                   {/* {content} */}

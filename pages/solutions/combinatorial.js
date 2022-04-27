@@ -215,7 +215,7 @@ setUpdate(!update);
     </div>
     </div>
   </div>
-  <div
+  {/* <div
     className="flex flex-col items-center w-full"
    
   >
@@ -224,7 +224,7 @@ setUpdate(!update);
     </p>
     <TemplateBar />
    
-  </div>
+  </div> */}
 
   <div className="w-[98%] rounded-xl cards ring-0 p-5 mt-5 relative">
     <div className="flex w-[40em] p-2 gap-2 items-center justify-evenly text-center normal-box-soft absolute top-0 right-0">
@@ -358,15 +358,15 @@ setUpdate(!update);
       {/* </div> */}
       {/* <p className="my-24 mb-24 text-5xl text-t-pm">{splitText}</p> */}
    
-    <div className="flex flex-wrap items-start justify-center w-full gap-2 m-10 "> 
+    <div className="flex flex-wrap items-start justify-center w-full gap-2 mt-10 "> 
     
 {/* <p className="text-2xl text-t-pm">Problem Statement</p> */}
 
 
 
-  {/* <ProblemStatement
+  <ProblemStatement
   randomizeAll={randomizeAll}
-  /> */}
+  />
 
 
 
