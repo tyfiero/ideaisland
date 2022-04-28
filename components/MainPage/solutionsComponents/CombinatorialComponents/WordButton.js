@@ -10,7 +10,7 @@ import {
   nounOptions,
   outcomeOptions,
 } from "./ListData";
-import { emojis } from "./ListsAll";
+import { software } from "./ListsAll";
 import { allOptions } from "./ListOptions";
 import { useSelector, useDispatch } from "react-redux";
 import { randomizeAction, sArrayAction } from "../../../../redux/actions";
@@ -34,8 +34,8 @@ function WordButton({ text, word, updateSelected, selectedWords }) {
   const [textColor, setTextColor] = useState(
     " underline decoration-t-bl text-blues-200 "
   );
-  const [list, setList] = useState(emojis);
-  const [listLabel, setListLabel] = useState("Emojis");
+  const [list, setList] = useState(software);
+  const [listLabel, setListLabel] = useState("💿 Software");
 
   const dispatch = useDispatch();
   const [showImage, setShowImage] = useState(false);
@@ -332,7 +332,7 @@ function WordButton({ text, word, updateSelected, selectedWords }) {
                     <MdOutlineImage className="text-xl" />
                   )}
 
-                  <ToolTip text="Show Image" id="images" />
+                  <ToolTip text="Show Image" id="images" w=" !w-[8em]"/>
                 </button>
                 <button
                   data-tip
@@ -348,7 +348,7 @@ function WordButton({ text, word, updateSelected, selectedWords }) {
                   ) : (
                     <p className="text-2xl text-white"> &#8776;</p>
                   )}
-                  <ToolTip text="Show Similar Words" id="sim" />
+                  <ToolTip text="Show Similar Words" id="sim" w=" !w-[12em]"/>
                 </button>
                 {!locked && (
                   <div data-tip data-for="list">

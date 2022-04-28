@@ -85,7 +85,7 @@ function WordsCard(props) {
 
   return (
       <div
-        className="flex flex-col items-center w-[24em] "
+        className="flex flex-col items-center min-w-[24em] "
         // onClick={() => {
         //   dispatch(similarRequest(true));
         //   setShowRelatedWord(!showRelatedWord);

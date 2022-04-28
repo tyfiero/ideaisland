@@ -418,7 +418,7 @@ setUpdate(!update);
         )}
         {notesOpen && (
           <div className="px-2 pb-5 glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   ring-4 ring-t-bl bg-clear-bl1 min-w-[42em] h-full !border-0 relative">
-            <p className="pb-2 text-lg text-left text-t-bl">
+            <p className="pb-2 text-lg text-left text-t-bd">
               {" "}
               Idea NotePad
             </p>
