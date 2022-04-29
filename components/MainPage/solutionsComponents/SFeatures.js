@@ -854,7 +854,7 @@ function SFeatures(props) {
             </div>
             <div className="normal-box-soft !rounded-xl w-[30em]">
               <div className="normal-box bg-[hsla(200,0%,100%,0.764)]  dark:bg-[hsla(200,0%,20%,0.764)] !rounded-xl text-left">
-                <h3 className="heading2">Feature List:</h3>
+                <h3 className="heading2 dark:text-blue-100">Feature List:</h3>
                 {/* <p>featureString:</p>
                   <p>{featureString}</p>
                   <p>props:</p>                  
@@ -909,7 +909,7 @@ export default SFeatures;
 function ListItem({ name, deleteIndex }) {
   return (
     <div className="flex items-center justify-between ml-3">
-      <li>{name}</li>
+      <li className="dark:text-white">{name}</li>
       {/* <FaTimes
         className="transition cursor-pointer text-t-pm md:hover:scale-125 md:active:scale-110"
         onClick={() => deleteIndex(name)}

@@ -109,7 +109,7 @@ function MrrCalculator() {
 
   return (
     <div className="flex flex-col items-center w-full h-full">
-      <div className="flex flex-col items-center w-[98%] h-full m-5 normal-box-soft relative">
+      <div className="flex flex-col items-center w-[98%] h-full m-5  relative ">
         <p className="text-3xl blue-gradient-text">MRR Calculator</p>
 
         <div className="flex gap-5 m-5">
@@ -198,8 +198,8 @@ function MrrCalculator() {
           Back
         </button>
 
-        <div className="flex items-center w-full gap-0 p-2 text-center justify-evenly normal-box-soft">
-          <div className="flex flex-col normal-box-soft w-[40%] !rounded-xl items-center text-left gap-2">
+        <div className="flex items-center w-full gap-0 p-2 text-center justify-evenly normal-box-soft dark:bg-slate-700/80">
+          <div className="flex flex-col normal-box-soft w-[40%] !rounded-xl items-center text-left gap-2 dark:bg-slate-600/80">
             <p>Revenue</p>
             <div className="flex flex-col normal-box-soft w-[90%] !rounded-xl   p-3 !bg-clear-bl2">
               <p className="text-md">Monthly price for product</p>
@@ -221,7 +221,7 @@ function MrrCalculator() {
                 <input
                   type="number"
                   id="quantity"
-                  className="w-[8em] rounded-xl"
+                  className="w-[8em] rounded-xl textarea-tw"
                   min="1"
                   max="500000000000"
                   value={productCost}
@@ -248,7 +248,7 @@ function MrrCalculator() {
 
                 <input
                   type="number"
-                  className="w-[8em] rounded-xl"
+                  className="w-[8em] rounded-xl textarea-tw"
                   min="1"
                   max="50000000000"
                   value={totalUsers}
@@ -276,7 +276,7 @@ function MrrCalculator() {
 
                 <input
                   type="number"
-                  className="w-[8em] rounded-xl"
+                  className="w-[8em] rounded-xl textarea-tw"
                   min="1"
                   max="50000000000"
                   value={newUsersPerMonth}
@@ -304,7 +304,7 @@ function MrrCalculator() {
                 <p>%</p>
                 <input
                   type="number"
-                  className="w-[8em] rounded-xl"
+                  className="w-[8em] rounded-xl textarea-tw"
                   min="0.01"
                   max="50"
                   value={churnRate}
@@ -316,7 +316,7 @@ function MrrCalculator() {
             </div>
           </div>
 
-          <div className="flex flex-col normal-box-soft w-[40%] !rounded-xl items-center text-left gap-2">
+          <div className="flex flex-col normal-box-soft dark:bg-slate-600/80 w-[40%] !rounded-xl items-center text-left gap-2">
             <p className="text-left">Costs</p>
 
             <div className="flex flex-col normal-box-soft w-[90%] !rounded-xl gap-0 p-2 !bg-clear-pl2">
@@ -337,7 +337,7 @@ function MrrCalculator() {
 
                 <input
                   type="number"
-                  className="w-[8em] rounded-xl"
+                  className="w-[8em] rounded-xl textarea-tw"
                   min="1"
                   max="50000000000"
                   value={infrastructureCost}
@@ -366,7 +366,7 @@ function MrrCalculator() {
 
                 <input
                   type="number"
-                  className="w-[8em] rounded-xl"
+                  className="w-[8em] rounded-xl textarea-tw"
                   min="1"
                   max="500000000000"
                   value={laborCost}
@@ -394,7 +394,7 @@ function MrrCalculator() {
                 <p>$</p>
                 <input
                   type="number"
-                  className="w-[8em] rounded-xl"
+                  className="w-[8em] rounded-xl textarea-tw"
                   min="0"
                   max="50000000000"
                   value={marketingCost}
@@ -423,7 +423,7 @@ function MrrCalculator() {
 
                 <input
                   type="number"
-                  className="w-[8em] rounded-xl"
+                  className="w-[8em] rounded-xl textarea-tw"
                   min="1"
                   max="5000000000000"
                   value={otherCosts}

@@ -13,7 +13,7 @@
 
 @layer components {
   .textarea-tw {
-    @apply bg-[hsla(200,0%,100%,1)]  dark:bg-[hsla(200,0%,10%,1)]  placeholder:text-slate-400 dark:placeholder:text-slate-300 text-slate-800 dark:text-slate-100 rounded-lg dark:!shadow-none;
+    @apply bg-[hsla(200,0%,100%,1)]  dark:bg-[hsla(200,0%,10%,1)]  placeholder:text-slate-400 dark:placeholder:text-slate-300 text-slate-800 dark:text-slate-100 rounded-lg dark:!shadow-white textarea-box;
   }
 }
 
@@ -279,7 +279,6 @@ p {
   width: 100.8vw;
   height: 100vh;
   display: grid;
-
   grid-template-columns: 5.2% 94%;
   grid-template-rows: 8% 90%;
 
@@ -1206,11 +1205,7 @@ p {
   transform: scale(1.01);
 }
 
-textarea {
-  background: rgb(255, 255, 255);
-  box-shadow: inset 2px 2px 14px #b4b4b4, inset -2px -2px 14px #cee9f0;
-  border: none;
-}
+
 
 .textarea-box {
   /* background: rgb(243, 243, 243); */

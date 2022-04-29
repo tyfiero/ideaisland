@@ -16,19 +16,19 @@ function CostChip({
 
   useEffect(() => {
     if (option === 0) {
-      setColor(" bg-slate-200  text-slate-500");
+      setColor(" bg-slate-200  text-slate-500 dark:text-slate-500");
       setContent("...");
     } else if (option === 1) {
-      setColor(" bg-green-200  text-green-500");
+      setColor(" bg-green-200  text-green-500 !dark:text-green-500");
       setContent("Free");
     } else if (option === 2) {
-      setColor(" bg-yellow-200  text-yellow-600");
+      setColor(" bg-yellow-200  text-yellow-600 !dark:text-yellow-500");
       setContent("$");
     }else if (option === 3) {
-      setColor(" bg-orange-200  text-orange-600");
+      setColor(" bg-orange-200  text-orange-600 !dark:text-orange-500");
       setContent("$$$");
     } else {
-      setColor(" bg-red-200  text-red-600 shadow-md shadow-red-300");
+      setColor(" bg-red-200  text-red-600 shadow-md shadow-red-300 !dark:text-red-600");
       setContent("$$$$$");
     }
   }, [clicked]);// eslint-disable-line react-hooks/exhaustive-deps
@@ -92,9 +92,9 @@ function CostChip({
             <FaPlus className={iconColor} />
           ))}
 
-        <p className="m-0 text-xs md:hover:scale-100">
+        <h5 className="m-0 text-xs md:hover:scale-100 ">
           <b>{content}</b>
-        </p>
+        </h5>
       </button>
     </div>
   );

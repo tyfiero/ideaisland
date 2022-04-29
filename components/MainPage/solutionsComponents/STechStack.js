@@ -33,6 +33,9 @@ import {
 import { AiOutlineCluster } from "react-icons/ai";
 import { SiTailwindcss } from "react-icons/si";
 import { HiOutlineDotsCircleHorizontal } from "react-icons/hi";
+import { languages, web3, hosting, devOps, devTools, versionControl, noCode, otherTools, frontEnd, backEnd, cssTools, dataBases, authentication, componentLibraries } from "./CombinatorialComponents/DataForTechStack";
+
+
 function STechStack(props) {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [refresh, setRefresh] = useState(false);
@@ -59,6 +62,8 @@ function STechStack(props) {
       type: data[2],
       url: data[3],
       isOpenSource: data[4],
+      kind: data[5],
+
     };
 
     setToolArray([...toolArray, toolObj]);
@@ -82,141 +87,7 @@ function STechStack(props) {
   //   props.update("productType", e.target.value);
   // };
   let defaultZero = 0;
-  const languages = [
-    {
-      name: "Javascript",
-      cost: 0.0,
-      type: "Monthly",
-      url: "https://developer.mozilla.org/en-US/docs/Web/javascript",
-      isOpenSource: false,
-    },
-    {
-      name: "Python",
-      cost: 0.0,
-      type: "Monthly",
-      url: "https://www.python.org/",
-      isOpenSource: true,
-    },
-    {
-      name: "C++",
-      cost: 0.0,
-      type: "Monthly",
-      url: "https://en.wikipedia.org/wiki/C%2B%2B",
-      isOpenSource: false,
-    },
-    {
-      name: "C#",
-      cost: 0.0,
-      type: "Monthly",
-      url: "https://docs.microsoft.com/en-us/dotnet/csharp/",
-      isOpenSource: false,
-    },
-    {
-      name: "Java",
-      cost: 0.0,
-      type: "Monthly",
-      url: "https://www.java.com/en/",
-      isOpenSource: false,
-    },
-    {
-      name: "Swift",
-      cost: 0.0,
-      type: "Monthly",
-      url: "https://developer.apple.com/swift/",
-      isOpenSource: false,
-    },
-    {
-      name: "Ruby",
-      cost: 0.0,
-      type: "Monthly",
-      url: "https://www.ruby-lang.org/en/",
-      isOpenSource: false,
-    },
-    {
-      name: "PHP",
-      cost: 0.0,
-      type: "Monthly",
-      url: "https://www.php.net/",
-      isOpenSource: false,
-    },
-    {
-      name: "Go",
-      cost: 0.0,
-      type: "Monthly",
-      url: "https://go.dev/",
-      isOpenSource: false,
-    },
-    {
-      name: "Rust",
-      cost: 0.0,
-      type: "Monthly",
-      url: "https://www.rust-lang.org/",
-      isOpenSource: false,
-    },
-    {
-      name: "TypeScript",
-      cost: 0.0,
-      type: "Monthly",
-      url: "https://www.typescriptlang.org/",
-      isOpenSource: false,
-    },
-    {
-      name: "Kotlin",
-      cost: 0.0,
-      type: "Monthly",
-      url: "https://kotlinlang.org/",
-      isOpenSource: false,
-    },
-    {
-      name: "Scala",
-      cost: 0.0,
-      type: "Monthly",
-      url: "https://scala-lang.org/",
-      isOpenSource: false,
-    },
-    {
-      name: "Dart",
-      cost: 0.0,
-      type: "Monthly",
-      url: "https://dart.dev/",
-      isOpenSource: false,
-    },
-    {
-      name: "Elixir",
-      cost: 0.0,
-      type: "Monthly",
-      url: "https://elixir-lang.org/",
-      isOpenSource: false,
-    },
-    {
-      name: "Haskell",
-      cost: 0.0,
-      type: "Monthly",
-      url: "https://www.haskell.org/",
-      isOpenSource: false,
-    },
-    {
-      name: "Clojure",
-      cost: 0.0,
-      type: "Monthly",
-      url: "https://clojure.org/",
-      isOpenSource: false,
-    },
-    {
-      name: "Elm",
-      cost: 0.0,
-      type: "Monthly",
-      url: "https://elm-lang.org/",
-      isOpenSource: false,
-    },
-    {
-      name: "F#",
-      cost: 0.0,
-      type: "Monthly",
-      url: "https://fsharp.org/",
-      isOpenSource: false,
-    },
-  ];
+  
 
   useEffect(() => {
     console.log(toolArray);
@@ -444,20 +315,20 @@ function STechStack(props) {
                   <button
                     className={
                       "w-[12em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
-                      (selected === "CSS Framework"
+                      (selected === "CSS Tools"
                         ? " border-4 border-yellow-700 text-white bg-yellow-500 "
                         : "bg-yellow-300 text-black")
                     }
                     onClick={() => {
-                      if (selected !== "CSS Framework") {
-                        setSelected("CSS Framework");
+                      if (selected !== "CSS Tools") {
+                        setSelected("CSS Tools");
                       } else {
                         setSelected("");
                       }
                     }}
                   >
                     <SiTailwindcss />
-                    CSS Framework
+                    CSS Tools
                   </button>
                   <button
                     className={
@@ -600,7 +471,7 @@ function STechStack(props) {
                   </button>
                 </div>
                 <div className="flex flex-col items-center gap-2">
-                  <div className="flex items-center min-h-[20em] w-[45em] rounded-xl p-5 flex-col justify-between bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-70 border border-white/50 shadow-lg">
+                  <div className="flex items-center min-h-[20em] w-[45em] rounded-xl p-5 flex-col justify-between bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-70 border border-white/50 shadow-lg dark:bg-slate-800/70">
                     {/* {selected === "Faves" && (
                       <>
                         <p>No Favorites yet :(</p>
@@ -616,6 +487,7 @@ function STechStack(props) {
                               cost={data.cost}
                               url={data.url}
                               type={data.type}
+                              kind={data.kind}
                               isOpenSource={data.isOpenSource}
                               update={update}
                               deleteItem={deleteItem}
@@ -636,12 +508,13 @@ function STechStack(props) {
                     {selected === "Dev Tools" && (
                       <>
                         <div className="flex flex-wrap content-start justify-center gap-4">
-                          {languages.map((data, index) => (
+                          {devTools.map((data, index) => (
                             <ItemCard
                               name={data.name}
                               key={index}
                               cost={data.cost}
                               url={data.url}
+                              kind={data.kind}
                               type={data.type}
                               isOpenSource={data.isOpenSource}
                               update={update}
@@ -663,12 +536,13 @@ function STechStack(props) {
                     {selected === "No/Low Code" && (
                       <>
                         <div className="flex flex-wrap content-start justify-center gap-4">
-                          {languages.map((data, index) => (
+                          {noCode.map((data, index) => (
                             <ItemCard
                               name={data.name}
                               key={index}
                               cost={data.cost}
                               url={data.url}
+                              kind={data.kind}
                               type={data.type}
                               isOpenSource={data.isOpenSource}
                               update={update}
@@ -690,12 +564,13 @@ function STechStack(props) {
                     {selected === "Authentication" && (
                       <>
                         <div className="flex flex-wrap content-start justify-center gap-4">
-                          {languages.map((data, index) => (
+                          {authentication.map((data, index) => (
                             <ItemCard
                               name={data.name}
                               key={index}
                               cost={data.cost}
                               url={data.url}
+                              kind={data.kind}
                               type={data.type}
                               isOpenSource={data.isOpenSource}
                               update={update}
@@ -717,12 +592,13 @@ function STechStack(props) {
                     {selected === "UI Framework" && (
                       <>
                         <div className="flex flex-wrap content-start justify-center gap-4">
-                          {languages.map((data, index) => (
+                          {frontEnd.map((data, index) => (
                             <ItemCard
                               name={data.name}
                               key={index}
                               cost={data.cost}
                               url={data.url}
+                              kind={data.kind}
                               type={data.type}
                               isOpenSource={data.isOpenSource}
                               update={update}
@@ -744,12 +620,13 @@ function STechStack(props) {
                     {selected === "UI Component Library" && (
                       <>
                         <div className="flex flex-wrap content-start justify-center gap-4">
-                          {languages.map((data, index) => (
+                          {componentLibraries.map((data, index) => (
                             <ItemCard
                               name={data.name}
                               key={index}
                               cost={data.cost}
                               url={data.url}
+                              kind={data.kind}
                               type={data.type}
                               isOpenSource={data.isOpenSource}
                               update={update}
@@ -768,15 +645,16 @@ function STechStack(props) {
                         </div>
                       </>
                     )}
-                    {selected === "CSS Framework" && (
+                    {selected === "CSS Tools" && (
                       <>
                         <div className="flex flex-wrap content-start justify-center gap-4">
-                          {languages.map((data, index) => (
+                          {cssTools.map((data, index) => (
                             <ItemCard
                               name={data.name}
                               key={index}
                               cost={data.cost}
                               url={data.url}
+                              kind={data.kind}
                               type={data.type}
                               isOpenSource={data.isOpenSource}
                               update={update}
@@ -798,12 +676,13 @@ function STechStack(props) {
                     {selected === "Data" && (
                       <>
                         <div className="flex flex-wrap content-start justify-center gap-4">
-                          {languages.map((data, index) => (
+                          {dataBases.map((data, index) => (
                             <ItemCard
                               name={data.name}
                               key={index}
                               cost={data.cost}
                               url={data.url}
+                              kind={data.kind}
                               type={data.type}
                               isOpenSource={data.isOpenSource}
                               update={update}
@@ -825,12 +704,13 @@ function STechStack(props) {
                     {selected === "Backend Framework" && (
                       <>
                         <div className="flex flex-wrap content-start justify-center gap-4">
-                          {languages.map((data, index) => (
+                          {backEnd.map((data, index) => (
                             <ItemCard
                               name={data.name}
                               key={index}
                               cost={data.cost}
                               url={data.url}
+                              kind={data.kind}
                               type={data.type}
                               isOpenSource={data.isOpenSource}
                               update={update}
@@ -852,13 +732,14 @@ function STechStack(props) {
                     {selected === "Web3/Blockchain" && (
                       <>
                         <div className="flex flex-wrap content-start justify-center gap-4">
-                          {languages.map((data, index) => (
+                          {web3.map((data, index) => (
                             <ItemCard
                               name={data.name}
                               key={index}
                               cost={data.cost}
                               url={data.url}
                               type={data.type}
+                              kind={data.kind}
                               isOpenSource={data.isOpenSource}
                               update={update}
                               deleteItem={deleteItem}
@@ -879,13 +760,14 @@ function STechStack(props) {
                     {selected === "Hosting" && (
                       <>
                         <div className="flex flex-wrap content-start justify-center gap-4">
-                          {languages.map((data, index) => (
+                          {hosting.map((data, index) => (
                             <ItemCard
                               name={data.name}
                               key={index}
                               cost={data.cost}
                               url={data.url}
                               type={data.type}
+                              kind={data.kind}
                               isOpenSource={data.isOpenSource}
                               update={update}
                               deleteItem={deleteItem}
@@ -906,13 +788,14 @@ function STechStack(props) {
                     {selected === "Version Control" && (
                       <>
                         <div className="flex flex-wrap content-start justify-center gap-4">
-                          {languages.map((data, index) => (
+                          {versionControl.map((data, index) => (
                             <ItemCard
                               name={data.name}
                               key={index}
                               cost={data.cost}
                               url={data.url}
                               type={data.type}
+                              kind={data.kind}
                               isOpenSource={data.isOpenSource}
                               update={update}
                               deleteItem={deleteItem}
@@ -933,13 +816,14 @@ function STechStack(props) {
                     {selected === "DevOps" && (
                       <>
                         <div className="flex flex-wrap content-start justify-center gap-4">
-                          {languages.map((data, index) => (
+                          {devOps.map((data, index) => (
                             <ItemCard
                               name={data.name}
                               key={index}
                               cost={data.cost}
                               url={data.url}
                               type={data.type}
+                              kind={data.kind}
                               isOpenSource={data.isOpenSource}
                               update={update}
                               deleteItem={deleteItem}
@@ -960,13 +844,14 @@ function STechStack(props) {
                     {selected === "Other" && (
                       <>
                         <div className="flex flex-wrap content-start justify-center gap-4">
-                          {languages.map((data, index) => (
+                          {otherTools.map((data, index) => (
                             <ItemCard
                               name={data.name}
                               key={index}
                               cost={data.cost}
                               url={data.url}
                               type={data.type}
+                              kind={data.kind}
                               isOpenSource={data.isOpenSource}
                               update={update}
                               deleteItem={deleteItem}
@@ -985,10 +870,10 @@ function STechStack(props) {
                       </>
                     )}
                   </div>
-                  <div className="flex flex-col items-center normal-box-soft ">
+                  <div className="flex flex-col items-center normal-box-soft dark:bg-slate-700/80">
                     <p className="mb-1 ">Add custom:</p>
 
-                    <div className="flex items-center gap-2 mb-3 normal-box-soft">
+                    <div className="flex items-center gap-2 mb-3 normal-box-soft dark:bg-slate-500/80">
                       <div className="flex-col">
                         <p className="m-0">Name</p>
                         <textarea
@@ -1013,7 +898,7 @@ function STechStack(props) {
                             step="0.01"
                             placeholder="0.00"
                             value={toolCost}
-                            className="textarea-box  textarea-tw   h-[2.7em] !w-[7em] "
+                            className="textarea-box  textarea-tw  rounded-xl h-[2.7em] !w-[7em] "
                             onChange={(e) => {
                               console.log(e.target.valueAsNumber);
                               // if (toolCost) {
@@ -1029,7 +914,7 @@ function STechStack(props) {
                           defaultValue={selectedPriceOption}
                           onChange={setSelectedPriceOption}
                           isSearchable={false}
-                          className="react-select-container"
+                          className="react-select-container "
                           classNamePrefix="react-select"
                           options={[
                             { value: "Monthly", label: "Monthly" },
@@ -1100,7 +985,7 @@ function STechStack(props) {
             </div>
             <div className="normal-box-soft !rounded-xl w-[30em]">
               <div className="normal-box bg-[hsla(200,0%,100%,0.764)]  dark:bg-[hsla(200,0%,20%,0.764)] !rounded-xl text-left">
-                <h3 className="heading2">Tech Stack:</h3>
+                <h3 className="heading2 dark:text-blues-100">Tech Stack:</h3>
                 {/* <p>featureString:</p>
                   <p>{featureString}</p>
                   <p>props:</p>                  
@@ -1116,6 +1001,7 @@ function STechStack(props) {
                     url={data.url}
                     type={data.type}
                     key={index}
+                    kind={data.kind}
 
                     // deleteIndex={deleteIndex}
                   />
@@ -1131,18 +1017,18 @@ function STechStack(props) {
                       : defaultZero.toFixed(2)}
                   </p>
                 </div>
-                <div className="flex items-center justify-between ml-3">
+                <div className="flex items-center justify-between ml-3 dark:text-white">
                   <div>Annual Cost:</div>
-                  <p className="mb-0 mr-2 text-lg text-t-pm">
+                  <p className="mb-0 mr-2 text-lg text-t-pm ">
                     $
                     {monthlyCost
                       ? Number(monthlyCost * 12).toFixed(2)
                       : defaultZero.toFixed(2)}
                   </p>
                 </div>
-                <div className="flex items-center justify-between ml-3">
+                <div className="flex items-center justify-between ml-3 dark:text-white">
                   <div>Total Cost:</div>
-                  <p className="mb-0 mr-2 text-lg text-t-pm">
+                  <p className="mb-0 mr-2 text-lg text-t-pm ">
                     $
                     {monthlyCost
                       ? Number(monthlyCost).toFixed(2)
@@ -1160,12 +1046,48 @@ function STechStack(props) {
 
 export default STechStack;
 
-function ListItem({ name, deleteIndex, cost, url, type }) {
+function ListItem({ name, deleteIndex, cost, url, type, kind }) {
+  const [underline, setUnderline] = useState( " decoration-blue-300");
+
+
+  // console.log(kind);
+
+  useEffect(() => {
+    if(kind === "Languages"){
+      setUnderline( " decoration-blue-300")
+    }else if(kind === "Dev-tools"){
+      setUnderline( " decoration-sky-300")
+    }else if(kind === "No-Code"){
+      setUnderline( " decoration-cyan-300")
+    }else if(kind === "Authentication"){
+      setUnderline( " decoration-teal-300")
+    }else if(kind === "FrontEnd "){
+      setUnderline( " decoration-green-300")
+    }else if(kind === "Component library"){
+      setUnderline( " decoration-lime-300")
+    }else if(kind === "CSS framework"){
+      setUnderline( " decoration-yellow-300")
+    }else if(kind === "Data"){
+      setUnderline( " decoration-amber-300")
+    }else if(kind === "BackEnd"){
+      setUnderline( " decoration-orange-300")
+    }else if(kind === "Web-3"){
+      setUnderline( " decoration-red-300")
+    }else if(kind === "Hosting"){
+      setUnderline( " decoration-pink-300")
+    }else if(kind === "Version Control"){
+      setUnderline( " decoration-fuchsia-300")
+    }else if(kind === "DevOps"){
+      setUnderline( " decoration-purple-300")
+    }else if(kind === "Other"){
+      setUnderline( " decoration-indigo-300")
+    }
+  },[])
   // console.log(url)
   return (
     <div className="flex items-center justify-between ml-3">
       <div className="flex items-center group">
-        <li className="mr-2 nun">{name}</li>
+        <li className={"mr-2 underline nun dark:text-white decoration-4 underline-offset-2  " + underline}>{name}</li>
         <a
           href={url || "https://www.google.com"}
           target="_blank"
@@ -1188,57 +1110,57 @@ function ListItem({ name, deleteIndex, cost, url, type }) {
   );
 }
 
-function ItemChip({
-  name,
-  color,
-  bColor,
-  iconColor,
-  update,
-  cost,
-  url,
-  type,
-  fromColor,
-  fromLightColor,
-  viaColor,
-}) {
-  const [clicked, setClicked] = useState(false);
+// function ItemChip({
+//   name,
+//   color,
+//   bColor,
+//   iconColor,
+//   update,
+//   cost,
+//   url,
+//   type,
+//   fromColor,
+//   fromLightColor,
+//   viaColor,
+// }) {
+//   const [clicked, setClicked] = useState(false);
 
-  console.log(color);
-  return (
-    <button
-      onClick={(e) => {
-        // console.log(e);
+//   console.log(color);
+//   return (
+//     <button
+//       onClick={(e) => {
+//         // console.log(e);
 
-        if (clicked) {
-          // console.log("DELETE");
+//         if (clicked) {
+//           // console.log("DELETE");
 
-          // deleteIndex(text);
-          setClicked(false);
-        } else {
-          // console.log("UPDATE");
+//           // deleteIndex(text);
+//           setClicked(false);
+//         } else {
+//           // console.log("UPDATE");
 
-          update([name, cost, type, url]);
-          setClicked(true);
-        }
-      }}
-      // value={"BUTTON"}
-      className={
-        " flex gap-1 items-center rounded-full p-1 border-2  md:hover:scale-105 md:active:scale-95 whitespace-nowrap transition cursor-pointer h-fit w-fit " +
-        (clicked
-          ? " bg-slate-200  border-slate-500"
-          : " " + color + " " + bColor)
-      }
-    >
-      {clicked ? (
-        <FaTimes className="text-t-pm" />
-      ) : (
-        <FaPlus className={iconColor} />
-      )}
+//           update([name, cost, type, url]);
+//           setClicked(true);
+//         }
+//       }}
+//       // value={"BUTTON"}
+//       className={
+//         " flex gap-1 items-center rounded-full p-1 border-2  md:hover:scale-105 md:active:scale-95 whitespace-nowrap transition cursor-pointer h-fit w-fit " +
+//         (clicked
+//           ? " bg-slate-200  border-slate-500"
+//           : " " + color + " " + bColor)
+//       }
+//     >
+//       {clicked ? (
+//         <FaTimes className="text-t-pm" />
+//       ) : (
+//         <FaPlus className={iconColor} />
+//       )}
 
-      <p className="m-0 text-xs">{name}</p>
-    </button>
-  );
-}
+//       <p className="m-0 text-xs">{name}</p>
+//     </button>
+//   );
+// }
 
 function ItemCard({
   name,
@@ -1255,11 +1177,11 @@ function ItemCard({
   fromLightColor,
   viaColor,
   toColor,
+  kind,
 }) {
   const [clicked, setClicked] = useState(false);
   const [heartClicked, setHeartClicked] = useState(false);
 
-  // console.log(color);
   return (
     <div
       onClick={(e) => {
@@ -1273,13 +1195,13 @@ function ItemCard({
         } else {
           // console.log("UPDATE");
 
-          update([name, cost, type, url, isOpenSource]);
+          update([name, cost, type, url, isOpenSource, kind]);
           setClicked(true);
         }
       }}
       // value={"BUTTON"}
       className={
-        "group flex gap-1 items-center rounded-xl !p-0      whitespace-nowrap transition   select-none cursor-pointer h-[6em] min-w-[5em]    " +
+        "group flex gap-1 items-center rounded-xl !p-0      whitespace-nowrap transition duration-500  select-none cursor-pointer h-[6em] min-w-[5em]  md:hover:skew-y-6  " +
         (clicked
           ? " bg-gradient-to-b    border-4 " +
             fromColor +

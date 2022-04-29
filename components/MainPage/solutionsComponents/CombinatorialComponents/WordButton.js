@@ -33,7 +33,7 @@ function WordButton({ text, word, updateSelected, selectedWords }) {
   const [listOptions, setListOptions] = useState(allOptions);
   const [displayText, setDisplayText] = useState(text);
   const [textColor, setTextColor] = useState(
-    " underline decoration-t-bl text-blues-200 "
+    " underline decoration-sky-400 text-sky-400 dark:text-sky-300 "
   );
   const [list, setList] = useState(software);
   const [listLabel, setListLabel] = useState("💿 Software");
@@ -48,17 +48,17 @@ function WordButton({ text, word, updateSelected, selectedWords }) {
       let search = selectedWords?.findIndex((x) => x === displayText);
       // console.log(search);
       if (search === 0) {
-        setTextColor(" underline decoration-t-bl text-blues-300 ");
+        setTextColor(" underline decoration-sky-400 text-sky-400 dark:text-sky-300 ");
       } else if (search === 1) {
-        setTextColor(" underline decoration-t-pm text-pinks-300 ");
+        setTextColor(" underline decoration-pink-300 text-pink-300 dark:text-pink-300 ");
       } else if (search === 2) {
-        setTextColor(" underline decoration-green-500 text-green-400 ");
+        setTextColor(" underline decoration-green-500 text-green-400 dark:text-green-300 ");
       } else if (search === 3) {
-        setTextColor(" underline decoration-orange-500 text-orange-400 ");
+        setTextColor(" underline decoration-orange-500 text-orange-400 dark:text-orange-300 ");
       } else if (search === 4) {
-        setTextColor(" underline decoration-yellow-500 text-yellow-400 ");
+        setTextColor(" underline decoration-yellow-500 text-yellow-400 dark:text-yellow-300 ");
       } else {
-        setTextColor(" underline decoration-t-bl text-blues-300 ");
+        setTextColor(" underline decoration-sky-400 text-sky-400 dark:text-sky-300 ");
       }
     }
   }, [clicked]);
@@ -278,11 +278,12 @@ function WordButton({ text, word, updateSelected, selectedWords }) {
           )} */}
           <div
             className={
-              " z-50  flex flex-nowrap items-center gap-1 transition duration-500 justify-evenly rounded-xl glass-box bg-white/90  -left-[6rem] fade-effect-quick"
+              " z-50  flex flex-nowrap items-center gap-1 transition duration-500 justify-evenly rounded-xl glass-box bg-white/90 dark:bg-slate-600/80  -left-[6rem] fade-effect-quick dark:border-black"
             }
           >
             <div className="flex flex-col">
-              <div className="flex gap-1 mb-1 transition duration-500 h-9 justify-evenly">
+              <div className="flex flex-col items-center gap-1 mb-1 transition duration-500 ">
+              <div className="flex h-8 gap-1 mb-1 transition duration-500 justify-evenly">
                 {!locked && (
                   <button
                     data-tip
@@ -378,7 +379,20 @@ function WordButton({ text, word, updateSelected, selectedWords }) {
                     place={showImage && !showSimWords ? "top" : "bottom"}
                   />
                 </button>
+               
                 {!locked && (
+                  <button
+                    data-tip
+                    data-for="trash"
+                    className="flex items-center justify-center gap-4 cursor-pointer text-slate-700 dark:text-white rounded-3xl drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick "
+                    onClick={() => setClicked(false)}
+                  >
+                    <FaTimes className={"text-lg"} />
+                  </button>
+                )}
+              </div>
+
+                 {!locked && (
                   <div data-tip data-for="list">
                     <Cascader
                       // style={{ borderRadius: "59px" }}
@@ -394,7 +408,7 @@ function WordButton({ text, word, updateSelected, selectedWords }) {
                           data-tip
                           data-for="random1"
                           className={
-                            "flex items-center justify-center gap-1 p-2 w-fit flex-nowrap text-white  rounded-3xl bg-slate-100/70 drop-shadow-xl  md:transition-transform  md:hover:scale-105 md:active:scale-95 cursor-pointer fade-effect-quick"
+                            "flex items-center justify-center gap-1 px-2 py-1 w-fit flex-nowrap text-white  rounded-3xl bg-slate-100/70 drop-shadow-xl  md:transition-transform  md:hover:scale-105 md:active:scale-95 cursor-pointer fade-effect-quick ring-1 ring-t-bl"
                           }
                           // onClick={() => {
                           //   if (!locked) {
@@ -414,16 +428,6 @@ function WordButton({ text, word, updateSelected, selectedWords }) {
                       </a>
                     </Cascader>
                   </div>
-                )}
-                {!locked && (
-                  <button
-                    data-tip
-                    data-for="trash"
-                    className="flex items-center justify-center gap-4 cursor-pointer text-slate-700 dark:text-white rounded-3xl drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick "
-                    onClick={() => setClicked(false)}
-                  >
-                    <FaTimes className={"text-lg"} />
-                  </button>
                 )}
               </div>
               {showSimWords && <WordsCard word={displayText} />}

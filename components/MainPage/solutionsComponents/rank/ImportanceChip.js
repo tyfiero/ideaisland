@@ -85,9 +85,9 @@ function ImportanceChip({
             <FaPlus className={iconColor} />
           ))}
 
-        <p className="m-0 text-xs md:hover:scale-100">
+        <h5 className="m-0 text-xs md:hover:scale-100">
           <b>{content}</b>
-        </p>
+        </h5>
       </button>
     </div>
   );

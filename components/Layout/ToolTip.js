@@ -23,7 +23,7 @@ function ToolTip({ id, place="bottom", text, w="" }) {
       effect="solid"
       delayShow={300}
     >
-      <p className={type === "dark" ? "text-slate-50" : "text-slate-700"}>
+      <p className={"text-slate-50 dark:text-slate-700"}>
         {text}
       </p>
     </ReactTooltip>

@@ -13,20 +13,20 @@ function VersionChip({
   const [content, setContent] = useState(value);
 
 
-  const [color, setColor] = useState(" bg-green-200 text-green-500");
+  const [color, setColor] = useState(" bg-green-200 text-green-500 dark:text-blue-500");
 
   useEffect(() => {
     if (option === 0) {
-      setColor(" bg-blue-200  text-blue-500");
+      setColor(" bg-blue-200  text-blue-500 dark:text-blue-500");
       setContent("MVP");
     } else if (option === 1) {
-      setColor(" bg-green-200  text-green-500");
+      setColor(" bg-green-200  text-green-500 dark:text-green-500");
       setContent("V2");
     } else if (option === 2) {
-      setColor(" bg-orange-200  text-orange-600");
+      setColor(" bg-orange-200  text-orange-600 dark:text-orange-600");
       setContent("V3+");
     } else {
-      setColor(" bg-pink-200  text-pink-600 shadow-md shadow-pink-300");
+      setColor(" bg-pink-200  text-pink-600 shadow-md shadow-pink-300 dark:text-pink-600");
       setContent("Back burner");
     }
   }, [clicked]);// eslint-disable-line react-hooks/exhaustive-deps
@@ -86,9 +86,9 @@ function VersionChip({
           ) : (
             <FaPlus className={iconColor} />
           ))}
-        <p className="m-0 text-xs md:hover:scale-100">
+        <h5 className="m-0 text-xs md:hover:scale-100">
           <b>{content}</b>
-        </p>
+        </h5>
       </button>
     </div>
   );

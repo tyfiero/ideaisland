@@ -192,7 +192,7 @@ const CombinatorialPage = (props) => {
     <div>
       <GlobalHotKeys keyMap={keyMap} handlers={handlers} />
 
-      <div className="relative card-container fade-effect-quick">
+      <div className="relative overflow-x-hidden card-container fade-effect-quick">
         {/* div that holds all the cards, note the img prop where the url lives, as well as the array thats passed in to Card.js as a prop */}
         <h1 className="text-3xl text-t-bd dark:text-blues-100">
           Combinatorial Tool
@@ -282,7 +282,7 @@ const CombinatorialPage = (props) => {
                 "w-[12em] h-[2em] rounded-3xl  flex items-center justify-between px-3 text-white gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer " +
                 (randomImageOpen
                   ? " bg-green-400/70 shadow-lg shadow-green-300/60 ring-4 ring-green-600"
-                  : " bg-green-200 shadow-inner")
+                  : " bg-green-200 dark:bg-green-300/70 shadow-inner")
               }
               onClick={() => setRandomImageOpen(!randomImageOpen)}
             >
@@ -356,7 +356,7 @@ const CombinatorialPage = (props) => {
 
             <div className="relative flex flex-col w-full gap-1 glass-box !border-t-pm border-2 items-center">
               <ProblemStatement randomizeAll={randomizeAll} />
-              <BsArrowDown className="text-3xl" />
+              <BsArrowDown className="text-3xl dark:text-white" />
               <InspirationStatement randomizeAll={randomizeAll} />
               {/* <BsArrowDown className="text-3xl"/> */}
             </div>

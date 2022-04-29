@@ -30,9 +30,9 @@ function FeatureTable({ columns, data }) {
   return (
     <>
     <div className="overflow-x-auto">
-        <div className="flex justify-center overflow-hidden font-sans bg-gray-100 min-w-screen rounded-xl">
+        <div className="flex justify-center overflow-hidden font-sans bg-gray-100 dark:bg-slate-400/60 min-w-screen rounded-xl">
      <div className="w-full lg:w-[98%]">
-                <div className="my-6 bg-white shadow-md !rounded-2xl">
+                <div className="my-6 bg-white dark:bg-slate-700/60 shadow-md !rounded-2xl">
       <table className="w-full table-auto min-w-max" {...getTableProps()}>
         <thead >
           {headerGroups.map(headerGroup => (

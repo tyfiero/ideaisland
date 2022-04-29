@@ -254,7 +254,7 @@ const deduct = async (values) => {
 
       </div>
       <TextareaAutosize
-        className="w-[99%] rounded-md nun dark:!bg-slate-900/90 dark:text-white dark:!shadow-inner dark:!shadow-white"
+        className="w-[99%] rounded-md nun   textarea-tw"
         onChange={(e) => {
           console.log(e.target.value);
           setGPTJInput(e.target.value);

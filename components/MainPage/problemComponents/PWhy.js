@@ -304,7 +304,7 @@ dispatch(pFormAction(updated));
             </div>
 
             <div className="flex flex-col">
-              <div className="mb-2 text-left glass-box bg-white/70">
+              <div className="mb-2 text-left glass-box bg-white/70 dark:bg-slate-600/80">
                 {" "}
                 <p>
                   Do you feel a sense of purpose for this endeavor? What is it?

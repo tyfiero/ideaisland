@@ -36,6 +36,8 @@ function IdeaNote() {
   const [content, setContent] = useState("");
   const [rating, setRating] = useState(0);
   const userUIDRedux = useSelector((state) => state.userUID);
+  const darkRedux = useSelector((state) => state.darkMode);
+
   const dispatch = useDispatch();
 
   //Send rating back from stars component
@@ -43,6 +45,16 @@ function IdeaNote() {
     // console.log(starsRating);
     setRating(starsRating);
   };
+
+// useEffect(() => {
+//   if (darkRedux) {
+// //     const quilStyle =document.querySelector("#__next > div > div:nth-child(6) > div > div.popup-box > div > div.h-full > div > div.flex.justify-center.w-full.h-full.p-2.rounded-b-3xl.rounded-t-xl.bg-clear-bl3 > div > div > div.ql-toolbar.ql-snow");
+// // console.log(quilStyle);
+// //     //  let quilStyle = document.getElementsByClassName(".ql-toolbar")
+// //      quilStyle.style.backgroundColor = "hsla(200,0%,50%,0.7) !important"
+//   }
+// }, [])
+
 
   // Create a new post in firestore
   const createIdea = async (e) => {

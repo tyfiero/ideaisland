@@ -72,7 +72,7 @@ function Pricing(props) {
            
           </div>}
 
-          <div className="flex items-center w-[16em] justify-center rounded-xl p-2  gap-3  h-10 mt-2 glass-box bg-white/50">
+          <div className="flex items-center w-[16em] justify-center rounded-xl p-2  gap-3  h-10 mt-2 glass-box bg-white/50 dark:bg-slate-600/80">
             <p
               className={
                 annual
@@ -102,7 +102,7 @@ function Pricing(props) {
           </div>
           <div className="flex-wrap items-center justify-center w-full gap-8 my-0 sm:flex">
             {/* Basic */}
-            <div className=" px-4 py-4 mt-6 text-black transition duration-500 rounded-lg shadow-lg bg-white/60 md:hover:bg-clear-bl3 sm:w-1/2 md:w-1/2 lg:w-[23em] group !min-h-[43em] flex-col flex justify-between">
+            <div className=" px-4 py-4 mt-6 text-black transition duration-500 rounded-lg shadow-lg bg-white/60 dark:bg-slate-600/80 md:hover:bg-clear-bl3 sm:w-1/2 md:w-1/2 lg:w-[23em] group !min-h-[43em] flex-col flex justify-between">
               <div className="p-4">
                 <div className="flex justify-center">
                   <span className="inline-flex px-4 py-1 mb-0 text-3xl font-semibold leading-5 tracking-wide transition rounded-full group-hover:text-white blue-gradient-text">
@@ -111,37 +111,37 @@ function Pricing(props) {
                 </div>
                 <div className="flex justify-center mt-4 text-6xl font-extrabold leading-none transition text-blues-200 group-hover:text-white">
                   {annual ? "$9" : "$12"}
-                  <span className="pt-8 ml-1 text-2xl font-medium leading-8 text-gray-500 transition group-hover:text-gray-200">
+                  <span className="pt-8 ml-1 text-2xl font-medium leading-8 text-gray-500 transition group-hover:text-gray-200 dark:text-white">
                     /month
                   </span>
                 </div>
               <p className="mt-4 text-md">Plan includes :</p>
               <ul className="w-full mt-2 mb-6 text-sm">
-                <li className="flex items-center mb-3 ">
+                <li className="flex items-center mb-3 dark:text-white">
                   <FaCheckCircle className="mr-4 text-xl text-t-bl" />
                   Problem Tool
                 </li>
-                <li className="flex items-center mb-3 ">
+                <li className="flex items-center mb-3 dark:text-white">
                   <FaCheckCircle className="mr-4 text-xl text-t-bl" />
                   Solution Tools
                 </li>
-                <li className="flex items-center mb-3 ">
+                <li className="flex items-center mb-3 dark:text-white">
                   <FaCheckCircle className="mr-4 text-xl text-t-bl" />
                   Save notes and ideas
                 </li>
-                <li className="flex items-center mb-3 ">
+                <li className="flex items-center mb-3 dark:text-white">
                   <FaCheckCircle className="mr-4 text-xl text-t-bl" />
                   Access to our community
                 </li>
-                <li className="flex items-center mb-3 opacity-50">
+                <li className="flex items-center mb-3 opacity-50 dark:text-white">
                   <FaTimesCircle className="mr-4 text-xl text-t-pd" />
                     Feature selection tool
                 </li>
-                <li className="flex items-center mb-3 opacity-50">
+                <li className="flex items-center mb-3 opacity-50 dark:text-white">
                   <FaTimesCircle className="mr-4 text-xl text-t-pd" />
                    Tech stack builder 
                 </li>
-                <li className="flex items-center mb-3 opacity-50">
+                <li className="flex items-center mb-3 opacity-50 dark:text-white">
                   <FaTimesCircle className="mr-4 text-xl text-t-pd" />
                     AI assisted ideation
                 </li>
@@ -149,7 +149,7 @@ function Pricing(props) {
               </ul>
               </div>
               
-              <button className="w-full px-3 py-3 text-sm transition-colors duration-700 transform bg-white rounded-lg shadow paddle_button text-t-bl hover:text-white hover:bg-t-bl" data-theme="none" data-product="767575"  onClick={() => {
+              <button className="w-full px-3 py-3 text-sm transition-colors duration-700 transform bg-white rounded-lg shadow paddle_button text-t-bl hover:text-white hover:bg-t-bl dark:bg-t-bl dark:text-white " data-theme="none" data-product="767575"  onClick={() => {
 
 // eslint-disable-next-line
           // Paddle.Checkout.open({
@@ -168,7 +168,7 @@ function Pricing(props) {
 
             {/* <!-- Popular --> */}
 
-            <div className="w-full px-4 py-4 mt-6 text-black transition duration-500 rounded-lg shadow-lg bg-white/60 md:hover:bg-clear-bl3 sm:w-1/2 md:w-1/2 lg:w-[23em] group min-h-[43em] flex-col flex justify-between">
+            <div className="w-full px-4 py-4 mt-6 text-black transition duration-500 rounded-lg shadow-lg bg-white/60 dark:bg-slate-600/80 md:hover:bg-clear-bl3 sm:w-1/2 md:w-1/2 lg:w-[23em] group min-h-[43em] flex-col flex justify-between">
               <div className="p-4">
                 <div className="flex justify-center">
                   <span className="inline-flex px-4 py-1 text-3xl font-semibold leading-5 tracking-wide transition rounded-full group-hover:text-white blue-gradient-text">
@@ -177,45 +177,45 @@ function Pricing(props) {
                 </div>
                 <div className="flex justify-center mt-4 text-6xl font-extrabold leading-none transition text-t-bl group-hover:text-white">
                   {annual ? "$29" : "$36"}
-                  <span className="pt-8 ml-1 text-2xl font-medium leading-8 text-gray-500 transition group-hover:text-gray-200">
+                  <span className="pt-8 ml-1 text-2xl font-medium leading-8 text-gray-500 transition group-hover:text-gray-200 dark:text-white">
                     /month
                   </span>
                 </div>
               <p className="mt-4 text-md">Plan includes :</p>
               <ul className="w-full mt-2 mb-6 text-sm">
-                <li className="flex items-center mb-3 ">
+                <li className="flex items-center mb-3 dark:text-white">
                   <FaCheckCircle className="mr-4 text-xl text-t-bl" />
                   Problem Tool
                 </li>
-                <li className="flex items-center mb-3 ">
+                <li className="flex items-center mb-3 dark:text-white">
                   <FaCheckCircle className="mr-4 text-xl text-t-bl" />
                   Solution Tools
                 </li>
-                <li className="flex items-center mb-3 ">
+                <li className="flex items-center mb-3 dark:text-white">
                   <FaCheckCircle className="mr-4 text-xl text-t-bl" />
                   Save notes and ideas
                 </li>
-                <li className="flex items-center mb-3 ">
+                <li className="flex items-center mb-3 dark:text-white">
                   <FaCheckCircle className="mr-4 text-xl text-t-bl" />
                   Access to our community
                 </li>
-                <li className="flex items-center mb-3 ">
+                <li className="flex items-center mb-3 dark:text-white">
                   <FaCheckCircle className="mr-4 text-xl text-t-bl" />
                     Feature selection tool
                 </li>
-                <li className="flex items-center mb-3 ">
+                <li className="flex items-center mb-3 dark:text-white">
                   <FaCheckCircle className="mr-4 text-xl text-t-bl" />
                    Tech stack builder 
                 </li>
-                <li className="flex items-center mb-3 ">
+                <li className="flex items-center mb-3 dark:text-white">
                   <FaCheckCircle className="mr-4 text-xl text-t-bl" />
                     AI assisted ideation (250 credits/month)
                 </li>
-                <li className="flex items-center mb-3 opacity-50">
+                <li className="flex items-center mb-3 opacity-50 dark:text-white">
                   <FaTimesCircle className="mr-4 text-xl text-t-pd" />
                     Innovation Consulting
                 </li>
-                <li className="flex items-center mb-3 opacity-50">
+                <li className="flex items-center mb-3 opacity-50 dark:text-white">
                   <FaTimesCircle className="mr-4 text-xl text-t-pd" />
                     Personalized Idea Report
                 </li>
@@ -224,7 +224,7 @@ function Pricing(props) {
 
               <button
                 type="button"
-                className="w-full px-3 py-3 text-sm transition-colors duration-700 transform bg-white rounded-lg shadow text-t-bl hover:text-white hover:bg-t-bl"
+                className="w-full px-3 py-3 text-sm transition-colors duration-700 transform bg-white rounded-lg shadow text-t-bl hover:text-white hover:bg-t-bl dark:bg-t-bl dark:text-white "
                 onClick={()=>{
 
                   
@@ -239,7 +239,7 @@ function Pricing(props) {
             </div>
 
             {/* <!-- premium --> */}
-            <div className="w-full px-4 py-4 mt-6 text-black transition duration-500 rounded-lg shadow-lg bg-white/60 md:hover:bg-clear-bl3 sm:w-1/2 md:w-1/2 lg:w-[23em] group min-h-[43em] flex-col flex justify-between">
+            <div className="w-full px-4 py-4 mt-6 text-black transition duration-500 rounded-lg shadow-lg bg-white/60 dark:bg-slate-600/80 md:hover:bg-clear-bl3 sm:w-1/2 md:w-1/2 lg:w-[23em] group min-h-[43em] flex-col flex justify-between">
               <div className="p-4">
                 <div className="flex justify-center">
                   <span className="inline-flex px-4 py-1 text-3xl font-semibold leading-5 tracking-wide transition rounded-full group-hover:text-white blue-gradient-text">
@@ -248,45 +248,45 @@ function Pricing(props) {
                 </div>
                 <div className="flex justify-center mt-4 text-6xl font-extrabold leading-none transition text-blues-600 group-hover:text-white">
                   {annual ? "$49" : "$60"}
-                  <span className="pt-8 ml-1 text-2xl font-medium leading-8 text-gray-500 transition group-hover:text-gray-200">
+                  <span className="pt-8 ml-1 text-2xl font-medium leading-8 text-gray-500 transition group-hover:text-gray-200 dark:text-white">
                     /month
                   </span>
                 </div>
               <p className="mt-4 text-md">Plan includes :</p>
               <ul className="w-full mt-2 mb-6 text-sm">
-                <li className="flex items-center mb-3 ">
-                  <FaCheckCircle className="mr-4 text-xl text-t-bl" />
+                <li className="flex items-center mb-3 dark:text-white">
+                  <FaCheckCircle className="mr-4 text-xl text-t-bl " />
                   Problem Tool
                 </li>
-                <li className="flex items-center mb-3 ">
+                <li className="flex items-center mb-3 dark:text-white ">
                   <FaCheckCircle className="mr-4 text-xl text-t-bl" />
                   Solution Tools
                 </li>
-                <li className="flex items-center mb-3 ">
+                <li className="flex items-center mb-3 dark:text-white">
                   <FaCheckCircle className="mr-4 text-xl text-t-bl" />
                   Save notes and ideas
                 </li>
-                <li className="flex items-center mb-3 ">
+                <li className="flex items-center mb-3 dark:text-white">
                   <FaCheckCircle className="mr-4 text-xl text-t-bl" />
                   Access to our community
                 </li>
-                <li className="flex items-center mb-3 ">
+                <li className="flex items-center mb-3 dark:text-white">
                   <FaCheckCircle className="mr-4 text-xl text-t-bl" />
                     Feature selection tool
                 </li>
-                <li className="flex items-center mb-3 ">
+                <li className="flex items-center mb-3 dark:text-white">
                   <FaCheckCircle className="mr-4 text-xl text-t-bl" />
                    Tech stack builder 
                 </li>
-               <li className="flex items-center mb-3 ">
+               <li className="flex items-center mb-3 dark:text-white">
                   <FaCheckCircle className="mr-4 text-xl text-t-bl" />
                     AI assisted ideation (1000 credits/month)
                 </li>
-                <li className="flex items-center mb-3 ">
+                <li className="flex items-center mb-3 dark:text-white">
                   <FaCheckCircle className="mr-4 text-xl text-t-bl" />
                     Innovation Consulting (4 hours per month)
                 </li>
-                 <li className="flex items-center mb-3 ">
+                 <li className="flex items-center mb-3 dark:text-white">
                   <FaCheckCircle className="mr-4 text-xl text-t-bl" />
                     Personalized Idea Report
                 </li>
@@ -294,7 +294,7 @@ function Pricing(props) {
               </div>
               <button
                 type="button"
-                className="w-full px-3 py-3 text-sm transition-colors duration-700 transform bg-white rounded-lg shadow text-t-bl hover:text-white hover:bg-t-bl"
+                className="w-full px-3 py-3 text-sm transition-colors duration-700 transform bg-white rounded-lg shadow dark:bg-t-bl dark:text-white text-t-bl hover:text-white hover:bg-t-bl"
                 onClick={()=>{
 
                   

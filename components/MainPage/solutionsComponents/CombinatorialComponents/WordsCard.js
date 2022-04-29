@@ -85,7 +85,7 @@ function WordsCard(props) {
 
   return (
       <div
-        className="flex flex-col items-center min-w-[24em] "
+        className="flex flex-col items-center min-w-[12em] max-w-[16em] rounded-lg  "
         // onClick={() => {
         //   dispatch(similarRequest(true));
         //   setShowRelatedWord(!showRelatedWord);
@@ -95,12 +95,12 @@ function WordsCard(props) {
         {/* <p>Words with Similar Meanings:</p> */}
         {showRelatedWord ? (
           <div className="flex flex-wrap justify-center capitalize gap-x-2">
-          {loading ? <div className="my-2"><Loader show={true} className="scale-50 "/></div>:<><p className="text-slate-700 dark:text-white">{isRelatedWord[0]}</p>
-            <p className="text-slate-700 dark:text-white">{isRelatedWord[1]}</p>
-            <p className="text-slate-700 dark:text-white">{isRelatedWord[2]}</p>
-            <p className="text-slate-700 dark:text-white">{isRelatedWord[3]}</p>
-            <p className="text-slate-700 dark:text-white">{isRelatedWord[4]}</p>
-            <p className="text-slate-700 dark:text-white">{isRelatedWord[5]}</p></>}  
+          {loading ? <div className="my-2"><Loader show={true} className="scale-50 "/></div>:<><p className="text-sky-700 dark:text-white">{isRelatedWord[0]}</p>
+            <p className="text-pink-700 dark:text-pink-100">{isRelatedWord[1]}</p>
+            <p className="text-green-700 dark:text-green-100">{isRelatedWord[2]}</p>
+            <p className="text-violet-700 dark:text-violet-100">{isRelatedWord[3]}</p>
+            <p className="text-yellow-700 dark:text-yellow-100">{isRelatedWord[4]}</p>
+            <p className="text-cyan-700 dark:text-cyan-100">{isRelatedWord[5]}</p></>}  
           </div>
         ) : null}
       </div>

@@ -80,7 +80,7 @@ function RandomPics() {
             "w-[16em] h-[2em] rounded-3xl  flex items-center justify-between px-3 text-white gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer " +
             (words
               ? " bg-green-400/70 shadow-lg shadow-green-300/60 ring-4 ring-green-600"
-              : " bg-green-200 shadow-inner")
+              : " bg-green-200 dark:bg-green-400/70 shadow-inner")
           }
         >
           <FaBookOpen
@@ -105,7 +105,7 @@ function RandomPics() {
             "w-[12em] h-[2em] rounded-3xl  flex items-center justify-between px-3 text-white gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer " +
             (images
               ? " bg-green-400/70 shadow-lg shadow-green-300/60 ring-4 ring-green-600"
-              : " bg-green-200 shadow-inner")
+              : " bg-green-200 shadow-inner dark:bg-green-400/70")
           }
         >
           <FaImages
@@ -140,7 +140,7 @@ function RandomPics() {
               <ItemChip
                 name={data}
                 key={index}
-                color=" bg-green-200 shadow-inner"
+                color=" bg-green-200 dark:bg-green-400/70 shadow-inner"
               />
             ))}
           </div>
@@ -215,21 +215,21 @@ function RandomPics() {
               onClick={() => {
                 setRefresh(!refresh);
               }}
-              className=" w-[10em] h-[2.5em] rounded-3xl bg-green-200 flex items-center justify-center  gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer mt-2"
+              className=" w-[10em] h-[2.5em] rounded-3xl bg-green-200 dark:bg-green-400/70 dark:text-white flex items-center justify-center  gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer mt-2 nun"
             >
-              <FaRedo className="text-[20px]" />
+              <FaRedo className="text-[20px] text-green-700" />
               New Images
             </button>
             <button
               onClick={() => {
                 setMore(!more);
               }}
-              className=" w-[10em] h-[2.5em] rounded-3xl bg-green-200  flex items-center justify-center  gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer mt-2"
+              className=" w-[10em] h-[2.5em] rounded-3xl bg-green-200 dark:bg-green-400/70 flex items-center justify-center  gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer mt-2 nun"
             >
               {!more ? (
                 <>
                   {" "}
-                  <FaPlus className="text-[20px]" /> <p>Show More</p>
+                  <FaPlus className="text-[20px] text-green-700" /> <p>Show More</p>
                 </>
               ) : (
                 <>
