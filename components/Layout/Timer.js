@@ -330,7 +330,7 @@ function CircleTimer({ setTimerOpen }) {
       <div className="!z-[500]" ref={ref}>{isVisible && timerMenuContent}</div>
       {/* {timerMenuContent} */}
       <div
-        className="z-10 scale-75 !border-0 cursor-pointer timer-wrapper bg-clear-pl4"
+        className="z-10 scale-75 !border-0 cursor-pointer timer-wrapper bg-clear-pl4 fade-effect-quick"
         onClick={onClickHandler}
         // onMouseEnter={() => setTimerMenuOpen(true)}
         // onMouseLeave={() => setTimerMenuOpen(false)}

@@ -282,24 +282,21 @@ if (darkRedux) {
           {/* <Footer /> */}
         </div>
         <div>
-          {isPopUpOpen ? (
-            <>
-              {" "}
-              <div className="notepad-container">
-                <NotePopUpModal handleClose={togglePopup} />{" "}
-                <NotePopUp handleClose={togglePopup} />
+          
+         
+           
+              <div className={ isPopUpOpen ? "notepad-container" : " "}>
+              {isPopUpOpen && (  <NotePopUpModal handleClose={togglePopup} />     )}
+                <NotePopUp handleClose={togglePopup} isPopUpOpen={isPopUpOpen}/>
               </div>
-            </>
-          ) : (
-            <>
-              <div></div>
-            </>
-          )}
+          
+         
+     
         </div>
         {!loadingUI && signedIn && (
           <div className="button-holder">
             <button
-              className="z-100 flex items-center justify-center w-[4em] h-[4em]  delay-200 transform rounded-full notepad-button fade-effect text-t-pd hover:scale-125 hover:rotate-90 bg-gradient-to-br from-white/60 to-clear-pl5 hover:shadow-2xl duration-1000 ease-in-out"
+              className={"z-100 flex items-center justify-center w-[4em] h-[4em]   transform rounded-full notepad-button fade-effect text-t-pd hover:scale-125 bg-gradient-to-br from-white/60 to-clear-pl5 hover:shadow-2xl duration-500  " + (isPopUpOpen ? "  ease-in-out  rotate-[135deg] " : " ")}
               onClick={togglePopup}
             >
               <FaPlus style={{ fontSize: "1.8em" }} />

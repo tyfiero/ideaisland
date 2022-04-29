@@ -14,6 +14,10 @@ import {
   FaStickyNote,
   FaExternalLinkAlt,
 } from "react-icons/fa";
+import {
+  motion,
+  AnimatePresence,
+} from "framer-motion";
 
 import { useRouter } from "next/router";
 
@@ -89,8 +93,17 @@ const NotePopUp = (props) => {
   // let idea =
 
   return (
-    <div className="popup-box fade-effect-turbo">
-      <div className="box fade-effect-fast bg-white/90 dark:bg-slate-700/90">
+
+    <AnimatePresence exitBeforeEnter>
+    {props.isPopUpOpen && (
+    <motion.div 
+       key={"notebox"}
+       exit={{ opacity: 0, scale: 0.2, top: "80%", left: "100%" }}
+       initial={{ opacity: 0, scale: 0.2, top: "80%", left: "100%" }}
+       animate={{ opacity: 1, scale: 1, top: "-3%", left: "57%" }}
+       transition={{ delay: 0.1, duration: 0.4 }}
+    className="popup-box ">
+      <div className="box bg-white/90 dark:bg-slate-700/90">
         {/* <span className="close-icon" onClick={props.handleClose}>
           x
         </span> */}
@@ -174,7 +187,10 @@ const NotePopUp = (props) => {
         {/* {noteType === "problem" && <ProblemNote />} */}
         {noteType === "note" && <NoteNote />}
       </div>
-    </div>
+    </motion.div>
+    )}
+    </AnimatePresence>
+
   );
 };
 

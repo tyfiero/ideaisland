@@ -223,7 +223,7 @@ setError(true)
       </p> : <p className="photo_credit whitespace-nowrap">
       Loading...   
         
-      </p>) : <p className="photo_credit whitespace-nowrap !text-base ">
+      </p>) : <p className="photo_credit whitespace-nowrap ">
         {photoCreditStatement} {" from "}
         <a className="underline text-t-bl" href={isPhotoPage} target="_blank" rel="noreferrer" >
           Pexels.
