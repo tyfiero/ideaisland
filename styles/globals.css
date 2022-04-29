@@ -13,7 +13,7 @@
 
 @layer components {
   .textarea-tw {
-    @apply bg-[hsla(200,0%,100%,1)]  dark:bg-[hsla(200,0%,10%,1)]  placeholder:text-slate-400 dark:placeholder:text-slate-300 text-slate-800 dark:text-slate-100 rounded-lg;
+    @apply bg-[hsla(200,0%,100%,1)]  dark:bg-[hsla(200,0%,10%,1)]  placeholder:text-slate-400 dark:placeholder:text-slate-300 text-slate-800 dark:text-slate-100 rounded-lg dark:!shadow-none;
   }
 }
 
@@ -265,7 +265,7 @@ p {
   background-position: center;
 
   filter: blur(100px);
-  -webkit-filter: blur(100px);
+  -webkit-filter: blur(100px) !important;
 
   height: 100%;
   width: 100%;
@@ -1091,11 +1091,10 @@ p {
     text-align: center;
 
     padding: 10px;
-    background: #fff;
     border-radius: 2em;
     padding: 20px;
     overflow: auto;
-    box-shadow: 9px 9px 17px #989898, -9px -9px 17px #ffffff;
+    box-shadow: 5px 5px 17px #989898, -5px -5px 17px #ffffff;
   }
   .save_button {
     padding: 2px 5px 2px 5px;
@@ -1150,11 +1149,11 @@ p {
     text-align: center;
 
     padding: 10px;
-    background: rgba(255, 255, 255, 0.993);
+
     border-radius: 2em;
 
     overflow: auto;
-    box-shadow: 9px 9px 17px #989898, -9px -9px 17px #ffffff;
+    box-shadow: 5px 5px 17px #989898, -5px -5px 17px #ffffff;
   }
   .save_button {
     padding: 2px 5px 2px 5px;
@@ -1483,6 +1482,7 @@ box-shadow: 10px 0px 20px -2px #4eaef77e; */
     animation: fadeIn 0.2s;
   }
 
+
   @keyframes fadeIn {
     0% {
       opacity: 0;
@@ -1528,6 +1528,75 @@ box-shadow: 10px 0px 20px -2px #4eaef77e; */
     }
   }
 }
+
+.grow-effect {
+  -webkit-animation:  growIn 0.2s;
+  -moz-animation:  growIn 0.2s;
+  -o-animation:  growIn 0.2s;
+  -ms-animation: growIn 0.2s;
+  animation: growIn 0.9s;
+}
+@keyframes growIn {
+  0% {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+
+  }
+}
+
+@-moz-keyframes growIn {
+  0% {
+    transform:  scale(0.7);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+
+  }
+}
+
+@-webkit-keyframes growIn {
+  0% {
+    transform:  scale(0.7);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+
+  }
+}
+
+@-o-keyframes growIn {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+
+  }
+}
+
+@-ms-keyframes growIn {
+  0% {
+    transform:  scale(0.7);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+
+  }
+}
+
+
 
 .digital-timer-container {
   display: flex;

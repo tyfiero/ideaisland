@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ReactTooltip from "react-tooltip";
 import { useSelector, useDispatch } from "react-redux";
 
-function ToolTip({ id, place, text, w="" }) {
+function ToolTip({ id, place="bottom", text, w="" }) {
   const [type, setType] = useState("dark");
   const darkRedux = useSelector((state) => state.darkMode);
 
@@ -17,9 +17,9 @@ function ToolTip({ id, place, text, w="" }) {
   return (
     <ReactTooltip
       id={id}
-      place={place || "bottom"}
+      place={place}
       type={type}
-      className={"!rounded-lg  !px-1  " + w}
+      className={"!rounded-lg  !px-1  !z-50" + w}
       effect="solid"
       delayShow={300}
     >

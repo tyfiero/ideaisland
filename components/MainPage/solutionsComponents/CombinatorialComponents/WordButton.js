@@ -27,6 +27,7 @@ function WordButton({ text, word, updateSelected, selectedWords }) {
   const [locked, setLocked] = useState(false);
 
   const [randomized, setRandomized] = useState(false);
+  const [showText, setShowText] = useState(false);
 
   const [ringColor, setRingColor] = useState(" ring-blues-600");
   const [listOptions, setListOptions] = useState(allOptions);
@@ -45,7 +46,7 @@ function WordButton({ text, word, updateSelected, selectedWords }) {
     // console.log(selectedWords);
     if (clicked) {
       let search = selectedWords?.findIndex((x) => x === displayText);
-      console.log(search);
+      // console.log(search);
       if (search === 0) {
         setTextColor(" underline decoration-t-bl text-blues-300 ");
       } else if (search === 1) {
@@ -111,6 +112,7 @@ function WordButton({ text, word, updateSelected, selectedWords }) {
         }
 
         updateSelected([item, "update", word]);
+        setShowText(!showText);
         setDisplayText(item);
       } catch (error) {
         console.error(error);
@@ -151,17 +153,16 @@ function WordButton({ text, word, updateSelected, selectedWords }) {
     //   setList(companies);
     // }
 
-    if(value.length > 2){
+    if (value.length > 2) {
       setList(value[2]);
-      setListLabel(label[2].label)
-          setDisplayText(value[2][4]);
-    }else{
+      setListLabel(label[2].label);
+      setDisplayText(value[2][4]);
+    } else {
       setList(value[1]);
-      setListLabel(label[1].label)
-      console.log(value[1])
-          setDisplayText(value[1][4]);
+      setListLabel(label[1].label);
+      console.log(value[1]);
+      setDisplayText(value[1][4]);
     }
-     
 
     // setList(label[1].label);
 
@@ -234,15 +235,28 @@ function WordButton({ text, word, updateSelected, selectedWords }) {
             (clicked ? "min-w-[10em]" : " text-slate-600 md:hover:text-t-bl ")
           }
         >
-          <p
-            className={
-              "text-5xl  md:hover:scale-[102%] md:active:scale-95 transition duration-500   underline-offset-8  " +
-              (clicked ? textColor : " text-slate-600 md:hover:text-t-bl ") +
-              +(word > 0 && " lowercase")
-            }
-          >
-            {displayText}
-          </p>{" "}
+          {showText && (
+            <p
+              className={
+                "text-5xl  md:hover:scale-[102%] md:active:scale-95 transition duration-500   underline-offset-8  grow-effect" +
+                (clicked ? textColor : " text-slate-600 md:hover:text-t-bl ")
+              }
+            >
+              {displayText}
+            </p>
+          )}
+          {!showText &&  (
+            <p
+              className={
+                "text-5xl  md:hover:scale-[102%] md:active:scale-95 transition duration-500   underline-offset-8   grow-effect" +
+                (clicked ? textColor : " text-slate-600 md:hover:text-t-bl ") 
+              }
+            >
+              {displayText}
+            </p>
+          )}
+          
+          {" "}
         </div>
       </button>
       {clicked && (
@@ -264,7 +278,7 @@ function WordButton({ text, word, updateSelected, selectedWords }) {
           )} */}
           <div
             className={
-              " z-50  flex flex-nowrap items-center gap-1 transition duration-500 justify-evenly rounded-xl glass-box bg-white/90  -left-[6rem] "
+              " z-50  flex flex-nowrap items-center gap-1 transition duration-500 justify-evenly rounded-xl glass-box bg-white/90  -left-[6rem] fade-effect-quick"
             }
           >
             <div className="flex flex-col">
@@ -306,7 +320,11 @@ function WordButton({ text, word, updateSelected, selectedWords }) {
                     />
                   )}
 
-                  <ToolTip text="Lock" id="lock" />
+                  <ToolTip
+                    text="Lock"
+                    id="lock"
+                    place={showImage && !showSimWords ? "top" : "bottom"}
+                  />
                 </button>
 
                 {/* {!locked &&  <button
@@ -332,7 +350,12 @@ function WordButton({ text, word, updateSelected, selectedWords }) {
                     <MdOutlineImage className="text-xl" />
                   )}
 
-                  <ToolTip text="Show Image" id="images" w=" !w-[8em]"/>
+                  <ToolTip
+                    text="Show Image"
+                    id="images"
+                    w=" !w-[8em]"
+                    place={showImage && !showSimWords ? "top" : "bottom"}
+                  />
                 </button>
                 <button
                   data-tip
@@ -348,7 +371,12 @@ function WordButton({ text, word, updateSelected, selectedWords }) {
                   ) : (
                     <p className="text-2xl text-white"> &#8776;</p>
                   )}
-                  <ToolTip text="Show Similar Words" id="sim" w=" !w-[12em]"/>
+                  <ToolTip
+                    text="Show Similar Words"
+                    id="sim"
+                    w=" !w-[12em]"
+                    place={showImage && !showSimWords ? "top" : "bottom"}
+                  />
                 </button>
                 {!locked && (
                   <div data-tip data-for="list">

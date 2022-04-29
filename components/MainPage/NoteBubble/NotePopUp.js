@@ -90,7 +90,7 @@ const NotePopUp = (props) => {
 
   return (
     <div className="popup-box fade-effect-turbo">
-      <div className="box fade-effect-fast">
+      <div className="box fade-effect-fast bg-white/90 dark:bg-slate-700/90">
         {/* <span className="close-icon" onClick={props.handleClose}>
           x
         </span> */}

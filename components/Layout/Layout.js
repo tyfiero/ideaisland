@@ -7,7 +7,7 @@ import { FaBook, FaPlus, FaTimes } from "react-icons/fa";
 
 import NotePopUp from "../MainPage/NoteBubble/NotePopUp";
 import NotePopUpModal from "../MainPage/NoteBubble/NotePopUpModal";
-import { useEffect, useState, useContext, React } from "react";
+import { useEffect, useState, useContext, React, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // import { logIn, userDataRedux } from "../../redux/actions";
 import { useUserData } from "../../lib/hooks";
@@ -36,9 +36,17 @@ import { useRouter } from "next/router";
 import FullSidebar from "../Sidebar/FullSidebar";
 import Footer from "./Footer";
 import Loader from "./Loader";
+import { collection } from "firebase/firestore";
+import { HiMusicNote } from "react-icons/hi";
 
 export default function Layout({ children }) {
   // console.log("Layout Rerendered")
+
+
+
+
+
+ 
   const router = useRouter();
 
   const userData = useUserData();
@@ -59,6 +67,9 @@ export default function Layout({ children }) {
   // console.log(userNameRedux + "unr")
 
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);
+const videoRef = useRef(null);
+
+
 
   const togglePopup = () => {
     setIsPopUpOpen(!isPopUpOpen);
@@ -131,10 +142,23 @@ if (darkRedux) {
 
   
   useEffect(() => {
+
+    // videoRef.current.playbackRate ="0.5"
+
+    
     //if mobile, redirect to mobile page
     if (isMobile) {
       router.push("/mobile");
     }
+    console.log(`
+    _   _         _     _           _ 
+   |_|_| |___ ___|_|___| |___ ___ _| |
+   | | . | -_| .'| |_ -| | .'|   | . |
+   |_|___|___|__,|_|___|_|__,|_|_|___|
+   
+   The place where 'Aha' moments are made!      
+   `);
+  
 
     const sliceHsl = (fullString) => {
       let sliced = fullString.slice(5);
@@ -217,13 +241,21 @@ if (darkRedux) {
   return (
     <>
       <div
-        className="wrapper"
+        className="relative wrapper"
+        
         // style={
         //   darkRedux
         //     ? { backgroundColor: "white" }
         //     : { backgroundColor: "black" }
         // }
       >
+        {/* <video playsinline autoPlay muted loop ref={videoRef}  className="absolute top-0 left-0" >
+    <source src="/vid2.mp4" type="video/webm"/>
+    Your browser does not support the video tag.
+</video> */}
+
+
+
         {/* <div className="background blur"></div> */}
         {/* <noscript>You need to enable JavaScript to run this app.</noscript> */}
         <div>
@@ -278,3 +310,11 @@ if (darkRedux) {
     </>
   );
 }
+
+
+
+
+
+
+
+

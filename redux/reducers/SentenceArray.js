@@ -1,16 +1,5 @@
 const sentenceArrayReducer = (
-  state = [
-      { id: 0, type: "Intro", list: "How", text: "How might we" },
-      { id: 1, type: "Verb", list: "Modifier", text: "improve" },
-      { id: 2, type: "Noun", list: "Software", text: "tech" },
-      { id: 3, type: "Verb", list: "Action", text: "brainstorming" },
-      {
-        id: 4,
-        type: "Desired Outcome",
-        list: "People",
-        text: "for entrepreneurs?",
-      },
-    ],
+  state = "How might we improve brainstorming for entrepreneurs?",
   action
 ) => {
   switch (action.type) {

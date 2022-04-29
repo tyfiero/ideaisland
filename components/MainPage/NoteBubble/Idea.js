@@ -119,7 +119,7 @@ function IdeaNote() {
 
         <div className="flex justify-between w-[95%]">
           <div className="flex items-center gap-1 ">
-            <p className="text-[22px] text-t-bd">Rating</p>
+            <p className="text-[22px] text-t-bd dark:text-t-bl">Rating</p>
             <Stars hover={true} rating={rating} sendRating={sendRating} />
           </div>
 
@@ -156,7 +156,7 @@ function IdeaNote() {
               theme="snow"
               tabIndex="2"
               // readOnly= "true"
-              className="w-[100%] !bg-white/90 h-full rounded-2xl"
+              className="w-[100%] !bg-white/90 dark:!bg-slate-900/90 h-full rounded-2xl dark:placeholder:!text-slate-100"
               placeholder={"Describe your idea..."}
             />
           </div>

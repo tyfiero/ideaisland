@@ -254,7 +254,7 @@ const deduct = async (values) => {
 
       </div>
       <TextareaAutosize
-        className="w-[99%] rounded-md nun"
+        className="w-[99%] rounded-md nun dark:!bg-slate-900/90 dark:text-white dark:!shadow-inner dark:!shadow-white"
         onChange={(e) => {
           console.log(e.target.value);
           setGPTJInput(e.target.value);
@@ -334,7 +334,7 @@ const deduct = async (values) => {
               </>
             ) : (
               <>
-               <div className="flex flex-col items-center mt-2 leading-3"><p className="pl-2 text-t-pd">Send to AI</p><p className="pl-2 text-xs text-slate-500">(0.2 Credits)</p></div> 
+               <div className="flex flex-col items-center mt-2 leading-3"><p className="pl-2 text-t-pd dark:text-t-pd">Send to AI</p><p className="pl-2 text-xs text-slate-500 dark:text-slate-500">(0.2 Credits)</p></div> 
 
                 <BiSend
                   style={{ fontSize: "32px" }}
@@ -356,7 +356,7 @@ const deduct = async (values) => {
         <p className="pt-1 text-left text-md text-t-pd">Input:</p>
       </div>
       <TextareaAutosize
-        className="w-[99%] rounded-md nun"
+        className="w-[99%] rounded-md nun dark:!bg-slate-900/90 dark:text-white"
         // defaultValue={contentTitle}
         onChange={(e) => {
           // console.log(e.target.value)
@@ -418,16 +418,16 @@ const deduct = async (values) => {
           >
             {aiLoading ? (
               <>
-                <p className="pl-2 text-t-pd">Sending...</p>
+                <p className="pl-2 text-t-pd dark:text-t-pd">Sending...</p>
 
                 <BsHourglassSplit
                   style={{ fontSize: "32px" }}
-                  className="pl-2 text-t-pd"
+                  className="pl-2 text-t-pd dark:text-t-pd"
                 />
               </>
             ) : (
               <>
-                 <div className="flex flex-col items-center mt-2 leading-3"><p className="pl-2 text-t-pd">Send to AI</p><p className="pl-2 text-xs text-slate-500">(1 Credit)</p></div> 
+                 <div className="flex flex-col items-center mt-2 leading-3"><p className="pl-2 text-t-pd dark:text-t-pd">Send to AI</p><p className="pl-2 text-xs text-slate-500 dark:text-slate-500">(1 Credit)</p></div> 
 
                 <BiSend
                   style={{ fontSize: "32px" }}
@@ -478,8 +478,8 @@ const deduct = async (values) => {
           {" "}
           <div className="flex flex-col w-full ">
             <div className="flex flex-col w-full ">
-              <div className="flex items-center justify-between ai-output-box bg-white/80 min-h-[20em]">
-                <h3 className="text-2xl text-gray-700 nun">
+              <div className="flex items-center justify-between ai-output-box bg-white/80 min-h-[20em] dark:bg-slate-800/60">
+                <h3 className="text-2xl text-gray-700 nun dark:text-t-pd">
                   {"AI Disclaimer"}
                 </h3>
                 <p className="text-gray-700">
@@ -493,7 +493,7 @@ const deduct = async (values) => {
                     setWarning(!warning);
                   }}
                 >
-                  <p className="pl-2 text-t-pd">Agree and Continue</p>
+                  <p className="pl-2 text-t-pd dark:text-t-pd">Agree and Continue</p>
 
                   <BsArrowRight
                     style={{ fontSize: "32px" }}
@@ -520,7 +520,7 @@ const deduct = async (values) => {
           <div className="flex flex-col w-full ">
             <p className="pt-2 text-left text-md text-t-pd">Results:</p>
 
-            <div className="flex items-center ai-output-box bg-white/80">
+            <div className="flex items-center ai-output-box bg-white/80 dark:bg-slate-800/60">
               <Loader show={aiLoading} />
 
               {responseRecieved && <p>{aiResponse}</p>}
