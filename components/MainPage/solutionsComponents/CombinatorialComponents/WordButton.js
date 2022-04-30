@@ -1,6 +1,6 @@
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, useRef } from "react";
 import { BsDice3 } from "react-icons/bs";
-import { FaChevronDown, FaEdit, FaListUl, FaTimes } from "react-icons/fa";
+import { FaCheck, FaChevronDown, FaEdit, FaListUl, FaRegEdit, FaTimes } from "react-icons/fa";
 import { TiLockClosedOutline, TiLockOpenOutline } from "react-icons/ti";
 import { Cascader } from "antd";
 import "antd/dist/antd.css";
@@ -37,10 +37,12 @@ function WordButton({ text, word, updateSelected, selectedWords }) {
   );
   const [list, setList] = useState(software);
   const [listLabel, setListLabel] = useState("💿 Software");
+  const [contentEdit, setContentEdit] = useState(false);
 
   const dispatch = useDispatch();
   const [showImage, setShowImage] = useState(false);
   const [showSimWords, setShowSimWords] = useState(false);
+  const focusTextInput = useRef(null);
 
   useEffect(() => {
     // console.log(selectedWords);
@@ -219,14 +221,14 @@ function WordButton({ text, word, updateSelected, selectedWords }) {
         className={"flex"}
         onClick={() => {
           // setClicked(!clicked)
-
+          if(!contentEdit){
           if (clicked) {
             setClicked(false);
             updateSelected([displayText, "delete", word]);
           } else {
             setClicked(true);
             updateSelected([displayText, "add", word]);
-          }
+          }}
         }}
       >
         <div
@@ -235,7 +237,43 @@ function WordButton({ text, word, updateSelected, selectedWords }) {
             (clicked ? "min-w-[10em]" : " text-slate-600 md:hover:text-t-bl ")
           }
         >
-          {showText && (
+
+
+{contentEdit && (
+            <>
+              <div>
+                <div className="normal-box bg-[hsla(200,0%,100%,0.764)]  dark:bg-[hsla(200,0%,20%,0.764)] !rounded-xl w-full flex flex-col items-center">
+                  <input
+                    className="text-3xl text-center textarea-box textarea-tw"
+                    defaultValue={displayText}
+                    ref={focusTextInput}
+                    onChange={(e) => {
+                      // let newArray = sArray;
+                      // newArray[card] = {
+                      //   id: id,
+                      //   type: type,
+                      //   list: list,
+                      //   text: e.target.value,
+                      // };
+                      // dispatch(sArrayAction(newArray));
+                      setDisplayText(e.target.value);
+                    }}
+                    placeholder={displayText}
+                  />
+                  <button
+                    className=" w-[90%] h-[2em] mt-1 rounded-3xl bg-t-bl flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer "
+                    onClick={() => {
+                      setContentEdit(false);
+                    }}
+                  >
+                    Done <FaCheck />
+                  </button>
+                </div>
+              </div>
+            </>
+          ) }
+          
+          {showText && !contentEdit && (
             <p
               className={
                 "text-5xl  md:hover:scale-[102%] md:active:scale-95 transition duration-500   underline-offset-8  grow-effect" +
@@ -245,7 +283,7 @@ function WordButton({ text, word, updateSelected, selectedWords }) {
               {displayText}
             </p>
           )}
-          {!showText &&  (
+          {!showText && !contentEdit && (
             <p
               className={
                 "text-5xl  md:hover:scale-[102%] md:active:scale-95 transition duration-500   underline-offset-8   grow-effect" +
@@ -289,7 +327,7 @@ function WordButton({ text, word, updateSelected, selectedWords }) {
                     data-tip
                     data-for="random1"
                     className={
-                      "flex items-center justify-center gap-4 p-2 text-white  rounded-3xl bg-clear-bl5 w-9 drop-shadow-xl  md:transition-transform  md:hover:scale-105 md:active:scale-95 cursor-pointer fade-effect-quick"
+                      "flex items-center justify-center gap-4 p-2 text-white  rounded-3xl bg-clear-bl5  drop-shadow-xl  md:transition-transform  md:hover:scale-105 md:active:scale-95 cursor-pointer fade-effect-quick   w-8 h-8 "
                     }
                     onClick={() => {
                       if (!locked) {
@@ -306,7 +344,7 @@ function WordButton({ text, word, updateSelected, selectedWords }) {
                   data-tip
                   data-for="lock"
                   className={
-                    "flex items-center justify-center gap-4 p-2 text-white cursor-pointer rounded-3xl  drop-shadow-xl  md:hover:scale-105 md:transition-transform md:active:scale-95 " +
+                    "flex items-center justify-center gap-4 p-2 text-white cursor-pointer rounded-3xl  drop-shadow-xl  md:hover:scale-105 md:transition-transform md:active:scale-95 w-8 h-8  " +
                     (locked ? "ring-2 bg-t-bd " : "bg-t-bl")
                   }
                   onClick={() => setLocked(!locked)}
@@ -327,7 +365,24 @@ function WordButton({ text, word, updateSelected, selectedWords }) {
                     place={showImage && !showSimWords ? "top" : "bottom"}
                   />
                 </button>
+                {!locked && (
+                <button
+                  data-tip
+                  data-for="edittext"
+                  className={
+                    "flex items-center justify-center gap-4 p-0 text-white cursor-pointer rounded-3xl  drop-shadow-xl  md:hover:scale-105 md:transition-transform md:active:scale-95 w-8 h-8   bg-t-bl" 
+                  }
+                  onClick={() => setContentEdit(!contentEdit)}
+                >
+                  <FaEdit className="ml-[2px] text-[17px]" />
 
+                  <ToolTip
+                    text="Edit"
+                    id="edittext"
+                    place={showImage && !showSimWords ? "top" : "bottom"}
+                  />
+                </button>
+                )}
                 {/* {!locked &&  <button
            data-tip
            data-for="trash"
@@ -340,7 +395,7 @@ function WordButton({ text, word, updateSelected, selectedWords }) {
                   data-tip
                   data-for="images"
                   className={
-                    "flex items-center justify-center gap-4 px-2 py-4  text-white cursor-pointer rounded-3xl drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95  " +
+                    "flex items-center justify-center gap-4 px-0 py-2  text-white cursor-pointer rounded-3xl drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 w-8 h-8   " +
                     (!showImage ? " bg-t-bl " : " bg-blues-600 ")
                   }
                   onClick={() => setShowImage(!showImage)}
@@ -362,7 +417,7 @@ function WordButton({ text, word, updateSelected, selectedWords }) {
                   data-tip
                   data-for="sim"
                   className={
-                    "flex items-center justify-center gap-4 px-3 py-4  text-white cursor-pointer rounded-3xl bg-t-bl drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 " +
+                    "flex items-center justify-center gap-4 px-3 py-4  text-white cursor-pointer rounded-3xl bg-t-bl drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 w-8 w-8 " +
                     (!showSimWords ? " bg-t-bl " : " bg-blues-600 ")
                   }
                   onClick={() => setShowSimWords(!showSimWords)}
@@ -382,8 +437,7 @@ function WordButton({ text, word, updateSelected, selectedWords }) {
                
                 {!locked && (
                   <button
-                    data-tip
-                    data-for="trash"
+      
                     className="flex items-center justify-center gap-4 cursor-pointer text-slate-700 dark:text-white rounded-3xl drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick "
                     onClick={() => setClicked(false)}
                   >
@@ -408,7 +462,7 @@ function WordButton({ text, word, updateSelected, selectedWords }) {
                           data-tip
                           data-for="random1"
                           className={
-                            "flex items-center justify-center gap-1 px-2 py-1 w-fit flex-nowrap text-white  rounded-3xl bg-slate-100/70 drop-shadow-xl  md:transition-transform  md:hover:scale-105 md:active:scale-95 cursor-pointer fade-effect-quick ring-1 ring-t-bl"
+                            "flex items-center justify-center gap-1 px-2 py-1 w-fit flex-nowrap text-white  rounded-3xl bg-slate-100/70 drop-shadow-xl  md:transition-transform  md:hover:scale-105 md:active:scale-95 cursor-pointer fade-effect-quick ring-1 ring-t-bl "
                           }
                           // onClick={() => {
                           //   if (!locked) {
