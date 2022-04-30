@@ -296,7 +296,7 @@ export default function LoginPage() {
   // );
   return (
     <div
-      className="flex items-center justify-center min-h-screen px-4 pb-[12rem] sm:px-6 lg:px-8 drop-shadow-xl
+      className="flex items-center justify-center min-h-screen px-4 pb-[12rem] sm:px-6 lg:px-8 drop-shadow-xl fade-effect-quick
 
     "
     >

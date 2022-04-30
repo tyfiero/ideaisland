@@ -88,8 +88,7 @@ export default async function handler(req, res) {
         method: "get",
         url: `https://api.pexels.com/v1/search?query=${req.body.input}&per_page=${"9"}&page=${req.body.page}`,
         headers: {
-          Authorization:
-            "563492ad6f9170000100000126ead604de784e1684734bbc1a8b4138",
+          Authorization: process.env.PEXELS_KEY,
         },
       };
      let search = await axios(pexelsConfig)
