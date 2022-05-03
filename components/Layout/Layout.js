@@ -38,6 +38,12 @@ import Footer from "./Footer";
 import Loader from "./Loader";
 import { collection } from "firebase/firestore";
 import { HiMusicNote } from "react-icons/hi";
+import { Squash as Hamburger } from "hamburger-react";
+
+
+
+
+
 
 export default function Layout({ children }) {
   // console.log("Layout Rerendered")
@@ -53,7 +59,7 @@ export default function Layout({ children }) {
   const { user, username, loading } = useContext(UserContext);
 
   const dispatch = useDispatch();
-  const [isToggled, setIsToggled] = useState(false);
+  const [isToggled, setIsToggled] = useState(true);
   const [loadingUI, setLoadingUI] = useState(false);
   const [signedIn, setSignedIn] = useState(false);
 
@@ -67,6 +73,7 @@ export default function Layout({ children }) {
   // console.log(userNameRedux + "unr")
 
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);
+  // const [isPopUpModalOpen, setIsPopUpModalOpen] = useState(false);
 const videoRef = useRef(null);
 
 
@@ -241,7 +248,8 @@ if (darkRedux) {
   return (
     <>
       <div
-        className="relative wrapper"
+        className="relative wrapper " 
+        
         
         // style={
         //   darkRedux
@@ -258,29 +266,61 @@ if (darkRedux) {
 
         {/* <div className="background blur"></div> */}
         {/* <noscript>You need to enable JavaScript to run this app.</noscript> */}
-        <div>
+       
+        
+       
+        <div className="relative flex top-bar !min-h-[4em]">
+          {/* {loadingUI ? <Loader show={true}/>: "NOT LOADING YO"} */}
+        <div className="w-[25em]">
+
+          <TopBar signedIn={signedIn} />
+   </div>
+
+          {signedIn && 
+        <div className="w-full md:block sm:hidden">
+   <TopBarRight />
+   
+   </div>
+   }
+    {signedIn && isToggled &&
+        <div className="w-full md:hidden sm:block">
+   <TopBarRight />
+   
+   </div>
+   }
+<div className="absolute sm:flex right-2 top-2 md:hidden"> <Hamburger
+        className=""
+        toggled={isToggled}
+        color="var(--colorDark1)"
+        toggle={() => {
+          setIsToggled(!isToggled);
+        }}
+        // size={25}
+        easing="ease-in"
+        label="Show menu"
+        rounded
+      /></div>
+          
+         
+          <div>
           <Toaster />
         </div>
+        </div>
         
-        <div className=" logo-bar">
-          <TopBar signedIn={signedIn} />
-        </div>
-        <div className="top-bar ">
-          {/* {loadingUI ? <Loader show={true}/>: "NOT LOADING YO"} */}
+        <div className="flex w-full h-full sm:flex-col md:flex-row">
 
-          {signedIn && <TopBarRight />}
-        </div>
-
-        <div className="side-nav-bar ">
+        <div className="side-nav-bar md:!w-[5em] md:!mr-2 sm:w-full md:h-full ">
           {/* <Sidebar toggle={isToggled} />
            */}
-          {signedIn && <Sidebar2 toggle={isToggled} />}
+          {signedIn && isToggled && <Sidebar2 toggle={isToggled} signedIn={signedIn}/>}
           {/* <FullSidebar /> */}
         </div>
-        <div className="overflow-y-auto fade-effect-quick content ">
+        <div className="w-full overflow-y-auto fade-effect-quick content">
           {loadingUI ? <FullLoader show={true} /> : <main>{children}</main>}
           {/* <Footer /> */}
         </div>
+        </div>
+        
         <div>
           
          

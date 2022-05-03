@@ -63,7 +63,7 @@ const Dashboard = () => {
         too{" "}
       </p>
 
-      <div className="dash-graph-holder">
+      <div className="dash-graph-holder " >
         <div className="dash-graph ">
           {/* <img className="w-[35em] rounded-xl drop-shadow-2xl shadow-2xl" src="./dummygraph.png" alt="graph" /> */}
           <ChartIdeas />

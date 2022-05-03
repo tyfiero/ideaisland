@@ -354,9 +354,14 @@ function SFeatures(props) {
                   }}
                 >
                   {/* <p>Common Features</p> */}
-                 {showPlatform &&  <div className="flex flex-col items-start p-1 mb-2 border-2 border-sky-400 bg-sky-400/30 rounded-2xl">
+                 {showPlatform &&  <div className="flex flex-col items-start p-1 mb-2 border-2 border-sky-400 bg-sky-400/30 rounded-2xl"
+                    transition-style="in:wipe:right"
+                    >
                     <p className="pl-3 m-0">Platform</p>
-                    <div className="flex flex-wrap gap-1">
+                    <div className="flex flex-wrap gap-1"
+                    transition-style="in:wipe:right"
+                    
+                    >
                       <Chip
                         // changes={changes}
                         updateArray={updateArray}
@@ -434,7 +439,10 @@ function SFeatures(props) {
                       />
                     </div>
                   </div>}
-                  {showSocial &&  <div className="flex flex-col items-start p-1 my-2 border-2 border-teal-400 bg-teal-400/30 rounded-2xl">
+                  {showSocial &&  <div className="flex flex-col items-start p-1 my-2 border-2 border-teal-400 bg-teal-400/30 rounded-2xl"
+                    transition-style="in:wipe:right"
+                  
+                  >
                     <p className="pl-3 m-0">Social</p>
                     <div className="flex flex-wrap gap-1">
                       <Chip
@@ -494,7 +502,9 @@ function SFeatures(props) {
                       />
                     </div>
                   </div>}
-                  {showAuthentication &&  <div className="flex flex-col items-start p-1 mb-2 border-2 border-green-400 bg-green-400/30 rounded-2xl">
+                  {showAuthentication &&  <div className="flex flex-col items-start p-1 mb-2 border-2 border-green-400 bg-green-400/30 rounded-2xl"
+                    transition-style="in:wipe:right"
+                    >
                     <p className="pl-3 m-0">Authentication</p>
                     <div className="flex flex-wrap gap-1">
                       <Chip
@@ -532,7 +542,9 @@ function SFeatures(props) {
                  
                
                  
-                  {showData &&   <div className="flex flex-col items-start p-1 my-2 border-2 border-yellow-400 bg-yellow-400/30 rounded-2xl">
+                  {showData &&   <div className="flex flex-col items-start p-1 my-2 border-2 border-yellow-400 bg-yellow-400/30 rounded-2xl"
+                    transition-style="in:wipe:right"
+                    >
                     <p className="pl-3 m-0">Data</p>
                     <div className="flex flex-wrap gap-1">
                       <Chip
@@ -583,7 +595,9 @@ function SFeatures(props) {
                       />
                     </div>
                   </div>}
-                  {showSecurity &&    <div className="flex flex-col items-start p-1 mt-2 border-2 border-orange-400 bg-orange-400/30 rounded-2xl">
+                  {showSecurity &&    <div className="flex flex-col items-start p-1 mt-2 border-2 border-orange-400 bg-orange-400/30 rounded-2xl"
+                    transition-style="in:wipe:right"
+                    >
                     <p className="pl-3 m-0">Security</p>
                     <div className="flex flex-wrap gap-1">
                       <Chip
@@ -616,7 +630,9 @@ function SFeatures(props) {
                       />
                     </div>
                   </div>}
-                   {showWeb3 &&  <div className="flex flex-col items-start p-1 mt-2 border-2 border-pink-400 bg-pink-400/30 rounded-2xl">
+                   {showWeb3 &&  <div className="flex flex-col items-start p-1 mt-2 border-2 border-pink-400 bg-pink-400/30 rounded-2xl"
+                    transition-style="in:wipe:right"
+                    >
                     <p className="pl-3 m-0">Web3</p>
                     <div className="flex flex-wrap gap-1">
                       <Chip
@@ -667,7 +683,9 @@ function SFeatures(props) {
                       />
                     </div>
                   </div>}
-                  {showMisc &&     <div className="flex flex-col items-start p-1 mt-2 border-2 border-violet-400 bg-violet-400/30 rounded-2xl">
+                  {showMisc &&     <div className="flex flex-col items-start p-1 mt-2 border-2 border-violet-400 bg-violet-400/30 rounded-2xl"
+                    transition-style="in:wipe:right"
+                    >
                     <p className="pl-3 m-0">Misc</p>
                     <div className="flex flex-wrap gap-1">
                       <Chip
@@ -908,7 +926,7 @@ export default SFeatures;
 
 function ListItem({ name, deleteIndex }) {
   return (
-    <div className="flex items-center justify-between ml-3">
+    <div className="flex items-center justify-between ml-3 fade-effect-quick">
       <li className="dark:text-white">{name}</li>
       {/* <FaTimes
         className="transition cursor-pointer text-t-pm md:hover:scale-125 md:active:scale-110"

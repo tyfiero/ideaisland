@@ -29,6 +29,7 @@ import { IoHelpCircleOutline, IoMdHelp, IoIosTimer } from "react-icons/io";
 import { BiRocket } from "react-icons/bi";
 import { BsBug } from "react-icons/bs";
 import CircleTimer from "../Layout/Timer";
+import TopBarRight from "../Layout/TopBarRight";
 
 const Sidebar2 = (props) => {
   const { user, username } = useContext(UserContext);
@@ -67,8 +68,8 @@ const Sidebar2 = (props) => {
   };
 
   return (
-    <div className="sidebar-container md:border-l-0 flex md:left-0  h-full   md:w-[4.5em] md:flex-col md:rounded-br-[1.5rem]  md:rounded-br-[3px] md:rounded-tl-none  md:absolute  bg-gradient-to-t  from-clear-pl2 border-black border-[0px] content-center items-center justify-between	md:py-4  z-10 ">
-      <div className="flex flex-col items-center gap-3">
+    <div className="sidebar-container md:border-l-0 flex md:left-0  md:h-full  sm:h-[6em] sm:w-full md:w-[4.5em] md:flex-col  md:rounded-br-[3px] sm:flex md:rounded-tl-none  md:absolute  sm:bg-none md:bg-gradient-to-t  md:from-clear-pl2 md:border-black md:border-[0px] content-center items-center md:justify-between	md:py-4  z-10 grow-effect sm:justify-evenly">
+      <div className="flex items-center gap-3 md:flex-col sm:flex">
         <Link href="/home">
           <a>
             <div className="flex flex-col items-center group">
@@ -173,8 +174,8 @@ const Sidebar2 = (props) => {
         </Link>
         {/* <Link href="/Home"></Link> */}
       </div>
-
-      <div className="flex flex-col items-center mb-[4.5em] group">
+      {/* {props.signedIn && <TopBarRight />} */}
+      <div className="flex flex-col items-center mb-[4.5em] group sm:hidden">
       <div className="flex flex-col items-center group">
 
    {!timerOpen && <> <div

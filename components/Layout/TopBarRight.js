@@ -31,8 +31,8 @@ export default function TopBarRight({ user }) {
 
   // console.log(user);
 
-  //Now that the image thing is fixed, can I remove userRedux from the dependency array here? How can this UE be cleaned up? 
-  //UPDATE, it might be best to leave it, in case userphotoredux isnt defined, and so that it updates correctly on change. 
+  //Now that the image thing is fixed, can I remove userRedux from the dependency array here? How can this UE be cleaned up?
+  //UPDATE, it might be best to leave it, in case userphotoredux isnt defined, and so that it updates correctly on change.
   useEffect(() => {
     if (userPhotoRedux !== null) {
       try {
@@ -90,7 +90,7 @@ export default function TopBarRight({ user }) {
 
   let profilePic = (
     <div
-      className="profile-pic-cropper"
+      className="rounded-full ring-2 md:w-[55px] md:h-[55px] sm:w-[45px] sm:h-[45px] overflow-hidden ring-slate-300 cursor-pointer md:top-1 absolute  md:right-4  md:hover:scale-105 transition sm:right-20 sm:top-3"
       onClick={() => {
         // if (!isVisible) {
         //   setIsVisible(true);
@@ -100,10 +100,8 @@ export default function TopBarRight({ user }) {
         //   setIsVisible(false);
         //   // console.log("set false");
         // }
-       
+
         setIsVisible(!isVisible);
-          
-        
       }}
     >
       <img
@@ -128,11 +126,11 @@ export default function TopBarRight({ user }) {
   );
 
   return (
-    <div >
+    <div className="relative">
       {/* {profilePic} */}
       {/* {!user && login} */}
       {loggedIn ? profilePic : login}
-      <div  ref={ref}>{isVisible && <TopBarDropDown />}</div>
+      <div ref={ref}>{isVisible && <TopBarDropDown />}</div>
     </div>
   );
 }

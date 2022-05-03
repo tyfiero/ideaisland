@@ -142,7 +142,7 @@ const deduct = async (values) => {
       uid = "1";
       console.log("no uid available :(");
     }
-    axios({
+   await axios({
       method: "POST",
       url: "/api/openAI",
       data: {
@@ -189,7 +189,7 @@ const deduct = async (values) => {
     setResponseRecievedGPTJ(false);
     setResponseRecieved(false);
 
-    axios({
+   await axios({
       method: "POST",
       url: "/api/gptJ",
       data: {

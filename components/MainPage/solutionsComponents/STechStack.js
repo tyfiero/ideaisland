@@ -33,8 +33,22 @@ import {
 import { AiOutlineCluster } from "react-icons/ai";
 import { SiTailwindcss } from "react-icons/si";
 import { HiOutlineDotsCircleHorizontal } from "react-icons/hi";
-import { languages, web3, hosting, devOps, devTools, versionControl, noCode, otherTools, frontEnd, backEnd, cssTools, dataBases, authentication, componentLibraries } from "./CombinatorialComponents/DataForTechStack";
-
+import {
+  languages,
+  web3,
+  hosting,
+  devOps,
+  devTools,
+  versionControl,
+  noCode,
+  otherTools,
+  frontEnd,
+  backEnd,
+  cssTools,
+  dataBases,
+  authentication,
+  componentLibraries,
+} from "./CombinatorialComponents/DataForTechStack";
 
 function STechStack(props) {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -63,7 +77,6 @@ function STechStack(props) {
       url: data[3],
       isOpenSource: data[4],
       kind: data[5],
-
     };
 
     setToolArray([...toolArray, toolObj]);
@@ -87,7 +100,6 @@ function STechStack(props) {
   //   props.update("productType", e.target.value);
   // };
   let defaultZero = 0;
-  
 
   useEffect(() => {
     console.log(toolArray);
@@ -170,7 +182,7 @@ function STechStack(props) {
                     <div className="absolute transition duration-1000 rounded-full opacity-50 group:hover:!-inset-3 -inset-1 bg-gradient-to-r from-t-pl via-t-pm via-t-pd to-violet-400 blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy-slow"></div>
                     <button
                       className={
-                        "w-[12em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start text-black gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
+                        "w-[13em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start text-black gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
                         (selected === "Faves"
                           ? " border-4 border-t-pm bg-gradient-to-br from-t-pl via-t-pl via-t-pm to-t-pm"
                           : "bg-gradient-to-br from-pink-100 via-t-pl to-t-pm ")
@@ -196,7 +208,7 @@ function STechStack(props) {
                   {/* </div> */}
                   <button
                     className={
-                      "w-[12em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
+                      "w-[13em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
                       (selected === "Languages"
                         ? " border-4 border-blue-700 text-white bg-blue-500 "
                         : "bg-blue-300 text-black")
@@ -214,7 +226,7 @@ function STechStack(props) {
                   </button>
                   <button
                     className={
-                      "w-[12em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
+                      "w-[13em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
                       (selected === "Dev Tools"
                         ? " border-4 border-sky-700 text-white bg-sky-500 "
                         : "bg-sky-300 text-black")
@@ -232,7 +244,7 @@ function STechStack(props) {
                   </button>
                   <button
                     className={
-                      "w-[12em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
+                      "w-[13em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
                       (selected === "No/Low Code"
                         ? " border-4 border-cyan-700 text-white bg-cyan-500 "
                         : "bg-cyan-300 text-black")
@@ -250,7 +262,7 @@ function STechStack(props) {
                   </button>
                   <button
                     className={
-                      "w-[12em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
+                      "w-[13em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
                       (selected === "Authentication"
                         ? " border-4 border-teal-700 text-white bg-teal-500 "
                         : "bg-teal-300 text-black")
@@ -269,7 +281,7 @@ function STechStack(props) {
 
                   <button
                     className={
-                      "w-[12em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
+                      "w-[13em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
                       (selected === "UI Framework"
                         ? " border-4 border-green-700 text-white bg-green-500 "
                         : "bg-green-300 text-black")
@@ -287,7 +299,7 @@ function STechStack(props) {
                   </button>
                   <button
                     className={
-                      "w-[12em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
+                      "w-[13em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
                       (selected === "UI Component Library"
                         ? " border-4 border-lime-700 !text-white bg-lime-500 "
                         : "bg-lime-300 !text-black")
@@ -303,7 +315,7 @@ function STechStack(props) {
                     <FaPalette />
                     <p
                       className={
-                        "m-0 fre text-sm " +
+                        "m-0 fre text-xs " +
                         (selected === "UI Component Library"
                           ? " !text-white "
                           : "!text-black")
@@ -314,7 +326,7 @@ function STechStack(props) {
                   </button>
                   <button
                     className={
-                      "w-[12em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
+                      "w-[13em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
                       (selected === "CSS Tools"
                         ? " border-4 border-yellow-700 text-white bg-yellow-500 "
                         : "bg-yellow-300 text-black")
@@ -332,7 +344,7 @@ function STechStack(props) {
                   </button>
                   <button
                     className={
-                      "w-[12em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
+                      "w-[13em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
                       (selected === "Data"
                         ? " border-4 border-amber-700 text-white bg-amber-500 "
                         : "bg-amber-300 text-black")
@@ -350,7 +362,7 @@ function STechStack(props) {
                   </button>
                   <button
                     className={
-                      "w-[12em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
+                      "w-[13em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
                       (selected === "Backend Framework"
                         ? " border-4 border-orange-700 text-white bg-orange-500 "
                         : "bg-orange-300 text-black")
@@ -378,7 +390,7 @@ function STechStack(props) {
                   </button>
                   <button
                     className={
-                      "w-[12em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
+                      "w-[13em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
                       (selected === "Web3/Blockchain"
                         ? " border-4 border-red-700 bg-red-500 text-white"
                         : "bg-red-300 text-black")
@@ -397,7 +409,7 @@ function STechStack(props) {
 
                   <button
                     className={
-                      "w-[12em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
+                      "w-[13em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
                       (selected === "Hosting"
                         ? " border-4 border-pink-700 text-white bg-pink-500 "
                         : "bg-pink-300 text-black")
@@ -416,7 +428,7 @@ function STechStack(props) {
 
                   <button
                     className={
-                      "w-[12em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
+                      "w-[13em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
                       (selected === "Version Control"
                         ? " border-4 border-fuchsia-700 text-white bg-fuchsia-500 "
                         : "bg-fuchsia-300 text-black")
@@ -435,7 +447,7 @@ function STechStack(props) {
 
                   <button
                     className={
-                      "w-[12em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
+                      "w-[13em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
                       (selected === "DevOps"
                         ? " border-4 border-purple-700 text-white bg-purple-500 "
                         : "bg-purple-300 text-black")
@@ -453,7 +465,7 @@ function STechStack(props) {
                   </button>
                   <button
                     className={
-                      "w-[12em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
+                      "w-[13em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
                       (selected === "Other"
                         ? " border-4 border-indigo-700 text-white bg-indigo-500 "
                         : "bg-indigo-300 text-black")
@@ -479,7 +491,7 @@ function STechStack(props) {
                     )} */}
                     {selected === "Languages" && (
                       <>
-                        <div className="flex flex-wrap content-start justify-center gap-4">
+                        <div className="flex flex-wrap content-start justify-center gap-4 fade-effect-quick">
                           {languages.map((data, index) => (
                             <ItemCard
                               name={data.name}
@@ -507,7 +519,7 @@ function STechStack(props) {
                     )}
                     {selected === "Dev Tools" && (
                       <>
-                        <div className="flex flex-wrap content-start justify-center gap-4">
+                        <div className="flex flex-wrap content-start justify-center gap-4 fade-effect-quick">
                           {devTools.map((data, index) => (
                             <ItemCard
                               name={data.name}
@@ -535,7 +547,7 @@ function STechStack(props) {
                     )}
                     {selected === "No/Low Code" && (
                       <>
-                        <div className="flex flex-wrap content-start justify-center gap-4">
+                        <div className="flex flex-wrap content-start justify-center gap-4 fade-effect-quick">
                           {noCode.map((data, index) => (
                             <ItemCard
                               name={data.name}
@@ -563,7 +575,7 @@ function STechStack(props) {
                     )}
                     {selected === "Authentication" && (
                       <>
-                        <div className="flex flex-wrap content-start justify-center gap-4">
+                        <div className="flex flex-wrap content-start justify-center gap-4 fade-effect-quick">
                           {authentication.map((data, index) => (
                             <ItemCard
                               name={data.name}
@@ -591,7 +603,7 @@ function STechStack(props) {
                     )}
                     {selected === "UI Framework" && (
                       <>
-                        <div className="flex flex-wrap content-start justify-center gap-4">
+                        <div className="flex flex-wrap content-start justify-center gap-4 fade-effect-quick">
                           {frontEnd.map((data, index) => (
                             <ItemCard
                               name={data.name}
@@ -619,7 +631,7 @@ function STechStack(props) {
                     )}
                     {selected === "UI Component Library" && (
                       <>
-                        <div className="flex flex-wrap content-start justify-center gap-4">
+                        <div className="flex flex-wrap content-start justify-center gap-4 fade-effect-quick">
                           {componentLibraries.map((data, index) => (
                             <ItemCard
                               name={data.name}
@@ -647,7 +659,7 @@ function STechStack(props) {
                     )}
                     {selected === "CSS Tools" && (
                       <>
-                        <div className="flex flex-wrap content-start justify-center gap-4">
+                        <div className="flex flex-wrap content-start justify-center gap-4 fade-effect-quick">
                           {cssTools.map((data, index) => (
                             <ItemCard
                               name={data.name}
@@ -675,7 +687,7 @@ function STechStack(props) {
                     )}
                     {selected === "Data" && (
                       <>
-                        <div className="flex flex-wrap content-start justify-center gap-4">
+                        <div className="flex flex-wrap content-start justify-center gap-4 fade-effect-quick">
                           {dataBases.map((data, index) => (
                             <ItemCard
                               name={data.name}
@@ -703,7 +715,7 @@ function STechStack(props) {
                     )}
                     {selected === "Backend Framework" && (
                       <>
-                        <div className="flex flex-wrap content-start justify-center gap-4">
+                        <div className="flex flex-wrap content-start justify-center gap-4 fade-effect-quick">
                           {backEnd.map((data, index) => (
                             <ItemCard
                               name={data.name}
@@ -731,7 +743,7 @@ function STechStack(props) {
                     )}
                     {selected === "Web3/Blockchain" && (
                       <>
-                        <div className="flex flex-wrap content-start justify-center gap-4">
+                        <div className="flex flex-wrap content-start justify-center gap-4 fade-effect-quick">
                           {web3.map((data, index) => (
                             <ItemCard
                               name={data.name}
@@ -759,7 +771,7 @@ function STechStack(props) {
                     )}
                     {selected === "Hosting" && (
                       <>
-                        <div className="flex flex-wrap content-start justify-center gap-4">
+                        <div className="flex flex-wrap content-start justify-center gap-4 fade-effect-quick">
                           {hosting.map((data, index) => (
                             <ItemCard
                               name={data.name}
@@ -787,7 +799,7 @@ function STechStack(props) {
                     )}
                     {selected === "Version Control" && (
                       <>
-                        <div className="flex flex-wrap content-start justify-center gap-4">
+                        <div className="flex flex-wrap content-start justify-center gap-4 fade-effect-quick">
                           {versionControl.map((data, index) => (
                             <ItemCard
                               name={data.name}
@@ -815,7 +827,7 @@ function STechStack(props) {
                     )}
                     {selected === "DevOps" && (
                       <>
-                        <div className="flex flex-wrap content-start justify-center gap-4">
+                        <div className="flex flex-wrap content-start justify-center gap-4 fade-effect-quick">
                           {devOps.map((data, index) => (
                             <ItemCard
                               name={data.name}
@@ -843,7 +855,7 @@ function STechStack(props) {
                     )}
                     {selected === "Other" && (
                       <>
-                        <div className="flex flex-wrap content-start justify-center gap-4">
+                        <div className="flex flex-wrap content-start justify-center gap-4 fade-effect-quick">
                           {otherTools.map((data, index) => (
                             <ItemCard
                               name={data.name}
@@ -1047,47 +1059,53 @@ function STechStack(props) {
 export default STechStack;
 
 function ListItem({ name, deleteIndex, cost, url, type, kind }) {
-  const [underline, setUnderline] = useState( " decoration-blue-300");
-
+  const [underline, setUnderline] = useState(" decoration-blue-300");
 
   // console.log(kind);
 
   useEffect(() => {
-    if(kind === "Languages"){
-      setUnderline( " decoration-blue-300")
-    }else if(kind === "Dev-tools"){
-      setUnderline( " decoration-sky-300")
-    }else if(kind === "No-Code"){
-      setUnderline( " decoration-cyan-300")
-    }else if(kind === "Authentication"){
-      setUnderline( " decoration-teal-300")
-    }else if(kind === "FrontEnd "){
-      setUnderline( " decoration-green-300")
-    }else if(kind === "Component library"){
-      setUnderline( " decoration-lime-300")
-    }else if(kind === "CSS framework"){
-      setUnderline( " decoration-yellow-300")
-    }else if(kind === "Data"){
-      setUnderline( " decoration-amber-300")
-    }else if(kind === "BackEnd"){
-      setUnderline( " decoration-orange-300")
-    }else if(kind === "Web-3"){
-      setUnderline( " decoration-red-300")
-    }else if(kind === "Hosting"){
-      setUnderline( " decoration-pink-300")
-    }else if(kind === "Version Control"){
-      setUnderline( " decoration-fuchsia-300")
-    }else if(kind === "DevOps"){
-      setUnderline( " decoration-purple-300")
-    }else if(kind === "Other"){
-      setUnderline( " decoration-indigo-300")
+    if (kind === "Languages") {
+      setUnderline(" decoration-blue-300");
+    } else if (kind === "Dev-tools") {
+      setUnderline(" decoration-sky-300");
+    } else if (kind === "No-Code") {
+      setUnderline(" decoration-cyan-300");
+    } else if (kind === "Authentication") {
+      setUnderline(" decoration-teal-300");
+    } else if (kind === "FrontEnd ") {
+      setUnderline(" decoration-green-300");
+    } else if (kind === "Component library") {
+      setUnderline(" decoration-lime-300");
+    } else if (kind === "CSS framework") {
+      setUnderline(" decoration-yellow-300");
+    } else if (kind === "Data") {
+      setUnderline(" decoration-amber-300");
+    } else if (kind === "BackEnd") {
+      setUnderline(" decoration-orange-300");
+    } else if (kind === "Web-3") {
+      setUnderline(" decoration-red-300");
+    } else if (kind === "Hosting") {
+      setUnderline(" decoration-pink-300");
+    } else if (kind === "Version Control") {
+      setUnderline(" decoration-fuchsia-300");
+    } else if (kind === "DevOps") {
+      setUnderline(" decoration-purple-300");
+    } else if (kind === "Other") {
+      setUnderline(" decoration-indigo-300");
     }
-  },[])
+  }, []);
   // console.log(url)
   return (
     <div className="flex items-center justify-between ml-3">
       <div className="flex items-center group">
-        <li className={"mr-2 underline nun dark:text-white decoration-4 underline-offset-2  " + underline}>{name}</li>
+        <li
+          className={
+            "mr-2 underline nun dark:text-white decoration-4 underline-offset-2  " +
+            underline
+          }
+        >
+          {name}
+        </li>
         <a
           href={url || "https://www.google.com"}
           target="_blank"

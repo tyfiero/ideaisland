@@ -509,7 +509,7 @@ export default function IdeaDisplay(props) {
     // setLoading(true)
     console.log(pageCounter);
 
-    axios({
+   await axios({
       method: "POST",
       url: "/api/pexels",
       data: {
@@ -679,7 +679,7 @@ export default function IdeaDisplay(props) {
 
             <input
               type="text"
-              className="mx-5 mb-1 textarea-box  textarea-tw  "
+              className="mx-5 mb-1 textarea-box textarea-tw "
               placeholder={imgSrc || "Paste image url here"}
               onChange={(e) => {
                 setImgSrc(e.target.value);
