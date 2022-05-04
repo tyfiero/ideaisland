@@ -16,8 +16,8 @@ import {
   FaRegEdit,
 } from "react-icons/fa";
 import Link from "next/link";
-import { useUserData } from "../../lib/hooks";
-import { UserContext } from "../../lib/context";
+import { useUserData } from "../../../lib/hooks";
+import { UserContext } from "../../../lib/context";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/dist/client/router";
 
@@ -28,8 +28,8 @@ import { RiQuestionMark } from "react-icons/ri";
 import { IoHelpCircleOutline, IoMdHelp, IoIosTimer } from "react-icons/io";
 import { BiRocket } from "react-icons/bi";
 import { BsBug } from "react-icons/bs";
-import CircleTimer from "../Layout/Timer";
-import TopBarRight from "../Layout/TopBarRight";
+import CircleTimer from "../Timer";
+import TopBarRight from "../TopBarRight";
 
 const Sidebar2 = (props) => {
   const { user, username } = useContext(UserContext);
@@ -68,7 +68,7 @@ const Sidebar2 = (props) => {
   };
 
   return (
-    <div className="sidebar-container md:border-l-0 flex md:left-0  md:h-full  sm:h-[6em] sm:w-full md:w-[4.5em] md:flex-col  md:rounded-br-[3px] sm:flex md:rounded-tl-none  md:absolute  sm:bg-none md:bg-gradient-to-t  md:from-clear-pl2 md:border-black md:border-[0px] content-center items-center md:justify-between	md:py-4  z-10 sm:grow-effect md:fade-effect-quick sm:justify-evenly">
+    <div className={"sidebar-container md:border-l-0 flex md:left-0  md:h-full  sm:h-[6em] sm:w-full md:w-[4.5em] md:flex-col  md:rounded-br-[3px] sm:flex md:rounded-tl-none  md:absolute  sm:bg-none md:bg-gradient-to-t  md:from-clear-pl2 md:border-black md:border-[0px] content-center items-center md:justify-between	md:py-4  z-10 fade-effect-quick sm:justify-evenly  " + (props.toggle ? " sm:flex md:flex" :  " sm:hidden md:flex")}>
       <div className="flex items-center gap-3 md:flex-col sm:flex">
         <Link href="/home">
           <a>

@@ -2,11 +2,11 @@
 import styled from "styled-components";
 import TopBar from "./TopBar";
 import TopBarRight from "./TopBarRight";
-import Sidebar2 from "../Sidebar/SidebarRebuild";
+import Sidebar2 from "./Sidebar/SidebarRebuild";
 import { FaBook, FaPlus, FaTimes } from "react-icons/fa";
 
-import NotePopUp from "../MainPage/NoteBubble/NotePopUp";
-import NotePopUpModal from "../MainPage/NoteBubble/NotePopUpModal";
+import NotePopUp from "../Notes/NoteBubble/NotePopUp";
+import NotePopUpModal from "../Notes/NoteBubble/NotePopUpModal";
 import { useEffect, useState, useContext, React, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // import { logIn, userDataRedux } from "../../redux/actions";
@@ -33,7 +33,6 @@ import { isMobile } from "react-device-detect";
 import { Router } from "next/router";
 import { useRouter } from "next/router";
 
-import FullSidebar from "../Sidebar/FullSidebar";
 import Footer from "./Footer";
 import Loader from "./Loader";
 import { collection } from "firebase/firestore";
@@ -323,7 +322,7 @@ if (darkRedux) {
         <div className="flex w-full h-full sm:flex-col md:flex-row">
 
         <div className="side-nav-bar md:!w-[5em] md:!mr-2 sm:!w-full md:h-full sm:h-[4em] ">
-          {signedIn && isToggled && <Sidebar2 toggle={isToggled} signedIn={signedIn}/>}
+          {signedIn &&  <Sidebar2 toggle={isToggled} signedIn={signedIn}/>}
         </div>
         <div className="w-full overflow-y-auto fade-effect-quick content">
           {loadingUI ? <FullLoader show={true} /> : <main>{children}</main>}
