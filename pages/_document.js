@@ -13,14 +13,7 @@ class MyDocument extends Document {
         <Header />
         </Head >
         <body >
-          <div className="w-full h-full blobs rotate-effect-slow">
-            <div className="svg-blob1 rotate-effect scale-effect"></div>
-            <div className="svg-blob2 rotate-effect scale-effect"></div>
-            <div className="svg-blob3 rotate-effect scale-effect"></div>
-            <div className="svg-blob4 rotate-effect scale-effect"></div>
-            <div className="svg-blob5 rotate-effect scale-effect"></div>
-
-          </div>
+         
 
           <Main />
           <NextScript />

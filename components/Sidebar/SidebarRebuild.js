@@ -68,7 +68,7 @@ const Sidebar2 = (props) => {
   };
 
   return (
-    <div className="sidebar-container md:border-l-0 flex md:left-0  md:h-full  sm:h-[6em] sm:w-full md:w-[4.5em] md:flex-col  md:rounded-br-[3px] sm:flex md:rounded-tl-none  md:absolute  sm:bg-none md:bg-gradient-to-t  md:from-clear-pl2 md:border-black md:border-[0px] content-center items-center md:justify-between	md:py-4  z-10 grow-effect sm:justify-evenly">
+    <div className="sidebar-container md:border-l-0 flex md:left-0  md:h-full  sm:h-[6em] sm:w-full md:w-[4.5em] md:flex-col  md:rounded-br-[3px] sm:flex md:rounded-tl-none  md:absolute  sm:bg-none md:bg-gradient-to-t  md:from-clear-pl2 md:border-black md:border-[0px] content-center items-center md:justify-between	md:py-4  z-10 sm:grow-effect md:fade-effect-quick sm:justify-evenly">
       <div className="flex items-center gap-3 md:flex-col sm:flex">
         <Link href="/home">
           <a>
@@ -175,7 +175,7 @@ const Sidebar2 = (props) => {
         {/* <Link href="/Home"></Link> */}
       </div>
       {/* {props.signedIn && <TopBarRight />} */}
-      <div className="flex flex-col items-center mb-[4.5em] group sm:hidden">
+      <div className="flex flex-col items-center mb-[4.5em] group sm:hidden md:block">
       <div className="flex flex-col items-center group">
 
    {!timerOpen && <> <div

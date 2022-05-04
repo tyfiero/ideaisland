@@ -248,7 +248,7 @@ if (darkRedux) {
   return (
     <>
       <div
-        className="relative wrapper " 
+        className="wrapper" 
         
         
         // style={
@@ -267,9 +267,22 @@ if (darkRedux) {
         {/* <div className="background blur"></div> */}
         {/* <noscript>You need to enable JavaScript to run this app.</noscript> */}
        
-        
-       
-        <div className="relative flex top-bar !min-h-[4em]">
+        <div className=" blobs">
+        <div className="svg-blob1 rotate-effect scale-effect"></div>
+            <div className="svg-blob2 rotate-effect scale-effect"></div>
+            <div className="svg-blob3 rotate-effect scale-effect"></div>
+            <div className="svg-blob4 rotate-effect scale-effect"></div>
+            <div className="svg-blob5 rotate-effect scale-effect"></div>
+        </div>
+        {/* <div className="blobs rotate-effect-slow">
+            <div className="svg-blob1 rotate-effect scale-effect"></div>
+            <div className="svg-blob2 rotate-effect scale-effect"></div>
+            <div className="svg-blob3 rotate-effect scale-effect"></div>
+            <div className="svg-blob4 rotate-effect scale-effect"></div>
+            <div className="svg-blob5 rotate-effect scale-effect"></div>
+
+          </div> */}
+        <div className=" flex top-bar !min-h-[4em] ">
           {/* {loadingUI ? <Loader show={true}/>: "NOT LOADING YO"} */}
         <div className="w-[25em]">
 
@@ -309,14 +322,14 @@ if (darkRedux) {
         
         <div className="flex w-full h-full sm:flex-col md:flex-row">
 
-        <div className="side-nav-bar md:!w-[5em] md:!mr-2 sm:w-full md:h-full ">
-          {/* <Sidebar toggle={isToggled} />
-           */}
+        <div className="side-nav-bar md:!w-[5em] md:!mr-2 sm:!w-full md:h-full sm:h-[4em] ">
           {signedIn && isToggled && <Sidebar2 toggle={isToggled} signedIn={signedIn}/>}
-          {/* <FullSidebar /> */}
         </div>
         <div className="w-full overflow-y-auto fade-effect-quick content">
           {loadingUI ? <FullLoader show={true} /> : <main>{children}</main>}
+
+
+          
           {/* <Footer /> */}
         </div>
         </div>
