@@ -135,16 +135,16 @@ function IdeaItem({ idea, admin = false, type }) {
               {type === "problem" && (
                 <>
                   <p className="overflow-hidden max-h-[3em]">
-                    Why:{" " + idea.why}
+                    Why:{" " + (idea.why || "...")}
                   </p>
                   <p className="overflow-hidden max-h-[3em]">
-                    What:{" " + idea.what}
+                    What:{" " + (idea.what || "...")}
                   </p>
                   <p className="overflow-hidden max-h-[3em]">
-                    Who:{" " + idea.who}
+                    Who:{" " + (idea.who|| "...")}
                   </p>
                   <p className="overflow-hidden max-h-[3em]">
-                    Root Cause:{" " + idea.pq3}
+                    Root Cause:{" " + (idea.pq3|| "...")}
                   </p>
                 </>
               )}

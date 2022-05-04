@@ -15,7 +15,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Card from "../../components/MainPage/solutionsComponents/CombinatorialComponents/Card";
 import GPTtool from "../../components/MainPage/solutionsComponents/AI/GPT3";
 import { randomizeAction, sArrayAction } from "../../redux/actions";
-import IdeaNote from "../../components/MainPage/NoteBubble/Idea";
+import IdeaNote from "../../components/Notes/NoteBubble/Idea";
 import RandomPics from "../../components/MainPage/solutionsComponents/CombinatorialComponents/RandomPics";
 import TemplateBar from "../../components/MainPage/solutionsComponents/CombinatorialComponents/TemplateBar";
 import ModularCard from "../../components/MainPage/solutionsComponents/CombinatorialComponents/ModularCard";

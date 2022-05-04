@@ -245,9 +245,9 @@ if (darkRedux) {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <>
+
       <div
-        className="wrapper" 
+        className="fixed top-0 left-0 wrapper" 
         
         
         // style={
@@ -257,7 +257,7 @@ if (darkRedux) {
         // }
       >
         {/* <video playsinline autoPlay muted loop ref={videoRef}  className="absolute top-0 left-0" >
-    <source src="/vid2.mp4" type="video/webm"/>
+    <source src="/vid2.mp4" type="video/mp4"/>
     Your browser does not support the video tag.
 </video> */}
 
@@ -267,7 +267,7 @@ if (darkRedux) {
         {/* <noscript>You need to enable JavaScript to run this app.</noscript> */}
        
         <div className=" blobs">
-        <div className="svg-blob1 rotate-effect scale-effect"></div>
+            <div className="svg-blob1 rotate-effect scale-effect"></div>
             <div className="svg-blob2 rotate-effect scale-effect"></div>
             <div className="svg-blob3 rotate-effect scale-effect"></div>
             <div className="svg-blob4 rotate-effect scale-effect"></div>
@@ -281,7 +281,7 @@ if (darkRedux) {
             <div className="svg-blob5 rotate-effect scale-effect"></div>
 
           </div> */}
-        <div className=" flex top-bar !min-h-[4em] ">
+        <div className=" flex top-bar !min-h-[4em]  w-full">
           {/* {loadingUI ? <Loader show={true}/>: "NOT LOADING YO"} */}
         <div className="w-[25em]">
 
@@ -314,22 +314,21 @@ if (darkRedux) {
       /></div>
           
          
-          <div>
+
           <Toaster />
-        </div>
+
         </div>
         
-        <div className="flex w-full h-full sm:flex-col md:flex-row">
+        <div className="flex w-full h-full sm:flex-col md:flex-row md:pb-[4em] sm:pb-[3em]">
 
-        <div className="side-nav-bar md:!w-[5em] md:!mr-2 sm:!w-full md:h-full sm:h-[4em] ">
+        <div className="side-nav-bar md:!w-[5em] md:!mr-2 sm:!w-full md:h-full  ">
           {signedIn &&  <Sidebar2 toggle={isToggled} signedIn={signedIn}/>}
         </div>
-        <div className="w-full overflow-y-auto fade-effect-quick content">
-          {loadingUI ? <FullLoader show={true} /> : <main>{children}</main>}
+        <div className="w-full h-full fade-effect-quick content">
+          {loadingUI ? <FullLoader show={true} /> : <main className="w-full h-full overflow-auto">{children}</main>}
 
 
           
-          {/* <Footer /> */}
         </div>
         </div>
         
@@ -356,7 +355,7 @@ if (darkRedux) {
           </div>
         )}
       </div>
-    </>
+
   );
 }
 

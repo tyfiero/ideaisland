@@ -197,7 +197,7 @@ const SettingsPage = () => {
 
   return (
     //  <AuthCheck>
-    <div className="w-full sentence-container fade-effect-quick">
+    <div className="w-full sentence-container fade-effect-quick overflow-y-scroll">
       {loading ? (
         <FullLoader show={true} />
       ) : (

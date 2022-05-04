@@ -187,13 +187,15 @@ function CreateNewIdea(props) {
 
   let type = props.type;
 
-  if (process.browser) {
-    if (unsavedChangesRedux) {
-      window.onbeforeunload = function () {
-        return "There are unsaved changes. Are you sure you want to leave?";
-      };
-    }
-  }
+
+  //TODO decide if onbefore unload is worth it
+  // if (process.browser) {
+  //   if (unsavedChangesRedux) {
+  //     window.onbeforeunload = function () {
+  //       return "There are unsaved changes. Are you sure you want to leave?";
+  //     };
+  //   }
+  // }
 
   const { flushHeldKeys } = useKeyboardShortcut(
     ["Meta", "Enter"],
@@ -460,7 +462,7 @@ function CreateNewIdea(props) {
     // className="my-8 w-[62em]">
     <div className="w-full">
       {/* <div className="flex items-center justify-center">
-        <h1 className=" text-3xl text-t-bd dark:text-blues-100 ">My Ideas & Notes</h1>
+        <h1 className="text-3xl text-t-bd dark:text-blues-100">My Ideas & Notes</h1>
       </div>  */}
 
       <div className="flex flex-col items-center w-[98%] md:mx-3 sm:mx-1 normal-box-soft">

@@ -26,7 +26,7 @@ function TopBar(props) {
           <img
             src="/bulb.svg"
             alt="logo"
-            className="h-[3.7em] pl-3 pr-1 mt-2 transition cursor-pointer w-a hover:scale-105"
+            className="h-[3.7em] pl-3 pr-1 mt-1 mb-1 transition cursor-pointer w-a hover:scale-105"
             // onClick={() => {
             //   console.log("clicked logo");
             // }}

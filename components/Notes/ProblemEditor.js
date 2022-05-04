@@ -470,7 +470,7 @@ function CreateNewProblem(props) {
                   <div className="p-5 normal-box-soft !rounded-xl min-w-[15em]  !bg-clear-bl2">
                     <h3 className="heading"> Why:</h3>
                     {/* <hr className="border-t-bd"></hr> */}
-                  {contentWhyOptions.length >0 &&   <div className="w-full glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   !bg-white/90 flex flex-wrap gap-1 mb-3 justify-center">
+                  {contentWhyOptions?.length >0 &&   <div className="w-full glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   !bg-white/90 flex flex-wrap gap-1 mb-3 justify-center">
                     {contentWhyOptions?.map((data, index) => (
                   <ListItem
                     name={data}
