@@ -13,14 +13,102 @@ import toast from "react-hot-toast";
 
 import { useRouter } from "next/router";
 
+import { useSelector, useDispatch } from "react-redux";
+import { sFormAction } from "../../../redux/actions";
+import ChipBlue from "../problemComponents/chips/ChipBlue";
+import ChipFeature from "./CombinatorialComponents/ChipFeature";
+import ChipTechStackDisplay from "./CombinatorialComponents/ChipTechStackDisplay";
 function SDetails(props) {
+  const dispatch = useDispatch();
+  const sFormRedux = useSelector((state) => state.sForm);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [titleContent, setTitleContent] = useState("");
   const [confetti, setConfetti] = useState(false);
   const router = useRouter();
 
-  const update = (e) => {
-    props.update(e.target.name, e.target.value);
+  // const update = (e) => {
+  //   props.update(e.target.name, e.target.value);
+  // };
+
+  // Create a new post in firestore
+  const saveProblemForm = async (e) => {
+    e?.preventDefault() || null;
+    let uid;
+
+    if (user?.uid) {
+      uid = user?.uid;
+    } else if (userUIDRedux) {
+      uid = userUIDRedux;
+    } else if (auth.currentUser?.uid) {
+      uid = auth.currentUser?.uid;
+    } else {
+      uid = "default";
+      console.log("no uid available :(");
+    }
+    if (!pFormRedux.id) {
+      const d = Number(new Date());
+      const timeID = d.valueOf().toString();
+      const ref = doc(getFirestore(), "users", uid, "problem", timeID);
+      // Tip: give all fields a default value here
+      const data = {
+        id: timeID,
+        title: pFormRedux.title,
+        uid,
+        username: userNameRedux,
+        productType: pFormRedux.productType || null,
+        whyOptions: pFormRedux.whyOptions || [],
+        why: pFormRedux.why || null,
+        what: pFormRedux.what || null,
+        who: pFormRedux.who || null,
+        pq1: pFormRedux.pq1 || null,
+        pq2: pFormRedux.pq2 || null,
+        pq3: pFormRedux.pq3 || null,
+
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp(),
+      };
+      await setDoc(ref, data)
+        .then(() => {
+          if (!pFormRedux.id) {
+            let updated = pFormRedux;
+            updated.id = timeID;
+            dispatch(pFormAction(updated));
+          }
+          toast.success("Progress saved!");
+          props.setChanges(false);
+          router.push("/problem/progress");
+        })
+        .catch((error) => {
+          toast.error("Error occured :( ");
+          console.log("It failed!" + error);
+        });
+    } else {
+      const ref = doc(getFirestore(), "users", uid, "problem", pFormRedux.id);
+
+      const data = {
+        id: pFormRedux.id,
+        title: pFormRedux.title,
+        productType: pFormRedux.productType,
+        whyOptions: pFormRedux.whyOptions,
+        why: pFormRedux.why,
+        what: pFormRedux.what,
+        who: pFormRedux.who,
+        pq1: pFormRedux.pq1,
+        pq2: pFormRedux.pq2,
+        pq3: pFormRedux.pq3,
+        updatedAt: serverTimestamp(),
+      };
+      await updateDoc(ref, data)
+        .then(() => {
+          toast.success("Progress saved!");
+          props.setChanges(false);
+          router.push("/problem/progress");
+        })
+        .catch((error) => {
+          toast.error("Error occured :( ");
+          console.log("It failed!" + error);
+        });
+    }
   };
 
   return (
@@ -68,80 +156,67 @@ function SDetails(props) {
                   onClick={() => setIsPopoverOpen(!isPopoverOpen)}
                   className="w-5"
                 >
-                  <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 dark:text-blues-100  md:hover:scale-110" />
+                  <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 dark:text-blues-100 md:hover:scale-110" />
                 </div>
               </Popover>
             </div>
-            <h1 className=" text-3xl text-t-bd dark:text-blues-100 ">
-              Details
+            <h1 className="text-3xl text-t-bd dark:text-blues-100">
+              Overview of Your Improved Idea
             </h1>
-            <div className="normal-box-soft">
-              <h3 className="heading">
-                Placeholder tab for another screen here
-              </h3>
-            </div>
 
-            {/* <div className='flex gap-5'>
-        <button className='w-[12em] h-[4em] rounded-3xl  flex items-center justify-center text-white gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer bg-t-bl' onClick={() => props.goToStep(3)}><FaLaptopCode />Software Product</button>
-        <button className='w-[12em] h-[4em] rounded-3xl  flex items-center justify-center text-white gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer bg-t-pm' onClick={() => props.goToStep(3)}><FaShoppingBag /> Physical Product</button>
-        </div> */}
-
-            <div className="flex flex-col">
-              <div className="flex">
-                {" "}
-                <p>Give your problem/challenge/mission a name!</p>
-                <p className="text-t-pm">*</p>
+            <div className="flex flex-col gap-5">
+              <div className="flex flex-col">
+                <p className="text-left">Title:</p>
+                <div className="normal-box-soft">
+                  <h3 className="heading">
+                    {sFormRedux.idea.title || "No title"}
+                  </h3>
+                </div>
               </div>
 
-              <input
-                type="text"
-                required
-                className="textarea-box  textarea-tw   h-[3em]"
-                name="title"
-                placeholder="Title"
-                onChange={(e) => {
-                  setTitleContent(e.target.value);
-                  update(e);
-                }}
-              />
-              {/* <p>Your problem so far:</p>
-              <div className="flex flex-wrap w-[25em] flex-col items-center">
-                <div className="flex flex-col normal-box">
-                  <h4>Why:</h4>
-                  <p>{props.form?.whyOptions}</p>
-                  <p>{props.form?.why}</p>
-
+              <div className="flex flex-col">
+                <p className="text-left">Features:</p>
+                <div className="flex flex-wrap items-center justify-center gap-2 normal-box-soft">
+                  {sFormRedux.features.map((feature, index) => (
+                    <ChipFeature
+                      cost={feature.cost}
+                      name={feature.name}
+                      feasibility={feature.feasibility}
+                      importance={feature.importance}
+                      version={feature.version}
+                      key={index}
+                    />
+                  ))}
                 </div>
-                <div className="flex flex-col normal-box">
-                  <h4>What:</h4>
-                  <p>{props.form?.productType}</p>
-                  <p>{props.form?.what}</p>
-
+              </div>
+              <div className="flex flex-col">
+                <p className="text-left">Tech Stack:</p>
+              <div className="flex flex-col items-center justify-center normal-box-soft ">
+                <div className="flex flex-wrap items-center justify-center gap-2 ">
+                  {sFormRedux.stack.map((tool, index) => (
+                    <ChipTechStackDisplay
+                      cost={tool.cost}
+                      name={tool.name}
+                    type={tool.type}
+                    kind={tool.kind}
+                      key={index}
+                    />
+                  ))}
                 </div>
-                <div className="flex flex-col normal-box">
-                  <h4>Who:</h4>
-                  <p>{props.form?.who}</p>
-
+                  
+                  <div className="flex gap-5 mt-2">
+                  <p className="text-sm ">Monthly Cost: {sFormRedux.stackCost[0].monthly > 0 ? ("$" + sFormRedux?.stackCost[0].monthly): "Free"}</p>
+                  <p className="text-sm ">Annual Cost: {sFormRedux.stackCost[1].yearly > 0 ? ("$" + sFormRedux?.stackCost[1].yearly): "Free"}</p>
+                  </div>
                 </div>
-              </div> */}
-              <p>More details:</p>
 
-              <textarea
-                // type="text"
-                className="textarea-box  textarea-tw   h-[10em] whitespace-normal"
-                name="details"
-                placeholder="Other details to add?"
-                onChange={update}
-              />
-              <p>
-                *This note will be saved to your Idea Page for your review
-                later.
-              </p>
+              </div>
+              <p>More tools to upgrade your idea are coming soon!</p>
             </div>
             <div className="flex items-center justify-between w-full">
               <button
                 className="card__btn_prev save_button left-[5%]  flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick"
-                onClick={() => props.goToStep(5)}
+                onClick={() => props.goToStep(4)}
               >
                 <FaLongArrowAltLeft className="mr-1 text-[24px]" />
                 Back

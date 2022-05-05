@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 
 // import { Popover, ArrowContainer } from "react-tiny-popover";
@@ -12,17 +13,24 @@ import {
 } from "react-icons/fa";
 import { ArrowContainer, Popover } from "react-tiny-popover";
 import SFilterIdeas from "./SFilterIdeas";
+import { useSelector, useDispatch } from "react-redux";
+
+
 function SFilter(props) {
+  // const dispatch = useDispatch();
+  const sFormRedux = useSelector((state) => state.sForm);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [button1, setButton1] = useState(false);
   const [button2, setButton2] = useState(false);
-
+const router = useRouter();
   // const update = (e) => {
   //   props.update(e.target.name, e.target.value);
   // };
   // const updateButton = (e) => {
   //   props.update("productType", e.target.value);
   // };
+
+  console.log(sFormRedux)
   return (
     <div>
       <div
@@ -72,20 +80,18 @@ function SFilter(props) {
                 onClick={() => setIsPopoverOpen(!isPopoverOpen)}
                 className="w-5"
               >
-                <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 dark:text-blues-100  md:hover:scale-110" />
+                <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 dark:text-blues-100 md:hover:scale-110" />
               </div>
             </Popover>
           </div>
           <div className="flex flex-col items-center justify-center w-full fade-effect-quick">
             <h1 className=" text-3xl text-t-bd dark:text-blues-100  !m-0">
-              Filter
+              Select an Idea to improve
             </h1>
             <div className="normal-box-soft !p-2">
-              <h3 className="heading  text-t-bd dark:text-blues-100  !m-0">
-                Time to choose an idea to evolve
-              </h3>
+              
               <p className="m-0">
-                You can always come back here to select another idea.{" "}
+                You can always come back to select another idea.{" "}
               </p>
             </div>
 
@@ -115,7 +121,7 @@ function SFilter(props) {
             <div className="flex items-center justify-between w-full mt-4">
               <button
                 className="card__btn_prev save_button left-[5%]  flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick"
-                onClick={() => props.goToStep(1)}
+                onClick={() => router.push("/solutions")}
               >
                 <FaLongArrowAltLeft className="mr-1 text-[24px]" />
                 Back
@@ -124,7 +130,7 @@ function SFilter(props) {
                 <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
                 <button
                   className="w-[5em] h-[3em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-clear-bd3 md:hover:shadow-xl m-1 drop-shadow-xl "
-                  onClick={() => props.goToStep(3)}
+                  onClick={() => props.goToStep(2)}
                 >
                   Next
                   <FaLongArrowAltRight className="ml-1 text-[24px]" />

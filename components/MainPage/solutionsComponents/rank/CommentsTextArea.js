@@ -8,7 +8,7 @@ const [content, setContent] = useState(text)
 
 const sendUpdates = () => {
     updateFromChip([givenFeature, content, "comments"]);
-    console.log("text update sent")
+    // console.log("text update sent")
 
 }
 

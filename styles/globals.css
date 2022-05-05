@@ -1122,12 +1122,7 @@ p {
   }
 }
 @media screen and (min-width: 768px) {
-  .button-holder {
-    position: fixed;
 
-    top: 91%;
-    left: 94%;
-  }
   .notepad-button {
     box-shadow: 5px 5px 11px #b3b3b36e, -5px -5px 5px #ece4eb6e;
   }
@@ -1142,7 +1137,6 @@ p {
     width: 40%;
     height: 50vh;
     top: 0%;
-    left: 60%;
     z-index: 2;
     margin-right: 0.5em;
 

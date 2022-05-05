@@ -31,10 +31,7 @@ import ProblemStatement from "../../components/MainPage/solutionsComponents/Comb
 import InspirationStatement from "../../components/MainPage/solutionsComponents/CombinatorialComponents/InspirationStatement";
 
 // import { CSSTransition } from "react-transition-group";
-import {
-  motion,
-  AnimatePresence,
-} from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const CombinatorialPage = (props) => {
   const router = useRouter();
@@ -132,9 +129,7 @@ const CombinatorialPage = (props) => {
     setUpdate(!update);
   };
 
-  const randomizeAll = (event) => {
-    dispatch(randomizeAction(true));
-  };
+
 
   const onAddBtnClick = (event) => {
     let newArray = sArray;
@@ -195,7 +190,7 @@ const CombinatorialPage = (props) => {
       <div className="relative overflow-x-hidden card-container fade-effect-quick">
         {/* div that holds all the cards, note the img prop where the url lives, as well as the array thats passed in to Card.js as a prop */}
         <h1 className="text-3xl text-t-bd dark:text-blues-100">
-          Combinatorial Tool
+          Solution Finder
         </h1>
         <div>
           {" "}
@@ -203,10 +198,10 @@ const CombinatorialPage = (props) => {
             <div className="relative group">
               <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
               <button
-                className="w-[5em] h-[2.5em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-clear-bd3 md:hover:shadow-xl m-1 drop-shadow-xl "
-                onClick={() => router.push("/solutions#select-idea")}
+                className="w-[10em] h-[2.5em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-clear-bd3 md:hover:shadow-xl m-1 drop-shadow-xl "
+                onClick={() => router.push("/solutions/improve")}
               >
-                Next
+                Improve an Idea
                 <FaLongArrowAltRight className="ml-1 text-[24px]" />
               </button>
             </div>
@@ -355,9 +350,9 @@ const CombinatorialPage = (props) => {
             {/* <p className="text-2xl text-t-pm">Problem Statement</p> */}
 
             <div className="relative flex flex-col w-full gap-1 glass-box !border-t-pm border-2 items-center">
-              <ProblemStatement randomizeAll={randomizeAll} />
+              <ProblemStatement />
               <BsArrowDown className="text-3xl dark:text-white" />
-              <InspirationStatement randomizeAll={randomizeAll} />
+              <InspirationStatement  />
               {/* <BsArrowDown className="text-3xl"/> */}
             </div>
 
@@ -391,25 +386,26 @@ const CombinatorialPage = (props) => {
      </div> */}
             {/* <div className="mt-24"><SentenceTool /></div> */}
             <AnimatePresence exitBeforeEnter>
-            {randomImageOpen && (
-              <motion.div
-                key={"pics"}
-                exit={{ opacity: 0, scale: 1 }}
-                initial={{ opacity: 0, scale: 0.7  }}
-                animate={{ opacity: 1, scale: 1  }}
-                transition={{ delay: 0.2 }}
-
-                className="px-2 pb-5 glass-box bg-[rgba(255, 255, 255, 0.25)]
+              {randomImageOpen && (
+                <motion.div
+                  key={"pics"}
+                  exit={{ opacity: 0, scale: 1 }}
+                  initial={{ opacity: 0, scale: 0.7 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.2 }}
+                  className="px-2 pb-5 glass-box bg-[rgba(255, 255, 255, 0.25)]
                 dark:bg-[hsla(200,0%,5%,0.35)] ring-4 ring-green-200 bg-t-bl/10
-                min-w-[42em] h-full !border-0 mb-5 bg-green-400/20 ">
-                <p className="text-lg text-left text-green-600">Random Cues</p>
-                <p className="text-sm text-left text-green-800">
-                  For inspiration and lateral thinking
-                </p>
-                <RandomPics />
-              </motion.div>
-
-            )} 
+                min-w-[42em] h-full !border-0 mb-5 bg-green-400/20 "
+                >
+                  <p className="text-lg text-left text-green-600">
+                    Random Cues
+                  </p>
+                  <p className="text-sm text-left text-green-800">
+                    For inspiration and lateral thinking
+                  </p>
+                  <RandomPics />
+                </motion.div>
+              )}
             </AnimatePresence>
 
             <div className="flex flex-wrap justify-center w-full h-full gap-10 mt-5">
@@ -420,20 +416,23 @@ const CombinatorialPage = (props) => {
         className="!h-full"
         unmountOnExit
       > */}
-            <AnimatePresence exitBeforeEnter>
-
-              {aiOpen && (
-                 <motion.div
-                 key={"ai"}
-                 exit={{ opacity: 0, scale: 1 }}
-                initial={{ opacity: 0, scale: 0.7  }}
-                animate={{ opacity: 1, scale: 1  }}
-                 transition={{ delay: 0.2 }} className="h-full px-5 py-2 ring-4 rounded-xl !ring-t-pl bg-clear-pl3 fade-effect-quick">
-                  <p className="text-lg text-left text-t-pd">Innovation AI</p>
-                  <GPTtool showButton={true} />
-                </motion.div>
-              )}
-            </AnimatePresence>
+              <AnimatePresence exitBeforeEnter>
+                {aiOpen && (
+                  <motion.div
+                    key={"ai"}
+                    exit={{ opacity: 0, scale: 1 }}
+                    initial={{ opacity: 0, scale: 0.7 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.2 }}
+                    className="h-full px-5 py-2 ring-4 rounded-xl !ring-t-pl bg-clear-pl3 fade-effect-quick"
+                  >
+                    <p className="text-lg text-left text-t-pd">
+                      Innovation AI (beta)
+                    </p>
+                    <GPTtool showButton={true} />
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
               {/* </CSSTransition> */}
 
@@ -443,23 +442,24 @@ const CombinatorialPage = (props) => {
         classNames="fade"
         unmountOnExit
       > */}
-            <AnimatePresence exitBeforeEnter>
-
-              {notesOpen && (
-                 <motion.div
-                 key={"notes"}
-                 exit={{ opacity: 0, scale: 1 }}
-                 initial={{ opacity: 0, scale: 0.7  }}
-                 animate={{ opacity: 1, scale: 1  }}
-                 transition={{ delay: 0.2 }} className="px-2 pb-5 glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   ring-4 ring-t-bl bg-clear-bl1 min-w-[42em] h-full !border-0 relative fade-effect-quick">
-                  <p className="pb-2 text-lg text-left text-t-bd dark:text-t-bl ">
-                    {" "}
-                    Idea NotePad
-                  </p>
-                  <IdeaNote />
-                </motion.div>
-              )}
-            </AnimatePresence>
+              <AnimatePresence exitBeforeEnter>
+                {notesOpen && (
+                  <motion.div
+                    key={"notes"}
+                    exit={{ opacity: 0, scale: 1 }}
+                    initial={{ opacity: 0, scale: 0.7 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.2 }}
+                    className="px-2 pb-5 glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   ring-4 ring-t-bl bg-clear-bl1 min-w-[42em] h-full !border-0 relative fade-effect-quick"
+                  >
+                    <p className="pb-2 text-lg text-left text-t-bd dark:text-t-bl ">
+                      {" "}
+                      Idea NotePad
+                    </p>
+                    <IdeaNote />
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
               {/* </CSSTransition> */}
             </div>

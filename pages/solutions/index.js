@@ -1,5 +1,6 @@
 
-import SolutionWizard from "../../components/MainPage/solutionsComponents/SolutionWizard";
+import SIdeate from "../../components/MainPage/solutionsComponents/SIdeate";
+
 
 
 
@@ -8,7 +9,7 @@ const SolutionsPageIndex = (props) => {
   // return <SolutionsPage />;
   return (
     <div className="TBD-container fade-effect">
-        <SolutionWizard />
+        <SIdeate />
     </div>
   );
 };

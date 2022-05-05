@@ -21,9 +21,9 @@ import ToolTip from "../../../Layout/ToolTip";
 import WordButton from "./WordButton";
 import { Cascader } from "antd";
 import "antd/dist/antd.css";
-import { sArrayAction } from "../../../../redux/actions";
+import { randomizeAction, sArrayAction } from "../../../../redux/actions";
 
-function ProblemStatement({ randomizeAll }) {
+function ProblemStatement(props) {
 
   
 
@@ -62,6 +62,11 @@ function ProblemStatement({ randomizeAll }) {
   useEffect(() => {
     separateText();
   }, []);
+
+
+  const randomizeAll = (event) => {
+    dispatch(randomizeAction(true));
+  };
   // useEffect(() => {
   //   if(!splitText){
   //     console.log("RAN")

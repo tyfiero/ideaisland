@@ -14,10 +14,12 @@ import {
   FaInfoCircle,
   FaRobot,
   FaRandom,
+  FaRegLightbulb,
 } from "react-icons/fa";
 import Link from "next/link";
 
 import Image from "next/image";
+import { MdOutlineUpgrade } from "react-icons/md";
 
 function SIdeate(props) {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -34,11 +36,16 @@ function SIdeate(props) {
   return (
     <div>
       <div
-        className="flex items-center justify-center  px-4 pt-[1rem] sm:px-6 lg:px-8 drop-shadow-xl fade-effect-quick min-w-[50em]
+        className="flex items-center justify-center  px-4 pt-[1rem] sm:px-6 lg:px-8 drop-shadow-xl fade-effect-quick min-w-[50em] 
 
   "
       >
-        <div className="w-full max-w-[42rem] p-10 space-y-8  normal-box-soft relative">
+        <div className="w-full max-w-[62rem] p-10 space-y-8  normal-box-soft relative !bg-gradient-to-b from-clear-pl3 to-clear-bl3 min-h-[30em]">
+          
+          <div className="absolute top-0 left-0 flex items-center content-center w-full h-full overflow-hidden select-none rounded-xl">
+            
+              <img src="/treeillustration.png" alt="palm" className="object-cover opacity-25 -z-10"/> 
+          </div>
           <div className="absolute top-5 left-5">
             <Popover
               isOpen={isPopoverOpen}
@@ -76,15 +83,15 @@ function SIdeate(props) {
                 onClick={() => setIsPopoverOpen(!isPopoverOpen)}
                 className="w-5"
               >
-                <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 dark:text-blues-100  md:hover:scale-110" />
+                <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 dark:text-blues-100 md:hover:scale-110" />
               </div>
             </Popover>
           </div>
           <div className="flex flex-col items-center justify-center gap-3 p-3 problem-page fade-effect-quick !m-0">
-            <h1 className=" text-3xl text-t-bd dark:text-blues-100 ">Ideate</h1>
-            <div className="normal-box-soft">
-              <h3 className="heading">Oh yes, it&apos;s idea time 😎</h3>
-            </div>
+            <h1 className="text-3xl text-t-bd dark:text-blues-100">Solutions</h1>
+            {/* <div className="!bg-white normal-box-soft !opacity-100">
+              <h3 className="heading">The s</h3>
+            </div> */}
             <div className="bg-white/60 rounded-xl">
               {/* <Image
         alt="Next.js logo"
@@ -93,8 +100,8 @@ function SIdeate(props) {
         height={1487}
         priority={true}
       /> */}
+        {/* <SolutionWizard /> */}
 
-              <img src="/palmnobgoptimized.png" alt="palm" />
             </div>
             <div className="flex gap-5">
               {/* <button
@@ -115,37 +122,48 @@ function SIdeate(props) {
                 <FaRobot /> AI tool {button2 ?   <span className="absolute flex items-center justify-center w-6 h-6 leading-none text-center text-black rounded-full -top-2 -left-2 bg-t-bpop"><FaCheck/></span> : null}
               </button> */}
               <div className="flex flex-col gap-5">
-                <h4>Tools:</h4>
-                <Link href="/solutions/combinatorial">
+                {/* <h4>Tools:</h4> */}
+                <Link href="/solutions/finder">
                   <a>
-                    <div className="flex solution-button">
-                      <FaRandom className="text-2xl" />
-                      <p>Combinatorial Tool</p>
-                    </div>
+                  <div className="relative group !w-[25em]">
+                <div className="absolute w-full transition duration-1000 rounded-full opacity-90 -inset-1 bg-gradient-to-r from-t-bl via-blues-200 to-blues-50 blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
+                <button
+                  className="w-[95%] h-[3em] bg-gradient-to-r from-t-bl via-blues-300 to-blues-100  flex items-center justify-between px-5 md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-clear-bd3 md:hover:shadow-xl m-1 drop-shadow-xl rounded-full text-xl text-white"
+                >
+            Solution Finder
+                  <FaRegLightbulb className="ml-1 text-[24px] text-blues-500" />
+                </button>
+              </div>
+                
                   </a>
                 </Link>
 
-                <Link href="/solutions/sentence">
+                <Link href="/solutions/improve">
                   <a>
-                    <div className="solution-button">
-                      <FaAlignLeft className="text-2xl" />
-                      <p>Sentence Tool</p>
-                    </div>
+                  <div className="relative group !w-[25em]">
+                <div className="absolute w-full transition duration-1000 rounded-full opacity-90 -inset-1 bg-gradient-to-r from-t-bl via-blues-200 to-blues-50 blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
+                <button
+                  className="w-[95%] h-[3em] bg-gradient-to-r from-t-bl via-t-bl to-t-bpop  flex items-center justify-between px-5 md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-clear-bd3 md:hover:shadow-xl m-1 drop-shadow-xl rounded-full text-xl text-white"
+                >
+            Improve Existing Solution
+                  <MdOutlineUpgrade className="ml-1 text-[34px] text-blues-600" />
+                </button>
+              </div>
                   </a>
                 </Link>
 
-                <Link href="/solutions/ai">
+                {/* <Link href="/solutions/ai">
                   <a>
                     <div className="solution-button">
                       <FaPastafarianism className="text-3xl" />
                       <p>AI Tool</p>
                     </div>
                   </a>
-                </Link>
+                </Link> */}
               </div>
             </div>
 
-            <div className="flex items-center justify-between w-full">
+            {/* <div className="flex items-center justify-between w-full">
               <button
                 className=" save_button card__btn_prev left-[5%]  flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick !w-[10em]"
                 onClick={() => router.push("/problem/progress")}
@@ -162,8 +180,8 @@ function SIdeate(props) {
                   Next
                   <FaLongArrowAltRight className="ml-1 text-[24px]" />
                 </button>
-              </div>
-            </div>
+              </div> */}
+            {/* </div> */}
           </div>
         </div>
       </div>

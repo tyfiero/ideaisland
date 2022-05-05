@@ -374,7 +374,7 @@ function PDetails(props) {
                       }
                     }}
                   >
-                    {props.changes ? <p>Save and Continue</p> : <p>Continue</p>}
+                    {props.changes ? <p className="text-white fre">Save and Continue</p> : <p className="text-white fre" >Continue</p>}
                     <FaLongArrowAltRight className="ml-1 text-[24px]" />
                   </button>
                 </div>

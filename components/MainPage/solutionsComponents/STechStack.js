@@ -29,6 +29,7 @@ import {
   FaExternalLinkAlt,
   FaGlobeAmericas,
 } from "react-icons/fa";
+import { sFormAction, sUpdateAction } from "../../../redux/actions";
 
 import { AiOutlineCluster } from "react-icons/ai";
 import { SiTailwindcss } from "react-icons/si";
@@ -49,11 +50,14 @@ import {
   authentication,
   componentLibraries,
 } from "./CombinatorialComponents/DataForTechStack";
+import { useSelector, useDispatch } from "react-redux";
 
 function STechStack(props) {
+
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [refresh, setRefresh] = useState(false);
-
+ const dispatch = useDispatch();
+ const sFormRedux = useSelector((state) => state.sForm);
   const [toolContent, setToolContent] = useState("");
   const [toolCost, setToolCost] = useState("");
   const [toolCostType, setToolCostType] = useState("Monthly");
@@ -78,6 +82,9 @@ function STechStack(props) {
       isOpenSource: data[4],
       kind: data[5],
     };
+    let updated = sFormRedux;
+    updated.stack = [...toolArray, toolObj];
+    dispatch(sFormAction(updated))
 
     setToolArray([...toolArray, toolObj]);
   };
@@ -91,6 +98,10 @@ function STechStack(props) {
         newArray.splice(i, 1);
         // console.log(featureArray);
 
+         let updated = sFormRedux;
+    updated.stack = newArray;
+    dispatch(sFormAction(updated))
+
         setToolArray(newArray);
         setRefresh(!refresh);
       }
@@ -103,12 +114,16 @@ function STechStack(props) {
 
   useEffect(() => {
     console.log(toolArray);
+    console.log(sFormRedux)
 
     if (toolArray.length > 0) {
       let monthTotal = toolArray.reduce((acc, obj) => {
         return acc + obj.cost;
       }, 0);
 
+      let updated = sFormRedux;
+      updated.stackCost = [{monthly: monthTotal},{yearly: monthTotal*12}];
+      dispatch(sFormAction(updated))
       setMonthlyCost(monthTotal);
     }
   }, [toolArray]);
@@ -978,7 +993,7 @@ function STechStack(props) {
               <div className="flex items-center justify-between w-full">
                 <button
                   className="card__btn_prev save_button left-[5%]  flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick"
-                  onClick={() => props.goToStep(4)}
+                  onClick={() => props.goToStep(3)}
                 >
                   <FaLongArrowAltLeft className="mr-1 text-[24px]" />
                   Back
@@ -987,7 +1002,7 @@ function STechStack(props) {
                   <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
                   <button
                     className="w-[5em] h-[3em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-clear-bd3 md:hover:shadow-xl m-1 drop-shadow-xl "
-                    onClick={() => props.goToStep(6)}
+                    onClick={() => props.goToStep(5)}
                   >
                     Next
                     <FaLongArrowAltRight className="ml-1 text-[24px]" />

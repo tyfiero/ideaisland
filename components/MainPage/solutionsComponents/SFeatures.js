@@ -47,7 +47,7 @@ function SFeatures(props) {
   // const [changes, setChanges] = useState(false);
 
   // console.log(props.form.form);
-  // console.log(featureString);
+  console.log(sFormRedux);
 
   // useEffect(() => {
   //   console.log("ACTION");
@@ -853,7 +853,7 @@ function SFeatures(props) {
               <div className="flex items-center justify-between w-full">
                 <button
                   className="card__btn_prev save_button left-[5%]  flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick"
-                  onClick={() => props.goToStep(2)}
+                  onClick={() => props.goToStep(1)}
                 >
                   <FaLongArrowAltLeft className="mr-1 text-[24px]" />
                   Back
@@ -862,7 +862,7 @@ function SFeatures(props) {
                   <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
                   <button
                     className="w-[5em] h-[3em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-clear-bd3 md:hover:shadow-xl m-1 drop-shadow-xl "
-                    onClick={() => props.goToStep(4)}
+                    onClick={() => props.goToStep(3)}
                   >
                     Next
                     <FaLongArrowAltRight className="ml-1 text-[24px]" />

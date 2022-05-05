@@ -63,7 +63,7 @@ const ImplementationPage = (props) => {
               description="This tool helps you accurately forecast future revenue growth from a subscription based business model."
               imgSrc="https://images.unsplash.com/photo-1543286386-2e659306cd6c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8Z3JhcGh8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
             />
-            <ImplementTool
+            {/* <ImplementTool
               route="/implementation/mrr-calculator"
               color={"bg-blues-100"}
               bColor="md:hover:ring-clear-bd3"
@@ -89,9 +89,9 @@ const ImplementationPage = (props) => {
               title="Marketing plan"
               description="Build a simple marketing plan to help you grow your business."
               imgSrc="https://images.unsplash.com/photo-1611926653458-09294b3142bf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDd8fG1hcmtldGluZ3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-            />
+            /> */}
           </div></div>
-          <div className="flex flex-wrap items-center justify-center w-full px-5 pb-5 mt-2 border-4 border-t-pm rounded-2xl bg-clear-pm2">
+          {/* <div className="flex flex-wrap items-center justify-center w-full px-5 pb-5 mt-2 border-4 border-t-pm rounded-2xl bg-clear-pm2">
             <div className="flex w-full">
               <p className="pb-3 text-t-pm">Web3 Tools</p>
             </div>
@@ -134,7 +134,7 @@ const ImplementationPage = (props) => {
               imgSrc="https://images.unsplash.com/photo-1634704760994-96e3ccf2ae85?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGV0aGVyZXVtfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
             />
           </div>
-          </div>
+          </div> */}
      
         </div>
 

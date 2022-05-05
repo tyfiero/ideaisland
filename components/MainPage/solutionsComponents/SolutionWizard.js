@@ -29,7 +29,7 @@ import {
 } from "react-icons/fa";
 import ToolBar from "../problemComponents/ToolBar";
 
-import SIdeate from "./CombinatorialComponents/SIdeate";
+import SIdeate from "./SIdeate";
 import { useSelector } from "react-redux";
 
 const SFilter = loadable(() => import("./SFilter"));
@@ -141,7 +141,7 @@ function SolutionWizard(props) {
         nav={<SolutionProgressStepper />}
         instance={setInstance}
       >
-        <SIdeate update={updateForm} />
+        {/* <SIdeate update={updateForm} /> */}
         <SFilter hashKey={"select-idea"} update={updateForm} />
         <SFeatures
           hashKey={"add-features"}
