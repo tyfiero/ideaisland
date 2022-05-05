@@ -43,92 +43,31 @@ function SolutionWizard(props) {
 
   const userUIDRedux = useSelector((state) => state.userUID);
 
-  const [formContent, setFormContent] = useState({ form: {} });
-  const updateForm = (key, value) => {
-    const { form } = formContent;
+  // const [formContent, setFormContent] = useState({ form: {} });
+  // const updateForm = (key, value) => {
+  //   const { form } = formContent;
 
-    form[key] = value;
-    setFormContent({
-      ...formContent,
-      form,
-    });
-    // console.log(form.details)
-  };
+  //   form[key] = value;
+  //   setFormContent({
+  //     ...formContent,
+  //     form,
+  //   });
+  //   // console.log(form.details)
+  // };
 
   // Create a new post in firestore
-  const saveProblemForm = async (e) => {
-    e?.preventDefault();
-    let uid;
 
-    if (user?.uid) {
-      uid = user?.uid;
-    } else if (userUIDRedux) {
-      uid = userUIDRedux;
-    } else if (auth.currentUser?.uid) {
-      uid = auth.currentUser?.uid;
-    } else {
-      uid = "default";
-      console.log("no uid available :(");
-    }
-
-    if (uid) {
-      const ref = doc(
-        getFirestore(),
-        "users",
-        uid,
-        "solution",
-        formContent.form.title
-      );
-
-      // Tip: give all fields a default value here
-      const data = {
-        problemTitle: formContent.form.title,
-        uid,
-        username,
-        productType: formContent.form.productType || null,
-        whyOptions: formContent.form.whyOptions || null,
-        why: formContent.form.why || null,
-        what: formContent.form.what || null,
-        who: formContent.form.who || null,
-        details: formContent.form.details || null,
-        createdAt: serverTimestamp(),
-        updatedAt: serverTimestamp(),
-      };
-      // console.log(timeID);
-
-      await setDoc(ref, data)
-        // await addDoc(collection(getFirestore(), "users", uid, "ideas"), data)
-        .then(() => {
-          toast.success("Progress saved!");
-          // dispatch(unsavedChangesAction(false));
-          // dispatch(editModeAction("display"));
-          // // console.log("It Worked!");
-          // // console.log(ref.id);
-          // dispatch(currentDocAction(data));
-        })
-        .catch((error) => {
-          toast.error("Error occured :( " + error);
-          console.log("It failed!" + error);
-        });
-    } else {
-      console.log(
-        "no uid, no firestore writes. This is expected behavior on server"
-      );
-    }
-    // Imperative navigation after doc is set
-    // router.push(`/admin/${slug}`);
-  };
   // Do something on step change
   const onStepChange = (stats) => {
     // console.log(stats);
   };
-  const setInstance = (SW) =>
-    setFormContent({
-      ...formContent,
-      SW,
-    });
+  // const setInstance = (SW) =>
+  //   setFormContent({
+  //     ...formContent,
+  //     SW,
+  //   });
 
-  const { SW } = formContent;
+  // const { SW } = formContent;
   return (
     <div className="w-full h-full">
       <ToolBar />
@@ -139,26 +78,14 @@ function SolutionWizard(props) {
         initialStep={1}
         //  transitions={state.transitions} // comment out for default transitions
         nav={<SolutionProgressStepper />}
-        instance={setInstance}
+        // instance={setInstance}
       >
         {/* <SIdeate update={updateForm} /> */}
-        <SFilter hashKey={"select-idea"} update={updateForm} />
-        <SFeatures
-          hashKey={"add-features"}
-          update={updateForm}
-          form={formContent}
-        />
-        <SRankFeatures
-          hashKey={"rank-features"}
-          update={updateForm}
-          form={formContent}
-        />
-        <STechStack hashKey={"tech-stack"} update={updateForm} />
-        <SDetails
-          hashKey={"Details"}
-          update={updateForm}
-          saveProblemForm={saveProblemForm}
-        />
+        <SFilter hashKey={"select-idea"} />
+        <SFeatures hashKey={"add-features"} />
+        <SRankFeatures hashKey={"rank-features"} />
+        <STechStack hashKey={"tech-stack"} />
+        <SDetails hashKey={"Details"} />
       </StepWizard>
     </div>
   );
