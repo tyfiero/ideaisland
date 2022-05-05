@@ -13,6 +13,7 @@ import {
   FaLayerGroup,
   FaStar,
 } from "react-icons/fa";
+import { CgFileDocument } from "react-icons/cg";
 // import { GrSelect } from "react-icons/gr";
 
 const SolutionProgressStepper = (props) => {
@@ -126,9 +127,9 @@ const SolutionProgressStepper = (props) => {
           }
           onClick={() => props.goToStep(5)}
         >
-          <FaEllipsisH className="text-xl" />
+          <CgFileDocument className="text-xl" />
         </div>
-        <div>Details</div>
+        <div>Review</div>
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import React from "react";
 import { FaTimes } from "react-icons/fa";
 // import { useSelector } from "react-redux";
 
-function ChipFeature({ icon, name, version, cost, importance, feasibility }) {
+function ChipFeature({ icon, name, version, cost, importance, feasibility, comments }) {
 //   const [clicked, setClicked] = React.useState(false);
 //   const pFormRedux = useSelector((state) => state.pForm);
 //   React.useEffect(() => {
@@ -36,6 +36,8 @@ function ChipFeature({ icon, name, version, cost, importance, feasibility }) {
     {importance !== "..." &&  <p  className="text-xs">Importance: {importance}</p> }
     {feasibility !== "..." && <p  className="text-xs">Feasibility: {feasibility}</p> }
     {cost !== "..." && <p  className="text-xs">Cost: {cost}</p> }
+    {comments !== "..." && <p  className="text-xs">Comments: {comments}</p> }
+
 
          </div>
       {/* {clicked ? (

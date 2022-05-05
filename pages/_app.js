@@ -64,7 +64,15 @@ function MyApp({ Component, pageProps }) {
           {/* <AuthProvider> */}
             <Layout>
       {/* <AuthCheck> */}
-
+      <Script
+        src="https://cdn.paddle.com/paddle/paddle.js"
+        strategy="beforeInteractive"
+        onLoad={(e) => {
+            // eslint-disable-next-line
+          Paddle.Setup({ vendor: Number(process.env.NEXT_PUBLIC_PADDLE_VENDOR_ID) });
+          console.log("Loaded paddle")
+        }}
+      />
               <FullLoader show={loading} />
               <Component {...pageProps} />
       {/* </AuthCheck> */}
@@ -80,6 +88,15 @@ function MyApp({ Component, pageProps }) {
         // <AuthProvider>
           <UserContext.Provider value={userData}>
             <Layout>
+            <Script
+        src="https://cdn.paddle.com/paddle/paddle.js"
+        strategy="beforeInteractive"
+        onLoad={(e) => {
+            // eslint-disable-next-line
+          Paddle.Setup({ vendor: Number(process.env.NEXT_PUBLIC_PADDLE_VENDOR_ID) });
+          console.log("Loaded paddle")
+        }}
+      />
               <Component {...pageProps} />
             </Layout>
           </UserContext.Provider>
