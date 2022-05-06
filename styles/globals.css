@@ -66,6 +66,9 @@
   --blobOpacity: 0.5;
 
   --colorDark2soft: rgba(49, 81, 121, 0.39);
+  --colorSkeleton1: hsla(206, 91%, 90%, 0.7);
+  --colorSkeleton2: hsla(206, 91%, 84%, 0.9);
+
 
   --fontSizeHeading: 24px;
   --fontSizeHeading-sm: 20px;
@@ -2444,13 +2447,7 @@ input[type="range"]::-moz-range-thumb:active {
   cursor: -moz-grabbing;
 }
 
-.img-button {
-  display: none;
-}
 
-.image-cover-div:hover .img-button {
-  display: block !important;
-}
 
 .dot {
   color: black;

@@ -22,7 +22,7 @@ function ChipFeature({ icon, name, version, cost, importance, feasibility, comme
   return (
     <div
       className={
-        " py-2 rounded-2xl px-2 flex flex-col items-start justify-center gap-1 drop-shadow-xl   md:transition-transform  bg-blue-300 text-slate-700"
+        " py-2 rounded-2xl px-2 flex flex-col items-start justify-center gap-1 drop-shadow-xl   md:transition-transform  bg-blue-300 text-slate-700 -z-[1]"
       }
     //   onClick={(e) => {
     //     setClicked(!clicked);

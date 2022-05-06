@@ -35,6 +35,7 @@ import IdeaDisplay from "./IdeaDisplay";
 import { useSelector, useDispatch } from "react-redux";
 import { currentDocAction } from "../../redux/actions";
 import useKeyboardShortcut from "../../lib/useKeyboardShortcut";
+import DisplayImage from "./DisplayImage";
 
 const QuillNoSSRWrapper = dynamic(() => import("react-quill"), {
   ssr: false,
@@ -118,7 +119,7 @@ function Editor(props) {
 
 "
       >
-        <div className="w-full max-w-[82rem] space-y-8 shadow   normal-box-soft items-center flex flex-col !rounded-2xl">
+        <div className="w-full max-w-[82rem] space-y-8 shadow   normal-box-soft items-center flex flex-col !rounded-2xl -z-[12]">
           {(editModeRedux === "edit" || editModeRedux === "new") && (
             <>
               {" "}
@@ -185,6 +186,7 @@ function CreateNewIdea(props) {
   const editModeRedux = useSelector((state) => state.editMode);
   const unsavedChangesRedux = useSelector((state) => state.unsavedChanges);
   const userUIDRedux = useSelector((state) => state.userUID);
+  const [isPic, setIsPic] = useState(false);
 
   let type = props.type;
 
@@ -262,6 +264,12 @@ function CreateNewIdea(props) {
 
   useEffect(() => {
     if (currentDocRedux && editModeRedux === "edit") {
+      if (currentDocRedux.imgUrl.length > 0) {
+        setIsPic(true);
+      } else {
+        setIsPic(false);
+      }
+      
       if (type === "ideas") {
         setIdeaID(currentDocRedux.identifier);
         setTitle(currentDocRedux.title);
@@ -470,6 +478,20 @@ function CreateNewIdea(props) {
       </div>  */}
 
       <div className="flex flex-col items-center w-[98%] md:mx-3 sm:mx-1 normal-box-soft">
+      {isPic ? (
+        <DisplayImage type={type} mode="edit" />
+      ) : (
+        <button
+          onClick={() => {
+            setIsPic(true);
+          }}
+          className="fixed flex items-center justify-center w-[8em]  gap-2 h-8 rounded-full bg-white/60 md:hover:scale-105 top-2 left-6"
+        >
+          {" "}
+          <FaImage className="text-t-bl" />
+          Add Image
+        </button>
+      )}
         <div className=" w-[99%] mb-2">
           <div className="flex flex-col items-center w-full gap-1 ">
             {type === "ideas" ? (
