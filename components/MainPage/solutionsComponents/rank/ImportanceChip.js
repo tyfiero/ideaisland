@@ -13,6 +13,19 @@ function ImportanceChip({
   const [content, setContent] = useState(value);
 
   const [color, setColor] = useState(" bg-blue-200 text-blue-500");
+  console.log(value);
+
+  useEffect(() => {
+    if (value === "...") {
+      setOption(0);
+    }else if(value === "Could have"){
+      setOption(1);
+    }else if(value === "Should have"){
+      setOption(2);
+    }else if(value === "Must have"){
+      setOption(3);
+    }
+  }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (option === 0) {
@@ -28,7 +41,7 @@ function ImportanceChip({
       setColor(" bg-red-200  text-red-600 shadow-md shadow-red-300");
       setContent("Must have");
     }
-  }, [clicked]);// eslint-disable-line react-hooks/exhaustive-deps
+  }, [clicked, option]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="flex justify-center">
@@ -37,30 +50,21 @@ function ImportanceChip({
           if (option === 0) {
             setOption(1);
             updateFromChip([givenFeature, "Could have", "importance"]);
-
-              
           } else if (option === 1) {
             setOption(2);
 
             updateFromChip([givenFeature, "Should have", "importance"]);
-            
           } else if (option === 2) {
             setOption(3);
             updateFromChip([givenFeature, "Must have", "importance"]);
-
           } else {
             setOption(0);
 
             updateFromChip([givenFeature, "...", "importance"]);
-
           }
 
           // console.log(option);
 
-
-
-
-          
           setClicked(!clicked);
 
           // if (clicked) {

@@ -34,10 +34,15 @@ import { sFormAction } from "../../../redux/actions";
 import ChipBlue from "../problemComponents/chips/ChipBlue";
 import ChipFeature from "./CombinatorialComponents/ChipFeature";
 import ChipTechStackDisplay from "./CombinatorialComponents/ChipTechStackDisplay";
+import sanitize from "../../../lib/sanitize";
 function SDetails(props) {
+  console.log("DETAILS--------------------" + props.isActive)
+
   const dispatch = useDispatch();
   const sFormRedux = useSelector((state) => state.sForm);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const [readyToSave, setReadyToSave] = useState(false);
+
   const [titleContent, setTitleContent] = useState("");
   const [confetti, setConfetti] = useState(false);
   const router = useRouter();
@@ -48,6 +53,13 @@ function SDetails(props) {
   //   props.update(e.target.name, e.target.value);
   // };
 
+console.log(sFormRedux)
+  useEffect(() => {
+   if(props.changes){
+    setReadyToSave(true)
+   }
+  }, [props.changes])
+  
   // Create a new post in firestore
   const saveSolutionForm = async (e) => {
     // e.preventDefault();
@@ -161,6 +173,19 @@ toast.success("Idea updated!");
               </div>
 
               <div className="flex flex-col">
+                <p className="text-left">Description:</p>
+              <div className="normal-box bg-[hsla(200,0%,100%,0.764)]  dark:bg-[hsla(200,0%,20%,0.764)] mt-1 mx-1 min-h-[3em] !rounded-2xl ">
+          <div
+            className="mx-2"
+            dangerouslySetInnerHTML={{
+              __html: ( sanitize(sFormRedux.idea?.content) || "No Description"),
+            }}
+          >
+            
+          </div>
+          </div>
+          </div>
+              <div className="flex flex-col">
                 <p className="text-left">Features:</p>
                 <div className="flex flex-wrap items-center justify-center gap-2 normal-box-soft">
                   {sFormRedux.features.map((feature, index) => (
@@ -225,13 +250,13 @@ toast.success("Idea updated!");
                 Back
               </button>
 
-              {!titleContent ? (
+              {readyToSave ? (
                 <div className="relative group">
                   <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
 
                   <button
                     type="submit"
-                    className="card__btn_next h-[3em]  right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect !w-[15em] drop-shadow-xl m-3"
+                    className="card__btn_next h-[3em]  right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect !w-[15em] drop-shadow-xl m-3 bg-t-bl text-white"
                     onClick={() => {
                       saveSolutionForm();
 

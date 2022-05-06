@@ -25,6 +25,7 @@ export default function IdeaFeed({ ideas, admin }) {
   const sFormRedux = useSelector((state) => state.sForm);
 
   const dispatch = useDispatch();
+  // console.log(sFormRedux)
   // const docRef = doc(firestore, ", "idea-1");
   // getDoc(docRef).then((doc) => {
   //   console.log(doc.data(), doc.id);
@@ -63,6 +64,29 @@ function IdeaItem({ idea, admin = false }) {
 
   const dispatch = useDispatch();
 
+
+  useEffect(() => {
+    if (clicked) {
+      if (idea.title !== sFormRedux.idea?.title) {
+        // console.log("title changed " + idea.title);
+        setClicked(false);
+      }
+    }
+  }, [sUpdate]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  
+  useEffect(() => {
+    
+    if(sFormRedux.idea && sFormRedux.idea.identifier === idea.identifier){
+    // if (clicked) {
+    //   if (idea.title !== sFormRedux.idea?.title) {
+    //     // console.log("title changed " + idea.title);
+        setClicked(true);
+    //   }
+    }
+  }, [sUpdate]); // eslint-disable-line react-hooks/exhaustive-deps
+  
+
   const TimeDisplay = (time) => {
     let formattedTime = new Date(
       time?.seconds * 1000 + time?.nanoseconds / 1000000
@@ -79,6 +103,10 @@ function IdeaItem({ idea, admin = false }) {
   const updateIdea = (data) => {
     let updated = sFormRedux;
     updated.idea = data;
+    updated.stack = data.techStack;
+    updated.stackCost = data.stackCost;
+    updated.features = data.features;
+
     dispatch(sFormAction(updated));
     dispatch(sUpdateAction(!sUpdate));
     // setTimeout(() => {
@@ -89,20 +117,16 @@ function IdeaItem({ idea, admin = false }) {
   const deleteIdea = (data) => {
     let updated = sFormRedux;
     updated.idea = null;
+    updated.features = [];
+    updated.stack = [];
+    updated.stackCost = [];
+
     dispatch(sFormAction(updated));
     dispatch(sUpdateAction(!sUpdate));
   };
 
-  useEffect(() => {
-    if (clicked) {
-      if (idea.title !== sFormRedux.idea?.title) {
-        // console.log("title changed " + idea.title);
-        setClicked(false);
-      }
-    }
-  }, [sUpdate]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // console.log(idea.documentID)
+
   return (
     <div
       className="flex items-center justify-center w-full px-4 pt-2 cursor-pointer sm:px-6 lg:px-8 drop-shadow-sm"
@@ -139,7 +163,7 @@ function IdeaItem({ idea, admin = false }) {
       <div
         className={
           "flex items-center normal-box-soft !rounded-lg md:w-[98%] !bg-slate-400/50 focus:border-4 border-t-bl" +
-          (clicked ? " border-4 border-t-bl" : "")
+          (clicked ? " border-4 border-t-bl !bg-clear-bl3" : " !bg-slate-400/50")
         }
       >
         <input
@@ -168,7 +192,15 @@ function IdeaItem({ idea, admin = false }) {
                   <p className="text-slate-400 text-[12px] ml-1 mb-0">
                     {TimeDisplay(idea.createdAt)}
                   </p>
-                  <div className="flex ">
+                  <div className="flex gap-3">
+
+                 {idea.features && idea.features.length > 0 && <span className="flex items-center justify-center gap-2 px-2 bg-clear-bl2 rounded-xl">
+
+                     <p className="text-t-bl fre">Features</p> <FaCheck className="text-t-bl" />
+                    </span>}
+                    {idea.techStack && idea.techStack.length > 0 && <span className="flex items-center justify-center gap-2 px-2 bg-clear-pl2 rounded-xl">
+                    <p className="text-t-pm fre">Tech Stack</p> <FaCheck className="text-t-pm" />
+                    </span>}
                     <span className="flex items-center pl-1 bg-slate-400/30 rounded-xl">
                       {idea.rating || 0}
                       <OneStar className="ml-5" />

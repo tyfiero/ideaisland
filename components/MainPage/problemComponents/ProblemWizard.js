@@ -33,9 +33,10 @@ function ProblemWizard(props) {
 
 
   // Do something on step change
-  const onStepChange = (stats) => {
-    // console.log(stats);
-  };
+  // const onStepChange = (stats) => {
+  //   // console.log(stats);
+  // };
+  
   // const setInstance = (SW) =>
   //   setFormContent({
   //     ...formContent,
@@ -48,8 +49,9 @@ function ProblemWizard(props) {
       <ToolBar  />
       {/* <InstanceDemo SW={SW} /> */}
       <StepWizard
-        onStepChange={onStepChange}
+        // onStepChange={onStepChange}
         isHashEnabled
+        isLazyMount={true} 
         //  transitions={state.transitions} // comment out for default transitions
         nav={<ProgressStepper />}
         // instance={setInstance}

@@ -20,6 +20,7 @@ import {
   FaAngleDown,
   FaAngleUp,
   FaEdit,
+  FaExternalLinkAlt,
   FaGlobeAmericas,
   FaGripLines,
   FaImage,
@@ -38,25 +39,30 @@ import {
 // import DOMPurify from "isomorphic-dompurify";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
-import { editModeAction } from "../../redux/actions";
+import { editModeAction, sFormAction } from "../../redux/actions";
 import sanitize from "../../lib/sanitize";
 // const probe = require('probe-image-size');
 import ImageList from "./ImageList";
 import axios from "axios";
 
 import { useForm } from "react-hook-form";
+import ChipFeature from "../MainPage/solutionsComponents/CombinatorialComponents/ChipFeature";
+import ChipTechStackDisplay from "../MainPage/solutionsComponents/CombinatorialComponents/ChipTechStackDisplay";
+import { MdOutlineUpgrade } from "react-icons/md";
+import { useRouter } from "next/router";
 
 export default function IdeaDisplay(props) {
   const currentDocRedux = useSelector((state) => state.currentDoc);
   const [cleanContent, setCleanContent] = useState("");
   const [loading, setLoading] = useState(false);
   const { user, username } = useContext(UserContext);
+  const sFormRedux = useSelector((state) => state.sForm);
 
   const [showImgPopUp, setShowImgPopUp] = useState(false);
   const [pexels, setPexels] = useState(false);
   const [pageCounter, setPageCounter] = useState(1);
   const userUIDRedux = useSelector((state) => state.userUID);
-
+const router= useRouter();
   let type = props.type;
 
   const [pics, setPics] = useState([
@@ -747,7 +753,7 @@ export default function IdeaDisplay(props) {
               <p className="text-[22px] text-t-bd">Rating</p>
               <Stars hover={false} rating={currentDocRedux?.rating} />
             </div>
-            <div>
+            {/* <div>
               {currentDocRedux?.published ? (
                 <div className="flex items-center gap-1">
                   <FaGlobeAmericas className="text-t-bl" />
@@ -759,11 +765,33 @@ export default function IdeaDisplay(props) {
                   <p className="text-t-pd">Private</p>
                 </div>
               )}
-            </div>
+            </div> */}
           </>
         )}
 
+        <div className="flex items-center gap-2">
         <div>
+                <button
+                onClick={()=>{
+                 
+                    let newRef = sFormRedux;
+                    newRef.idea = currentDocRedux;
+                    
+                    dispatch(sFormAction(newRef))
+                    router.push("/solutions/improve#add-features")
+                   
+             
+                  }
+                   
+                   }
+                className=" px-3 h-[2em] rounded-3xl bg-t-pm flex items-center justify-center text-white gap-3 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer "
+              >
+               <><MdOutlineUpgrade className="text-[24px]" /> Improve Idea </>
+             {/* {currentDocRedux?.features?.length === 0 ? <><MdOutlineUpgrade className="text-[24px]" /> Improve Idea </> : <><FaExternalLinkAlt className="text-[18px]" /> Edit Improved Idea </>} */}
+
+                </button>
+                
+                </div>
           <button
             className="w-[9em] h-[2em] rounded-3xl bg-t-bl flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer"
             onClick={() => {
@@ -790,6 +818,64 @@ export default function IdeaDisplay(props) {
             }}
           ></div>
         </div>
+
+      {currentDocRedux?.features &&  <div className="flex flex-col">
+                <p className="text-left">Features:</p>
+                <div className="flex flex-wrap items-center justify-center gap-2 normal-box-soft">
+                  {currentDocRedux?.features.map((feature, index) => (
+                    <ChipFeature
+                      cost={feature.cost}
+                      comments={feature.comments}
+                      name={feature.name}
+                      feasibility={feature.feasibility}
+                      importance={feature.importance}
+                      version={feature.version}
+                      key={index}
+                    />
+                  ))}
+                  {currentDocRedux?.features.length === 0 && (
+                    <p>No features added yet.</p>
+                  )}
+                </div>
+              </div>}
+
+
+              {currentDocRedux?.features &&  <div className="flex flex-col">
+                <p className="text-left">Tech Stack:</p>
+                <div className="flex flex-col items-center justify-center normal-box-soft ">
+                  <div className="flex flex-wrap items-center justify-center gap-2 ">
+                    {currentDocRedux?.techStack.map((tool, index) => (
+                      <ChipTechStackDisplay
+                        cost={tool.cost}
+                        name={tool.name}
+                        type={tool.type}
+                        kind={tool.kind}
+                        key={index}
+                      />
+                    ))}
+                  </div>
+
+                  {currentDocRedux?.techStack.length === 0 ? (
+                    <p>No tech stack selected.</p>
+                  ) : (
+                    <div className="flex gap-5 mt-2">
+                      <p className="text-sm ">
+                        Monthly Cost:{" "}
+                        {currentDocRedux?.stackCost[0]?.monthly > 0
+                          ? "$" + currentDocRedux?.stackCost[0].monthly
+                          : "Free"}
+                      </p>
+                      <p className="text-sm ">
+                        Annual Cost:{" "}
+                        {currentDocRedux?.stackCost[1]?.yearly > 0
+                          ? "$" + currentDocRedux?.stackCost[1].yearly
+                          : "Free"}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </div>}
+              
       </div>
     </div>
   );

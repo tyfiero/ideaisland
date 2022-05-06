@@ -18,6 +18,8 @@ import { useSelector, useDispatch } from "react-redux";
 
 function SFilter(props) {
   // const dispatch = useDispatch();
+  console.log("FILTER--------------------" + props.isActive)
+
   const sFormRedux = useSelector((state) => state.sForm);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [button1, setButton1] = useState(false);
@@ -30,7 +32,7 @@ const router = useRouter();
   //   props.update("productType", e.target.value);
   // };
 
-  console.log(sFormRedux)
+  // console.log(sFormRedux)
   return (
     <div>
       <div

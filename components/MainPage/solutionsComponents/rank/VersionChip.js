@@ -15,6 +15,19 @@ function VersionChip({
 
   const [color, setColor] = useState(" bg-green-200 text-green-500 dark:text-blue-500");
 
+
+  useEffect(() => {
+    if (value === "MVP") {
+      setOption(0);
+    }else if(value === "V2"){
+      setOption(1);
+    }else if(value === "V3+"){
+      setOption(2);
+    }else if(value === "Back burner"){
+      setOption(3);
+    }
+  }, []);// eslint-disable-line react-hooks/exhaustive-deps
+  
   useEffect(() => {
     if (option === 0) {
       setColor(" bg-blue-200  text-blue-500 dark:text-blue-500");
@@ -29,7 +42,7 @@ function VersionChip({
       setColor(" bg-pink-200  text-pink-600 shadow-md shadow-pink-300 dark:text-pink-600");
       setContent("Back burner");
     }
-  }, [clicked]);// eslint-disable-line react-hooks/exhaustive-deps
+  }, [clicked, option]);// eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="flex justify-center" >

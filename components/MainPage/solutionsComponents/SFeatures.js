@@ -22,9 +22,11 @@ import { sFormAction } from "../../../redux/actions";
 import { IoIosPeople } from "react-icons/io";
 import { MdOutlineDevicesOther } from "react-icons/md";
 import { HiOutlineDotsCircleHorizontal } from "react-icons/hi";
+import toast from "react-hot-toast";
 
 function SFeatures(props) {
-  // console.log("Rerendered")
+  console.log("FEATURES--------------------" + props.isActive)
+
   const dispatch = useDispatch();
   const sFormRedux = useSelector((state) => state.sForm);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -38,12 +40,12 @@ function SFeatures(props) {
   const [showMisc, setShowMisc] = useState(false);
 
   
-  const [button2, setButton2] = useState(false);
+  // const [button2, setButton2] = useState(false);
   const [rerender, setRerender] = useState(false);
 
   const [featureContent, setFeatureContent] = useState("");
   const [featureArray, setFeatureArray] = useState([]);
-  const [featureString, setFeatureString] = useState("");
+  // const [featureString, setFeatureString] = useState("");
   // const [changes, setChanges] = useState(false);
 
   // console.log(props.form.form);
@@ -56,7 +58,32 @@ function SFeatures(props) {
   //   console.log(text);
   //   setFeatureString(text);
   // }, [props.form.form]);
+  useEffect(() => {
+    if(sFormRedux.idea === null){
+      props.goToStep(1)
+        toast.error("Please select an idea before continuing")
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  useEffect(() => {
+  
+    if (props.reset) {
+      setFeatureArray([]);
+      setFeatureContent("")
+    } else {
+      if (sFormRedux.features?.length > 0) {
+        setFeatureArray(sFormRedux.features);
+      }
+    }
+  }, [props.reset]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // useEffect(() => {
+  //   if (sFormRedux.features.length > 0) {
+  //     setFeatureArray(sFormRedux.features);
+  //   }
+  // }, [props.loadData]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  
   useEffect(() => {
     // console.log(featureArray)
     // console.log("ue")
@@ -82,6 +109,9 @@ function SFeatures(props) {
     setFeatureArray(featureArray);
     let updated = sFormRedux;
     updated.features = featureArray;
+    if(!props.changes){
+      props.setChanges(true)
+    }
     dispatch(sFormAction(updated));
 
     // props.update("Features", featureArray);
@@ -99,6 +129,11 @@ function SFeatures(props) {
         // setChanges(false)
       }
     }
+
+    if(!props.changes){
+      props.setChanges(true)
+    }
+    
     let updated = sFormRedux;
     updated.features = featureArray;
     dispatch(sFormAction(updated));
@@ -115,6 +150,11 @@ function SFeatures(props) {
       comments: "",
     };
     featureArray.push(featureObject);
+
+    if(!props.changes){
+      props.setChanges(true)
+    }
+    
     // featureArray.push(e.target.value);
     // console.log(featureArray);
     let updated = sFormRedux;
@@ -227,7 +267,6 @@ function SFeatures(props) {
                   }
                   onClick={(e) => {
                     setShowSocial(!showSocial);
-                    setButton2(false);
                   }}
                 >
                   <IoIosPeople className="text-2xl"/>
@@ -266,7 +305,6 @@ function SFeatures(props) {
                   }
                   onClick={(e) => {
                     setShowData(!showData);
-                    setButton2(false);
                   }}
                 >
                   <FaLaptopCode />

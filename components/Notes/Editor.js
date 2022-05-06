@@ -3,7 +3,7 @@ import { useContext, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { UserContext } from "../../lib/context";
 import kebabCase from "lodash.kebabcase";
-import { FaEdit, FaImage, FaPlus, FaSave, FaTrash } from "react-icons/fa";
+import { FaEdit, FaExternalLinkAlt, FaImage, FaPlus, FaSave, FaTrash } from "react-icons/fa";
 import Stars from "./Stars";
 import { firestore, auth } from "../../lib/firebase";
 import Toggle from "react-toggle";
@@ -27,8 +27,8 @@ import {
   setDoc,
   getDoc,
 } from "firebase/firestore";
-
-import { editModeAction, unsavedChangesAction } from "../../redux/actions";
+import { MdOutlineUpgrade } from "react-icons/md";
+import { editModeAction, sFormAction, unsavedChangesAction } from "../../redux/actions";
 import toast from "react-hot-toast";
 import { FaLock, FaGlobeAmericas } from "react-icons/fa";
 import IdeaDisplay from "./IdeaDisplay";
@@ -167,6 +167,7 @@ function CreateNewIdea(props) {
   const { username, user } = useContext(UserContext);
   //   const [newIdea, setNewIdea] = useState(false);
   const [uidValue, setUidValue] = useState("default");
+  const sFormRedux = useSelector((state) => state.sForm);
 
   const dispatch = useDispatch();
   const currentDocRedux = useSelector((state) => state.currentDoc);
@@ -333,7 +334,7 @@ function CreateNewIdea(props) {
         console.log("Delete failed!" + error);
       });
   };
-  const updateIdea = async (e) => {
+  const updateIdea = async () => {
     // console.log("UPDATE");
     // toast.success("update");
 
@@ -413,6 +414,9 @@ function CreateNewIdea(props) {
         updatedAt: serverTimestamp(),
         heartCount: 0,
         problem: null,
+        techStack: [],
+        features: [],
+        stackCost: [],
       };
     } else if (type === "notes") {
       dataForCreation = {
@@ -518,7 +522,7 @@ function CreateNewIdea(props) {
                       sendRating={sendRating}
                     />
                   </div>
-                  <div className="flex items-center justify-center gap-1 ml-16">
+                  {/* <div className="flex items-center justify-center gap-1 ml-16">
                     <p className="text-[22px]  text-t-bd">Publish?</p>
                     <div className="flex gap-3 ">
                       <Toggle
@@ -560,7 +564,7 @@ function CreateNewIdea(props) {
                         <p className="text-t-pd">Private</p>
                       )}
                     </div>
-                  </div>
+                  </div> */}
                 </>
               )}
             </div>
@@ -580,8 +584,8 @@ function CreateNewIdea(props) {
                 // }}
                 onChange={(e) => {
                   setContent(e);
-                  console.log(e);
-                  if (!unsavedChangesRedux) {
+                  console.log(e)
+                  if (!unsavedChangesRedux && (currentDocRedux?.content !== e)) {
                     dispatch(unsavedChangesAction(true));
                   }
                 }}
@@ -606,8 +610,8 @@ function CreateNewIdea(props) {
                 Delete
               </div>
 
-              <div className="flex items-center justify-center gap-2">
-                <div
+              {/* <div className="flex items-center justify-center gap-2"> */}
+                {/* <div
                   className="flex items-center justify-center gap-1 px-2 py-2 cursor-pointer min-w-[2.5em] rounded-3xl bg-t-pl text-t-pd drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95"
                   onClick={imgButton}
                 >
@@ -643,7 +647,64 @@ function CreateNewIdea(props) {
                     )}
                   </div>
                 )}
-              </div>
+              </div> */}
+
+
+              <div>
+                <button
+                onClick={()=>{
+                  console.log(editModeRedux + " " + unsavedChangesRedux)
+                  if (editModeRedux === "new"){
+                    if(unsavedChangesRedux){
+                      console.time("saving");
+                   createIdea().then(()=>{
+                    // let newRef = sFormRedux;
+                    // newRef.idea = currentDocRedux;
+                    // console.log(sFormRedux)
+                    // console.log(newRef)
+
+                    // dispatch(sFormAction(newRef))
+                    //    console.timeEnd("saving")
+                    router.push("/solutions/improve")
+                    
+                   });
+                    }else{
+                      let newRef = sFormRedux;
+                      newRef.idea = currentDocRedux;
+                      
+                      dispatch(sFormAction(newRef))
+                      router.push("/solutions/improve")
+                    }
+                 
+                  }else{
+                   if(unsavedChangesRedux){
+                    
+                   updateIdea().then(()=>{
+                    let newRef = sFormRedux;
+                    newRef.idea = currentDocRedux;
+                    dispatch(sFormAction(newRef))
+                    router.push("/solutions/improve#add-features")
+                    
+                   });
+                   }else{
+                    let newRef = sFormRedux;
+                    newRef.idea = currentDocRedux;
+                    
+                    dispatch(sFormAction(newRef))
+                    router.push("/solutions/improve#add-features")
+                   }
+             
+                  }
+                   
+                   }}
+                className=" px-3 h-[3em] rounded-3xl bg-t-pm flex items-center justify-center text-white gap-3 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer "
+              >
+               
+             {editModeRedux === "new" ? <><MdOutlineUpgrade className="text-[24px]" /> Improve Idea </> : <><FaExternalLinkAlt className="text-[18px]" /> Edit Features and Tech Stack </>}
+
+                </button>
+                
+                </div>
               <button
                 onClick={editModeRedux === "new" ? createIdea : updateIdea}
                 className=" w-[12em] h-[3em] rounded-3xl bg-t-bl flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer "

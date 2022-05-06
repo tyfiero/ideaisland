@@ -89,6 +89,9 @@ function IdeaNote() {
         updatedAt: serverTimestamp(),
         heartCount: 0,
         problem: null,
+        techStack: [],
+        features: [],
+        stackCost: [],
       };
       await setDoc(ref, dataForCreation)
         .then(() => {

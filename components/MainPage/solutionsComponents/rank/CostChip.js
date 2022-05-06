@@ -15,6 +15,20 @@ function CostChip({
   const [color, setColor] = useState(" bg-green-200 text-green-500");
 
   useEffect(() => {
+    if (value === "...") {
+      setOption(0);
+    }else if(value === "Free"){
+      setOption(1);
+    }else if(value === "$"){
+      setOption(2);
+    }else if(value === "$$$"){
+      setOption(3);
+    }else if(value === "$$$$$"){
+      setOption(4);
+    }
+  }, []);// eslint-disable-line react-hooks/exhaustive-deps
+  
+  useEffect(() => {
     if (option === 0) {
       setColor(" bg-slate-200  text-slate-500 dark:text-slate-500");
       setContent("...");
@@ -31,7 +45,7 @@ function CostChip({
       setColor(" bg-red-200  text-red-600 shadow-md shadow-red-300 !dark:text-red-600");
       setContent("$$$$$");
     }
-  }, [clicked]);// eslint-disable-line react-hooks/exhaustive-deps
+  }, [clicked, option]);// eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="flex justify-center">

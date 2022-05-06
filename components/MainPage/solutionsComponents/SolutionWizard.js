@@ -39,10 +39,15 @@ const STechStack = loadable(() => import("./STechStack"));
 const SDetails = loadable(() => import("./SDetails"));
 
 function SolutionWizard(props) {
-  const { user, username } = useContext(UserContext);
+  // const { user, username } = useContext(UserContext);
+  const sFormRedux = useSelector((state) => state.sForm);
 
-  const userUIDRedux = useSelector((state) => state.userUID);
+  // const userUIDRedux = useSelector((state) => state.userUID);
+  const [changes, setChanges] = useState(false);
+  const [reset, setReset] = useState(false);
 
+
+  console.log(changes + "  changes")
   // const [formContent, setFormContent] = useState({ form: {} });
   // const updateForm = (key, value) => {
   //   const { form } = formContent;
@@ -58,9 +63,14 @@ function SolutionWizard(props) {
   // Create a new post in firestore
 
   // Do something on step change
-  const onStepChange = (stats) => {
-    // console.log(stats);
-  };
+  // const onStepChange = (stats) => {
+  //   console.log(stats);
+  //   if(sFormRedux.idea === null){
+  //     toast.error("Please select an idea before continuing")
+  //     // goToStep(1)
+  //   }
+  // };
+  
   // const setInstance = (SW) =>
   //   setFormContent({
   //     ...formContent,
@@ -73,19 +83,20 @@ function SolutionWizard(props) {
       <ToolBar />
       {/* <InstanceDemo SW={SW} /> */}
       <StepWizard
-        onStepChange={onStepChange}
+        // onStepChange={onStepChange}
         isHashEnabled
+        isLazyMount={true} // Lazy mount
         initialStep={1}
         //  transitions={state.transitions} // comment out for default transitions
         nav={<SolutionProgressStepper />}
         // instance={setInstance}
       >
         {/* <SIdeate update={updateForm} /> */}
-        <SFilter hashKey={"select-idea"} />
-        <SFeatures hashKey={"add-features"} />
-        <SRankFeatures hashKey={"rank-features"} />
-        <STechStack hashKey={"tech-stack"} />
-        <SDetails hashKey={"Details"} />
+        <SFilter hashKey={"select-idea"} changes={changes} setChanges={setChanges} reset={reset} setReset={setReset}/>
+        <SFeatures  hashKey={"add-features"} changes={changes} setChanges={setChanges} reset={reset} setReset={setReset}/>
+        <SRankFeatures hashKey={"rank-features"} changes={changes} setChanges={setChanges} reset={reset} setReset={setReset}/>
+        <STechStack hashKey={"tech-stack"} changes={changes} setChanges={setChanges} reset={reset} setReset={setReset}/>
+        <SDetails hashKey={"Details"} changes={changes} setChanges={setChanges} reset={reset} setReset={setReset}/>
       </StepWizard>
     </div>
   );

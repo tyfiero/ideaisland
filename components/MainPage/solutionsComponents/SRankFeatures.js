@@ -26,6 +26,7 @@ import CommentsTextArea from "./rank/CommentsTextArea";
 
 import { useSelector, useDispatch } from "react-redux";
 import { sFormAction } from "../../../redux/actions";
+import toast from "react-hot-toast";
 const Styles = styled.div`
   padding: 0rem;
 
@@ -56,11 +57,15 @@ const Styles = styled.div`
 `;
 
 function SRankFeatures(props) {
+  console.log("RANK--------------------" + props.isActive)
+
+
   const dispatch = useDispatch();
   const sFormRedux = useSelector((state) => state.sForm);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [rerender, setRerender] = useState(false);
   const [sort, setSort] = useState(false);
+  // console.log(sFormRedux)
 
   const [refresh, setRefresh] = useState(false);
   const [tableContent, setTableContent] = useState([
@@ -78,6 +83,34 @@ function SRankFeatures(props) {
   // console.log(props.form.form.Features);
   // console.log("props.form.form.Features ^^^^");
   // console.log(props)
+  useEffect(() => {
+  
+    if (props.reset) {
+      setTableContent( {
+        col1: "BLANK",
+        col2: "BLANK",
+        col3: "BLANK",
+        col4: "BLANK",
+        col5: "BLANK",
+        col6: "BLANK",
+      })
+    } else {
+      if (sFormRedux.features?.length > 0) {
+        console.log("RANNNNNNNNNNNNNN")
+      // setRefresh(!refresh)
+      }
+    }
+  }, [props.reset]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // console.log(tableContent)
+  useEffect(() => {
+    if(sFormRedux.idea === null){
+      props.goToStep(1)
+        toast.error("Please select an idea before continuing")
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  
   const updateFromChip = (data) => {
     // console.log(data);
     let pointerIndex = data[0];
@@ -140,6 +173,9 @@ function SRankFeatures(props) {
 
     // console.log(sFormRedux.features === oldArray)
     oldArray[pointerIndex] = updatedObj;
+    if(!props.changes){
+      props.setChanges(true)
+    }
     // sFormRedux.features[pointerIndex] = updatedObj;
     dispatch(sFormAction(oldArray));
     setRefresh(!refresh);
@@ -179,6 +215,7 @@ function SRankFeatures(props) {
       // console.log("MAP TIME");
 
       let mappedData = sFormRedux.features.map((featureData, index) => {
+        // console.log(featureData);
         return {
           col1: (
             <div className="text-left">
@@ -252,9 +289,9 @@ function SRankFeatures(props) {
       // console.log(tableContent);
       // console.log("after map tableContent");
     } else {
-      // console.log(":(");
+      console.log(":(");
     }
-  }, [sFormRedux, refresh]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [sFormRedux, refresh, props.reset]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const columns = React.useMemo(
     () => [
@@ -534,95 +571,7 @@ function SRankFeatures(props) {
 	</div>
 </div>  */}
 
-              {/*  other table start */}
-              {/* <div className="overflow-x-auto">
-                <div className="flex justify-center min-h-screen overflow-hidden font-sans bg-gray-100 min-w-screen rounded-xl">
-                  <div className="w-full lg:w-5/6">
-                    <div className="my-6 bg-white shadow-md !rounded-2xl">
-                      <table className="w-full table-auto min-w-max">
-                        <thead>
-                          <tr className="text-sm leading-normal text-gray-600 uppercase bg-blues-100 ">
-                            <th className="px-6 py-3 text-left">Feature</th>
-                            <th className="px-6 py-3 text-left">Importance</th>
-                            <th className="px-6 py-3 text-center">
-                              Feasibility
-                            </th>
-                            <th className="px-6 py-3 text-center">
-                              Cost to Build
-                            </th>
-                            <th className="px-6 py-3 text-center">Version</th>
-                            <th className="px-6 py-3 text-center">Comments</th>
-                          </tr>
-                        </thead>
-                        <tbody className="text-sm font-light text-gray-600">
-                          <tr className="border-b border-gray-200 hover:bg-gray-100">
-                            <td className="px-6 py-3 text-left whitespace-nowrap">
-                              <div className="flex items-center">
-                                <div className="mr-2"></div>
-                                <span className="font-medium">
-                                  Email Authentication
-                                </span>
-                              </div>
-                            </td>
-                            <td className="px-6 py-3 text-left">
-                              <div className="flex items-center">
-                                <span className="px-3 py-1 text-xs text-orange-600 bg-orange-200 rounded-full">
-                                  Should Have
-                                </span>
-                              </div>
-                            </td>
-                            <td className="px-6 py-3 text-center">
-                              <div className="flex items-center justify-center">
-                                <span className="px-3 py-1 text-xs text-green-600 bg-green-200 rounded-full">
-                                  Easy
-                                </span>
-                              </div>
-                            </td>
-                            <td className="px-6 py-3 text-center">
-                              <span className="px-3 py-1 text-xs text-purple-600 bg-purple-200 rounded-full">
-                                Free
-                              </span>
-                            </td>
-                            <td className="px-6 py-3 text-center">
-                              <div className="flex justify-center item-center">
-                                <span className="px-3 py-1 text-xs text-blue-600 bg-blue-200 rounded-full">
-                                  MVP
-                                </span>
-                              </div>
-                            </td>
-                            <td className="px-6 py-3 text-center">
-                              <div className="flex justify-center item-center">
-                                <div className="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                  <FaEye />
-                                </div>
-                                <div className="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                  <FaPen />
-                                </div>
-                                <div className="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                  <FaTrash />
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              </div> */}
-
-              {/* <p>If neither, describe what you are looking to innovate:</p>
-              <textarea
-                // type="text"
-                className="textarea-box  textarea-tw   h-[10em] whitespace-normal"
-                name="what"
-                placeholder="What are you building?"
-                onChange={update}
-              />
-              <p>
-                *This note will be saved to your Idea Page for your review
-                later.
-              </p> */}
+             
             </div>
           </div>
         </div>

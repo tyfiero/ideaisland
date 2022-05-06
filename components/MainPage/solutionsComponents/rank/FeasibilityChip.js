@@ -15,6 +15,19 @@ function FeasibilityChip({
   const [color, setColor] = useState(" bg-green-200 text-green-500");
 
   useEffect(() => {
+    if (value === "...") {
+      setOption(0);
+    }else if(value === "Easy"){
+      setOption(1);
+    }else if(value === "Moderate"){
+      setOption(2);
+    }else if(value === "Difficult"){
+      setOption(3);
+    }
+  }, []);// eslint-disable-line react-hooks/exhaustive-deps
+
+  
+  useEffect(() => {
     if (option === 0) {
       setColor(" bg-slate-200  text-slate-500");
       setContent("...");
@@ -28,7 +41,7 @@ function FeasibilityChip({
       setColor(" bg-pink-200  text-pink-600 shadow-md shadow-pink-300");
       setContent("Difficult");
     }
-  }, [clicked]);// eslint-disable-line react-hooks/exhaustive-deps
+  }, [clicked, option]);// eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="flex justify-center">

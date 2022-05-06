@@ -5,7 +5,7 @@ import { currentDocAction } from "../../redux/actions";
 
 // import { doc, getDoc } from "firebase/firestore";
 // import { firestore } from "../lib/firebase";
-import { FaEdit, FaGlobeAmericas, FaLock, FaRegTrashAlt } from "react-icons/fa";
+import { FaCheck, FaEdit, FaGlobeAmericas, FaLock, FaRegTrashAlt } from "react-icons/fa";
 import OneStar from "./OneStar";
 import Stars from "./Stars";
 // import DOMPurify from "dompurify";
@@ -108,7 +108,7 @@ function IdeaItem({ idea, admin = false, type }) {
         className={
           "w-[22em]  p-1  shadow !rounded-xl normal-box-soft drop-shadow-xl flex-col  items-center " +
           (type === "ideas"
-            ? "bg-clear-bl3"
+            ? (idea.features?.length > 0 ? "bg-clear-bl4" : "bg-clear-bl2")
             : type === "problem"
             ? "bg-clear-pl4"
             : "bg-clear-bpop3")
@@ -175,7 +175,11 @@ function IdeaItem({ idea, admin = false, type }) {
             {TimeDisplay(idea.createdAt)}
           </p>
           {type === "ideas" && (
-            <div className="flex ">
+            <div className="flex gap-2 mt-1">
+                {idea.features && idea.features.length > 0 && <span className="flex items-center justify-center gap-2 px-2 bg-clear-bd2 rounded-xl">
+
+<p className="text-t-bd fre">Improved</p> <FaCheck className="text-t-bpop" />
+</span>}
               <span className="flex ml-auto !text-slate-700 dark:!text-slate-300 nun">
                 {idea.rating || 0}
                 <OneStar className="ml-5" />

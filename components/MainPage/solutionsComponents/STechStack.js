@@ -51,13 +51,15 @@ import {
   componentLibraries,
 } from "./CombinatorialComponents/DataForTechStack";
 import { useSelector, useDispatch } from "react-redux";
+import toast from "react-hot-toast";
 
 function STechStack(props) {
+  console.log("TECHSTACK--------------------" + props.isActive);
 
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [refresh, setRefresh] = useState(false);
- const dispatch = useDispatch();
- const sFormRedux = useSelector((state) => state.sForm);
+  const dispatch = useDispatch();
+  const sFormRedux = useSelector((state) => state.sForm);
   const [toolContent, setToolContent] = useState("");
   const [toolCost, setToolCost] = useState("");
   const [toolCostType, setToolCostType] = useState("Monthly");
@@ -70,23 +72,50 @@ function STechStack(props) {
     value: "Monthly",
     label: "Monthly",
   });
+
+  useEffect(() => {
+    if (sFormRedux.idea === null) {
+      props.goToStep(1);
+      toast.error("Please select an idea before continuing");
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+  
+    if (props.reset) {
+      setToolArray([]);
+      setToolContent("")
+      setToolCost("")
+
+    } else {
+      if (sFormRedux.stack?.length > 0) {
+        setToolArray(sFormRedux.stack);
+      }
+    }
+  }, [props.reset]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  
   // console.log([toolContent, toolCost, selectedPriceOption.value]);
   const update = (data) => {
-    console.log(data);
+    // console.log(data);
 
     let toolObj = {
       name: data[0],
       cost: data[1],
       type: data[2],
-      url: data[3],
-      isOpenSource: data[4],
-      kind: data[5],
+      url: data[3] || null,
+      isOpenSource: data[4] || null,
+      kind: data[5] || null,
     };
+
     let updated = sFormRedux;
     updated.stack = [...toolArray, toolObj];
-    dispatch(sFormAction(updated))
+    dispatch(sFormAction(updated));
 
     setToolArray([...toolArray, toolObj]);
+    if (!props.changes) {
+      props.setChanges(true);
+    }
   };
 
   const deleteItem = (data) => {
@@ -98,13 +127,16 @@ function STechStack(props) {
         newArray.splice(i, 1);
         // console.log(featureArray);
 
-         let updated = sFormRedux;
-    updated.stack = newArray;
-    dispatch(sFormAction(updated))
+        let updated = sFormRedux;
+        updated.stack = newArray;
+        dispatch(sFormAction(updated));
 
         setToolArray(newArray);
         setRefresh(!refresh);
       }
+    }
+    if (!props.changes) {
+      props.setChanges(true);
     }
   };
   // const updateButton = (e) => {
@@ -113,8 +145,8 @@ function STechStack(props) {
   let defaultZero = 0;
 
   useEffect(() => {
-    console.log(toolArray);
-    console.log(sFormRedux)
+    // console.log(toolArray);
+    // console.log(sFormRedux)
 
     if (toolArray.length > 0) {
       let monthTotal = toolArray.reduce((acc, obj) => {
@@ -122,8 +154,11 @@ function STechStack(props) {
       }, 0);
 
       let updated = sFormRedux;
-      updated.stackCost = [{monthly: monthTotal},{yearly: monthTotal*12}];
-      dispatch(sFormAction(updated))
+      updated.stackCost = [
+        { monthly: monthTotal.toFixed(2) },
+        { yearly: (monthTotal * 12).toFixed(2) },
+      ];
+      dispatch(sFormAction(updated));
       setMonthlyCost(monthTotal);
     }
   }, [toolArray]);
@@ -185,42 +220,9 @@ function STechStack(props) {
               <h1 className="text-3xl text-t-bd dark:text-blues-100">
                 Tech Stack
               </h1>
-              {/* <div className="normal-box-soft">
-                <h3 className="heading">
-                  What infrastructure does your application need?
-                </h3>
-              </div> */}
 
               <div className="flex gap-2">
                 <div className="flex py-3 flex-col border-2 max-h-[35em] w-[15em] rounded-xl items-center gap-2 overflow-auto">
-                  {/* <div className="relative group">
-                    <div className="absolute transition duration-1000 rounded-full opacity-50 group:hover:!-inset-3 -inset-1 bg-gradient-to-r from-t-pl via-t-pm via-t-pd to-violet-400 blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy-slow"></div>
-                    <button
-                      className={
-                        "w-[13em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start text-black gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
-                        (selected === "Faves"
-                          ? " border-4 border-t-pm bg-gradient-to-br from-t-pl via-t-pl via-t-pm to-t-pm"
-                          : "bg-gradient-to-br from-pink-100 via-t-pl to-t-pm ")
-                      }
-                      onClick={() => {
-                        if (selected !== "Faves") {
-                          setSelected("Faves");
-                        } else {
-                          setSelected("");
-                        }
-                      }}
-                    >
-                      <FaHeart className="text-t-pd" />
-                      Faves
-                    </button> */}
-                  {/* <button
-                    className="w-[5em] h-[3em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-clear-bd3 md:hover:shadow-xl m-1 drop-shadow-xl "
-                    onClick={() => props.goToStep(6)}
-                  >
-                    Next
-                    <FaLongArrowAltRight className="ml-1 text-[24px]" />
-                  </button> */}
-                  {/* </div> */}
                   <button
                     className={
                       "w-[13em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
@@ -1234,7 +1236,7 @@ function ItemCard({
       }}
       // value={"BUTTON"}
       className={
-        "group flex gap-1 items-center rounded-xl !p-0      whitespace-nowrap transition duration-500  select-none cursor-pointer h-[6em] min-w-[5em]  md:hover:skew-y-6  " +
+        "group flex gap-1 items-center rounded-xl !p-0      whitespace-nowrap transition duration-500  select-none cursor-pointer h-[6em] min-w-[5em]  md:hover:-translate-y-2	  " +
         (clicked
           ? " bg-gradient-to-b    border-4 " +
             fromColor +
