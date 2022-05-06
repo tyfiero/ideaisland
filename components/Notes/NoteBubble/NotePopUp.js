@@ -13,6 +13,7 @@ import {
   FaExclamationTriangle,
   FaStickyNote,
   FaExternalLinkAlt,
+  FaImage,
 } from "react-icons/fa";
 import {
   motion,
@@ -20,6 +21,7 @@ import {
 } from "framer-motion";
 
 import { useRouter } from "next/router";
+// import DisplayImage from "../DisplayImage";
 
 const Label = styled.label`
   font-weight: bold;
@@ -36,6 +38,7 @@ const NotePopUp = (props) => {
   const notesRedux = useSelector((state) => state.notes);
   const [isSaved, setIsSaved] = useState(false);
   const [noteType, setnoteType] = useState("idea");
+  const [isPic, setIsPic] = useState(false);
 
   const [isAutoSaved, setIsAutoSaved] = useState(false);
 
@@ -103,7 +106,7 @@ const NotePopUp = (props) => {
        animate={{ opacity: 1, scale: 1, top: "-3%", left: "57%" }}
        transition={{ delay: 0.1, duration: 0.4 }}
     className="popup-box md:!left-[60%] sm:!left-0">
-      <div className="box bg-white/90 dark:bg-slate-700/90">
+      <div className="relative box bg-white/90 dark:bg-slate-700/90">
         {/* <span className="close-icon" onClick={props.handleClose}>
           x
         </span> */}
@@ -183,6 +186,21 @@ const NotePopUp = (props) => {
             {noteType === "idea" ? "All Ideas" : "All Notes"} <FaExternalLinkAlt />
           </button>
         </div>
+        {/* {isPic ? (
+        <DisplayImage type={noteType} mode="display"  />
+      ) : (
+        <button
+          onClick={() => {
+            setIsPic(true);
+          }}
+          className="absolute flex items-center justify-center w-[8em]  gap-2 h-8 rounded-full bg-white/60 md:hover:scale-105 top-4 left-2"
+        >
+          {" "}
+          <FaImage className="text-t-bl" />
+          Add Image
+        </button>
+      )}
+      {isPic && <div className="my-2"></div>} */}
         {noteType === "idea" && <IdeaNote />}
         {/* {noteType === "problem" && <ProblemNote />} */}
         {noteType === "note" && <NoteNote />}

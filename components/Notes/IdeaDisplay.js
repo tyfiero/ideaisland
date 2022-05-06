@@ -19,18 +19,16 @@ import DisplayImage from "./DisplayImage";
 
 export default function IdeaDisplay(props) {
   const currentDocRedux = useSelector((state) => state.currentDoc);
-  // const [cleanContent, setCleanContent] = useState("");
   const sFormRedux = useSelector((state) => state.sForm);
-
-
   const router = useRouter();
-  let type = props.type;
   const [isPic, setIsPic] = useState(false);
   const dispatch = useDispatch();
+  let type = props.type;
  
+  
   useEffect(() => {
     if (currentDocRedux) {
-      if (currentDocRedux.imgUrl.length > 0) {
+      if (currentDocRedux.imgUrl?.length > 0) {
         setIsPic(true);
       } else {
         setIsPic(false);

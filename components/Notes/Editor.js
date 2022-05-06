@@ -485,7 +485,7 @@ function CreateNewIdea(props) {
           onClick={() => {
             setIsPic(true);
           }}
-          className="fixed flex items-center justify-center w-[8em]  gap-2 h-8 rounded-full bg-white/60 md:hover:scale-105 top-2 left-6"
+          className="fixed flex items-center justify-center w-[8em]  gap-2 h-8 rounded-full bg-white/60 md:hover:scale-105 top-2 left-9"
         >
           {" "}
           <FaImage className="text-t-bl" />
@@ -752,7 +752,7 @@ Editor.modules = {
   toolbar: [
     [{ header: "1" }, { header: "2" }],
     [{ size: [] }],
-    ["color"],
+    [{"color": []}],
     ["bold", "italic", "underline", "strike", "blockquote", "code"],
     [
       { list: "ordered" },
@@ -760,7 +760,7 @@ Editor.modules = {
       { indent: "-1" },
       { indent: "+1" },
     ],
-    ["link", "image"],
+    ["link"],
   ],
   clipboard: {
     // toggle to add extra line breaks when pasting HTML:

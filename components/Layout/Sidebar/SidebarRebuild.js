@@ -53,7 +53,7 @@ const Sidebar2 = (props) => {
       setSelected(1);
     } else if (router.asPath === "/solutions") {
       setSelected(2);
-    } else if (router.asPath === "/implementation") {
+    } else if (router.asPath === "/next-steps") {
       setSelected(3);
     } else if (router.asPath === "/help") {
       setSelected(5);
@@ -138,7 +138,7 @@ const Sidebar2 = (props) => {
             </div>
           </a>
         </Link>
-        <Link href="/implementation">
+        <Link href="/next-steps">
           <a>
           <div className="flex flex-col items-center group">
 

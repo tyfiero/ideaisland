@@ -188,13 +188,14 @@ Editor.modules = {
   toolbar: [
     [{ size: [] }],
     ["bold", "italic", "underline", "strike", "blockquote", "code"],
+    [{"color": []}],
     [
       { list: "ordered" },
       { list: "bullet" },
       { indent: "-1" },
       { indent: "+1" },
     ],
-    ["link", "image"],
+    ["link"],
   ],
   clipboard: {
     // toggle to add extra line breaks when pasting HTML:
