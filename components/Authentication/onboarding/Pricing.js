@@ -27,9 +27,10 @@ function Pricing(props) {
   useEffect(() => {
           // eslint-disable-next-line
           if(Paddle){
+          let vendorNum = Number(process.env.NEXT_PUBLIC_PADDLE_VENDOR_ID);
           // eslint-disable-next-line
             Paddle.Setup({
-              vendor: Number(process.env.NEXT_PUBLIC_PADDLE_VENDOR_ID)
+              vendor: vendorNum,
             })
             console.log("Loaded Paddle")
           }
