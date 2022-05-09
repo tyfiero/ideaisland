@@ -11,7 +11,7 @@ import { store, persistor } from "../redux/store";
 import Layout from "../components/Layout/Layout";
 import { UserContext } from "../lib/context";
 import { useUserData } from "../lib/hooks";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import FullLoader from "../components/Layout/FullLoader";
 import { useRouter } from "next/router";
 import Script from "next/script";
@@ -20,38 +20,79 @@ import Header from "../components/Header";
 import { wrapper } from "../redux/store";
 import { AuthProvider } from "../lib/firebaseContext";
 import AuthCheck from "../components/Authentication/AuthCheck";
+import * as gtag from "../lib/gtag";
+import { steps } from "../components/Authentication/onboarding/steps";
+import dynamic from "next/dynamic";
+// import ShephardLogic from "../components/Authentication/onboarding/ShephardLogic";
+
+
+const ShephardLogic = dynamic(() => import("../components/Authentication/onboarding/ShephardLogic"), {
+    ssr: false,
+  });
+//   const ShepherdTourContext = dynamic(() => import("react-shepherd").then((module) => module.ShepherdTourContext), {
+//     ssr: false,
+//   });
 // import LogRocket from "logrocket";
 // import setupLogRocketReact from "logrocket-react";
 // import { useStore } from 'react-redux';
 
-const LogRocket = require('logrocket');
 
-if (typeof window !== 'undefined') {
-const setupLogRocketReact = require('logrocket-react');
-LogRocket.init('90vvpm/ideaisland');
+const LogRocket = require("logrocket");
+
+if (typeof window !== "undefined") {
+  const setupLogRocketReact = require("logrocket-react");
+  LogRocket.init("90vvpm/ideaisland");
   setupLogRocketReact(LogRocket);
 }
-
-
 
 function MyApp({ Component, pageProps }) {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
+  // console.log(ShepherdTour)
+// const [ShepherdTourContext] = ShepherdTour;
+// //SHEPARD JS TOUR
+const [tourStarted, setTourStarted] = useState(false);
+
+
+  // if(typeof window !== "undefined"){
+    // const tour = useContext(ShepherdTourContext);
+    // console.log(ShepherdTourContext)
+
+  
+  
+  
+ 
 
 
 
 
-//Loading animation logic
+
+
+
+
+
+
+
+
+
+
+  //Loading animation logic
   useEffect(() => {
     const handleStart = (url) => {
       url !== router.pathname ? setLoading(true) : setLoading(false);
     };
-    const handleComplete = (url) => setLoading(false);
+    const handleComplete = (url) => {
+      setLoading(false);
+      gtag.pageview(url);
+    };
 
     router.events.on("routeChangeStart", handleStart);
     router.events.on("routeChangeComplete", handleComplete);
     router.events.on("routeChangeError", handleComplete);
+    return () => {
+      router.events.off("routeChangeComplete", handleComplete);
+    };
   }, [router]);
 
   const store = useStore((state) => state);
@@ -61,24 +102,20 @@ function MyApp({ Component, pageProps }) {
     <PersistGate persistor={store.__persistor}>
       {() => (
         <UserContext.Provider value={userData}>
-          {/* <AuthProvider> */}
-            <Layout>
-      {/* <AuthCheck> */}
-      <Script
-        src="https://cdn.paddle.com/paddle/paddle.js"
-        strategy="beforeInteractive"
-        onLoad={(e) => {
-            // eslint-disable-next-line
-          Paddle.Setup({ vendor: Number(process.env.NEXT_PUBLIC_PADDLE_VENDOR_ID) });
-          console.log("Loaded paddle")
-        }}
-      />
-              <FullLoader show={loading} />
-              <Component {...pageProps} />
-      {/* </AuthCheck> */}
 
-            </Layout>
+          {/* <AuthProvider> */}
+          <Layout>
+         <ShephardLogic>
+            {/* <AuthCheck> */}
+           
+
+            <FullLoader show={loading} />
+            <Component {...pageProps} />
+            {/* </AuthCheck> */}
+          </ShephardLogic>
+          </Layout>
           {/* </AuthProvider> */}
+
         </UserContext.Provider>
       )}
     </PersistGate>
@@ -86,20 +123,12 @@ function MyApp({ Component, pageProps }) {
     <PersistGate persistor={store}>
       {() => (
         // <AuthProvider>
-          <UserContext.Provider value={userData}>
-            <Layout>
-            <Script
-        src="https://cdn.paddle.com/paddle/paddle.js"
-        strategy="beforeInteractive"
-        onLoad={(e) => {
-            // eslint-disable-next-line
-          Paddle.Setup({ vendor: Number(process.env.NEXT_PUBLIC_PADDLE_VENDOR_ID) });
-          console.log("Loaded paddle")
-        }}
-      />
-              <Component {...pageProps} />
-            </Layout>
-          </UserContext.Provider>
+        <UserContext.Provider value={userData}>
+          <Layout>
+           
+            <Component {...pageProps} />
+          </Layout>
+        </UserContext.Provider>
         // </AuthProvider>
       )}
     </PersistGate>

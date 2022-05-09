@@ -57,7 +57,9 @@ const Sidebar2 = (props) => {
       setSelected(3);
     } else if (router.asPath === "/help") {
       setSelected(5);
-    }
+    }else if (router.asPath === "/projects") {
+    setSelected(6);
+  }
   }, [router.asPath]);
 
   let clickStyle = {
@@ -68,107 +70,194 @@ const Sidebar2 = (props) => {
   };
 
   return (
-    <div className={"sidebar-container md:border-l-0 flex md:left-0  md:h-full  sm:h-[6em] sm:w-full md:w-[4.5em] md:flex-col  md:rounded-br-[3px] sm:flex md:rounded-tl-none  md:absolute  sm:bg-none md:bg-gradient-to-t  md:from-clear-pl2 md:border-black md:border-[0px] content-center items-center md:justify-between	md:py-4  z-10 fade-effect-quick sm:justify-evenly  " + (props.toggle ? " sm:flex md:flex" :  " sm:hidden md:flex")}>
+    <div
+      className={
+        "sidebar-container md:border-l-0 flex md:left-0  md:h-full  sm:h-[6em] sm:w-full md:w-[4.5em] md:flex-col  md:rounded-br-[3px] sm:flex md:rounded-tl-none  md:absolute  sm:bg-none md:bg-gradient-to-t  md:from-clear-pl2 md:border-black md:border-[0px] content-center items-center md:justify-between	md:py-4  z-10 fade-effect-quick sm:justify-evenly  " +
+        (props.toggle ? " sm:flex md:flex" : " sm:hidden md:flex")
+      }
+    >
       <div className="flex items-center w-full gap-3 md:flex-col sm:flex-row sm:justify-evenly">
         <Link href="/home">
           <a>
             <div className="flex flex-col items-center group">
-            <div
-              className={"flex flex-col items-center p-2 min-h-10 min-w-10 transition-all duration-700 rounded-lg shadow-lg sidebar-unit-container bg-gradient-to-br from-white/20 via-t-pl to-t-pd bg-size-200  drop-shadow-xl group-hover:bg-pos-100 " + (selected === 0 ? " bg-pos-100" : " bg-pos-0")}
-              onClick={() => {
-                setSelected(0);
-              }}
-            >
-              {/* <FaHome className="text-2xl " /> */}
-              <HiOutlineHome className={"text-2xl transition duration-1000  group-hover:text-pink-50 " + (selected === 0 ? " text-pinks-50" : "text-pinks-700") } />
-             
-            </div>
-            <p className="text-xs text-black transition duration-1000 opacity-50 group-hover:opacity-100 dark:text-slate-50">Home</p>
+              <div
+                className={
+                  "flex flex-col items-center p-2 min-h-10 min-w-10 transition-all duration-700 rounded-lg shadow-lg sidebar-unit-container bg-gradient-to-br from-white/20 via-t-pl to-t-pd bg-size-200  drop-shadow-xl group-hover:bg-pos-100 " +
+                  (selected === 0 ? " bg-pos-100" : " bg-pos-0")
+                }
+                onClick={() => {
+                  setSelected(0);
+                }}
+              >
+                {/* <FaHome className="text-2xl " /> */}
+                <HiOutlineHome
+                  className={
+                    "text-2xl transition duration-1000  group-hover:text-pink-50 " +
+                    (selected === 0 ? " text-pinks-50" : "text-pinks-700")
+                  }
+                />
+              </div>
+              <p className="text-xs text-black transition duration-1000 opacity-50 group-hover:opacity-100 dark:text-slate-50">
+                Home
+              </p>
             </div>
           </a>
         </Link>
-       
-        
+
         <Link href={`/notes`} passHref>
           <a>
-          <div className="flex flex-col items-center group">
-
-            <div
-              className={"flex flex-col items-center p-2 min-h-10 min-w-10 transition-all duration-700 rounded-lg shadow-lg sidebar-unit-container bg-gradient-to-br from-white/20 via-t-pl to-t-pd bg-size-200  drop-shadow-xl group-hover:bg-pos-100 " + (selected === 4 ? " bg-pos-100" : " bg-pos-0")}
-              onClick={() => {
-                setSelected(4);
-              }}
-            >
-              {/* <FaBook className="side-icon" /> */}
-              <FaRegEdit className={"text-2xl ml-[4px] transition duration-1000  group-hover:text-pink-50 " + (selected === 4 ? " text-pinks-50" : "text-pinks-700") } />
+            <div className="flex flex-col items-center group">
+              <div
+                className={
+                  "flex flex-col w-[44px] h-[40px] items-center p-2 min-h-10 min-w-10 transition-all duration-700 rounded-lg shadow-lg sidebar-unit-container bg-gradient-to-br from-white/20 via-t-pl to-t-pd bg-size-200  drop-shadow-xl group-hover:bg-pos-100 " +
+                  (selected === 4 ? " bg-pos-100" : " bg-pos-0")
+                }
+                onClick={() => {
+                  setSelected(4);
+                }}
+              >
+                {/* <FaBook className="side-icon" /> */}
+                <FaRegEdit
+                  className={
+                    "text-2xl ml-[4px] transition duration-1000  group-hover:text-pink-50 " +
+                    (selected === 4 ? " text-pinks-50" : "text-pinks-700")
+                  }
+                />
               </div>
-            <p className="text-xs text-black transition duration-1000 opacity-50 group-hover:opacity-100 dark:text-slate-50">Notes</p>
+              <p className="text-xs text-black transition duration-1000 opacity-50 group-hover:opacity-100 dark:text-slate-50">
+                Notes
+              </p>
             </div>
           </a>
         </Link>
+        {/* <Link href={`/projects`} passHref>
+          <a>
+            <div className="flex flex-col items-center group">
+              <div
+                className={
+                  "flex flex-col w-[44px] h-[40px]  items-center p-2 min-h-10 min-w-10 transition-all duration-700 rounded-lg shadow-lg sidebar-unit-container bg-gradient-to-br from-white/20 via-t-pl to-t-pd bg-size-200  drop-shadow-xl group-hover:bg-pos-100 " +
+                  (selected === 6 ? " bg-pos-100" : " bg-pos-0")
+                }
+                onClick={() => {
+                  setSelected(6);
+                }}
+              >
+                <svg
+                  id="Flat"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 256 256"
+                  className={" transition  duration-1000 scale-[130%]  group-hover:fill-pink-50 " + (selected === 6 ? " fill-pinks-50" : "fill-pinks-700") }
+                >
+                  <path d="M224,66H154.6665a2.01254,2.01254,0,0,1-1.1997-.3999L125.7334,44.80029A14.08792,14.08792,0,0,0,117.3335,42H72A14.01572,14.01572,0,0,0,58,56V74H40A14.01572,14.01572,0,0,0,26,88V200a14.01572,14.01572,0,0,0,14,14H192.88867A13.12634,13.12634,0,0,0,206,200.88867V182h18.88867A13.12634,13.12634,0,0,0,238,168.88867V80A14.01572,14.01572,0,0,0,224,66ZM194,200.88867A1.11259,1.11259,0,0,1,192.88867,202H40a2.00229,2.00229,0,0,1-2-2V88a2.00229,2.00229,0,0,1,2-2H85.3335a2.01254,2.01254,0,0,1,1.1997.3999l27.7334,20.79981A14.08792,14.08792,0,0,0,122.6665,110H192a2.00229,2.00229,0,0,1,2,2Zm32-32A1.11259,1.11259,0,0,1,224.88867,170H206V112a14.01572,14.01572,0,0,0-14-14H122.6665a2.01254,2.01254,0,0,1-1.1997-.3999L93.7334,76.80029A14.08792,14.08792,0,0,0,85.3335,74H70V56a2.00229,2.00229,0,0,1,2-2h45.3335a2.01254,2.01254,0,0,1,1.1997.3999l27.7334,20.79981A14.08792,14.08792,0,0,0,154.6665,78H224a2.00229,2.00229,0,0,1,2,2Z" />
+                </svg>
+            
+              </div>
+              <p className="text-xs text-black transition duration-1000 opacity-50 group-hover:opacity-100 dark:text-slate-50">
+                Projects
+              </p>
+            </div>
+          </a>
+        </Link> */}
+
         <Link href="/problem">
           <a>
-          <div className="flex flex-col items-center group">
-            <div
-              className={"flex flex-col items-center p-2 min-h-10 min-w-10 transition-all duration-700 rounded-lg shadow-lg sidebar-unit-container bg-gradient-to-br from-white/20 via-t-pl to-t-pd bg-size-200  drop-shadow-xl group-hover:bg-pos-100 " + (selected === 1 ? " bg-pos-100" : " bg-pos-0")}
-              onClick={() => {
-                setSelected(1);
-              }}
-            >
-              {/* <GrBug className={"text-2xl  transition duration-1000  group-hover:text-pink-50 " + (selected === 1 ? " text-pinks-50" : "text-pinks-700") }  /> */}
-              <BsBug className={"text-[1.6rem]  transition duration-1000  group-hover:text-pink-50 " + (selected === 1 ? " text-pinks-50" : "text-pinks-700") } />
-               </div>
-            <p className="text-xs text-black transition duration-1000 opacity-50 group-hover:opacity-100 dark:text-slate-50">Problems</p>
+            <div className="flex flex-col items-center group">
+              <div
+                className={
+                  "flex flex-col w-[44px] h-[40px] items-center p-2 min-h-10 min-w-10 transition-all duration-700 rounded-lg shadow-lg sidebar-unit-container bg-gradient-to-br from-white/20 via-t-pl to-t-pd bg-size-200  drop-shadow-xl group-hover:bg-pos-100 " +
+                  (selected === 1 ? " bg-pos-100" : " bg-pos-0")
+                }
+                onClick={() => {
+                  setSelected(1);
+                }}
+              >
+                {/* <GrBug className={"text-2xl  transition duration-1000  group-hover:text-pink-50 " + (selected === 1 ? " text-pinks-50" : "text-pinks-700") }  /> */}
+                <BsBug
+                  className={
+                    "text-[1.6rem]  transition duration-1000  group-hover:text-pink-50 " +
+                    (selected === 1 ? " text-pinks-50" : "text-pinks-700")
+                  }
+                />
+              </div>
+              <p className="text-xs text-black transition duration-1000 opacity-50 group-hover:opacity-100 dark:text-slate-50">
+                Problems
+              </p>
             </div>
           </a>
         </Link>
         <Link href="/solutions">
           <a>
-          <div className="flex flex-col items-center group">
-
-            <div
-               className={"flex flex-col items-center p-2 min-h-10 min-w-10 transition-all duration-700 rounded-lg shadow-lg sidebar-unit-container bg-gradient-to-br from-white/20 via-t-pl to-t-pd bg-size-200  drop-shadow-xl group-hover:bg-pos-100 " + (selected === 2 ? " bg-pos-100" : " bg-pos-0")}
-              onClick={() => {
-                setSelected(2);
-              }}
-            >
-              <GoLightBulb className={"text-[1.6rem] leading-8 pr-[1px] transition duration-1000  group-hover:text-pink-50 " + (selected === 2 ? " text-pinks-50" : "text-pinks-700") } />
+            <div className="flex flex-col items-center group">
+              <div
+                className={
+                  "flex flex-col items-center p-2 min-h-10 min-w-10 transition-all duration-700 rounded-lg shadow-lg sidebar-unit-container bg-gradient-to-br from-white/20 via-t-pl to-t-pd bg-size-200  drop-shadow-xl group-hover:bg-pos-100 " +
+                  (selected === 2 ? " bg-pos-100" : " bg-pos-0")
+                }
+                onClick={() => {
+                  setSelected(2);
+                }}
+              >
+                <GoLightBulb
+                  className={
+                    "text-[1.6rem] leading-8 pr-[1px] transition duration-1000  group-hover:text-pink-50 " +
+                    (selected === 2 ? " text-pinks-50" : "text-pinks-700")
+                  }
+                />
               </div>
-            <p className="text-xs text-black transition duration-1000 opacity-50 group-hover:opacity-100 dark:text-slate-50">Solutions</p>
+              <p className="text-xs text-black transition duration-1000 opacity-50 group-hover:opacity-100 dark:text-slate-50">
+                Solutions
+              </p>
             </div>
           </a>
         </Link>
         <Link href="/next-steps">
           <a>
-          <div className="flex flex-col items-center group">
-
-            <div
-               className={"flex flex-col items-center p-2 min-h-10 min-w-10 transition-all duration-700 rounded-lg shadow-lg sidebar-unit-container bg-gradient-to-br from-white/20 via-t-pl to-t-pd bg-size-200  drop-shadow-xl group-hover:bg-pos-100 " + (selected === 3 ? " bg-pos-100" : " bg-pos-0")}
-              onClick={() => {
-                setSelected(3);
-              }}
-            >
-              <BiRocket className={"text-2xl transition duration-1000 group-hover:text-pink-50 " + (selected === 3 ? "  text-pinks-50" : " text-pinks-700") } />
+            <div className="flex flex-col items-center group">
+              <div
+                className={
+                  "flex flex-col w-[44px] h-[40px] items-center p-2 min-h-10 min-w-10 transition-all duration-700 rounded-lg shadow-lg sidebar-unit-container bg-gradient-to-br from-white/20 via-t-pl to-t-pd bg-size-200  drop-shadow-xl group-hover:bg-pos-100 " +
+                  (selected === 3 ? " bg-pos-100" : " bg-pos-0")
+                }
+                onClick={() => {
+                  setSelected(3);
+                }}
+              >
+                <BiRocket
+                  className={
+                    "text-2xl transition duration-1000 group-hover:text-pink-50 " +
+                    (selected === 3 ? "  text-pinks-50" : " text-pinks-700")
+                  }
+                />
               </div>
-            <p className="text-xs text-black transition duration-1000 opacity-50 group-hover:opacity-100 dark:text-slate-50">Next Steps</p>
+              <p className="text-xs text-black transition duration-1000 opacity-50 group-hover:opacity-100 dark:text-slate-50">
+                Next Steps
+              </p>
             </div>
           </a>
         </Link>
 
         <Link href="/help">
           <a>
-          <div className="flex flex-col items-center group">
-
-            <div
-              className={"flex flex-col items-center p-2 min-h-10 min-w-10 transition-all duration-700 rounded-lg shadow-lg sidebar-unit-container bg-gradient-to-br from-white/20 via-t-pl to-t-pd bg-size-200  drop-shadow-xl group-hover:bg-pos-100 " + (selected === 5 ? " bg-pos-100" : " bg-pos-0")}
-              onClick={() => {
-                setSelected(5);
-              }}
-            >
-              <IoMdHelp className={"text-2xl transition duration-1000  group-hover:text-pink-50 " + (selected === 5 ? " text-pinks-50" : "text-pinks-700") } />
-              
+            <div className="flex flex-col items-center group">
+              <div
+                className={
+                  "flex flex-col w-[44px] h-[40px] items-center p-2 min-h-10 min-w-10 transition-all duration-700 rounded-lg shadow-lg sidebar-unit-container bg-gradient-to-br from-white/20 via-t-pl to-t-pd bg-size-200  drop-shadow-xl group-hover:bg-pos-100 " +
+                  (selected === 5 ? " bg-pos-100" : " bg-pos-0")
+                }
+                onClick={() => {
+                  setSelected(5);
+                }}
+              >
+                <IoMdHelp
+                  className={
+                    "text-2xl transition duration-1000  group-hover:text-pink-50 " +
+                    (selected === 5 ? " text-pinks-50" : "text-pinks-700")
+                  }
+                />
               </div>
-            <p className="text-xs text-black transition duration-1000 opacity-50 group-hover:opacity-100 dark:text-slate-50">Help</p>
+              <p className="text-xs text-black transition duration-1000 opacity-50 group-hover:opacity-100 dark:text-slate-50">
+                Help
+              </p>
             </div>
           </a>
         </Link>
@@ -176,23 +265,38 @@ const Sidebar2 = (props) => {
       </div>
       {/* {props.signedIn && <TopBarRight />} */}
       <div className="flex flex-col items-center mb-[4.5em] group sm:hidden md:block">
-      <div className="flex flex-col items-center group">
+        <div className="flex flex-col items-center group">
+          {!timerOpen && (
+            <>
+              {" "}
+              <div
+                className={
+                  "flex flex-col items-center p-1 transition-all duration-700 rounded-full shadow-lg sidebar-unit-container bg-gradient-to-br from-white/20 via-t-pl to-t-pd bg-size-200  drop-shadow-xl group-hover:bg-pos-100  bg-pos-0"
+                }
+                onClick={() => {
+                  // setSelected(5);
+                  setTimerOpen(!timerOpen);
+                }}
+              >
+                <IoIosTimer
+                  className={
+                    "text-2xl transition duration-1000  group-hover:text-pink-50 text-pinks-700"
+                  }
+                />
+              </div>
+              <p className="text-xs text-black transition duration-1000 opacity-50 dark:text-slate-50 group-hover:opacity-100">
+                Timer
+              </p>
+            </>
+          )}
+        </div>
 
-   {!timerOpen && <> <div
-  className={"flex flex-col items-center p-1 transition-all duration-700 rounded-full shadow-lg sidebar-unit-container bg-gradient-to-br from-white/20 via-t-pl to-t-pd bg-size-200  drop-shadow-xl group-hover:bg-pos-100  bg-pos-0"}
-  onClick={() => {
-    // setSelected(5);
-    setTimerOpen(!timerOpen);
-  }}
->
-  <IoIosTimer className={"text-2xl transition duration-1000  group-hover:text-pink-50 text-pinks-700" } />
-  
-  </div>
-<p className="text-xs text-black transition duration-1000 opacity-50 dark:text-slate-50 group-hover:opacity-100">Timer</p></>} 
-</div>
-      
-      {timerOpen && <CircleTimer setTimerOpen={setTimerOpen} className="fade-effect-quick"/>}
-
+        {timerOpen && (
+          <CircleTimer
+            setTimerOpen={setTimerOpen}
+            className="fade-effect-quick"
+          />
+        )}
       </div>
     </div>
     // <>

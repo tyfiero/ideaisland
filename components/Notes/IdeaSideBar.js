@@ -29,6 +29,7 @@ import {
   FaRegTimesCircle,
   FaSearch,
 } from "react-icons/fa";
+import IdeasList from "./IdeasList";
 // import SwitchSelector from "react-switch-selector";
 
 export default function IdeaSideBar(props) {
@@ -42,7 +43,7 @@ export default function IdeaSideBar(props) {
 
   return (
     <div className="overflow-hidden rounded-2xl">
-      <div className="normal-box-soft  bg-[hsla(200,0%,100%,0.764)]  dark:bg-[hsla(200,0%,20%,0.764)] fade-effect-quick flex flex-col items-center !h-[87vh] overflow-y-auto overflow-x-hidden !rounded-2xl !scrollbar-w-1 scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-t-bl scrollbar-track-blues-50 fade-effect-turbo">
+      <div className="normal-box-soft  bg-[hsla(200,0%,100%,0.764)]  dark:bg-[hsla(200,0%,20%,0.764)] fade-effect-quick flex flex-col items-center max-h-[120vh] overflow-y-auto overflow-x-hidden !rounded-2xl !scrollbar-w-1 scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-t-bl scrollbar-track-blues-50 fade-effect-turbo">
         {type === "ideas" && (
           <>
             <h1 className="text-3xl text-t-bd dark:text-blues-100 fade-effect-quick">Ideas</h1>
@@ -155,7 +156,7 @@ export default function IdeaSideBar(props) {
               dispatch(editModeAction("new"));
               // dispatch(currentDocAction(idea.identifier))
             }}
-            className=" w-[12em] h-[2em] m-2 rounded-3xl bg-t-bl flex items-center justify-center text-slate-100 gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer md:hover:shadow-xl shadow-clear-bd3"
+            className=" w-[12em] h-[2em] m-2 rounded-3xl bg-t-bl flex items-center justify-center text-slate-100 gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer md:hover:shadow-xl shadow-clear-bd3 step-2"
           >
             <FaPlus className="text-[20px]" />
             <p className="text-white">
@@ -210,95 +211,6 @@ export default function IdeaSideBar(props) {
   );
 }
 
-function IdeasList(props) {
-  const { user, username } = useContext(UserContext);
-  const statsRedux = useSelector((state) => state.stats);
-  const dispatch = useDispatch();
-  const userUIDRedux = useSelector((state) => state.userUID);
-  const [searchValue, setSearchValue] = useState("");
-
-  console.log();
-  useEffect(() => {
-    setSearchValue(props.searchValue);
-  }, [props.searchValue]);
-  //Done? Using context api, any content component will only mount if the user variable is defined.
-  //TODO memoize this so that firebase reads less
-  let uid;
-
-  if (user?.uid) {
-    uid = user?.uid;
-  } else if (userUIDRedux) {
-    uid = userUIDRedux;
-  } else if (auth.currentUser?.uid) {
-    uid = auth.currentUser?.uid;
-  } else {
-    uid = "default";
-    console.log("no uid available :(");
-  }
-
-  let type = props.type;
-
-  // console.log(auth.currentUser);
-  let ideas, ideaSearch;
-  // if (uid) {
-  const ref = collection(getFirestore(), "users", uid, type);
-  const postQuery = query(ref, orderBy("createdAt", "desc"));
-
-  const [querySnapshot] = useCollection(postQuery);
-
-  ideas = querySnapshot?.docs.map((doc) => doc.data());
-
-  ideaSearch = ideas?.filter((obj) => {
-    // console.log(obj.title.toLowerCase());
-
-    if (props.type === "ideas") {
-      return (
-        obj.title.toLowerCase().includes(searchValue?.toLowerCase()) ||
-        obj.content?.toLowerCase().includes(searchValue?.toLowerCase())
-      );
-    } else if (props.type === "problem") {
-      return (
-        obj.title.toLowerCase().includes(searchValue?.toLowerCase()) ||
-        obj.why?.toLowerCase().includes(searchValue?.toLowerCase()) ||
-        obj.what?.toLowerCase().includes(searchValue?.toLowerCase()) ||
-        obj.who?.toLowerCase().includes(searchValue?.toLowerCase()) ||
-        obj.pq1?.toLowerCase().includes(searchValue?.toLowerCase()) ||
-        obj.pq2?.toLowerCase().includes(searchValue?.toLowerCase()) ||
-        obj.pq3?.toLowerCase().includes(searchValue?.toLowerCase())
-      );
-    } else if (props.type === "notes") {
-      return (
-        obj.title.toLowerCase().includes(searchValue?.toLowerCase()) ||
-        obj.content?.toLowerCase().includes(searchValue?.toLowerCase())
-      );
-    }
-  });
-  // } else {
-  //   ideaSearch= null;
-  // }
-  // console.log(ideaSearch);
-
-  return (
-    <>
-      <IdeaFeed ideas={ideaSearch} admin type={props.type} />
-
-      {searchValue?.length > 0 && ideas?.length > 0 ? (
-        <p className="mt-2 text-xs text-slate-400 fade-effect">
-          Displaying {ideaSearch?.length} of {ideas?.length}
-        </p>
-      ) : (
-        <p className="mt-2 text-xs text-slate-400 fade-effect">
-          {ideas?.length}
-          {props.type === "problem"
-            ? " problems"
-            : props.type === "ideas"
-            ? " ideas"
-            : " notes"}
-        </p>
-      )}
-    </>
-  );
-}
 
 // function CreateNewIdea() {
 //   const router = useRouter();

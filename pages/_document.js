@@ -11,6 +11,25 @@ class MyDocument extends Document {
       <Html lang="en" style={{ scrollBehavior: "smooth" }} >
         <Head >
         <Header />
+        {/* Global Site Tag (gtag.js) - Google Analytics */}
+        <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=G-777KH9KK8R`}
+          />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-777KH9KK8R', {
+              page_path: window.location.pathname,
+            });
+          `,
+            }}
+          />
+     
+
         </Head >
         <body >
          

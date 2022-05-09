@@ -13,8 +13,9 @@ import sanitize from "../../lib/sanitize";
 import { useState, useEffect } from "react";
 import { editModeAction } from "../../redux/actions";
 import { statsAction } from "../../redux/actions";
+import { useRouter } from "next/router";
 
-export default function IdeaFeed({ ideas, admin, type }) {
+export default function IdeaFeed({ ideas, admin, type, mode }) {
   const statsRedux = useSelector((state) => state.stats);
   const currentDocRedux = useSelector((state) => state.currentDoc);
 
@@ -49,16 +50,16 @@ export default function IdeaFeed({ ideas, admin, type }) {
 
   return ideas
     ? ideas.map((idea, key) => (
-        <IdeaItem idea={idea} key={key} admin={admin} type={type} />
+        <IdeaItem idea={idea} key={key} admin={admin} type={type} mode={mode} />
       ))
     : null;
 }
 
-function IdeaItem({ idea, admin = false, type }) {
+function IdeaItem({ idea, admin = false, type, mode }) {
   const [hover, setHover] = useState(false);
   const [nav, setNav] = useState(null);
   const currentDocRedux = useSelector((state) => state.currentDoc);
-
+const router = useRouter();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -81,7 +82,7 @@ function IdeaItem({ idea, admin = false, type }) {
     });
     return date + ", " + clockTime;
   };
-
+console.log(mode)
   let clickTimer;
   const onClickHandler = (event) => {
     clearTimeout(clickTimer);
@@ -90,6 +91,11 @@ function IdeaItem({ idea, admin = false, type }) {
         // console.log("SINGLE CLICK");
         dispatch(currentDocAction(idea));
         dispatch(editModeAction("display"));
+
+        if(mode === "dash"){
+        router.push("/notes")
+          
+        }
       }, 200);
     } else if (event.detail === 2) {
       // console.log("DOUBLE CLICK");
@@ -101,7 +107,7 @@ function IdeaItem({ idea, admin = false, type }) {
   // console.log(idea.documentID)
   return (
     <div
-      className="flex items-center justify-center px-4 pt-2 sm:px-6 lg:px-8 drop-shadow-xl md:w-[80em]  fade-effect-quick"
+      className="flex items-center justify-center px-4 pt-2 sm:px-6 lg:px-8 drop-shadow-xl fade-effect-quick"
       onClick={onClickHandler}
     >
       <div

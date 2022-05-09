@@ -9,25 +9,46 @@ import IdeaSideBar from "../../Notes/IdeaSideBar";
 import statsAction from "../../../redux/actions";
 import FullLoader from "../../Layout/FullLoader";
 import AuthCheck from "../../Authentication/AuthCheck";
+import ReusableModal from "../../Layout/ReusableModal";
 // import statsAction
 // export async function getServerSideProps(context) {
 //   return {
 //     props: {},
+import dynamic from "next/dynamic";
+import IdeaFeed from "../../Notes/IdeaFeed";
+import IdeasList from "../../Notes/IdeasList";
+import { FaExternalLinkAlt } from "react-icons/fa";
+import { useRouter } from "next/router";
 //   }
 // }
-
+const Streak = dynamic(
+  () => import('./Streak'),
+  { ssr: false }
+)
 const Dashboard = () => {
   const notesRedux = useSelector((state) => state.notes);
   const statsRedux = useSelector((state) => state.stats);
   const userNameRedux = useSelector((state) => state.userName);
-
+const router = useRouter();
   const dispatch = useDispatch();
 
+  const [modalOpen, setModalOpen] = React.useState(false);
   // console.log(auth.currentUser);
 
   return (
     <AuthCheck >
     <div className="overflow-auto fade-effect-quick">
+
+
+
+
+  {/* {modalOpen &&   <ReusableModal modalOpen={modalOpen} setModalOpen={setModalOpen} header="Test Header">  
+      <p>Does this work?</p>
+      <img src="ii-palm.png" alt="" />
+    </ReusableModal>}
+
+<button className="p-2 text-white bg-t-bl rounded-xl" onClick={()=>{setModalOpen(!modalOpen)}}>Open modal</button> */}
+      
       <div className="dash-title">
         <h1 className="text-3xl text-t-bd dark:text-blues-100">
           Dashboard
@@ -39,6 +60,11 @@ const Dashboard = () => {
         <div className="dash-stat">
           <h2 className="heading text-t-bd dark:text-blues-100">Ideas</h2>
           <h2 className="text-[40px]">{statsRedux?.ideaNum || 10}</h2>
+        </div>
+        <div className="dash-stat">
+          <h2 className="heading text-t-bd dark:text-blues-100">Login Streak</h2>
+           <Streak />
+         
         </div>
         <div className="dash-stat !rounded-xl ">
           <h2 className="heading text-t-bd dark:text-blues-100">
@@ -57,11 +83,11 @@ const Dashboard = () => {
           <h2 className="text-[40px]">10</h2>
         </div>
       </div>
-      <p>
+      {/* <p>
         Include buttons to quickly launch favorite tools from dahsboard and
         display recent notes. Maybe a hop back in to where you were last button
         too{" "}
-      </p>
+      </p> */}
 
       <div className="dash-graph-holder " >
         <div className="dash-graph ">
@@ -89,7 +115,67 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      <div className="dash-graph-holder">
+
+
+
+<div className="flex gap-5">
+      <div className="w-[25em]  bg-clear-bl2 rounded-xl flex flex-col items-center py-4">
+      <h2 className="heading text-t-bd dark:text-blues-100">Recent Ideas</h2>
+      
+        <IdeasList type="ideas" searchValue="" mode="dash"/>
+        
+        <div className="relative mt-2 group">
+          <div className="absolute transition duration-1000 rounded-full opacity-25 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
+          {/* <div className="relative flex justify-start rounded-lg ring-1 items-top"> */}
+
+          <button
+            // type="submit"
+            // disabled={!isValid}
+            onClick={() => {
+              // dispatch(editModeAction("new"));
+              router.push("/notes")
+              // dispatch(currentDocAction(idea.identifier))
+            }}
+            className=" w-[12em] h-[2em] m-2 rounded-3xl bg-t-bl flex items-center justify-center text-slate-100 gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer md:hover:shadow-xl shadow-clear-bd3 step-2"
+          >
+            <FaExternalLinkAlt className="text-[20px]" />
+            <p className="text-white">
+             View All Ideas
+            </p>
+          </button>
+        </div>
+      </div>
+
+
+
+       <div className="w-[25em]  bg-clear-pl3 rounded-xl flex flex-col items-center py-4">
+      <h2 className="heading text-t-pd dark:text-pinks-100">Recent Problems</h2>
+      
+        <IdeasList type="problem" searchValue="" mode="dash"/>
+        
+        <div className="relative mt-2 group">
+          <div className="absolute transition duration-1000 rounded-full opacity-25 -inset-1 bg-gradient-to-r from-t-pl via-t-pm to-t-pd blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
+          {/* <div className="relative flex justify-start rounded-lg ring-1 items-top"> */}
+
+          <button
+            // type="submit"
+            // disabled={!isValid}
+            onClick={() => {
+              // dispatch(editModeAction("new"));
+              router.push("/notes")
+              // dispatch(currentDocAction(idea.identifier))
+            }}
+            className=" w-[12em] h-[2em] m-2 rounded-3xl bg-t-pm flex items-center justify-center text-slate-100 gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer md:hover:shadow-xl shadow-clear-bd3 step-2"
+          >
+            <FaExternalLinkAlt className="text-[20px]" />
+            <p className="text-white">
+             View All Problems
+            </p>
+          </button>
+        </div>
+      </div>
+      </div>
+      {/* <div className="dash-graph-holder">
         <div className="graph-stats-holder ml-[3em] mr-[6em]">
           <div className="graph-stat">
             <p>⭐⭐⭐⭐⭐</p>
@@ -115,9 +201,9 @@ const Dashboard = () => {
         <div className="dash-graph">
           <PieChart />
         </div>
-      </div>
-      <div className="ml-14 dash-wrapper">
-        <div className="w-[35em]">{/* <IdeaSideBar /> */}</div>
+      </div> */}
+      {/* <div className="ml-14 dash-wrapper">
+        <div className="w-[35em]"><IdeaSideBar /></div> */}
         {/* <divv className="note-wrapper">
           <div className="dash-notes">
             <h1 className="heading">My Notes</h1>
@@ -145,13 +231,13 @@ const Dashboard = () => {
             </div>
           </div>
         </divv> */}
-        <div className="dash-news">
+        {/* <div className="dash-news">
           <h1 className="heading">News and tips</h1>
         </div>
         <div className="dash-community">
           <h1 className="heading">Community Ideas</h1>
         </div>
-      </div>
+      </div> */}
       {/* <PublicIdeaFeed /> */}
     </div>
     </AuthCheck>

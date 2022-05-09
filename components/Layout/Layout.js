@@ -345,7 +345,7 @@ if (darkRedux) {
      
         </div>
         {!loadingUI && signedIn && (
-          <div className={"fixed md:top-[90%]  md:right-5 sm:top-0  sm:scale-[60%] md:scale-100 " + (isToggled ? " sm:right-32" : " sm:right-14 ")}>
+          <div className={"fixed md:top-[91%]  md:right-3 sm:top-0  sm:scale-[60%] md:scale-75 lg:scale-100 " + (isToggled ? " sm:right-32" : " sm:right-14 ")}>
             <button
               className={"z-100 flex items-center justify-center w-[4em] h-[4em]   transform rounded-full notepad-button fade-effect text-t-pd hover:scale-125 bg-gradient-to-br from-white/60 to-clear-pl5 hover:shadow-2xl duration-500  " + (isPopUpOpen ? "  ease-in-out  rotate-[135deg] " : " ")}
               onClick={togglePopup}

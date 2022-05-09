@@ -356,7 +356,7 @@ function CreateNewIdea(props) {
         data = {
           title: title,
           content: sanitize(content),
-          published: publish,
+          // published: publish,
           rating: rating,
           updatedAt: serverTimestamp(),
         };
@@ -416,11 +416,11 @@ function CreateNewIdea(props) {
         imgUrl: imgUrl,
         imgPosition: position,
         username: username,
-        published: publish,
+        // published: publish,
         content: sanitize(content),
         createdAt: serverTimestamp(),
         updatedAt: serverTimestamp(),
-        heartCount: 0,
+        // heartCount: 0,
         problem: null,
         techStack: [],
         features: [],

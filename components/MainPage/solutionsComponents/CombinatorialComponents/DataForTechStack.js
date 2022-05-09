@@ -883,6 +883,14 @@ export const dataBases = [
       "kind": "Data"
     },
     {
+      "name": "Supabase",
+      "cost": 0,
+      "type": "Monthly",
+      "url": "https://supabase.com/",
+      "isOpenSource": true,
+      "kind": "Data"
+    },
+    {
       "name": "Mongo DB Atlas",
       "cost": 57,
       "type": "Monthly",
@@ -896,6 +904,14 @@ export const dataBases = [
       "type": "Annual",
       "url": "https://www.mysql.com/products/",
       "isOpenSource": true,
+      "kind": "Data"
+    },
+    {
+      "name": "AirTable",
+      "cost": 0,
+      "type": "Annual",
+      "url": "https://www.airtable.com/",
+      "isOpenSource": false,
       "kind": "Data"
     },
     {

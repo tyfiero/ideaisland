@@ -1,4 +1,4 @@
-import { React, useContext, useState } from "react";
+import { React, useContext, useEffect, useState } from "react";
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 import Toggle from "react-toggle";
 import Script from "next/script";
@@ -22,6 +22,23 @@ function Pricing(props) {
   const userUIDRedux = useSelector((state) => state.userUID);
   const { username, user } = useContext(UserContext);
 
+
+
+  useEffect(() => {
+          // eslint-disable-next-line
+          if(Paddle){
+          // eslint-disable-next-line
+            Paddle.Setup({
+              vendor: Number(process.env.NEXT_PUBLIC_PADDLE_VENDOR_ID)
+            })
+            console.log("Loaded Paddle")
+          }
+ 
+    
+  },[])
+
+
+  
   const updateIdea = async (amount, planType) => {
     let uid;
 
@@ -88,43 +105,31 @@ function Pricing(props) {
   return (
     <div>
       {/* <PaddleLoader /> */}
+      {/* <script async src="https://cdn.paddle.com/paddle/paddle.js">
+        {console.log("Loaded paddleeeeeeeeeee from script")}
+      </script> */}
       <Script
+      id="paddle-checkout-js"
         src="https://cdn.paddle.com/paddle/paddle.js"
-        // strategy="beforeInteractive"
-        onLoad={(e) => {
-          // eslint-disable-next-line
-          // Paddle.Environment.set("sandbox");
-          // eslint-disable-next-line
-          Paddle.Setup({
-            vendor: Number(process.env.NEXT_PUBLIC_PADDLE_VENDOR_ID),
-            // vendor: 6024,
+        strategy="beforeInteractive"
+      //   onLoad={(e) => {
+      //     console.log("before load paddle");
 
-            // eventCallback: function (data) {
-            //   console.log(data);
-            //   // The data.event will specify the event type
-            //   if (data.event === "Checkout.Complete") {
-            //     console.log(data.eventData); // Data specifics on the event
-            //     success();
-            //   } else if (data.event === "Checkout.Close") {
-            //     if (purchaseSuccessful) {
-            //       if (
-            //         data.eventData.product.name === "Basic" ||
-            //         data.eventData.product.name === "Basic Monthly"
-            //       ) {
-            //         console.log("hello");
-            //         updateIdea(100, "Hobbyist");
-            //         setPurchaseSuccessful(false);
+      //     // eslint-disable-next-line
+      //     // Paddle.Environment.set("sandbox");
+      //     // eslint-disable-next-line
+      //     Paddle.Setup({
+      //       vendor: Number(process.env.NEXT_PUBLIC_PADDLE_VENDOR_ID),
 
-            //         if (props.onboard) {
-            //           props.goToStep(4);
-            //         }
-            //       }
-            //     }
-            //   }
-            // },
-          });
-          // console.log("Loaded paddle");
-        }}
+       
+      //     });
+      //     console.log("Loaded paddle");
+      //   }
+      // }
+      onError={(e) => {
+        console.log("Error loading paddle");
+        console.log(e)
+      }}
       />
       {!props.onboard && !successPopUp && (
         <div className="mt-4 font-semibold text-center">

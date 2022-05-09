@@ -176,7 +176,7 @@ const NotePopUp = (props) => {
             </button>
           </div>
         </div>
-        <div className="absolute top-5 right-3">
+        {/* <div className="absolute top-5 right-3">
           <button
             className={
               "w-[6em] h-[2em] rounded-3xl bg-t-pl md:flex items-center justify-center text-t-pd gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer sm:hidden"
@@ -185,7 +185,7 @@ const NotePopUp = (props) => {
           >
             {noteType === "idea" ? "All Ideas" : "All Notes"} <FaExternalLinkAlt />
           </button>
-        </div>
+        </div> */}
         {/* {isPic ? (
         <DisplayImage type={noteType} mode="display"  />
       ) : (
