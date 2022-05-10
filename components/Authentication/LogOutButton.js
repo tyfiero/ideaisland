@@ -4,6 +4,27 @@ import { useDispatch } from "react-redux";
 import { logIn, logOutAction } from "../../redux/actions";
 import { auth } from "../../lib/firebase";
 import { MdLogout } from "react-icons/md";
+
+
+// export const logOutFunction = () => {
+//   auth
+//     .signOut()
+//     .then(() => {
+//       console.log("Sign out successful");
+//       dispatch(logIn(false));
+//       dispatch(logOutAction(true));
+
+//       //   localStorage.removeItem("persist:root");
+//     })
+//     .catch((error) => {
+//       console.log(error);
+//     });
+// }
+
+
+
+
+
 function LogOutButton() {
   const dispatch = useDispatch();
 
@@ -38,3 +59,5 @@ function LogOutButton() {
 }
 
 export default LogOutButton;
+
+

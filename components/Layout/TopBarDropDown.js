@@ -12,15 +12,21 @@ import {
 } from "react-icons/fa";
 import Link from "next/link";
 import DarkModeToggle from "./DarkModeToggle";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 // import { auth } from "../lib/firebase";
+import { auth } from "../../lib/firebase";
+
 import { HiOutlineCog } from "react-icons/hi";
 import { FiShare2 } from "react-icons/fi";
 import { BsCreditCard } from "react-icons/bs";
-import LogOutButton from "../Authentication/LogOutButton";
+import LogOutButton, { logOutFunction } from "../Authentication/LogOutButton";
 import Modal from "./Modal";
+import { MdLogout } from "react-icons/md";
+import { logIn, logOutAction } from "../../redux/actions";
 
-export default function TopBarDropDown() {
+
+
+export default function TopBarDropDown({ setIsVisible }) {
   const [activeMenu, setActiveMenu] = useState("main");
   const [openShareMenu, setOpenShareMenu] = useState(false);
 
@@ -28,6 +34,7 @@ export default function TopBarDropDown() {
   const dropdownRef = useRef(null);
   const darkRedux = useSelector((state) => state.darkMode);
   const userNameRedux = useSelector((state) => state.userName);
+  const dispatch = useDispatch();
 
   //   console.log(user);
   // useEffect(() => {
@@ -41,14 +48,26 @@ export default function TopBarDropDown() {
 
   // eslint-disable-next-line
   const DropdownItem = React.forwardRef(
-    ({ onClick, href, leftIcon, rightIcon, goToMenu, children }, ref) => {
+    (
+      { onClick, href, leftIcon, rightIcon, goToMenu, children, mode = null },
+      ref
+    ) => {
       return (
         <div
           href={href}
-          className="cursor-pointer menu-item md:hover:bg-clear-bl2"
+          className={
+            "cursor-pointer menu-item " +
+            (mode ? " md:hover:bg-clear-pl2" : " md:hover:bg-clear-bl2")
+          }
           onClick={() => goToMenu && setActiveMenu(goToMenu)}
         >
-          <span className="icon-button bg-clear-bl2">{leftIcon}</span>
+          <span
+            className={
+              "icon-button  " + (mode ? " bg-clear-pm2" : "bg-clear-bl2")
+            }
+          >
+            {leftIcon}
+          </span>
           {children}
           <span className="icon-right">{rightIcon}</span>
         </div>
@@ -72,13 +91,17 @@ export default function TopBarDropDown() {
             {/* <Link href={`/${user.username}`}> */}
 
             <Link href={`/profile`} passHref>
-              <a>
+              <a onClick={() => setIsVisible(false)}>
                 <div>
                   {/* <a> */}
                   <DropdownItem
-                    leftIcon={<FaRegUser className="text-t-bd dark:text-t-bl ml-[1px]" />}
+                    leftIcon={
+                      <FaRegUser className="text-t-bd dark:text-t-bl ml-[1px]" />
+                    }
                   >
-                    <p className="text-blues-700">My Profile</p>
+                    <p className="text-blues-700 dark:text-blues-100">
+                      My Profile
+                    </p>
                   </DropdownItem>
                 </div>
               </a>
@@ -86,26 +109,34 @@ export default function TopBarDropDown() {
             </Link>
             <hr />
             <Link href={`/settings`} passHref>
-              <a>
+              <a onClick={() => setIsVisible(false)}>
                 <div>
                   <DropdownItem
-                    leftIcon={<HiOutlineCog className="scale-125 text-t-bd dark:text-t-bl" />}
+                    leftIcon={
+                      <HiOutlineCog className="scale-125 text-t-bd dark:text-t-bl" />
+                    }
                     //   goToMenu="settings"
                   >
-                    <p className="text-blues-700">Settings</p>
+                    <p className="text-blues-700 dark:text-blues-100">
+                      Settings
+                    </p>
                   </DropdownItem>
                 </div>
               </a>
             </Link>
             <hr />
             <Link href={`/pricing`} passHref>
-              <a>
+              <a onClick={() => setIsVisible(false)}>
                 <div>
                   <DropdownItem
-                    leftIcon={<BsCreditCard className=" text-t-bd dark:text-t-bl" />}
+                    leftIcon={
+                      <BsCreditCard className=" text-t-bd dark:text-t-bl" />
+                    }
                     //   goToMenu="settings"
                   >
-                    <p className="text-blues-700">Billing</p>
+                    <p className="text-blues-700 dark:text-blues-100">
+                      Billing
+                    </p>
                   </DropdownItem>
                 </div>
               </a>
@@ -117,16 +148,48 @@ export default function TopBarDropDown() {
             <div
               onClick={() => {
                 setOpenShareMenu(!openShareMenu);
+                // setIsVisible(false);
               }}
             >
               {/* <a> */}
-              <DropdownItem leftIcon={<FiShare2 className="text-t-bd dark:text-t-bl" />}>
-                <p className=" text-blues-700"> Share</p>
+              <DropdownItem
+                leftIcon={<FiShare2 className="text-t-bd dark:text-t-bl" />}
+              >
+                <p className=" text-blues-700 dark:text-blues-100"> Share</p>
+              </DropdownItem>
+            </div>
+            <hr />
+
+            <div
+              onClick={() => {
+                // setOpenShareMenu(!openShareMenu);
+                setIsVisible(false);
+                auth
+                  .signOut()
+                  .then(() => {
+                    console.log("Sign out successful");
+                    dispatch(logIn(false));
+                    dispatch(logOutAction(true));
+
+                    //   localStorage.removeItem("persist:root");
+                  })
+                  .catch((error) => {
+                    console.log(error);
+                  });
+              }}
+            >
+              {/* <a> */}
+              <DropdownItem
+                mode="signout"
+                className="!bg-t-pl"
+                leftIcon={
+                  <MdLogout className="ml-1 text-t-pd dark:text-t-pl" />
+                }
+              >
+                <p className=" text-pinks-700 dark:text-pinks-100"> Sign Out</p>
               </DropdownItem>
             </div>
 
-          
-             <LogOutButton/>
             {/* </a> */}
             {/* </a> */}
             {/* </Link> */}

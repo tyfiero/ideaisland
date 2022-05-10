@@ -8,9 +8,9 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import Modal from "../../Layout/Modal";
 import ReusableModal from "../../Layout/ReusableModal";
-function ToolBar({SW}) {
+function SToolBar({SWC}) {
 
-
+console.log(SWC)
   const sFormRedux = useSelector((state) => state.sForm);
   const sUpdate = useSelector((state) => state.sUpdate);
 
@@ -46,7 +46,7 @@ function ToolBar({SW}) {
       <p>Are you sure you want to start over? Changes may not be saved</p>
       <button
                 className="card__btn_prev save_button left-[5%]  flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick !w-[14em] gap-3 mt-5"
-                onClick={() => {SW?.goToStep(1)
+                onClick={() => {SWC?.goToStep(1)
                 setModalOpen(false)
                 }}
               >
@@ -64,8 +64,8 @@ function ToolBar({SW}) {
     <div className="flex justify-end text-xl fade-effect-quick">
       <div className="flex gap-5 py-1 pl-3 pr-5 text-xl">
         <FaRedo className="cursor-pointer text-t-bd md:hover:scale-110"   onClick={() => setModalOpen(!modalOpen)}/>
-        <FaChevronLeft className="cursor-pointer text-t-pm md:hover:scale-110" onClick={SW?.previousStep}/>
-        <FaChevronRight className="cursor-pointer text-t-bl md:hover:scale-110" onClick={SW?.nextStep}/>
+        <FaChevronLeft className="cursor-pointer text-t-pm md:hover:scale-110" onClick={SWC?.previousStep}/>
+        <FaChevronRight className="cursor-pointer text-t-bl md:hover:scale-110" onClick={SWC?.nextStep}/>
         <FaShareSquare className="cursor-pointer text-t-bd md:hover:scale-110"  onClick={() => {
                 setOpenShareMenu(!openShareMenu);
               }}/>
@@ -77,4 +77,4 @@ function ToolBar({SW}) {
   );
 }
 
-export default ToolBar;
+export default SToolBar;

@@ -72,7 +72,7 @@ const Sidebar2 = (props) => {
   return (
     <div
       className={
-        "sidebar-container md:border-l-0 flex md:left-0  md:h-full  sm:h-[6em] sm:w-full md:w-[4.5em] md:flex-col  md:rounded-br-[3px] sm:flex md:rounded-tl-none  md:absolute  sm:bg-none md:bg-gradient-to-t  md:from-clear-pl2 md:border-black md:border-[0px] content-center items-center md:justify-between	md:py-4  z-10 fade-effect-quick sm:justify-evenly  " +
+        "sidebar-container md:border-l-0 flex md:left-0  md:h-full  sm:h-[6em] sm:w-full md:w-[4.5em] md:flex-col  md:rounded-br-[3px] sm:flex md:rounded-tl-none  md:absolute  sm:bg-none md:bg-gradient-to-t  md:from-clear-pl2 dark:md:from-transparent md:border-black md:border-[0px] content-center items-center md:justify-between	md:py-4  z-10 fade-effect-quick sm:justify-evenly  " +
         (props.toggle ? " sm:flex md:flex" : " sm:hidden md:flex")
       }
     >

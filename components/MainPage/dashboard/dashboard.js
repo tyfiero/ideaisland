@@ -165,7 +165,7 @@ const router = useRouter();
               router.push("/notes")
               // dispatch(currentDocAction(idea.identifier))
             }}
-            className=" w-[12em] h-[2em] m-2 rounded-3xl bg-t-pm flex items-center justify-center text-slate-100 gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer md:hover:shadow-xl shadow-clear-bd3 step-2"
+            className=" w-[12em] h-[2em] m-2 rounded-3xl bg-t-pm flex items-center justify-center text-slate-100 gap-4 drop-shadow-xl md:hover:scale-105 transition md:active:scale-95 cursor-pointer md:hover:shadow-xl shadow-clear-bd3 step-2"
           >
             <FaExternalLinkAlt className="text-[20px]" />
             <p className="text-white">

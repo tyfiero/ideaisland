@@ -55,8 +55,7 @@ export default function Layout({ children }) {
   const router = useRouter();
 
   const userData = useUserData();
-  const { user, username, loading } = useContext(UserContext);
-
+  const { user, username, loading, paidPlan } = useContext(UserContext);
   const dispatch = useDispatch();
   const [isToggled, setIsToggled] = useState(true);
   const [loadingUI, setLoadingUI] = useState(false);
@@ -281,7 +280,7 @@ if (darkRedux) {
             <div className="svg-blob5 rotate-effect scale-effect"></div>
 
           </div> */}
-        <div className=" flex top-bar !min-h-[4em]  w-full">
+        <div className=" flex top-bar !min-h-[4em]  w-full ">
           {/* {loadingUI ? <Loader show={true}/>: "NOT LOADING YO"} */}
         <div className="w-[25em]">
 

@@ -31,6 +31,7 @@ import ToolBar from "../problemComponents/ToolBar";
 
 import SIdeate from "./SIdeate";
 import { useSelector } from "react-redux";
+import SToolBar from "./SToolBar";
 
 const SFilter = loadable(() => import("./SFilter"));
 const SRankFeatures = loadable(() => import("./SRankFeatures"));
@@ -46,8 +47,13 @@ function SolutionWizard(props) {
   const [changes, setChanges] = useState(false);
   const [reset, setReset] = useState(false);
 
+  console.log(changes + "  changes");
 
-  console.log(changes + "  changes")
+  const [state, updateState] = useState({
+    form: {},
+    demo: true, // uncomment to see more
+  });
+
   // const [formContent, setFormContent] = useState({ form: {} });
   // const updateForm = (key, value) => {
   //   const { form } = formContent;
@@ -70,17 +76,29 @@ function SolutionWizard(props) {
   //     // goToStep(1)
   //   }
   // };
-  
-  // const setInstance = (SW) =>
-  //   setFormContent({
-  //     ...formContent,
-  //     SW,
-  //   });
+  const updateForm = (key, value) => {
+    const { form } = state;
 
-  // const { SW } = formContent;
+    form[key] = value;
+    updateState({
+      ...state,
+      form,
+    });
+  };
+
+  const setInstance = (SWC) => {
+    updateState({
+      ...state,
+      SWC,
+    });
+  };
+  const { SWC, demo } = state;
+  console.log(state);
+  console.log(SWC);
+
   return (
     <div className="w-full h-full">
-      <ToolBar />
+      <SToolBar SWC={SWC} />
       {/* <InstanceDemo SW={SW} /> */}
       <StepWizard
         // onStepChange={onStepChange}
@@ -89,35 +107,90 @@ function SolutionWizard(props) {
         initialStep={1}
         //  transitions={state.transitions} // comment out for default transitions
         nav={<SolutionProgressStepper />}
-        // instance={setInstance}
+        instance={setInstance}
       >
         {/* <SIdeate update={updateForm} /> */}
-        <SFilter hashKey={"select-idea"} changes={changes} setChanges={setChanges} reset={reset} setReset={setReset}/>
-        <SFeatures  hashKey={"add-features"} changes={changes} setChanges={setChanges} reset={reset} setReset={setReset}/>
-        <SRankFeatures hashKey={"rank-features"} changes={changes} setChanges={setChanges} reset={reset} setReset={setReset}/>
-        <STechStack hashKey={"tech-stack"} changes={changes} setChanges={setChanges} reset={reset} setReset={setReset}/>
-        <SDetails hashKey={"Details"} changes={changes} setChanges={setChanges} reset={reset} setReset={setReset}/>
+        <SFilter
+          hashKey={"select-idea"}
+          changes={changes}
+          setChanges={setChanges}
+          reset={reset}
+          setReset={setReset}
+        />
+        <SFeatures
+          hashKey={"add-features"}
+          changes={changes}
+          setChanges={setChanges}
+          reset={reset}
+          setReset={setReset}
+        />
+        <SRankFeatures
+          hashKey={"rank-features"}
+          changes={changes}
+          setChanges={setChanges}
+          reset={reset}
+          setReset={setReset}
+        />
+        <STechStack
+          hashKey={"tech-stack"}
+          changes={changes}
+          setChanges={setChanges}
+          reset={reset}
+          setReset={setReset}
+        />
+        <SDetails
+          hashKey={"Details"}
+          changes={changes}
+          setChanges={setChanges}
+          reset={reset}
+          setReset={setReset}
+        />
       </StepWizard>
+      {/* <InstanceDemo1 SWC={SWC}/> */}
     </div>
   );
 }
 
 export default SolutionWizard;
 
+//  const InstanceDemo1 = ({ SWC }) => {
+//  console.log(SWC)
+
+//  return(
+//     <>
+//       <h4>Control from outside component</h4>
+//       <button className={"btn btn-secondary"} onClick={SWC.previousStep}>
+//         Previous Step
+//       </button>
+//       &nbsp;
+//       <button className={"btn btn-secondary"} onClick={SWC.nextStep}>
+//         Next Step
+//       </button>
+//       &nbsp;
+//       <button
+//         className={"btn btn-secondary"}
+//         onClick={() => SWC.goToNamedStep("progress")}
+//       >
+//         Go to progress
+//       </button>
+//     </>
+//   );
+//  }
+
 /** Demo of using instance */
-const InstanceDemo = ({ SW }) => (
-  <>
-    <div className="z-40 flex float-right gap-5 py-1 pl-3 pr-5 text-xl border-b-2 border-l-2 rounded-bl-md hover:scale-150">
-      <FaRedo
-        className="cursor-pointer text-t-bd md:hover:scale-110"
-        onClick={() => SW.goToStep(1)}
-      />
-      <FaChevronLeft className="cursor-pointer text-t-pm md:hover:scale-110" />
-      <FaChevronRight className="cursor-pointer text-t-bl md:hover:scale-110" />
-      <FaShareSquare className="cursor-pointer text-t-bd md:hover:scale-110" />
-    </div>
-  </>
-);
+// const InstanceDemo = ({ SW }) => (
+//   <>
+//     <div className="z-40 flex float-right gap-5 py-1 pl-3 pr-5 text-xl border-b-2 border-l-2 rounded-bl-md hover:scale-150">
+//       <FaRedo
+//         className="cursor-pointer text-t-bd md:hover:scale-110"
+//         onClick={() => SW.goToStep(1)}
+//       />
+//       <FaChevronLeft className="cursor-pointer text-t-pm md:hover:scale-110" />
+//       <FaChevronRight className="cursor-pointer text-t-bl md:hover:scale-110" />
+//       <FaShareSquare className="cursor-pointer text-t-bd md:hover:scale-110" />
+//     </div>
+//   </>
+// );
 
 // const Stats = ({
 //   currentStep,

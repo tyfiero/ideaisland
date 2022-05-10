@@ -29,7 +29,7 @@ export default function UsernameForm(props) {
 
     // Commit both docs together as a batch write.
     const batch = writeBatch(getFirestore());
-    batch.set(userDoc, { username: formValue, photoURL: user.photoURL, displayName: user.displayName, credits: 10 });
+    batch.set(userDoc, { username: formValue, photoURL: user.photoURL, displayName: user.displayName, credits: 10, plan: "Free" });
     batch.set(usernameDoc, { uid: user.uid });
 
 

@@ -19,6 +19,7 @@ const NotePage = (props) => {
   // console.log(currentNote)
 
   return (
+    <AuthCheck plan="Innovator">
     <div className="flex flex-col mt-3 fade-effect-turbo">
       {/* <div className="flex flex-col items-center "> */}
       {/* <p>A place for all of your wild ideas and notes.</p> */}
@@ -34,6 +35,7 @@ const NotePage = (props) => {
         </div>
       </div>
     </div>
+    </AuthCheck>
   );
 };
 

@@ -19,6 +19,15 @@ const SettingsPage = () => {
   const [loading, setLoading] = useState(false);
   const [reset, setReset] = useState(false);
 
+
+  // const [goodies, setGoodies] = useState(
+  //   " border-[1px] border-dashed !mb-10"
+  // );
+  // const [goodies2, setGoodies2] = useState(
+  //   " border-[1px]  !ml-10"
+  // );
+
+
   const [colorOpacity, setColorOpacity] = useState(0.6);
   const [menuOpacity, setMenuOpacity] = useState(0.6);
   const [opacityChange, setOpacityChange] = useState(false);
@@ -148,7 +157,7 @@ const SettingsPage = () => {
   useEffect(() => {
     if (typeof window !== "undefined") {
       localStorage.setItem("menuOpacity", menuOpacity);
-      let base = darkRedux ? "hsla(200,0%,50%," : "hsla(200,0%,100%,";
+      let base = darkRedux ? "hsla(200,0%,5%," : "hsla(200,0%,100%,";
 
       let concat = base + menuOpacity + ")";
       document.documentElement.style.setProperty("--menuColor", concat);
@@ -197,11 +206,93 @@ const SettingsPage = () => {
 
   return (
     //  <AuthCheck>
-    <div className="w-full sentence-container fade-effect-quick overflow-y-scroll">
+    <div className="w-full overflow-y-scroll sentence-container fade-effect-quick">
       {loading ? (
         <FullLoader show={true} />
       ) : (
         <div>
+          {/* <div className="absolute top-0 left-0 w-full h-full pixel-grid z-[1000]">
+          
+          
+          <div className={"w-full mb-5 border-black " + goodies}></div>
+          <div className={"w-full mb-5 border-black " + goodies}></div>
+          <div className={"w-full mb-5 border-black " + goodies}></div>
+          <div className={"w-full mb-5 border-black " + goodies}></div>
+          <div className={"w-full mb-5 border-black " + goodies}></div>
+          <div className={"w-full mb-5 border-black " + goodies}></div>
+          <div className={"w-full mb-5 border-black " + goodies}></div>
+          <div className={"w-full mb-5 border-black " + goodies}></div>
+          <div className={"w-full mb-5 border-black " + goodies}></div>
+          <div className={"w-full mb-5 border-black " + goodies}></div>
+          <div className={"w-full mb-5 border-black " + goodies}></div>
+          <div className={"w-full mb-5 border-black " + goodies}></div>
+          <div className={"w-full mb-5 border-black " + goodies}></div>
+          <div className={"w-full mb-5 border-black " + goodies}></div>
+          <div className={"w-full mb-5 border-black " + goodies}></div>
+          <div className={"w-full mb-5 border-black " + goodies}></div>
+          <div className={"w-full mb-5 border-black " + goodies}></div>
+          <div className={"w-full mb-5 border-black " + goodies}></div>
+          <div className={"w-full mb-5 border-black " + goodies}></div>
+          <div className={"w-full mb-5 border-black " + goodies}></div>
+          <div className={"w-full mb-5 border-black " + goodies}></div>
+          <div className={"w-full mb-5 border-black " + goodies}></div>
+          <div className={"w-full mb-5 border-black " + goodies}></div>
+          <div className={"w-full mb-5 border-black " + goodies}></div>
+          <div className={"w-full mb-5 border-black " + goodies}></div>
+          <div className={"w-full mb-5 border-black " + goodies}></div>
+          <div className={"w-full mb-5 border-black " + goodies}></div>
+          <div className={"w-full mb-5 border-black " + goodies}></div>
+          <div className={"w-full mb-5 border-black " + goodies}></div>
+          <div className={"w-full mb-5 border-black " + goodies}></div>
+          <div className={"w-full mb-5 border-black " + goodies}></div>
+          <div className={"w-full mb-5 border-black " + goodies}></div>
+          <div className={"w-full mb-5 border-black " + goodies}></div>
+          <div className={"w-full mb-5 border-black " + goodies}></div>
+          <div className={"w-full mb-5 border-black " + goodies}></div>
+          <div className={"w-full mb-5 border-black " + goodies}></div>
+          <div className={"w-full mb-5 border-black " + goodies}></div>
+          <div className={"w-full mb-5 border-black " + goodies}></div>
+          <div className={"w-full mb-5 border-black " + goodies}></div>
+          <div className={"w-full mb-5 border-black " + goodies}></div>
+          <div className={"w-full mb-5 border-black " + goodies}></div>
+          <div className={"w-full mb-5 border-black " + goodies}></div>
+        
+        
+        
+        
+        
+         
+        
+     
+         
+          </div>
+
+          <div className="absolute top-0 left-0 w-full h-full pixel-grid z-[10010] flex">
+
+          <div className={"h-full  border-black " + goodies2}></div>
+          <div className={"h-full  border-black " + goodies2}></div>
+          <div className={"h-full  border-black " + goodies2}></div>
+          <div className={"h-full  border-black " + goodies2}></div>
+          <div className={"h-full  border-black " + goodies2}></div>
+          <div className={"h-full  border-black " + goodies2}></div>
+          <div className={"h-full  border-black " + goodies2}></div>
+          <div className={"h-full  border-black " + goodies2}></div>
+          <div className={"h-full  border-black " + goodies2}></div>
+          <div className={"h-full  border-black " + goodies2}></div>
+          <div className={"h-full  border-black " + goodies2}></div>
+          <div className={"h-full  border-black " + goodies2}></div>
+          <div className={"h-full  border-black " + goodies2}></div>
+          <div className={"h-full  border-black " + goodies2}></div>
+          <div className={"h-full  border-black " + goodies2}></div>
+          <div className={"h-full  border-black " + goodies2}></div>
+          <div className={"h-full  border-black " + goodies2}></div>
+          <div className={"h-full  border-black " + goodies2}></div>
+          <div className={"h-full  border-black " + goodies2}></div>
+          <div className={"h-full  border-black " + goodies2}></div>
+          <div className={"h-full  border-black " + goodies2}></div>
+          <div className={"h-full  border-black " + goodies2}></div>
+          </div> */}
+
           <h1 className="text-3xl text-t-bd dark:text-blues-100">Settings</h1>
           <div className="flex flex-col min-w-[40em] gap-5 p-5 glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]  ">
             <div className="flex gap-20">

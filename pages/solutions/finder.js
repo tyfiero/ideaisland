@@ -1,5 +1,6 @@
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, useContext } from "react";
 import {
+  FaArrowUp,
   FaDice,
   FaEdit,
   FaEquals,
@@ -32,12 +33,15 @@ import InspirationStatement from "../../components/MainPage/solutionsComponents/
 
 // import { CSSTransition } from "react-transition-group";
 import { motion, AnimatePresence } from "framer-motion";
+import { UserContext } from "../../lib/context";
+import Link from "next/link";
 
 const CombinatorialPage = (props) => {
   const router = useRouter();
   // console.log("RERENDER");
   const isRandomized = useSelector((state) => state.randomize);
   const sArray = useSelector((state) => state.sArray);
+  const { username, paidPlan } = useContext(UserContext);
 
   const [update, setUpdate] = useState(false);
   // const [counter, setCounter] = useState(false);
@@ -429,7 +433,29 @@ const CombinatorialPage = (props) => {
                     <p className="text-lg text-left text-t-pd">
                       Innovation AI (beta)
                     </p>
-                    <GPTtool showButton={true} />
+                   {paidPlan === "Hobbyist" ? (<div className="flex flex-col w-full ">
+              <div className="flex items-center justify-between ai-output-box bg-white/80 min-h-[14em] dark:bg-slate-800/60">
+                <h3 className="text-2xl text-gray-700 nun dark:text-t-pd">
+                  {"Innovation AI is a Premium Feature"}
+                </h3>
+                <p className="text-gray-700">
+                  {
+                    "Upgrade to the Innovator or Pro Plan to unlock the power of AI"
+                  }
+                </p>
+              
+                <Link href="/pricing" passHref>
+          <a>
+            <button className="w-[18em] h-12 rounded-3xl bg-t-pm text-xl flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95">
+              <FaArrowUp style={{ color: "white", fontSize: "29px" }} />
+              Upgrade My Account!
+            </button>
+          </a>
+        </Link>
+
+                 
+              </div>
+            </div>): <GPTtool showButton={true} />} 
                   </motion.div>
                 )}
               </AnimatePresence>

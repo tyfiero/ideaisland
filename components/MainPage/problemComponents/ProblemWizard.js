@@ -29,46 +29,94 @@ function ProblemWizard(props) {
   const [reset, setReset] = useState(false);
   const [loadData, setLoadData] = useState(false);
 
-
-
-
   // Do something on step change
   // const onStepChange = (stats) => {
   //   // console.log(stats);
   // };
-  
-  // const setInstance = (SW) =>
-  //   setFormContent({
-  //     ...formContent,
-  //     SW,
-  //   });
 
-  // const { SW } = formContent;
+  const [state, updateState] = useState({
+    form: {},
+    // demo: true, // uncomment to see more
+  });
+  const { SW } = state;
+
+
+  
+  const setInstance = (SW) =>
+    updateState({
+      ...state,
+      SW,
+    });
+
+  // const InstanceDemo1 = ({ SW }) => (
+  //   <>
+  //     <h4>Control from outside component</h4>
+  //     <button className={"btn btn-secondary"} onClick={SW.previousStep}>
+  //       Previous Step
+  //     </button>
+  //     &nbsp;
+  //     <button className={"btn btn-secondary"} onClick={SW.nextStep}>
+  //       Next Step
+  //     </button>
+  //     &nbsp;
+  //     <button
+  //       className={"btn btn-secondary"}
+  //       onClick={() => SW.goToNamedStep("progress")}
+  //     >
+  //       Go to progress
+  //     </button>
+  //   </>
+  // );
+
   return (
     <div>
-      <ToolBar  />
+      <ToolBar SW={SW}/>
       {/* <InstanceDemo SW={SW} /> */}
       <StepWizard
         // onStepChange={onStepChange}
         isHashEnabled
-        isLazyMount={true} 
+        isLazyMount={true}
+        initialStep={1}
         //  transitions={state.transitions} // comment out for default transitions
         nav={<ProgressStepper />}
-        // instance={setInstance}
+        instance={setInstance}
       >
-        <PStartMenu hashKey={"Start"} setChanges={setChanges} reset={reset} setReset={setReset}  loadData={loadData} setLoadData={setLoadData}/>
-        <PWhy hashKey={"Why"} setChanges={setChanges} reset={reset} loadData={loadData}/>
-        <PWhat hashKey={"What"}  setChanges={setChanges} reset={reset} loadData={loadData}/>
-        <PWho hashKey={"Who"} setChanges={setChanges} reset={reset} loadData={loadData}/>
+        <PStartMenu
+          hashKey={"Start"}
+          setChanges={setChanges}
+          reset={reset}
+          setReset={setReset}
+          loadData={loadData}
+          setLoadData={setLoadData}
+        />
+        <PWhy
+          hashKey={"Why"}
+          setChanges={setChanges}
+          reset={reset}
+          loadData={loadData}
+        />
+        <PWhat
+          hashKey={"What"}
+          setChanges={setChanges}
+          reset={reset}
+          loadData={loadData}
+        />
+        <PWho
+          hashKey={"Who"}
+          setChanges={setChanges}
+          reset={reset}
+          loadData={loadData}
+        />
         <PDetails
           hashKey={"Details"}
-          
           setChanges={setChanges}
           changes={changes}
           reset={reset}
           loadData={loadData}
         />
       </StepWizard>
+
+      {/* <InstanceDemo1 SW={SW}/> */}
     </div>
   );
 }
@@ -76,16 +124,19 @@ function ProblemWizard(props) {
 export default ProblemWizard;
 
 /** Demo of using instance */
-const InstanceDemo = ({ SW }) => (
-  <>
-    <div className="z-50 flex float-right gap-5 py-1 pl-3 pr-5 text-xl border-b-2 border-l-2 rounded-bl-md hover:scale-150">
-      <FaRedo className="cursor-pointer text-t-bd md:hover:scale-110" onClick={() => SW.goToStep(1)}/>
-      <FaChevronLeft className="cursor-pointer text-t-pm md:hover:scale-110" />
-      <FaChevronRight className="cursor-pointer text-t-bl md:hover:scale-110" />
-      <FaShareSquare className="cursor-pointer text-t-bd md:hover:scale-110" />
-    </div>
-  </>
-);
+// const InstanceDemo = ({ SW }) => (
+//   <>
+//     <div className="z-50 flex float-right gap-5 py-1 pl-3 pr-5 text-xl border-b-2 border-l-2 rounded-bl-md hover:scale-150">
+//       <FaRedo
+//         className="cursor-pointer text-t-bd md:hover:scale-110"
+//         onClick={() => SW.goToStep(1)}
+//       />
+//       <FaChevronLeft className="cursor-pointer text-t-pm md:hover:scale-110" />
+//       <FaChevronRight className="cursor-pointer text-t-bl md:hover:scale-110" />
+//       <FaShareSquare className="cursor-pointer text-t-bd md:hover:scale-110" />
+//     </div>
+//   </>
+// );
 
 // const Stats = ({
 //   currentStep,

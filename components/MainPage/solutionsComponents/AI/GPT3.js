@@ -260,7 +260,7 @@ const deduct = async (values) => {
           setGPTJInput(e.target.value);
         }}
         // defaultValue={contentTitle}
-        placeholder="Content to send to AI"
+        placeholder="3-5 keywords about your problem"
         maxLength="150"
         value={GPTJInput}
 
@@ -356,14 +356,14 @@ const deduct = async (values) => {
         <p className="pt-1 text-left text-md text-t-pd">Input:</p>
       </div>
       <TextareaAutosize
-        className="w-[99%] rounded-md nun dark:!bg-slate-900/90 dark:text-white"
+        className="w-[99%] rounded-md nun   textarea-tw dark:!bg-slate-900/90 dark:text-white"
         // defaultValue={contentTitle}
         onChange={(e) => {
           // console.log(e.target.value)
           setGPT3Input(e.target.value);
         }}
         value={GPT3Input}
-        placeholder="Content to send to AI"
+        placeholder="3-5 keywords about your problem"
         maxLength="150"
       ></TextareaAutosize>
 

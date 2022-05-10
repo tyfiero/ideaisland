@@ -82,7 +82,7 @@ const router = useRouter();
     });
     return date + ", " + clockTime;
   };
-console.log(mode)
+
   let clickTimer;
   const onClickHandler = (event) => {
     clearTimeout(clickTimer);
@@ -133,7 +133,7 @@ console.log(mode)
             {/* <Link href={`/${idea.username}/${idea.slug}`}>
               <a> */}
             <div className="cursor-pointer">
-              <h2 className="text-t-bd dark:text-blues-100 truncate text-[18px] nun ">
+              <h2 className="text-t-bd dark:text-blues-100 truncate text-[18px] nun font-bold">
                 {idea.title || "*Unnamed Idea"}
               </h2>
               {/* <p className="truncate text-[14px]">{idea.content}</p> */}
@@ -141,16 +141,16 @@ console.log(mode)
               {type === "problem" && (
                 <>
                   <p className="overflow-hidden max-h-[3em]">
-                    Why:{" " + (idea.why || "...")}
+                  <span className="font-bold text-t-pd">Why:</span>{" " + (idea.why || "...")}
                   </p>
                   <p className="overflow-hidden max-h-[3em]">
-                    What:{" " + (idea.what || "...")}
+                    <span className="font-bold text-t-pd">What:</span>{" " + (idea.what || "...")}
                   </p>
                   <p className="overflow-hidden max-h-[3em]">
-                    Who:{" " + (idea.who|| "...")}
+                  <span className="font-bold text-t-pd">Who:</span>{" " + (idea.who|| "...")}
                   </p>
                   <p className="overflow-hidden max-h-[3em]">
-                    Root Cause:{" " + (idea.pq3|| "...")}
+                  <span className="font-bold text-t-pd">Root Cause:</span>{" " + (idea.pq3|| "...")}
                   </p>
                 </>
               )}

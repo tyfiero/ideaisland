@@ -18,29 +18,26 @@ function Pricing(props) {
   const [successPopUp, setSuccessPopUp] = useState(false);
   const [plan, setPlan] = useState("Basic");
   const [credits, setCredits] = useState(100);
+  const [cancelSubUrl, setCancelSubUrl] = useState(null);
 
   const userUIDRedux = useSelector((state) => state.userUID);
-  const { username, user } = useContext(UserContext);
-
-
+  const { username, user, paidPlan } = useContext(UserContext);
 
   useEffect(() => {
-          // eslint-disable-next-line
-          if(Paddle){
-          let vendorNum = Number(process.env.NEXT_PUBLIC_PADDLE_VENDOR_ID);
-          // eslint-disable-next-line
-            Paddle.Setup({
-              vendor: vendorNum,
-            })
-            console.log("Loaded Paddle")
-          }
- 
-    
-  },[])
+    const Paddle = window.Paddle;
+    // console.log(Paddle)
+    // eslint-disable-next-line
+    if (typeof Paddle !== "undefined") {
+      let vendorNum = Number(process.env.NEXT_PUBLIC_PADDLE_VENDOR_ID);
+      // eslint-disable-next-line
+      Paddle.Setup({
+        vendor: vendorNum,
+      });
+      console.log("Loaded Paddle");
+    }
+  }, []);
 
-
-  
-  const updateIdea = async (amount, planType) => {
+  const updateIdea = async (amount, planType, cancelUrl, updateUrl,paddleUserId, nextBillDate, subscriptionStartDate, subscriptionID ) => {
     let uid;
 
     if (user?.uid) {
@@ -55,7 +52,7 @@ function Pricing(props) {
     }
     const ref = doc(getFirestore(), "users", uid);
 
-    let data = { credits: amount, plan: planType };
+    let data = { credits: amount, plan: planType, cancelUrl: cancelUrl, updateUrl: null, paddleUserID: null, nextBillDate: null, subscriptionStartDate: null, subscriptionID: null   };
     await updateDoc(ref, data)
       .then(() => {
         toast.success(`New AI credit balance: ${amount}`);
@@ -67,29 +64,39 @@ function Pricing(props) {
   };
 
   function checkoutComplete(data) {
-    // console.log(data);
+    console.log(data);
     // alert("Thanks for your purchase.");
+
+    
+    let updateUrl;
+    let cancelUrl;
+    let paddleUserId;
+    let nextBillDate;
+    let subscriptionStartDate;
+    let subscriptionID;
+
+
 
     if (
       data.product.name === "Hobbyist" ||
       data.product.name === "Hobbyist Monthly"
-    ){
+    ) {
       setCredits(0);
       setPlan("Hobbyist");
       updateIdea(0, "Hobbyist");
       setSuccessPopUp(true);
-    }else if (
+    } else if (
       data.product.name === "Innovator" ||
       data.product.name === "Innovator Monthly"
-    ){
+    ) {
       setCredits(250);
       setPlan("Innovator");
       updateIdea(250, "Innovator");
       setSuccessPopUp(true);
-    }else if (
+    } else if (
       data.product.name === "Pro" ||
       data.product.name === "Pro Monthly"
-    ){
+    ) {
       setCredits(1000);
       setPlan("Pro");
       updateIdea(1000, "Pro");
@@ -110,27 +117,26 @@ function Pricing(props) {
         {console.log("Loaded paddleeeeeeeeeee from script")}
       </script> */}
       <Script
-      id="paddle-checkout-js"
+        id="paddle-checkout-js"
         src="https://cdn.paddle.com/paddle/paddle.js"
         strategy="beforeInteractive"
-      //   onLoad={(e) => {
-      //     console.log("before load paddle");
+        //   onLoad={(e) => {
+        //     console.log("before load paddle");
 
-      //     // eslint-disable-next-line
-      //     // Paddle.Environment.set("sandbox");
-      //     // eslint-disable-next-line
-      //     Paddle.Setup({
-      //       vendor: Number(process.env.NEXT_PUBLIC_PADDLE_VENDOR_ID),
+        //     // eslint-disable-next-line
+        //     // Paddle.Environment.set("sandbox");
+        //     // eslint-disable-next-line
+        //     Paddle.Setup({
+        //       vendor: Number(process.env.NEXT_PUBLIC_PADDLE_VENDOR_ID),
 
-       
-      //     });
-      //     console.log("Loaded paddle");
-      //   }
-      // }
-      onError={(e) => {
-        console.log("Error loading paddle");
-        console.log(e)
-      }}
+        //     });
+        //     console.log("Loaded paddle");
+        //   }
+        // }
+        onError={(e) => {
+          console.log("Error loading paddle");
+          console.log(e);
+        }}
       />
       {!props.onboard && !successPopUp && (
         <div className="mt-4 font-semibold text-center">
@@ -189,8 +195,20 @@ function Pricing(props) {
               </div>
               <div className="flex-wrap items-center justify-center w-full gap-8 my-0 sm:flex">
                 {/* Basic */}
-                <div className=" px-4 py-4 mt-6 text-black transition duration-500 rounded-lg shadow-lg bg-white/60 dark:bg-slate-600/80 md:hover:bg-clear-bl3 sm:w-1/2 md:w-1/2 lg:w-[23em] group !min-h-[36em] flex-col flex justify-between">
-                  <div className="p-4">
+                <div
+                  className={
+                    "w-full px-4 py-4 mt-6 text-black transition duration-500 rounded-lg     sm:w-1/2 md:w-1/2 lg:w-[23em] group min-h-[36em] flex-col flex justify-between " +
+                    (paidPlan === "Hobbyist"
+                      ? " bg-clear-bl1 border-8 border-t-bd dark:bg-clear-bl1 shadow-3xl"
+                      : " bg-white/60 md:hover:bg-clear-bl2 dark:bg-slate-600/80 shadow-lg")
+                  }
+                >
+                  <div className="relative p-4">
+                    {paidPlan === "Hobbyist" && (
+                      <p className="absolute text-xl font-bold -left-3 -top-4 text-t-bd">
+                        Current Plan:
+                      </p>
+                    )}
                     <div className="flex justify-center">
                       <span className="inline-flex px-4 py-1 mb-0 text-3xl font-semibold leading-5 tracking-wide transition rounded-full group-hover:text-white blue-gradient-text">
                         Hobbyist
@@ -236,26 +254,55 @@ function Pricing(props) {
                   </div>
 
                   <button
-                    className="w-full px-3 py-2 text-white transition-colors duration-700 transform rounded-lg shadow text-md bg-t-bl hover:text-t-bl hover:bg-white"
+                    className={
+                      "w-full px-3 py-2  transition-colors duration-700 transform rounded-lg shadow text-md    " +
+                      (paidPlan === "Hobbyist"
+                        ? " bg-slate-300 cursor-not-allowed"
+                        : " text-white hover:bg-white hover:text-t-bl bg-t-bl")
+                    }
                     onClick={() => {
-                      // eslint-disable-next-line
-                      Paddle.Checkout.open({
-                        product: annual ? "767575" : "767574",
-                        email: user.email || null,
-                        passthrough: `{"uid": ${user?.uid}}`,
-                        successCallback: checkoutComplete,
-                        closeCallback: checkoutClosed,
-                      });
+                      if (paidPlan !== "Hobbyist") {
+                        // eslint-disable-next-line
+                        if (Paddle.Audience.AllowPopup() === true) {
+                          // eslint-disable-next-line
+                          Paddle.Checkout.open({
+                            // product: annual ? "767575" : "767574",
+                            product: "769844",
+                            email: user.email || null,
+                            passthrough: `{"uid": ${user?.uid}}`,
+                            successCallback: checkoutComplete,
+                            closeCallback: checkoutClosed,
+                          });
+                        } else {
+                          toast.error("Please allow popups to proceed");
+                        }
+                      } else {
+                        toast.error("You are already on this plan");
+                      }
                     }}
                   >
-                    Select this plan
+                    {paidPlan === "Hobbyist"
+                      ? "Active Plan"
+                      : "Select this plan"}
                   </button>
                 </div>
 
                 {/* <!-- Popular --> */}
 
-                <div className="w-full px-4 py-4 mt-6 text-black transition duration-500 rounded-lg shadow-lg bg-white/60 dark:bg-slate-600/80 md:hover:bg-clear-bl3 sm:w-1/2 md:w-1/2 lg:w-[23em] group min-h-[36em] flex-col flex justify-between">
-                  <div className="p-4">
+                <div
+                  className={
+                    "w-full px-4 py-4 mt-6 text-black transition duration-500 rounded-lg     sm:w-1/2 md:w-1/2 lg:w-[23em] group min-h-[36em] flex-col flex justify-between " +
+                    (paidPlan === "Innovator"
+                      ? " bg-clear-bl1 border-8 border-t-bd dark:bg-clear-bl1 shadow-3xl"
+                      : " bg-white/60 md:hover:bg-clear-bl2 dark:bg-slate-600/80 shadow-lg")
+                  }
+                >
+                  <div className="relative p-4">
+                    {paidPlan === "Innovator" && (
+                      <p className="absolute text-xl font-bold -left-3 -top-4 text-t-bd">
+                        Current Plan:
+                      </p>
+                    )}
                     <div className="flex justify-center">
                       <span className="inline-flex px-4 py-1 text-3xl font-semibold leading-5 tracking-wide transition rounded-full group-hover:text-white blue-gradient-text">
                         Innovator
@@ -310,26 +357,48 @@ function Pricing(props) {
 
                   <button
                     type="button"
-                    className="w-full px-3 py-2 text-white transition-colors duration-700 transform rounded-lg shadow text-md bg-t-bl hover:text-t-bl hover:bg-white"
+                    className={
+                      "w-full px-3 py-2  transition-colors duration-700 transform rounded-lg shadow text-md    " +
+                      (paidPlan === "Innovator"
+                        ? " bg-slate-300 cursor-not-allowed"
+                        : " text-white hover:bg-white hover:text-t-bl bg-t-bl")
+                    }
                     onClick={() => {
-                      // eslint-disable-next-line
-                      Paddle.Checkout.open({
-                        product: annual ? "769859" : "769860",
-                        email: user.email || null,
-                        passthrough: `{"uid": ${user?.uid}}`,
-                        successCallback: checkoutComplete,
-                        closeCallback: checkoutClosed,
-                      });
-
+                      if (paidPlan !== "Innovator") {
+                        // eslint-disable-next-line
+                        Paddle.Checkout.open({
+                          product: annual ? "769859" : "769860",
+                          email: user.email || null,
+                          passthrough: `{"uid": ${user?.uid}}`,
+                          successCallback: checkoutComplete,
+                          closeCallback: checkoutClosed,
+                        });
+                      } else {
+                        toast.error("You are already on this plan");
+                      }
                     }}
                   >
-                    Select this plan
+                    {paidPlan === "Innovator"
+                      ? "Active Plan"
+                      : "Select this plan"}
                   </button>
                 </div>
 
                 {/* <!-- premium --> */}
-                <div className="w-full px-4 py-4 mt-6 text-black transition duration-500 rounded-lg shadow-lg bg-white/60 dark:bg-slate-600/80 md:hover:bg-clear-bl3 sm:w-1/2 md:w-1/2 lg:w-[23em] group min-h-[36em] flex-col flex justify-between">
-                  <div className="p-4">
+                <div
+                  className={
+                    "w-full px-4 py-4 mt-6 text-black transition duration-500 rounded-lg     sm:w-1/2 md:w-1/2 lg:w-[23em] group min-h-[36em] flex-col flex justify-between " +
+                    (paidPlan === "Pro"
+                      ? " bg-clear-bl1 border-8 border-t-bd dark:bg-clear-bl1 shadow-3xl"
+                      : " bg-white/60 md:hover:bg-clear-bl2 dark:bg-slate-600/80 shadow-lg")
+                  }
+                >
+                  <div className="relative p-4">
+                    {paidPlan === "Pro" && (
+                      <p className="absolute text-xl font-bold -left-3 -top-4 text-t-bd">
+                        Current Plan:
+                      </p>
+                    )}
                     <div className="flex justify-center">
                       <span className="inline-flex px-4 py-1 text-3xl font-semibold leading-5 tracking-wide transition rounded-full group-hover:text-white blue-gradient-text">
                         Pro
@@ -383,19 +452,28 @@ function Pricing(props) {
                   </div>
                   <button
                     type="button"
-                    className="w-full px-3 py-2 text-white transition-colors duration-700 transform rounded-lg shadow text-md bg-t-bl hover:text-t-bl hover:bg-white"
+                    className={
+                      "w-full px-3 py-2  transition-colors duration-700 transform rounded-lg shadow text-md    " +
+                      (paidPlan === "Pro"
+                        ? " bg-slate-300 cursor-not-allowed"
+                        : " text-white hover:bg-white hover:text-t-bl bg-t-bl")
+                    }
                     onClick={() => {
-                      // eslint-disable-next-line
-                      Paddle.Checkout.open({
-                        product: annual ? "769861" : "769863",
-                        email: user.email || null,
-                        passthrough: `{"uid": ${user?.uid}}`,
-                        successCallback: checkoutComplete,
-                        closeCallback: checkoutClosed,
-                      });
+                      if (paidPlan !== "Pro") {
+                        // eslint-disable-next-line
+                        Paddle.Checkout.open({
+                          product: annual ? "769861" : "769863",
+                          email: user.email || null,
+                          passthrough: `{"uid": ${user?.uid}}`,
+                          successCallback: checkoutComplete,
+                          closeCallback: checkoutClosed,
+                        });
+                      } else {
+                        toast.error("You are already on this plan");
+                      }
                     }}
                   >
-                    Select this plan
+                    {paidPlan === "Pro" ? "Active Plan" : "Select this plan"}
                   </button>
                 </div>
               </div>

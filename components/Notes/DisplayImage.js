@@ -334,7 +334,7 @@ function DisplayImage({ type, mode }) {
 
   useEffect(() => {
     setShowImgPopUp(false);
-    console.log("UE START");
+    // console.log("UE START");
     setImageLoading(true);
 
     if (currentDocRedux) {
@@ -700,7 +700,7 @@ function DisplayImage({ type, mode }) {
       <img
         ref={imgRef}
         onLoad={() => {
-          console.log("IMG LOADED");
+          // console.log("IMG LOADED");
 
           setImageLoading(false);
 
