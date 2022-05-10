@@ -51,6 +51,7 @@ const [modalOpen, setModalOpen] = useState(false)
              onClick={() => {
                
             //  setModalOpen(false)
+            //eslint-disable-next-line 
              Paddle.Checkout.open({
               override: 'https://subscription-management.paddle.com/subscription/12345/hash/.../cancel'
             });

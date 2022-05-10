@@ -15,6 +15,9 @@ res.status(200).json({success: true});
 }
 
 
+}else{
+    res.status(401).json({error: 'Webhook is not valid'});
 }
 
 }
+
