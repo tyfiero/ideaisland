@@ -43,6 +43,7 @@ const [modalOpen, setModalOpen] = useState(false)
              toast.custom("😄 Great Choice! We're happy you're here")
              }}
            >
+             
              <FaRegSmile className="mr-1 text-[24px]" />
              No, Keep My Subscription Active
            </button>
@@ -143,7 +144,7 @@ const [modalOpen, setModalOpen] = useState(false)
       setDeleteWindow(true)
     }}
     >Delete Account</button>}
-
+fa
 
     {deleteWindow && <><p>Are you sure you want to delete your account?</p><div className="flex gap-3"><button  className="flex items-center gap-3 px-3 py-2 font-medium text-white rounded-full bg-t-bl fade-effect hover:text-t-pd"
     onClick={()=>{
