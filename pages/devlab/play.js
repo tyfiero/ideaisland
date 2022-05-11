@@ -55,7 +55,7 @@ function DevLab(props) {
             placeholder={"This is the start of the devlab"}
         /> */}
 
-{props.routeArray.map((data, index) => (
+{props.routeArray?.map((data, index) => (
                             <Step
                             key={index}
                             num={data.num}
