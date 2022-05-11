@@ -204,7 +204,7 @@ const HelpPage = () => {
         <p className="my-5 text-xl text-left">Thanks for joining us! Here are some quick tips:</p>
 
           <ul className="mt-5 space-y-4 list-disc list-inside">
-          <p  className="text-lg fre">
+          <div  className="text-lg fre">
               For best results, use the tools in order
               <ul className="ml-5 space-y-1 text-base list-disc list-inside nun">
                 <div className="flex flex-wrap items-center text-sm">Purpose  <BsArrowRight className="mx-2 text-xl dark:text-white" />Problem<BsArrowRight className="mx-2 text-xl dark:text-white" /><p className="whitespace-nowrap">Solution Finder</p><BsArrowRight className="mx-2 text-xl dark:text-white" /><p className="whitespace-nowrap">Feature Builder</p><BsArrowRight className="mx-2 text-xl dark:text-white" /><p className="whitespace-nowrap">Feature Rank + Select</p><BsArrowRight className="mx-2 text-xl dark:text-white" /><p className="whitespace-nowrap">Tech Stack Selector</p><BsArrowRight className="mx-2 text-xl dark:text-white" /><p className="whitespace-nowrap">MRR Calculator</p></div>
@@ -217,8 +217,8 @@ const HelpPage = () => {
                   section, as it is intended to be completed in order.
                 </li>
               </ul>
-            </p>
-            <p  className="text-lg fre">
+            </div>
+            <div  className="text-lg fre">
              Problems Section:
               <ul className="ml-5 space-y-4 text-base list-disc list-inside nun">
               <li>
@@ -232,8 +232,8 @@ const HelpPage = () => {
                   who you want to target, that is completely acceptable
                 </li>
               </ul>
-            </p>
-            <p  className="text-lg fre">
+            </div>
+            <div  className="text-lg fre">
               Solution Finder Help:
               <ul className="ml-5 space-y-4 text-base list-disc list-inside nun">
 
@@ -248,8 +248,8 @@ const HelpPage = () => {
                   the dice at the top right corner of the respective box.
                 </li>
               </ul>
-            </p>
-            <p  className="text-lg fre">
+            </div>
+            <div  className="text-lg fre">
               Innovation AI Tips:
               <ul className="ml-5 space-y-4 text-base list-disc list-inside nun">
                 <li>
@@ -269,12 +269,12 @@ const HelpPage = () => {
                   into the Innovation AI and see what it puts out!
                 </li>
               </ul>
-            </p>
+            </div>
             {/* <li>
               Save the Idea: Input your idea into the idea notepad and PLEASE
               MAKE SURE to click “save idea”, otherwise, the idea will be lost
             </li> */}
-            <p  className="text-lg fre">
+            <div  className="text-lg fre">
              Feature Builder:
              <ul className="ml-5 space-y-4 text-base list-disc list-inside nun">
 
@@ -284,8 +284,8 @@ const HelpPage = () => {
               add it to the list of features in your Solution
             </li>
             </ul>
-            </p>
-            <p  className="text-lg fre">
+            </div>
+            <div  className="text-lg fre">
               Feature Selection:
               <ul className="ml-5 space-y-4 text-base list-disc list-inside nun">
 
@@ -299,8 +299,8 @@ const HelpPage = () => {
                   necessary to solve your customer problem.
                 </li>
               </ul>
-            </p>
-            <p  className="text-lg fre">
+            </div>
+            <div  className="text-lg fre">
               Tech Stack:{" "}
               <ul className="ml-5 space-y-4 text-base list-disc list-inside nun">
                 <li>
@@ -318,8 +318,8 @@ const HelpPage = () => {
                   demonstrated in the next tool, the MRR calculator
                 </li>
               </ul>
-            </p>
-            <p  className="text-lg fre">
+            </div>
+            <div  className="text-lg fre">
               MRR Calculator:
               <ul className="ml-5 space-y-4 text-base list-disc list-inside nun">
                 <li>
@@ -329,7 +329,7 @@ const HelpPage = () => {
               costs, raise prices, or move ahead! 
                 </li>
                 </ul>
-            </p>
+            </div>
           </ul>
           
           <p className="pb-5 mt-5 text-2xl m">Good Luck, and Happy ideating,

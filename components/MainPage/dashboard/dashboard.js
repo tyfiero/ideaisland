@@ -89,35 +89,11 @@ const router = useRouter();
         too{" "}
       </p> */}
 
-      <div className="dash-graph-holder " >
-        <div className="dash-graph ">
-          {/* <img className="w-[35em] rounded-xl drop-shadow-2xl shadow-2xl" src="./dummygraph.png" alt="graph" /> */}
-          <ChartIdeas />
-        </div>
-
-        <div className="graph-stats-holder ml-[6em]">
-          <div className="graph-stat">
-            <p>Ideas per day</p>
-            <h4 className="graph-stat-num">0.43</h4>
-          </div>
-          <div className="graph-stat">
-            <p>Problems per day</p>
-            <h4 className="graph-stat-num">0.15</h4>
-          </div>
-
-          <div className="graph-stat">
-            <p>Average problem to solution time</p>
-            <h4 className="graph-stat-num">1h 8m</h4>
-          </div>
-          <div className="graph-stat">
-            <p>Percentile Rank</p>
-            <h4 className="graph-stat-num">93%</h4>
-          </div>
-        </div>
-      </div>
+     
 
 
 
+<div className="flex items-center justify-center w-full gap-5 m-5">
 <div className="flex gap-5">
       <div className="w-[25em]  bg-clear-bl2 rounded-xl flex flex-col items-center py-4">
       <h2 className="heading text-t-bd dark:text-blues-100">Recent Ideas</h2>
@@ -174,6 +150,34 @@ const router = useRouter();
           </button>
         </div>
       </div>
+      </div>
+      </div>
+
+      <div className="dash-graph-holder " >
+        <div className="dash-graph ">
+          {/* <img className="w-[35em] rounded-xl drop-shadow-2xl shadow-2xl" src="./dummygraph.png" alt="graph" /> */}
+          <ChartIdeas />
+        </div>
+
+        <div className="graph-stats-holder ml-[6em]">
+          <div className="graph-stat">
+            <p>Ideas per day</p>
+            <h4 className="graph-stat-num">0.43</h4>
+          </div>
+          <div className="graph-stat">
+            <p>Problems per day</p>
+            <h4 className="graph-stat-num">0.15</h4>
+          </div>
+
+          <div className="graph-stat">
+            <p>Average problem to solution time</p>
+            <h4 className="graph-stat-num">1h 8m</h4>
+          </div>
+          <div className="graph-stat">
+            <p>Percentile Rank</p>
+            <h4 className="graph-stat-num">93%</h4>
+          </div>
+        </div>
       </div>
       {/* <div className="dash-graph-holder">
         <div className="graph-stats-holder ml-[3em] mr-[6em]">

@@ -13,7 +13,7 @@ import { pFormAction } from "../../../redux/actions";
 // import { FaLaptopCode, FaShoppingBag } from "react-icons/fa";
 function PWho(props) {
   const [content, setContent] = useState("");
-  const [content2, setContent2] = useState("");
+  // const [content2, setContent2] = useState("");
 
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const dispatch = useDispatch();
