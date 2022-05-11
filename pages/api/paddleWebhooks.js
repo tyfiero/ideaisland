@@ -41,7 +41,7 @@ export default async function handler(req, res) {
         status: req.body.subscription_status,
       };
 
-      saveToFirestore(data, req.body.alert_data.user_id);
+      saveToFirestore(data, req.body.passthrough);
     //   console.log(req.body);
     //   console.log(req.body.cancel_url);
     //   console.log(req.body.update_url);

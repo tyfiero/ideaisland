@@ -37,7 +37,16 @@ function Pricing(props) {
     }
   }, []);
 
-  const updateIdea = async (amount, planType, cancelUrl, updateUrl,paddleUserId, nextBillDate, subscriptionStartDate, subscriptionID ) => {
+  const updateIdea = async (
+    amount,
+    planType,
+    cancelUrl,
+    updateUrl,
+    paddleUserId,
+    nextBillDate,
+    subscriptionStartDate,
+    subscriptionID
+  ) => {
     let uid;
 
     if (user?.uid) {
@@ -52,7 +61,16 @@ function Pricing(props) {
     }
     const ref = doc(getFirestore(), "users", uid);
 
-    let data = { credits: amount, plan: planType, cancelUrl: cancelUrl, updateUrl: null, paddleUserID: null, nextBillDate: null, subscriptionStartDate: null, subscriptionID: null   };
+    let data = {
+      credits: amount,
+      plan: planType,
+      cancelUrl: cancelUrl,
+      updateUrl: null,
+      paddleUserID: null,
+      nextBillDate: null,
+      subscriptionStartDate: null,
+      subscriptionID: null,
+    };
     await updateDoc(ref, data)
       .then(() => {
         toast.success(`New AI credit balance: ${amount}`);
@@ -67,15 +85,12 @@ function Pricing(props) {
     console.log(data);
     // alert("Thanks for your purchase.");
 
-    
     let updateUrl;
     let cancelUrl;
     let paddleUserId;
     let nextBillDate;
     let subscriptionStartDate;
     let subscriptionID;
-
-
 
     if (
       data.product.name === "Hobbyist" ||
@@ -269,7 +284,7 @@ function Pricing(props) {
                             // product: annual ? "767575" : "767574",
                             product: "769844",
                             email: user.email || null,
-                            passthrough: `{"uid": ${user?.uid}}`,
+                            passthrough: `${user?.uid}`,
                             successCallback: checkoutComplete,
                             closeCallback: checkoutClosed,
                           });
@@ -369,7 +384,7 @@ function Pricing(props) {
                         Paddle.Checkout.open({
                           product: annual ? "769859" : "769860",
                           email: user.email || null,
-                          passthrough: `{"uid": ${user?.uid}}`,
+                          passthrough: `${user?.uid}`,
                           successCallback: checkoutComplete,
                           closeCallback: checkoutClosed,
                         });
@@ -464,7 +479,7 @@ function Pricing(props) {
                         Paddle.Checkout.open({
                           product: annual ? "769861" : "769863",
                           email: user.email || null,
-                          passthrough: `{"uid": ${user?.uid}}`,
+                          passthrough: `${user?.uid}`,
                           successCallback: checkoutComplete,
                           closeCallback: checkoutClosed,
                         });
