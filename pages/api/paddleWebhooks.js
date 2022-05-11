@@ -31,7 +31,7 @@ export default async function handler(req, res) {
       //For this one, I need to save all of this data to user document
 
       let data = {
-        updatedAt: serverTimestamp(),
+        // updatedAt: serverTimestamp(),
         cancelUrl: req.body.cancel_url,
         updateUrl: req.body.update_url,
         paddleUserId: req.body.user_id,
@@ -87,7 +87,7 @@ const saveToFirestore = async (data, uid) => {
   console.log(data);
   console.log(uid);
 
-  const ref = doc(getFirestore(), "users", uid);
+//   const ref = doc(getFirestore(), "users", uid);
 //   await updateDoc(ref, data)
 //     .then(() => {
 //       console.log("Updated firestore user doc");
