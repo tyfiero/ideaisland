@@ -25,6 +25,7 @@ import sanitize from "../../../lib/sanitize";
 import { UserContext } from "../../../lib/context";
 
 import { auth } from "../../../lib/firebase";
+import { unsavedChangesAction } from "../../../redux/actions";
 
 const QuillNoSSRWrapper = dynamic(() => import("react-quill"), {
   ssr: false,
@@ -35,10 +36,38 @@ function NoteNote() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const userUIDRedux = useSelector((state) => state.userUID);
+  const unsavedRedux = useSelector((state) => state.unsavedChanges);
   const dispatch = useDispatch();
 
+
+  // useEffect(() => {
+  //   return () => {
+  //     console.log("unmounting");
+
+
+  //     // Your code you want to run on unmount.
+  //     if(unsavedRedux){
+  //     console.log("unsaved");
+  //     toast.error("TITLE...");
+
+  //       createIdea(title, content);  
+  //       dispatch(unsavedChangesAction(false));
+
+        
+  //   }else{
+  //     toast.error("WTF????...");
+      
+  //   }
+  // }
+  // },[]); 
+
+
+  
   // Create a new post in firestore
-  const createIdea = async (e) => {
+  const createIdea = async (titleStuff, contentStuff, e) => {
+    console.log(e)
+    console.log(title)
+    console.log(titleStuff)
     if (typeof window !== "undefined") {
       let uid;
 
@@ -71,7 +100,7 @@ function NoteNote() {
       await setDoc(ref, dataForCreation)
         .then(() => {
           toast.success("Note created!");
-          // dispatch(unsavedChangesAction(false));
+          dispatch(unsavedChangesAction(false));
         })
         .catch((error) => {
           toast.error("Error occured :( " + error);
@@ -96,6 +125,7 @@ function NoteNote() {
             if (charLength >= 150) {
               toast.error("Max character length reached (150)");
             }
+            dispatch(unsavedChangesAction(true));
           }}
           placeholder="Note Title"
           minLength={3}
@@ -130,6 +160,7 @@ function NoteNote() {
               // }}
               onChange={(e) => {
                 setContent(e);
+            dispatch(unsavedChangesAction(true));
               }}
               value={content}
               modules={Editor.modules}

@@ -20,6 +20,7 @@ import {
   FaHandsHelping,
 } from "react-icons/fa";
 import { IoIosPeople } from "react-icons/io";
+import TextareaAutosize from "react-textarea-autosize";
 
 import { Popover, ArrowContainer } from "react-tiny-popover";
 import { useSelector, useDispatch } from "react-redux";
@@ -141,9 +142,9 @@ dispatch(pFormAction(updated));
 
   "
       >
-        <div className="w-full max-w-[47rem] p-10 space-y-8   normal-box-soft">
+        <div className="w-full max-w-[47rem] py-10 px-3 space-y-8   normal-box-soft">
           <div className="relative flex flex-col items-center justify-center gap-3 p-3 problem-page fade-effect-quick">
-            <div className="absolute -top-5 -left-5">
+            <div className="absolute -top-5 -left-0">
               <Popover
                 isOpen={isPopoverOpen}
                 containerStyle={{
@@ -196,13 +197,23 @@ dispatch(pFormAction(updated));
             </div>
             <button></button>
             <h1 className="text-3xl text-t-bd dark:text-blues-100">Why?</h1>
-            <div className="normal-box-soft">
+            <div className="flex flex-col items-center w-full px-10 py-2 normal-box-soft">
               <h3 className="heading">
                 Why are you building something? Why are you innovating?
               </h3>
-            </div>
+              <div className="mb-2 text-left glass-box bg-white/70 dark:bg-slate-600/80">
+                {" "}
+                <p>
+                  Do you feel a sense of purpose for this endeavor? What is it?
+                  <br /> It can be simple: &quot;To start my own business and
+                  pursue financial freedom&quot;. Or deeper: &quot;To promote
+                  diversity and inclusion in the tech industry through ethical
+                  and fair HR software.&quot; Whatever your &apos;Why&apos; is,
+                  make sure it resonates with you.
+                </p>
+              </div>
 
-            <div className="flex flex-wrap items-center justify-center gap-2 w-[110%]">
+            <div className="flex flex-wrap items-center justify-center gap-2 !w-[120%]">
               <ChipBlue
                 text="Follow my dreams"
                 icon={<FaMountain />}
@@ -303,31 +314,29 @@ dispatch(pFormAction(updated));
               />
             </div>
 
-            <div className="flex flex-col">
-              <div className="mb-2 text-left glass-box bg-white/70 dark:bg-slate-600/80">
-                {" "}
-                <p>
-                  Do you feel a sense of purpose for this endeavor? What is it?
-                  <br /> It can be simple: &quot;To start my own business and
-                  pursue financial freedom&quot;. Or deeper: &quot;To promote
-                  diversity and inclusion in the tech industry through ethical
-                  and fair HR software.&quot; Whatever your &apos;Why&apos; is,
-                  make sure it resonates with you.
-                </p>
-              </div>
+            <div className="flex flex-col w-full">
+             
 
-              <textarea
+              {/* <textarea
                 // type="text"
                 className="textarea-box  textarea-tw   h-[10em] whitespace-normal"
                 // name="why"
                 value={content}
                 placeholder="Enter your why, and try to make it specific..."
                 onChange={update}
-              />
-              <p>
+              /> */}
+
+<TextareaAutosize
+                className="textarea-box textarea-tw  min-h-[10em] whitespace-normal mt-3"
+                value={content}
+                placeholder="Enter your why, and try to make it specific..."
+                onChange={update}
+              ></TextareaAutosize>
+              {/* <p>
                 *This note will be saved to your Idea Page for your review
                 later.
-              </p>
+              </p> */}
+            </div>
             </div>
             <div className="flex items-center justify-between w-full">
               <button

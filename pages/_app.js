@@ -23,19 +23,20 @@ import AuthCheck from "../components/Authentication/AuthCheck";
 import * as gtag from "../lib/gtag";
 import { steps } from "../components/Authentication/onboarding/steps";
 import dynamic from "next/dynamic";
-// import ShephardLogic from "../components/Authentication/onboarding/ShephardLogic";
 
 
-const ShephardLogic = dynamic(() => import("../components/Authentication/onboarding/ShephardLogic"), {
+const ShephardLogic = dynamic(
+  () => import("../components/Authentication/onboarding/ShephardLogic"),
+  {
     ssr: false,
-  });
+  }
+);
 //   const ShepherdTourContext = dynamic(() => import("react-shepherd").then((module) => module.ShepherdTourContext), {
 //     ssr: false,
 //   });
 // import LogRocket from "logrocket";
 // import setupLogRocketReact from "logrocket-react";
 // import { useStore } from 'react-redux';
-
 
 const LogRocket = require("logrocket");
 
@@ -50,32 +51,13 @@ function MyApp({ Component, pageProps }) {
   const router = useRouter();
 
   // console.log(ShepherdTour)
-// const [ShepherdTourContext] = ShepherdTour;
-// //SHEPARD JS TOUR
-const [tourStarted, setTourStarted] = useState(false);
-
+  // const [ShepherdTourContext] = ShepherdTour;
+  // //SHEPARD JS TOUR
+  const [tourStarted, setTourStarted] = useState(false);
 
   // if(typeof window !== "undefined"){
-    // const tour = useContext(ShepherdTourContext);
-    // console.log(ShepherdTourContext)
-
-  
-  
-  
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
+  // const tour = useContext(ShepherdTourContext);
+  // console.log(ShepherdTourContext)
 
   //Loading animation logic
   useEffect(() => {
@@ -102,20 +84,17 @@ const [tourStarted, setTourStarted] = useState(false);
     <PersistGate persistor={store.__persistor}>
       {() => (
         <UserContext.Provider value={userData}>
-
           {/* <AuthProvider> */}
           <Layout>
-         <ShephardLogic>
-            {/* <AuthCheck> */}
-           
+            <ShephardLogic>
+              {/* <AuthCheck> */}
 
-            <FullLoader show={loading} />
-            <Component {...pageProps} />
-            {/* </AuthCheck> */}
-          </ShephardLogic>
+              <FullLoader show={loading} />
+              <Component {...pageProps} />
+              {/* </AuthCheck> */}
+            </ShephardLogic>
           </Layout>
           {/* </AuthProvider> */}
-
         </UserContext.Provider>
       )}
     </PersistGate>
@@ -125,7 +104,6 @@ const [tourStarted, setTourStarted] = useState(false);
         // <AuthProvider>
         <UserContext.Provider value={userData}>
           <Layout>
-           
             <Component {...pageProps} />
           </Layout>
         </UserContext.Provider>

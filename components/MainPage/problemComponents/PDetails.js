@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { UserContext } from "../../../lib/context";
 
 import { Popover, ArrowContainer } from "react-tiny-popover";
+import TextareaAutosize from "react-textarea-autosize";
 
 import {
   FaLaptopCode,
@@ -262,6 +263,8 @@ function PDetails(props) {
         </div> */}
 
             <div className="flex flex-col">
+            <div className="flex flex-col p-2 my-2 glass-box bg-clear-pl5">
+
               <div className="flex">
                 {" "}
                 <p>Give your problem/challenge/mission a name!</p>
@@ -283,6 +286,8 @@ function PDetails(props) {
                   update(e);
                 }}
               />
+              </div>
+
               {/* <p>Your problem so far:</p>
               <div className="flex flex-wrap w-[25em] flex-col items-center">
                 <div className="flex flex-col normal-box">
@@ -303,48 +308,79 @@ function PDetails(props) {
 
                 </div>
               </div> */}
+
+              <div className="flex flex-col p-2 my-2 glass-box bg-clear-pl2">
               <p>
                 What problem are you trying to solve? What frustrates or annoys
                 your users?
               </p>
 
-              <textarea
+              {/* <textarea
                 // type="text"
                 className="textarea-box textarea-tw  h-[5em] whitespace-normal"
                 name="pq1"
                 value={content1}
                 placeholder="..."
                 onChange={update}
-              />
+              /> */}
+              <TextareaAutosize
+                className="textarea-box textarea-tw  h-[5em] whitespace-normal"
+                value={content1}
+                name="pq1"
+                placeholder="..."
+                onChange={update}
+              ></TextareaAutosize>
+              </div>
+              <div className="flex flex-col p-2 my-2 glass-box bg-clear-pl2">
               <p>
                 Explain why this frustration/annoyance occurs? This is a
                 potential cause
               </p>
 
-              <textarea
+              {/* <textarea
                 // type="text"
                 className="textarea-box textarea-tw  h-[5em] whitespace-normal"
                 name="pq2"
                 value={content2}
                 placeholder="..."
                 onChange={update}
-              />
+              /> */}
+                <TextareaAutosize
+                className="textarea-box textarea-tw  h-[5em] whitespace-normal"
+                value={content2}
+                name="pq2"
+                placeholder="..."
+                onChange={update}
+              ></TextareaAutosize>
+              </div>
+              <div className="flex flex-col p-2 my-2 glass-box bg-clear-pl2">
               <p>
                 Why does the potential cause occur? This is your root cause.
               </p>
 
-              <textarea
+              {/* <textarea
                 // type="text"
                 className="textarea-box textarea-tw  h-[5em] whitespace-normal"
                 name="pq3"
                 placeholder="..."
                 value={content3}
                 onChange={update}
-              />
-              <p>
+              /> */}
+
+              <TextareaAutosize
+                className="textarea-box textarea-tw  h-[5em] whitespace-normal"
+                value={content3}
+                name="pq3"
+                placeholder="..."
+                onChange={update}
+              ></TextareaAutosize>
+              </div>
+             
+             
+              {/* <p>
                 *This note will be saved to your Idea Page for your review
                 later.
-              </p>
+              </p> */}
             </div>
             <div className="flex items-center justify-between w-full">
               <button
@@ -374,7 +410,11 @@ function PDetails(props) {
                       }
                     }}
                   >
-                    {props.changes ? <p className="text-white fre">Save and Continue</p> : <p className="text-white fre" >Continue</p>}
+                    {props.changes ? (
+                      <p className="text-white fre">Save and Continue</p>
+                    ) : (
+                      <p className="text-white fre">Continue</p>
+                    )}
                     <FaLongArrowAltRight className="ml-1 text-[24px]" />
                   </button>
                 </div>

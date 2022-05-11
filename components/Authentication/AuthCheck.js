@@ -94,14 +94,14 @@ export default function AuthCheck(props) {
             ? authCheckPageContent
             : planCheckPageContent);
   } else if (props.plan === "Innovator") {
-    return username && paidPlan === "Innovator"
+    return username && (paidPlan === "Pro" || paidPlan === "Innovator")
       ? props.children
       : props.fallback ||
           (paidPlan === props.plan
             ? authCheckPageContent
             : planCheckPageContent);
   } else if (props.plan === "Pro") {
-    return username && paidPlan === "Pro"
+    return username && paidPlan === "Pro" 
       ? props.children
       : props.fallback ||
           (paidPlan === props.plan

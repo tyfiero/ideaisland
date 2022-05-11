@@ -21,15 +21,12 @@ import ToolTip from "../../../Layout/ToolTip";
 import WordButton from "./WordButton";
 import { Cascader } from "antd";
 import "antd/dist/antd.css";
-import { sArrayAction } from "../../../../redux/actions";
+import { randomize2Action, sArrayAction } from "../../../../redux/actions";
 
 function InspirationStatement({ randomizeAll }) {
-
-  
-
   // const sArray = useSelector((state) => state.sArray);
 
-  const isRandomized = useSelector((state) => state.randomize);
+  const randomized2 = useSelector((state) => state.randomize2);
   const dispatch = useDispatch();
   const [selectedWords, setSelectedWords] = useState([]);
   const [editSentence, setEditSentence] = useState(false);
@@ -38,9 +35,7 @@ function InspirationStatement({ randomizeAll }) {
   // let splitTextDefault = edited ? "" : "";
   // const [splitText, setSplitText] = useState(edited ? "" : "How might we improve brainstorming for entrepreneurs?");
   // const [splitTextDefault, setSplitTextDefault] = useState("How might we improve brainstorming for entrepreneurs?");
-  const [splitText, setSplitText] = useState(
-    "The Tinder of innovation"
-  );
+  const [splitText, setSplitText] = useState("The Tinder of innovation");
   const [update, setUpdate] = useState(false);
   const focusTextInput = useRef(null);
   const previousSplitTextValue = useRef("");
@@ -98,12 +93,12 @@ function InspirationStatement({ randomizeAll }) {
       }
     } else {
       //This is the update section that happens on randomization. If the updated word from word button contains a space, replace that space with a dash to keep it together as one word.
-      console.log(data[0]);
+      // console.log(data[0]);
       let word = data[0];
       if (word.includes(" ")) {
         word = word.replace(" ", "-");
       }
-      console.log(word);
+      // console.log(word);
 
       const splitArray = previousSplitTextValue.current.split(" ");
       // console.log(data[2]);
@@ -133,6 +128,7 @@ function InspirationStatement({ randomizeAll }) {
           updateSelected={updateSelected}
           selectedWords={selectedWords}
           text={data}
+          mode="solution"
         />
       );
     });
@@ -153,10 +149,13 @@ function InspirationStatement({ randomizeAll }) {
       separateText();
 
       // setUpdate(!update);
-    } else {
+    } else if (value.length === 2) {
       setSplitText(label[1].label);
       separateText();
       // setUpdate(!update);
+    } else {
+      setSplitText(label[0].label);
+      separateText();
     }
     // setEditSentence(false);
     //     setTimeout(() => {
@@ -180,7 +179,9 @@ function InspirationStatement({ randomizeAll }) {
                 data-tip
                 data-for="random-all"
                 className="flex items-center justify-center w-10 gap-4 p-2 px-2 m-1 text-white cursor-pointer rounded-3xl bg-t-bl drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95"
-                onClick={randomizeAll}
+                onClick={() => {
+                  dispatch(randomize2Action(true));
+                }}
               >
                 <FaDice className="text-xl" />
                 <ToolTip
@@ -311,122 +312,109 @@ export default InspirationStatement;
 
 const options = [
   {
-    value: "popular",
-    label: "⭐️ Popular",
-    children: [
-      {
-        value: "New products",
-        label: "New products",
-      },
-      {
-        value: "Incremental Improvements",
-        label: "Incremental Improvements",
-        children: [
-          {
-            value: "How would Elon Musk Change social media to fight spam?",
-            label: "How would Elon Musk change social media to fight spam?",
-          },
-          {
-            value: "How might we improve tech brainstorming for entrepreneurs?",
-            label: "How might we improve tech brainstorming for entrepreneurs?",
-          },
-        ],
-      },
-      {
-        value: "blockchain",
-        label: "Disruption ?'s",
-        children: [
-          {
-            value: "nft",
-            label: "🖼 NFT",
-          },
-          {
-            value: "consensus",
-            label:
-              "How might we improve SAAS with encryption to protect privacy?",
-          },
-        ],
-      },
-    ],
+    value: "The ___ of ___",
+    label: "The ___ of ___",
   },
   {
-    value: "Problem Discovery ?'s",
-    label: "🔎 Problem Discovery ?'s",
-    children: [
-      {
-        value: "all",
-        label: "All Industries",
-        children: [
-          {
-            value: "all",
-            label: "💼 All Industries",
-          },
-        ],
-      },
-    ],
+    value: "If ___ and ___ had a baby",
+    label: "If ___ and ___ had a baby",
   },
   {
-    value: "Incremental Improvement ?'s",
-    label: "⬆️ Incremental Improvement ?'s",
-    children: [
-      {
-        value: "all",
-        label: "All Industries",
-        children: [
-          {
-            value: "all",
-            label: "💼 All Industries",
-          },
-        ],
-      },
-    ],
+    value: "What if ___ worked more like ___?",
+    label: "What if ___ worked more like ___?",
   },
   {
-    value: "🦄 Unicorn Maker ?'s",
-    label: "🦄 Unicorn Maker ?'s",
-    children: [
-      {
-        value: "all",
-        label: "All Industries",
-        children: [
-          {
-            value: "all",
-            label: "💼 All Industries",
-          },
-        ],
-      },
-    ],
+    value: "A product that ___ with ___",
+    label: "A product that ___ with ___",
   },
   {
-    value: "Big Picture ?'s",
-    label: "🌍 Big Picture ?'s",
-    children: [
-      {
-        value: "all",
-        label: "All Industries",
-        children: [
-          {
-            value: "all",
-            label: "💼 All Industries",
-          },
-        ],
-      },
-    ],
+    value: "10X'ing ___ with ___",
+    label: "10X'ing ___ with ___",
   },
   {
-    value: " Systems Thinking",
-    label: "⚙️ Systems Thinking ?'s",
-    children: [
-      {
-        value: "all",
-        label: "All Industries",
-        children: [
-          {
-            value: "all",
-            label: "💼 All Industries",
-          },
-        ],
-      },
-    ],
+    value: "Its like ___ but more ___",
+    label: "Its like ___ but more ___",
+  },
+  {
+    value: "Tap a button, get ____",
+    label: "Tap a button, get ____",
+  },
+  {
+    value: "Using ___ , a ___ product is born",
+    label: "Using ___ , a ___ product is born",
+  },
+  {
+    value: "It started as a small feature at ___, we just expanded it. ",
+    label: "It started as a small feature at ___, we just expanded it. ",
+  },
+  {
+    value: "Why can't I just ___?",
+    label: "Why can't I just ___?",
+  },
+  {
+    value: "People working in ___ need ___ to perform better",
+    label: "People working in ___ need ___ to perform better",
+  },
+  {
+    value: "Everyone wants to ___, thankfully they can with ___ with ___",
+    label: "Everyone wants to ___, thankfully they can with ___ with ___",
+  },
+  {
+    value: "___ combined with ___ and a little ___",
+    label: "___ combined with ___ and a little ___",
+  },
+  {
+    value: "___ is not just a ___. It's also a ___",
+    label: "___ is not just a ___. It's also a ___",
+  },
+  {
+    value: "The swiss army knife of ___",
+    label: "The swiss army knife of ___",
+  },
+  {
+    value: "___ is a huge problem, to combat it, we will ___",
+    label: "___ is a huge problem, to combat it, we will ___",
+  },
+  {
+    value: "This new trend of ___ could be enhanced with ___",
+    label: "This new trend of ___ could be enhanced with ___",
+  },
+  {
+    value: "We make ___ so easy a five year old could do it.",
+    label: "We make ___ so easy a five year old could do it.",
+  },
+  {
+    value: "A ___ that is ___ using ___",
+    label: "A ___ that is ___ using ___",
+  },
+  {
+    value: "Have you ever ___? Thats why we made ___",
+    label: "Have you ever ___? Thats why we made ___",
+  },
+  {
+    value: "___ can be made better with ___",
+    label: "___ can be made better with ___",
+  },
+  {
+    value: "Compete on price with ___",
+    label: "Compete on price with ___",
+  },
+  {
+    value:
+      "Omg, I saw this new ___ on TV last night, it's so cool! It lets you ___ with ___",
+    label:
+      "Omg, I saw this new ___ on TV last night, it's so cool! It lets you ___ with ___",
+  },
+  {
+    value: "Why is it so hard to ___? Can it be easier in anyway?",
+    label: "Why is it so hard to ___? Can it be easier in anyway?",
+  },
+  {
+    value: "What makes ___ so good? What can be emulated?",
+    label: "What makes ___ so good? What can be emulated?",
+  },
+  {
+    value: "How could the digitization of ___ help a group of people?",
+    label: "How could the digitization of ___ help a group of people?",
   },
 ];

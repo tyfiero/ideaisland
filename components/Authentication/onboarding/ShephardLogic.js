@@ -6,7 +6,7 @@ function ShephardLogic({ children }) {
   const [shepherdTour, setShepherdTour] = useState(null);
 
   const tour = useContext(ShepherdTourContext);
-  console.log(tour);
+  // console.log(tour);
 
   const tourOptions = {
     defaultStepOptions: {

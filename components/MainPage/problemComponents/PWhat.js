@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Popover, ArrowContainer } from "react-tiny-popover";
 import { pFormAction } from "../../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
+import TextareaAutosize from "react-textarea-autosize";
 
 import {
   FaLaptopCode,
@@ -117,24 +118,23 @@ function PWhat(props) {
                   onClick={() => setIsPopoverOpen(!isPopoverOpen)}
                   className="w-5"
                 >
-                  <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 dark:text-blues-100  md:hover:scale-110" />
+                  <FaInfoCircle className="text-2xl cursor-pointer text-blues-300 dark:text-blues-100 md:hover:scale-110" />
                 </div>
               </Popover>
             </div>
-            <h1 className=" text-3xl text-t-bd dark:text-blues-100 ">What?</h1>
-            <div className="normal-box-soft">
+            <h1 className="text-3xl text-t-bd dark:text-blues-100">What?</h1>
+            <div className=" normal-box-soft min-h-[10em] p-5 my-2 flex flex-col items-center">
               <h3 className="heading">
-                Are you building a software product or physical product?
+                Are you building software or physical product?
               </h3>
-            </div>
 
-            <div className="flex gap-5">
+            <div className="flex gap-5 mt-4">
               <button
                 className={
                   "w-[12em] h-[4em] rounded-3xl  flex items-center justify-center text-black gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
                   (button1
                     ? " border-4 border-t-bl bg-blues-200"
-                    : "bg-blues-100")
+                    : "bg-blues-200")
                 }
                 onClick={(e) => {
                   setButton1(!button1);
@@ -155,8 +155,8 @@ function PWhat(props) {
                 className={
                   "w-[12em] h-[4em] rounded-3xl  flex items-center justify-center text-black gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
                   (button2
-                    ? " border-4 border-t-bl bg-blues-200"
-                    : "bg-blues-100")
+                    ? " border-4 border-t-pm bg-pinks-200"
+                    : "bg-pinks-100")
                 }
                 onClick={(e) => {
                   setButton2(!button2);
@@ -174,20 +174,27 @@ function PWhat(props) {
               </button>
             </div>
 
-            <div className="flex flex-col">
-              <p>If neither, describe what you are looking to innovate:</p>
-              <textarea
+            <div className="flex flex-col w-full">
+              <p className="my-5">If neither, describe what you are looking to innovate:</p>
+              {/* <textarea
                 // type="text"
                 className="textarea-box  textarea-tw   h-[10em] whitespace-normal"
                 // name="what"
                 value={content}
                 placeholder="What are you building?"
                 onChange={update}
-              />
-              <p>
+              /> */}
+               <TextareaAutosize
+                className="textarea-box textarea-tw  min-h-[10em] whitespace-normal mt-3"
+                value={content}
+                placeholder="What are you building or what do you want to build?"
+                onChange={update}
+              ></TextareaAutosize>
+              {/* <p>
                 *This note will be saved to your Idea Page for your review
                 later.
-              </p>
+              </p> */}
+            </div>
             </div>
             <div className="flex items-center justify-between w-full">
               <button

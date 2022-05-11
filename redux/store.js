@@ -47,6 +47,7 @@ import pFormReducer from "./reducers/pFormReducer";
 import sFormReducer from "./reducers/sFormReducer";
 import sUpdateReducer from "./reducers/sUpdate";
 import sentenceArrayReducer from "./reducers/SentenceArray";
+import randomize2Reducer from "./reducers/randomize2";
 //OTHER REDUCERS GO HERE
 
 // let devTools;
@@ -73,6 +74,7 @@ const appReducer = combineReducers({
   sWord2: sWord2,
   notes: noteContent,
   randomize: randomizeReducer,
+  randomize2: randomize2Reducer,
   gpt3Input: gpt3InputReducer,
   gpt3Output: gpt3OutputReducer,
   gptJInput: gptJInputReducer,

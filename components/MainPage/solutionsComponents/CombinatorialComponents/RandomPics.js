@@ -61,7 +61,7 @@ function RandomPics() {
     await axios(config)
       .then(function (response) {
         setWordList(response.data);
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch(function (error) {
         console.log(error);

@@ -13,7 +13,7 @@ import {
 import { software } from "./ListsAll";
 import { allOptions } from "./ListOptions";
 import { useSelector, useDispatch } from "react-redux";
-import { randomizeAction, sArrayAction } from "../../../../redux/actions";
+import { randomize2Action, randomizeAction, sArrayAction } from "../../../../redux/actions";
 import Image from "next/image";
 import { MdOutlineHideImage, MdOutlineImage } from "react-icons/md";
 import CardImage from "./CardImage";
@@ -21,8 +21,13 @@ import WordsCard from "./WordsCard";
 
 import ToolTip from "../../../Layout/ToolTip";
 
-function WordButton({ text, word, updateSelected, selectedWords }) {
+function WordButton({ text, word, updateSelected, selectedWords, mode }) {
   const isRandomized = useSelector((state) => state.randomize);
+  
+  const isRandomized2 = useSelector((state) => state.randomize2);
+
+  // console.log(isRandomized);
+  // console.log(isRandomized2);
   const [clicked, setClicked] = useState(false);
   const [locked, setLocked] = useState(false);
 
@@ -67,44 +72,15 @@ function WordButton({ text, word, updateSelected, selectedWords }) {
 
   //randomize button function
   useEffect(() => {
-    if ((randomized && clicked) || (isRandomized && !locked && clicked)) {
+    // console.log(isRandomized);
+    // console.log(isRandomized2);
+    if ((randomized && clicked) || (isRandomized && !locked && clicked && mode === "problem")  || (isRandomized2 && !locked && clicked && mode === "solution")) {
       // console.log(listOptions)
       // console.log(list)
+    // console.log(displayText)
+
       try {
-        // let listContent, randomNumber;
-        // //find the index of the list header
-        // let index = listOptions.findIndex((x) => x.label === list);
-        // //If the index is -1, (not found) then search again
-        // if (index === -1) {
-        //   //  console.log("not found 1")
-        //   let index2 = listOptions[0].children.findIndex(
-        //     (x) => x.label === list
-        //   );
-        //   //if listOptions[0] is not found, then search listOptions[1]
-        //   if (index2 === -1) {
-        //     // console.log("not found 2")
-        //     let index3 = listOptions[1].children.findIndex(
-        //       (x) => x.label === list
-        //     );
-        //     listContent = listOptions[1].children[index3].children;
-        //   } else {
-        //     listContent = listOptions[0].children[index2].children;
-        //   }
-        //   randomNumber = Math.floor(Math.random() * (listContent.length - 1));
-        // } else {
-        //   //Index was found, so use that. WORKS
-        //   listContent = listOptions[index].children;
-        //   randomNumber = Math.floor(Math.random() * (listContent.length - 1));
-        // }
-        // //Item is the word associated with the random index of the listContent
-        // // let item = listContent[randomNumber].label;
-        // //If the random item is the same as the current item, then use the next item. Prevents duplicates
-        // if (item === displayText) {
-        //   item = list[randomNumber + 1].label;
-        // }
-        // // setContent(item)
-        // updateSelected([item, "update", word]);
-        // setDisplayText(item);
+  
 
         let randomNumber = Math.floor(Math.random() * (list.length - 1));
 
@@ -123,16 +99,22 @@ function WordButton({ text, word, updateSelected, selectedWords }) {
       if (randomized) {
         setRandomized(false);
       }
-    }
     if (isRandomized) {
       dispatch(randomizeAction(false));
     }
-  }, [randomized, isRandomized]); // eslint-disable-line react-hooks/exhaustive-deps
+    if (isRandomized2) {
+      dispatch(randomize2Action(false));
+    }
+  }
+
+
+    
+  }, [randomized, isRandomized, isRandomized2]); // eslint-disable-line react-hooks/exhaustive-deps
 
   //Function that is run after cascade option picked
   function onCascadeChange(value, label) {
-    console.log(value);
-    console.log(label);
+    // console.log(value);
+    // console.log(label);
 
     // console.log(value[2].replace(/['"]+/g, ''))
     // if (value[2] === "emojis") {
@@ -162,7 +144,7 @@ function WordButton({ text, word, updateSelected, selectedWords }) {
     } else {
       setList(value[1]);
       setListLabel(label[1].label);
-      console.log(value[1]);
+      // console.log(value[1]);
       setDisplayText(value[1][4]);
     }
 

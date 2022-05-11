@@ -107,7 +107,6 @@ function IdeasList(props) {
     // } else {
     //   ideaSearch= null;
     // }
-    console.log(props.mode);
   
     return (
       <>

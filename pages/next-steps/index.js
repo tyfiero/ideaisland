@@ -55,7 +55,7 @@ const ImplementationPage = (props) => {
             </div>
             <div className="flex">
             <ImplementTool
-              route="/implementation/mrr-calculator"
+              route="/next-steps/mrr-calculator"
               color={"bg-blues-100"}
               bColor="md:hover:ring-clear-bd3"
               textColor=" text-t-bl"

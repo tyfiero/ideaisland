@@ -30,7 +30,7 @@ import {
   FaSearch,
 } from "react-icons/fa";
 import IdeasList from "./IdeasList";
-// import SwitchSelector from "react-switch-selector";
+
 
 export default function IdeaSideBar(props) {
   // const [currentNote, setCurrentNote] = useState("ideas");

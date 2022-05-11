@@ -165,7 +165,12 @@ export const randomizeAction = (text) => {
     payload: text,
   };
 };
-
+export const randomize2Action = (text) => {
+  return {
+    type: "RANDOMIZE2",
+    payload: text,
+  };
+};
 export const gpt3InputAction = (text) => {
   return {
     type: "EDITINPUT",

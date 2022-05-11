@@ -103,12 +103,12 @@ function ProblemStatement(props) {
       }
     } else {
       //This is the update section that happens on randomization. If the updated word from word button contains a space, replace that space with a dash to keep it together as one word.
-      console.log(data[0]);
+      // console.log(data[0]);
       let word = data[0];
       if (word.includes(" ")) {
         word = word.replace(" ", "-");
       }
-      console.log(word);
+      // console.log(word);
 
       const splitArray = previousSplitTextValue.current.split(" ");
       // console.log(data[2]);
@@ -138,6 +138,7 @@ function ProblemStatement(props) {
           updateSelected={updateSelected}
           selectedWords={selectedWords}
           text={data}
+          mode={"problem"}
         />
       );
     });
