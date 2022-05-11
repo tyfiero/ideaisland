@@ -9,7 +9,7 @@ const openai = new OpenAI(process.env.OPENAI_API_KEY);
 // import gpt3APIRequest from "./gpt";
 
    
-import * as uuid from 'uuid'
+// import * as uuid from 'uuid'
 import rateLimit from "../../lib/ratelimit";
 
 const limiter = rateLimit({
