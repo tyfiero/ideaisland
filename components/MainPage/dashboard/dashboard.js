@@ -90,10 +90,10 @@ const Dashboard = () => {
         <div className="flex flex-col items-center p-3 h-30 normal-box">
         <p className="text-xl">Inspirational Quotes</p>
           <h1 className="text-2xl">
-           {Quote.getQuote().text}
+           {Quote.getQuote()?.text}
           </h1>
           <p>
-          - {Quote.getQuote().author}
+          - {Quote.getQuote()?.author}
           </p>
         </div>
         {/* <p>
