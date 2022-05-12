@@ -63,7 +63,7 @@ function PWhat(props) {
   return (
     <div>
       <div
-        className="flex items-center justify-center  px-4 pt-[1rem] sm:px-6 lg:px-8 drop-shadow-xl fade-effect-quick
+        className="flex items-center justify-center  px-4 pt-[1rem] sm:px-3 lg:px-8 drop-shadow-xl fade-effect-quick 
 
   "
       >

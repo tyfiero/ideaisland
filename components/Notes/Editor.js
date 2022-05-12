@@ -113,13 +113,13 @@ function Editor(props) {
   //   });
   // }, []);
   return (
-    <div>
+    <div className="w-full fade-effect-quick">
       <div
-        className="flex items-center justify-center  pt-[0.1rem] sm:px-6 lg:px-4 drop-shadow-xl fade-effect-quick
-
+        className="flex items-center justify-center  pt-[0.1rem] sm:px-2 lg:px-4 drop-shadow-xl fade-effect-quick w-full
+    
 "
       >
-        <div className="w-full max-w-[82rem] space-y-8 shadow   normal-box-soft items-center flex flex-col !rounded-2xl -z-[12]">
+        <div className="w-full max-w-[82rem] space-y-8 shadow   normal-box-soft items-center flex flex-col !rounded-2xl -z-[12] fade-effect-quick">
           {(editModeRedux === "edit" || editModeRedux === "new") && (
             <>
               {" "}

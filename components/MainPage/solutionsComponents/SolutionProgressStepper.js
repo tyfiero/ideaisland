@@ -18,8 +18,8 @@ import { CgFileDocument } from "react-icons/cg";
 
 const SolutionProgressStepper = (props) => {
   return (
-    <div className="absolute w-16 mt-[2em] right-10 normal-box-soft z-50 select-none">
-      <div className={"mb-2 flex flex-col   items-center "}>
+    <div className="md:absolute sm:w-full md:w-16 sm:mt-2 md:mt-[2em] md:right-10 normal-box-soft z-50 select-none sm:mx-1 pt-2 sm:scale-95">
+      <div className={"md:mb-2 flex md:flex-col sm:flex-row  items-center sm:justify-evenly "}>
         {/* <div className="flex flex-col items-center">
           <div
             className={
@@ -51,12 +51,12 @@ const SolutionProgressStepper = (props) => {
           >
             <FaLightbulb className="text-xl" />
           </div>
-          <div>Select Idea</div>
+          <div className="text-sm">Select Idea</div>
         </div>
 
         <div
           className={
-            "w-2 h-8 my-2 rounded-full  " +
+            "md:w-2 md:h-8 sm:h-2 sm:w-5 my-2 rounded-full  " +
             (props.currentStep >= 2 ? "bg-t-bl" : "bg-slate-400")
           }
         ></div>
@@ -76,7 +76,7 @@ const SolutionProgressStepper = (props) => {
 
         <div
           className={
-            "w-2 h-8 my-2 rounded-full  " +
+            "md:w-2 md:h-8 sm:h-2 sm:w-5 my-2 rounded-full  " +
             (props.currentStep >= 3 ? "bg-t-bl" : "bg-slate-400")
           }
         ></div>
@@ -96,7 +96,7 @@ const SolutionProgressStepper = (props) => {
 
         <div
           className={
-            "w-2 h-8 my-2 rounded-full  " +
+            "md:w-2 md:h-8 sm:h-2 sm:w-5 my-2 rounded-full  " +
             (props.currentStep >= 4 ? "bg-t-bl" : "bg-slate-400")
           }
         ></div>
@@ -115,10 +115,11 @@ const SolutionProgressStepper = (props) => {
         </div>
         <div
           className={
-            "w-2 h-8 my-2 rounded-full  " +
+            "md:w-2 md:h-8 sm:h-2 sm:w-5 my-2 rounded-full  " +
             (props.currentStep >= 5 ? "bg-t-bl" : "bg-slate-400")
           }
         ></div>
+        <div className="flex flex-col items-center">
 
         <div
           className={
@@ -129,7 +130,8 @@ const SolutionProgressStepper = (props) => {
         >
           <CgFileDocument className="text-xl" />
         </div>
-        <div>Review</div>
+        <div className="text-sm">Review</div>
+      </div>
       </div>
     </div>
   );

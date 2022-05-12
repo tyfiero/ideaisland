@@ -194,7 +194,7 @@ const HelpPage = () => {
         </div>
       </div>
 
-      <div className="normal-box-soft w-[70%] min-h-[15em]">
+      <div className="normal-box-soft md:w-[70%] sm:w-[98%] min-h-[15em]">
         <h4 className="help-header text-t-bd dark:text-blues-100">
           Tips and Tricks
         </h4>
@@ -332,7 +332,7 @@ const HelpPage = () => {
             </div>
           </ul>
           
-          <p className="pb-5 mt-5 text-2xl m">Good Luck, and Happy ideating,
+          <p className="pb-5 mt-5 sm:text-xl sm:text-center md:text-2xl m">Good Luck, and Happy ideating,
               <span className="fre logo mx-1 !text-2xl">ideaisland</span> welcomes you!</p>
 
               <img

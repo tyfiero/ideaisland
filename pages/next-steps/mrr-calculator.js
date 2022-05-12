@@ -108,11 +108,11 @@ function MrrCalculator() {
   ]);
 
   return (
-    <div className="flex flex-col items-center w-full h-full">
+    <div className="flex flex-col items-center w-full h-full ">
       <div className="flex flex-col items-center w-[98%] h-full m-5  relative ">
         <p className="text-3xl blue-gradient-text">MRR Calculator</p>
 
-        <div className="flex gap-5 m-5">
+        <div className="flex gap-5 m-5 sm:flex-col md:flex-row sm:items-center">
           <MRRChart chartDataPoints={chartDataPoints} />
 
           <div className="normal-box bg-[hsla(200,0%,100%,0.764)]  dark:bg-[hsla(200,0%,20%,0.764)] w-[30em] flex-col flex !rounded-xl  nun ">
@@ -191,16 +191,16 @@ function MrrCalculator() {
         <button
           className=" w-[6em] h-[2em] rounded-3xl bg-t-bl flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer absolute left-5"
           onClick={() => {
-            router.push("/implementation");
+            router.push("/next-steps");
           }}
         >
           <FaLongArrowAltLeft className="text-xl" />
           Back
         </button>
 
-        <div className="flex items-center w-full gap-0 p-2 text-center justify-evenly normal-box-soft dark:bg-slate-700/80">
-          <div className="flex flex-col normal-box-soft w-[40%] !rounded-xl items-center text-left gap-2 dark:bg-slate-600/80">
-            <p>Revenue</p>
+        <div className="flex items-center w-full gap-0 p-2 text-center md:flex-row sm:mb-10 sm:flex-col justify-evenly normal-box-soft dark:bg-slate-700/80">
+          <div className="flex flex-col normal-box-soft md:w-[40%] sm:w-full !rounded-xl items-center text-left gap-2 dark:bg-slate-600/80">
+                <p className="text-xl font-bold text-left text-t-bd" >Revenue</p>
             <div className="flex flex-col normal-box-soft w-[90%] !rounded-xl   p-3 !bg-clear-bl2">
               <p className="text-md">Monthly price for product</p>
               <div className="flex items-center">
@@ -316,8 +316,8 @@ function MrrCalculator() {
             </div>
           </div>
 
-          <div className="flex flex-col normal-box-soft dark:bg-slate-600/80 w-[40%] !rounded-xl items-center text-left gap-2">
-            <p className="text-left">Costs</p>
+          <div className="flex flex-col normal-box-soft dark:bg-slate-600/80 md:w-[40%] sm:!mb-20 sm:w-full sm:mt-3 !rounded-xl items-center text-left gap-2">
+            <p className="text-xl font-bold text-left text-t-pd">Costs</p>
 
             <div className="flex flex-col normal-box-soft w-[90%] !rounded-xl gap-0 p-2 !bg-clear-pl2">
               <p className="text-md">Monthly Infrastructure Costs</p>

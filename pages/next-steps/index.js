@@ -63,8 +63,9 @@ const ImplementationPage = (props) => {
               description="This tool helps you accurately forecast future revenue growth from a subscription based business model."
               imgSrc="https://images.unsplash.com/photo-1543286386-2e659306cd6c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8Z3JhcGh8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
             />
+            
             {/* <ImplementTool
-              route="/implementation/mrr-calculator"
+              route="/next-steps/mrr-calculator"
               color={"bg-blues-100"}
               bColor="md:hover:ring-clear-bd3"
               textColor=" text-t-bl"
@@ -73,7 +74,7 @@ const ImplementationPage = (props) => {
               imgSrc="https://images.unsplash.com/photo-1598520106830-8c45c2035460?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8d2hpdGVib2FyZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
             />
             <ImplementTool
-              route="/implementation/mrr-calculator"
+              route="/next-steps/mrr-calculator"
               color={"bg-blues-100"}
               bColor="md:hover:ring-clear-bd3"
               textColor=" text-t-bl"
@@ -82,7 +83,7 @@ const ImplementationPage = (props) => {
               imgSrc="https://images.unsplash.com/photo-1553729459-efe14ef6055d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjZ8fGNhbGN1bGF0b3J8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
             />
             <ImplementTool
-              route="/implementation/mrr-calculator"
+              route="/next-steps/mrr-calculator"
               color={"bg-blues-100"}
               bColor="md:hover:ring-clear-bd3"
               textColor=" text-t-bl"
@@ -98,7 +99,7 @@ const ImplementationPage = (props) => {
             <div className="flex">
 
             <ImplementTool
-              route="/implementation/mrr-calculator"
+              route="/next-steps/mrr-calculator"
               color={"bg-t-pl"}
               bColor="md:hover:ring-t-pl"
               textColor=" text-t-pm"
@@ -107,7 +108,7 @@ const ImplementationPage = (props) => {
               imgSrc="https://images.unsplash.com/photo-1631603090989-93f9ef6f9d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8Y3J5cHRvfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
             />
             <ImplementTool
-              route="/implementation/mrr-calculator"
+              route="/next-steps/mrr-calculator"
               color={"bg-t-pl"}
               bColor="md:hover:ring-t-pl"
               textColor=" text-t-pm"
@@ -116,7 +117,7 @@ const ImplementationPage = (props) => {
               imgSrc="https://images.unsplash.com/photo-1642751227050-feb02d648136?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NzB8fGV0aGVyZXVtfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
             />
             <ImplementTool
-              route="/implementation/mrr-calculator"
+              route="/next-steps/mrr-calculator"
               color={"bg-t-pl"}
               bColor="md:hover:ring-t-pl"
               textColor=" text-t-pm"
@@ -125,7 +126,7 @@ const ImplementationPage = (props) => {
               imgSrc="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzF8fG5ldHdvcmslMjBwZW9wbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
             />
             <ImplementTool
-              route="/implementation/mrr-calculator"
+              route="/next-steps/mrr-calculator"
               color={"bg-t-pl"}
               bColor="md:hover:ring-t-pl"
               textColor=" text-t-pm"

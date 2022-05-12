@@ -97,22 +97,22 @@ export default function IdeaDisplay(props) {
                 dispatch(sFormAction(newRef));
                 router.push("/solutions/improve#add-features");
               }}
-              className=" px-3 h-[2em] rounded-3xl bg-t-pm flex items-center justify-center text-white gap-3 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer "
+              className=" sm:px-2 md:px-3 h-[2em] rounded-3xl bg-t-pm flex items-center justify-center text-white gap-2 sm:gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer "
             >
               <>
-                <MdOutlineUpgrade className="text-[24px]" /> Improve Idea{" "}
+                <MdOutlineUpgrade className="text-[24px]" /> Improve
               </>
               {/* {currentDocRedux?.features?.length === 0 ? <><MdOutlineUpgrade className="text-[24px]" /> Improve Idea </> : <><FaExternalLinkAlt className="text-[18px]" /> Edit Improved Idea </>} */}
             </button>
           </div>
           <button
-            className="w-[9em] h-[2em] rounded-3xl bg-t-bl flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer"
+            className=" px-2 md:px-3 h-[2em] rounded-3xl bg-t-bl flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer"
             onClick={() => {
               dispatch(editModeAction("edit"));
             }}
           >
             <FaEdit />
-            Edit Idea
+            Edit
           </button>
         </div>
       </div>

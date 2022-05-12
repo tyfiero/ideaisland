@@ -36,11 +36,11 @@ const router = useRouter();
   return (
     <div>
       <div
-        className="flex items-center justify-center  px-4 pt-[1rem] sm:px-6 lg:px-8 drop-shadow-xl fade-effect-quick min-w-[50em]
+        className="flex items-center justify-center  px-4 pt-[1rem] sm:px-6 lg:px-8 drop-shadow-xl fade-effect-quick md:min-w-[50em]
 
   "
       >
-        <div className="w-full max-w-[72rem] p-10  normal-box-soft relative">
+        <div className="w-full max-w-[72rem] md:p-10 sm:py-10 sm:px-1  normal-box-soft relative">
           <div className="absolute top-5 left-5">
             <Popover
               isOpen={isPopoverOpen}

@@ -258,7 +258,7 @@ function WordButton({ text, word, updateSelected, selectedWords, mode }) {
           {showText && !contentEdit && (
             <p
               className={
-                "text-5xl  md:hover:scale-[102%] md:active:scale-95 transition duration-500   underline-offset-8  grow-effect" +
+                "md:text-4xl sm:text-2xl lg:text-5xl  md:hover:scale-[102%] md:active:scale-95 transition duration-500   underline-offset-8  grow-effect" +
                 (clicked ? textColor : " text-slate-600 md:hover:text-t-bl ")
               }
             >
@@ -268,7 +268,7 @@ function WordButton({ text, word, updateSelected, selectedWords, mode }) {
           {!showText && !contentEdit && (
             <p
               className={
-                "text-5xl  md:hover:scale-[102%] md:active:scale-95 transition duration-500   underline-offset-8   grow-effect" +
+                "md:text-4xl sm:text-2xl lg:text-5xl  md:hover:scale-[102%] md:active:scale-95 transition duration-500   underline-offset-8   grow-effect" +
                 (clicked ? textColor : " text-slate-600 md:hover:text-t-bl ") 
               }
             >

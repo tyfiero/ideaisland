@@ -92,7 +92,7 @@ const [color2, setColor2] = useState("hsla(178,100%,50%,1)");
   };
 
   return (
-    <div className="w-[35em]  bg-clear-snow rounded-2xl items-center flex-col flex">
+    <div className=" md:w-[35em] sm:w-[95%] pr-5  bg-clear-snow rounded-2xl items-center flex-col flex">
 
       <div className="flex items-center w-full">
       <p className="mt-10 ml-2">$</p>

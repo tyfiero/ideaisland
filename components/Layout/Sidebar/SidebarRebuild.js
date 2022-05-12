@@ -87,6 +87,9 @@ const Sidebar2 = (props) => {
                 }
                 onClick={() => {
                   setSelected(0);
+                  if(props.isToggled){
+                    props.setIsToggled(false)
+                  }
                 }}
               >
                 {/* <FaHome className="text-2xl " /> */}
@@ -114,6 +117,9 @@ const Sidebar2 = (props) => {
                 }
                 onClick={() => {
                   setSelected(4);
+                  if(props.isToggled){
+                    props.setIsToggled(false)
+                  }
                 }}
               >
                 {/* <FaBook className="side-icon" /> */}
@@ -169,6 +175,9 @@ const Sidebar2 = (props) => {
                 }
                 onClick={() => {
                   setSelected(1);
+                  if(props.isToggled){
+                    props.setIsToggled(false)
+                  }
                 }}
               >
                 {/* <GrBug className={"text-2xl  transition duration-1000  group-hover:text-pink-50 " + (selected === 1 ? " text-pinks-50" : "text-pinks-700") }  /> */}
@@ -195,6 +204,9 @@ const Sidebar2 = (props) => {
                 }
                 onClick={() => {
                   setSelected(2);
+                  if(props.isToggled){
+                    props.setIsToggled(false)
+                  }
                 }}
               >
                 <GoLightBulb
@@ -220,6 +232,9 @@ const Sidebar2 = (props) => {
                 }
                 onClick={() => {
                   setSelected(3);
+                  if(props.isToggled){
+                    props.setIsToggled(false)
+                  }
                 }}
               >
                 <BiRocket
@@ -246,6 +261,9 @@ const Sidebar2 = (props) => {
                 }
                 onClick={() => {
                   setSelected(5);
+                  if(props.isToggled){
+                    props.setIsToggled(false)
+                  }
                 }}
               >
                 <IoMdHelp

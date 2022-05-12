@@ -321,10 +321,10 @@ if (darkRedux) {
         <div className="flex w-full h-full sm:flex-col md:flex-row md:pb-[4em] sm:pb-[3em]">
 
         <div className="side-nav-bar md:!w-[5em] md:!mr-2 sm:!w-full md:h-full  ">
-          {signedIn &&  <Sidebar2 toggle={isToggled} signedIn={signedIn}/>}
+          {signedIn &&  <Sidebar2 toggle={isToggled} signedIn={signedIn} setIsToggled={setIsToggled} isToggled={isToggled}/>}
         </div>
         <div className="w-full h-full fade-effect-quick content">
-          {loadingUI ? <FullLoader show={true} /> : <main className="w-full h-full overflow-auto">{children}</main>}
+          {loadingUI ? <FullLoader show={true} /> : <main className="h-full overflow-auto md:w-full sm:w-full">{children}</main>}
 
 
           

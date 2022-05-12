@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import ProblemEditor from "../components/Notes/ProblemEditor";
+import { FaLongArrowAltLeft } from "react-icons/fa";
 
 
 const NotePage = (props) => {
@@ -18,23 +19,66 @@ const NotePage = (props) => {
 
   // console.log(currentNote)
 
+
+const [isMobile, setIsMobile] = useState(false)
+const [openNote, setOpenNote] = useState(false)
+ 
+//choose the screen size 
+const handleResize = () => {
+  if (   window.innerWidth < 720) {
+      setIsMobile(true)
+  } else {
+      setIsMobile(false)
+  }
+}
+
+// create an event listener
+useEffect(() => {
+  window.addEventListener("resize", handleResize)
+console.log("ran")
+})
+
+
   return (
     <AuthCheck plan="Innovator">
-    <div className="flex flex-col mt-3 fade-effect-turbo">
+    <div className="flex flex-col w-full mt-3 fade-effect-turbo">
       {/* <div className="flex flex-col items-center "> */}
       {/* <p>A place for all of your wild ideas and notes.</p> */}
       {/* </div> */}
-      <div className="note-grid">
+      
+      {isMobile ? ( <div className="w-full">
+       
+     {openNote &&  <div className="">
+       <button className="flex items-center gap-2 px-3 py-1 my-1 ml-3 text-sm transition rounded-xl nun bg-clear-pl4 hover:scale-105 active:scale-95"
+     onClick={() => {
+      setOpenNote(!openNote);
+    }}>
+
+      <FaLongArrowAltLeft /> Back
+    </button>
+       </div>}
+       
+       {openNote ? ( <div className="w-full">
+          {currentNote !== "problem" && <Editor type={currentNote}/>}
+          {currentNote === "problem" && <ProblemEditor type={currentNote} />}
+        </div>):(<div className="normal-box-soft h-full !rounded-2xl  min-w-[240px] fade-effect-quick">
+          <IdeaSideBar type={currentNote} setCurrentNote={setCurrentNote} isMobile={isMobile} setOpenNote={setOpenNote}/>
+        </div>)} 
+
+       
+      </div>
+  ) : ( <div className="note-grid">
         <div className="note-grid-1 normal-box-soft h-full !rounded-2xl  min-w-[240px]">
           <IdeaSideBar type={currentNote} setCurrentNote={setCurrentNote} />
         </div>
 
-        <div className="note-grid-2">
+        <div className=" note-grid-2">
           {currentNote !== "problem" && <Editor type={currentNote} />}
           {currentNote === "problem" && <ProblemEditor type={currentNote} />}
         </div>
       </div>
-    </div>
+    )}
+       </div>
     </AuthCheck>
   );
 };

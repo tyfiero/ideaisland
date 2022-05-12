@@ -153,7 +153,7 @@ const Sidebar = (props) => {
       setSelectedIcon(1);
     } else if (location.pathname === "/solutions") {
       setSelectedIcon(2);
-    } else if (location.pathname === "/implementation") {
+    } else if (location.pathname === "/next-steps") {
       setSelectedIcon(3);
     } else if (location.pathname === "/help") {
       setSelectedIcon(4);

@@ -173,7 +173,7 @@ function InspirationStatement({ randomizeAll }) {
     <div className="relative flex flex-col w-full gap-2 ">
       <div className="flex flex-col items-center w-full gap-0 text-left">
         <div className="flex items-start justify-center w-full ">
-          <div className="flex flex-wrap items-start justify-center w-full gap-4 py-4 pt-16 glass-box bg-sky-100/70 dark:bg-sky-700/70">
+          <div className="flex flex-wrap items-start justify-center w-full py-4 pt-16 sm:gap-2 md:gap-4 glass-box bg-sky-100/70 dark:bg-sky-700/70">
             <div className="absolute right-0 flex justify-between gap-2 px-1 transition duration-500 border-b-2 border-l-2 -top-0 rounded-bl-md border-t-bl rounded-tr-md bg-clear-bl2">
               <button
                 data-tip

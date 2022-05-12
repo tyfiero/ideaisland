@@ -129,7 +129,7 @@ function IdeaItem({ idea, admin = false }) {
 
   return (
     <div
-      className="flex items-center justify-center w-full px-4 pt-2 cursor-pointer sm:px-6 lg:px-8 drop-shadow-sm"
+      className="flex items-center justify-center w-full px-4 pt-2 cursor-pointer sm:px-2 lg:px-8 drop-shadow-sm"
       onClick={() => {
         if (sFormRedux.idea) {
           // console.log("Idea in form");
@@ -162,7 +162,7 @@ function IdeaItem({ idea, admin = false }) {
     >
       <div
         className={
-          "flex items-center normal-box-soft !rounded-lg md:w-[98%] !bg-slate-400/50 focus:border-4 border-t-bl" +
+          "flex items-center normal-box-soft !rounded-lg md:w-[98%] sm:w-full !bg-slate-400/50 focus:border-4 border-t-bl" +
           (clicked ? " border-4 border-t-bl !bg-clear-bl3" : " !bg-slate-400/50")
         }
       >
@@ -173,7 +173,7 @@ function IdeaItem({ idea, admin = false }) {
           onChange={() => {}}
         />
 
-        <div className="w-full   p-1  shadow !rounded-xl normal-box-soft drop-shadow-sm flex-col  items-center ">
+        <div className="sm:w-[94%] md:w-full   p-1  shadow !rounded-xl normal-box-soft drop-shadow-sm flex-col  items-center ">
           <div className="flex">
             <div className="glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   !bg-white/90 dark:!bg-slate-600 !rounded-xl w-[100%] ">
               <div className="">
@@ -192,7 +192,7 @@ function IdeaItem({ idea, admin = false }) {
                   <p className="text-slate-400 text-[12px] ml-1 mb-0">
                     {TimeDisplay(idea.createdAt)}
                   </p>
-                  <div className="flex gap-3">
+                  <div className="flex gap-3 md:flex-row sm:flex-col">
 
                  {idea.features && idea.features.length > 0 && <span className="flex items-center justify-center gap-2 px-2 bg-clear-bl2 rounded-xl">
 
@@ -201,7 +201,7 @@ function IdeaItem({ idea, admin = false }) {
                     {idea.techStack && idea.techStack.length > 0 && <span className="flex items-center justify-center gap-2 px-2 bg-clear-pl2 rounded-xl">
                     <p className="text-t-pm fre">Tech Stack</p> <FaCheck className="text-t-pm" />
                     </span>}
-                    <span className="flex items-center pl-1 bg-slate-400/30 rounded-xl">
+                    <span className="flex items-center justify-end pl-1 sm:max-w-28 bg-slate-400/30 rounded-xl">
                       {idea.rating || 0}
                       <OneStar className="ml-5" />
                     </span>

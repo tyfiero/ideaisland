@@ -284,7 +284,7 @@ function ProblemProgressPage(props) {
                     )}
                   </div>
                 </div>
-                <div className="p-5 normal-box-soft !rounded-xl min-w-[35em] group !bg-clear-pm2">
+                <div className="p-5 normal-box-soft !rounded-xl md:min-w-[35em] sm:min-w-full group !bg-clear-pm2">
                   <button
                     className="absolute flex items-center gap-1 p-1 px-2 text-white transition duration-500 opacity-0 bg-t-bl rounded-2xl group-hover:opacity-100 hover:scale-110 active:scale-95"
                     onClick={() => setEditProblem(!editProblem)}
@@ -305,7 +305,7 @@ function ProblemProgressPage(props) {
                   {/* <hr className="border-t-bd"></hr> */}
                   <div className="flex flex-col gap-1">
                     <p className="mt-4 text-xl text-white">
-                      Probem you want to solve:
+                      Problem you want to solve:
                     </p>
 
                     <div className="w-full glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   !bg-white/90">
@@ -372,7 +372,7 @@ function ProblemProgressPage(props) {
               </div>
             </div>
             <div className="flex flex-col">
-              <div className="my-8 mb-[5em] glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]  ">
+              <div className="md:my-8 sm:my-4 md:mb-[5em] glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]  ">
                 <p className="text-xl text-t-bd">
                   You&apos;ve come a long way! Now is when the real fun starts.
                   It&apos;s time to ideate. 💡
@@ -387,7 +387,7 @@ function ProblemProgressPage(props) {
               </div>
             </div>
 
-            <div className="flex items-center justify-between w-full mb-8">
+            <div className="flex items-center justify-between w-full sm:mb-4md:mb-8">
               <button
                 className="card__btn_prev save_button left-[5%]  flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick"
                 onClick={() => router.push("/problem#Details")}

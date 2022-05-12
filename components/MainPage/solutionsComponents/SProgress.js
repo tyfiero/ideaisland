@@ -115,7 +115,7 @@ function SolutionProgressPage(props) {
           console.log("It failed!" + error);
         });
     } else {
-      router.push("/implementation");
+      router.push("/next-steps");
     }
   };
 
@@ -129,7 +129,7 @@ function SolutionProgressPage(props) {
 
         <div className="w-full max-w-[95%]  space-y-8   normal-box-soft p-3">
           <div className="flex flex-col items-center justify-center p-0 problem-page fade-effect-quick">
-            <h1 className="text-3xl  text-t-bd dark:text-blues-100">
+            <h1 className="text-3xl text-t-bd dark:text-blues-100">
               Progress so far:
             </h1>
             <div className="flex flex-col w-full gap-4">
@@ -403,7 +403,7 @@ function SolutionProgressPage(props) {
                   className="w-[16em] h-[4em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-clear-bd3 md:hover:shadow-xl m-1 drop-shadow-xl "
                   onClick={saveOrContinue}
                 >
-                  Continue to Implementation
+                  Continue to Next Steps
                   <FaLongArrowAltRight className="ml-1 text-[34px]" />
                 </button>
               </div>

@@ -43,7 +43,7 @@ export default function IdeaSideBar(props) {
 
   return (
     <div className="overflow-hidden rounded-2xl">
-      <div className="normal-box-soft  bg-[hsla(200,0%,100%,0.764)]  dark:bg-[hsla(200,0%,20%,0.764)] fade-effect-quick flex flex-col items-center max-h-[120vh] overflow-y-auto overflow-x-hidden !rounded-2xl !scrollbar-w-1 scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-t-bl scrollbar-track-blues-50 fade-effect-turbo">
+      <div className="normal-box-soft  md:bg-[hsla(200,0%,100%,0.764)] sm:bg-white/20 dark:bg-[hsla(200,0%,20%,0.764)] fade-effect-quick flex flex-col items-center md:max-h-[120vh] overflow-y-auto overflow-x-hidden !rounded-2xl !scrollbar-w-1 scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-t-bl scrollbar-track-blues-50 fade-effect-turbo">
         {type === "ideas" && (
           <>
             <h1 className="text-3xl text-t-bd dark:text-blues-100 fade-effect-quick">Ideas</h1>
@@ -61,7 +61,7 @@ export default function IdeaSideBar(props) {
             <h1 className="text-3xl text-teal-600 dark:text-teal-200 fade-effect-quick">Notes</h1>
           </>
         )}
-        <div className="flex w-[20em] p-2 gap-2 items-center justify-evenly text-center normal-box-soft">
+        <div className="flex sm:w-[90%] md:w-[20em] p-2 gap-2 items-center justify-evenly text-center normal-box-soft">
           {/* <SwitchSelector
           onChange={onChangeHandler}
           options={options}
@@ -155,6 +155,9 @@ export default function IdeaSideBar(props) {
             onClick={() => {
               dispatch(editModeAction("new"));
               // dispatch(currentDocAction(idea.identifier))
+              if(props.isMobile){
+                props.setOpenNote(true)
+              }
             }}
             className=" w-[12em] h-[2em] m-2 rounded-3xl bg-t-bl flex items-center justify-center text-slate-100 gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer md:hover:shadow-xl shadow-clear-bd3 step-2"
           >
@@ -193,17 +196,17 @@ export default function IdeaSideBar(props) {
 
         {type === "ideas" && (
           <>
-            <IdeasList searchValue={searchValue} type="ideas" />
+            <IdeasList searchValue={searchValue} type="ideas" isMobile={props.isMobile} setOpenNote={props.setOpenNote}/>
           </>
         )}
         {type === "problem" && (
           <>
-            <IdeasList searchValue={searchValue} type="problem" />
+            <IdeasList searchValue={searchValue} type="problem" isMobile={props.isMobile} setOpenNote={props.setOpenNote}/>
           </>
         )}
         {type === "notes" && (
           <>
-            <IdeasList searchValue={searchValue} type="notes" />
+            <IdeasList searchValue={searchValue} type="notes" isMobile={props.isMobile} setOpenNote={props.setOpenNote}/>
           </>
         )}
       </div>

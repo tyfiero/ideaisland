@@ -5,7 +5,7 @@ import Script from "next/script";
 import dynamic from "next/dynamic";
 import { UserContext } from "../../../lib/context";
 import { auth } from "../../../lib/firebase";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import PaddleLoader from "../PaddleLoader";
 import { doc, getFirestore, updateDoc } from "firebase/firestore";

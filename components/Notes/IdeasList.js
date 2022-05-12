@@ -110,7 +110,7 @@ function IdeasList(props) {
   
     return (
       <>
-        <IdeaFeed ideas={ideaSearch} admin type={props.type} mode={props.mode}/>
+        <IdeaFeed ideas={ideaSearch} admin type={props.type} mode={props.mode} isMobile={props.isMobile} setOpenNote={props.setOpenNote}/>
   
         { searchValue?.length > 0 && ideas?.length > 0 ? (
           <p className={"mt-2 text-xs text-slate-400 fade-effect block" + (props.mode === "dash" && " hidden")}>

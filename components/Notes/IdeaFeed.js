@@ -15,7 +15,7 @@ import { editModeAction } from "../../redux/actions";
 import { statsAction } from "../../redux/actions";
 import { useRouter } from "next/router";
 
-export default function IdeaFeed({ ideas, admin, type, mode }) {
+export default function IdeaFeed({ ideas, admin, type, mode, isMobile, setOpenNote }) {
   const statsRedux = useSelector((state) => state.stats);
   const currentDocRedux = useSelector((state) => state.currentDoc);
 
@@ -50,12 +50,12 @@ export default function IdeaFeed({ ideas, admin, type, mode }) {
 
   return ideas
     ? ideas.map((idea, key) => (
-        <IdeaItem idea={idea} key={key} admin={admin} type={type} mode={mode} />
+        <IdeaItem idea={idea} key={key} admin={admin} type={type} mode={mode} isMobile={isMobile} setOpenNote={setOpenNote}/>
       ))
     : null;
 }
 
-function IdeaItem({ idea, admin = false, type, mode }) {
+function IdeaItem({ idea, admin = false, type, mode, setOpenNote, isMobile }) {
   const [hover, setHover] = useState(false);
   const [nav, setNav] = useState(null);
   const currentDocRedux = useSelector((state) => state.currentDoc);
@@ -102,17 +102,20 @@ const router = useRouter();
       dispatch(currentDocAction(idea));
       dispatch(editModeAction("edit"));
     }
+    if(isMobile){
+      setOpenNote(true)
+    }
   };
 
   // console.log(idea.documentID)
   return (
     <div
-      className="flex items-center justify-center px-4 pt-2 sm:px-6 lg:px-8 drop-shadow-xl fade-effect-quick"
+      className="flex items-center justify-center px-4 pt-2 sm:px-6 lg:px-8 drop-shadow-xl fade-effect-quick sm:w-full"
       onClick={onClickHandler}
     >
       <div
         className={
-          "w-[22em]  p-1  shadow !rounded-xl normal-box-soft drop-shadow-xl flex-col  items-center " +
+          "md:w-[22em] sm:w-[98%] p-1  shadow !rounded-xl normal-box-soft drop-shadow-xl flex-col  items-center " +
           (type === "ideas"
             ? (idea.features?.length > 0 ? "bg-clear-bl4" : "bg-clear-bl2")
             : type === "problem"
