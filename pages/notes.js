@@ -24,20 +24,41 @@ const [isMobile, setIsMobile] = useState(false)
 const [openNote, setOpenNote] = useState(false)
  
 //choose the screen size 
-const handleResize = () => {
-  if (   window.innerWidth < 720) {
-      setIsMobile(true)
-  } else {
-      setIsMobile(false)
-  }
-}
+// const handleResize = () => {
+//   if (   window.innerWidth < 720) {
+//       setIsMobile(true)
+//   } else {
+//       setIsMobile(false)
+//   }
+// }
 
-// create an event listener
+// // create an event listener
+// useEffect(() => {
+//   window.addEventListener("resize", handleResize)
+// console.log("ran")
+// })
+
+
+
+
 useEffect(() => {
-  window.addEventListener("resize", handleResize)
-console.log("ran")
-})
-
+  const getWindowDimensions = () => {
+    const { innerWidth: width, innerHeight: height } = window;
+    return {
+      width,
+      height
+    };
+  }
+  function handleResize() {
+if(getWindowDimensions().width < 720){
+  setIsMobile(true)
+} else {
+  setIsMobile(false)
+} 
+  }
+  window.addEventListener('resize', handleResize);
+  return () => window.removeEventListener('resize', handleResize);
+}, []);
 
   return (
     <AuthCheck plan="Innovator">
