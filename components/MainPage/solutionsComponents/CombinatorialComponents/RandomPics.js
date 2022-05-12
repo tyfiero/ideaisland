@@ -126,7 +126,7 @@ function RandomPics() {
       </div>
       {words && (
         <>
-          <div className="flex items-center justify-evenly normal-box bg-[hsla(200,0%,100%,0.764)]  dark:bg-[hsla(200,0%,20%,0.764)] w-[90%] my-3 min-w-[52em]">
+          <div className="flex sm:flex-wrap items-center justify-evenly normal-box bg-[hsla(200,0%,100%,0.764)]  dark:bg-[hsla(200,0%,20%,0.764)] w-[90%] my-3 md:min-w-[52em]">
             <button
               onClick={() => {
                 setRefreshWords(!refreshWords);

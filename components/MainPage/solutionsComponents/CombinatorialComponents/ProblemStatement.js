@@ -181,7 +181,7 @@ function ProblemStatement(props) {
       <div className="flex flex-col items-center w-full gap-0 text-left">
         <div className="flex items-start justify-center w-full ">
           <div className="flex flex-wrap items-start justify-center w-full py-4 pt-16 sm:gap-2 md:gap-4 glass-box bg-pink-100/70 dark:bg-pink-500/40">
-            <div className="absolute right-0 flex justify-between gap-2 px-1 transition duration-500 border-b-2 border-l-2 opacity-100 -top-0 rounded-bl-md border-t-pl rounded-tr-md group-hover:opacity-100 bg-clear-pl2">
+            <div className="absolute sm:-right-5 md:right-0 flex justify-between gap-2 px-1 transition duration-500 border-b-2 border-l-2 opacity-100 sm:-top-1 md:-top-0 rounded-bl-md border-t-pl rounded-tr-md group-hover:opacity-100 bg-clear-pl2 sm:scale-[85%]">
               <button
                 data-tip
                 data-for="random-all"

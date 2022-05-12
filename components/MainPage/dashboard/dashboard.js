@@ -102,8 +102,8 @@ const Dashboard = () => {
         too{" "}
       </p> */}
 
-        <div className="flex items-center justify-center w-full gap-5 m-5">
-          <div className="flex gap-5">
+        <div className="flex items-center justify-center w-full gap-5 md:m-5 sm:my-10">
+          <div className="flex gap-5 md:flex-row sm:flex-col">
             <div className="w-[25em]  bg-clear-bl2 rounded-xl flex flex-col items-center py-4">
               <h2 className="heading text-t-bd dark:text-blues-100">
                 Recent Ideas
@@ -160,9 +160,9 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="dash-graph-holder ">
+        {/* <div className="dash-graph-holder ">
           <div className="dash-graph ">
-            {/* <img className="w-[35em] rounded-xl drop-shadow-2xl shadow-2xl" src="./dummygraph.png" alt="graph" /> */}
+  
             <ChartIdeas />
           </div>
 
@@ -185,7 +185,7 @@ const Dashboard = () => {
               <h4 className="graph-stat-num">93%</h4>
             </div>
           </div>
-        </div>
+        </div> */}
         {/* <div className="dash-graph-holder">
         <div className="graph-stats-holder ml-[3em] mr-[6em]">
           <div className="graph-stat">

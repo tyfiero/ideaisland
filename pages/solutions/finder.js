@@ -198,14 +198,14 @@ const CombinatorialPage = (props) => {
         </h1>
         <div>
           {" "}
-          <div className="absolute top-2 right-2">
+          <div className="absolute md:top-2 md:right-2 sm:scale-75 sm:-top-1 sm:-right-5">
             <div className="relative group">
               <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
               <button
-                className="w-[10em] h-[2.5em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-clear-bd3 md:hover:shadow-xl m-1 drop-shadow-xl "
+                className="md:w-[10em] sm:px-2 md:h-[2.5em] sm:h-[2em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-clear-bd3 md:hover:shadow-xl m-1 drop-shadow-xl "
                 onClick={() => router.push("/solutions/improve")}
               >
-                Improve an Idea
+                Improve Idea
                 <FaLongArrowAltRight className="ml-1 text-[24px]" />
               </button>
             </div>
@@ -222,11 +222,11 @@ const CombinatorialPage = (props) => {
    
   </div> */}
 
-        <div className="w-[98%] rounded-xl cards ring-0 p-5 mt-5 relative">
-          <div className="flex w-[40em] p-2 gap-2 items-center justify-evenly text-center normal-box-soft absolute top-0 right-0">
+        <div className="w-[98%] rounded-xl cards ring-0 md:p-5 mt-5 relative">
+          <div className="flex sm:scale-80 w-[40em] p-2 gap-2 items-center justify-evenly text-center normal-box-soft md:absolute md:top-0 md:right-0">
             <button
               className={
-                "w-[9em] h-[2em] rounded-3xl  flex items-center justify-between px-4 text-white gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer " +
+                "md:w-[9em]   h-[2em] rounded-3xl  flex items-center justify-between px-4 text-white gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer " +
                 (aiOpen
                   ? " bg-clear-pm4 shadow-lg shadow-clear-pm4 ring-4 ring-pinks-700"
                   : " bg-pinks-100 shadow-inner")
@@ -350,7 +350,7 @@ const CombinatorialPage = (props) => {
           {/* </div> */}
           {/* <p className="my-24 mb-24 text-5xl text-t-pm">{splitText}</p> */}
 
-          <div className="flex flex-wrap items-start justify-center w-full gap-2 mt-10 ">
+          <div className="flex flex-wrap items-start justify-center w-full gap-2 md:mt-10 sm:mt-2 sm:mb-[10em]">
             {/* <p className="text-2xl text-t-pm">Problem Statement</p> */}
 
             <div className="relative flex flex-col w-full gap-1 glass-box !border-t-pm border-2 items-center">
@@ -399,7 +399,7 @@ const CombinatorialPage = (props) => {
                   transition={{ delay: 0.2 }}
                   className="px-2 pb-5 glass-box bg-[rgba(255, 255, 255, 0.25)]
                 dark:bg-[hsla(200,0%,5%,0.35)] ring-4 ring-green-200 bg-t-bl/10
-                min-w-[42em] h-full !border-0 mb-5 bg-green-400/20 "
+                md:min-w-[42em] h-full !border-0 mb-5 bg-green-400/20 sm:w-[98%] sm:mt-8"
                 >
                   <p className="text-lg text-left text-green-600">
                     Random Cues
@@ -476,7 +476,7 @@ const CombinatorialPage = (props) => {
                     initial={{ opacity: 0, scale: 0.7 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.2 }}
-                    className="px-2 pb-5 glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   ring-4 ring-t-bl bg-clear-bl1 min-w-[42em] h-full !border-0 relative fade-effect-quick"
+                    className="px-2 pb-5 glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   ring-4 ring-t-bl bg-clear-bl1 md:min-w-[42em] h-full !border-0 relative fade-effect-quick"
                   >
                     <p className="pb-2 text-lg text-left text-t-bd dark:text-t-bl ">
                       {" "}
