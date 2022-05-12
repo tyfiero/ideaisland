@@ -1,17 +1,41 @@
 import Link from "next/link";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../../lib/context";
 import { FaSignInAlt, FaIdCard, FaArrowUp } from "react-icons/fa";
 // Component's children only shown to logged-in users
 export default function AuthCheck(props) {
-  const { username, paidPlan } = useContext(UserContext);
+  const { username, paidPlan, user, loading } = useContext(UserContext);
+  const [loadingUI, setLoadingUI] = useState(false);
+  const [loadingPlanUI, setLoadingPlanUI] = useState(false);
 
+  useEffect(() => {
+    // console.log(loading);
+
+    if (user?.uid) {
+      setLoadingUI(false);
+      
+    if (user?.uid && username && paidPlan) {
+      setLoadingPlanUI(false);
+    }
+     
+    } else {
+      if (loading) {
+        setLoadingUI(true);
+        setLoadingPlanUI(true);
+
+        console.log("loading plan details");
+      } else {
+        console.log("User is not logged in");
+        setLoadingUI(false);
+      setLoadingPlanUI(false);
+
+      }
+    }
+  }, [user, username, loading, paidPlan]);// eslint-disable-line react-hooks/exhaustive-deps
   let planCheckPageContent = (
     <div>
       <div
-      className="flex items-center justify-center min-h-screen px-4 pb-[12rem] sm:px-6 lg:px-8 drop-shadow-xl
-
-"
+      className={" items-center justify-center min-h-screen px-4 pb-[12rem] sm:px-6 lg:px-8 drop-shadow-xl " + (loadingPlanUI ? " hidden" : " flex")}
     >
       <div className="w-full max-w-[35em] p-10 space-y-8 shadow rounded-xl bg-blues-100 drop-shadow-xl  fade-effect-quick">
       <img src="/bulb.svg" alt="logo" className="w-auto h-20 mx-auto sm:h-30" />
@@ -47,9 +71,7 @@ export default function AuthCheck(props) {
 
   let authCheckPageContent = (
     <div
-      className="flex items-center justify-center min-h-screen px-4 pb-[12rem] sm:px-6 lg:px-8 drop-shadow-xl
-
-"
+      className={"flex items-center justify-center min-h-screen px-4 pb-[12rem] sm:px-6 lg:px-8 drop-shadow-xl "+ (loadingUI ? " hidden" : " flex")}
     >
       <div className="w-full max-w-md p-10 space-y-8 shadow rounded-xl bg-blues-100 drop-shadow-xl fade-effect-quick">
         <div>
