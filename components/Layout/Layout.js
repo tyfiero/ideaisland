@@ -152,9 +152,9 @@ if (darkRedux) {
 
     
     //if mobile, redirect to mobile page
-    if (isMobile) {
-      router.push("/mobile");
-    }
+    // if (isMobile) {
+    //   router.push("/mobile");
+    // }
     console.log(`
     _   _         _     _           _ 
    |_|_| |___ ___|_|___| |___ ___ _| |
