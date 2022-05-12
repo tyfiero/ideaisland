@@ -264,7 +264,7 @@ function CreateNewIdea(props) {
 
   useEffect(() => {
     if (currentDocRedux && editModeRedux === "edit") {
-      if (currentDocRedux.imgUrl.length > 0) {
+      if (currentDocRedux.imgUrl?.length > 0) {
         setIsPic(true);
       } else {
         setIsPic(false);

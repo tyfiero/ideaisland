@@ -110,12 +110,12 @@ const router = useRouter();
   // console.log(idea.documentID)
   return (
     <div
-      className="flex items-center justify-center px-4 pt-2 sm:px-6 lg:px-8 drop-shadow-xl fade-effect-quick sm:w-full"
+      className="flex items-center justify-center px-4 pt-2 sm:px-6 md:px-1 drop-shadow-xl fade-effect-quick sm:w-full"
       onClick={onClickHandler}
     >
       <div
         className={
-          "md:w-[22em] sm:w-[98%] p-1  shadow !rounded-xl normal-box-soft drop-shadow-xl flex-col  items-center " +
+          "w-[98%] p-1  shadow !rounded-xl normal-box-soft drop-shadow-xl flex-col  items-center " +
           (type === "ideas"
             ? (idea.features?.length > 0 ? "bg-clear-bl4" : "bg-clear-bl2")
             : type === "problem"
