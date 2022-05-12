@@ -200,7 +200,7 @@ const HelpPage = () => {
         </h4>
 
 
-        <div className="normal-box bg-[hsla(200,0%,100%,0.764)]  dark:bg-[hsla(200,0%,20%,0.764)] !w-[90%] flex flex-col items-start m-auto text-left nun px-10 py-5">
+        <div className="normal-box bg-[hsla(200,0%,100%,0.764)]  dark:bg-[hsla(200,0%,20%,0.764)] !w-[90%] flex flex-col items-start m-auto text-left nun px-10 py-5 !text-slate-800 dark:!text-slate-50">
         <p className="my-5 text-xl text-left">Thanks for joining us! Here are some quick tips:</p>
 
           <ul className="mt-5 space-y-4 list-disc list-inside">

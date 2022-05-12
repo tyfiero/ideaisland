@@ -134,12 +134,15 @@ if (darkRedux) {
   ;
   document.documentElement.classList.add('dark')
     document.documentElement.style.setProperty("--menuColor", concat);
+    document.documentElement.style.setProperty("--quillIconColor", "hsla(200, 100%, 100%, 1)");
+    document.documentElement.style.setProperty("--quillPickerColor", "hsla(200, 100%, 10%, 1)");
 
 } else {
   body.setAttribute("style", "background-color: white");
   document.documentElement.classList.remove('dark')
   document.documentElement.style.setProperty("--menuColor", concat);
-
+  document.documentElement.style.setProperty("--quillIconColor", "hsla(200, 100%, 0%, 1)");
+  document.documentElement.style.setProperty("--quillPickerColor", "hsla(200, 100%, 100%, 1)");
 }
   }, [darkRedux]);// eslint-disable-line react-hooks/exhaustive-deps
 

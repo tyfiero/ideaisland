@@ -294,7 +294,7 @@ const SettingsPage = () => {
           </div> */}
 
           <h1 className="text-3xl text-t-bd dark:text-blues-100">Settings</h1>
-          <div className="flex flex-col min-w-[40em] gap-5 p-5 glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]  ">
+          <div className="flex flex-col md:min-w-[40em] gap-5 p-5 glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]  ">
             <div className="flex gap-20">
               <p className="text-black transition duration-500 dark:text-slate-50 ">
                 Dark Mode:{" "}
@@ -321,7 +321,7 @@ const SettingsPage = () => {
             </div>
             <div className="flex items-center gap-5">
               <p className="text-black transition duration-500 dark:text-slate-50 ">
-                Change UI Colors
+                Change UI Colors:
               </p>
               <button
                 onClick={() => setChangeColor(!changeColor)}
@@ -372,7 +372,7 @@ const SettingsPage = () => {
             </div>
             <div className="flex items-center gap-5">
               <p className="text-black transition duration-500 whitespace-nowrap dark:text-slate-50">
-                Background image
+                Background image:
               </p>
               <button
                 onClick={() => setAddImage(!addImage)}
@@ -436,15 +436,20 @@ const SettingsPage = () => {
         </div>
       )}
       {changeColor && (
-        <div className="p-5 normal-box-soft w-[60em] ">
+        <div className="p-5 normal-box-soft md:w-[60em] ">
           <button
             onClick={() => setReset(!reset)}
             className="p-1 text-white bg-t-bl rounded-xl"
           >
             Reset to default
           </button>
-          <p>Note: this will affect the way the site is intended to look.</p>
-
+          <div className="flex flex-col gap-3 text-left">
+          <p className="text-base"><span className="text-lg text-t-bd dark:text-t-bl fre"> Tips:</span> This site is made with three base colors, <span className="px-1 text-lg rounded-lg whitespace-nowrap bg-black/90 dark:bg-white/40 text-t-bl fre">Color 1</span>, <span className="px-1 text-lg rounded-lg bg-black/90 dark:bg-white/40 text-t-pl fre">Color 2</span>, and <span className="px-1 text-lg rounded-lg bg-black/90 dark:bg-white/40 text-t-bpop fre">Accent color</span>. If you choose to change the colors: this will affect the way the site is intended to look, and can cause readability issues, but feel free to experiment with it.</p>
+          <p className="text-base"> -Pick a light shade for <span className="px-1 text-lg rounded-lg bg-black/90 dark:bg-white/40 text-t-bl fre">color 1 light</span>, and a darker shade of the SAME color for <span className="px-1 text-lg rounded-lg bg-black/20 dark:bg-white/40 text-t-bd fre">color 1 dark</span>.</p>
+          <p className="text-base">-Pick a light shade for <span className="px-1 text-lg rounded-lg bg-black/90 dark:bg-white/40 text-t-pl fre">color 2 light</span>, a darker shade of the SAME color for <span className="px-1 text-lg rounded-lg bg-black/20 dark:bg-white/40 text-t-pd fre">color 2 dark</span>, and a shade between light and dark for <span className="px-1 text-lg rounded-lg bg-black/90 dark:bg-white/40 text-t-pm fre">color 2 medium.</span></p>
+          <p className="text-base">-The <span className="px-1 text-lg rounded-lg bg-black/90 dark:bg-white/40 text-t-bpop fre">accent color</span> works best as a bright, bold color.</p>
+          </div>
+         
           <div className="flex flex-wrap items-center justify-center gap-5">
             <div className="flex flex-col items-center">
               <p>Color 1 light</p>

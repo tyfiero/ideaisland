@@ -56,6 +56,8 @@
   --colorDark2base: 224, 64%, 40%;
 
   --menuColor: hsla(200, 100%, 100%, 0.7);
+  --quillIconColor: hsla(200, 100%, 0%, 1);
+  --quillPickerColor: hsla(200, 100%, 100%, 1);
 
   --blob1: #4eaef7;
   --blob2: #2549a8;
@@ -2900,4 +2902,36 @@ input[type="range"]::-moz-range-thumb:active {
 .pixel-grid{
 
 
+}
+
+.ql-toolbar .ql-stroke {
+    fill: none !important;
+    stroke: var(--quillIconColor) !important;
+}
+
+.ql-toolbar .ql-fill {
+    fill: var(--quillIconColor) !important;
+    stroke: none !important;
+}
+
+.ql-toolbar .ql-picker {
+    color: var(--quillIconColor) !important;
+}
+
+.ql-picker-options{
+    background-color: var(--quillPickerColor) !important;
+
+}
+.ql-snow .ql-picker.ql-size {
+    width: 74px !important;
+    /* padding-right: 2px */
+}
+
+
+.ql-toolbar.ql-snow .ql-formats {
+margin-right: 8px !important;
+}
+
+.ql-editor{
+  color: var(--quillIconColor) !important;
 }

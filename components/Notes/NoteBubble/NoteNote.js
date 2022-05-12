@@ -143,7 +143,7 @@ function NoteNote() {
           </button>
         </div>
 
-        <div className="flex justify-center w-full p-2 rounded-b-3xl rounded-t-xl bg-clear-bpop2">
+        <div className="flex justify-center w-full p-2 rounded-b-3xl rounded-t-xl bg-slate-300/60">
           <div
             className="normal-box bg-[hsla(200,0%,100%,0.764)]  dark:bg-[hsla(200,0%,20%,0.764)] !rounded-lg  mt-1 !rounded-b-3xl w-[97%]
 
@@ -190,8 +190,6 @@ Editor.modules = {
     [
       { list: "ordered" },
       { list: "bullet" },
-      { indent: "-1" },
-      { indent: "+1" },
     ],
     ["link"],
   ],

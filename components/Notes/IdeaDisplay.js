@@ -120,7 +120,7 @@ export default function IdeaDisplay(props) {
       <div
         className={
           "normal-box-soft w-full !rounded-2xl first-letter: -z-10" +
-          (type === "ideas" ? " !bg-clear-bl2" : " !bg-clear-bpop2")
+          (type === "ideas" ? " !bg-clear-bl2" : " !bg-slate-300/60")
         }
       >
         <div className="normal-box bg-[hsla(200,0%,100%,0.764)]  dark:bg-[hsla(200,0%,20%,0.764)] mt-1 mx-1 min-h-[5em] !rounded-2xl mb-4 ">

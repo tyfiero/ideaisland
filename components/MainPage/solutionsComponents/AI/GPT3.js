@@ -47,6 +47,7 @@ const GPTtool = ({ showButton }) => {
 
   const [GPT3Input, setGPT3Input] = useState("");
   const [GPTJInput, setGPTJInput] = useState("");
+  const [oldInput, setoldInput] = useState("");
 
   const [GPT3Output, setGPT3Output] = useState("");
   // const [GPT3Status, setGPT3Status] = useState(false);
@@ -77,29 +78,27 @@ const GPTtool = ({ showButton }) => {
     borderRadius: "1rem",
   };
 
-useEffect(()=>{
-  getTokenAmount()
-},[])
+  useEffect(() => {
+    getTokenAmount();
+  }, []);
 
-const deduct = async (values) => {
-  let uid;
-  if (user?.uid) {
-    uid = user?.uid;
-  } else if (userUIDRedux) {
-    uid = userUIDRedux;
-  } else if (auth.currentUser?.uid) {
-    uid = auth.currentUser?.uid;
-  } else {
-    uid = "1";
-    console.log("no uid available :(");
-  }
-  let newBalance = (credits - values).toFixed(1)
-  const ref = doc(getFirestore(), "users", uid);
-  const docSnap = await updateDoc(ref, {credits: newBalance});
-  setCredits(newBalance)
-  }
-
-
+  const deduct = async (values) => {
+    let uid;
+    if (user?.uid) {
+      uid = user?.uid;
+    } else if (userUIDRedux) {
+      uid = userUIDRedux;
+    } else if (auth.currentUser?.uid) {
+      uid = auth.currentUser?.uid;
+    } else {
+      uid = "1";
+      console.log("no uid available :(");
+    }
+    let newBalance = (credits - values).toFixed(1);
+    const ref = doc(getFirestore(), "users", uid);
+    const docSnap = await updateDoc(ref, { credits: newBalance });
+    setCredits(newBalance);
+  };
 
   const getTokenAmount = async (values) => {
     let uid;
@@ -114,20 +113,21 @@ const deduct = async (values) => {
       console.log("no uid available :(");
     }
     const ref = doc(getFirestore(), "users", uid);
-    const docSnap = await getDoc(ref)
+    const docSnap = await getDoc(ref);
     // console.log(docSnap)
     if (docSnap.exists()) {
       // console.log("Document data:", docSnap.data());
-    setCredits(docSnap.data().credits)
+      setCredits(docSnap.data().credits);
     } else {
       // doc.data() will be undefined in this case
       console.log("No such document!");
     }
-    }
+  };
 
   //gpt3
   const onSubmitForm = async (values) => {
     let formData = values.input;
+    let formType = values.type;
     setResponseRecieved(false);
     setResponseRecievedGPTJ(false);
     let uid;
@@ -142,12 +142,13 @@ const deduct = async (values) => {
       uid = "1";
       console.log("no uid available :(");
     }
-   await axios({
+    await axios({
       method: "POST",
       url: "/api/openAI",
       data: {
         input: formData,
         user: uid,
+        type: formType,
       },
       // headers: headers,
     })
@@ -159,7 +160,7 @@ const deduct = async (values) => {
         setAiResponse(response.data.results);
         dispatch(gpt3OutputAction(aiResponse));
         setResponseRecieved(true);
-        deduct(1)
+        deduct(1);
         setAiLoading(false);
 
         return response;
@@ -186,14 +187,16 @@ const deduct = async (values) => {
   //gptJ
   const onSubmitFormGptJ = async (values) => {
     let formData = values.input;
+    let formType = values.type;
     setResponseRecievedGPTJ(false);
     setResponseRecieved(false);
 
-   await axios({
+    await axios({
       method: "POST",
       url: "/api/gptJ",
       data: {
         input: formData,
+        type: formType,
       },
       // headers: headers,
     })
@@ -202,7 +205,7 @@ const deduct = async (values) => {
         // console.log(response.data.results);
         setAiResponseGPTJ(response.data.results);
         setResponseRecievedGPTJ(true);
-        deduct(0.2)
+        deduct(0.2);
         setAiLoading(false);
         dispatch(gptJOutputAction(aiResponseGPTJ));
         return response;
@@ -251,7 +254,6 @@ const deduct = async (values) => {
         ></textarea> */}
       <div className="flex justify-start w-full">
         <p className="pt-1 text-left text-md text-t-pd">Input:</p>
-
       </div>
       <TextareaAutosize
         className="w-[99%] rounded-md nun   textarea-tw"
@@ -304,22 +306,20 @@ const deduct = async (values) => {
                 console.log("Please wait for the first request to load");
               } else {
                 // setGPTJStatus(true);
-                if(credits >= 0.2){
-
+                if (credits >= 0.2) {
                   setAiLoading(true);
-                  onSubmitFormGptJ({ input: GPTJInput,
-                    type: "new" });
-                  }else{
-                    setResponseRecieved(false);
-                    setResponseRecievedGPTJ(false);
-                    setAiResponse("No credits remaining, you can purchase more or upgrade your plan in the billing menu.");
-                    dispatch(gptJOutputAction(aiResponse));
-                    setResponseRecieved(true);
-                  }
-
-
-                  
-               
+                  setoldInput("")
+                  onSubmitFormGptJ({ input: GPTJInput, type: "new" });
+                } else {
+                  setResponseRecieved(false);
+                  setResponseRecievedGPTJ(false);
+                  setoldInput("")
+                  setAiResponse(
+                    "No credits remaining, you can purchase more or upgrade your plan in the billing menu."
+                  );
+                  dispatch(gptJOutputAction(aiResponse));
+                  setResponseRecieved(true);
+                }
               }
             }}
           >
@@ -334,7 +334,12 @@ const deduct = async (values) => {
               </>
             ) : (
               <>
-               <div className="flex flex-col items-center mt-2 leading-3"><p className="pl-2 text-t-pd dark:text-t-pd">Send to AI</p><p className="pl-2 text-xs text-slate-500 dark:text-slate-500">(0.2 Credits)</p></div> 
+                <div className="flex flex-col items-center mt-2 leading-3">
+                  <p className="pl-2 text-t-pd dark:text-t-pd">Send to AI</p>
+                  <p className="pl-2 text-xs text-slate-500 dark:text-slate-500">
+                    (0.2 Credits)
+                  </p>
+                </div>
 
                 <BiSend
                   style={{ fontSize: "32px" }}
@@ -345,8 +350,6 @@ const deduct = async (values) => {
           </button>
         </div>
       </div>
-
-      
     </div>
   );
 
@@ -402,14 +405,17 @@ const deduct = async (values) => {
                 console.log("Please wait for the first request to load");
               } else {
                 // setGPT3Status(true);
-                if(credits >= 1){
-
-                setAiLoading(true);
-                onSubmitForm({ input: GPT3Input });
-                }else{
+                if (credits >= 1) {
+                  setAiLoading(true);
+                  setoldInput("")
+                  onSubmitForm({ input: GPT3Input, type: "new" });
+                } else {
                   setResponseRecieved(false);
                   setResponseRecievedGPTJ(false);
-                  setAiResponse("No credits remaining, you can purchase more or upgrade your plan in the billing menu.");
+                  setoldInput("")
+                  setAiResponse(
+                    "No credits remaining, you can purchase more or upgrade your plan in the billing menu."
+                  );
                   dispatch(gpt3OutputAction(aiResponse));
                   setResponseRecieved(true);
                 }
@@ -427,7 +433,12 @@ const deduct = async (values) => {
               </>
             ) : (
               <>
-                 <div className="flex flex-col items-center mt-2 leading-3"><p className="pl-2 text-t-pd dark:text-t-pd">Send to AI</p><p className="pl-2 text-xs text-slate-500 dark:text-slate-500">(1 Credit)</p></div> 
+                <div className="flex flex-col items-center mt-2 leading-3">
+                  <p className="pl-2 text-t-pd dark:text-t-pd">Send to AI</p>
+                  <p className="pl-2 text-xs text-slate-500 dark:text-slate-500">
+                    (1 Credit)
+                  </p>
+                </div>
 
                 <BiSend
                   style={{ fontSize: "32px" }}
@@ -493,7 +504,9 @@ const deduct = async (values) => {
                     setWarning(!warning);
                   }}
                 >
-                  <p className="pl-2 text-t-pd dark:text-t-pd">Agree and Continue</p>
+                  <p className="pl-2 text-t-pd dark:text-t-pd">
+                    Agree and Continue
+                  </p>
 
                   <BsArrowRight
                     style={{ fontSize: "32px" }}
@@ -508,59 +521,69 @@ const deduct = async (values) => {
         <>
           {" "}
           <div className="flex flex-col w-full ">
-
-          <div className="flex items-center w-full gap-2">
-            
-          <p className="pt-1 text-lg text-left text-t-pd">{credits}</p>
-        <p className="pt-1 text-xs text-left text-t-pd">Credits Remaining</p>
-          </div>
+            <div className="flex items-center w-full gap-2">
+              <p className="pt-1 text-lg text-left text-t-pd">{credits}</p>
+              <p className="pt-1 text-xs text-left text-t-pd">
+                Credits Remaining
+              </p>
+            </div>
 
             {GPTJorGPT3 ? gptJContent : gpt3Content}
           </div>
           <div className="flex flex-col w-full ">
             <p className="pt-2 text-left text-md text-t-pd">Results:</p>
 
-            <div className="flex items-center ai-output-box bg-white/80 dark:bg-slate-800/60">
+            <div className="flex items-center w-full text-left ai-output-box bg-white/80 dark:bg-slate-800/60 min-w-30em">
+
+              {oldInput.length > 0 && <p>{oldInput.trimStart() + " "}</p>}
               <Loader show={aiLoading} />
 
-              {responseRecieved && <p>{aiResponse}</p>}
+              {responseRecieved && <p>{aiResponse.trimStart()}</p>}
               {!responseRecieved && !responseRecievedGPTJ && !aiLoading && (
                 <p className="text-gray-400">{"AI output will display here"}</p>
               )}
 
-              {responseRecievedGPTJ && <p>{"AI:" + aiResponseGPTJ}</p>}
+              {responseRecievedGPTJ && <p>{aiResponseGPTJ.trimStart()}</p>}
             </div>
-            {/* <button className="w-[12em] h-[2em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer !shadow-clear-pd3 md:hover:shadow-xl m-1 drop-shadow-xl !bg-gradient-to-br from-white via-t-pl  to-t-pm !shadow-2xl "
-             onClick={() => {
-              if (aiLoading) {
-                console.log("Please wait for the first request to load");
-              } else {
-                if(GPTJorGPT3){
-//  setGPTJStatus(true);
-                setAiLoading(true);
-                onSubmitFormGptJ({ input: aiResponse,
-                type: "expand" });
-              }else {
-                  //  setGPT3Status(true);
-                setAiLoading(true);
-                onSubmitForm({ input: aiResponse,
-                type: "expand" });
-              }
-                }
-               
-            }}>
-              {aiLoading ? (
-                <>
-                  <p className="text-lg ">Expanding...</p>{" "}
-                  
-                </>
-              ) : (
-                <>
-                  <p className="text-lg ">Expand Answer</p>
-                  <p className="ml-2 text-xs text-slate-600">(1 credit)</p>
-                </>
-              )}
-            </button> */}
+
+            <div className="flex justify-center w-full mt-2">
+              <button
+                className="w-[12em] h-[2em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect  cursor-pointer !shadow-clear-pd3 md:hover:shadow-xl m-1 drop-shadow-xl !bg-gradient-to-br from-white via-t-pl  to-t-pm !shadow-2xl "
+                onClick={() => {
+                  if (aiLoading) {
+                    console.log("Please wait for the first request to load");
+                  } else {
+                    if (GPTJorGPT3) {
+                      setoldInput(aiResponseGPTJ)
+                      //  setGPTJStatus(true);
+                      setAiLoading(true);
+                      onSubmitFormGptJ({ input: aiResponseGPTJ, type: "expand" });
+                    } else {
+                      //  setGPT3Status(true);
+                      setoldInput(oldInput + " " +aiResponse)
+
+                      setAiLoading(true);
+                      onSubmitForm({ input: aiResponse, type: "expand" });
+                    }
+                  }
+                }}
+              >
+                {aiLoading ? (
+                  <>
+                    <p className="text-lg text-t-pd">Expanding...</p>{" "}
+                  </>
+                ) : (
+                  <>
+                    <p className="text-lg text-t-pd dark:text-t-pd">
+                      Expand Answer
+                    </p>
+                    <p className="ml-2 text-xs text-slate-600 dark:text-slate-600">
+                      {GPTJorGPT3 ? "(0.2 credits)" : "(1 credit)"}
+                    </p>
+                  </>
+                )}
+              </button>
+            </div>
           </div>
         </>
       )}

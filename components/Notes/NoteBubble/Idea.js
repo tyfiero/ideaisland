@@ -192,8 +192,6 @@ Editor.modules = {
     [
       { list: "ordered" },
       { list: "bullet" },
-      { indent: "-1" },
-      { indent: "+1" },
     ],
     ["link"],
   ],

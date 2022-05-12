@@ -30,6 +30,7 @@ import { BiRocket } from "react-icons/bi";
 import { BsBug } from "react-icons/bs";
 import CircleTimer from "../Timer";
 import TopBarRight from "../TopBarRight";
+import DarkModeToggle from "../DarkModeToggle";
 
 const Sidebar2 = (props) => {
   const { user, username } = useContext(UserContext);
@@ -282,7 +283,7 @@ const Sidebar2 = (props) => {
         {/* <Link href="/Home"></Link> */}
       </div>
       {/* {props.signedIn && <TopBarRight />} */}
-      <div className="flex flex-col items-center mb-[4.5em] group sm:hidden md:block">
+      <div className="flex flex-col gap-2 justify-center items-center mb-[2.5em] group sm:hidden md:block">
         <div className="flex flex-col items-center group">
           {!timerOpen && (
             <>
@@ -307,6 +308,8 @@ const Sidebar2 = (props) => {
               </p>
             </>
           )}
+
+        
         </div>
 
         {timerOpen && (
@@ -315,7 +318,12 @@ const Sidebar2 = (props) => {
             className="fade-effect-quick"
           />
         )}
+
+<div className="flex justify-center w-full pt-1">
+              <DarkModeToggle />
+              </div>  
       </div>
+      
     </div>
     // <>
     //   <IconContext.Provider value={{ color: "black" }}>

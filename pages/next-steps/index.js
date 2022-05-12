@@ -177,7 +177,7 @@ const ImplementTool = ({
         bColor
       }
     >
-      <div className="w-full h-[10em] bg-white/40  ">
+      <div className="w-full h-[10em] bg-white/40  rounded-lg">
         <img
           src={imgSrc}
           alt="logo"
@@ -200,7 +200,7 @@ const ImplementTool = ({
             bColor
           }
         >
-          <p className="m-0">Launch</p> <FaArrowRight className={textColor} />
+          <p className="m-0 dark:text-slate-800">Launch</p> <FaArrowRight className={textColor} />
         </button>
       </div>
     </div>

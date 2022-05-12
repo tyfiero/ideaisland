@@ -82,14 +82,14 @@ const Dashboard = () => {
     
         <div className="flex flex-col items-center p-3 h-30 normal-box">
         <p className="text-xl">Question of the Week</p>
-          <h1>
+          <h1 className="text-2xl dark:text-blues-100">
             How could you make an existing offering more accessible to another
             community?
           </h1>
         </div>
         <div className="flex flex-col items-center p-3 h-30 normal-box">
         <p className="text-xl">Inspirational Quotes</p>
-          <h1 className="text-2xl">
+          <h1 className="text-2xl dark:text-blues-100">
            {Quote.getQuote()?.text}
           </h1>
           <p>
@@ -102,7 +102,7 @@ const Dashboard = () => {
         too{" "}
       </p> */}
 
-        <div className="flex items-center justify-center w-full gap-5 md:m-5 sm:my-10">
+        <div className="flex items-center justify-center w-full gap-5 md:mx-0 md:my-5 sm:my-10">
           <div className="flex gap-5 md:flex-row sm:flex-col">
             <div className="w-[25em]  bg-clear-bl2 rounded-xl flex flex-col items-center py-4">
               <h2 className="heading text-t-bd dark:text-blues-100">

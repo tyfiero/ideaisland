@@ -5,14 +5,18 @@ import sanitize from "../../lib/sanitize";
 
 // console.log(process.env.NEXT_PUBLIC_OPENAI_API_KEY);
 async function gptJAPIRequest(req) {
-  //   console.log(req.body.input);
+    console.log(req.body);
 
   let userInput = sanitize(req.body.input, {
     USE_PROFILES: { html: true },
   });
   let prompt = `Making a new software product about ${userInput} is complex, but worth it! Here is a list of software product ideas in the ${userInput} domain`;
+
+  let aIInput = req.body.type === "expand" ? (req.body.input + " ") : prompt;
+  console.log(aIInput);
+
   let promptToSend = {
-    prompt: prompt,
+    prompt: aIInput,
     max_tokens: 100,
     temperature: 0.89,
     top_k: 40,

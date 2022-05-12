@@ -156,12 +156,14 @@ const NotePopUp = (props) => {
               className={
                 "w-[10em] h-[2em] rounded-3xl bg-t-bl flex items-center justify-center text-white gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer " +
                 (noteType === "note"
-                  ? " bg-clear-bpop4 shadow-lg shadow-clear-bpop2"
+                  ? " !bg-slate-800/60 shadow-lg shadow-slate-800/60"
                   : " bg-slate-300 shadow-inner")
               }
               onClick={() => setnoteType("note")}
             >
-              <FaStickyNote className="text-[18px] text-t-bd" />
+              <FaStickyNote className={"text-[18px]  " +   (noteType === "note"
+                  ? " !text-slate-100 "
+                  : " !text-slate-800")} />
 
               <p
                 className={

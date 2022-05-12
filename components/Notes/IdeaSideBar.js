@@ -58,7 +58,7 @@ export default function IdeaSideBar(props) {
         )}
         {type === "notes" && (
           <>
-            <h1 className="text-3xl text-teal-600 dark:text-teal-200 fade-effect-quick">Notes</h1>
+            <h1 className="text-3xl text-slate-600 dark:text-slate-100 fade-effect-quick">Notes</h1>
           </>
         )}
         <div className="flex sm:w-[90%] md:w-[20em] p-2 gap-2 items-center justify-evenly text-center normal-box-soft">
@@ -112,17 +112,17 @@ export default function IdeaSideBar(props) {
           <button
             className={
               "w-[6em] h-[2em] rounded-3xl bg-t-bl flex items-center justify-center  gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer " +
-              (type === "notes" ? " bg-clear-bpop3" : " bg-slate-300 dark:bg-slate-800")
+              (type === "notes" ? " bg-slate-700 dark:bg-slate-300" : " bg-slate-300 dark:bg-slate-800")
             }
             onClick={() => props.setCurrentNote("notes")}
           >
-            <FaStickyNote className="text-[18px] text-teal-400 dark:text-teal-100" />
+            <FaStickyNote className={"text-[18px]  " +  (type === "notes" ? " text-slate-300 dark:text-slate-800" : " text-slate-800  dark:text-slate-100")} />
 
             <p
               className={
                 "mr-1 mb-0 " +
                 (type === "notes"
-                  ? "text-slate-100 text-[20px]"
+                  ? "text-slate-100 text-[20px] dark:text-slate-800"
                   : "text-black text-[18px]")
               }
             >

@@ -23,22 +23,30 @@ async function gpt3APIRequest(req) {
   // console.log(process.env.OPENAI_API_KEY);
   let user = req.body.user;
   let userInput = req.body.input;
-
+  let type = req.body.type;
+// console.log(req.body )
   // console.log(user)
   //   let input = ` ${req}`;
   // let prompt = `Brainstorm some ideas combining ${userInput}: `;
   let prompt = ` Making a new software product about ${userInput} is complex, but worth it. Here is a list of software product ideas in the ${userInput} domain:`;
 
+
+let aiInput = type === "expand" ? (userInput + " ") : prompt;
+// let shouldStream = type === "expand" ? true : false;
+let presence_penalty = type === "expand" ? 1.5 : 1;
+let frequency_penalty = type === "expand" ? 1.5 : 0.5;
+// console.log(aiInput )
+
   const gptResponse = await openai.complete({
     // engine: "ada",
-    engine: "davinci",
+    engine: "text-davinci-002",
     prompt: prompt,
     maxTokens: 100,
     user: user,
     temperature: 0.89,
     topP: 1,
-    presencePenalty: 1,
-    frequencyPenalty: 0.5,
+    presencePenalty: presence_penalty,
+    frequencyPenalty: frequency_penalty,
     stream: false,
     bestOf: 1,
     n: 1,

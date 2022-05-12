@@ -40,11 +40,11 @@ function SIdeate(props) {
 
   "
       >
-        <div className="w-full max-w-[62rem] p-10 space-y-8  normal-box-soft relative !bg-gradient-to-b from-clear-pl3 to-clear-bl3 min-h-[30em]">
+        <div className="w-full max-w-[62rem] p-10 space-y-8  normal-box-soft relative !bg-gradient-to-b from-clear-pl3 dark:from-clear-pd2 dark:to-clear-bd4 to-clear-bl3 min-h-[30em]">
           
           <div className="absolute top-0 left-0 flex items-center content-center w-full h-full overflow-hidden select-none rounded-xl">
             
-              <img src="/treeillustration.png" alt="palm" className="object-cover opacity-25 -z-10"/> 
+              <img src="/treeillustration.png" alt="palm" className="object-cover opacity-25 -z-10 sm:scale-125"/> 
           </div>
           <div className="absolute top-5 left-5">
             <Popover
@@ -121,11 +121,11 @@ function SIdeate(props) {
               >
                 <FaRobot /> AI tool {button2 ?   <span className="absolute flex items-center justify-center w-6 h-6 leading-none text-center text-black rounded-full -top-2 -left-2 bg-t-bpop"><FaCheck/></span> : null}
               </button> */}
-              <div className="flex flex-col gap-5">
+              <div className="flex flex-col items-center gap-5">
                 {/* <h4>Tools:</h4> */}
                 <Link href="/solutions/finder">
                   <a>
-                  <div className="relative group !w-[25em]">
+                  <div className="relative group md:!w-[25em] sm:!w-[18em]">
                 <div className="absolute w-full transition duration-1000 rounded-full opacity-90 -inset-1 bg-gradient-to-r from-t-bl via-blues-200 to-blues-50 blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
                 <button
                   className="w-[95%] h-[3em] bg-gradient-to-r from-t-bl via-blues-300 to-blues-100  flex items-center justify-between px-5 md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-clear-bd3 md:hover:shadow-xl m-1 drop-shadow-xl rounded-full text-xl text-white"
@@ -140,7 +140,7 @@ function SIdeate(props) {
 
                 <Link href="/solutions/improve">
                   <a>
-                  <div className="relative group !w-[25em]">
+                  <div className="relative group md:!w-[25em] sm:!w-[18em]">
                 <div className="absolute w-full transition duration-1000 rounded-full opacity-90 -inset-1 bg-gradient-to-r from-t-bl via-blues-200 to-blues-50 blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
                 <button
                   className="w-[95%] h-[3em] bg-gradient-to-r from-t-bl via-t-bl to-t-bpop  flex items-center justify-between px-5 md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-clear-bd3 md:hover:shadow-xl m-1 drop-shadow-xl rounded-full text-xl text-white"

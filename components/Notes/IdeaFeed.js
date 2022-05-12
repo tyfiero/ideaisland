@@ -120,7 +120,7 @@ const router = useRouter();
             ? (idea.features?.length > 0 ? "bg-clear-bl4" : "bg-clear-bl2")
             : type === "problem"
             ? "bg-clear-pl4"
-            : "bg-clear-bpop3")
+            : "bg-slate-300/80")
         }
         // onMouseOver={() => setHover(true)}
         // onMouseOut={() => setHover(false)}
@@ -144,16 +144,16 @@ const router = useRouter();
               {type === "problem" && (
                 <>
                   <p className="overflow-hidden max-h-[3em]">
-                  <span className="font-bold text-t-pd">Why:</span>{" " + (idea.why || "...")}
+                  <span className="font-bold text-t-pd dark:text-t-pl">Why:</span>{" " + (idea.why || "...")}
                   </p>
                   <p className="overflow-hidden max-h-[3em]">
-                    <span className="font-bold text-t-pd">What:</span>{" " + (idea.what || "...")}
+                    <span className="font-bold text-t-pd dark:text-t-pl">What:</span>{" " + (idea.what || "...")}
                   </p>
                   <p className="overflow-hidden max-h-[3em]">
-                  <span className="font-bold text-t-pd">Who:</span>{" " + (idea.who|| "...")}
+                  <span className="font-bold text-t-pd dark:text-t-pl">Who:</span>{" " + (idea.who|| "...")}
                   </p>
                   <p className="overflow-hidden max-h-[3em]">
-                  <span className="font-bold text-t-pd">Root Cause:</span>{" " + (idea.pq3|| "...")}
+                  <span className="font-bold text-t-pd dark:text-t-pl">Root Cause:</span>{" " + (idea.pq3|| "...")}
                   </p>
                 </>
               )}
@@ -180,7 +180,7 @@ const router = useRouter();
         <div className="flex items-center justify-between ">
           {/* If admin view, show extra controls for user */}
 
-          <p className="!text-slate-500 dark:!text-slate-300 text-[12px] ml-1 mb-0">
+          <p className="!text-slate-500 dark:!text-slate-100 text-[12px] ml-1 mb-0">
             {TimeDisplay(idea.createdAt)}
           </p>
           {type === "ideas" && (

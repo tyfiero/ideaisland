@@ -45,18 +45,18 @@ const SolutionProgressStepper = (props) => {
           <div
             className={
               "flex items-center justify-center w-8 h-8 transition rounded-full cursor-pointer  md:hover:scale-110 " +
-              (props.currentStep === 1 ? "bg-t-pl" : "bg-blues-100")
+              (props.currentStep === 1 ?  "bg-t-pl text-t-pd" : "bg-blues-100 text-t-bd")
             }
             onClick={() => props.goToStep(1)}
           >
             <FaLightbulb className="text-xl" />
           </div>
-          <div className="text-sm">Select Idea</div>
+          <div className="text-sm text-slate-800 dark:text-slate-100">Select Idea</div>
         </div>
 
         <div
           className={
-            "md:w-2 md:h-8 sm:h-2 sm:w-5 my-2 rounded-full  " +
+            "md:w-2 md:h-8 sm:h-2 sm:w-5 my-2 rounded-full   transition duration-1000 " +
             (props.currentStep >= 2 ? "bg-t-bl" : "bg-slate-400")
           }
         ></div>
@@ -65,18 +65,18 @@ const SolutionProgressStepper = (props) => {
           <div
             className={
               "flex items-center justify-center w-8 h-8 transition rounded-full cursor-pointer  md:hover:scale-110 " +
-              (props.currentStep === 2 ? "bg-t-pl" : "bg-blues-100")
+              (props.currentStep === 2 ?  "bg-t-pl text-t-pd" : "bg-blues-100 text-t-bd")
             }
             onClick={() => props.goToStep(2)}
           >
             <FaStar className="text-xl" />
           </div>
-          <div className="text-sm">Add Features</div>
+          <div className="text-sm text-slate-800 dark:text-slate-100">Add Features</div>
         </div>
 
         <div
           className={
-            "md:w-2 md:h-8 sm:h-2 sm:w-5 my-2 rounded-full  " +
+            "md:w-2 md:h-8 sm:h-2 sm:w-5 my-2 rounded-full   transition duration-1000 " +
             (props.currentStep >= 3 ? "bg-t-bl" : "bg-slate-400")
           }
         ></div>
@@ -85,18 +85,18 @@ const SolutionProgressStepper = (props) => {
           <div
             className={
               "flex items-center justify-center w-8 h-8 transition rounded-full cursor-pointer  md:hover:scale-110 " +
-              (props.currentStep === 3 ? "bg-t-pl" : "bg-blues-100")
+              (props.currentStep === 3 ?  "bg-t-pl text-t-pd" : "bg-blues-100 text-t-bd")
             }
             onClick={() => props.goToStep(3)}
           >
             <FaListOl className="text-xl" />
           </div>
-          <div className="text-sm">Rank Features</div>
+          <div className="text-sm text-slate-800 dark:text-slate-100">Rank Features</div>
         </div>
 
         <div
           className={
-            "md:w-2 md:h-8 sm:h-2 sm:w-5 my-2 rounded-full  " +
+            "md:w-2 md:h-8 sm:h-2 sm:w-5 my-2 rounded-full   transition duration-1000 " +
             (props.currentStep >= 4 ? "bg-t-bl" : "bg-slate-400")
           }
         ></div>
@@ -105,17 +105,17 @@ const SolutionProgressStepper = (props) => {
           <div
             className={
               "flex items-center justify-center w-8 h-8 transition rounded-full cursor-pointer  md:hover:scale-110 " +
-              (props.currentStep === 4 ? "bg-t-pl" : "bg-blues-100")
+              (props.currentStep === 4 ?  "bg-t-pl text-t-pd" : "bg-blues-100 text-t-bd")
             }
             onClick={() => props.goToStep(4)}
           >
             <FaLayerGroup className="text-xl" />
           </div>
-          <div className="text-sm">Tech Stack</div>
+          <div className="text-sm text-slate-800 dark:text-slate-100">Tech Stack</div>
         </div>
         <div
           className={
-            "md:w-2 md:h-8 sm:h-2 sm:w-5 my-2 rounded-full  " +
+            "md:w-2 md:h-8 sm:h-2 sm:w-5 my-2 rounded-full   transition duration-1000 " +
             (props.currentStep >= 5 ? "bg-t-bl" : "bg-slate-400")
           }
         ></div>
@@ -124,13 +124,13 @@ const SolutionProgressStepper = (props) => {
         <div
           className={
             "flex items-center justify-center w-8 h-8 transition rounded-full cursor-pointer  md:hover:scale-110 " +
-            (props.currentStep === 5 ? "bg-t-pl" : "bg-blues-100")
+            (props.currentStep === 5 ?  "bg-t-pl text-t-pd" : "bg-blues-100 text-t-bd")
           }
           onClick={() => props.goToStep(5)}
         >
           <CgFileDocument className="text-xl" />
         </div>
-        <div className="text-sm">Review</div>
+        <div className="text-sm text-slate-800 dark:text-slate-100">Review</div>
       </div>
       </div>
     </div>

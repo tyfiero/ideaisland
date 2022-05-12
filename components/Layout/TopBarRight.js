@@ -103,14 +103,17 @@ export default function TopBarRight({ user }) {
 
         setIsVisible(!isVisible);
       }}
-    >
+      >
+      <div className="w-full h-full bg-white dark:bg-slate-600 -z-100">
       <img
         // src={loggedIn ? userRedux?.photoURL : "/profilefallback.png"}
         src={imgSrc}
         referrerPolicy="no-referrer"
-        className={(!type && "profile-pic") + " fade-effect"}
+        className={(!type && "profile-pic") + " fade-effect z-10"}
         alt=""
       />
+</div>
+
       {/* <Image
         src={imgSrc}
         className={(!type && "profile-pic") + " fade-effect"}
