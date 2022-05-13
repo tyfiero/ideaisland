@@ -265,7 +265,7 @@ const Button = ({ children, onClick }) => {
       >
         <div className="overflow-hidden bg-white rounded shadow-lg">
           <div className="border-b">
-            <a href="/" className="flex px-4 py-2 hover:bg-gray-100">
+            {/* <a href="/" className="flex px-4 py-2 hover:bg-gray-100">
               <div className="text-gray-800">
                 <svg
                   fill="none"
@@ -287,8 +287,8 @@ const Button = ({ children, onClick }) => {
                   Show all the connected nodes to this node
                 </p>
               </div>
-            </a>
-            <a href="/" className="flex px-4 py-2 hover:bg-gray-100">
+            </a> */}
+            {/* <a href="/" className="flex px-4 py-2 hover:bg-gray-100">
               <div className="text-gray-800">
                 <svg
                   fill="none"
@@ -309,8 +309,8 @@ const Button = ({ children, onClick }) => {
                 </p>
                 <p className="text-xs text-gray-500">Is this menu here?</p>
               </div>
-            </a>
-            <a href="/" className="flex px-4 py-2 hover:bg-gray-100">
+            </a> */}
+            {/* <a href="/" className="flex px-4 py-2 hover:bg-gray-100">
               <div className="text-gray-800">
                 <svg
                   fill="none"
@@ -330,7 +330,7 @@ const Button = ({ children, onClick }) => {
                 </p>
                 <p className="text-xs text-gray-500">Why?</p>
               </div>
-            </a>
+            </a> */}
           </div>
         </div>
       </div>
