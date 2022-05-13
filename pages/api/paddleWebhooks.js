@@ -149,6 +149,7 @@ const saveToFirestore = async (data, uid) => {
 
 
   let ref = adminDB.collection("users").doc(uid);
+  console.log(ref);
 
   ref
     .update(data)
