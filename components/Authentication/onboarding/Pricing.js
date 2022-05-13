@@ -164,6 +164,9 @@ function Pricing(props) {
           <p className="w-full px-8 pt-1 text-xl font-normal text-slate-400 md:w-full nun">
             Choose the plan that works best for you.
           </p>
+          <p className="w-full px-8 pt-1 text-lg font-normal text-slate-400 md:w-full nun">
+            Each plan comes with a 7-day free trial.
+          </p>
         </div>
       )}
       {successPopUp ? (
@@ -179,6 +182,9 @@ function Pricing(props) {
                       Select a Plan{" "}
                     </span>
                   </h1>
+                  <p className="w-full px-8 pt-1 text-lg font-normal text-slate-400 md:w-full nun">
+            Each plan comes with a 7-day free trial.
+          </p>
                 </div>
               )}
 
@@ -210,11 +216,11 @@ function Pricing(props) {
                   Annual
                 </p>
               </div>
-              <div className="flex-wrap items-center justify-center w-full gap-8 my-0 sm:flex">
+              <div className="flex-wrap items-center justify-center w-full my-0 sm:gap-3 md:gap-8 sm:flex">
                 {/* Basic */}
                 <div
                   className={
-                    "w-full px-4 py-4 mt-6 text-black transition duration-500 rounded-lg     sm:w-1/2 md:w-1/2 lg:w-[23em] group min-h-[36em] flex-col flex justify-between " +
+                    "w-full px-4 py-4 mt-6 text-black transition duration-500 rounded-lg     sm:w-1/2 md:w-1/2 lg:w-[23em] group md:min-h-[36em] flex-col flex justify-between " +
                     (paidPlan === "Hobbyist"
                       ? " bg-clear-bl1 border-8 border-t-bd dark:bg-clear-bl1 shadow-3xl"
                       : " bg-white/60 md:hover:bg-clear-bl2 dark:bg-slate-600/80 shadow-lg")
