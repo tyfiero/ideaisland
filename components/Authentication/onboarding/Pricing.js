@@ -28,7 +28,9 @@ function Pricing(props) {
     // console.log(Paddle)
     // eslint-disable-next-line
     if (typeof Paddle !== "undefined") {
+    console.log("IT RAN, NO EXCUSES")
       let vendorNum = Number(process.env.NEXT_PUBLIC_PADDLE_VENDOR_ID);
+      // console.log(vendorNum);
       // eslint-disable-next-line
       Paddle.Setup({
         vendor: vendorNum,
@@ -134,20 +136,20 @@ function Pricing(props) {
       <Script
         id="paddle-checkout-js"
         src="https://cdn.paddle.com/paddle/paddle.js"
-        strategy="beforeInteractive"
-        //   onLoad={(e) => {
-        //     console.log("before load paddle");
+        // strategy="beforeInteractive"
+          onLoad={(e) => {
+            console.log("before load paddle");
 
-        //     // eslint-disable-next-line
-        //     // Paddle.Environment.set("sandbox");
-        //     // eslint-disable-next-line
-        //     Paddle.Setup({
-        //       vendor: Number(process.env.NEXT_PUBLIC_PADDLE_VENDOR_ID),
+            // eslint-disable-next-line
+            // Paddle.Environment.set("sandbox");
+            // eslint-disable-next-line
+            Paddle.Setup({
+              vendor: Number(process.env.NEXT_PUBLIC_PADDLE_VENDOR_ID),
 
-        //     });
-        //     console.log("Loaded paddle");
-        //   }
-        // }
+            });
+            console.log("Loaded paddle");
+          }
+        }
         onError={(e) => {
           console.log("Error loading paddle");
           console.log(e);

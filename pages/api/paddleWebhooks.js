@@ -46,6 +46,7 @@ export default async function handler(req, res) {
 
   if (req.body.alert_name === "subscription_created") {
     //For this one, I need to save all of this data to user document
+    console.log("subscription_created");
 
     let data = {
       updatedAt: serverTime,
@@ -64,6 +65,7 @@ export default async function handler(req, res) {
 
     res.status(200).json({ success: true });
   } else if (req.body.alert_name === "subscription_updated") {
+    console.log("subscription_updated");
 
 
     let data = {
@@ -84,6 +86,7 @@ export default async function handler(req, res) {
 
     res.status(200).json({ success: true });
   } else if (req.body.alert_name === "subscription_cancelled") {
+    console.log("subscription_cancelled");
 
     let data = {
       updatedAt: serverTime,
@@ -101,6 +104,8 @@ export default async function handler(req, res) {
 
     res.status(200).json({ success: true });
   } else if (req.body.alert_name === "subscription_payment_succeeded") {
+    console.log("subscription_payment_succeeded");
+
     let data = {
       updatedAt: serverTime,
       paddleUserId: req.body.user_id,
@@ -117,6 +122,7 @@ export default async function handler(req, res) {
 
     res.status(200).json({ success: true });
   } else if (req.body.alert_name === "subscription_payment_failed") {
+    console.log("subscription_payment_failed");
 
     let data = {
       updatedAt: serverTime,

@@ -18,7 +18,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 function SFilter(props) {
   // const dispatch = useDispatch();
-  console.log("FILTER--------------------" + props.isActive)
+  // console.log("FILTER--------------------" + props.isActive)
 
   const sFormRedux = useSelector((state) => state.sForm);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
