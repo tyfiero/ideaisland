@@ -160,7 +160,9 @@ function ProblemProgressPage(props) {
               </div>
 
               <div className="flex flex-wrap justify-center gap-4">
-                <div className="p-5 normal-box-soft !rounded-xl min-w-[25em] max-w-[40em] group !bg-clear-bl2">
+                <div className="p-5 normal-box-soft !rounded-xl md:min-w-[25em] md:max-w-[40em] group !bg-clear-bl2">
+
+              
                   <button
                     className="absolute flex items-center gap-1 p-1 px-2 text-white transition duration-500 opacity-0 bg-t-bl rounded-2xl group-hover:opacity-100 hover:scale-110 active:scale-95"
                     onClick={() => setEditWhy(!editWhy)}

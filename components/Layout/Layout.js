@@ -39,16 +39,17 @@ import { collection } from "firebase/firestore";
 import { HiMusicNote } from "react-icons/hi";
 import { Squash as Hamburger } from "hamburger-react";
 
+// import { firebaseAdmin } from "../../lib/firebaseAdmin";
 
-
-
+import { adminDB } from "../../lib/firebaseAdmin";
 
 
 export default function Layout({ children }) {
   // console.log("Layout Rerendered")
 
 
-
+  // let db = firebaseAdmin.firestore()
+// console.log(db)
 
   const [isMobile, setIsMobile] = useState(false)
 

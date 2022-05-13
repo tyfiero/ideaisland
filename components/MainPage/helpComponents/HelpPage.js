@@ -54,7 +54,7 @@ const HelpPage = () => {
     },
   ];
   return (
-    <div className="pt-8 help-page fade-effect-quick">
+    <div className="pt-8 help-page fade-effect-quick sm:touch-pan-y ">
       <h1 className="text-3xl text-t-bd dark:text-blues-100">Help</h1>
 
           <div className="help-boxes-div-container">

@@ -21,7 +21,7 @@ export default async function handler(req, res) {
   if (!req.body) return res.status(401).json({ error: "No req body found" });
   const { verifyPaddleWebhook } = require("verify-paddle-webhook");
 
-    console.log(req.body);
+    // console.log(req.body);
   //   console.log("HIT PADDLE WEBHOOK");
 
 //   if (verifyPaddleWebhook(process.env.PADDLE_PUBLIC_KEY, req.body)) {
@@ -93,8 +93,9 @@ const saveToFirestore = async (data, uid) => {
 //   console.log(uid);
 
 //   let db = firebaseAdmin.firestore.Firestore;
-  let db = firebaseAdmin.firestore
-//   console.log(db)
+
+  let db = firebaseAdmin.firestore()
+  console.log(db)
   const ref = doc(db, "users", uid);
   await updateDoc(ref, data)
     .then(() => {

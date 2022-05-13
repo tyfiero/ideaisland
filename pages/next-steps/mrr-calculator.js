@@ -189,13 +189,13 @@ function MrrCalculator() {
         </div>
 
         <button
-          className=" w-[6em] h-[2em] rounded-3xl bg-t-bl flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer absolute left-5"
+          className=" sm:px-3 h-[2em] rounded-3xl bg-t-bl flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer absolute sm:left-1 sm:-top-4 md:left-5"
           onClick={() => {
             router.push("/next-steps");
           }}
         >
-          <FaLongArrowAltLeft className="text-xl" />
-          Back
+          <FaLongArrowAltLeft className="sm:text-2xl md:text-xl " />
+         <p className="sm:hidden">Back</p> 
         </button>
 
         <div className="flex items-center w-full gap-0 p-2 text-center md:flex-row sm:mb-10 sm:flex-col justify-evenly normal-box-soft dark:bg-slate-700/80">
