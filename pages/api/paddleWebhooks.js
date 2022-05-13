@@ -151,12 +151,9 @@ const saveToFirestore = async (data, uid) => {
   let ref = adminDB.collection("users").doc(uid);
   console.log(ref);
 
-  ref
-    .update(data)
-    .then(() => {
+ await ref.update(data).then(() => {
       console.log("Document successfully written!!");
-    })
-    .catch((error) => {
+    }).catch((error) => {
       console.error("Error writing document: ", error);
     });
 };

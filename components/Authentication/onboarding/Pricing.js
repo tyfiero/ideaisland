@@ -289,8 +289,8 @@ function Pricing(props) {
                         if (Paddle.Audience.AllowPopup() === true) {
                           // eslint-disable-next-line
                           Paddle.Checkout.open({
-                            // product: annual ? "767575" : "767574",
-                            product: "769844",
+                            product: annual ? "767575" : "767574",
+                            // product: "769844",
                             email: user.email || null,
                             passthrough: `${user?.uid}`,
                             successCallback: checkoutComplete,
