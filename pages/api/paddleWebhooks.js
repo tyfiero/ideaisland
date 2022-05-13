@@ -153,7 +153,7 @@ const saveToFirestore = async (data, uid) => {
   ref
     .update(data)
     .then(() => {
-      console.log("Document successfully written!");
+      console.log("Document successfully written!!");
     })
     .catch((error) => {
       console.error("Error writing document: ", error);
