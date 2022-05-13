@@ -15,13 +15,12 @@ import {
 } from "firebase/firestore";
 
 
-import { firebaseAdmin } from "../../lib/firebaseAdmin";
-
+import { firebaseAdmin, adminDB } from "../../lib/firebaseAdmin";
 export default async function handler(req, res) {
   if (!req.body) return res.status(401).json({ error: "No req body found" });
   const { verifyPaddleWebhook } = require("verify-paddle-webhook");
 
-    // console.log(req.body);
+    console.log(req.body);
   //   console.log("HIT PADDLE WEBHOOK");
 
 //   if (verifyPaddleWebhook(process.env.PADDLE_PUBLIC_KEY, req.body)) {
@@ -69,7 +68,18 @@ export default async function handler(req, res) {
     //     subscriptionID: req.body.subscription_id,
     //     status: req.body.subscription_status,
     //   };
+    let data = {
+      // updatedAt: serverTimestamp(),
+      cancelUrl: req.body.cancel_url,
+      updateUrl: req.body.update_url,
+      paddleUserId: req.body.user_id,
+      nextBillDate: req.body.next_bill_date,
+      subscriptionStartDate: req.body.event_time,
+      subscriptionID: req.body.subscription_id,
+      status: req.body.status, 
+    };
 
+    // saveToFirestore(data, req.body.passthrough);
     //   saveToFirestore(data, req.body.alert_data.user_id);
 
 
@@ -94,15 +104,29 @@ const saveToFirestore = async (data, uid) => {
 
 //   let db = firebaseAdmin.firestore.Firestore;
 
-  let db = firebaseAdmin.firestore()
-  console.log(db)
-  const ref = doc(db, "users", uid);
-  await updateDoc(ref, data)
-    .then(() => {
-      console.log("Updated firestore user doc");
-    })
-    .catch((error) => {
-      console.log("Update failed!" + error);
-    });
+
+
+
+// console.log("BREAK-----------------------------------------------------------------------------------------------------------------------")
+
+
+  // const ref = doc(db, "users", uid);
+
+  let ref = adminDB.collection("users").doc(uid)
+
+  ref.update(data).then(() => {
+    console.log("Document successfully written!");
+  }).catch((error) => {
+    console.error("Error writing document: ", error);
+  });
+
+
+  // await updateDoc(ref, data)
+  //   .then(() => {
+  //     console.log("Updated firestore user doc");
+  //   })
+  //   .catch((error) => {
+  //     console.log("Update failed!" + error);
+  //   });
 };
 

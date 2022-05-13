@@ -41,7 +41,7 @@ import { Squash as Hamburger } from "hamburger-react";
 
 // import { firebaseAdmin } from "../../lib/firebaseAdmin";
 
-import { adminDB } from "../../lib/firebaseAdmin";
+// import { adminDB } from "../../lib/firebaseAdmin";
 
 
 export default function Layout({ children }) {
