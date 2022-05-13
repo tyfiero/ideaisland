@@ -160,7 +160,12 @@ const GPTtool = ({ showButton }) => {
         setAiResponse(response.data.results);
         dispatch(gpt3OutputAction(aiResponse));
         setResponseRecieved(true);
+        if(formType === "new"){
+
         deduct(1);
+        }else{
+          deduct(1.5);
+        }
         setAiLoading(false);
 
         return response;
@@ -205,7 +210,11 @@ const GPTtool = ({ showButton }) => {
         // console.log(response.data.results);
         setAiResponseGPTJ(response.data.results);
         setResponseRecievedGPTJ(true);
+        if(formType === "new"){
         deduct(0.2);
+        }else{
+          deduct(0.4);
+        }
         setAiLoading(false);
         dispatch(gptJOutputAction(aiResponseGPTJ));
         return response;
@@ -578,7 +587,7 @@ const GPTtool = ({ showButton }) => {
                       Expand Answer
                     </p>
                     <p className="ml-2 text-xs text-slate-600 dark:text-slate-600">
-                      {GPTJorGPT3 ? "(0.2 credits)" : "(1 credit)"}
+                      {GPTJorGPT3 ? "(0.4 credits)" : "(1.5 credits)"}
                     </p>
                   </>
                 )}

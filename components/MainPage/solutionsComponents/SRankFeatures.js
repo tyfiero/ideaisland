@@ -218,8 +218,8 @@ function SRankFeatures(props) {
         // console.log(featureData);
         return {
           col1: (
-            <div className="text-left">
-              <p className="mb-0 ml-5">{featureData.name}</p>
+            <div className="text-left sm:max-w-[8em] sm:mx-2">
+              <p className="mb-0 ml-5 sm:text-xs sm:ml-1">{featureData.name}</p>
             </div>
           ),
           // col2: featureData.importance,
@@ -231,37 +231,46 @@ function SRankFeatures(props) {
             // <span className="px-3 py-1 text-xs text-orange-600 bg-orange-200 rounded-full cursor-pointer md:hover:scale-110">
             //   {featureData.importance}
             // </span>
+            <div className="sm:mx-3">
+
             <ImportanceChip
               value={featureData.importance}
               updateFromChip={updateFromChip}
               givenFeature={index}
             />
+            </div>
           ),
           col3: (
             // <span className="px-3 py-1 text-xs text-green-600 bg-green-200 rounded-full cursor-pointer md:hover:scale-110">
             //   {featureData.feasibility}
             // </span>
+            <div className="sm:mx-3">
+
             <FeasibilityChip
               value={featureData.feasibility}
               updateFromChip={updateFromChip}
               givenFeature={index}
             />
+            </div>
           ),
           col4: (
             // <span className="px-3 py-1 text-xs text-purple-600 bg-purple-200 rounded-full cursor-pointer md:hover:scale-110">
             //   {featureData.cost}
             // </span>
+            <div className="sm:mx-3">
+
             <CostChip
               value={featureData.cost}
               updateFromChip={updateFromChip}
               givenFeature={index}
             />
+            </div>
           ),
           col5: (
             // <span className="px-3 py-1 text-xs text-blue-600 bg-blue-200 rounded-full cursor-pointer md:hover:scale-110">
             //   {featureData.version}
             // </span>
-            <>
+            <div className="sm:mx-3">
               {/* <p className="">{index}</p> */}
               <VersionChip
                 value={featureData.version}
@@ -269,10 +278,10 @@ function SRankFeatures(props) {
                 givenFeature={index}
                 key={index}
               />
-            </>
+            </div>
           ),
           col6: (
-            <div>
+            <div className="sm:max-w-[10em] md:max-w-full">
               {/* <textarea className="rounded-md" name="comment"  cols="15" rows="5" value={featureData.comments}> */}
 
               <CommentsTextArea
@@ -414,7 +423,7 @@ function SRankFeatures(props) {
   return (
     <div>
       <div
-        className="flex items-center justify-center  px-4 pt-[1rem] sm:px-6 lg:px-8 drop-shadow-xl fade-effect-quick min-w-[50em] mr-12
+        className="flex items-center justify-center  px-4 pt-[1rem] sm:px-6 lg:px-8 drop-shadow-xl fade-effect-quick md:min-w-[50em] md:mr-12
 
   "
       >
@@ -469,32 +478,13 @@ function SRankFeatures(props) {
             <h1 className="text-3xl text-t-bd dark:text-blues-100">
               Feature Selection
             </h1>
-
-            <div className="flex items-center justify-between w-full">
-              <button
-                className="card__btn_prev save_button left-[5%]  flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick"
-                onClick={() => props.goToStep(2)}
-              >
-                <FaLongArrowAltLeft className="mr-1 text-[24px]" />
-                Back
-              </button>
-              <div className="normal-box-soft">
+            <div className="normal-box-soft">
                 <h3 className="heading">
                   Time to pick the features defined in the last step.
                 </h3>
               </div>
-              <div className="relative group">
-                <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
-                <button
-                  className="w-[5em] h-[3em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-clear-bd3 md:hover:shadow-xl m-1 drop-shadow-xl "
-                  onClick={() => props.goToStep(4)}
-                >
-                  Next
-                  <FaLongArrowAltRight className="ml-1 text-[24px]" />
-                </button>
-              </div>
-            </div>
-            <div className="flex flex-col w-full">
+           
+            <div className="flex flex-col sm:w-[122%] md:w-full">
               <Styles>
                 {/* <div className="flex gap-3 normal-box-soft right-10 ">
                 <button
@@ -524,6 +514,27 @@ function SRankFeatures(props) {
                 </div> */}
                 <FeatureTable columns={columns} data={data} />
               </Styles>
+
+              <div className="flex items-center justify-between w-full mt-2">
+              <button
+                className="card__btn_prev save_button left-[5%]  flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick"
+                onClick={() => props.goToStep(2)}
+              >
+                <FaLongArrowAltLeft className="mr-1 text-[24px]" />
+                Back
+              </button>
+             
+              <div className="relative group">
+                <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
+                <button
+                  className="w-[5em] h-[3em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-clear-bd3 md:hover:shadow-xl m-1 drop-shadow-xl "
+                  onClick={() => props.goToStep(4)}
+                >
+                  Next
+                  <FaLongArrowAltRight className="ml-1 text-[24px]" />
+                </button>
+              </div>
+            </div>
               {/* table start */}
               {/* <div className="flex justify-center min-h-screen p-2 bg-white/50 rounded-xl">
 	<div className="col-span-12">

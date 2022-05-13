@@ -29,11 +29,11 @@ function FeatureTable({ columns, data }) {
 
   return (
     <>
-    <div className="overflow-x-auto">
-        <div className="flex justify-center overflow-hidden font-sans bg-gray-100 dark:bg-slate-400/60 min-w-screen rounded-xl">
-     <div className="w-full lg:w-[98%]">
-                <div className="my-6 bg-white dark:bg-slate-700/60 shadow-md !rounded-2xl">
-      <table className="w-full table-auto min-w-max" {...getTableProps()}>
+    <div className="w-full pl-3 overflow-x-auto bg-gray-100 rounded-xl dark:bg-slate-400/60">
+        <div className="flex justify-center sm:overflow-visible md:overflow-hidden md:min-w-screen rounded-xl sm:w-full">
+     <div className=" sm:w-[95%] md:w-full lg:w-[98%] ">
+                <div className="my-2 !rounded-2xl flex">
+      <table className="w-full bg-white table-auto dark:bg-slate-700/60 min-w-max" {...getTableProps()}>
         <thead >
           {headerGroups.map(headerGroup => (
             <tr className="text-sm leading-normal text-gray-600 uppercase bg-blues-100 " {...headerGroup.getHeaderGroupProps()}>
@@ -76,6 +76,7 @@ function FeatureTable({ columns, data }) {
         </tbody>
       </table>
       <br />
+      <p className="invisible">blank</p>
       {/* <div>Showing the first 20 results of {rows.length} rows</div> */}
       </div>
       </div>

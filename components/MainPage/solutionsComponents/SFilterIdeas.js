@@ -47,7 +47,7 @@ function SFilterIdeas(props) {
           </button>
         )}
       </div>
-      <div className="glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.85)]   fade-effect-quick flex flex-col items-center min-h-[20em] max-h-[30em] overflow-y-auto overflow-x-hidden !rounded-2xl !pt-4 gap-3 w-[98%]">
+      <div className="glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.85)]   fade-effect-quick flex flex-col items-center md:min-h-[20em] sm:max-h-[22em] md:max-h-[30em] overflow-y-auto overflow-x-hidden !rounded-2xl !pt-4 gap-3 w-[98%]">
         <IdeasList searchTerm={searchValue} />
       </div>
     </div>

@@ -105,7 +105,7 @@ const NotePopUp = (props) => {
        initial={{ opacity: 0, scale: 0.2, top: "80%", left: "100%" }}
        animate={{ opacity: 1, scale: 1, top: "-3%", left: "57%" }}
        transition={{ delay: 0.1, duration: 0.4 }}
-    className="popup-box md:!left-[60%] sm:!left-0">
+    className="popup-box lg:!left-[55%] md:!left-[30%] sm:!left-0 md:!w-[60%] lg:!w-[43%]">
       <div className="relative box bg-white/90 dark:bg-slate-700/90">
         {/* <span className="close-icon" onClick={props.handleClose}>
           x

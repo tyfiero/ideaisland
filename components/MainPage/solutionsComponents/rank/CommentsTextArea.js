@@ -13,7 +13,7 @@ const sendUpdates = () => {
 }
 
   return (
-    <div><TextareaAutosize className="rounded-md textarea-tw nun" defaultValue={text} placeholder="..." onChange={(e)=>{setContent(e.target.value)}} onBlur={sendUpdates}></TextareaAutosize>
+    <div><TextareaAutosize className="w-full rounded-md textarea-tw nun" defaultValue={text} placeholder="..." onChange={(e)=>{setContent(e.target.value)}} onBlur={sendUpdates}></TextareaAutosize>
     
      </div>
   )

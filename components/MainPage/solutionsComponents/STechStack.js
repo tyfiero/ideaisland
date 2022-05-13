@@ -28,6 +28,7 @@ import {
   FaRegHeart,
   FaExternalLinkAlt,
   FaGlobeAmericas,
+  FaEdit,
 } from "react-icons/fa";
 import { sFormAction, sUpdateAction } from "../../../redux/actions";
 
@@ -81,12 +82,10 @@ function STechStack(props) {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-  
     if (props.reset) {
       setToolArray([]);
-      setToolContent("")
-      setToolCost("")
-
+      setToolContent("");
+      setToolCost("");
     } else {
       if (sFormRedux.stack?.length > 0) {
         setToolArray(sFormRedux.stack);
@@ -94,7 +93,6 @@ function STechStack(props) {
     }
   }, [props.reset]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  
   // console.log([toolContent, toolCost, selectedPriceOption.value]);
   const update = (data) => {
     // console.log(data);
@@ -155,8 +153,8 @@ function STechStack(props) {
 
       let updated = sFormRedux;
       updated.stackCost = [
-        { monthly: monthTotal.toFixed(2) },
-        { yearly: (monthTotal * 12).toFixed(2) },
+        { monthly: Number(monthTotal).toFixed(2) },
+        { yearly: Number(monthTotal * 12).toFixed(2) },
       ];
       dispatch(sFormAction(updated));
       setMonthlyCost(monthTotal);
@@ -164,13 +162,12 @@ function STechStack(props) {
   }, [toolArray]);
 
   return (
-    <div>
       <div
-        className="flex items-center justify-center  px-4 pt-[1rem] sm:px-6 lg:px-8 drop-shadow-xl fade-effect-quick min-w-[50em] mr-[70px]
+        className="flex items-center justify-center  px-4 pt-[1rem] sm:px-6 lg:px-8 drop-shadow-xl fade-effect-quick md:min-w-[50em] md:mr-[70px] sm:mb-10
 
   "
       >
-        <div className="w-full p-10 space-y-8  !rounded-2xl  normal-box-soft">
+        <div className=" p-10 space-y-8  !rounded-2xl  normal-box-soft">
           <div className="flex">
             <div className="relative flex flex-col items-center justify-center w-full px-4 problem-page fade-effect-quick">
               <div className="absolute -top-5 -left-5">
@@ -221,8 +218,85 @@ function STechStack(props) {
                 Tech Stack
               </h1>
 
-              <div className="flex gap-2">
-                <div className="flex py-3 flex-col border-2 max-h-[35em] w-[15em] rounded-xl items-center gap-2 overflow-auto">
+
+              <div className="flex gap-2 sm:w-[128%] md:w-full flex-col md:max-w-[60em]">
+              
+              <div className="glass-box bg-white/30  dark:bg-[hsla(200,0%,20%,0.764)] !rounded-xl text-left md:w-full  sm:w-[100%] mb-2">
+              <h3 className=" text-t-bd dark:text-blue-100">Tech Stack:</h3>
+                {/* <p>featureString:</p>
+                  <p>{featureString}</p>
+                  <p>props:</p>                  
+                  <p>{props.form.form.Features}</p>
+
+
+                  <p>Feature with a sentence description</p> */}
+                <div className="flex flex-wrap w-full gap-1 ">
+
+                {toolArray.length === 0 && <p>No tools added yet.</p>}
+                {toolArray.map((data, index) => (
+                  <ListItem
+                    cost={data.cost}
+                    name={data.name}
+                    url={data.url}
+                    type={data.type}
+                    key={index}
+                    kind={data.kind}
+
+                    // deleteIndex={deleteIndex}
+                  />
+                ))}
+                </div>
+                <hr className=" sm:my-2 md:mt-2"></hr>
+                  <div className="flex justify-center gap-4">
+                <div className="flex items-center sm:justify-center sm:text-center sm:ring-2 sm:rounded-lg sm:px-2 md:justify-between md:gap-2 sm:flex-col md:flex-row">
+                  <p className="mb-0 font-bold text-t-bd dark:text-blues-100">Monthly Cost:</p>
+                  <p className="mb-0 mr-2 text-lg text-t-pd">
+                    $
+                    {monthlyCost
+                      ? Number(monthlyCost).toFixed(2)
+                      : defaultZero.toFixed(2)}
+                  </p>
+                </div>
+                <div className="flex items-center sm:justify-center sm:text-center sm:ring-2 sm:rounded-lg sm:px-2 md:justify-between md:gap-2 sm:flex-col md:flex-row">
+                <p className="mb-0 font-bold text-t-bd dark:text-blues-100">Annual Cost:</p>
+                  <p className="mb-0 mr-2 text-lg text-t-pm ">
+                    $
+                    {monthlyCost
+                      ? Number(monthlyCost * 12).toFixed(2)
+                      : defaultZero.toFixed(2)}
+                  </p>
+                </div>
+                <div className="flex items-center sm:justify-center sm:text-center sm:ring-2 sm:rounded-lg sm:px-2 md:justify-between md:gap-2 sm:flex-col md:flex-row">
+                          <p className="mb-0 font-bold text-t-bd dark:text-blues-100">Total Cost:</p>
+                  <p className="mb-0 mr-2 text-lg text-t-pm ">
+                    $
+                    {monthlyCost
+                      ? Number(monthlyCost).toFixed(2)
+                      : defaultZero.toFixed(2)}
+                  </p>
+                </div>
+                </div>
+              </div>
+              <div className="flex gap-2 md:w-full md:flex-row sm:flex-col">
+                <div className="flex py-3 flex-col border-2 md:max-h-[65em] sm:w-[103%] md:w-full rounded-xl items-center gap-2 overflow-auto sm:max-h-[27em] min-w-[15em]  sm:flex-wrap sm:px-1  sm:scale-[92%] md:scale-100 !m-0">
+                <button
+                    className={
+                      "w-[13em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
+                      (selected === "Custom"
+                        ? " border-4 border-slate-700 text-white bg-slate-500 "
+                        : "bg-slate-300 text-black")
+                    }
+                    onClick={() => {
+                      if (selected !== "Custom") {
+                        setSelected("Custom");
+                      } else {
+                        setSelected("");
+                      }
+                    }}
+                  >
+                    <FaEdit />
+                    Custom
+                  </button>
                   <button
                     className={
                       "w-[13em] !h-[2.5em] rounded-3xl pl-5 flex items-center justify-start  gap-2 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
@@ -500,409 +574,17 @@ function STechStack(props) {
                   </button>
                 </div>
                 <div className="flex flex-col items-center gap-2">
-                  <div className="flex items-center min-h-[20em] w-[45em] rounded-xl p-5 flex-col justify-between bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-70 border border-white/50 shadow-lg dark:bg-slate-800/70">
+                  <div className="flex items-center min-h-[20em] md:w-full sm:w-full  rounded-xl md:p-5 sm:p-0 flex-col justify-between bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-70 border border-white/50 shadow-lg dark:bg-slate-800/70 sm:mb-3">
                     {/* {selected === "Faves" && (
                       <>
                         <p>No Favorites yet :(</p>
                       </>
                     )} */}
-                    {selected === "Languages" && (
-                      <>
-                        <div className="flex flex-wrap content-start justify-center gap-4 fade-effect-quick">
-                          {languages.map((data, index) => (
-                            <ItemCard
-                              name={data.name}
-                              key={index}
-                              cost={data.cost}
-                              url={data.url}
-                              type={data.type}
-                              kind={data.kind}
-                              isOpenSource={data.isOpenSource}
-                              update={update}
-                              deleteItem={deleteItem}
-                              color=" bg-blue-200 "
-                              bColor=" border-blue-500 "
-                              iconColor=" text-blue-500 "
-                              fromColor=" from-blue-300 "
-                              fromLightColor=" from-blue-200 "
-                              viaColor=" via-blue-500 "
-                              toColor=" to-blue-700 "
 
-                              // deleteIndex={deleteIndex}
-                            />
-                          ))}
-                        </div>
-                      </>
-                    )}
-                    {selected === "Dev Tools" && (
-                      <>
-                        <div className="flex flex-wrap content-start justify-center gap-4 fade-effect-quick">
-                          {devTools.map((data, index) => (
-                            <ItemCard
-                              name={data.name}
-                              key={index}
-                              cost={data.cost}
-                              url={data.url}
-                              kind={data.kind}
-                              type={data.type}
-                              isOpenSource={data.isOpenSource}
-                              update={update}
-                              deleteItem={deleteItem}
-                              color=" bg-sky-200 "
-                              bColor=" border-sky-500 "
-                              iconColor=" text-sky-500 "
-                              fromColor=" from-sky-300 "
-                              fromLightColor=" from-sky-200 "
-                              viaColor=" via-sky-500 "
-                              toColor=" to-sky-700 "
+                    {selected === "Custom" && ( <div className="flex flex-col items-center normal-box-soft dark:bg-slate-700/80">
+                    <p className="mb-1 text-xl fre text-t-bd dark:text-blues-100">Add custom tool:</p>
 
-                              // deleteIndex={deleteIndex}
-                            />
-                          ))}
-                        </div>
-                      </>
-                    )}
-                    {selected === "No/Low Code" && (
-                      <>
-                        <div className="flex flex-wrap content-start justify-center gap-4 fade-effect-quick">
-                          {noCode.map((data, index) => (
-                            <ItemCard
-                              name={data.name}
-                              key={index}
-                              cost={data.cost}
-                              url={data.url}
-                              kind={data.kind}
-                              type={data.type}
-                              isOpenSource={data.isOpenSource}
-                              update={update}
-                              deleteItem={deleteItem}
-                              color=" bg-cyan-200 "
-                              bColor=" border-cyan-500 "
-                              iconColor=" text-cyan-500 "
-                              fromColor=" from-cyan-300 "
-                              fromLightColor=" from-cyan-200 "
-                              viaColor=" via-cyan-500 "
-                              toColor=" to-cyan-700 "
-
-                              // deleteIndex={deleteIndex}
-                            />
-                          ))}
-                        </div>
-                      </>
-                    )}
-                    {selected === "Authentication" && (
-                      <>
-                        <div className="flex flex-wrap content-start justify-center gap-4 fade-effect-quick">
-                          {authentication.map((data, index) => (
-                            <ItemCard
-                              name={data.name}
-                              key={index}
-                              cost={data.cost}
-                              url={data.url}
-                              kind={data.kind}
-                              type={data.type}
-                              isOpenSource={data.isOpenSource}
-                              update={update}
-                              deleteItem={deleteItem}
-                              color=" bg-teal-200 "
-                              bColor=" border-teal-500 "
-                              iconColor=" text-teal-500 "
-                              fromColor=" from-teal-300 "
-                              fromLightColor=" from-teal-200 "
-                              viaColor=" via-teal-500 "
-                              toColor=" to-teal-700 "
-
-                              // deleteIndex={deleteIndex}
-                            />
-                          ))}
-                        </div>
-                      </>
-                    )}
-                    {selected === "UI Framework" && (
-                      <>
-                        <div className="flex flex-wrap content-start justify-center gap-4 fade-effect-quick">
-                          {frontEnd.map((data, index) => (
-                            <ItemCard
-                              name={data.name}
-                              key={index}
-                              cost={data.cost}
-                              url={data.url}
-                              kind={data.kind}
-                              type={data.type}
-                              isOpenSource={data.isOpenSource}
-                              update={update}
-                              deleteItem={deleteItem}
-                              color=" bg-green-200 "
-                              bColor=" border-green-500 "
-                              iconColor=" text-green-500 "
-                              fromColor=" from-green-300 "
-                              fromLightColor=" from-green-200 "
-                              viaColor=" via-green-500 "
-                              toColor=" to-green-700 "
-
-                              // deleteIndex={deleteIndex}
-                            />
-                          ))}
-                        </div>
-                      </>
-                    )}
-                    {selected === "UI Component Library" && (
-                      <>
-                        <div className="flex flex-wrap content-start justify-center gap-4 fade-effect-quick">
-                          {componentLibraries.map((data, index) => (
-                            <ItemCard
-                              name={data.name}
-                              key={index}
-                              cost={data.cost}
-                              url={data.url}
-                              kind={data.kind}
-                              type={data.type}
-                              isOpenSource={data.isOpenSource}
-                              update={update}
-                              deleteItem={deleteItem}
-                              color=" bg-lime-200 "
-                              bColor=" border-lime-500 "
-                              iconColor=" text-lime-500 "
-                              fromColor=" from-lime-300 "
-                              fromLightColor=" from-lime-200 "
-                              viaColor=" via-lime-500 "
-                              toColor=" to-lime-700 "
-
-                              // deleteIndex={deleteIndex}
-                            />
-                          ))}
-                        </div>
-                      </>
-                    )}
-                    {selected === "CSS Tools" && (
-                      <>
-                        <div className="flex flex-wrap content-start justify-center gap-4 fade-effect-quick">
-                          {cssTools.map((data, index) => (
-                            <ItemCard
-                              name={data.name}
-                              key={index}
-                              cost={data.cost}
-                              url={data.url}
-                              kind={data.kind}
-                              type={data.type}
-                              isOpenSource={data.isOpenSource}
-                              update={update}
-                              deleteItem={deleteItem}
-                              color=" bg-yellow-200 "
-                              bColor=" border-yellow-500 "
-                              iconColor=" text-yellow-500 "
-                              fromColor=" from-yellow-300 "
-                              fromLightColor=" from-yellow-200 "
-                              viaColor=" via-yellow-500 "
-                              toColor=" to-yellow-700 "
-
-                              // deleteIndex={deleteIndex}
-                            />
-                          ))}
-                        </div>
-                      </>
-                    )}
-                    {selected === "Data" && (
-                      <>
-                        <div className="flex flex-wrap content-start justify-center gap-4 fade-effect-quick">
-                          {dataBases.map((data, index) => (
-                            <ItemCard
-                              name={data.name}
-                              key={index}
-                              cost={data.cost}
-                              url={data.url}
-                              kind={data.kind}
-                              type={data.type}
-                              isOpenSource={data.isOpenSource}
-                              update={update}
-                              deleteItem={deleteItem}
-                              color=" bg-amber-200 "
-                              bColor=" border-amber-500 "
-                              iconColor=" text-amber-500 "
-                              fromColor=" from-amber-300 "
-                              fromLightColor=" from-amber-200 "
-                              viaColor=" via-amber-500 "
-                              toColor=" to-amber-700 "
-
-                              // deleteIndex={deleteIndex}
-                            />
-                          ))}
-                        </div>
-                      </>
-                    )}
-                    {selected === "Backend Framework" && (
-                      <>
-                        <div className="flex flex-wrap content-start justify-center gap-4 fade-effect-quick">
-                          {backEnd.map((data, index) => (
-                            <ItemCard
-                              name={data.name}
-                              key={index}
-                              cost={data.cost}
-                              url={data.url}
-                              kind={data.kind}
-                              type={data.type}
-                              isOpenSource={data.isOpenSource}
-                              update={update}
-                              deleteItem={deleteItem}
-                              color=" bg-orange-200 "
-                              bColor=" border-orange-500 "
-                              iconColor=" text-orange-500 "
-                              fromColor=" from-orange-300 "
-                              fromLightColor=" from-orange-200 "
-                              viaColor=" via-orange-500 "
-                              toColor=" to-orange-700 "
-
-                              // deleteIndex={deleteIndex}
-                            />
-                          ))}
-                        </div>
-                      </>
-                    )}
-                    {selected === "Web3/Blockchain" && (
-                      <>
-                        <div className="flex flex-wrap content-start justify-center gap-4 fade-effect-quick">
-                          {web3.map((data, index) => (
-                            <ItemCard
-                              name={data.name}
-                              key={index}
-                              cost={data.cost}
-                              url={data.url}
-                              type={data.type}
-                              kind={data.kind}
-                              isOpenSource={data.isOpenSource}
-                              update={update}
-                              deleteItem={deleteItem}
-                              color=" bg-red-200 "
-                              bColor=" border-red-500 "
-                              iconColor=" text-red-500 "
-                              fromColor=" from-red-300 "
-                              fromLightColor=" from-red-200 "
-                              viaColor=" via-red-500 "
-                              toColor=" to-red-700 "
-
-                              // deleteIndex={deleteIndex}
-                            />
-                          ))}
-                        </div>
-                      </>
-                    )}
-                    {selected === "Hosting" && (
-                      <>
-                        <div className="flex flex-wrap content-start justify-center gap-4 fade-effect-quick">
-                          {hosting.map((data, index) => (
-                            <ItemCard
-                              name={data.name}
-                              key={index}
-                              cost={data.cost}
-                              url={data.url}
-                              type={data.type}
-                              kind={data.kind}
-                              isOpenSource={data.isOpenSource}
-                              update={update}
-                              deleteItem={deleteItem}
-                              color=" bg-pink-200 "
-                              bColor=" border-pink-500 "
-                              iconColor=" text-pink-500 "
-                              fromColor=" from-pink-300 "
-                              fromLightColor=" from-pink-200 "
-                              viaColor=" via-pink-500 "
-                              toColor=" to-pink-700 "
-
-                              // deleteIndex={deleteIndex}
-                            />
-                          ))}
-                        </div>
-                      </>
-                    )}
-                    {selected === "Version Control" && (
-                      <>
-                        <div className="flex flex-wrap content-start justify-center gap-4 fade-effect-quick">
-                          {versionControl.map((data, index) => (
-                            <ItemCard
-                              name={data.name}
-                              key={index}
-                              cost={data.cost}
-                              url={data.url}
-                              type={data.type}
-                              kind={data.kind}
-                              isOpenSource={data.isOpenSource}
-                              update={update}
-                              deleteItem={deleteItem}
-                              color=" bg-fuchsia-200 "
-                              bColor=" border-fuchsia-500 "
-                              iconColor=" text-fuchsia-500 "
-                              fromColor=" from-fuchsia-300 "
-                              fromLightColor=" from-fuchsia-200 "
-                              viaColor=" via-fuchsia-500 "
-                              toColor=" to-fuchsia-700 "
-
-                              // deleteIndex={deleteIndex}
-                            />
-                          ))}
-                        </div>
-                      </>
-                    )}
-                    {selected === "DevOps" && (
-                      <>
-                        <div className="flex flex-wrap content-start justify-center gap-4 fade-effect-quick">
-                          {devOps.map((data, index) => (
-                            <ItemCard
-                              name={data.name}
-                              key={index}
-                              cost={data.cost}
-                              url={data.url}
-                              type={data.type}
-                              kind={data.kind}
-                              isOpenSource={data.isOpenSource}
-                              update={update}
-                              deleteItem={deleteItem}
-                              color=" bg-purple-200 "
-                              bColor=" border-purple-500 "
-                              iconColor=" text-purple-500 "
-                              fromColor=" from-purple-300 "
-                              fromLightColor=" from-purple-200 "
-                              viaColor=" via-purple-500 "
-                              toColor=" to-purple-700 "
-
-                              // deleteIndex={deleteIndex}
-                            />
-                          ))}
-                        </div>
-                      </>
-                    )}
-                    {selected === "Other" && (
-                      <>
-                        <div className="flex flex-wrap content-start justify-center gap-4 fade-effect-quick">
-                          {otherTools.map((data, index) => (
-                            <ItemCard
-                              name={data.name}
-                              key={index}
-                              cost={data.cost}
-                              url={data.url}
-                              type={data.type}
-                              kind={data.kind}
-                              isOpenSource={data.isOpenSource}
-                              update={update}
-                              deleteItem={deleteItem}
-                              color=" bg-indigo-200 "
-                              bColor=" border-indigo-500 "
-                              iconColor=" text-indigo-500 "
-                              fromColor=" from-indigo-300 "
-                              fromLightColor=" from-indigo-200 "
-                              viaColor=" via-indigo-500 "
-                              toColor=" to-indigo-700 "
-
-                              // deleteIndex={deleteIndex}
-                            />
-                          ))}
-                        </div>
-                      </>
-                    )}
-                  </div>
-                  <div className="flex flex-col items-center normal-box-soft dark:bg-slate-700/80">
-                    <p className="mb-1 ">Add custom:</p>
-
-                    <div className="flex items-center gap-2 mb-3 normal-box-soft dark:bg-slate-500/80">
+                    <div className="flex items-center gap-2 mb-3 sm:flex-col md:flex-row normal-box-soft dark:bg-slate-500/80">
                       <div className="flex-col">
                         <p className="m-0">Name</p>
                         <textarea
@@ -954,7 +636,7 @@ function STechStack(props) {
                       </div>
 
                       <button
-                        className="w-[4em] h-[3em] rounded-full p-1  flex items-center justify-center text-black gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer bg-t-bl "
+                        className=" sm:w-[80%] md:w-[4em] h-[3em] sm:mt-3 sm:mb-2 rounded-full p-1  flex items-center justify-center text-black gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer bg-t-bl "
                         onClick={() => {
                           console.log([
                             toolContent,
@@ -976,7 +658,7 @@ function STechStack(props) {
                         <p className="m-0 text-white">Add</p>
                       </button>
                     </div>
-                    <div className="flex my-1 rounded-xl ">
+                    <div className="flex flex-wrap justify-center my-1 rounded-xl">
                       <p>
                         {"Are we missing a dev tool or platform you want?"}{" "}
                       </p>
@@ -989,7 +671,403 @@ function STechStack(props) {
                         Let us know!
                       </a>
                     </div>
+                  </div>)}
+
+                  
+                    {selected === "Languages" && (
+                      <>
+                        <div className="flex flex-wrap content-start justify-center sm:gap-0 md:gap-4 fade-effect-quick">
+                          {languages.map((data, index) => (
+                            <ItemCard
+                              name={data.name}
+                              key={index}
+                              cost={data.cost}
+                              url={data.url}
+                              type={data.type}
+                              kind={data.kind}
+                              isOpenSource={data.isOpenSource}
+                              update={update}
+                              deleteItem={deleteItem}
+                              color=" bg-blue-200 "
+                              bColor=" border-blue-500 "
+                              iconColor=" text-blue-500 "
+                              fromColor=" from-blue-300 "
+                              fromLightColor=" from-blue-200 "
+                              viaColor=" via-blue-500 "
+                              toColor=" to-blue-700 "
+
+                              // deleteIndex={deleteIndex}
+                            />
+                          ))}
+                        </div>
+                      </>
+                    )}
+                    {selected === "Dev Tools" && (
+                      <>
+                        <div className="flex flex-wrap content-start justify-center sm:gap-0 md:gap-4 fade-effect-quick">
+                          {devTools.map((data, index) => (
+                            <ItemCard
+                              name={data.name}
+                              key={index}
+                              cost={data.cost}
+                              url={data.url}
+                              kind={data.kind}
+                              type={data.type}
+                              isOpenSource={data.isOpenSource}
+                              update={update}
+                              deleteItem={deleteItem}
+                              color=" bg-sky-200 "
+                              bColor=" border-sky-500 "
+                              iconColor=" text-sky-500 "
+                              fromColor=" from-sky-300 "
+                              fromLightColor=" from-sky-200 "
+                              viaColor=" via-sky-500 "
+                              toColor=" to-sky-700 "
+
+                              // deleteIndex={deleteIndex}
+                            />
+                          ))}
+                        </div>
+                      </>
+                    )}
+                    {selected === "No/Low Code" && (
+                      <>
+                        <div className="flex flex-wrap content-start justify-center sm:gap-0 md:gap-4 fade-effect-quick">
+                          {noCode.map((data, index) => (
+                            <ItemCard
+                              name={data.name}
+                              key={index}
+                              cost={data.cost}
+                              url={data.url}
+                              kind={data.kind}
+                              type={data.type}
+                              isOpenSource={data.isOpenSource}
+                              update={update}
+                              deleteItem={deleteItem}
+                              color=" bg-cyan-200 "
+                              bColor=" border-cyan-500 "
+                              iconColor=" text-cyan-500 "
+                              fromColor=" from-cyan-300 "
+                              fromLightColor=" from-cyan-200 "
+                              viaColor=" via-cyan-500 "
+                              toColor=" to-cyan-700 "
+
+                              // deleteIndex={deleteIndex}
+                            />
+                          ))}
+                        </div>
+                      </>
+                    )}
+                    {selected === "Authentication" && (
+                      <>
+                        <div className="flex flex-wrap content-start justify-center sm:gap-0 md:gap-4 fade-effect-quick">
+                          {authentication.map((data, index) => (
+                            <ItemCard
+                              name={data.name}
+                              key={index}
+                              cost={data.cost}
+                              url={data.url}
+                              kind={data.kind}
+                              type={data.type}
+                              isOpenSource={data.isOpenSource}
+                              update={update}
+                              deleteItem={deleteItem}
+                              color=" bg-teal-200 "
+                              bColor=" border-teal-500 "
+                              iconColor=" text-teal-500 "
+                              fromColor=" from-teal-300 "
+                              fromLightColor=" from-teal-200 "
+                              viaColor=" via-teal-500 "
+                              toColor=" to-teal-700 "
+
+                              // deleteIndex={deleteIndex}
+                            />
+                          ))}
+                        </div>
+                      </>
+                    )}
+                    {selected === "UI Framework" && (
+                      <>
+                        <div className="flex flex-wrap content-start justify-center sm:gap-0 md:gap-4 fade-effect-quick">
+                          {frontEnd.map((data, index) => (
+                            <ItemCard
+                              name={data.name}
+                              key={index}
+                              cost={data.cost}
+                              url={data.url}
+                              kind={data.kind}
+                              type={data.type}
+                              isOpenSource={data.isOpenSource}
+                              update={update}
+                              deleteItem={deleteItem}
+                              color=" bg-green-200 "
+                              bColor=" border-green-500 "
+                              iconColor=" text-green-500 "
+                              fromColor=" from-green-300 "
+                              fromLightColor=" from-green-200 "
+                              viaColor=" via-green-500 "
+                              toColor=" to-green-700 "
+
+                              // deleteIndex={deleteIndex}
+                            />
+                          ))}
+                        </div>
+                      </>
+                    )}
+                    {selected === "UI Component Library" && (
+                      <>
+                        <div className="flex flex-wrap content-start justify-center sm:gap-0 md:gap-4 fade-effect-quick">
+                          {componentLibraries.map((data, index) => (
+                            <ItemCard
+                              name={data.name}
+                              key={index}
+                              cost={data.cost}
+                              url={data.url}
+                              kind={data.kind}
+                              type={data.type}
+                              isOpenSource={data.isOpenSource}
+                              update={update}
+                              deleteItem={deleteItem}
+                              color=" bg-lime-200 "
+                              bColor=" border-lime-500 "
+                              iconColor=" text-lime-500 "
+                              fromColor=" from-lime-300 "
+                              fromLightColor=" from-lime-200 "
+                              viaColor=" via-lime-500 "
+                              toColor=" to-lime-700 "
+
+                              // deleteIndex={deleteIndex}
+                            />
+                          ))}
+                        </div>
+                      </>
+                    )}
+                    {selected === "CSS Tools" && (
+                      <>
+                        <div className="flex flex-wrap content-start justify-center sm:gap-0 md:gap-4 fade-effect-quick">
+                          {cssTools.map((data, index) => (
+                            <ItemCard
+                              name={data.name}
+                              key={index}
+                              cost={data.cost}
+                              url={data.url}
+                              kind={data.kind}
+                              type={data.type}
+                              isOpenSource={data.isOpenSource}
+                              update={update}
+                              deleteItem={deleteItem}
+                              color=" bg-yellow-200 "
+                              bColor=" border-yellow-500 "
+                              iconColor=" text-yellow-500 "
+                              fromColor=" from-yellow-300 "
+                              fromLightColor=" from-yellow-200 "
+                              viaColor=" via-yellow-500 "
+                              toColor=" to-yellow-700 "
+
+                              // deleteIndex={deleteIndex}
+                            />
+                          ))}
+                        </div>
+                      </>
+                    )}
+                    {selected === "Data" && (
+                      <>
+                        <div className="flex flex-wrap content-start justify-center sm:gap-0 md:gap-4 fade-effect-quick">
+                          {dataBases.map((data, index) => (
+                            <ItemCard
+                              name={data.name}
+                              key={index}
+                              cost={data.cost}
+                              url={data.url}
+                              kind={data.kind}
+                              type={data.type}
+                              isOpenSource={data.isOpenSource}
+                              update={update}
+                              deleteItem={deleteItem}
+                              color=" bg-amber-200 "
+                              bColor=" border-amber-500 "
+                              iconColor=" text-amber-500 "
+                              fromColor=" from-amber-300 "
+                              fromLightColor=" from-amber-200 "
+                              viaColor=" via-amber-500 "
+                              toColor=" to-amber-700 "
+
+                              // deleteIndex={deleteIndex}
+                            />
+                          ))}
+                        </div>
+                      </>
+                    )}
+                    {selected === "Backend Framework" && (
+                      <>
+                        <div className="flex flex-wrap content-start justify-center sm:gap-0 md:gap-4 fade-effect-quick">
+                          {backEnd.map((data, index) => (
+                            <ItemCard
+                              name={data.name}
+                              key={index}
+                              cost={data.cost}
+                              url={data.url}
+                              kind={data.kind}
+                              type={data.type}
+                              isOpenSource={data.isOpenSource}
+                              update={update}
+                              deleteItem={deleteItem}
+                              color=" bg-orange-200 "
+                              bColor=" border-orange-500 "
+                              iconColor=" text-orange-500 "
+                              fromColor=" from-orange-300 "
+                              fromLightColor=" from-orange-200 "
+                              viaColor=" via-orange-500 "
+                              toColor=" to-orange-700 "
+
+                              // deleteIndex={deleteIndex}
+                            />
+                          ))}
+                        </div>
+                      </>
+                    )}
+                    {selected === "Web3/Blockchain" && (
+                      <>
+                        <div className="flex flex-wrap content-start justify-center sm:gap-0 md:gap-4 fade-effect-quick">
+                          {web3.map((data, index) => (
+                            <ItemCard
+                              name={data.name}
+                              key={index}
+                              cost={data.cost}
+                              url={data.url}
+                              type={data.type}
+                              kind={data.kind}
+                              isOpenSource={data.isOpenSource}
+                              update={update}
+                              deleteItem={deleteItem}
+                              color=" bg-red-200 "
+                              bColor=" border-red-500 "
+                              iconColor=" text-red-500 "
+                              fromColor=" from-red-300 "
+                              fromLightColor=" from-red-200 "
+                              viaColor=" via-red-500 "
+                              toColor=" to-red-700 "
+
+                              // deleteIndex={deleteIndex}
+                            />
+                          ))}
+                        </div>
+                      </>
+                    )}
+                    {selected === "Hosting" && (
+                      <>
+                        <div className="flex flex-wrap content-start justify-center sm:gap-0 md:gap-4 fade-effect-quick">
+                          {hosting.map((data, index) => (
+                            <ItemCard
+                              name={data.name}
+                              key={index}
+                              cost={data.cost}
+                              url={data.url}
+                              type={data.type}
+                              kind={data.kind}
+                              isOpenSource={data.isOpenSource}
+                              update={update}
+                              deleteItem={deleteItem}
+                              color=" bg-pink-200 "
+                              bColor=" border-pink-500 "
+                              iconColor=" text-pink-500 "
+                              fromColor=" from-pink-300 "
+                              fromLightColor=" from-pink-200 "
+                              viaColor=" via-pink-500 "
+                              toColor=" to-pink-700 "
+
+                              // deleteIndex={deleteIndex}
+                            />
+                          ))}
+                        </div>
+                      </>
+                    )}
+                    {selected === "Version Control" && (
+                      <>
+                        <div className="flex flex-wrap content-start justify-center sm:gap-0 md:gap-4 fade-effect-quick">
+                          {versionControl.map((data, index) => (
+                            <ItemCard
+                              name={data.name}
+                              key={index}
+                              cost={data.cost}
+                              url={data.url}
+                              type={data.type}
+                              kind={data.kind}
+                              isOpenSource={data.isOpenSource}
+                              update={update}
+                              deleteItem={deleteItem}
+                              color=" bg-fuchsia-200 "
+                              bColor=" border-fuchsia-500 "
+                              iconColor=" text-fuchsia-500 "
+                              fromColor=" from-fuchsia-300 "
+                              fromLightColor=" from-fuchsia-200 "
+                              viaColor=" via-fuchsia-500 "
+                              toColor=" to-fuchsia-700 "
+
+                              // deleteIndex={deleteIndex}
+                            />
+                          ))}
+                        </div>
+                      </>
+                    )}
+                    {selected === "DevOps" && (
+                      <>
+                        <div className="flex flex-wrap content-start justify-center sm:gap-0 md:gap-4 fade-effect-quick">
+                          {devOps.map((data, index) => (
+                            <ItemCard
+                              name={data.name}
+                              key={index}
+                              cost={data.cost}
+                              url={data.url}
+                              type={data.type}
+                              kind={data.kind}
+                              isOpenSource={data.isOpenSource}
+                              update={update}
+                              deleteItem={deleteItem}
+                              color=" bg-purple-200 "
+                              bColor=" border-purple-500 "
+                              iconColor=" text-purple-500 "
+                              fromColor=" from-purple-300 "
+                              fromLightColor=" from-purple-200 "
+                              viaColor=" via-purple-500 "
+                              toColor=" to-purple-700 "
+
+                              // deleteIndex={deleteIndex}
+                            />
+                          ))}
+                        </div>
+                      </>
+                    )}
+                    {selected === "Other" && (
+                      <>
+                        <div className="flex flex-wrap content-start justify-center sm:gap-0 md:gap-4 fade-effect-quick">
+                          {otherTools.map((data, index) => (
+                            <ItemCard
+                              name={data.name}
+                              key={index}
+                              cost={data.cost}
+                              url={data.url}
+                              type={data.type}
+                              kind={data.kind}
+                              isOpenSource={data.isOpenSource}
+                              update={update}
+                              deleteItem={deleteItem}
+                              color=" bg-indigo-200 "
+                              bColor=" border-indigo-500 "
+                              iconColor=" text-indigo-500 "
+                              fromColor=" from-indigo-300 "
+                              fromLightColor=" from-indigo-200 "
+                              viaColor=" via-indigo-500 "
+                              toColor=" to-indigo-700 "
+
+                              // deleteIndex={deleteIndex}
+                            />
+                          ))}
+                        </div>
+                      </>
+                    )}
                   </div>
+                 
                 </div>
               </div>
               <div className="flex items-center justify-between w-full">
@@ -1012,118 +1090,65 @@ function STechStack(props) {
                 </div>
               </div>
             </div>
-            <div className="normal-box-soft !rounded-xl w-[30em]">
-              <div className="normal-box bg-[hsla(200,0%,100%,0.764)]  dark:bg-[hsla(200,0%,20%,0.764)] !rounded-xl text-left">
-                <h3 className="heading2 dark:text-blues-100">Tech Stack:</h3>
-                {/* <p>featureString:</p>
-                  <p>{featureString}</p>
-                  <p>props:</p>                  
-                  <p>{props.form.form.Features}</p>
-
-
-                  <p>Feature with a sentence description</p> */}
-                {toolArray.length === 0 && <p>No tools added yet.</p>}
-                {toolArray.map((data, index) => (
-                  <ListItem
-                    cost={data.cost}
-                    name={data.name}
-                    url={data.url}
-                    type={data.type}
-                    key={index}
-                    kind={data.kind}
-
-                    // deleteIndex={deleteIndex}
-                  />
-                ))}
-                <hr className="mt-5"></hr>
-
-                <div className="flex items-center justify-between ml-3">
-                  <p className="mb-0">Monthly Cost:</p>
-                  <p className="mb-0 mr-2 text-lg text-t-pd">
-                    $
-                    {monthlyCost
-                      ? Number(monthlyCost).toFixed(2)
-                      : defaultZero.toFixed(2)}
-                  </p>
-                </div>
-                <div className="flex items-center justify-between ml-3 dark:text-white">
-                  <div>Annual Cost:</div>
-                  <p className="mb-0 mr-2 text-lg text-t-pm ">
-                    $
-                    {monthlyCost
-                      ? Number(monthlyCost * 12).toFixed(2)
-                      : defaultZero.toFixed(2)}
-                  </p>
-                </div>
-                <div className="flex items-center justify-between ml-3 dark:text-white">
-                  <div>Total Cost:</div>
-                  <p className="mb-0 mr-2 text-lg text-t-pm ">
-                    $
-                    {monthlyCost
-                      ? Number(monthlyCost).toFixed(2)
-                      : defaultZero.toFixed(2)}
-                  </p>
-                </div>
-              </div>
-            </div>
+          </div>
           </div>
         </div>
       </div>
-    </div>
   );
 }
 
 export default STechStack;
 
 function ListItem({ name, deleteIndex, cost, url, type, kind }) {
-  const [underline, setUnderline] = useState(" decoration-blue-300");
+  const [underline, setUnderline] = useState(" decoration-blue-300 dark:bg-blue-500/80 bg-blue-200/60 dark:border-blue-300  border-blue-700");
 
   // console.log(kind);
 
   useEffect(() => {
     if (kind === "Languages") {
-      setUnderline(" decoration-blue-300");
+      setUnderline(" decoration-blue-300 dark:bg-blue-500/80 bg-blue-200/60 dark:border-blue-300  border-blue-700");
+    }else if (kind === "Custom") {
+      setUnderline("  dark:bg-slate-500/80 bg-slate-200/60 dark:border-slate-300  border-slate-700");
     } else if (kind === "Dev-tools") {
-      setUnderline(" decoration-sky-300");
+      setUnderline("  dark:bg-sky-500/80 bg-sky-200/60 dark:border-sky-300  border-sky-700");
     } else if (kind === "No-Code") {
-      setUnderline(" decoration-cyan-300");
+      setUnderline("  dark:bg-cyan-500/80 bg-cyan-200/60 dark:border-cyan-300  border-cyan-700");
     } else if (kind === "Authentication") {
-      setUnderline(" decoration-teal-300");
+      setUnderline("  dark:bg-teal-500/80 bg-teal-200/60 dark:border-teal-300  border-teal-700");
     } else if (kind === "FrontEnd ") {
-      setUnderline(" decoration-green-300");
+      setUnderline("  dark:bg-green-500/80 bg-green-200/60 dark:border-green-300  border-green-700");
     } else if (kind === "Component library") {
-      setUnderline(" decoration-lime-300");
+      setUnderline("  dark:bg-lime-500/80 bg-lime-200/60 dark:border-lime-300  border-lime-700");
     } else if (kind === "CSS framework") {
-      setUnderline(" decoration-yellow-300");
+      setUnderline("  dark:bg-yellow-500/80 bg-yellow-200/60 dark:border-yellow-300  border-yellow-700");
     } else if (kind === "Data") {
-      setUnderline(" decoration-amber-300");
+      setUnderline(" dark:bg-amber-500/80 bg-amber-200/60 dark:border-amber-300  border-amber-700");
     } else if (kind === "BackEnd") {
-      setUnderline(" decoration-orange-300");
+      setUnderline("  dark:bg-orange-500/80 bg-orange-200/60 dark:border-orange-300  border-orange-700");
     } else if (kind === "Web-3") {
-      setUnderline(" decoration-red-300");
+      setUnderline("  dark:bg-red-500/80 bg-red-200/60 dark:border-red-300  border-red-700");
     } else if (kind === "Hosting") {
-      setUnderline(" decoration-pink-300");
+      setUnderline("  dark:bg-pink-500/80 bg-pink-200/60 dark:border-pink-300  border-pink-700");
     } else if (kind === "Version Control") {
-      setUnderline(" decoration-fuchsia-300");
+      setUnderline("  dark:bg-fuchsia-500/80 bg-fuchsia-200/60 dark:border-fuchsia-300  border-fuchsia-700");
     } else if (kind === "DevOps") {
-      setUnderline(" decoration-purple-300");
+      setUnderline("  dark:bg-purple-500/80 bg-purple-200/60 dark:border-purple-300  border-purple-700");
     } else if (kind === "Other") {
-      setUnderline(" decoration-indigo-300");
+      setUnderline(" dark:bg-indigo-500/80 bg-indigo-200/60 dark:border-indigo-300  border-indigo-700 ");
     }
   }, []);
   // console.log(url)
   return (
-    <div className="flex items-center justify-between ml-3">
+    <div className={"flex items-center justify-between px-1 ml-3 border-2 fade-effect-quick w-fit rounded-xl " + underline}>
       <div className="flex items-center group">
-        <li
+        <p
           className={
-            "mr-2 underline nun dark:text-white decoration-4 underline-offset-2  " +
-            underline
+            "mr-2  nun  text-inherit  "
           }
         >
           {name}
-        </li>
-        <a
+        </p>
+        {/* <a
           href={url || "https://www.google.com"}
           target="_blank"
           rel="noreferrer"
@@ -1133,7 +1158,7 @@ function ListItem({ name, deleteIndex, cost, url, type, kind }) {
               "transition group-hover:md:z-1000 group-hover:md:opacity-100 opacity-0 md:hover:scale-125 md:hover:text-blue-200"
             }
           />
-        </a>
+        </a> */}
       </div>
 
       <p className="mb-0 mr-2">${Number(cost).toFixed(2)}</p>
@@ -1236,7 +1261,7 @@ function ItemCard({
       }}
       // value={"BUTTON"}
       className={
-        "group flex gap-1 items-center rounded-xl !p-0      whitespace-nowrap transition duration-500  select-none cursor-pointer h-[6em] min-w-[5em]  md:hover:-translate-y-2	  " +
+        "group flex gap-1 items-center rounded-xl !p-0      whitespace-nowrap transition duration-500  select-none cursor-pointer h-[6em] min-w-[5em]  md:hover:-translate-y-2	sm:scale-[85%] md:scale-100  " +
         (clicked
           ? " bg-gradient-to-b    border-4 " +
             fromColor +

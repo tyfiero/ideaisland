@@ -50,6 +50,7 @@ export default function Layout({ children }) {
 
 
 
+  const [isMobile, setIsMobile] = useState(false)
 
  
   const router = useRouter();
@@ -244,7 +245,39 @@ if (darkRedux) {
     //set img
     let img1 = localStorage.getItem("bgImg") || "";
     document.querySelector("body").style.backgroundImage = `url(${img1})`;
+
+
+
+
+
+    const getWindowDimensions = () => {
+      const { innerWidth: width, innerHeight: height } = window;
+      return {
+        width,
+        height
+      };
+    }
+    
+
+  if(getWindowDimensions().width < 720){
+    console.log("ASDFASD LJKASD FLKJASD LKJSAD LKJASD FL")
+    setIsMobile(true)
+    setIsToggled(false)
+  } else {
+    setIsMobile(false)
+    setIsToggled(true)
+
+  } 
+    
+   
+
+    
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+
+
+
+
 
   return (
 
