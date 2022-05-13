@@ -1,10 +1,10 @@
 // import { auth, firestore, googleAuthProvider } from "../../lib/firebase";
 import { UserContext } from "../../../lib/context";
-import { doc, writeBatch, getDoc, getFirestore } from 'firebase/firestore';
+import { doc, writeBatch, getDoc, getFirestore } from "firebase/firestore";
 
 import { useEffect, useState, useCallback, useContext } from "react";
 import debounce from "lodash.debounce";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
 import { userNameAction } from "../../../redux/actions";
@@ -19,21 +19,31 @@ export default function UsernameForm(props) {
   const userNameRedux = useSelector((state) => state.userNameRedux);
   const dispatch = useDispatch();
 
-
   const onSubmit = async (e) => {
     e.preventDefault();
 
- // Create refs for both documents
-    const userDoc = doc(getFirestore(), 'users', user.uid);
-    const usernameDoc = doc(getFirestore(), 'usernames', formValue);
+    // Create refs for both documents
+    const userDoc = doc(getFirestore(), "users", user.uid);
+    const usernameDoc = doc(getFirestore(), "usernames", formValue);
 
     // Commit both docs together as a batch write.
     const batch = writeBatch(getFirestore());
-    batch.set(userDoc, { username: formValue, photoURL: user.photoURL, displayName: user.displayName, credits: 10, plan: "Free" });
+    batch.set(userDoc, {
+      username: formValue,
+      photoURL: user.photoURL,
+      displayName: user.displayName,
+      credits: 10,
+      plan: "Free",
+      updatedAt: new Date(),
+      paddleUserId: null,
+      subscriptionID: null,
+      status: null,
+      nextBillDate: null,
+      subscriptionStartDate: null,
+      cancelUrl: null,
+      updateUrl: null,
+    });
     batch.set(usernameDoc, { uid: user.uid });
-
-
-
 
     dispatch(userNameAction(formValue));
 
@@ -64,15 +74,14 @@ export default function UsernameForm(props) {
 
   useEffect(() => {
     checkUsername(formValue);
-  }, [formValue]);// eslint-disable-line react-hooks/exhaustive-deps
+  }, [formValue]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Hit the database for username match after each debounced change
   // useCallback is required for debounce to work
   const checkUsername = useCallback(
     debounce(async (input) => {
-
       if (input.length >= 3) {
-        const ref = doc(getFirestore(), 'usernames', input);
+        const ref = doc(getFirestore(), "usernames", input);
         const snap = await getDoc(ref);
 
         // console.log("Firestore read executed!", snap.exists());
@@ -133,12 +142,15 @@ export default function UsernameForm(props) {
       </h3>
 
       {/* <Link href="/"> */}
-        {/* <a> */}
-    
-          <button className="w-[18em] h-12 rounded-3xl bg-t-bl flex items-center mt-3 justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95" onClick={()=>props.goToStep(3)}>
-            Continue <FaLongArrowAltRight/>
-          </button>
-        {/* </a> */}
+      {/* <a> */}
+
+      <button
+        className="w-[18em] h-12 rounded-3xl bg-t-bl flex items-center mt-3 justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95"
+        onClick={() => props.goToStep(3)}
+      >
+        Continue <FaLongArrowAltRight />
+      </button>
+      {/* </a> */}
       {/* </Link> */}
     </>
   );

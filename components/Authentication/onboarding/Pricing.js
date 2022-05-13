@@ -2,13 +2,13 @@ import { React, useContext, useEffect, useState } from "react";
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 import Toggle from "react-toggle";
 import Script from "next/script";
-import dynamic from "next/dynamic";
+// import dynamic from "next/dynamic";
 import { UserContext } from "../../../lib/context";
-import { auth } from "../../../lib/firebase";
+// import { auth } from "../../../lib/firebase";
 import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import PaddleLoader from "../PaddleLoader";
-import { doc, getFirestore, updateDoc } from "firebase/firestore";
+// import { doc, getFirestore, updateDoc } from "firebase/firestore";
 import WelcomePopUp from "./WelcomePopUp";
 // const PaddleScript = dynamic(() => import("react-quill"), {
 //     ssr: false,
@@ -37,52 +37,52 @@ function Pricing(props) {
     }
   }, []);
 
-  const updateIdea = async (
-    amount,
-    planType,
-    cancelUrl,
-    updateUrl,
-    paddleUserId,
-    nextBillDate,
-    subscriptionStartDate,
-    subscriptionID
-  ) => {
-    let uid;
+  // const updateIdea = async (
+  //   amount,
+  //   planType,
+  //   cancelUrl,
+  //   updateUrl,
+  //   paddleUserId,
+  //   nextBillDate,
+  //   subscriptionStartDate,
+  //   subscriptionID
+  // ) => {
+  //   let uid;
 
-    if (user?.uid) {
-      uid = user?.uid;
-    } else if (userUIDRedux) {
-      uid = userUIDRedux;
-    } else if (auth.currentUser?.uid) {
-      uid = auth.currentUser?.uid;
-    } else {
-      uid = "default";
-      // console.log("no uid available :(");
-    }
-    const ref = doc(getFirestore(), "users", uid);
+  //   if (user?.uid) {
+  //     uid = user?.uid;
+  //   } else if (userUIDRedux) {
+  //     uid = userUIDRedux;
+  //   } else if (auth.currentUser?.uid) {
+  //     uid = auth.currentUser?.uid;
+  //   } else {
+  //     uid = "default";
+  //     // console.log("no uid available :(");
+  //   }
+  //   const ref = doc(getFirestore(), "users", uid);
 
-    let data = {
-      credits: amount,
-      plan: planType,
-      cancelUrl: cancelUrl,
-      updateUrl: null,
-      paddleUserID: null,
-      nextBillDate: null,
-      subscriptionStartDate: null,
-      subscriptionID: null,
-    };
-    await updateDoc(ref, data)
-      .then(() => {
-        toast.success(`New AI credit balance: ${amount}`);
-      })
-      .catch((error) => {
-        toast.error("Error occured, please contact support");
-        console.log("Update failed!" + error);
-      });
-  };
+  //   let data = {
+  //     credits: amount,
+  //     plan: planType,
+  //     cancelUrl: cancelUrl,
+  //     updateUrl: null,
+  //     paddleUserID: null,
+  //     nextBillDate: null,
+  //     subscriptionStartDate: null,
+  //     subscriptionID: null,
+  //   };
+  //   await updateDoc(ref, data)
+  //     .then(() => {
+  //       toast.success(`New AI credit balance: ${amount}`);
+  //     })
+  //     .catch((error) => {
+  //       toast.error("Error occured, please contact support");
+  //       console.log("Update failed!" + error);
+  //     });
+  // };
 
   function checkoutComplete(data) {
-    console.log(data);
+    // console.log(data);
     // alert("Thanks for your purchase.");
 
     let updateUrl;
@@ -98,7 +98,7 @@ function Pricing(props) {
     ) {
       setCredits(0);
       setPlan("Hobbyist");
-      updateIdea(0, "Hobbyist");
+      // updateIdea(0, "Hobbyist");
       setSuccessPopUp(true);
     } else if (
       data.product.name === "Innovator" ||
@@ -106,7 +106,7 @@ function Pricing(props) {
     ) {
       setCredits(250);
       setPlan("Innovator");
-      updateIdea(250, "Innovator");
+      // updateIdea(250, "Innovator");
       setSuccessPopUp(true);
     } else if (
       data.product.name === "Pro" ||
@@ -114,7 +114,7 @@ function Pricing(props) {
     ) {
       setCredits(1000);
       setPlan("Pro");
-      updateIdea(1000, "Pro");
+      // updateIdea(1000, "Pro");
       setSuccessPopUp(true);
     }
   }

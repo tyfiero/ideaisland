@@ -36,7 +36,7 @@ const Dashboard = () => {
   // console.log(auth.currentUser);
 
   return (
-    <AuthCheck>
+    // <AuthCheck>
       <div className="overflow-auto fade-effect-quick">
         {/* {modalOpen &&   <ReusableModal modalOpen={modalOpen} setModalOpen={setModalOpen} header="Test Header">  
       <p>Does this work?</p>
@@ -251,7 +251,7 @@ const Dashboard = () => {
       </div> */}
         {/* <PublicIdeaFeed /> */}
       </div>
-    </AuthCheck>
+    // </AuthCheck>
   );
 };
 
