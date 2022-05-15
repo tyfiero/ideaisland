@@ -323,7 +323,7 @@ export default function LoginPage() {
             className="mx-auto "
           />
           <div className="flex mt-1 text-3xl font-extrabold text-center text-gray-900">
-          {expandSignIn ? ("Sign in to your account"):(<><p>Welcome to </p><p className="logo fre">&nbsp;ideaisland </p>!</>)}
+          {expandSignIn ? ("Sign in to your account"):(<><p>Welcome to<span className="logo fre">&nbsp;ideaisland </span>!</p></>)}
           </div>
 
           {/* {signInMethod === 0 ? ( */}

@@ -46,7 +46,7 @@ const Dashboard = () => {
 <button className="p-2 text-white bg-t-bl rounded-xl" onClick={()=>{setModalOpen(!modalOpen)}}>Open modal</button> */}
 
         <div className="dash-title">
-          <h1 className="text-3xl text-t-bd dark:text-blues-100">Dashboard</h1>
+          <h1 className="text-3xl text-t-bd dark:text-blues-100">Dashboard ;</h1>
         </div>
         <div className="stat-holder dark:bg-red">
           {/* <button onClick={()=>{ dispatch(statsAction(5))}}>inc</button> */}

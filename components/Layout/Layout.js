@@ -261,7 +261,6 @@ if (darkRedux) {
     
 
   if(getWindowDimensions().width < 720){
-    console.log("ASDFASD LJKASD FLKJASD LKJSAD LKJASD FL")
     setIsMobile(true)
     setIsToggled(false)
   } else {
@@ -283,7 +282,7 @@ if (darkRedux) {
   return (
 
       <div
-        className="fixed top-0 left-0 wrapper" 
+        className="fixed top-0 left-0 wrapper md:touch-auto sm:touch-pan-y" 
         
         
         // style={
@@ -372,7 +371,7 @@ if (darkRedux) {
           
          
            
-              <div className={ isPopUpOpen ? "notepad-container" : " "}>
+              <div className={ isPopUpOpen ? " " : " "}>
               {isPopUpOpen && (  <NotePopUpModal handleClose={togglePopup} />     )}
                 <NotePopUp handleClose={togglePopup} isPopUpOpen={isPopUpOpen}/>
               </div>

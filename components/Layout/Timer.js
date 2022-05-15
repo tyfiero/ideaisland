@@ -31,7 +31,7 @@ const RenderTime = ({ remainingTime }) => {
       return (
         <>
           <div className="timer">Done!</div>
-          <audio ref={audioRef} src={"../timersound.mp3"} autoPlay />
+          <audio ref={audioRef} src={"../alarm-tone.mp3"} autoPlay />
         </>
       );
     } else {
@@ -359,7 +359,7 @@ function CircleTimer({ setTimerOpen }) {
             });
             setTimeout(() => {
               setKey((prevKey) => prevKey + 1);
-            }, 2000);
+            }, 6000);
           }}
         >
           {RenderTime}

@@ -32,7 +32,7 @@ class MyDocument extends Document {
      
 
         </Head >
-        <body >
+        <body className="sm:touch-none ">
          
 
           <Main />
