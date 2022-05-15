@@ -53,9 +53,10 @@ function PWho(props) {
 
   "
       >
-        <div className="w-full max-w-[42rem] p-10 space-y-8  normal-box-soft">
+        <div className="w-full max-w-[42rem] sm:py-5 md:p-10 space-y-8  normal-box-soft">
           <div className="relative flex flex-col items-center justify-between gap-3 p-3 problem-page fade-effect-quick min-h-[25em]">
-            <div className="absolute -top-5 -left-5">
+          <div className="absolute md:-top-5 md:-left-5 sm:-top-2 sm:left-2">
+
               <Popover
                 isOpen={isPopoverOpen}
                 containerStyle={{
@@ -108,7 +109,7 @@ function PWho(props) {
             </div>
             <h1 className="text-3xl text-t-bd dark:text-blues-100">Who?</h1>
 
-            <div className=" normal-box-soft min-h-[10em] p-5 my-2">
+            <div className=" normal-box-soft  min-h-[10em] p-5 my-2">
               <h3 className="heading">Who is your audience?</h3>
               <p className="px-5">
                 Think of your target demographic, more specific the better

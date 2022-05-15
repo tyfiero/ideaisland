@@ -177,10 +177,11 @@ function SFeatures(props) {
 
   "
       >
-        <div className=" p-10 space-y-8  !rounded-2xl  normal-box-soft">
+        <div className=" sm:py-5 md:p-10 space-y-8  !rounded-2xl  normal-box-soft">
           <div className="flex md:flex-row sm:flex-col">
             <div className="relative flex flex-col items-center justify-center gap-3 px-2 problem-page fade-effect-quick">
-              <div className="absolute -top-5 -left-5">
+            <div className="absolute md:-top-5 md:-left-5 sm:-top-2 sm:left-2">
+
                 <Popover
                   isOpen={isPopoverOpen}
                   containerStyle={{

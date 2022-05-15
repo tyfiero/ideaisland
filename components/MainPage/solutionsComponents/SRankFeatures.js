@@ -484,6 +484,7 @@ function SRankFeatures(props) {
                 </h3>
               </div>
            
+           <p className="md:hidden sm:block"> {"<----- Scroll left and right to see full table ----->"}</p>
             <div className="flex flex-col sm:w-[122%] md:w-full">
               <Styles>
                 {/* <div className="flex gap-3 normal-box-soft right-10 ">

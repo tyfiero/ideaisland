@@ -67,9 +67,9 @@ function PWhat(props) {
 
   "
       >
-        <div className="w-full max-w-[42rem] p-10 space-y-8  normal-box-soft">
+        <div className="w-full max-w-[42rem] sm:py-5 md:p-10 space-y-8  normal-box-soft">
           <div className="relative flex flex-col items-center justify-center gap-3 p-3 problem-page fade-effect-quick">
-            <div className="absolute -top-5 -left-5">
+            <div className="absolute md:-top-5 md:-left-5 sm:-top-2 sm:left-2">
               <Popover
                 isOpen={isPopoverOpen}
                 containerStyle={{
@@ -123,7 +123,7 @@ function PWhat(props) {
               </Popover>
             </div>
             <h1 className="text-3xl text-t-bd dark:text-blues-100">What?</h1>
-            <div className=" normal-box-soft min-h-[10em] p-5 my-2 flex flex-col items-center">
+            <div className=" normal-box-soft sm:max-w-[98%] min-h-[10em] p-5 my-2 flex flex-col items-center">
               <h3 className="heading">
                 Are you building software or physical product?
               </h3>
@@ -131,7 +131,7 @@ function PWhat(props) {
             <div className="flex gap-5 mt-4">
               <button
                 className={
-                  "w-[12em] h-[4em] rounded-3xl  flex items-center justify-center text-black gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
+                  "px-2 py-3 rounded-3xl  flex items-center justify-center text-black gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer relative " +
                   (button1
                     ? " border-4 border-t-bl bg-blues-200"
                     : "bg-blues-200")
@@ -153,7 +153,7 @@ function PWhat(props) {
               </button>
               <button
                 className={
-                  "w-[12em] h-[4em] rounded-3xl  flex items-center justify-center text-black gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " +
+                  "px-3 py-3 rounded-3xl  flex items-center justify-center text-black gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer relative  " +
                   (button2
                     ? " border-4 border-t-pm bg-pinks-200"
                     : "bg-pinks-100")
