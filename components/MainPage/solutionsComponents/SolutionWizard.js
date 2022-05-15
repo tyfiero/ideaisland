@@ -47,7 +47,7 @@ function SolutionWizard(props) {
   const [changes, setChanges] = useState(false);
   const [reset, setReset] = useState(false);
 
-  console.log(changes + "  changes");
+  // console.log(changes + "  changes");
 
   const [state, updateState] = useState({
     form: {},
@@ -93,8 +93,8 @@ function SolutionWizard(props) {
     });
   };
   const { SWC, demo } = state;
-  console.log(state);
-  console.log(SWC);
+  // console.log(state);
+  // console.log(SWC);
 
   return (
     <div className="w-full h-full">

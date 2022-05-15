@@ -65,7 +65,7 @@ const [modalOpen, setModalOpen] = useState(false)
 
  </ReusableModal>}
 
-      <div className="flex flex-col items-center glass-box p-5 bg-white/60 min-w-[30em] min-h-[20em]">
+      <div className="flex flex-col items-center dark:bg-slate-600/50 glass-box p-5 bg-white/60 min-w-[30em] min-h-[20em]">
       <h2 className="text-3xl text-t-bd dark:text-blues-100">Profile</h2>
 
       <div className="bg-white rounded-full profile-pic-page-holder">

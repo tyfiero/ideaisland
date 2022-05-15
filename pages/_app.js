@@ -1,3 +1,11 @@
+// import '../scripts/wdyr'
+
+
+
+
+
+
+
 import "../styles/globals.css";
 import "tailwindcss/tailwind.css";
 
@@ -104,9 +112,14 @@ function MyApp({ Component, pageProps }) {
         // <AuthProvider>
         <UserContext.Provider value={userData}>
           <Layout>
+          <ShephardLogic>
+
             <Component {...pageProps} />
+            </ShephardLogic>
+
           </Layout>
         </UserContext.Provider>
+        
         // </AuthProvider>
       )}
     </PersistGate>

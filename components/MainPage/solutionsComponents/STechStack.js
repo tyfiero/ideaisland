@@ -55,7 +55,7 @@ import { useSelector, useDispatch } from "react-redux";
 import toast from "react-hot-toast";
 
 function STechStack(props) {
-  console.log("TECHSTACK--------------------" + props.isActive);
+  // console.log("TECHSTACK--------------------" + props.isActive);
 
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [refresh, setRefresh] = useState(false);

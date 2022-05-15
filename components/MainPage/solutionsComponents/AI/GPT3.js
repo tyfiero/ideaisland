@@ -267,7 +267,7 @@ const GPTtool = ({ showButton }) => {
       <TextareaAutosize
         className="w-[99%] rounded-md nun   textarea-tw"
         onChange={(e) => {
-          console.log(e.target.value);
+          // console.log(e.target.value);
           setGPTJInput(e.target.value);
         }}
         // defaultValue={contentTitle}
@@ -577,7 +577,7 @@ const GPTtool = ({ showButton }) => {
                   }
                 }}
               >
-                {aiLoading ? (
+                {aiLoading && oldInput.length > 0  ? (
                   <>
                     <p className="text-lg text-t-pd">Expanding...</p>{" "}
                   </>

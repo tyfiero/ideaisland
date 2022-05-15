@@ -490,7 +490,7 @@ function DisplayImage({ type, mode }) {
   };
 
   let pexelsWindow = (
-    <div className=" flex items-center flex-col w-[35em] z-50">
+    <div className=" flex items-center flex-col md:w-[35em] sm:w-full z-50">
       <div
         // onSubmit={handleSubmit(onSubmitForm)}
         className="relative flex items-center justify-between w-full text-gray-600 bg-white border-2 border-gray-300 rounded-2xl"
@@ -604,7 +604,7 @@ function DisplayImage({ type, mode }) {
       {showImgPopUp && (
         <div
           className={
-            "fixed top-10 left-16 normal-box bg-[hsla(200,0%,100%,0.764)]  dark:bg-[hsla(200,0%,20%,0.764)] flex flex-col !rounded-xl z-30 "
+            "fixed md:top-10 sm:top-5 sm:left-10 md:left-16 normal-box bg-[hsla(200,0%,100%,0.764)]  dark:bg-[hsla(200,0%,20%,0.764)] flex flex-col !rounded-xl z-30 sm:w-[80%] md:w-[36em]"
           }
         >
           <div className="flex items-center justify-between">
@@ -638,7 +638,7 @@ function DisplayImage({ type, mode }) {
               {/* <img src="/pexels.svg" alt="logo" className="w-auto h-8" /> */}
               {/* </div> */}
             </div>
-            <div> {pexelsWindow} </div>
+            <div className="sm:w-full"> {pexelsWindow} </div>
           </div>
           <div className="flex flex-col w-full mb-4 mt-1 normal-box !bg-clear-bl1 py-2 items-center justify-center">
             <p>Image Position:</p>

@@ -17,34 +17,27 @@ function DarkModeToggle() {
   }
   };
 
+  const toggleIcons = React.useMemo(() => ({
+    unchecked: (
+      <FaMoon
+      className='text-[1em] text-white  !pt-[0px] -translate-y-[3px] '
+       
+      />
+    ),
+    checked: (
+      <FaSun
+      className='text-[1em] text-amber-300   -translate-y-[3px]'
+       
+      />
+    ),
+  }), []);
 
   
   return <div>
 <Toggle
         className="dark-toggle fade-effect"
         defaultChecked={!darkRedux}
-        icons={{
-          unchecked: (
-            <FaMoon
-              style={{
-                fontSize: "1em",
-                color: "white",
-                paddingBottom: "3px",
-                paddingTop: "1px !important",
-              }}
-            />
-          ),
-          checked: (
-            <FaSun
-              style={{
-                fontSize: "1em",
-                color: "orange",
-                paddingBottom: "2px",
-                paddingTop: "1px !important",
-              }}
-            />
-          ),
-        }}
+        icons={toggleIcons}
         onChange={darkModeFunc}
       />
 

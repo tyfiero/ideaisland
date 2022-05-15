@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { AiOutlineFullscreen, AiOutlineFullscreenExit } from "react-icons/ai";
 import {
   FaShareSquare,
   FaChevronLeft,
@@ -9,7 +10,7 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import Modal from "../Layout/Modal";
 import ReusableModal from "../Layout/ReusableModal";
-function ThoughtToolBar({SW, setPlay}) {
+function ThoughtToolBar({SW, setPlay, fullScreen, setFullScreen}) {
 
 
   const sFormRedux = useSelector((state) => state.sForm);
@@ -39,8 +40,8 @@ function ThoughtToolBar({SW, setPlay}) {
 
   
   return (
-    <div className="sticky top-0 z-40 flex items-center justify-between border-t-0 shadow-xl bg-white/30">
-      <div className="flex justify-between w-full h-full bg-gradient-to-l from-clear-pl2">
+    <div className={"sticky  z-40 flex items-center justify-between border-t-0 shadow-xl  " + (fullScreen ? "" : "top-0 bg-white/30")}>
+      <div className={"flex justify-between w-full h-full   " + (fullScreen ? " bg-gradient-to-b from-clear-pl2 via-slate-500/40" : " bg-gradient-to-l from-clear-pl2")}>
       <div className="flex justify-start text-xl fade-effect-quick">
     <button className="flex items-center gap-2 px-3 py-1 my-1 ml-3 text-sm transition rounded-lg nun bg-clear-pl4 hover:scale-105 active:scale-95"
      onClick={() => {
@@ -76,10 +77,11 @@ function ThoughtToolBar({SW, setPlay}) {
     <div className="flex justify-end text-xl fade-effect-quick">
       <div className="flex gap-5 py-1 pl-3 pr-5 text-xl">
         <p className="text-sm">Step: {SW?.currentStep} / {SW?.totalSteps}</p>
-        <FaRedo className="cursor-pointer text-t-bd md:hover:scale-110"   onClick={() => setModalOpen(!modalOpen)}/>
+       {fullScreen ? <AiOutlineFullscreenExit  onClick={()=>setFullScreen(!fullScreen)} className="scale-125 cursor-pointer text-t-pm md:hover:scale-110"/> : <AiOutlineFullscreen  onClick={()=>setFullScreen(!fullScreen)} className="scale-125 cursor-pointer text-t-pm md:hover:scale-110"/>} 
+        <FaRedo className={"cursor-pointer  md:hover:scale-110 " + (fullScreen ? " text-blues-200" : "text-t-bd  ")}   onClick={() => setModalOpen(!modalOpen)}/>
         <FaChevronLeft className="cursor-pointer text-t-pm md:hover:scale-110" onClick={SW?.previousStep}/>
         <FaChevronRight className="cursor-pointer text-t-bl md:hover:scale-110" onClick={SW?.nextStep}/>
-        <FaShareSquare className="cursor-pointer text-t-bd md:hover:scale-110"  onClick={() => {
+        <FaShareSquare className={"cursor-pointer  md:hover:scale-110 " + (fullScreen ? " text-blues-200" : "text-t-bd  ")}  onClick={() => {
                 setOpenShareMenu(!openShareMenu);
               }}/>
       </div>

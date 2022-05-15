@@ -57,14 +57,14 @@ function Step({
 
 "
       >
-        <div className="w-full max-w-[42rem] p-10 space-y-8  normal-box-soft">
+        <div className="w-full max-w-[42rem] p-10 space-y-8  glass-box border-2 border-slate-700 bg-slate-900/40">
           <div className="relative flex flex-col items-center justify-between gap-3 p-3 problem-page fade-effect-quick min-h-[25em]">
             <h1 className="text-3xl text-t-bd dark:text-blues-100">
               {heading || "Title"}
             </h1>
 
-            <div className=" normal-box-soft min-h-[10em] min-w-[30em] p-5 my-2">
-              <h3 className="heading">{text || "Question"}</h3>
+            <div className=" glass-box border-slate-700 bg-slate-900/40 min-h-[10em] min-w-[30em] p-5 my-2">
+              <h3 className="heading text-blues-100">{text || "Question"}</h3>
               <p className="px-5">{subtext}</p>
 
               <div className="flex flex-col w-full">
@@ -78,9 +78,21 @@ function Step({
             </div>
 
             <div className="flex items-center justify-between w-full mt-3">
+            <div className="relative group">
+                <div className={"absolute transition duration-1000  !rounded-3xl -inset-1 bg-gradient-to-r from-t-pl via-t-pm to-t-pd blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"  +
+                  (props.currentStep === 1
+                    ? " !opacity-0 cursor-default"
+                    : " opacity-40 cursor-pointer ")
+                }></div>
               <button
-                className={
-                  "card__btn_prev save_button left-[5%]  flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick " +
+                // className={
+                //   "card__btn_prev save_button left-[5%]  flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick " +
+                //   (props.currentStep === 1
+                //     ? " opacity-0 cursor-default"
+                //     : " opacity-100 cursor-pointer ")
+                // }
+
+                className={" px-3 h-[3em] glass-box text-white !border-white/0 bg-gradient-to-r from-clear-pl2 via-clear-pl4 to-clear-pl4  rounded-2xl right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-clear-pd2 shadow-xl m-1 drop-shadow-xl " +
                   (props.currentStep === 1
                     ? " opacity-0 cursor-default"
                     : " opacity-100 cursor-pointer ")
@@ -94,10 +106,13 @@ function Step({
                 <FaLongArrowAltLeft className="mr-1 text-[24px]" />
                 Back
               </button>
+              </div>
+
               <div className="relative group">
-                <div className="absolute transition duration-1000 opacity-0 rounded-3xl -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
+                <div className="absolute transition duration-1000 opacity-70 !rounded-3xl -inset-1 bg-gradient-to-r from-t-bd via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
                 <button
-                  className=" px-3 h-[3em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-clear-bd3 md:hover:shadow-xl m-1 drop-shadow-xl "
+                  // className=" px-3 h-[3em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-clear-bd3 md:hover:shadow-xl m-1 drop-shadow-xl "
+                   className=" px-3 h-[3em] glass-box text-white !border-white/0 bg-gradient-to-r from-clear-bl4 via-clear-bl4 to-clear-bl2 rounded-2xl  right-[50px] flex items-center justify-center md:hover:scale-105 transition md:active:scale-95 fade-effect cursor-pointer shadow-clear-bl3 shadow-xl m-1 drop-shadow-xl "
                   onClick={() => props.nextStep()}
                 >
                   {props.currentStep === props.totalSteps

@@ -36,7 +36,7 @@ import ChipFeature from "./CombinatorialComponents/ChipFeature";
 import ChipTechStackDisplay from "./CombinatorialComponents/ChipTechStackDisplay";
 import sanitize from "../../../lib/sanitize";
 function SDetails(props) {
-  console.log("DETAILS--------------------" + props.isActive)
+  // console.log("DETAILS--------------------" + props.isActive)
 
   const dispatch = useDispatch();
   const sFormRedux = useSelector((state) => state.sForm);
@@ -53,7 +53,7 @@ function SDetails(props) {
   //   props.update(e.target.name, e.target.value);
   // };
 
-console.log(sFormRedux)
+// console.log(sFormRedux)
   useEffect(() => {
    if(props.changes){
     setReadyToSave(true)

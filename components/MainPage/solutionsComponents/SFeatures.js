@@ -26,7 +26,7 @@ import toast from "react-hot-toast";
 import TextareaAutosize from "react-textarea-autosize";
 
 function SFeatures(props) {
-  console.log("FEATURES--------------------" + props.isActive);
+  // console.log("FEATURES--------------------" + props.isActive);
 
   const dispatch = useDispatch();
   const sFormRedux = useSelector((state) => state.sForm);
@@ -49,7 +49,7 @@ function SFeatures(props) {
   // const [changes, setChanges] = useState(false);
 
   // console.log(props.form.form);
-  console.log(sFormRedux);
+  // console.log(sFormRedux);
 
   // useEffect(() => {
   //   console.log("ACTION");

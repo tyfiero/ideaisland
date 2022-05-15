@@ -57,7 +57,7 @@ const Styles = styled.div`
 `;
 
 function SRankFeatures(props) {
-  console.log("RANK--------------------" + props.isActive)
+  // console.log("RANK--------------------" + props.isActive)
 
 
   const dispatch = useDispatch();
@@ -96,7 +96,7 @@ function SRankFeatures(props) {
       })
     } else {
       if (sFormRedux.features?.length > 0) {
-        console.log("RANNNNNNNNNNNNNN")
+        // console.log("RANNNNNNNNNNNNNN")
       // setRefresh(!refresh)
       }
     }

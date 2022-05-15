@@ -13,7 +13,7 @@ function ImportanceChip({
   const [content, setContent] = useState(value);
 
   const [color, setColor] = useState(" bg-blue-200 text-blue-500");
-  console.log(value);
+  // console.log(value);
 
   useEffect(() => {
     if (value === "...") {

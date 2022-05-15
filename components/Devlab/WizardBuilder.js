@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import toast from "react-hot-toast";
 import { FaArrowDown, FaPlay, FaPlus } from "react-icons/fa";
 import TextareaAutosize from "react-textarea-autosize";
@@ -19,7 +19,6 @@ function WizardBuilder() {
   const [stepNum, setStepNum] = React.useState(1);
 
   const [routeArray, setRouteArray] = React.useState([]);
-
 
 const loadStep = (num) => {
   
@@ -46,6 +45,11 @@ loadStep(stepNum - 1);
       setUpdate(false);
     }
   }, [update]);
+
+
+
+
+
 
   return (
     <div>

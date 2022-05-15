@@ -10,7 +10,6 @@ import Modal from "../../Layout/Modal";
 import ReusableModal from "../../Layout/ReusableModal";
 function SToolBar({SWC}) {
 
-console.log(SWC)
   const sFormRedux = useSelector((state) => state.sForm);
   const sUpdate = useSelector((state) => state.sUpdate);
 

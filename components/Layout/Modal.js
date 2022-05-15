@@ -1,6 +1,5 @@
 import React from "react";
 import toast from "react-hot-toast";
-
 import {
   EmailShareButton,
   FacebookShareButton,
@@ -53,12 +52,12 @@ const Modal = ({ setOpenShareMenu }) => {
           }
         >
           <div className={"modalHeader"}>
-            <h5 className="text-2xl text-t-bd">Share</h5>
+            <h5 className="text-2xl text-t-bd dark:text-blues-100">Share</h5>
           </div>
           <button className="closeBtn" onClick={() => setOpenShareMenu(false)}>
             X
           </button>
-          <div className="modalContent">
+          <div className="modalContent text-slate-800 dark:text-slate-50">
             If you found value with these tools, your friends will too!
           </div>
 

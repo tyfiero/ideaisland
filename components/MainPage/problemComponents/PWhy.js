@@ -86,7 +86,7 @@ dispatch(pFormAction(updated));
     
     if (Number(type) === 0) {
   
-      console.log(updatedArray)
+      // console.log(updatedArray)
 
       updatedArray.push(text);
       // console.log(updatedArray)
