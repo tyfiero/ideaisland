@@ -195,10 +195,10 @@ const SettingsPage = () => {
 
   useEffect(() => {
     if (imgSrc) {
-      document.querySelector("body").style.backgroundImage = `url(${imgSrc})`;
+      document.querySelector(".bg-image").style.backgroundImage = `url(${imgSrc})`;
       localStorage.setItem("bgImg", imgSrc);
     } else {
-      document.querySelector("body").style.backgroundImage = "none";
+      document.querySelector(".bg-image").style.backgroundImage = "none";
     }
   }, [imgSrc]);
 

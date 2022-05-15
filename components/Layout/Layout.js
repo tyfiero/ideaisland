@@ -245,7 +245,8 @@ if (darkRedux) {
 
     //set img
     let img1 = localStorage.getItem("bgImg") || "";
-    document.querySelector("body").style.backgroundImage = `url(${img1})`;
+    // document.querySelector("body").style.backgroundImage = `url(${img1})`;
+    document.querySelector(".bg-image").style.backgroundImage = `url(${img1})`;
 
 
 
@@ -284,13 +285,12 @@ if (darkRedux) {
       <div
         className="fixed top-0 left-0 wrapper md:touch-auto sm:touch-pan-y" 
         
-        
-        // style={
-        //   darkRedux
-        //     ? { backgroundColor: "white" }
-        //     : { backgroundColor: "black" }
-        // }
+     
       >
+
+
+<div className="bg-image touch-none"></div>
+
         {/* <video playsinline autoPlay muted loop ref={videoRef}  className="absolute top-0 left-0" >
     <source src="/vid2.mp4" type="video/mp4"/>
     Your browser does not support the video tag.

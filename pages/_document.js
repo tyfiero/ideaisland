@@ -32,12 +32,10 @@ class MyDocument extends Document {
      
 
         </Head >
-        <body className="sm:touch-none ">
-         
+        <body className="">
 
           <Main />
           <NextScript />
-         
         </body>
       </Html>
     );
