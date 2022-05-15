@@ -49,66 +49,16 @@ function ProblemProgressPage(props) {
   const [contentPq3, setContentPq3] = useState(pFormRedux.pq3);
   const [contentTitle, setContentTitle] = useState(pFormRedux.title);
 
-  const [editWhy, setEditWhy] = useState(false);
-  const [editWhat, setEditWhat] = useState(false);
-  const [editWho, setEditWho] = useState(false);
-  const [editProblem, setEditProblem] = useState(false);
-  const [editTitle, setEditTitle] = useState(false);
+
 
   const [changes, setChanges] = useState(false);
   const dispatch = useDispatch();
 
   const router = useRouter();
 
-  const saveOrContinue = async (e) => {
-    //update firestore problem
-    e?.preventDefault() || null;
-
-    if (changes) {
-      let uid;
-
-      if (user?.uid) {
-        uid = user?.uid;
-      } else if (userUIDRedux) {
-        uid = userUIDRedux;
-      } else if (auth.currentUser?.uid) {
-        uid = auth.currentUser?.uid;
-      } else {
-        uid = "default";
-        console.log("no uid available :(");
-      }
-
-      const ref = doc(getFirestore(), "users", uid, "problem", pFormRedux.id);
-
-      const data = {
-        title: contentTitle,
-        productType: pFormRedux.productType || null,
-        whyOptions: pFormRedux.whyOptions || [],
-        why: contentWhy,
-        what: contentWhat,
-        who: contentWho,
-        pq1: contentPq1,
-        pq2: contentPq2,
-        pq3: contentPq3,
-        updatedAt: serverTimestamp(),
-      };
-      // console.log(timeID);
-
-      await updateDoc(ref, data)
-        // await addDoc(collection(getFirestore(), "users", uid, "ideas"), data)
-        .then(() => {
-          toast.success("Edits saved!");
-          setChanges(false);
-
-          router.push("/solutions");
-        })
-        .catch((error) => {
-          toast.error("Error occured :( ");
-          console.log("It failed!" + error);
-        });
-    } else {
+  const saveOrContinue =  (e) => {
+   
       router.push("/solutions");
-    }
   };
 
   return (
@@ -124,7 +74,7 @@ function ProblemProgressPage(props) {
             </h1>
             <div className="flex flex-col w-full gap-4">
               <div className="p-5 normal-box-soft !rounded-xl w-full group">
-                <button
+                {/* <button
                   className="absolute flex items-center gap-1 p-1 px-2 text-white transition duration-500 opacity-0 bg-t-bl rounded-2xl group-hover:opacity-100 hover:scale-110 active:scale-95"
                   onClick={() => setEditTitle(!editTitle)}
                 >
@@ -139,31 +89,18 @@ function ProblemProgressPage(props) {
                       <p>Done</p> <FaCheck />
                     </>
                   )}{" "}
-                </button>
+                </button> */}
                 {/* <hr className="border-t-bd"></hr> */}
-                {editTitle ? (
-                  <TextareaAutosize
-                    className="w-[95%] rounded-md ml-20"
-                    defaultValue={contentTitle}
-                    placeholder="..."
-                    onChange={(e) => {
-                      setContentTitle(e.target.value);
-                      let updated = pFormRedux;
-                      updated.title = e.target.value;
-                      dispatch(pFormAction(updated));
-                      setChanges(true);
-                    }}
-                  ></TextareaAutosize>
-                ) : (
+           
                   <h3 className="heading">{contentTitle}</h3>
-                )}
+     
               </div>
 
               <div className="flex flex-wrap justify-center gap-4">
                 <div className="p-5 normal-box-soft !rounded-xl md:min-w-[25em] md:max-w-[40em] group !bg-clear-bl2">
 
               
-                  <button
+                  {/* <button
                     className="absolute flex items-center gap-1 p-1 px-2 text-white transition duration-500 opacity-0 bg-t-bl rounded-2xl group-hover:opacity-100 hover:scale-110 active:scale-95"
                     onClick={() => setEditWhy(!editWhy)}
                   >
@@ -178,10 +115,10 @@ function ProblemProgressPage(props) {
                         <p>Done</p> <FaCheck />
                       </>
                     )}{" "}
-                  </button>
+                  </button> */}
                   <h3 className="heading"> Why:</h3>
                   {/* <hr className="border-t-bd"></hr> */}
-                  <div className="w-full glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   !bg-white/90 flex flex-wrap gap-1 mb-3 justify-center">
+                  <div className="w-full glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-black/80    flex flex-wrap gap-1 mb-3 justify-center">
                     {pFormRedux.whyOptions?.map((data, index) => (
                   <ListItem
                     name={data}
@@ -190,27 +127,13 @@ function ProblemProgressPage(props) {
                   />
                 ))}
                   </div>
-                  <div className="w-full glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   !bg-white/90">
-                    {editWhy ? (
-                      <TextareaAutosize
-                        className="w-full rounded-md"
-                        defaultValue={contentWhy}
-                        placeholder="..."
-                        onChange={(e) => {
-                          setContentWhy(e.target.value);
-                          let updated = pFormRedux;
-                          updated.why = e.target.value;
-                          dispatch(pFormAction(updated));
-                          setChanges(true);
-                        }}
-                      ></TextareaAutosize>
-                    ) : (
+                  <div className="w-full glass-box dark:bg-black/80 bg-white/90">
+                 
                       <p>{contentWhy}</p>
-                    )}
                   </div>
                 </div>
                 <div className="p-5 normal-box-soft !rounded-xl w-[35em] group !bg-clear-pl3">
-                  <button
+                  {/* <button
                     className="absolute flex items-center gap-1 p-1 px-2 text-white transition duration-500 opacity-0 bg-t-bl rounded-2xl group-hover:opacity-100 hover:scale-110 active:scale-95"
                     onClick={() => setEditWhat(!editWhat)}
                   >
@@ -225,31 +148,17 @@ function ProblemProgressPage(props) {
                         <p>Done</p> <FaCheck />
                       </>
                     )}{" "}
-                  </button>
+                  </button> */}
 
                   <h3 className="heading"> What:</h3>
                   {/* <hr className="border-t-bd"></hr> */}
-                  <div className="w-full glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   !bg-white/90">
-                    {editWhat ? (
-                      <TextareaAutosize
-                        className="w-[95%] rounded-md"
-                        defaultValue={contentWhat}
-                        placeholder="..."
-                        onChange={(e) => {
-                          setContentWhat(e.target.value);
-                          let updated = pFormRedux;
-                          updated.what = e.target.value;
-                          dispatch(pFormAction(updated));
-                          setChanges(true);
-                        }}
-                      ></TextareaAutosize>
-                    ) : (
+                  <div className="w-full glass-box dark:bg-black/80 bg-white/90">
+                    
                       <p>{contentWhat}</p>
-                    )}
                   </div>
                 </div>
                 <div className="p-5 normal-box-soft !rounded-xl w-[35em] group !bg-clear-bpop1">
-                  <button
+                  {/* <button
                     className="absolute flex items-center gap-1 p-1 px-2 text-white transition duration-500 opacity-0 bg-t-bl rounded-2xl group-hover:opacity-100 hover:scale-110 active:scale-95"
                     onClick={() => setEditWho(!editWho)}
                   >
@@ -264,30 +173,16 @@ function ProblemProgressPage(props) {
                         <p>Done</p> <FaCheck />
                       </>
                     )}{" "}
-                  </button>
+                  </button> */}
                   <h3 className="heading">Who:</h3>
                   {/* <hr className="border-t-bd"></hr> */}
-                  <div className="w-full glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   !bg-white/90">
-                    {editWho ? (
-                      <TextareaAutosize
-                        className="w-[95%] rounded-md"
-                        defaultValue={contentWho}
-                        placeholder="..."
-                        onChange={(e) => {
-                          setContentWho(e.target.value);
-                          let updated = pFormRedux;
-                          updated.who = e.target.value;
-                          dispatch(pFormAction(updated));
-                          setChanges(true);
-                        }}
-                      ></TextareaAutosize>
-                    ) : (
+                  <div className="w-full glass-box dark:bg-black/80 bg-white/90">
+                   
                       <p>{contentWho}</p>
-                    )}
                   </div>
                 </div>
                 <div className="p-5 normal-box-soft !rounded-xl md:min-w-[35em] sm:min-w-full group !bg-clear-pm2">
-                  <button
+                  {/* <button
                     className="absolute flex items-center gap-1 p-1 px-2 text-white transition duration-500 opacity-0 bg-t-bl rounded-2xl group-hover:opacity-100 hover:scale-110 active:scale-95"
                     onClick={() => setEditProblem(!editProblem)}
                   >
@@ -302,7 +197,7 @@ function ProblemProgressPage(props) {
                         <p>Done</p> <FaCheck />
                       </>
                     )}{" "}
-                  </button>
+                  </button> */}
                   <h3 className="heading"> Problem:</h3>
                   {/* <hr className="border-t-bd"></hr> */}
                   <div className="flex flex-col gap-1">
@@ -310,64 +205,22 @@ function ProblemProgressPage(props) {
                       Problem you want to solve:
                     </p>
 
-                    <div className="w-full glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   !bg-white/90">
-                      {editProblem ? (
-                        <TextareaAutosize
-                          className="w-[95%] rounded-md"
-                          defaultValue={contentPq1}
-                          placeholder="..."
-                          onChange={(e) => {
-                            setContentPq1(e.target.value);
-                            let updated = pFormRedux;
-                            updated.pq1 = e.target.value;
-                            dispatch(pFormAction(updated));
-                            setChanges(true);
-                          }}
-                        ></TextareaAutosize>
-                      ) : (
+                    <div className="w-full glass-box dark:bg-black/80 bg-white/90">
+                     
                         <p>{contentPq1}</p>
-                      )}
                     </div>
 
                     <p className="mt-4 text-xl text-white">Potential Cause:</p>
 
-                    <div className="w-full glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   !bg-white/90">
-                      {editProblem ? (
-                        <TextareaAutosize
-                          className="w-[95%] rounded-md"
-                          defaultValue={contentPq2}
-                          placeholder="..."
-                          onChange={(e) => {
-                            setContentPq2(e.target.value);
-                            let updated = pFormRedux;
-                            updated.pq2 = e.target.value;
-                            dispatch(pFormAction(updated));
-                            setChanges(true);
-                          }}
-                        ></TextareaAutosize>
-                      ) : (
+                    <div className="w-full glass-box dark:bg-black/80 bg-white/90">
+                     
                         <p>{contentPq2}</p>
-                      )}
                     </div>
                     <p className="mt-4 text-xl text-white">Root Cause:</p>
 
-                    <div className="w-full glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   !bg-white/90">
-                      {editProblem ? (
-                        <TextareaAutosize
-                          className="w-[95%] rounded-md"
-                          defaultValue={contentPq3}
-                          placeholder="..."
-                          onChange={(e) => {
-                            setContentPq3(e.target.value);
-                            let updated = pFormRedux;
-                            updated.pq3 = e.target.value;
-                            dispatch(pFormAction(updated));
-                            setChanges(true);
-                          }}
-                        ></TextareaAutosize>
-                      ) : (
+                    <div className="w-full glass-box dark:bg-black/80 bg-white/90">
+                     
                         <p>{contentPq3}</p>
-                      )}
                     </div>
                   </div>
                 </div>
@@ -401,10 +254,10 @@ function ProblemProgressPage(props) {
               <div className="relative group">
                 <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
                 <button
-                  className="w-[16em] h-[4em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-clear-bd3 md:hover:shadow-xl m-1 drop-shadow-xl "
+                  className="md:w-[16em] sm:h-[3em] sm:px-2 md:h-[4em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-clear-bd3 md:hover:shadow-xl m-1 drop-shadow-xl "
                   onClick={saveOrContinue}
                 >
-                  Continue to Solutions
+                  Continue
                   <FaLongArrowAltRight className="ml-1 text-[34px]" />
                 </button>
               </div>
@@ -421,7 +274,7 @@ export default ProblemProgressPage;
 
 function ListItem({ name }) {
   return (
-    <div className="flex items-center justify-between px-2 py-1 bg-clear-bl2 w-fit rounded-xl">
+    <div className="flex items-center justify-between px-2 py-1 bg-clear-bl3 w-fit rounded-xl">
       <p>{name}</p>
       {/* <FaTimes
         className="transition cursor-pointer text-t-pm md:hover:scale-125 md:active:scale-110"

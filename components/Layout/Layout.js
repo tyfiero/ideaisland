@@ -359,8 +359,8 @@ if (darkRedux) {
         <div className="side-nav-bar md:!w-[5em] md:!mr-2 sm:!w-full md:h-full  ">
           {signedIn &&  <Sidebar2 toggle={isToggled} signedIn={signedIn} setIsToggled={setIsToggled} isToggled={isToggled}/>}
         </div>
-        <div className="w-full h-full fade-effect-quick content">
-          {loadingUI ? <FullLoader show={true} /> : <main className="h-full overflow-auto md:w-full sm:w-full">{children}</main>}
+        <div className="w-full h-full fade-effect-quick content ">
+          {loadingUI ? <FullLoader show={true} /> : <main className="h-full md:overflow-auto md:w-full sm:w-full sm:overflow-y-auto sm:overflow-x-hidden sm:touch-pan-y">{children}</main>}
 
 
           
@@ -380,7 +380,7 @@ if (darkRedux) {
      
         </div>
         {!loadingUI && signedIn && (
-          <div className={"fixed md:top-[91%]  md:right-3 sm:top-0  sm:scale-[60%] md:scale-75 lg:scale-100 " + (isToggled ? " sm:right-32" : " sm:right-14 ")}>
+          <div className={"fixed md:top-[91%]  md:right-3 sm:top-0  sm:scale-[60%] md:scale-75 lg:scale-100 sm:hidden" + (isToggled ? " sm:right-32" : " sm:right-14 ")}>
             <button
               className={"z-100 flex items-center justify-center w-[4em] h-[4em]   transform rounded-full notepad-button fade-effect text-t-pd hover:scale-125 bg-gradient-to-br from-white/60 to-clear-pl5 hover:shadow-2xl duration-500  " + (isPopUpOpen ? "  ease-in-out  rotate-[135deg] " : " ")}
               onClick={togglePopup}

@@ -345,7 +345,7 @@ const HelpPage = () => {
 
      
 
-      <div className="w-full h-[6em] pt-5 bg-clear-pl4 flex  flex-col gap-5">
+      <div className="w-full h-[16em] pt-5 bg-clear-pl4 flex  flex-col gap-5">
         <p className="text-[18px] ">Made with ♥️ &nbsp;in Seattle</p>
         <p className="text-[11px]">Copyright © {date} Digital Masonry LLC</p>
       </div>

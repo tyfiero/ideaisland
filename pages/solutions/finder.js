@@ -430,7 +430,7 @@ const CombinatorialPage = (props) => {
                     initial={{ opacity: 0, scale: 0.7 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.2 }}
-                    className="h-full px-5 py-2 ring-4 rounded-xl !ring-t-pl bg-clear-pl3 fade-effect-quick"
+                    className="h-full px-5 py-2 ring-4 rounded-xl !ring-t-pl bg-clear-pl3 fade-effect-quick  "
                   >
                     <p className="text-lg text-left text-t-pd">
                       Innovation AI (beta)

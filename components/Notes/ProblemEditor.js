@@ -515,7 +515,7 @@ function CreateNewProblem(props) {
                       )}
                     </div>
                   </div>
-                  <div className="p-5 normal-box-soft !rounded-xl min-w-[25em]  !bg-clear-bpop2">
+                  <div className="p-5 normal-box-soft !rounded-xl md:min-w-[25em]  !bg-clear-bpop2">
                     <h3 className="heading">Who:</h3>
                     {/* <hr className="border-t-bd"></hr> */}
                     <div className="w-full glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   !bg-white/90 dark:!bg-slate-700/90 dark:!border-black">
