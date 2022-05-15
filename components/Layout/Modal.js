@@ -45,10 +45,10 @@ const Modal = ({ setOpenShareMenu }) => {
   return (
     <>
       <div className="darkBG fade-effect-quick" onClick={() => setOpenShareMenu(false)} />
-      <div className="centered">
+      <div className="flex flex-col items-center centered">
         <div
           className={
-            "modal glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   shadow-2xl flex flex-col  items-center grow-effect"
+            "modal glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)] sm:max-w-[90%]  shadow-2xl flex flex-col  items-center grow-effect"
           }
         >
           <div className={"modalHeader"}>

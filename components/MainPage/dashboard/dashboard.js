@@ -37,7 +37,7 @@ const Dashboard = () => {
 
   return (
     // <AuthCheck>
-      <div className="overflow-auto fade-effect-quick">
+      <div className="flex flex-col items-center overflow-auto fade-effect-quick sm:mb-20">
         {/* {modalOpen &&   <ReusableModal modalOpen={modalOpen} setModalOpen={setModalOpen} header="Test Header">  
       <p>Does this work?</p>
       <img src="ii-palm.png" alt="" />
@@ -45,15 +45,15 @@ const Dashboard = () => {
 
 <button className="p-2 text-white bg-t-bl rounded-xl" onClick={()=>{setModalOpen(!modalOpen)}}>Open modal</button> */}
 
-        <div className="dash-title">
-          <h1 className="text-3xl text-t-bd dark:text-blues-100">Dashboard ;</h1>
-        </div>
-        <div className="stat-holder dark:bg-red">
+        {/* <div className="dash-title">
+          <h1 className="text-3xl text-t-bd dark:text-blues-100">Dashboard</h1>
+        </div> */}
+        <div className="mt-5 stat-holder dark:bg-red">
           {/* <button onClick={()=>{ dispatch(statsAction(5))}}>inc</button> */}
           {/* <p>userName: {userNameRedux}</p> */}
           <div className="dash-stat">
             <h2 className="heading text-t-bd dark:text-blues-100">Ideas</h2>
-            <h2 className="text-[40px]">{statsRedux?.ideaNum || 10}</h2>
+            <h2 className="text-[40px] text-blues-600">{statsRedux?.ideaNum || 10}</h2>
           </div>
           <div className="dash-stat">
             <h2 className="heading text-t-bd dark:text-blues-100">
@@ -69,7 +69,7 @@ const Dashboard = () => {
           </div> */}
           <div className="dash-stat">
             <h2 className="heading text-t-bd dark:text-blues-100">Problems</h2>
-            <h2 className="text-[40px]">2</h2>
+            <h2 className="text-[40px] text-blues-600">2</h2>
           </div>
           {/* <div className="dash-stat">
             <h2 className="heading text-t-bd dark:text-blues-100">
@@ -80,22 +80,14 @@ const Dashboard = () => {
         </div>
 {/* <CircleTimer /> */}
     
-        <div className="flex flex-col items-center p-3 h-30 normal-box">
-        <p className="text-xl">Question of the Week</p>
-          <h1 className="text-2xl dark:text-blues-100">
+        <div className="flex flex-col items-center p-3 h-30 normal-box w-[80%] my-5">
+        <p className="text-xl heading text-t-bd dark:text-blues-100 fre">Question of the Week</p>
+          <h1 className="text-2xl font-bold dark:text-blues-100 text-blues-600 nun">
             How could you make an existing offering more accessible to another
             community?
           </h1>
         </div>
-        <div className="flex flex-col items-center p-3 h-30 normal-box">
-        <p className="text-xl">Inspirational Quotes</p>
-          <h1 className="text-2xl dark:text-blues-100">
-           {Quote.getQuote()?.text}
-          </h1>
-          <p>
-          - {Quote.getQuote()?.author}
-          </p>
-        </div>
+       
         {/* <p>
         Include buttons to quickly launch favorite tools from dahsboard and
         display recent notes. Maybe a hop back in to where you were last button
@@ -159,7 +151,15 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-
+        <div className="flex flex-col items-center p-3 h-30 normal-box w-[80%] my-5">
+        <p className="text-xl heading text-t-bd dark:text-blues-100 fre">Inspirational Quotes</p>
+          <h1 className="text-2xl font-bold dark:text-blues-100 text-blues-600 nun">
+           {Quote.getQuote()?.text}
+          </h1>
+          <p>
+          - {Quote.getQuote()?.author}
+          </p>
+        </div>
         {/* <div className="dash-graph-holder ">
           <div className="dash-graph ">
   

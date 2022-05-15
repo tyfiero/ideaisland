@@ -67,7 +67,7 @@ export default function IdeaDisplay(props) {
       >
         {type === "ideas" && (
           <>
-            <div className="flex items-center gap-1 ">
+            <div className="flex items-center gap-1 sm:scale-75 md:scale-100">
               <p className="text-[22px] text-t-bd">Rating</p>
               <Stars hover={false} rating={currentDocRedux?.rating} />
             </div>
