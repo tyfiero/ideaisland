@@ -6,9 +6,9 @@ import ToolBar from "../../components/MainPage/problemComponents/ToolBar";
 
 const ProblemPageIndex = (props) => {
   return (
-    <>
+    <div className="sm:mb-20">
         <ProblemWizard />
-    </>
+    </div>
   );
 };
 

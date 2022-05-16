@@ -17,7 +17,7 @@ function Hub() {
           <div className="relative flex flex-wrap items-center justify-center w-full gap-3 px-5 pt-5 pb-5 border-8 border-t-bl rounded-2xl bg-clear-bl2">
 
             <ProjectCard
-              route="/next-steps/mrr-calculator"
+              route="/projects/test-project"
               color={"bg-t-bl"}
               bColor="md:hover:ring-t-bl"
               textColor=" text-t-bd"
@@ -25,7 +25,7 @@ function Hub() {
               description="A chrome extension for bookmarks."
               imgSrc="https://images.unsplash.com/photo-1585653621032-a5fec164ee92?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
             />
- <ProjectCard
+ {/* <ProjectCard
               route="/next-steps/mrr-calculator"
               color={"bg-t-bl"}
               bColor="md:hover:ring-t-bl"
@@ -33,7 +33,7 @@ function Hub() {
               title="Bookmark Donut"
               description="A chrome extension for bookmarks."
               imgSrc="https://images.unsplash.com/photo-1585653621032-a5fec164ee92?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-            />
+            /> */}
 
        
      
@@ -77,7 +77,7 @@ const ProjectCard = ({
       </div>
 
       <div className="flex flex-col justify-between items-center h-[15em] px-5 py-2">
-        <h3 className={"m-0 text-2xl " + textColor}>{title}</h3>
+        <h3 className={"m-0 text-2xl dark:text-blue-100" + textColor}>{title}</h3>
 
         <p className="text-sm text-left">{description}</p>
         <button

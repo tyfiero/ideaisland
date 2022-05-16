@@ -29,7 +29,7 @@ function Step({
     // let updated = pFormRedux;
     // updated.who = e.target.value;
     // dispatch(pFormAction(updated));
-    // setContent(e.target.value);
+    setContent(e.target.value);
     // if (!props.changes) {
     //   props.setChanges(true);
     // }

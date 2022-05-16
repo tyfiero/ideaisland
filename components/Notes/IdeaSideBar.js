@@ -43,7 +43,7 @@ export default function IdeaSideBar(props) {
 
   return (
     <div className="overflow-hidden rounded-2xl">
-      <div className="normal-box-soft  md:bg-[hsla(200,0%,100%,0.764)] sm:bg-white/20 dark:bg-[hsla(200,0%,20%,0.764)] fade-effect-quick flex flex-col items-center md:max-h-[120vh] overflow-y-auto overflow-x-hidden !rounded-2xl !scrollbar-w-1 scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-t-bl scrollbar-track-blues-50 fade-effect-turbo">
+      <div className="normal-box-soft  md:bg-white/40 sm:bg-white/20 dark:bg-[hsla(200,0%,20%,0.764)] fade-effect-quick flex flex-col items-center md:max-h-[120vh] overflow-y-auto overflow-x-hidden !rounded-2xl !scrollbar-w-1 scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-t-bl scrollbar-track-blues-50 fade-effect-turbo">
         {type === "ideas" && (
           <>
             <h1 className="text-3xl text-t-bd dark:text-blues-100 fade-effect-quick">Ideas</h1>

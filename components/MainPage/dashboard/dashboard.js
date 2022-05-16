@@ -80,7 +80,7 @@ const Dashboard = () => {
         </div>
 {/* <CircleTimer /> */}
     
-        <div className="flex flex-col items-center p-3 h-30 normal-box w-[80%] my-5">
+        <div className="flex flex-col items-center p-3 h-30 normal-box w-[80%] my-5 bg-white/60 dark:bg-black/60">
         <p className="text-xl heading text-t-bd dark:text-blues-100 fre">Question of the Week</p>
           <h1 className="text-2xl font-bold dark:text-blues-100 text-blues-600 nun">
             How could you make an existing offering more accessible to another
@@ -151,7 +151,7 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col items-center p-3 h-30 normal-box w-[80%] my-5">
+        <div className="flex flex-col items-center p-3 h-30 normal-box w-[80%] my-5 bg-white/60 dark:bg-black/60">
         <p className="text-xl heading text-t-bd dark:text-blues-100 fre">Inspirational Quotes</p>
           <h1 className="text-2xl font-bold dark:text-blues-100 text-blues-600 nun">
            {Quote.getQuote()?.text}
