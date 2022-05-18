@@ -188,7 +188,7 @@ toast.success("Idea updated!");
               <div className="flex flex-col">
                 <p className="text-left">Features:</p>
                 <div className="flex flex-wrap items-center justify-center gap-2 normal-box-soft -z-[2]">
-                  {sFormRedux.features.map((feature, index) => (
+                  {sFormRedux.features?.map((feature, index) => (
                     <ChipFeature
                       cost={feature.cost}
                       comments={feature.comments}
@@ -208,7 +208,7 @@ toast.success("Idea updated!");
                 <p className="text-left">Tech Stack:</p>
                 <div className="flex flex-col items-center justify-center normal-box-soft -z-[2]">
                   <div className="flex flex-wrap items-center justify-center gap-2 ">
-                    {sFormRedux.stack.map((tool, index) => (
+                    {sFormRedux.stack?.map((tool, index) => (
                       <ChipTechStackDisplay
                         cost={tool.cost}
                         name={tool.name}

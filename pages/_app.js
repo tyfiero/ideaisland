@@ -32,6 +32,26 @@ import * as gtag from "../lib/gtag";
 import { steps } from "../components/Authentication/onboarding/steps";
 import dynamic from "next/dynamic";
 
+// webvitals for axiom log drain
+export function reportWebVitals(metric) {
+  const url = process.env.NEXT_PUBLIC_AXIOM_INGEST_ENDPOINT;
+  
+  if (!url) {
+    return;
+  }
+  
+  const body = JSON.stringify({
+    route: window.__NEXT_DATA__.page,
+    ...metric,
+  });
+  
+  if (navigator.sendBeacon) {
+    navigator.sendBeacon(url, body);
+  } else {
+    fetch(url, { body, method: 'POST', keepalive: true });
+  }
+}
+
 
 const ShephardLogic = dynamic(
   () => import("../components/Authentication/onboarding/ShephardLogic"),

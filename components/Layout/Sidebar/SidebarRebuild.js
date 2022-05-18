@@ -137,7 +137,7 @@ const Sidebar2 = (props) => {
             </div>
           </a>
         </Link>
-        <Link href={`/projects`} passHref>
+        {/* <Link href={`/projects`} passHref>
           <a>
             <div className="flex flex-col items-center group">
               <div
@@ -164,7 +164,7 @@ const Sidebar2 = (props) => {
               </p>
             </div>
           </a>
-        </Link>
+        </Link> */}
 
         <Link href="/problem">
           <a>

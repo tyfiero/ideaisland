@@ -133,7 +133,7 @@ const HelpPage = () => {
               </p>
             </div>
           </a>
-          <a target="_blank" href="https://ideaisland.io/resources-and-insights-page-copy/" rel="noreferrer">
+          <a target="_blank" href="https://ideaisland.io/methodology/" rel="noreferrer">
             <div className="help-box min-w-[13em] min-h-[10em] bg-[hsla(200,0%,100%,0.764)]  dark:bg-[hsla(200,0%,20%,0.764)] ">
               <div className="help-circle bg-blues-100 dark:bg-t-bl">
                 <img

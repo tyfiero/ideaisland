@@ -60,7 +60,7 @@ const NotePage = (props) => {
   }, []);
 
   return (
-    <AuthCheck plan="Innovator">
+    // <AuthCheck plan="Innovator">
       <div className="flex flex-col w-full mt-3 fade-effect-turbo sm:mb-20">
         {/* <div className="flex flex-col items-center "> */}
         {/* <p>A place for all of your wild ideas and notes.</p> */}
@@ -114,7 +114,7 @@ const NotePage = (props) => {
           </div>
         )}
       </div>
-    </AuthCheck>
+    // </AuthCheck>
   );
 };
 

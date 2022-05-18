@@ -1,13 +1,13 @@
 import React from 'react'
 
-function ReusableModal({modalOpen, setModalOpen, children, header}) {
+function ReusableModal({modalOpen, setModalOpen, children, header, className}) {
   return (
       <>
     <div className="darkBG fade-effect-quick" onClick={() => setModalOpen(false)} />
     <div className="centered">
       <div
         className={
-          " glass-box  shadow-2xl flex flex-col  items-center p-10 z-100 bg-white/80 dark:bg-slate-600/80 grow-effect"
+          " glass-box  shadow-2xl flex flex-col  items-center p-10 z-100 bg-white/80 dark:bg-slate-600/80 grow-effect" + className
         }
       >
         <div className={"modalHeader"}>

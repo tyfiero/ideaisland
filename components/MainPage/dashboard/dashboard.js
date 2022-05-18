@@ -48,36 +48,51 @@ const Dashboard = () => {
         {/* <div className="dash-title">
           <h1 className="text-3xl text-t-bd dark:text-blues-100">Dashboard</h1>
         </div> */}
-        <div className="mt-5 stat-holder dark:bg-red">
+        {/* <div className="mt-5 stat-holder dark:bg-red"> */}
           {/* <button onClick={()=>{ dispatch(statsAction(5))}}>inc</button> */}
           {/* <p>userName: {userNameRedux}</p> */}
-          <div className="dash-stat">
+
+
+          
+          {/* <div className="dash-stat">
             <h2 className="heading text-t-bd dark:text-blues-100">Ideas</h2>
             <h2 className="text-[40px] text-blues-600">{statsRedux?.ideaNum || 10}</h2>
-          </div>
-          <div className="dash-stat">
+          </div> */}
+          
+          {/* <div className="dash-stat">
             <h2 className="heading text-t-bd dark:text-blues-100">
               Login Streak
             </h2>
             <Streak />
-          </div>
+          </div> */}
+
+
+
+          
           {/* <div className="dash-stat !rounded-xl ">
             <h2 className="heading text-t-bd dark:text-blues-100">
               Evolved Ideas
             </h2>
             <h2 className="text-[40px]">3</h2>
           </div> */}
+
+{/* 
+
           <div className="dash-stat">
             <h2 className="heading text-t-bd dark:text-blues-100">Problems</h2>
             <h2 className="text-[40px] text-blues-600">2</h2>
-          </div>
+          </div> */}
+
+
+
+
           {/* <div className="dash-stat">
             <h2 className="heading text-t-bd dark:text-blues-100">
               Implementations
             </h2>
             <h2 className="text-[40px]">10</h2>
           </div> */}
-        </div>
+        {/* </div> */}
 {/* <CircleTimer /> */}
     
         <div className="flex flex-col items-center p-3 h-30 normal-box w-[80%] my-5 bg-white/60 dark:bg-black/60">
