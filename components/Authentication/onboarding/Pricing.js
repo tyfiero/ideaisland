@@ -28,7 +28,7 @@ function Pricing(props) {
     // console.log(Paddle)
     // eslint-disable-next-line
     if (typeof Paddle !== "undefined") {
-    console.log("IT RAN, NO EXCUSES")
+      console.log("IT RAN, NO EXCUSES");
       let vendorNum = Number(process.env.NEXT_PUBLIC_PADDLE_VENDOR_ID);
       // console.log(vendorNum);
       // eslint-disable-next-line
@@ -118,11 +118,9 @@ function Pricing(props) {
       setPlan("Pro");
       // updateIdea(1000, "Pro");
       setSuccessPopUp(true);
-    }else if (
-      data.product.name === "Beta Test Plan"
-    ) {
-      setCredits(200);
-      setPlan("Pro");
+    } else if (data.product.name === "Beta Test Plan") {
+      setCredits(50);
+      setPlan("Beta");
       // updateIdea(1000, "Pro");
       setSuccessPopUp(true);
     }
@@ -135,7 +133,7 @@ function Pricing(props) {
   }
 
   return (
-    <div>
+    <div className="overflow-auto ">
       {/* <PaddleLoader /> */}
       {/* <script async src="https://cdn.paddle.com/paddle/paddle.js">
         {console.log("Loaded paddleeeeeeeeeee from script")}
@@ -144,19 +142,17 @@ function Pricing(props) {
         id="paddle-checkout-js"
         src="https://cdn.paddle.com/paddle/paddle.js"
         // strategy="beforeInteractive"
-          onLoad={(e) => {
-            console.log("before load paddle");
+        onLoad={(e) => {
+          console.log("before load paddle");
 
-            // eslint-disable-next-line
-            // Paddle.Environment.set("sandbox");
-            // eslint-disable-next-line
-            Paddle.Setup({
-              vendor: Number(process.env.NEXT_PUBLIC_PADDLE_VENDOR_ID),
-
-            });
-            console.log("Loaded paddle");
-          }
-        }
+          // eslint-disable-next-line
+          // Paddle.Environment.set("sandbox");
+          // eslint-disable-next-line
+          Paddle.Setup({
+            vendor: Number(process.env.NEXT_PUBLIC_PADDLE_VENDOR_ID),
+          });
+          console.log("Loaded paddle");
+        }}
         onError={(e) => {
           console.log("Error loading paddle");
           console.log(e);
@@ -190,8 +186,8 @@ function Pricing(props) {
                     </span>
                   </h1>
                   <p className="w-full px-8 pt-1 text-lg font-normal text-slate-400 md:w-full nun">
-            Each plan comes with a 7-day free trial.
-          </p>
+                    Each plan comes with a 7-day free trial.
+                  </p>
                 </div>
               )}
 
@@ -224,76 +220,73 @@ function Pricing(props) {
                 </p>
               </div>
               <div
-                  className={
-                    "w-[50%] px-4 py-4 mt-6 text-black transition duration-500 rounded-lg      group  flex-col flex justify-between " +
-                    (paidPlan === "Beta"
-                      ? " bg-clear-bl1 border-8 border-t-bd dark:bg-clear-bl1 shadow-3xl"
-                      : " bg-white/60 md:hover:bg-clear-bl2 dark:bg-slate-600/80 shadow-lg")
-                  }
-                >
-                  <div className="relative p-4">
-                    {paidPlan === "Beta" && (
-                      <p className="absolute text-xl font-bold -left-3 -top-4 text-t-bd">
-                        Current Plan:
-                      </p>
-                    )}
-                    <div className="flex justify-center">
-                      <span className="inline-flex px-4 py-1 mb-0 text-3xl font-semibold leading-5 tracking-wide transition rounded-full group-hover:text-white blue-gradient-text">
-                        Beta Testing Plan
-                      </span>
-                    </div>
-                    <div className="flex justify-center mt-4 text-6xl font-extrabold leading-none transition text-blues-200 group-hover:text-white">
-                            Free
-                      {/* <span className="pt-8 ml-1 text-2xl font-medium leading-8 text-gray-500 transition group-hover:text-gray-200 dark:text-white fre ">
+                className={
+                  "w-[50%] px-4 py-4 mt-6 text-black transition duration-500 rounded-lg      group  flex-col flex justify-between " +
+                  (paidPlan === "Beta"
+                    ? " bg-clear-bl1 border-8 border-t-bd dark:bg-clear-bl1 shadow-3xl"
+                    : " bg-white/60 md:hover:bg-clear-bl2 dark:bg-slate-600/80 shadow-lg")
+                }
+              >
+                <div className="relative p-4">
+                  {paidPlan === "Beta" && (
+                    <p className="absolute text-xl font-bold -left-3 -top-4 text-t-bd">
+                      Current Plan:
+                    </p>
+                  )}
+                  <div className="flex justify-center">
+                    <span className="inline-flex px-4 py-1 mb-0 text-3xl font-semibold leading-5 tracking-wide transition rounded-full group-hover:text-white blue-gradient-text">
+                      Beta Testing Plan
+                    </span>
+                  </div>
+                  <div className="flex justify-center mt-4 text-6xl font-extrabold leading-none transition text-blues-200 group-hover:text-white">
+                    Free
+                    {/* <span className="pt-8 ml-1 text-2xl font-medium leading-8 text-gray-500 transition group-hover:text-gray-200 dark:text-white fre ">
                         /month
                       </span> */}
-                    </div>
-                    <p className="mt-4 text-md">Plan includes :</p>
-                    <ul className="w-full mt-2 mb-6 text-sm">
-                      <li className="flex items-center mb-3 dark:text-white nun ">
-                        <FaCheckCircle className="mr-4 text-xl text-t-bl" />
-                        All beta features to test
-                      </li>
-                    
-                    </ul>
                   </div>
-                      <p className="!mb-5 text-center">This plan is totally free, and helps us test out backend code. Thank you for helping us test ideaisland!! :D</p>
-                  <button
-                    className={
-                      "w-full px-3 py-2  transition-colors duration-700 transform rounded-lg shadow text-md    " +
-                      (paidPlan === "Beta"
-                        ? " bg-slate-300 cursor-not-allowed"
-                        : " text-white hover:bg-white hover:text-t-bl bg-t-bl")
-                    }
-                    onClick={() => {
-                      if (paidPlan !== "Beta") {
-                        // eslint-disable-next-line
-                        if (Paddle.Audience.AllowPopup() === true) {
-                          // eslint-disable-next-line
-                          Paddle.Checkout.open({
-                            product: "772088",
-                            email: user.email || null,
-                            passthrough: `${user?.uid}`,
-                            successCallback: checkoutComplete,
-                            closeCallback: checkoutClosed,
-                          });
-                        } else {
-                          toast.error("Please allow popups to proceed");
-                        }
-                      } else {
-                        toast.error("You are already on this plan");
-                      }
-                    }}
-                  >
-                    {paidPlan === "Beta"
-                      ? "Active Plan"
-                      : "Select this plan"}
-                  </button>
+                  <p className="mt-4 text-md">Plan includes :</p>
+                  <ul className="w-full mt-2 mb-6 text-sm">
+                    <li className="flex items-center mb-3 dark:text-white nun ">
+                      <FaCheckCircle className="mr-4 text-xl text-t-bl" />
+                      All beta features to test
+                    </li>
+                  </ul>
                 </div>
+                <p className="!mb-5 text-center">
+                  This plan is totally free, and helps us test out backend code.
+                  Thank you for helping us test ideaisland!! :D
+                </p>
+                <button
+                  className={
+                    "w-full px-3 py-2  transition-colors duration-700 transform rounded-lg shadow text-md    " +
+                    (paidPlan === "Beta"
+                      ? " bg-slate-300 cursor-not-allowed"
+                      : " text-white hover:bg-white hover:text-t-bl bg-t-bl")
+                  }
+                  onClick={() => {
+                    if (paidPlan !== "Beta") {
+                      // eslint-disable-next-line
+                      if (Paddle.Audience.AllowPopup() === true) {
+                        // eslint-disable-next-line
+                        Paddle.Checkout.open({
+                          product: "772088",
+                          email: user.email || null,
+                          passthrough: `${user?.uid}`,
+                          successCallback: checkoutComplete,
+                          closeCallback: checkoutClosed,
+                        });
+                      } else {
+                        toast.error("Please allow popups to proceed");
+                      }
+                    } else {
+                      toast.error("You are already on this plan");
+                    }
+                  }}
+                >
+                  {paidPlan === "Beta" ? "Active Plan" : "Select this plan"}
+                </button>
+              </div>
 
-
-
-                
               <div className="flex-wrap items-center justify-center w-full my-0 sm:gap-3 md:gap-8 sm:flex">
                 {/* Basic */}
                 <div

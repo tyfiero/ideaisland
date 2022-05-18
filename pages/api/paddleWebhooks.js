@@ -34,6 +34,9 @@ export default async function handler(req, res) {
     ) {
       planType = "Pro";
       credits = 1000;
+    } else if (req.body.subscription_plan_id === "772088") {
+      planType = "Beta";
+      credits = 50;
     } else {
       planType = "Free";
       credits = 0;
@@ -56,15 +59,18 @@ export default async function handler(req, res) {
         credits: credits,
       };
 
-      saveToFirestore(data, req.body.passthrough).then(() => {
-        console.log("firebase func finished, now sending success status");
-        res.status(200).json({ success: true });
-      }).catch(() => {
-        console.log("firebase func finished, but failed. Sending failure status");
-        res.status(401).json({ error: "Somthing went wrong :(  " });
-      });
+      saveToFirestore(data, req.body.passthrough)
+        .then(() => {
+          console.log("firebase func finished, now sending success status");
+          res.status(200).json({ success: true });
+        })
+        .catch(() => {
+          console.log(
+            "firebase func finished, but failed. Sending failure status"
+          );
+          res.status(401).json({ error: "Somthing went wrong :(  " });
+        });
       console.log("firebase finished??");
-
     } else if (req.body.alert_name === "subscription_updated") {
       console.log("subscription_updated");
 
@@ -103,7 +109,7 @@ export default async function handler(req, res) {
       res.status(200).json({ success: true });
     } else if (req.body.alert_name === "subscription_payment_succeeded") {
       console.log("subscription_payment_succeeded");
-      
+
       let data = {
         updatedAt: serverTime,
         paddleUserId: req.body.user_id,
@@ -114,9 +120,9 @@ export default async function handler(req, res) {
         plan: planType,
         credits: credits,
       };
-      
-      saveToFirestore(data, req.body.passthrough)
-      
+
+      saveToFirestore(data, req.body.passthrough);
+
       res.status(200).json({ success: true });
     } else if (req.body.alert_name === "subscription_payment_failed") {
       console.log("subscription_payment_failed");
