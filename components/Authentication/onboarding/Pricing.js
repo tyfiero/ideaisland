@@ -118,6 +118,13 @@ function Pricing(props) {
       setPlan("Pro");
       // updateIdea(1000, "Pro");
       setSuccessPopUp(true);
+    }else if (
+      data.product.name === "Beta Test Plan"
+    ) {
+      setCredits(200);
+      setPlan("Pro");
+      // updateIdea(1000, "Pro");
+      setSuccessPopUp(true);
     }
   }
 
