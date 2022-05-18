@@ -70,7 +70,6 @@ export default async function handler(req, res) {
           );
           res.status(401).json({ error: "Somthing went wrong :(  " });
         });
-      console.log("firebase finished??");
     } else if (req.body.alert_name === "subscription_updated") {
       console.log("subscription_updated");
 
@@ -87,9 +86,17 @@ export default async function handler(req, res) {
         credits: credits,
       };
 
-      saveToFirestore(data, req.body.passthrough);
-
-      res.status(200).json({ success: true });
+      saveToFirestore(data, req.body.passthrough)
+        .then(() => {
+          console.log("firebase func finished, now sending success status");
+          res.status(200).json({ success: true });
+        })
+        .catch(() => {
+          console.log(
+            "firebase func finished, but failed. Sending failure status"
+          );
+          res.status(401).json({ error: "Somthing went wrong :(  " });
+        });
     } else if (req.body.alert_name === "subscription_cancelled") {
       console.log("subscription_cancelled");
 
@@ -104,9 +111,16 @@ export default async function handler(req, res) {
         credits: 0,
       };
 
-      saveToFirestore(data, req.body.passthrough);
-
-      res.status(200).json({ success: true });
+      saveToFirestore(data, req.body.passthrough).then(() => {
+        console.log("firebase func finished, now sending success status");
+        res.status(200).json({ success: true });
+      })
+      .catch(() => {
+        console.log(
+          "firebase func finished, but failed. Sending failure status"
+        );
+        res.status(401).json({ error: "Somthing went wrong :(  " });
+      });
     } else if (req.body.alert_name === "subscription_payment_succeeded") {
       console.log("subscription_payment_succeeded");
 
@@ -121,9 +135,16 @@ export default async function handler(req, res) {
         credits: credits,
       };
 
-      saveToFirestore(data, req.body.passthrough);
-
-      res.status(200).json({ success: true });
+      saveToFirestore(data, req.body.passthrough).then(() => {
+        console.log("firebase func finished, now sending success status");
+        res.status(200).json({ success: true });
+      })
+      .catch(() => {
+        console.log(
+          "firebase func finished, but failed. Sending failure status"
+        );
+        res.status(401).json({ error: "Somthing went wrong :(  " });
+      });
     } else if (req.body.alert_name === "subscription_payment_failed") {
       console.log("subscription_payment_failed");
 
@@ -135,7 +156,16 @@ export default async function handler(req, res) {
         plan: "Free",
       };
 
-      saveToFirestore(data, req.body.passthrough);
+      saveToFirestore(data, req.body.passthrough);.then(() => {
+        console.log("firebase func finished, now sending success status");
+        res.status(200).json({ success: true });
+      })
+      .catch(() => {
+        console.log(
+          "firebase func finished, but failed. Sending failure status"
+        );
+        res.status(401).json({ error: "Somthing went wrong :(  " });
+      });
     }
   } else {
     res.status(401).json({ error: "Webhook is not valid  " });
@@ -144,8 +174,8 @@ export default async function handler(req, res) {
 }
 
 const saveToFirestore = async (data, uid) => {
-  console.log(data);
-  console.log("^^^Data to save to firebase");
+  // console.log(data);
+  // console.log("^^^Data to save to firebase");
   // let success;
 
   let ref = adminDB.collection("users").doc(uid);
@@ -159,10 +189,10 @@ const saveToFirestore = async (data, uid) => {
     })
     .catch((error) => {
       console.error("Error writing document: ", error);
-      console.error("UGH SOMETHING WENT WRONG");
+      // console.error("UGH SOMETHING WENT WRONG");
       // success = false
     });
-  console.log("End of firebase function");
+  // console.log("End of firebase function");
 
   // return success;
 };
