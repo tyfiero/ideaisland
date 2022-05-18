@@ -62,6 +62,7 @@ export default async function handler(req, res) {
     };
 
     saveToFirestore(data, req.body.passthrough);
+    console.log("firebase finished??");
 
     res.status(200).json({ success: true });
   } else if (req.body.alert_name === "subscription_updated") {
@@ -135,7 +136,6 @@ export default async function handler(req, res) {
     saveToFirestore(data, req.body.passthrough);
 
 
-    res.status(200).json({ success: true });
   }
     } else {
       res.status(401).json({ error: "Webhook is not valid  " });
@@ -146,14 +146,21 @@ export default async function handler(req, res) {
 
 const saveToFirestore = async (data, uid) => {
     console.log(data);
-
+    console.log("^^^Data to save to firebase");
+// let success;
 
   let ref = adminDB.collection("users").doc(uid);
   console.log(ref);
 
  await ref.update(data).then(() => {
       console.log("Document successfully written!!");
+      // success = true
     }).catch((error) => {
       console.error("Error writing document: ", error);
+      console.error("UGH SOMETHING WENT WRONG");
+      // success = false
     });
+    console.log("End of firebase function");
+
+    // return success;
 };
