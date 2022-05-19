@@ -151,11 +151,11 @@ const bindMiddleware = (middleware) => {
 // }
 
 const makeStore = ({ isServer }) => {
-  const logger = createLogger({
-    // ...options
-    logErrors: true,
-    duration: true,
-  });
+  // const logger = createLogger({
+  //   // ...options
+  //   logErrors: true,
+  //   duration: true,
+  // });
   if (typeof window === 'undefined') {
     // console.log('IS SERVER')
     //If it's on server side, create a store
@@ -172,7 +172,7 @@ const makeStore = ({ isServer }) => {
       storage: storage,
       // stateReconciler: autoMergeLevel2, 
       stateReconciler: hardSet,
-      debug: true,
+      debug: false,
     };
 
     const persistedReducer = persistReducer(persistConfig, appReducer); // Create a new reducer with our existing reducer

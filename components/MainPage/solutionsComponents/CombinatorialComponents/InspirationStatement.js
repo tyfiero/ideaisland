@@ -177,7 +177,7 @@ function InspirationStatement({ randomizeAll }) {
             <div className="absolute flex justify-between gap-2 px-1 transition duration-500 border-b-2 border-l-2 sm:-right-5 md:right-0 sm:-top-1 md:-top-0 rounded-bl-md border-t-bl rounded-tr-md bg-clear-bl2 sm:scale-[85%]">
               <button
                 data-tip
-                data-for="random-all"
+                data-for="random-all2"
                 className="flex items-center justify-center w-10 gap-4 p-2 px-2 m-1 text-white cursor-pointer rounded-3xl bg-t-bl drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95"
                 onClick={() => {
                   dispatch(randomize2Action(true));
@@ -186,14 +186,14 @@ function InspirationStatement({ randomizeAll }) {
                 <FaDice className="text-xl" />
                 <ToolTip
                   text="Randomize all selected"
-                  id="random-all"
+                  id="random-all2"
                   w=" !w-[15em]"
                   place="left"
                 />
               </button>
               <button
                 data-tip
-                data-for="copy"
+                data-for="copy2"
                 className="flex items-center justify-center w-10 gap-4 p-2 px-2 m-1 text-white cursor-pointer rounded-3xl bg-t-bl drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95"
                 onClick={() => {
                   if (process.browser) {
@@ -205,7 +205,7 @@ function InspirationStatement({ randomizeAll }) {
                 <FaRegCopy className="text-xl" />
                 <ToolTip
                   text="Copy Sentence for AI tool"
-                  id="copy"
+                  id="copy2"
                   w=" !w-[15em]"
                   place="left"
                 />
@@ -213,7 +213,7 @@ function InspirationStatement({ randomizeAll }) {
 
               <button
                 data-tip
-                data-for="edit"
+                data-for="edit2"
                 className="w-[8em] h-[2em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer !shadow-clear-pd3 md:hover:shadow-xl m-1 drop-shadow-xl !bg-gradient-to-br from-blues-100 via-t-bl  to-t-bpop !shadow-2xl gap-2"
                 onClick={() => {
                   if (editSentence) {
@@ -229,7 +229,7 @@ function InspirationStatement({ randomizeAll }) {
 
                 <ToolTip
                   text="Edit Sentence"
-                  id="edit"
+                  id="edit2"
                   w=" !w-[15em]"
                   place="left"
                 />
@@ -241,7 +241,7 @@ function InspirationStatement({ randomizeAll }) {
               </button>
             </div>
             <div className="absolute text-lg left-1 top-6 ">
-              <div data-tip data-for="templates">
+              <div data-tip data-for="templates2">
                 <Cascader
                   // style={{ borderRadius: "59px" }}
                   className="nun"

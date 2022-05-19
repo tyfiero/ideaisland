@@ -78,7 +78,7 @@ function Editor(props) {
   const hotkey2 = useKeyboardShortcut(
     ["Escape"],
     (shortcutKeys) => {
-      console.log("Escape");
+      // console.log("Escape");
       if (editModeRedux === "edit" && !unsavedChangesRedux) {
         dispatch(editModeAction("display"));
       } else {
@@ -101,7 +101,7 @@ function Editor(props) {
       // setEditDocDetails(details);
       dispatch(editModeAction("new"));
 
-      console.log("no note change");
+      // console.log("no note change");
     }
     // console.log("UE END");
   }, [currentDocRedux]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -203,7 +203,7 @@ function CreateNewIdea(props) {
   const { flushHeldKeys } = useKeyboardShortcut(
     ["Meta", "Enter"],
     (shortcutKeys) => {
-      console.log("META ENTER");
+      // console.log("META ENTER");
       if (title || content) {
         if (editModeRedux === "new") {
           createIdea();
@@ -606,7 +606,7 @@ function CreateNewIdea(props) {
                 // }}
                 onChange={(e) => {
                   setContent(e);
-                  console.log(e)
+                  // console.log(e)
                   if (!unsavedChangesRedux && (currentDocRedux?.content !== e)) {
                     dispatch(unsavedChangesAction(true));
                   }
@@ -675,10 +675,10 @@ function CreateNewIdea(props) {
               <div>
                 <button
                 onClick={()=>{
-                  console.log(editModeRedux + " " + unsavedChangesRedux)
+                  // console.log(editModeRedux + " " + unsavedChangesRedux)
                   if (editModeRedux === "new"){
                     if(unsavedChangesRedux){
-                      console.time("saving");
+                      // console.time("saving");
                    createIdea().then(()=>{
                     // let newRef = sFormRedux;
                     // newRef.idea = currentDocRedux;

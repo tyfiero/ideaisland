@@ -94,7 +94,7 @@ const videoRef = useRef(null);
       setLoadingUI(false);
       setSignedIn(true);
       if (userUIDRedux === null) {
-        console.log("LAYOUT IS SETTING USER REDUX VALUES");
+        // console.log("LAYOUT IS SETTING USER REDUX VALUES");
         dispatch(userUIDAction(userData.user.uid));
       }
       if (userPhotoRedux === null) {
@@ -110,9 +110,9 @@ const videoRef = useRef(null);
       if (loading) {
         setLoadingUI(true);
         setSignedIn(false);
-        console.log("uid not available yet");
+        // console.log("uid not available yet");
       } else {
-        console.log("User is not logged in");
+        // console.log("User is not logged in");
         setLoadingUI(false);
         setSignedIn(false);
         router.push("/login");

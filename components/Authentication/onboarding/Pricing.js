@@ -143,7 +143,7 @@ function Pricing(props) {
         src="https://cdn.paddle.com/paddle/paddle.js"
         // strategy="beforeInteractive"
         onLoad={(e) => {
-          console.log("before load paddle");
+          // console.log("before load paddle");
 
           // eslint-disable-next-line
           // Paddle.Environment.set("sandbox");
@@ -151,7 +151,7 @@ function Pricing(props) {
           Paddle.Setup({
             vendor: Number(process.env.NEXT_PUBLIC_PADDLE_VENDOR_ID),
           });
-          console.log("Loaded paddle");
+          // console.log("Loaded paddle");
         }}
         onError={(e) => {
           console.log("Error loading paddle");

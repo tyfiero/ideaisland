@@ -73,7 +73,7 @@ function ProblemEditor(props) {
       // setEditDocDetails(details);
       dispatch(editModeAction("new"));
 
-      console.log("no note change");
+      // console.log("no note change");
     }
     // console.log("UE END");
   }, [currentDocRedux]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -187,7 +187,7 @@ function CreateNewProblem(props) {
       setUidValue(auth.currentUser?.uid);
     } else {
       setUidValue("default");
-      console.log("no uid available :(");
+      // console.log("no uid available :(");
     }
   }, [user, userUIDRedux]);
   // // console.log(setEditDocDetails.length + "docdeets");
@@ -231,7 +231,7 @@ function CreateNewProblem(props) {
 
       //   console.log(setEditDocDetails[0].title);
       setProblemID(currentDocRedux.identifier);
-      console.log(problemID);
+      // console.log(problemID);
 
       //   console.log(ideaID + "THIS IS ID");
       setTitle(currentDocRedux.title);
