@@ -6,11 +6,14 @@ export default async function handler(req, res) {
   if (!req.body) return res.status(401).json({ error: "No req body found" });
   console.log(req.body);
   saveToFirestore(req.body).then(() => {
-   return res.status(200).json({ success: true });
-  }).catch(() => {
- return res.status(200).json({ success: true });
-  }
+   console.log("Saved email!")
+   res.status(200)
+}).catch(() => {
+    console.log("Email not saved")
+    res.status(200)
+}
     );
+
 }
 
 const saveToFirestore = async (email) => {
