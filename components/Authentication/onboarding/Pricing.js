@@ -219,7 +219,11 @@ function Pricing(props) {
                   Annual
                 </p>
               </div>
-              <div
+
+
+
+              
+              {/* <div
                 className={
                   "w-[50%] px-4 py-4 mt-6 text-black transition duration-500 rounded-lg      group  flex-col flex justify-between " +
                   (paidPlan === "Beta"
@@ -240,9 +244,7 @@ function Pricing(props) {
                   </div>
                   <div className="flex justify-center mt-4 text-6xl font-extrabold leading-none transition text-blues-200 group-hover:text-white">
                     Free
-                    {/* <span className="pt-8 ml-1 text-2xl font-medium leading-8 text-gray-500 transition group-hover:text-gray-200 dark:text-white fre ">
-                        /month
-                      </span> */}
+                
                   </div>
                   <p className="mt-4 text-md">Plan includes :</p>
                   <ul className="w-full mt-2 mb-6 text-sm">
@@ -285,7 +287,12 @@ function Pricing(props) {
                 >
                   {paidPlan === "Beta" ? "Active Plan" : "Select this plan"}
                 </button>
-              </div>
+              </div> */}
+
+
+
+
+
 
               <div className="flex-wrap items-center justify-center w-full my-0 sm:gap-3 md:gap-8 sm:flex">
                 {/* Basic */}

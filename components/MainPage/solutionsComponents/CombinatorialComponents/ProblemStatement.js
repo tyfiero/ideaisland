@@ -317,57 +317,23 @@ export default ProblemStatement;
 
 const options = [
   {
-    value: "popular",
-    label: "⭐️ Popular",
-    children: [
-      {
-        value: "New products",
-        label: "New products",
-      },
-      {
-        value: "Incremental Improvements",
-        label: "Incremental Improvements",
-        children: [
-          {
-            value: "How would Elon Mush Change social media to fight spam?",
-            label: "How would Elon Musk change social media to fight spam?",
-          },
-          {
-            value: "How might we improve tech brainstorming for entrepreneurs?",
-            label: "How might we improve tech brainstorming for entrepreneurs?",
-          },
-        ],
-      },
-      {
-        value: "blockchain",
-        label: "Disruption ?'s",
-        children: [
-          {
-            value: "nft",
-            label: "🖼 NFT",
-          },
-          {
-            value: "consensus",
-            label:
-              "How might we improve SAAS with encryption to protect privacy?",
-          },
-        ],
-      },
-    ],
-  },
-  {
     value: "Problem Discovery ?'s",
     label: "🔎 Problem Discovery ?'s",
     children: [
       {
-        value: "all",
-        label: "All Industries",
-        children: [
-          {
-            value: "all",
-            label: "💼 All Industries",
-          },
-        ],
+        value: "What do (person place or thing) have issues with?",
+        label: "What do (person place or thing) have issues with?",
+       
+      },
+      {
+        value: "What could annoy someone who is trying to (business verb)?",
+        label: "What could annoy someone who is trying to (business verb)??",
+       
+      },
+      {
+        value: "If you were a (blank), what would be something you would want to help you ____?",
+        label: "If you were a (blank), what would be something you would want to help you ____?",
+       
       },
     ],
   },
@@ -376,14 +342,16 @@ const options = [
     label: "⬆️ Incremental Improvement ?'s",
     children: [
       {
-        value: "all",
-        label: "All Industries",
-        children: [
-          {
-            value: "all",
-            label: "💼 All Industries",
-          },
-        ],
+        value: "How could the process involved with ____ strip away inefficiency?",
+        label: "How could the process involved with ____ strip away inefficiency?",
+      },
+      {
+        value: "How might we decrease the time necessary to accomplish ____?",
+        label: "How might we decrease the time necessary to accomplish ____?",
+      },
+      {
+        value: "What would improve the ____ process 1%?",
+        label: "What would improve the ____ process 1%?",
       },
     ],
   },
@@ -392,14 +360,16 @@ const options = [
     label: "🦄 Unicorn Maker ?'s",
     children: [
       {
-        value: "all",
-        label: "All Industries",
-        children: [
-          {
-            value: "all",
-            label: "💼 All Industries",
-          },
-        ],
+        value: "What is something that everybody does on a daily basis that is less than ideal?",
+        label: "What is something that everybody does on a daily basis that is less than ideal?",
+      },
+      {
+        value: "How would you improve a daily activity for (a group of people, ie bankers, baristas, commuters)?",
+        label: "How would you improve a daily activity for (a group of people, ie bankers, baristas, commuters)?",
+      },
+      {
+        value: "What activity do large companies in ____ industry do poorly in general?",
+        label: "What activity do large companies in ____ industry do poorly in general?",
       },
     ],
   },
@@ -408,14 +378,16 @@ const options = [
     label: "🌍 Big Picture ?'s",
     children: [
       {
-        value: "all",
-        label: "All Industries",
-        children: [
-          {
-            value: "all",
-            label: "💼 All Industries",
-          },
-        ],
+        value: "How might we decrease the waste involved with ____?",
+        label: "How might we decrease the waste involved with ____?",
+      },
+      {
+        value: "How can we revise the production process for ____ to be more carbon friendly?",
+        label: "How can we revise the production process for ____ to be more carbon friendly?",
+      },
+      {
+        value: "How do we help the people of ____ with ____?",
+        label: "How do we help the people of ____ with ____?",
       },
     ],
   },
@@ -424,15 +396,19 @@ const options = [
     label: "⚙️ Systems Thinking ?'s",
     children: [
       {
-        value: "all",
-        label: "All Industries",
-        children: [
-          {
-            value: "all",
-            label: "💼 All Industries",
-          },
-        ],
+        value: "How do we decrease net inputs for the ____ system?",
+        label: "How do we decrease net inputs for the ____ system?",
+      },
+      {
+        value: "How might we manage the wider context of the ____ system to improve outcomes?",
+        label: "How might we manage the wider context of the ____ system to improve outcomes?",
+      },
+      {
+        value: "How might we leverage underutilized emergent properties of the ____ system to improve output?",
+        label: "How might we leverage underutilized emergent properties of the ____ system to improve output?",
       },
     ],
   },
 ];
+
+

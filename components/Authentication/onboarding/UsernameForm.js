@@ -32,7 +32,7 @@ export default function UsernameForm(props) {
       username: formValue,
       photoURL: user.photoURL,
       displayName: user.displayName,
-      credits: 10,
+      credits: 25,
       plan: "Free",
       updatedAt: new Date(),
       paddleUserId: null,

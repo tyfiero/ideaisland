@@ -103,7 +103,7 @@ const [modalOpen, setModalOpen] = useState(false)
       </a>
 </Link>
 
-<button
+{/* <button
         className=" w-[16em] px-3 py-2 font-medium rounded-full md:space-x-6 text-sm fade-effect text-white hover:text-blues-100 bg-t-bd mt-2 flex gap-3 items-center transition duration-500"
         onClick={() => {
           
@@ -122,16 +122,16 @@ const [modalOpen, setModalOpen] = useState(false)
       >
         Send Order History to Email
         <FaEnvelope />
-      </button>
+      </button> */}
 
-      <button
+      {/* <button
         className="flex items-center gap-3 px-3 py-1 mt-2 text-sm font-medium underline rounded-full md:space-x-6 fade-effect text-t-pm hover:text-t-pd"
         onClick={() => {
         setModalOpen(true)
         }}
       >
         Cancel Subscription
-      </button>
+      </button> */}
       </div>
     
      

@@ -24,7 +24,13 @@ function OnboardingPage() {
         isHashEnabled
         className="flex flex-col-reverse items-center justify-center w-full h-full"
         //  transitions={state.transitions} // comment out for default transitions
-        nav={<StepperOnboarding />}
+        
+
+        
+        // nav={<StepperOnboarding />}
+
+
+
         // instance={setInstance}
       >
        
@@ -32,8 +38,8 @@ function OnboardingPage() {
         //  setChanges={setChanges} reset={reset} loadData={loadData}
          />
         <UsernameForm hashKey={"select-username"}/>
-        <Pricing hashKey={"select-plan"} onboard={true}/>
-        <Tut1 hashKey={"tour"}/>
+        {/* <Pricing hashKey={"select-plan"} onboard={true}/> */}
+        {/* <Tut1 hashKey={"tour"}/> */}
       </StepWizard>
     </div>
   )
