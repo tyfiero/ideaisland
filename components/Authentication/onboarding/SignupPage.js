@@ -26,15 +26,31 @@ import {
   logIn,
 } from "../../../redux/actions";
 import CookieBanner from "../../Layout/CookieBanner/CookieBanner";
-
+import {
+  serverTimestamp,
+  query,
+  where,
+  collection,
+  orderBy,
+  doc,
+  getFirestore,
+  updateDoc,
+  addDoc,
+  onSnapshot,
+  deleteDoc,
+  setDoc,
+  getDoc,
+} from "firebase/firestore";
+import axios from "axios";
 export default function SignupPage(props) {
   const router = useRouter();
   const userUIDRedux = useSelector((state) => state.userUID);
   const userPhotoRedux = useSelector((state) => state.userPhoto);
   const userDisplayNameRedux = useSelector((state) => state.userDisplayName);
   const loggedIn = useSelector((state) => state.loggedIn);
-  
+
   const dispatch = useDispatch();
+  const [checked, setChecked] = useState(true);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -45,6 +61,19 @@ export default function SignupPage(props) {
 
   const [signUpMethod, setSignUpMethod] = useState(0);
 
+  // const saveEmail = async (email) => {
+  //   const ref = doc(getFirestore(), "email-list", email.user.email);
+
+  
+
+  //   await setDoc(ref, data)
+  //     .then(() => {
+  //       console.log("email saved");
+  //     })
+  //     .catch((error) => {
+  //       console.log("email save failed!" + error);
+  //     });
+  // };
   function googleButton() {
     // console.log("googlebutton clicked");
 
@@ -52,7 +81,7 @@ export default function SignupPage(props) {
       // console.log("tried");
       try {
         await signInWithPopup(auth, googleAuthProvider).then((result) => {
-          console.log(result)
+          // console.log(result);
           // dispatch(userDataRedux({result.user}));
           dispatch(userUIDAction(result.user.uid));
           dispatch(userDisplayNameAction(result.user.displayName));
@@ -61,8 +90,23 @@ export default function SignupPage(props) {
             dispatch(logIn(true));
             console.log("logged in");
           }
+
+          if (checked) {
+            //Write emails to firestore
+            // saveEmail(result);
+             axios({
+              method: "POST",
+              url: "/api/saveEmail",
+              data: {
+                email: result.user.email,
+                name: result.user.displayName,
+                uid: result.user.uid,
+              },
+          })
+
+        } 
         });
-        props.goToStep(2)
+        props.goToStep(2);
       } catch (error) {
         console.log(error);
       }
@@ -213,7 +257,7 @@ export default function SignupPage(props) {
   // </form>)
 
   return (
-    <div className="flex items-center justify-center px-4 sm:px-6 lg:px-8 drop-shadow-xl mt-36">
+    <div className="flex items-center justify-center px-4 sm:px-6 lg:px-8 drop-shadow-xl ">
       <div className="w-full max-w-md p-10 space-y-8 shadow rounded-xl bg-blues-100 drop-shadow-xl ">
         {/* {signUpMethod !== 0 ? (
           <FaChevronLeft
@@ -241,6 +285,7 @@ export default function SignupPage(props) {
                 <FaEnvelope className="text-[28px]  text-white" /> Sign up with
                 Email
               </button> */}
+
             <button
               onClick={googleButton}
               className="w-[18em] h-12 rounded-3xl bg-t-bl flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95"
@@ -250,9 +295,17 @@ export default function SignupPage(props) {
               </div>
               Sign up with Google
             </button>
-
-
-            
+            <label className="nun">
+              <input
+                type="checkbox"
+                name="marketing"
+                className="mr-3 scale-125 rounded-md"
+                id=""
+                checked={checked}
+                onChange={() => setChecked(!checked)}
+              />
+              Sign up for marketing emails?
+            </label>
             <p className="mt-10">Have an account?</p>
             <Link href="/login">
               <a>
