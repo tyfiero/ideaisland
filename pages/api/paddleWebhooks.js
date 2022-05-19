@@ -156,7 +156,7 @@ export default async function handler(req, res) {
         plan: "Free",
       };
 
-      saveToFirestore(data, req.body.passthrough);.then(() => {
+      saveToFirestore(data, req.body.passthrough).then(() => {
         console.log("firebase func finished, now sending success status");
         res.status(200).json({ success: true });
       })
