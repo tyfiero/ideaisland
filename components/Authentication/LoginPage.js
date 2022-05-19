@@ -349,9 +349,17 @@ export default function LoginPage() {
               
               ) : (
                 <>
+                {cookiePop ? (<div><p className="text-center nun">This website requires cookies to work properly.  By continuing you are agreeing to our use of necessary cookies.</p>
+                  <Link href="/signup">
+                    <div className="flex items-center justify-center h-16 gap-4 px-12 text-2xl cursor-pointer text-pinks-50 rounded-3xl bg-t-bl drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95"
+                     onClick={()=>setCookiePop(!cookiePop)}>Accept and Continue<FaArrowRight/></div>
+                  </Link></div>) : (<div className="flex items-center justify-center h-16 gap-4 px-12 text-2xl cursor-pointer text-pinks-50 rounded-3xl bg-t-pm drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95"
+                     onClick={()=>setCookiePop(!cookiePop)}>Sign up<FaUserPlus/></div>)}
+
+                     
                 {!cookiePop &&<button
                   onClick={()=>setExpandSignIn(!expandSignIn)}
-                  className="flex items-center justify-center h-16 gap-4 px-12 text-2xl text-blues-50 rounded-3xl bg-t-bl drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95"
+                  className="flex items-center justify-center h-10 gap-4 px-12 text-2xl text-blues-50 rounded-3xl bg-t-bl drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95"
                 >
                 
                   Sign in <FaSignInAlt/>
@@ -362,12 +370,7 @@ export default function LoginPage() {
                  
 
 
-                  {cookiePop ? (<div><p className="text-center nun">This website requires cookies to work properly.  By continuing you are agreeing to our use of necessary cookies.</p>
-                  <Link href="/signup">
-                    <div className="flex items-center justify-center h-16 gap-4 px-12 text-2xl cursor-pointer text-pinks-50 rounded-3xl bg-t-bl drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95"
-                     onClick={()=>setCookiePop(!cookiePop)}>Accept and Continue<FaArrowRight/></div>
-                  </Link></div>) : (<div className="flex items-center justify-center h-16 gap-4 px-12 text-2xl cursor-pointer text-pinks-50 rounded-3xl bg-t-pm drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95"
-                     onClick={()=>setCookiePop(!cookiePop)}>Sign up<FaUserPlus/></div>)}
+                  
                 </>
               )}
             </div>
