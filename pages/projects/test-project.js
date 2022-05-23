@@ -134,7 +134,7 @@ console.log(objectives)
                {objectives.length === 0 && <p>No objectives yet</p>}
                 {objectives.map((obj, index) => (
                     
-              <Objective progress={40} title={obj.title} key={index}/>
+              <Objective progress={40} title={obj.title} key={index} color={obj.color}/>
                 ))}
                 </div>
             </div>

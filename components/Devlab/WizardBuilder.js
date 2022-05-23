@@ -1,8 +1,23 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useContext } from "react";
 import toast from "react-hot-toast";
-import { FaArrowDown, FaPlay, FaPlus } from "react-icons/fa";
+import { FaArrowDown, FaGlobeAmericas, FaPlay, FaPlus, FaSave } from "react-icons/fa";
 import TextareaAutosize from "react-textarea-autosize";
 import DevLab from "../../pages/devlab/play";
+import { UserContext } from "../../lib/context";
+
+import {
+  serverTimestamp,
+  orderBy,
+  doc,
+  getFirestore,
+  updateDoc,
+  onSnapshot,
+  setDoc,
+} from "firebase/firestore";
+import { firestore, auth } from "../../lib/firebase";
+import { useSelector, useDispatch } from "react-redux";
+
+
 
 function WizardBuilder() {
   const [update, setUpdate] = React.useState(false);
@@ -13,12 +28,20 @@ function WizardBuilder() {
   const [placeholder, setPlaceholder] = React.useState("");
   const [subtext, setSubtext] = React.useState("");
   const [popupText, setPopupText] = React.useState("");
+  const [routeTitle, setRouteTitle] = React.useState("");
   const [stepBuilderArray, setStepBuilderArray] = React.useState([1]);
   // const [counter, setCounter] = React.useState(1);
+  const userUIDRedux = useSelector((state) => state.userUID);
+  // const userNameRedux = useSelector((state) => state.userName);
+  const { user, username } = useContext(UserContext);
 
+  
   const [stepNum, setStepNum] = React.useState(1);
 
   const [routeArray, setRouteArray] = React.useState([]);
+// console.log(routeArray)
+
+
 
 const loadStep = (num) => {
   
@@ -48,6 +71,53 @@ loadStep(stepNum - 1);
 
 
 
+  // Create a new post in firestore
+  const saveRoute = async (e) => {
+    // e.preventDefault();
+    let uid;
+
+    if (user?.uid) {
+      uid = user?.uid;
+    } else if (userUIDRedux) {
+      uid = userUIDRedux;
+    } else if (auth.currentUser?.uid) {
+      uid = auth.currentUser?.uid;
+    } else {
+      uid = "default";
+      console.log("no uid available :(");
+    }
+
+    const ref = doc(
+      getFirestore(),
+      "users",
+      uid,
+      "routes",
+     routeTitle
+    );
+
+    let data = {
+     route: routeArray,
+     edited: serverTimestamp(),
+      title: routeTitle,
+    };
+
+
+    await setDoc(ref, data)
+    .then(() => {
+
+toast.success("Route saved!");
+// props.setChanges(false);
+          // router.push("/next-steps");
+          
+    })
+    .catch((error) => {
+      toast.error("Error occured 😩");
+      console.log("Update failed!" + error);
+    });
+    
+
+  
+  };
 
 
 
@@ -67,10 +137,13 @@ loadStep(stepNum - 1);
               <h1 className="text-3xl text-t-bd dark:text-blues-100">
                 Wizard Builder
               </h1>
+              NEEDS LOAD BUTTON
+
+              <div className="absolute flex flex-row-reverse gap-2 -right-5 -top-7 flex-center">
               <button
-                className={"absolute flex items-center gap-2 px-3 py-1 my-1 text-lg transition rounded-lg -right-5 -top-7 nun   " + (stepNum > 1 ? " bg-clear-pl4 hover:scale-105 active:scale-95" : " bg-slate-300 cursor-not-allowed")}
+                className={" flex items-center gap-2 px-3 py-1 my-1 text-lg transition rounded-lg  nun  text-white  " + ((stepNum > 1 || routeArray.length > 0)? " bg-clear-bl4 hover:scale-105 active:scale-95" : " bg-slate-300 cursor-not-allowed")}
                 onClick={() => {
-                  if(stepNum > 1){
+                  if(stepNum > 1 || routeArray.length > 0){
                   setPlay(true);
                   }else{
                     toast.error("Add a step before starting.")
@@ -79,6 +152,22 @@ loadStep(stepNum - 1);
               >
                 <FaPlay /> Start
               </button>
+              <button
+                className={" flex items-center gap-2 px-3 py-1 my-1 text-lg transition rounded-lg  nun   " + ((stepNum > 1 || routeArray.length > 0)? " bg-clear-pl4 hover:scale-105 active:scale-95" : " bg-slate-300 cursor-not-allowed")}
+                onClick={() => {
+                  if(stepNum > 1 || routeArray.length > 0){
+                  // setPlay(true);
+                  
+                  saveRoute()
+                  
+                  }else{
+                    toast.error("Add a step before starting.")
+                  }
+                }}
+              >
+                <FaSave /> Save
+              </button>
+              </div>
 
               {/* { stepBuilderArray.map((step, index) => (
            <StepBuilder num={index} key={index}/>
@@ -88,6 +177,40 @@ loadStep(stepNum - 1);
               {/* <StepBuilder num={1}/> */}
               <div className="flex gap-5">
                 <div className="flex flex-col items-center">
+                <div className="flex flex-col items-start w-full gap-0 ">
+                        {" "}
+                        <p className="">Route Title</p>
+                        <TextareaAutosize
+                          className="w-full   text-xl whitespace-normal textarea-box textarea-tw text-t-bd dark:text-blues-100 !fre font-bold "
+                          value={routeTitle}
+                          placeholder={'Innovation Strategy'}
+                          onChange={(e) => {
+                            setRouteTitle(e.target.value);
+                          }}
+                        ></TextareaAutosize>
+                      </div>
+                <div className="relative group">
+                    <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-pm via-violet-400 to-t-pd blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
+                    
+                    <button
+                      className=" px-2 h-[2em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer !shadow-clear-pd3 md:hover:shadow-xl m-1 drop-shadow-xl !bg-gradient-to-br from-white via-t-pl  to-t-pm !shadow-2xl "
+                      onClick={() => {
+                        
+                      }}
+                    >
+                      <>
+                     
+                        <p className="pl-2 text-t-pd dark:text-t-pd">
+                          Earth
+                        </p>
+                        <FaGlobeAmericas
+                          style={{ fontSize: "32px" }}
+                          className="pl-2 text-t-pd"
+                        />
+                      </>
+                    </button>
+
+                    </div>
                   <div className="flex flex-col items-center">
                     <div className="glass-box bg-clear-bl2 min-h-[10em] flex flex-col items-center p-5 my-2 w-full">
                       <p className="absolute text-xl text-left top-2 left-3 fre text-t-bl">
@@ -228,7 +351,9 @@ loadStep(stepNum - 1);
                     </button>
                   </div>
                 </div>
-                <div className="flex flex-col p-3 glass-box">
+                
+                <div className="relative flex flex-col px-3 py-1 glass-box">
+                  <h4 className="mt-0">{routeTitle}</h4>
                   {routeArray.length === 0 && ( <div
         className={"flex flex-col items-center min-w-[10em] glass-box bg-clear-bl2"}
       >
@@ -384,3 +509,4 @@ function StepVizUnit({
 //             </div>
 //   )
 // }
+

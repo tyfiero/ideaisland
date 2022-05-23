@@ -78,7 +78,7 @@ function KrModalOld({
           // }}
         >
           <div className="flex px-2  BOX1   min-w-[15em]">
-            <div className="flex flex-col normal-box-soft w-[99%] bg-clear-bl3 ">
+            <div className="flex flex-col normal-box-soft w-[99%]  ">
                 <p className="ml-2">Title</p>
 
                 <TextareaAutosize
@@ -150,7 +150,7 @@ function KrModalOld({
           <div className="flex flex-col items-center gap-1 p-1 normal-box-soft">
                 {showValues && (
                   <div className="flex gap-3 p-1 ">
-                    <div className="flex flex-col p-1 normal-box-soft bg-clear-bl2">
+                    <div className="flex flex-col p-1 normal-box-soft ">
                       <p className="ml-2">Current Value</p>
 
                       <div className="flex items-center gap-2">
@@ -202,7 +202,7 @@ function KrModalOld({
                     </div>
                     {/* <p>/</p> */}
 
-                    <div className="flex flex-col p-1 normal-box-soft bg-clear-bl2">
+                    <div className="flex flex-col p-1 normal-box-soft ">
                       <p className="ml-2">Target Value</p>
 
                       <div

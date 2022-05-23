@@ -7,7 +7,7 @@ import KrModal from "./KrModal";
 import KrTableTopper from "./KrTableTopper";
 
 function Objective(props) {
-  const [progress, setProgress] = React.useState(0);
+  const [progress, setProgress] = React.useState(50);
 
   const [krs, setKrs] = React.useState([]);
   const [krProgress, setKrProgress] = React.useState([]);
@@ -29,7 +29,7 @@ function Objective(props) {
   
   return (
     <>
-      <div className="flex flex-col items-center w-full glass-box ">
+      <div className={"flex flex-col items-center w-full glass-box " + props.color[0]}>
         <div className="flex justify-between w-full px-4">
           <p className="text-2xl font-extrabold">{props.title}</p>
 
@@ -37,7 +37,8 @@ function Objective(props) {
             <div className="w-[10em]  shadow-3xl shadow-t-bl">
               <ProgressBar
                 percent={progress}
-                filledBackground="linear-gradient(to right, var(--colorDark1), var(--colorPop))"
+                filledBackground={props.color[2]}
+                unfilledBackground={props.color[1]}
               />
             </div>
 
@@ -63,7 +64,7 @@ function Objective(props) {
                 key={index}
                 num={index}
                 setModalOpen={setModalOpen}
-                color={kr.color}
+                color={props.color}
                 date={kr.date}
                 setSelectedKr={setSelectedKr}
                 setKrProgress={setKrProgress}

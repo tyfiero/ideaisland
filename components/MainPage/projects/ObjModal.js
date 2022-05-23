@@ -32,7 +32,7 @@ function ObjModal({
   const [isPopoverOpen, setIsPopoverOpen] = React.useState(false);
   const [showDate, setShowDate] = React.useState(true);
   const [showValues, setShowValues] = React.useState(true);
-  const [color, setColor] = React.useState(" bg-sky-400/60");
+  const [color, setColor] = React.useState([" bg-sky-400/40", "#e0f2fe", "#0369a1"]);
   const [startDate, setStartDate] = React.useState(null);
   const [status, setStatus] = React.useState("On Track");
   console.log(selectedObj);
@@ -183,51 +183,51 @@ function ObjModal({
                   <button
                     className={
                       "w-8 h-8 rounded-full bg-sky-400 md:hover:scale-105 active:scale-95 transition " +
-                      (color === " bg-sky-400/60" &&
+                      (color[0] === " bg-sky-400/40" &&
                         " scale-110 ring-2 ring-black")
                     }
                     onClick={() => {
-                      setColor(" bg-sky-400/60");
+                      setColor([" bg-sky-400/40", "#e0f2fe", "#0369a1"]);
                     }}
                   ></button>
                   <button
                     className={
                       "w-8 h-8 rounded-full bg-green-400 md:hover:scale-105 active:scale-95 transition " +
-                      (color === " bg-green-400/60" &&
+                      (color[0] === " bg-green-400/40" &&
                         " scale-110 ring-2 ring-black")
                     }
                     onClick={() => {
-                      setColor(" bg-green-400/60");
+                      setColor([" bg-green-400/40", "#dcfce7", "#16a34a"]);
                     }}
                   ></button>
                   <button
                     className={
                       "w-8 h-8 rounded-full bg-yellow-400 md:hover:scale-105 active:scale-95 transition " +
-                      (color === " bg-yellow-400/60" &&
+                      (color[0] === " bg-yellow-400/40" &&
                         " scale-110 ring-2 ring-black")
                     }
                     onClick={() => {
-                      setColor(" bg-yellow-400/60");
+                      setColor([" bg-yellow-400/40", "#fef9c3", "#ca8a04"]);
                     }}
                   ></button>
                   <button
                     className={
                       "w-8 h-8 rounded-full bg-red-400 md:hover:scale-105 active:scale-95 transition " +
-                      (color === " bg-red-400/60" &&
+                      (color[0] === " bg-red-400/40" &&
                         " scale-110 ring-2 ring-black")
                     }
                     onClick={() => {
-                      setColor(" bg-red-400/60");
+                      setColor([" bg-red-400/40", "#fee2e2", "#dc2626"]);
                     }}
                   ></button>
                   <button
                     className={
                       "w-8 h-8 rounded-full bg-purple-400 md:hover:scale-105 active:scale-95 transition " +
-                      (color === " bg-purple-400/60" &&
+                      (color[0] === " bg-purple-400/40" &&
                         " scale-110 ring-2 ring-black")
                     }
                     onClick={() => {
-                      setColor(" bg-purple-400/60");
+                      setColor([" bg-purple-400/40", "#e0f2fe", "#0369a1"]);
                     }}
                   ></button>
                 </div>
@@ -288,7 +288,7 @@ function ObjModal({
                       }
                     }
                     setModalTitle("");
-                    setColor(" bg-sky-400/60");
+                    setColor([" bg-sky-400/40", "#e0f2fe", "#0369a1"]);
                     setModalOpen(false);
                     setStartDate(new Date());
                     setSelectedObj(null);

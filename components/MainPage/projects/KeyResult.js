@@ -71,8 +71,8 @@ function KeyResult(props) {
           <div className="w-[10em]  shadow-3xl shadow-t-bl">
             <ProgressBar
               percent={progress}
-              filledBackground="var(--colorDark2)"
-              unfilledBackground="var(--colorDark1)"
+              filledBackground={props.color[2]}
+              unfilledBackground={props.color[1]}
             />
           </div>
 

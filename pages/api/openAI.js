@@ -24,14 +24,48 @@ async function gpt3APIRequest(req) {
   let user = req.body.user;
   let userInput = req.body.input;
   let type = req.body.type;
+  let kind = req.body.kind;
+
+
+
+
 // console.log(req.body )
   // console.log(user)
   //   let input = ` ${req}`;
   // let prompt = `Brainstorm some ideas combining ${userInput}: `;
   let prompt = ` Making a new software product about ${userInput} is complex, but worth it. Here is a list of software product ideas in the ${userInput} domain:`;
 
+// console.log(kind);
+  let aiInput 
+if(type === "plan"){
+  // console.log("Kind is not null or undefined")
+  if(kind ==="Risks"){  
+     aiInput = `${userInput} Write me a numbered list of macro risks to my business.`;
+  }else if(kind ==="Opportunities"){
+    aiInput = `${userInput} Write me a numbered list of opportunities and competitive advantages of my business.`;
+ }else if(kind ==="Elevator"){
+  aiInput = `${userInput} Write an elevator pitch for my business.`;
+}else if(kind ==="Slogan"){
+  aiInput = `${userInput} Write me three creative, memorable slogans for my business.`;
+}else if(kind ==="Names"){
+  aiInput = `${userInput} Write a numbered list of creative names for my business.`;
+}else if(kind ==="Vision"){
+  aiInput = `${userInput} What is my vision for the future of my product?`;
+}
+}else{
+  // console.log("Where it needs to be")
 
-let aiInput = type === "expand" ? (userInput + " ") : prompt;
+  if(type === "expand"){
+    aiInput = (userInput + " ")
+  }else{
+    aiInput = prompt
+  }
+}
+
+ 
+console.log(aiInput)
+console.log("^^input")
+
 // let shouldStream = type === "expand" ? true : false;
 let presence_penalty = type === "expand" ? 1.5 : 1;
 let frequency_penalty = type === "expand" ? 1.5 : 0.5;
@@ -40,7 +74,7 @@ let frequency_penalty = type === "expand" ? 1.5 : 0.5;
   const gptResponse = await openai.complete({
     // engine: "ada",
     engine: "text-davinci-002",
-    prompt: prompt,
+    prompt: aiInput,
     maxTokens: 100,
     user: user,
     temperature: 0.89,
