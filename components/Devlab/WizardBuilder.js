@@ -1,6 +1,12 @@
 import React, { useEffect, useRef, useContext } from "react";
 import toast from "react-hot-toast";
-import { FaArrowDown, FaGlobeAmericas, FaPlay, FaPlus, FaSave } from "react-icons/fa";
+import {
+  FaArrowDown,
+  FaGlobeAmericas,
+  FaPlay,
+  FaPlus,
+  FaSave,
+} from "react-icons/fa";
 import TextareaAutosize from "react-textarea-autosize";
 import DevLab from "../../pages/devlab/play";
 import { UserContext } from "../../lib/context";
@@ -16,8 +22,6 @@ import {
 } from "firebase/firestore";
 import { firestore, auth } from "../../lib/firebase";
 import { useSelector, useDispatch } from "react-redux";
-
-
 
 function WizardBuilder() {
   const [update, setUpdate] = React.useState(false);
@@ -35,41 +39,32 @@ function WizardBuilder() {
   // const userNameRedux = useSelector((state) => state.userName);
   const { user, username } = useContext(UserContext);
 
-  
   const [stepNum, setStepNum] = React.useState(1);
 
   const [routeArray, setRouteArray] = React.useState([]);
-// console.log(routeArray)
+  console.log(routeArray);
 
+  const loadStep = (num) => {
+    let newArray = routeArray;
 
+    let stepUnit = newArray[num - 1];
 
-const loadStep = (num) => {
-  
-  let newArray = routeArray;
-  
-  let stepUnit = newArray[num-1]
+    setQuestion(stepUnit.text);
+    setTitle(stepUnit.title);
+    setPlaceholder(stepUnit.placeholder);
+    setSubtext(stepUnit.subtext);
+    setPopupText(stepUnit.popupText);
+    setStepNum(num);
 
-  setQuestion(stepUnit.text);
-  setTitle(stepUnit.title);
-  setPlaceholder(stepUnit.placeholder);
-  setSubtext(stepUnit.subtext);
-  setPopupText(stepUnit.popupText);
-  setStepNum(num);
-  
-  setEditMode(true)
-}
-  
+    setEditMode(true);
+  };
+
   useEffect(() => {
-
     if (update) {
-      
-      
-loadStep(stepNum - 1);
+      loadStep(stepNum - 1);
       setUpdate(false);
     }
   }, [update]);
-
-
 
   // Create a new post in firestore
   const saveRoute = async (e) => {
@@ -87,130 +82,115 @@ loadStep(stepNum - 1);
       console.log("no uid available :(");
     }
 
-    const ref = doc(
-      getFirestore(),
-      "users",
-      uid,
-      "routes",
-     routeTitle
-    );
+    const ref = doc(getFirestore(), "users", uid, "routes", routeTitle);
 
     let data = {
-     route: routeArray,
-     edited: serverTimestamp(),
+      route: routeArray,
+      edited: serverTimestamp(),
       title: routeTitle,
     };
 
-
     await setDoc(ref, data)
-    .then(() => {
-
-toast.success("Route saved!");
-// props.setChanges(false);
-          // router.push("/next-steps");
-          
-    })
-    .catch((error) => {
-      toast.error("Error occured 😩");
-      console.log("Update failed!" + error);
-    });
-    
-
-  
+      .then(() => {
+        toast.success("Route saved!");
+        // props.setChanges(false);
+        // router.push("/next-steps");
+      })
+      .catch((error) => {
+        toast.error("Error occured 😩");
+        console.log("Update failed!" + error);
+      });
   };
-
-
 
   return (
     <div>
-      
-        {play ? (
-          <DevLab setPlay={setPlay} routeArray={routeArray}/>
-        ) : (
-          <div
-        className="flex items-center justify-center  px-4 pt-[1rem] sm:px-6 lg:px-8 drop-shadow-xl fade-effect-quick
+      {play ? (
+        <DevLab setPlay={setPlay} routeArray={routeArray} />
+      ) : (
+        <div
+          className="flex items-center justify-center  px-4 pt-[1rem] sm:px-6 lg:px-8 drop-shadow-xl fade-effect-quick
 
 "
-      >
-          <div className="w-full max-w-[42rem] p-10 space-y-8  normal-box-soft">
+        >
+          <div className="w-full max-w-[62rem] p-10 space-y-8  normal-box-soft">
             <div className="relative flex flex-col items-center justify-between gap-3 p-3 problem-page fade-effect-quick min-h-[25em]">
               <h1 className="text-3xl text-t-bd dark:text-blues-100">
                 Wizard Builder
               </h1>
               NEEDS LOAD BUTTON
-
               <div className="absolute flex flex-row-reverse gap-2 -right-5 -top-7 flex-center">
-              <button
-                className={" flex items-center gap-2 px-3 py-1 my-1 text-lg transition rounded-lg  nun  text-white  " + ((stepNum > 1 || routeArray.length > 0)? " bg-clear-bl4 hover:scale-105 active:scale-95" : " bg-slate-300 cursor-not-allowed")}
-                onClick={() => {
-                  if(stepNum > 1 || routeArray.length > 0){
-                  setPlay(true);
-                  }else{
-                    toast.error("Add a step before starting.")
+                <button
+                  className={
+                    " flex items-center gap-2 px-3 py-1 my-1 text-lg transition rounded-lg  nun  text-white  " +
+                    (stepNum > 1 || routeArray.length > 0
+                      ? " bg-clear-bl4 hover:scale-105 active:scale-95"
+                      : " bg-slate-300 cursor-not-allowed")
                   }
-                }}
-              >
-                <FaPlay /> Start
-              </button>
-              <button
-                className={" flex items-center gap-2 px-3 py-1 my-1 text-lg transition rounded-lg  nun   " + ((stepNum > 1 || routeArray.length > 0)? " bg-clear-pl4 hover:scale-105 active:scale-95" : " bg-slate-300 cursor-not-allowed")}
-                onClick={() => {
-                  if(stepNum > 1 || routeArray.length > 0){
-                  // setPlay(true);
-                  
-                  saveRoute()
-                  
-                  }else{
-                    toast.error("Add a step before starting.")
+                  onClick={() => {
+                    if (stepNum > 1 || routeArray.length > 0) {
+                      setPlay(true);
+                    } else {
+                      toast.error("Add a step before starting.");
+                    }
+                  }}
+                >
+                  <FaPlay /> Start
+                </button>
+                <button
+                  className={
+                    " flex items-center gap-2 px-3 py-1 my-1 text-lg transition rounded-lg  nun   " +
+                    (stepNum > 1 || routeArray.length > 0
+                      ? " bg-clear-pl4 hover:scale-105 active:scale-95"
+                      : " bg-slate-300 cursor-not-allowed")
                   }
-                }}
-              >
-                <FaSave /> Save
-              </button>
-              </div>
+                  onClick={() => {
+                    if (stepNum > 1 || routeArray.length > 0) {
+                      // setPlay(true);
 
+                      saveRoute();
+                    } else {
+                      toast.error("Add a step before starting.");
+                    }
+                  }}
+                >
+                  <FaSave /> Save
+                </button>
+              </div>
               {/* { stepBuilderArray.map((step, index) => (
            <StepBuilder num={index} key={index}/>
 
 ))} */}
-
               {/* <StepBuilder num={1}/> */}
               <div className="flex gap-5">
                 <div className="flex flex-col items-center">
-                <div className="flex flex-col items-start w-full gap-0 ">
-                        {" "}
-                        <p className="">Route Title</p>
-                        <TextareaAutosize
-                          className="w-full   text-xl whitespace-normal textarea-box textarea-tw text-t-bd dark:text-blues-100 !fre font-bold "
-                          value={routeTitle}
-                          placeholder={'Innovation Strategy'}
-                          onChange={(e) => {
-                            setRouteTitle(e.target.value);
-                          }}
-                        ></TextareaAutosize>
-                      </div>
-                <div className="relative group">
+                  <div className="flex flex-col items-start w-full gap-0 ">
+                    {" "}
+                    <p className="">Route Title</p>
+                    <TextareaAutosize
+                      className="w-full   text-xl whitespace-normal textarea-box textarea-tw text-t-bd dark:text-blues-100 !fre font-bold "
+                      value={routeTitle}
+                      placeholder={"Innovation Strategy"}
+                      onChange={(e) => {
+                        setRouteTitle(e.target.value);
+                      }}
+                    ></TextareaAutosize>
+                  </div>
+                  <div className="relative group">
                     <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-pm via-violet-400 to-t-pd blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
-                    
+
                     <button
                       className=" px-2 h-[2em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer !shadow-clear-pd3 md:hover:shadow-xl m-1 drop-shadow-xl !bg-gradient-to-br from-white via-t-pl  to-t-pm !shadow-2xl "
-                      onClick={() => {
-                        
-                      }}
+                      onClick={() => {}}
                     >
                       <>
-                     
-                        <p className="pl-2 text-t-pd dark:text-t-pd">
-                          Earth
-                        </p>
+                        <p className="pl-2 text-t-pd dark:text-t-pd">Earth</p>
                         <FaGlobeAmericas
                           style={{ fontSize: "32px" }}
                           className="pl-2 text-t-pd"
                         />
                       </>
                     </button>
-
-                    </div>
+                  </div>
                   <div className="flex flex-col items-center">
                     <div className="glass-box bg-clear-bl2 min-h-[10em] flex flex-col items-center p-5 my-2 w-full">
                       <p className="absolute text-xl text-left top-2 left-3 fre text-t-bl">
@@ -235,9 +215,7 @@ toast.success("Route saved!");
                         <TextareaAutosize
                           className="w-[80%] ml-24 mt-3 whitespace-normal textarea-box textarea-tw"
                           value={question}
-                          placeholder={
-                            "How could we ...?"
-                          }
+                          placeholder={"How could we ...?"}
                           onChange={(e) => {
                             setQuestion(e.target.value);
                           }}
@@ -258,10 +236,12 @@ toast.success("Route saved!");
                       <div className="relative flex items-center w-full">
                         {" "}
                         <div className="flex flex-col ">
-
-
-                        <p className="absolute text-left left-2 top-3">Text Area</p>
-                        <p className="absolute text-left top-8 left-2">Placeholder</p>
+                          <p className="absolute text-left left-2 top-3">
+                            Text Area
+                          </p>
+                          <p className="absolute text-left top-8 left-2">
+                            Placeholder
+                          </p>
                         </div>
                         <TextareaAutosize
                           className="w-[80%] ml-24 mt-3 whitespace-normal textarea-box textarea-tw"
@@ -309,7 +289,7 @@ toast.success("Route saved!");
                     <button
                       className="w-[8em] h-[2em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer !shadow-clear-pd3 md:hover:shadow-xl m-1 drop-shadow-xl !bg-gradient-to-br from-white via-t-pl  to-t-pm !shadow-2xl "
                       onClick={() => {
-                         setStepNum(stepNum + 1);
+                        setStepNum(stepNum + 1);
                         //  setStepBuilderArray([...stepBuilderArray, counter]);
 
                         let data = {
@@ -325,17 +305,15 @@ toast.success("Route saved!");
                         setRouteArray([...routeArray, data]);
                         // console.log(routeArray);
 
-                        if(editMode){
-                setEditMode(false)
-
+                        if (editMode) {
+                          setEditMode(false);
                         }
-                        
+
                         setTitle("");
                         setQuestion("");
                         setSubtext("");
                         setPopupText("");
                         setPlaceholder("");
-                        
                       }}
                     >
                       <>
@@ -351,14 +329,18 @@ toast.success("Route saved!");
                     </button>
                   </div>
                 </div>
-                
+
                 <div className="relative flex flex-col px-3 py-1 glass-box">
                   <h4 className="mt-0">{routeTitle}</h4>
-                  {routeArray.length === 0 && ( <div
-        className={"flex flex-col items-center min-w-[10em] glass-box bg-clear-bl2"}
-      >
-        No steps added yet
-      </div>)}
+                  {routeArray.length === 0 && (
+                    <div
+                      className={
+                        "flex flex-col items-center min-w-[10em] glass-box bg-clear-bl2"
+                      }
+                    >
+                      No steps added yet
+                    </div>
+                  )}
                   {routeArray.map((step, index) => (
                     <StepVizUnit
                       num={step.num}
@@ -374,15 +356,14 @@ toast.success("Route saved!");
                 </div>
               </div>
             </div>
-      </div>
           </div>
-        )}
+        </div>
+      )}
     </div>
   );
 }
 
 export default WizardBuilder;
-
 
 function StepVizUnit({
   text,
@@ -408,11 +389,13 @@ function StepVizUnit({
   }, []);
 
   return (
-    <div className="flex flex-col items-center transition cursor-pointer hover:scale-105 active:scale-95 fade-effect-quick"
-    onClick={()=>{
-    // console.log(num)
-    loadStep(num)
-    }}>
+    <div
+      className="flex flex-col items-center transition cursor-pointer hover:scale-105 active:scale-95 fade-effect-quick"
+      onClick={() => {
+        // console.log(num)
+        loadStep(num);
+      }}
+    >
       <div
         className={"flex flex-col items-center min-w-[10em] glass-box " + color}
       >
@@ -438,9 +421,6 @@ function StepVizUnit({
   );
 }
 
-
-
-
 // function NormalEntry({ text, placeholder }) {
 //   const [content, setContent] = React.useState("");
 
@@ -459,11 +439,6 @@ function StepVizUnit({
 //     </div>
 //   );
 // }
-
-
-
-
-
 
 //  function StepBuilder({num}) {
 //   const [content, setContent] = React.useState("");
@@ -509,4 +484,3 @@ function StepVizUnit({
 //             </div>
 //   )
 // }
-

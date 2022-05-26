@@ -14,8 +14,6 @@ import {
 import toast from "react-hot-toast";
 import {
   serverTimestamp,
-  query,
-  where,
   collection,
   orderBy,
   doc,
@@ -23,9 +21,7 @@ import {
   updateDoc,
   addDoc,
   onSnapshot,
-  deleteDoc,
   setDoc,
-  getDoc,
 } from "firebase/firestore";
 import { useSelector, useDispatch } from "react-redux";
 import { pFormAction } from "../../../redux/actions";
@@ -263,29 +259,28 @@ function PDetails(props) {
         </div> */}
 
             <div className="flex flex-col">
-            <div className="flex flex-col p-2 my-2 glass-box bg-clear-pl5">
+              <div className="flex flex-col p-2 my-2 glass-box bg-clear-pl5">
+                <div className="flex">
+                  {" "}
+                  <p>Give your problem/challenge/mission a name!</p>
+                  <p className="text-t-pm">*</p>
+                </div>
 
-              <div className="flex">
-                {" "}
-                <p>Give your problem/challenge/mission a name!</p>
-                <p className="text-t-pm">*</p>
-              </div>
-
-              <input
-                type="text"
-                required
-                className="textarea-box textarea-tw   h-[3em] !rounded-xl"
-                name="title"
-                placeholder="Title"
-                value={titleContent}
-                onChange={(e) => {
-                  setTitleContent(e.target.value);
-                  if (!props.changes) {
-                    props.setChanges(true);
-                  }
-                  update(e);
-                }}
-              />
+                <input
+                  type="text"
+                  required
+                  className="textarea-box textarea-tw   h-[3em] !rounded-xl"
+                  name="title"
+                  placeholder="Title"
+                  value={titleContent}
+                  onChange={(e) => {
+                    setTitleContent(e.target.value);
+                    if (!props.changes) {
+                      props.setChanges(true);
+                    }
+                    update(e);
+                  }}
+                />
               </div>
 
               {/* <p>Your problem so far:</p>
@@ -310,12 +305,12 @@ function PDetails(props) {
               </div> */}
 
               <div className="flex flex-col p-2 my-2 glass-box bg-clear-pl2">
-              <p>
-                What problem are you trying to solve? What frustrates or annoys
-                your users?
-              </p>
+                <p>
+                  What problem are you trying to solve? What frustrates or
+                  annoys your users?
+                </p>
 
-              {/* <textarea
+                {/* <textarea
                 // type="text"
                 className="textarea-box textarea-tw  h-[5em] whitespace-normal"
                 name="pq1"
@@ -323,21 +318,21 @@ function PDetails(props) {
                 placeholder="..."
                 onChange={update}
               /> */}
-              <TextareaAutosize
-                className="textarea-box textarea-tw  h-[5em] whitespace-normal"
-                value={content1}
-                name="pq1"
-                placeholder="..."
-                onChange={update}
-              ></TextareaAutosize>
+                <TextareaAutosize
+                  className="textarea-box textarea-tw  h-[5em] whitespace-normal"
+                  value={content1}
+                  name="pq1"
+                  placeholder="..."
+                  onChange={update}
+                ></TextareaAutosize>
               </div>
               <div className="flex flex-col p-2 my-2 glass-box bg-clear-pl2">
-              <p>
-                Explain why this frustration/annoyance occurs? This is a
-                potential cause
-              </p>
+                <p>
+                  Explain why this frustration/annoyance occurs? This is a
+                  potential cause
+                </p>
 
-              {/* <textarea
+                {/* <textarea
                 // type="text"
                 className="textarea-box textarea-tw  h-[5em] whitespace-normal"
                 name="pq2"
@@ -346,19 +341,19 @@ function PDetails(props) {
                 onChange={update}
               /> */}
                 <TextareaAutosize
-                className="textarea-box textarea-tw  h-[5em] whitespace-normal"
-                value={content2}
-                name="pq2"
-                placeholder="..."
-                onChange={update}
-              ></TextareaAutosize>
+                  className="textarea-box textarea-tw  h-[5em] whitespace-normal"
+                  value={content2}
+                  name="pq2"
+                  placeholder="..."
+                  onChange={update}
+                ></TextareaAutosize>
               </div>
               <div className="flex flex-col p-2 my-2 glass-box bg-clear-pl2">
-              <p>
-                Why does the potential cause occur? This is your root cause.
-              </p>
+                <p>
+                  Why does the potential cause occur? This is your root cause.
+                </p>
 
-              {/* <textarea
+                {/* <textarea
                 // type="text"
                 className="textarea-box textarea-tw  h-[5em] whitespace-normal"
                 name="pq3"
@@ -367,16 +362,15 @@ function PDetails(props) {
                 onChange={update}
               /> */}
 
-              <TextareaAutosize
-                className="textarea-box textarea-tw  h-[5em] whitespace-normal"
-                value={content3}
-                name="pq3"
-                placeholder="..."
-                onChange={update}
-              ></TextareaAutosize>
+                <TextareaAutosize
+                  className="textarea-box textarea-tw  h-[5em] whitespace-normal"
+                  value={content3}
+                  name="pq3"
+                  placeholder="..."
+                  onChange={update}
+                ></TextareaAutosize>
               </div>
-             
-             
+
               {/* <p>
                 *This note will be saved to your Idea Page for your review
                 later.

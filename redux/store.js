@@ -11,8 +11,8 @@ import { persistStore, persistReducer } from "redux-persist";
 import { createWrapper, Context, HYDRATE } from "next-redux-wrapper";
 import thunkMiddleware from "redux-thunk";
 // import { composeWithDevTools } from '@redux-devtools/extension';
-import { createLogger } from 'redux-logger'
-import hardSet from 'redux-persist/lib/stateReconciler/autoMergeLevel2'
+import { createLogger } from "redux-logger";
+import hardSet from "redux-persist/lib/stateReconciler/autoMergeLevel2";
 
 import storage from "./storage";
 import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
@@ -48,6 +48,7 @@ import sFormReducer from "./reducers/sFormReducer";
 import sUpdateReducer from "./reducers/sUpdate";
 import sentenceArrayReducer from "./reducers/SentenceArray";
 import randomize2Reducer from "./reducers/randomize2";
+import currentJourney from "./reducers/currentJourney";
 //OTHER REDUCERS GO HERE
 
 // let devTools;
@@ -95,6 +96,7 @@ const appReducer = combineReducers({
   sForm: sFormReducer,
   sUpdate: sUpdateReducer,
   sArray: sentenceArrayReducer,
+  currentJourney: currentJourney,
   //other reducers go here
 });
 // console.log(rootReducer);
@@ -156,12 +158,11 @@ const makeStore = ({ isServer }) => {
   //   logErrors: true,
   //   duration: true,
   // });
-  if (typeof window === 'undefined') {
+  if (typeof window === "undefined") {
     // console.log('IS SERVER')
     //If it's on server side, create a store
     // return createStore(appReducer, bindMiddleware([thunkMiddleware,logger]);
     return createStore(appReducer, bindMiddleware([thunkMiddleware]));
-
   } else {
     //If it's on client side, create a store which will persist
 
@@ -170,7 +171,7 @@ const makeStore = ({ isServer }) => {
     const persistConfig = {
       key: "root",
       storage: storage,
-      // stateReconciler: autoMergeLevel2, 
+      // stateReconciler: autoMergeLevel2,
       stateReconciler: hardSet,
       debug: false,
     };
@@ -181,7 +182,6 @@ const makeStore = ({ isServer }) => {
       persistedReducer,
       // bindMiddleware([thunkMiddleware, logger])
       bindMiddleware([thunkMiddleware])
-
     ); // Creating the store again
 
     store.__persistor = persistStore(store); // This creates a persistor object & push that persisted object to .__persistor, so that we can avail the persistability feature

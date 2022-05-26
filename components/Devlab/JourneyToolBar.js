@@ -10,41 +10,39 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import Modal from "../Layout/Modal";
 import ReusableModal from "../Layout/ReusableModal";
-function ThoughtToolBar({ SW, setPlay, fullScreen, setFullScreen }) {
-  const sFormRedux = useSelector((state) => state.sForm);
-  const sUpdate = useSelector((state) => state.sUpdate);
+import { useRouter } from "next/router";
 
-  const { idea } = useSelector((state) => state.sForm);
+function JourneyToolBar({ SW, setPlay, fullScreen, setFullScreen, kind }) {
+  // const sFormRedux = useSelector((state) => state.sForm);
+  // const sUpdate = useSelector((state) => state.sUpdate);
+  const router = useRouter();
+  // const { idea } = useSelector((state) => state.sForm);
 
-  const [ideaBar, setIdeaBar] = useState(null);
+  // const [ideaBar, setIdeaBar] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [openShareMenu, setOpenShareMenu] = useState(false);
+  const [update, setUpdate] = useState(false);
 
-  // console.log(idea)
+  console.log(SW);
+  console.log(SW?.state.activeStep);
 
   useEffect(() => {
     // console.log("ran")
-
-    if (sFormRedux.idea?.title) {
-      // console.log("idea")
-      setIdeaBar(sFormRedux.idea.title);
-    } else {
-      setIdeaBar(null);
-    }
-  }, [sUpdate]); // eslint-disable-line react-hooks/exhaustive-deps
+    setUpdate(!update);
+  }, [SW?.state.activeStep]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div
       className={
-        "sticky  z-40 flex items-center justify-between border-t-0 shadow-xl  " +
-        (fullScreen ? "" : "top-0 bg-white/30")
+        "  z-40 flex items-center justify-between border-t-0 shadow-xl w-full " +
+        (fullScreen ? "fixed top-0 left-0 " : " sticky top-0 bg-white/60")
       }
     >
       <div
         className={
           "flex justify-between w-full h-full   " +
           (fullScreen
-            ? " bg-gradient-to-b from-clear-pl2 via-slate-500/40"
+            ? " bg-gradient-to-b from-clear-pl2 via-white/40"
             : " bg-gradient-to-l from-clear-pl2")
         }
       >
@@ -52,10 +50,10 @@ function ThoughtToolBar({ SW, setPlay, fullScreen, setFullScreen }) {
           <button
             className="flex items-center gap-2 px-3 py-1 my-1 ml-3 text-sm transition rounded-lg nun bg-clear-pl4 hover:scale-105 active:scale-95"
             onClick={() => {
-              setPlay(false);
+              router.push("/devlab/journey-explorer");
             }}
           >
-            <FaLongArrowAltLeft /> Back to Builder
+            <FaLongArrowAltLeft /> Exit
           </button>
         </div>
         {modalOpen && (
@@ -82,23 +80,14 @@ function ThoughtToolBar({ SW, setPlay, fullScreen, setFullScreen }) {
             {/* <img src="ii-palm.png" alt="" /> */}
           </ReusableModal>
         )}
-
         {openShareMenu && <Modal setOpenShareMenu={setOpenShareMenu} />}
-
-        {ideaBar ? (
-          <div className="whitespace-nowrap flex w-[30em] ml-4 fade-effect-quick">
-            <p className="text-t-bl">Current Idea: </p>
-            <p className="ml-2 truncate text-t-pd">{ideaBar}</p>
-          </div>
-        ) : (
-          <div></div>
-        )}
+        <div className="whitespace-nowrap flex w-[30em] ml-4 fade-effect-quick">
+          <p className="ml-2 truncate text-t-pd">{kind}</p>
+        </div>
 
         <div className="flex justify-end text-xl fade-effect-quick">
           <div className="flex gap-5 py-1 pl-3 pr-5 text-xl">
-            <p className="text-sm">
-              Step: {SW?.currentStep} / {SW?.totalSteps}
-            </p>
+            
             {fullScreen ? (
               <AiOutlineFullscreenExit
                 onClick={() => setFullScreen(!fullScreen)}
@@ -141,4 +130,4 @@ function ThoughtToolBar({ SW, setPlay, fullScreen, setFullScreen }) {
   );
 }
 
-export default ThoughtToolBar;
+export default JourneyToolBar;

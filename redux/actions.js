@@ -10,6 +10,12 @@ export const logOutAction = (boolean) => {
     payload: boolean,
   };
 };
+export const currentJourneyAction = (data) => {
+  return {
+    type: "JOURNEY",
+    payload: data,
+  };
+};
 export const userUIDAction = (data) => {
   return {
     type: "UID_Redux",
