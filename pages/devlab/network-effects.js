@@ -20,6 +20,7 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/router";
 import { currentJourneyAction } from "../../redux/actions";
 import JourneyToolBar from "../../components/Devlab/JourneyToolBar";
+import LastSlide from "../../components/Devlab/LastSlide";
 
 let networkEffects = [
   {
@@ -160,7 +161,6 @@ function NetworkEffects(props) {
         //   updated.id = timeID;
         //   dispatch(currentJourney(updated));
         // }
-        dispatch(currentJourneyAction({ results: [] }));
         toast.success("Progress saved!");
         // props.setChanges(false);
         router.push("/devlab/journey-explorer");
@@ -287,6 +287,8 @@ function NetworkEffects(props) {
             saveAnswers={saveAnswers}
           />
         ))}
+
+        <LastSlide hashKey={"results"} />
       </StepWizard>
     </div>
   );
