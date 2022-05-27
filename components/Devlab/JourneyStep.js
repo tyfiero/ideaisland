@@ -33,17 +33,17 @@ function JourneyStep({
   const saveProgress = () => {
     let updated = currentJourney;
     let entry = { step: num, q: text, a: content };
-    console.log(props.currentStep);
-    console.log(updated.results.length + 1);
+    // console.log(props.currentStep);
+    // console.log(updated.results.length + 1);
     // console.log(updated);
 
     if (!stepChanged) {
-      console.log("no changes");
+      // console.log("no changes");
       return;
     } else if (updated.results.length + 1 !== props.currentStep) {
       //find then update
-      console.log("find then update");
-      console.log(updated.results[props.currentStep - 1]);
+      // console.log("find then update");
+      // console.log(updated.results[props.currentStep - 1]);
       updated.results[props.currentStep - 1] = entry;
       dispatch(currentJourneyAction(updated));
     } else {

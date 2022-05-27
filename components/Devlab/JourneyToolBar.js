@@ -23,8 +23,8 @@ function JourneyToolBar({ SW, setPlay, fullScreen, setFullScreen, kind }) {
   const [openShareMenu, setOpenShareMenu] = useState(false);
   const [update, setUpdate] = useState(false);
 
-  console.log(SW);
-  console.log(SW?.state.activeStep);
+  // console.log(SW);
+  // console.log(SW?.state.activeStep);
 
   useEffect(() => {
     // console.log("ran")
