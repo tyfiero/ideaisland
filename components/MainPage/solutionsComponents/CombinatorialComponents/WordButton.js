@@ -70,6 +70,7 @@ function WordButton({ text, word, updateSelected, selectedWords, mode }) {
     }
   }, [clicked]);
 
+  
   //randomize button function
   useEffect(() => {
     // console.log(isRandomized);
@@ -113,29 +114,7 @@ function WordButton({ text, word, updateSelected, selectedWords, mode }) {
 
   //Function that is run after cascade option picked
   function onCascadeChange(value, label) {
-    // console.log(value);
-    // console.log(label);
 
-    // console.log(value[2].replace(/['"]+/g, ''))
-    // if (value[2] === "emojis") {
-    //   setList(emojis);
-    // } else if (value[2] === "companies") {
-    //   setList(companies);
-    // } else if (value[2] === "cryptoTerms") {
-    //   setList(cryptoTerms);
-    // } else if (value[2] === "cryptoTokens") {
-    //   setList(companies);
-    // } else if (value[2] === "software") {
-    //   setList(software);
-    // } else if (value[2] === "companies") {
-    //   setList(companies);
-    // } else if (value[2] === "companies") {
-    //   setList(companies);
-    // } else if (value[2] === "companies") {
-    //   setList(companies);
-    // } else if (value[2] === "companies") {
-    //   setList(companies);
-    // }
 
     if (value.length > 2) {
       setList(value[2]);

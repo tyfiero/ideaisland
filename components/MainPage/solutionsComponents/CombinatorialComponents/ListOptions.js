@@ -96,7 +96,6 @@ export const allOptions = [
             value: cryptoTokens,
             label: "₿ Crypto Projects/Tokens",
           },
-         
         ],
       },
       {

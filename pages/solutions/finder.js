@@ -1,5 +1,3 @@
-
-
 import { React, useState, useEffect, useContext } from "react";
 import {
   FaArrowUp,
@@ -11,12 +9,20 @@ import {
   FaLongArrowAltRight,
   FaPlus,
   FaRandom,
+  FaRegImages,
   FaRobot,
   FaTimes,
 } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import Card from "../../components/MainPage/solutionsComponents/CombinatorialComponents/Card";
 import GPTtool from "../../components/MainPage/solutionsComponents/AI/GPT3";
+import ToolTip from "../../components/Layout/ToolTip";
+import {
+  software,
+  industries,
+  impactVerbs,
+} from "../../components/MainPage/solutionsComponents/CombinatorialComponents/ListsAll";
+
 import { randomizeAction, sArrayAction } from "../../redux/actions";
 import IdeaNote from "../../components/Notes/NoteBubble/Idea";
 import RandomPics from "../../components/MainPage/solutionsComponents/CombinatorialComponents/RandomPics";
@@ -37,6 +43,7 @@ import InspirationStatement from "../../components/MainPage/solutionsComponents/
 import { motion, AnimatePresence } from "framer-motion";
 import { UserContext } from "../../lib/context";
 import Link from "next/link";
+import NewCard from "../../components/MainPage/solutionsComponents/CombinatorialComponents/NewCard";
 
 const CombinatorialPage = (props) => {
   const router = useRouter();
@@ -50,21 +57,22 @@ const CombinatorialPage = (props) => {
   // console.log(sArray);
 
   const dispatch = useDispatch();
-  const [inputList, setInputList] = useState([
-    { id: 0, type: "Intro", list: "How", text: "How might we" },
-    { id: 1, type: "Verb", list: "Modifier", text: "improve" },
-    { id: 2, type: "Noun", list: "Software", text: "tech" },
-    { id: 3, type: "Verb", list: "Action", text: "brainstorming" },
-    {
-      id: 4,
-      type: "Desired Outcome",
-      list: "People",
-      text: "for entrepreneurs?",
-    },
-  ]);
+  // const [inputList, setInputList] = useState([
+  //   { id: 0, type: "Intro", list: "How", text: "How might we" },
+  //   { id: 1, type: "Verb", list: "Modifier", text: "improve" },
+  //   { id: 2, type: "Noun", list: "Software", text: "tech" },
+  //   { id: 3, type: "Verb", list: "Action", text: "brainstorming" },
+  //   {
+  //     id: 4,
+  //     type: "Desired Outcome",
+  //     list: "People",
+  //     text: "for entrepreneurs?",
+  //   },
+  // ]);
 
-  const [cardNum, setCardNum] = useState(0);
+  // const [cardNum, setCardNum] = useState(0);
   const [aiOpen, setAiOpen] = useState(true);
+  const [cardsOpen, setCardsOpen] = useState(true);
 
   const [randomImageOpen, setRandomImageOpen] = useState(false);
   const [notesOpen, setNotesOpen] = useState(true);
@@ -76,10 +84,10 @@ const CombinatorialPage = (props) => {
   const noteHandler = () => {
     if (notesOpen) {
       setNotesOpen(true);
-      console.log("notesopen");
+      // console.log("notesopen");
     } else {
       setNotesOpen(false);
-      console.log("NAH");
+      // console.log("NAH");
     }
   };
   const keyMap = {
@@ -89,6 +97,9 @@ const CombinatorialPage = (props) => {
     NOTES: noteHandler,
   };
 
+  const randomizeAll = (event) => {
+    dispatch(randomizeAction(true));
+  };
   // useEffect(() => {
 
   //   setSplitTextArray(['How', 'might', 'we', '10X', 'brainstorming', 'for', 'tech', 'companies?'])
@@ -128,64 +139,62 @@ const CombinatorialPage = (props) => {
 
   // console.log(card0Word, card1Word, card2Word);
 
-  const swapPositions = (array, a, b) => {
-    [array[a], array[b]] = [array[b], array[a]];
+  // const swapPositions = (array, a, b) => {
+  //   [array[a], array[b]] = [array[b], array[a]];
 
-    dispatch(sArrayAction(array));
-    setUpdate(!update);
-  };
+  //   dispatch(sArrayAction(array));
+  //   setUpdate(!update);
+  // };
 
+  // const onAddBtnClick = (event) => {
+  //   let newArray = sArray;
+  //   var highestId = Math.max.apply(
+  //     Math,
+  //     newArray.map(function (data) {
+  //       return data.id;
+  //     })
+  //   );
+  //   console.log(highestId);
+  //   let nextId = highestId + 1;
 
+  //   newArray.push({ id: nextId, type: "Blank", list: "", text: "" });
+  //   console.log(newArray);
+  //   dispatch(sArrayAction(newArray));
 
-  const onAddBtnClick = (event) => {
-    let newArray = sArray;
-    var highestId = Math.max.apply(
-      Math,
-      newArray.map(function (data) {
-        return data.id;
-      })
-    );
-    console.log(highestId);
-    let nextId = highestId + 1;
+  //   setUpdate(!update);
+  // };
 
-    newArray.push({ id: nextId, type: "Blank", list: "", text: "" });
-    console.log(newArray);
-    dispatch(sArrayAction(newArray));
+  // const deleteSegment = (id) => {
+  //   let newArray = sArray;
+  //   console.log(id);
+  //   console.log("before");
+  //   console.log(newArray);
 
-    setUpdate(!update);
-  };
+  //   for (var i = newArray.length - 1; i >= 0; i--) {
+  //     if (newArray[i].id === id) {
+  //       console.log(newArray[i]);
+  //       newArray.splice(i, 1);
+  //     }
+  //   }
+  //   dispatch(sArrayAction(newArray));
+  //   setUpdate(!update);
+  //   console.log("after");
+  //   console.log(newArray);
+  // };
 
-  const deleteSegment = (id) => {
-    let newArray = sArray;
-    console.log(id);
-    console.log("before");
-    console.log(newArray);
-
-    for (var i = newArray.length - 1; i >= 0; i--) {
-      if (newArray[i].id === id) {
-        console.log(newArray[i]);
-        newArray.splice(i, 1);
-      }
-    }
-    dispatch(sArrayAction(newArray));
-    setUpdate(!update);
-    console.log("after");
-    console.log(newArray);
-  };
-
-  const updateSegment = (data) => {
-    //     let newArray = inputList;
-    // console.log(newArray);
-    //     for (var i = newArray.length - 1; i >= 0; i--) {
-    //       if (newArray[i].id === data.id) {
-    //         console.log(newArray[i]);
-    //         newArray[i] = data;
-    //         console.log(newArray[i]);
-    //       }
-    //     }
-    //     setInputList(newArray);
-    //     setUpdate(!update);
-  };
+  // const updateSegment = (data) => {
+  //   //     let newArray = inputList;
+  //   // console.log(newArray);
+  //   //     for (var i = newArray.length - 1; i >= 0; i--) {
+  //   //       if (newArray[i].id === data.id) {
+  //   //         console.log(newArray[i]);
+  //   //         newArray[i] = data;
+  //   //         console.log(newArray[i]);
+  //   //       }
+  //   //     }
+  //   //     setInputList(newArray);
+  //   //     setUpdate(!update);
+  // };
 
   // console.log(selectedWords)
 
@@ -193,39 +202,40 @@ const CombinatorialPage = (props) => {
     <div>
       <GlobalHotKeys keyMap={keyMap} handlers={handlers} />
 
-      <div className="relative overflow-x-hidden card-container fade-effect-quick">
+      <div className="relative flex flex-col items-center overflow-x-hidden card-container fade-effect-quick">
         {/* div that holds all the cards, note the img prop where the url lives, as well as the array thats passed in to Card.js as a prop */}
-        <h1 className="text-3xl text-t-bd dark:text-blues-100">
+        <h1 className="mb-0 text-3xl text-t-bd dark:text-blues-100">
           Solution Finder
         </h1>
-        <div>
-          {" "}
-          <div className="absolute md:top-2 md:right-2 sm:scale-75 sm:-top-1 sm:-right-5">
-            <div className="relative group">
-              <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
-              <button
-                className="md:w-[10em] sm:px-2 md:h-[2.5em] sm:h-[2em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-clear-bd3 md:hover:shadow-xl m-1 drop-shadow-xl "
-                onClick={() => router.push("/solutions/improve")}
-              >
-                Improve Idea
-                <FaLongArrowAltRight className="ml-1 text-[24px]" />
-              </button>
-            </div>
-          </div>
-        </div>
-        {/* <div
-    className="flex flex-col items-center w-full"
-   
-  >
-    <p  className="text-left">
-      Template:
-    </p>
-    <TemplateBar />
-   
-  </div> */}
+        <div className="flex flex-wrap items-center gap-4 p-2 text-center sm:scale-80 justify-evenly normal-box-soft">
+          <div className="flex gap-4">
+            <button
+              className={
+                "md:w-[9em]   h-[2em] rounded-3xl  flex items-center justify-between px-4 text-white gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer " +
+                (cardsOpen
+                  ? " bg-indigo-600/80 shadow-lg shadow-indigo-300/60 ring-4 ring-indigo-800"
+                  : " bg-indigo-200 shadow-inner")
+              }
+              onClick={() => setCardsOpen(!cardsOpen)}
+            >
+              <FaRegImages
+                className={
+                  "text-[18px] " +
+                  (cardsOpen ? "fill-white" : "text-indigo-800")
+                }
+              />
 
-        <div className="w-[98%] rounded-xl cards ring-0 md:p-5 mt-5 relative">
-          <div className="flex sm:scale-80 w-[40em] p-2 gap-2 items-center justify-evenly text-center normal-box-soft md:absolute md:top-0 md:right-0">
+              <p
+                className={
+                  "mr-1  mb-0 " +
+                  (cardsOpen
+                    ? "text-white text-[18px]"
+                    : "text-indigo-600 text-[18px]")
+                }
+              >
+                Cards
+              </p>
+            </button>
             <button
               className={
                 "md:w-[9em]   h-[2em] rounded-3xl  flex items-center justify-between px-4 text-white gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer " +
@@ -252,6 +262,9 @@ const CombinatorialPage = (props) => {
                 AI Tool
               </p>
             </button>
+          </div>
+
+          <div className="flex gap-4">
             <button
               className={
                 "w-[12em] h-[2em] rounded-3xl  flex items-center justify-between px-3 text-white gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer " +
@@ -306,7 +319,91 @@ const CombinatorialPage = (props) => {
               </p>
             </button>
           </div>
+        </div>
+        <div>
+          {" "}
+          <div className="absolute md:top-2 md:right-2 sm:scale-75 sm:-top-1 sm:-right-5">
+            <div className="relative group">
+              <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
+              <button
+                className="md:w-[10em] sm:px-2 md:h-[2.5em] sm:h-[2em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-clear-bd3 md:hover:shadow-xl m-1 drop-shadow-xl "
+                onClick={() => router.push("/solutions/improve")}
+              >
+                Improve Idea
+                <FaLongArrowAltRight className="ml-1 text-[24px]" />
+              </button>
+            </div>
+          </div>
+        </div>
+        {/* <div
+    className="flex flex-col items-center w-full"
+   
+  >
+    <p  className="text-left">
+      Template:
+    </p>
+    <TemplateBar />
+   
+  </div> */}
 
+        <div className="w-[98%] rounded-xl cards ring-0 md:px-5 mt-2 relative">
+          {/* <Card /> */}
+          <AnimatePresence exitBeforeEnter>
+            {cardsOpen && (
+              <motion.div
+                key={"pics"}
+                exit={{ opacity: 0, scale: 1 }}
+                initial={{ opacity: 0, scale: 0.7 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.2 }}
+                className="px-2 pb-5 glass-box bg-[rgba(255, 255, 255, 0.25)]
+                dark:bg-[hsla(200,0%,5%,0.35)] ring-4 ring-indigo-200 bg-t-bl/10
+                md:min-w-[42em] h-full !border-0 mb-1 bg-indigo-400/20 sm:w-[98%]   max-w-[95%] mt-2 md:w-fit"
+              >
+                <div className="absolute sm:-right-5 md:-right-1 flex justify-between gap-2 px-1 transition duration-500 border-b-2 border-l-2 opacity-100 sm:-top-1 md:-top-1 rounded-bl-md border-indigo-400 rounded-tr-md group-hover:opacity-100 bg-indigo-300/20 sm:scale-[85%]">
+                  <button
+                    data-tip
+                    data-for="random-all"
+                    className="flex items-center justify-center w-10 gap-4 p-2 px-2 m-1 text-white bg-indigo-600 cursor-pointer rounded-3xl drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95"
+                    onClick={randomizeAll}
+                  >
+                    <FaDice className="text-xl" />
+                    <ToolTip
+                      text="Randomize all selected"
+                      id="random-all"
+                      w=" !w-[15em]"
+                      place="left"
+                    />
+                  </button>
+                </div>
+                <div className="">
+                  <p className="text-lg text-left text-indigo-600">
+                    Combinatorial Cards
+                  </p>
+                  <p className="text-sm text-left text-indigo-800">
+                    For combining concepts together.
+                  </p>
+                </div>{" "}
+                <div className="flex flex-wrap justify-center gap-3">
+                  <NewCard
+                    default={software}
+                    defaultLabel="💿 Software"
+                    defaultWord="software"
+                  />
+                  <NewCard
+                    default={impactVerbs}
+                    defaultLabel="💥 High Impact Verbs"
+                    defaultWord="Helping"
+                  />
+                  <NewCard
+                    default={industries}
+                    defaultLabel="🏭 Industries"
+                    defaultWord="Innovation"
+                  />
+                </div>{" "}
+              </motion.div>
+            )}
+          </AnimatePresence>
           {/* Modular card implementation */}
           {/* <div className="relative flex flex-col items-center w-full mt-5">
       <div className="max-w-[98%] rounded-xl cards  p-5 mt-5 relative group glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   !border-4 !border-t-bl">
@@ -352,44 +449,16 @@ const CombinatorialPage = (props) => {
           {/* </div> */}
           {/* <p className="my-24 mb-24 text-5xl text-t-pm">{splitText}</p> */}
 
-          <div className="flex flex-wrap items-start justify-center w-full gap-2 md:mt-10 sm:mt-2 sm:mb-[10em]">
+          <div className="flex flex-wrap items-start justify-center w-full gap-2 md:mt-2 sm:mt-2 sm:mb-[10em]">
             {/* <p className="text-2xl text-t-pm">Problem Statement</p> */}
 
-            <div className="relative flex flex-col w-full gap-1 glass-box !border-t-pm border-2 items-center">
+            {/* <div className="relative flex flex-col w-full gap-1 glass-box !border-t-pm border-2 items-center">
               <ProblemStatement />
               <BsArrowDown className="text-3xl dark:text-white" />
               <InspirationStatement  />
-              {/* <BsArrowDown className="text-3xl"/> */}
-            </div>
 
-            {/* <p className="text-2xl text-t-bl">Idea Inspiration</p>
-    <ProblemStatement
-  randomizeAll={randomizeAll}
-  />      
-       <p className="text-2xl text-t-bd">Idea Template</p>
-    <ProblemStatement
-  randomizeAll={randomizeAll}
-  />       */}
+            </div> */}
 
-            {/* <p>idea: multiple views for this tool You can select problem statement, solution inspiration statement ( , of ), or the three random words, or two words on either side, and an icon in the middle which signifies what the two things should do to each other (scamper etc)</p>
-      <div className="flex items-center gap-3">
-   
-
-    <p className="text-xl">Home improvement</p>
-    <FaRandom className="text-3xl" />
-    <p className="text-xl">Sales Software</p>
-
-
-      </div>
-      <div className="flex items-center gap-3">
-   
-
-   <p className="text-xl">Home improvement</p>
-   <FaExpandAlt className="text-3xl" />
-   <p className="text-xl">Sales Software</p>
-
-
-     </div> */}
             {/* <div className="mt-24"><SentenceTool /></div> */}
             <AnimatePresence exitBeforeEnter>
               {randomImageOpen && (
@@ -435,29 +504,33 @@ const CombinatorialPage = (props) => {
                     <p className="text-lg text-left text-t-pd">
                       Innovation AI (beta)
                     </p>
-                   {paidPlan === "Hobbyist" ? (<div className="flex flex-col w-full ">
-              <div className="flex items-center justify-between ai-output-box bg-white/80 min-h-[14em] dark:bg-slate-800/60">
-                <h3 className="text-2xl text-gray-700 nun dark:text-t-pd">
-                  {"Innovation AI is a Premium Feature"}
-                </h3>
-                <p className="text-gray-700">
-                  {
-                    "Upgrade to the Innovator or Pro Plan to unlock the power of AI"
-                  }
-                </p>
-              
-                <Link href="/pricing" passHref>
-          <a>
-            <button className="w-[18em] h-12 rounded-3xl bg-t-pm text-xl flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95">
-              <FaArrowUp style={{ color: "white", fontSize: "29px" }} />
-              Upgrade My Account!
-            </button>
-          </a>
-        </Link>
+                    {paidPlan === "Hobbyist" ? (
+                      <div className="flex flex-col w-full ">
+                        <div className="flex items-center justify-between ai-output-box bg-white/80 min-h-[14em] dark:bg-slate-800/60">
+                          <h3 className="text-2xl text-gray-700 nun dark:text-t-pd">
+                            {"Innovation AI is a Premium Feature"}
+                          </h3>
+                          <p className="text-gray-700">
+                            {
+                              "Upgrade to the Innovator or Pro Plan to unlock the power of AI"
+                            }
+                          </p>
 
-                 
-              </div>
-            </div>): <GPTtool showButton={true} />} 
+                          <Link href="/pricing" passHref>
+                            <a>
+                              <button className="w-[18em] h-12 rounded-3xl bg-t-pm text-xl flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95">
+                                <FaArrowUp
+                                  style={{ color: "white", fontSize: "29px" }}
+                                />
+                                Upgrade My Account!
+                              </button>
+                            </a>
+                          </Link>
+                        </div>
+                      </div>
+                    ) : (
+                      <GPTtool showButton={true} />
+                    )}
                   </motion.div>
                 )}
               </AnimatePresence>

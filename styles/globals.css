@@ -2945,7 +2945,6 @@ input[type="range"]::-moz-range-thumb:active {
   color: var(--quillIconColor) !important;
 }
 
-
 .RSPBprogressBar {
   height: 10px;
   line-height: 1;
@@ -2958,39 +2957,58 @@ input[type="range"]::-moz-range-thumb:active {
   z-index: 0;
 }
 
-  .RSPBstep {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 0;
-    position: absolute;
-    transform: translateX(-50%);
-    transition-property: all;
-    transition-timing-function: ease;
-  }
+.RSPBstep {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 0;
+  position: absolute;
+  transform: translateX(-50%);
+  transition-property: all;
+  transition-timing-function: ease;
+}
 
-  .RSPBprogressBarText {
-    color: white;
-    font-size: 10px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+.RSPBprogressBarText {
+  color: white;
+  font-size: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
-   .RSPBprogression {
-    position: absolute;
-    transition: width 0.3s ease;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    border-radius: 10px;
-    background: red;
-    z-index: -1;
-    -webkit-animation: logo-text 0.2s;
-    -moz-animation: logo-text 0.2s;
-    -o-animation: logo-text 0.2s;
-    -ms-animation: logo-text 0.2s;
-    animation: logo-text 0.2s;
-  }
-  
+.RSPBprogression {
+  position: absolute;
+  transition: width 0.3s ease;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 10px;
+  background: red;
+  z-index: -1;
+  -webkit-animation: logo-text 0.2s;
+  -moz-animation: logo-text 0.2s;
+  -o-animation: logo-text 0.2s;
+  -ms-animation: logo-text 0.2s;
+  animation: logo-text 0.2s;
+}
+
+.link-underline {
+  border-bottom-width: 0;
+  background-image: linear-gradient(transparent, transparent),
+    linear-gradient(#fff, #fff);
+  background-size: 0 6px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.5s ease-in-out;
+}
+
+.link-underline-black {
+  background-image: linear-gradient(transparent, transparent),
+    linear-gradient(var(--colorDark1), var(--colorLight1));
+}
+
+.link-underline:hover {
+  background-size: 100% 3px;
+  background-position: 0 100%;
+}

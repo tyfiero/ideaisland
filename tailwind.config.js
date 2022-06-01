@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        sm: "410px",
+        sm: "100px",
         md: "768px",
         lg: "976px",
         xl: "1440px",
@@ -19,7 +19,6 @@ module.exports = {
         // custom: ["Sniglet", "sans-serif"],
       },
       colors: {
-        
         blues: {
           50: "HSL(var(--colorDark1HslBase), 95%)",
           100: "HSL(var(--colorDark1HslBase), 85%)",
@@ -85,7 +84,7 @@ module.exports = {
           bd3: "hsla(var(--colorDark2base), 0.5)",
           bd2: "hsla(var(--colorDark2base), 0.3)",
           bd1: "hsla(var(--colorDark2base), 0.1)",
-        
+
           bpop5: "hsla(var(--colorPopbase), 0.9)",
           bpop4: "hsla(var(--colorPopbase), 0.7)",
           bpop3: "hsla(var(--colorPopbase), 0.5)",
@@ -104,11 +103,10 @@ module.exports = {
         enter: "enter 200ms ease-out",
         "slide-in": "slide-in 1.2s cubic-bezier(.41,.73,.51,1.02)",
         leave: "leave 150ms ease-in forwards",
-        'gradient-x':'gradient-x 5s ease infinite',
-            'gradient-y':'gradient-y 5s ease infinite',
-            'gradient-xy':'gradient-xy 5s ease infinite',
-            'gradient-xy-slow':'gradient-xy 15s ease infinite',
-
+        "gradient-x": "gradient-x 5s ease infinite",
+        "gradient-y": "gradient-y 5s ease infinite",
+        "gradient-xy": "gradient-xy 5s ease infinite",
+        "gradient-xy-slow": "gradient-xy 15s ease infinite",
       },
       keyframes: {
         enter: {
@@ -123,49 +121,49 @@ module.exports = {
           "0%": { transform: "translateY(-100%)" },
           "100%": { transform: "translateY(0)" },
         },
-        'gradient-y': {
-          '0%, 100%': {
-              'background-size':'400% 400%',
-              'background-position': 'center top'
+        "gradient-y": {
+          "0%, 100%": {
+            "background-size": "400% 400%",
+            "background-position": "center top",
           },
-          '50%': {
-              'background-size':'200% 200%',
-              'background-position': 'center center'
-          }
-      },
-      'gradient-x': {
-          '0%, 100%': {
-              'background-size':'200% 200%',
-              'background-position': 'left center'
+          "50%": {
+            "background-size": "200% 200%",
+            "background-position": "center center",
           },
-          '50%': {
-              'background-size':'200% 200%',
-              'background-position': 'right center'
-          }
-      },
-      'gradient-xy': {
-          '0%, 100%': {
-              'background-size':'400% 400%',
-              'background-position': 'left center'
+        },
+        "gradient-x": {
+          "0%, 100%": {
+            "background-size": "200% 200%",
+            "background-position": "left center",
           },
-          '50%': {
-              'background-size':'200% 200%',
-              'background-position': 'right center'
-          }
-      },
+          "50%": {
+            "background-size": "200% 200%",
+            "background-position": "right center",
+          },
+        },
+        "gradient-xy": {
+          "0%, 100%": {
+            "background-size": "400% 400%",
+            "background-position": "left center",
+          },
+          "50%": {
+            "background-size": "200% 200%",
+            "background-position": "right center",
+          },
+        },
       },
       boxShadow: {
         "3xl": "0 35px 60px -15px rgba(0, 0, 0, 0.3)",
       },
       scale: {
-        '-1': '-1'
+        "-1": "-1",
       },
       backgroundSize: {
-        'size-200': '200% 200%',
+        "size-200": "200% 200%",
       },
       backgroundPosition: {
-        'pos-0': '0% 0%',
-        'pos-100': '100% 100%',
+        "pos-0": "0% 0%",
+        "pos-100": "100% 100%",
       },
     },
   },
@@ -176,6 +174,6 @@ module.exports = {
     require("autoprefixer"),
   ],
   variants: {
-    scrollbar: ['rounded']
-}
+    scrollbar: ["rounded"],
+  },
 };
