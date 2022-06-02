@@ -107,7 +107,7 @@ const Dashboard = () => {
         <div className="flex gap-5 md:flex-row sm:flex-col">
           <div className="w-[25em]  bg-clear-bl2 rounded-xl flex flex-col items-center py-4">
             <h2 className="heading text-t-bd dark:text-blues-100">
-              Recent Ideas
+              Your Ideas
             </h2>
 
             <IdeasList type="ideas" searchValue="" mode="dash" />
@@ -134,7 +134,7 @@ const Dashboard = () => {
 
           <div className="w-[25em]  bg-clear-pl3 rounded-xl flex flex-col items-center py-4">
             <h2 className="heading text-t-pd dark:text-pinks-100">
-              Recent Problems
+              Your Problems
             </h2>
 
             <IdeasList type="problem" searchValue="" mode="dash" />

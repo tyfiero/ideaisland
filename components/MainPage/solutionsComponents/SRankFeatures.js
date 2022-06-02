@@ -461,8 +461,7 @@ function SRankFeatures(props) {
                       className="!opacity-100 bg-white w-[25em] nun rounded-xl p-3"
                       onClick={() => setIsPopoverOpen(!isPopoverOpen)}
                     >
-                      This helps to frame what kinds of solutions would work for
-                      your product.
+                      Entrepreneurs tend to add too many features too early. This tool aims to help you identify the most important features that you should add to your product, and when.
                     </div>
                   </ArrowContainer>
                 )}

@@ -207,6 +207,24 @@ const CombinatorialPage = (props) => {
         <h1 className="mb-0 text-3xl text-t-bd dark:text-blues-100">
           Solution Finder
         </h1>
+        <p className="text-sm ">
+          Use the tools below to ideate new solutions to the problem
+        </p>
+        <div>
+          {" "}
+          <div className="md:absolute sm:block md:top-0 md:-right-5 lg:top-2 lg:right-2 sm:scale-75 ">
+            <div className="relative group">
+              <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
+              <button
+                className=" sm:px-2 md:h-[2.5em] sm:h-[2em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-clear-bd3 md:hover:shadow-xl m-1 drop-shadow-xl nun font-bold "
+                onClick={() => router.push("/next-steps")}
+              >
+                Next Steps
+                <FaLongArrowAltRight className="ml-1 text-[24px]" />
+              </button>
+            </div>
+          </div>
+        </div>
         <div className="flex flex-wrap items-center gap-4 p-2 text-center sm:scale-80 justify-evenly normal-box-soft">
           <div className="flex gap-4">
             <button
@@ -320,21 +338,7 @@ const CombinatorialPage = (props) => {
             </button>
           </div>
         </div>
-        <div>
-          {" "}
-          <div className="absolute md:top-2 md:right-2 sm:scale-75 sm:-top-1 sm:-right-5">
-            <div className="relative group">
-              <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
-              <button
-                className="md:w-[10em] sm:px-2 md:h-[2.5em] sm:h-[2em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-clear-bd3 md:hover:shadow-xl m-1 drop-shadow-xl "
-                onClick={() => router.push("/solutions/improve")}
-              >
-                Improve Idea
-                <FaLongArrowAltRight className="ml-1 text-[24px]" />
-              </button>
-            </div>
-          </div>
-        </div>
+
         {/* <div
     className="flex flex-col items-center w-full"
    
@@ -499,10 +503,14 @@ const CombinatorialPage = (props) => {
                     initial={{ opacity: 0, scale: 0.7 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.2 }}
-                    className="h-full px-5 py-2 ring-4 rounded-xl !ring-t-pl bg-clear-pl3 fade-effect-quick  "
+                    className="h-full px-2 pb-5 pt-1 ring-4 rounded-xl !ring-t-pl bg-clear-pl3 fade-effect-quick  "
                   >
                     <p className="text-lg text-left text-t-pd">
                       Innovation AI (beta)
+                    </p>
+                    <p className="text-sm font-bold text-left text-slate-700/60">
+                      An intelligent idea assistant to help you get your
+                      brainstorm going
                     </p>
                     {paidPlan === "Hobbyist" ? (
                       <div className="flex flex-col w-full ">
@@ -553,9 +561,12 @@ const CombinatorialPage = (props) => {
                     transition={{ delay: 0.2 }}
                     className="px-2 pb-5 glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   ring-4 ring-t-bl bg-clear-bl1 md:min-w-[42em] h-full !border-0 relative fade-effect-quick"
                   >
-                    <p className="pb-2 text-lg text-left text-t-bd dark:text-t-bl ">
+                    <p className="text-lg text-left text-t-bd dark:text-t-bl">
                       {" "}
                       Idea NotePad
+                    </p>
+                    <p className="pb-2 text-sm font-bold text-left text-slate-700/60">
+                      Write your solution ideas here and click “Save Idea”
                     </p>
                     <IdeaNote />
                   </motion.div>

@@ -53,13 +53,13 @@ function SDetails(props) {
   //   props.update(e.target.name, e.target.value);
   // };
 
-// console.log(sFormRedux)
+  // console.log(sFormRedux)
   useEffect(() => {
-   if(props.changes){
-    setReadyToSave(true)
-   }
-  }, [props.changes])
-  
+    if (props.changes) {
+      setReadyToSave(true);
+    }
+  }, [props.changes]);
+
   // Create a new post in firestore
   const saveSolutionForm = async (e) => {
     // e.preventDefault();
@@ -84,29 +84,31 @@ function SDetails(props) {
       sFormRedux.idea.identifier
     );
 
-    let data = {
-      features: sFormRedux.features,
-      techStack: sFormRedux.stack,
-      stackCost: sFormRedux.stackCost,
-      updatedAt: serverTimestamp(),
-    };
+    let data;
 
+    if (props.mode === "features") {
+      data = {
+        features: sFormRedux.features,
+        updatedAt: serverTimestamp(),
+      };
+    } else {
+      data = {
+        techStack: sFormRedux.stack,
+        stackCost: sFormRedux.stackCost,
+        updatedAt: serverTimestamp(),
+      };
+    }
 
     await updateDoc(ref, data)
-    .then(() => {
-
-toast.success("Idea updated!");
-// props.setChanges(false);
-          router.push("/next-steps");
-          
-    })
-    .catch((error) => {
-      toast.error("Error occured 😩");
-      console.log("Update failed!" + error);
-    });
-    
-
-  
+      .then(() => {
+        toast.success("Idea updated!");
+        // props.setChanges(false);
+        router.push("/next-steps");
+      })
+      .catch((error) => {
+        toast.error("Error occured 😩");
+        console.log("Update failed!" + error);
+      });
   };
 
   return (
@@ -145,7 +147,7 @@ toast.success("Idea updated!");
                       className="!opacity-100 bg-white w-[25em] nun rounded-xl p-3"
                       onClick={() => setIsPopoverOpen(!isPopoverOpen)}
                     >
-                      Edit me plz
+                      This shows the features you have selected.
                     </div>
                   </ArrowContainer>
                 )}
@@ -159,7 +161,9 @@ toast.success("Idea updated!");
               </Popover>
             </div>
             <h1 className="text-3xl text-t-bd dark:text-blues-100">
-              Overview of Your Improved Idea
+              {props.mode === "features"
+                ? "Overview of Features "
+                : "Overview of Tech Stack"}
             </h1>
 
             <div className="flex flex-col gap-5">
@@ -174,72 +178,76 @@ toast.success("Idea updated!");
 
               <div className="flex flex-col">
                 <p className="text-left">Description:</p>
-              <div className="normal-box bg-[hsla(200,0%,100%,0.764)]  dark:bg-[hsla(200,0%,20%,0.764)] mt-1 mx-1 min-h-[3em] !rounded-2xl ">
-          <div
-            className="mx-2"
-            dangerouslySetInnerHTML={{
-              __html: ( sanitize(sFormRedux.idea?.content) || "No Description"),
-            }}
-          >
-            
-          </div>
-          </div>
-          </div>
-              <div className="flex flex-col">
-                <p className="text-left">Features:</p>
-                <div className="flex flex-wrap items-center justify-center gap-2 normal-box-soft -z-[2]">
-                  {sFormRedux.features?.map((feature, index) => (
-                    <ChipFeature
-                      cost={feature.cost}
-                      comments={feature.comments}
-                      name={feature.name}
-                      feasibility={feature.feasibility}
-                      importance={feature.importance}
-                      version={feature.version}
-                      key={index}
-                    />
-                  ))}
-                  {sFormRedux.features.length === 0 && (
-                    <p>No features added yet.</p>
-                  )}
+                <div className="normal-box bg-[hsla(200,0%,100%,0.764)]  dark:bg-[hsla(200,0%,20%,0.764)] mt-1 mx-1 min-h-[3em] !rounded-2xl ">
+                  <div
+                    className="mx-2"
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        sanitize(sFormRedux.idea?.content) || "No Description",
+                    }}
+                  ></div>
                 </div>
               </div>
-              <div className="flex flex-col">
-                <p className="text-left">Tech Stack:</p>
-                <div className="flex flex-col items-center justify-center normal-box-soft -z-[2]">
-                  <div className="flex flex-wrap items-center justify-center gap-2 ">
-                    {sFormRedux.stack?.map((tool, index) => (
-                      <ChipTechStackDisplay
-                        cost={tool.cost}
-                        name={tool.name}
-                        type={tool.type}
-                        kind={tool.kind}
+              {props.mode === "features" && (
+                <div className="flex flex-col">
+                  <p className="text-left">Features:</p>
+                  <div className="flex flex-wrap items-center justify-center gap-2 normal-box-soft -z-[2]">
+                    {sFormRedux.features?.map((feature, index) => (
+                      <ChipFeature
+                        cost={feature.cost}
+                        comments={feature.comments}
+                        name={feature.name}
+                        feasibility={feature.feasibility}
+                        importance={feature.importance}
+                        version={feature.version}
                         key={index}
                       />
                     ))}
+                    {sFormRedux.features.length === 0 && (
+                      <p>No features added yet.</p>
+                    )}
                   </div>
-
-                  {sFormRedux.stack.length === 0 ? (
-                    <p>No tech stack selected.</p>
-                  ) : (
-                    <div className="flex gap-5 mt-2">
-                      <p className="text-sm ">
-                        Monthly Cost:{" "}
-                        {sFormRedux.stackCost[0]?.monthly > 0
-                          ? "$" + sFormRedux.stackCost[0].monthly
-                          : "Free"}
-                      </p>
-                      <p className="text-sm ">
-                        Annual Cost:{" "}
-                        {sFormRedux.stackCost[1]?.yearly > 0
-                          ? "$" + sFormRedux.stackCost[1].yearly
-                          : "Free"}
-                      </p>
-                    </div>
-                  )}
                 </div>
-              </div>
-              <p>More tools to upgrade your idea are coming soon!</p>
+              )}
+
+              {props.mode === "tech-stack" && (
+                <div className="flex flex-col">
+                  <p className="text-left">Tech Stack:</p>
+                  <div className="flex flex-col items-center justify-center normal-box-soft -z-[2]">
+                    <div className="flex flex-wrap items-center justify-center gap-2 ">
+                      {sFormRedux.stack?.map((tool, index) => (
+                        <ChipTechStackDisplay
+                          cost={tool.cost}
+                          name={tool.name}
+                          type={tool.type}
+                          kind={tool.kind}
+                          key={index}
+                        />
+                      ))}
+                    </div>
+
+                    {sFormRedux.stack.length === 0 ? (
+                      <p>No tech stack selected.</p>
+                    ) : (
+                      <div className="flex gap-5 mt-2">
+                        <p className="text-sm ">
+                          Monthly Cost:{" "}
+                          {sFormRedux.stackCost[0]?.monthly > 0
+                            ? "$" + sFormRedux.stackCost[0].monthly
+                            : "Free"}
+                        </p>
+                        <p className="text-sm ">
+                          Annual Cost:{" "}
+                          {sFormRedux.stackCost[1]?.yearly > 0
+                            ? "$" + sFormRedux.stackCost[1].yearly
+                            : "Free"}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+              {/* <p>More tools to upgrade your idea are coming soon!</p> */}
             </div>
             <div className="flex items-center justify-between w-full">
               <button

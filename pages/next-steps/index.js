@@ -36,6 +36,7 @@ import {
 } from "react-icons/fa";
 
 import { useRouter } from "next/router";
+import Tilt from "react-parallax-tilt";
 
 const ImplementationPage = (props) => {
   return (
@@ -44,27 +45,69 @@ const ImplementationPage = (props) => {
 
       <div className="flex flex-col items-center w-full">
         <div className="flex flex-wrap items-center w-[90%]  px-5 pb-5 rounded-2xl">
-          <div className="flex w-full">
-          </div>
+          <div className="flex w-full"></div>
 
           <div></div>
 
-          <div className="relative flex flex-wrap items-center justify-center w-full px-5 pb-5 border-8 border-t-bl rounded-2xl bg-clear-bl2">
+          <div className="relative flex flex-wrap items-center justify-center w-full px-5 py-5 border-8 border-t-bl rounded-2xl bg-clear-bl2">
             <div className="flex w-full ">
-              <p className="pb-3 text-t-bl">Web2 Tools</p>
+              {/* <p className="pb-3 text-t-bl">Web2 Tools</p> */}
             </div>
             <div className="flex">
-            <ImplementTool
-              route="/next-steps/mrr-calculator"
-              color={"bg-blues-100"}
-              bColor="md:hover:ring-clear-bd3"
-              textColor=" text-t-bl"
-              title="MRR Calculator"
-              description="This tool helps you accurately forecast future revenue growth from a subscription based business model."
-              imgSrc="https://images.unsplash.com/photo-1543286386-2e659306cd6c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8Z3JhcGh8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
-            />
-            
-            {/* <ImplementTool
+              <Tilt
+                tiltMaxAngleX={10}
+                tiltMaxAngleY={10}
+                perspective={1000}
+                transitionSpeed={1000}
+                scale={1.02}
+              >
+                <ImplementTool
+                  route="/next-steps/features"
+                  color={"bg-indigo-200"}
+                  bColor="md:hover:ring-indigo-500"
+                  textColor=" text-indigo-600"
+                  title="Add Features"
+                  description="Select the features you want to add to your app and prioritize them."
+                  imgSrc="https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZmxvdyUyMGNoYXJ0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+                />
+              </Tilt>
+              <Tilt
+                tiltMaxAngleX={10}
+                tiltMaxAngleY={10}
+                perspective={1000}
+                transitionSpeed={1000}
+                scale={1.02}
+              >
+                <ImplementTool
+                  route="/next-steps/tech-stack"
+                  color={"bg-sky-200"}
+                  bColor="md:hover:ring-sky-500"
+                  textColor=" text-sky-600"
+                  title="Select Tech Stack"
+                  description="Plan the technical side of the project. Select the technologies you want to use and forecast costs."
+                  imgSrc="https://images.unsplash.com/photo-1592609931095-54a2168ae893?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjV8fGNvZGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
+                />
+              </Tilt>
+
+              <Tilt
+                tiltMaxAngleX={10}
+                tiltMaxAngleY={10}
+                perspective={1000}
+                transitionSpeed={1000}
+                scale={1.02}
+              >
+                <ImplementTool
+                  route="/next-steps/mrr-calculator"
+                  color={"bg-green-200"}
+                  bColor="md:hover:ring-green-500"
+                  textColor=" text-green-600"
+                  title="MRR Calculator"
+                  description="This tool helps you accurately forecast future revenue growth from a subscription based business model."
+                  imgSrc="https://images.unsplash.com/photo-1543286386-2e659306cd6c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8Z3JhcGh8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
+                />
+              </Tilt>
+
+              {/* <ImplementTool
               route="/next-steps/mrr-calculator"
               color={"bg-blues-100"}
               bColor="md:hover:ring-clear-bd3"
@@ -91,7 +134,8 @@ const ImplementationPage = (props) => {
               description="Build a simple marketing plan to help you grow your business."
               imgSrc="https://images.unsplash.com/photo-1611926653458-09294b3142bf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDd8fG1hcmtldGluZ3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
             /> */}
-          </div></div>
+            </div>
+          </div>
           {/* <div className="flex flex-wrap items-center justify-center w-full px-5 pb-5 mt-2 border-4 border-t-pm rounded-2xl bg-clear-pm2">
             <div className="flex w-full">
               <p className="pb-3 text-t-pm">Web3 Tools</p>
@@ -136,7 +180,6 @@ const ImplementationPage = (props) => {
             />
           </div>
           </div> */}
-     
         </div>
 
         <div className="flex p-2 mt-5 mb-10 rounded-xl bg-clear-pl4">
@@ -200,7 +243,8 @@ const ImplementTool = ({
             bColor
           }
         >
-          <p className="m-0 dark:text-slate-800">Launch</p> <FaArrowRight className={textColor} />
+          <p className="m-0 dark:text-slate-800">Launch</p>{" "}
+          <FaArrowRight className={textColor} />
         </button>
       </div>
     </div>

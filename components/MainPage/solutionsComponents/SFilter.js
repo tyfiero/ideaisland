@@ -15,7 +15,6 @@ import { ArrowContainer, Popover } from "react-tiny-popover";
 import SFilterIdeas from "./SFilterIdeas";
 import { useSelector, useDispatch } from "react-redux";
 
-
 function SFilter(props) {
   // const dispatch = useDispatch();
   // console.log("FILTER--------------------" + props.isActive)
@@ -24,7 +23,7 @@ function SFilter(props) {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [button1, setButton1] = useState(false);
   const [button2, setButton2] = useState(false);
-const router = useRouter();
+  const router = useRouter();
   // const update = (e) => {
   //   props.update(e.target.name, e.target.value);
   // };
@@ -88,10 +87,11 @@ const router = useRouter();
           </div>
           <div className="flex flex-col items-center justify-center w-full fade-effect-quick">
             <h1 className=" text-3xl text-t-bd dark:text-blues-100  !m-0">
-              Select an Idea to improve
+              {props.mode === "features"
+                ? "Select an Idea to add Features to"
+                : "Select an Idea to add a Tech Stack to"}
             </h1>
             <div className="normal-box-soft !p-2">
-              
               <p className="m-0">
                 You can always come back to select another idea.{" "}
               </p>

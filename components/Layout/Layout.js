@@ -1,4 +1,3 @@
-
 import styled from "styled-components";
 import TopBar from "./TopBar";
 import TopBarRight from "./TopBarRight";
@@ -43,17 +42,14 @@ import { Squash as Hamburger } from "hamburger-react";
 
 // import { adminDB } from "../../lib/firebaseAdmin";
 
-
 export default function Layout({ children }) {
   // console.log("Layout Rerendered")
 
-
   // let db = firebaseAdmin.firestore()
-// console.log(db)
+  // console.log(db)
 
-  const [isMobile, setIsMobile] = useState(false)
+  const [isMobile, setIsMobile] = useState(false);
 
- 
   const router = useRouter();
 
   const userData = useUserData();
@@ -74,9 +70,7 @@ export default function Layout({ children }) {
 
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);
   // const [isPopUpModalOpen, setIsPopUpModalOpen] = useState(false);
-const videoRef = useRef(null);
-
-
+  const videoRef = useRef(null);
 
   const togglePopup = () => {
     setIsPopUpOpen(!isPopUpOpen);
@@ -118,44 +112,46 @@ const videoRef = useRef(null);
         router.push("/login");
       }
     }
-  }, [user, username, loading]);// eslint-disable-line react-hooks/exhaustive-deps
-
-
+  }, [user, username, loading]); // eslint-disable-line react-hooks/exhaustive-deps
 
   //dark mode
   useEffect(() => {
-const body = document.body;
-let menuOpacityNum = localStorage.getItem("menuOpacity") || 0.7;
+    const body = document.body;
+    let menuOpacityNum = localStorage.getItem("menuOpacity") || 0.7;
 
-let base = darkRedux ? "hsla(200,0%,50%," : "hsla(200,0%,100%,";
-let concat = base + menuOpacityNum + ")";
+    let base = darkRedux ? "hsla(200,0%,50%," : "hsla(200,0%,100%,";
+    let concat = base + menuOpacityNum + ")";
 
+    if (darkRedux) {
+      body.setAttribute("style", "background-color: RGBA(30, 41, 59, 1)");
+      document.documentElement.classList.add("dark");
+      document.documentElement.style.setProperty("--menuColor", concat);
+      document.documentElement.style.setProperty(
+        "--quillIconColor",
+        "hsla(200, 100%, 100%, 1)"
+      );
+      document.documentElement.style.setProperty(
+        "--quillPickerColor",
+        "hsla(200, 100%, 10%, 1)"
+      );
+    } else {
+      body.setAttribute("style", "background-color: white");
+      document.documentElement.classList.remove("dark");
+      document.documentElement.style.setProperty("--menuColor", concat);
+      document.documentElement.style.setProperty(
+        "--quillIconColor",
+        "hsla(200, 100%, 0%, 1)"
+      );
+      document.documentElement.style.setProperty(
+        "--quillPickerColor",
+        "hsla(200, 100%, 100%, 1)"
+      );
+    }
+  }, [darkRedux]); // eslint-disable-line react-hooks/exhaustive-deps
 
-if (darkRedux) {
-  body.setAttribute("style", "background-color: RGBA(30, 41, 59, 1)")
-  ;
-  document.documentElement.classList.add('dark')
-    document.documentElement.style.setProperty("--menuColor", concat);
-    document.documentElement.style.setProperty("--quillIconColor", "hsla(200, 100%, 100%, 1)");
-    document.documentElement.style.setProperty("--quillPickerColor", "hsla(200, 100%, 10%, 1)");
-
-} else {
-  body.setAttribute("style", "background-color: white");
-  document.documentElement.classList.remove('dark')
-  document.documentElement.style.setProperty("--menuColor", concat);
-  document.documentElement.style.setProperty("--quillIconColor", "hsla(200, 100%, 0%, 1)");
-  document.documentElement.style.setProperty("--quillPickerColor", "hsla(200, 100%, 100%, 1)");
-}
-  }, [darkRedux]);// eslint-disable-line react-hooks/exhaustive-deps
-
-
-
-  
   useEffect(() => {
-
     // videoRef.current.playbackRate ="0.5"
 
-    
     //if mobile, redirect to mobile page
     // if (isMobile) {
     //   router.push("/mobile");
@@ -168,7 +164,6 @@ if (darkRedux) {
    
    The place where 'Aha' moments are made!      
    `);
-  
 
     const sliceHsl = (fullString) => {
       let sliced = fullString.slice(5);
@@ -248,67 +243,60 @@ if (darkRedux) {
     // document.querySelector("body").style.backgroundImage = `url(${img1})`;
     document.querySelector(".bg-image").style.backgroundImage = `url(${img1})`;
 
-
-
-
-
     const getWindowDimensions = () => {
       const { innerWidth: width, innerHeight: height } = window;
       return {
         width,
-        height
+        height,
       };
+    };
+
+    if (getWindowDimensions().width < 720) {
+      setIsMobile(true);
+      setIsToggled(false);
+    } else {
+      setIsMobile(false);
+      setIsToggled(true);
     }
-    
-
-  if(getWindowDimensions().width < 720){
-    setIsMobile(true)
-    setIsToggled(false)
-  } else {
-    setIsMobile(false)
-    setIsToggled(true)
-
-  } 
-    
-   
-
-    
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-
-
-
-
-
   return (
+    <div className="fixed top-0 left-0 wrapper md:touch-auto sm:touch-pan-y">
+      <div className="bg-image touch-none"></div>
 
-      <div
-        className="fixed top-0 left-0 wrapper md:touch-auto sm:touch-pan-y" 
-        
-     
-      >
+      {/* TAILWIND BREAKPOINT CHECKER */}
+      {/* <div className="fixed z-50 p-2 text-xs font-bold text-black">
+        <span className="p-1 px-1 bg-yellow-400 rounded sm:hidden">XS</span>
+        <span className="hidden px-1 bg-yellow-400 rounded sm:inline-block md:hidden">
+          SM
+        </span>
+        <span className="hidden px-1 bg-yellow-400 rounded sm:hidden md:inline-block lg:hidden">
+          MD
+        </span>
+        <span className="hidden px-1 bg-yellow-400 rounded lg:inline-block xl:hidden">
+          LG
+        </span>
+        <span className="hidden px-1 bg-yellow-400 rounded xl:inline-block">
+          XL
+        </span>
+      </div> */}
 
-
-<div className="bg-image touch-none"></div>
-
-        {/* <video playsinline autoPlay muted loop ref={videoRef}  className="absolute top-0 left-0" >
+      {/* <video playsinline autoPlay muted loop ref={videoRef}  className="absolute top-0 left-0" >
     <source src="/vid2.mp4" type="video/mp4"/>
     Your browser does not support the video tag.
 </video> */}
 
+      {/* <div className="background blur"></div> */}
+      {/* <noscript>You need to enable JavaScript to run this app.</noscript> */}
 
-
-        {/* <div className="background blur"></div> */}
-        {/* <noscript>You need to enable JavaScript to run this app.</noscript> */}
-       
-        <div className=" blobs">
-            <div className="svg-blob1 rotate-effect scale-effect"></div>
-            <div className="svg-blob2 rotate-effect scale-effect"></div>
-            <div className="svg-blob3 rotate-effect scale-effect"></div>
-            <div className="svg-blob4 rotate-effect scale-effect"></div>
-            <div className="svg-blob5 rotate-effect scale-effect"></div>
-        </div>
-        {/* <div className="blobs rotate-effect-slow">
+      <div className=" blobs">
+        <div className="svg-blob1 rotate-effect scale-effect"></div>
+        <div className="svg-blob2 rotate-effect scale-effect"></div>
+        <div className="svg-blob3 rotate-effect scale-effect"></div>
+        <div className="svg-blob4 rotate-effect scale-effect"></div>
+        <div className="svg-blob5 rotate-effect scale-effect"></div>
+      </div>
+      {/* <div className="blobs rotate-effect-slow">
             <div className="svg-blob1 rotate-effect scale-effect"></div>
             <div className="svg-blob2 rotate-effect scale-effect"></div>
             <div className="svg-blob3 rotate-effect scale-effect"></div>
@@ -316,88 +304,87 @@ if (darkRedux) {
             <div className="svg-blob5 rotate-effect scale-effect"></div>
 
           </div> */}
-        <div className=" flex top-bar !min-h-[4em]  w-full ">
-          {/* {loadingUI ? <Loader show={true}/>: "NOT LOADING YO"} */}
+      <div className=" flex top-bar !min-h-[4em]  w-full ">
+        {/* {loadingUI ? <Loader show={true}/>: "NOT LOADING YO"} */}
         <div className="w-[25em]">
-
           <TopBar signedIn={signedIn} />
-   </div>
-
-          {signedIn && 
-        <div className="w-full md:block sm:hidden">
-   <TopBarRight />
-   
-   </div>
-   }
-    {signedIn && isToggled &&
-        <div className="w-full md:hidden sm:block">
-   <TopBarRight />
-   
-   </div>
-   }
-<div className="absolute sm:flex right-2 top-2 md:hidden"> <Hamburger
-        className=""
-        toggled={isToggled}
-        color="var(--colorDark1)"
-        toggle={() => {
-          setIsToggled(!isToggled);
-        }}
-        // size={25}
-        easing="ease-in"
-        label="Show menu"
-        rounded
-      /></div>
-          
-         
-
-          <Toaster />
-
         </div>
-        
-        <div className="flex w-full h-full sm:flex-col md:flex-row md:pb-[4em] sm:pb-[3em]">
 
-        <div className="side-nav-bar md:!w-[5em] md:!mr-2 sm:!w-full md:h-full  ">
-          {signedIn &&  <Sidebar2 toggle={isToggled} signedIn={signedIn} setIsToggled={setIsToggled} isToggled={isToggled}/>}
-        </div>
-        <div className="w-full h-full fade-effect-quick content ">
-          {loadingUI ? <FullLoader show={true} /> : <main className="h-full md:overflow-auto md:w-full sm:w-full sm:overflow-y-auto sm:overflow-x-hidden sm:touch-pan-y">{children}</main>}
-
-
-          
-        </div>
-        </div>
-        
-        <div>
-          
-         
-           
-              <div className={ isPopUpOpen ? " " : " "}>
-              {isPopUpOpen && (  <NotePopUpModal handleClose={togglePopup} />     )}
-                <NotePopUp handleClose={togglePopup} isPopUpOpen={isPopUpOpen}/>
-              </div>
-          
-         
-     
-        </div>
-        {!loadingUI && signedIn && (
-          <div className={"fixed md:top-[91%]  md:right-3 sm:top-0  sm:scale-[60%] md:scale-75 lg:scale-100 sm:hidden" + (isToggled ? " sm:right-32" : " sm:right-14 ")}>
-            <button
-              className={"z-100 flex items-center justify-center w-[4em] h-[4em]   transform rounded-full notepad-button fade-effect text-t-pd hover:scale-125 bg-gradient-to-br from-white/60 to-clear-pl5 hover:shadow-2xl duration-500  " + (isPopUpOpen ? "  ease-in-out  rotate-[135deg] " : " ")}
-              onClick={togglePopup}
-            >
-              <FaPlus style={{ fontSize: "1.8em" }} />
-            </button>
+        {signedIn && (
+          <div className="w-full md:block sm:hidden">
+            <TopBarRight />
           </div>
         )}
+        {signedIn && isToggled && (
+          <div className="w-full md:hidden sm:block">
+            <TopBarRight />
+          </div>
+        )}
+        <div className="absolute sm:flex right-2 top-2 md:hidden">
+          {" "}
+          <Hamburger
+            className=""
+            toggled={isToggled}
+            color="var(--colorDark1)"
+            toggle={() => {
+              setIsToggled(!isToggled);
+            }}
+            // size={25}
+            easing="ease-in"
+            label="Show menu"
+            rounded
+          />
+        </div>
+
+        <Toaster />
       </div>
 
+      <div className="flex w-full h-full sm:flex-col md:flex-row md:pb-[4em] sm:pb-[3em]">
+        <div className="side-nav-bar md:!w-[5em] md:!mr-2 sm:!w-full md:h-full  ">
+          {signedIn && (
+            <Sidebar2
+              toggle={isToggled}
+              signedIn={signedIn}
+              setIsToggled={setIsToggled}
+              isToggled={isToggled}
+            />
+          )}
+        </div>
+        <div className="w-full h-full fade-effect-quick content ">
+          {loadingUI ? (
+            <FullLoader show={true} />
+          ) : (
+            <main className="h-full md:overflow-auto md:w-full sm:w-full sm:overflow-y-auto sm:overflow-x-hidden sm:touch-pan-y">
+              {children}
+            </main>
+          )}
+        </div>
+      </div>
+
+      <div>
+        <div className={isPopUpOpen ? " " : " "}>
+          {isPopUpOpen && <NotePopUpModal handleClose={togglePopup} />}
+          <NotePopUp handleClose={togglePopup} isPopUpOpen={isPopUpOpen} />
+        </div>
+      </div>
+      {!loadingUI && signedIn && (
+        <div
+          className={
+            "fixed md:top-[91%]  md:right-3 sm:top-0  sm:scale-[60%] md:scale-75 lg:scale-100 sm:hidden" +
+            (isToggled ? " sm:right-32" : " sm:right-14 ")
+          }
+        >
+          <button
+            className={
+              "z-100 flex items-center justify-center w-[4em] h-[4em]   transform rounded-full notepad-button fade-effect text-t-pd hover:scale-125 bg-gradient-to-br from-white/60 to-clear-pl5 hover:shadow-2xl duration-500  " +
+              (isPopUpOpen ? "  ease-in-out  rotate-[135deg] " : " ")
+            }
+            onClick={togglePopup}
+          >
+            <FaPlus style={{ fontSize: "1.8em" }} />
+          </button>
+        </div>
+      )}
+    </div>
   );
 }
-
-
-
-
-
-
-
-

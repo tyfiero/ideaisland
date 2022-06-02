@@ -138,7 +138,7 @@ function SIdeate(props) {
                   </a>
                 </Link>
 
-                <Link href="/solutions/improve">
+                {/* <Link href="/solutions/improve">
                   <a>
                   <div className="relative group md:!w-[25em] sm:!w-[18em]">
                 <div className="absolute w-full transition duration-1000 rounded-full opacity-90 -inset-1 bg-gradient-to-r from-t-bl via-blues-200 to-blues-50 blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
@@ -150,7 +150,7 @@ function SIdeate(props) {
                 </button>
               </div>
                   </a>
-                </Link>
+                </Link> */}
 
                 {/* <Link href="/solutions/ai">
                   <a>

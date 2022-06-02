@@ -54,7 +54,7 @@ const GPTtool = ({ showButton }) => {
   // const [GPTJStatus, setGPTJStatus] = useState(false);
 
   //FALSE = GPT-3 , true is gptj
-  const [GPTJorGPT3, setGPTJorGPT3] = useState(true);
+  const [GPTJorGPT3, setGPTJorGPT3] = useState(false);
 
   const [responseRecieved, setResponseRecieved] = useState(false);
   const [responseRecievedGPTJ, setResponseRecievedGPTJ] = useState(false);
@@ -160,10 +160,9 @@ const GPTtool = ({ showButton }) => {
         setAiResponse(response.data.results);
         dispatch(gpt3OutputAction(aiResponse));
         setResponseRecieved(true);
-        if(formType === "new"){
-
-        deduct(1);
-        }else{
+        if (formType === "new") {
+          deduct(1);
+        } else {
           deduct(1.5);
         }
         setAiLoading(false);
@@ -210,9 +209,9 @@ const GPTtool = ({ showButton }) => {
         // console.log(response.data.results);
         setAiResponseGPTJ(response.data.results);
         setResponseRecievedGPTJ(true);
-        if(formType === "new"){
-        deduct(0.2);
-        }else{
+        if (formType === "new") {
+          deduct(0.2);
+        } else {
           deduct(0.4);
         }
         setAiLoading(false);
@@ -229,138 +228,138 @@ const GPTtool = ({ showButton }) => {
 
   // console.log(GPTJorGPT3);
 
-  var gptJContent = (
-    // <form onSubmit={handleSubmit(onSubmitFormGptJ)} className="w-full">
-    <div className="flex flex-col items-center w-full">
-      {/* gpt3/j switched component names. Why? Idk */}
-      {/* <GPT3TextArea
-        q="gptj"
-        ph="Prompt for the GPT-J AI to work its magic 👀 "
-        // sendDataToParent={sendDataToParent}
-      /> */}
-      {/* <input
-          type="text"
-          style={textStyles}
-          className="h-[10rem] !w-[25rem] my-5 text-area-note"
-          {...register("input", { required: "Required" })}
-        /> */}
-      {/* <textarea
-          name="text"
-          rows="14"
-          // onChange={(e) => {
-          //   console.log("hi");
-          //   dispatch(gptJInputAction(e.target.value));
+  // var gptJContent = (
+  //   // <form onSubmit={handleSubmit(onSubmitFormGptJ)} className="w-full">
+  //   <div className="flex flex-col items-center w-full">
+  //     {/* gpt3/j switched component names. Why? Idk */}
+  //     {/* <GPT3TextArea
+  //       q="gptj"
+  //       ph="Prompt for the GPT-J AI to work its magic 👀 "
+  //       // sendDataToParent={sendDataToParent}
+  //     /> */}
+  //     {/* <input
+  //         type="text"
+  //         style={textStyles}
+  //         className="h-[10rem] !w-[25rem] my-5 text-area-note"
+  //         {...register("input", { required: "Required" })}
+  //       /> */}
+  //     {/* <textarea
+  //         name="text"
+  //         rows="14"
+  //         // onChange={(e) => {
+  //         //   console.log("hi");
+  //         //   dispatch(gptJInputAction(e.target.value));
 
-          //   setCharLength(gptJInputRedux.length + 1);
-          // }}
-          cols="10"
-          wrap="soft"
-          placeholder="Content to send to AI"
-          maxLength="100"
-          style={textStyles}
-          className="h-[10rem] !w-[25rem] my-5 text-area-note"
-          {...register("input", { required: "Required" })}
-        ></textarea> */}
-      <div className="flex justify-start w-full">
-        <p className="pt-1 text-left text-md text-t-pd">Input:</p>
-      </div>
-      <TextareaAutosize
-        className="w-[99%] rounded-md nun   textarea-tw"
-        onChange={(e) => {
-          // console.log(e.target.value);
-          setGPTJInput(e.target.value);
-        }}
-        // defaultValue={contentTitle}
-        placeholder="3-5 keywords about your problem"
-        maxLength="150"
-        value={GPTJInput}
+  //         //   setCharLength(gptJInputRedux.length + 1);
+  //         // }}
+  //         cols="10"
+  //         wrap="soft"
+  //         placeholder="Content to send to AI"
+  //         maxLength="100"
+  //         style={textStyles}
+  //         className="h-[10rem] !w-[25rem] my-5 text-area-note"
+  //         {...register("input", { required: "Required" })}
+  //       ></textarea> */}
+  //     <div className="flex justify-start w-full">
+  //       <p className="pt-1 text-left text-md text-t-pd">Input:</p>
+  //     </div>
+  //     <TextareaAutosize
+  //       className="w-[99%] rounded-md nun   textarea-tw"
+  //       onChange={(e) => {
+  //         // console.log(e.target.value);
+  //         setGPTJInput(e.target.value);
+  //       }}
+  //       // defaultValue={contentTitle}
+  //       placeholder="3-5 keywords about your problem"
+  //       maxLength="150"
+  //       value={GPTJInput}
 
-        // {...register("input", { required: "Required" })}
-      ></TextareaAutosize>
-      {/* <GPT3TextArea /> */}
-      {/* <p>{charLength + "/100"}</p> */}
+  //       // {...register("input", { required: "Required" })}
+  //     ></TextareaAutosize>
+  //     {/* <GPT3TextArea /> */}
+  //     {/* <p>{charLength + "/100"}</p> */}
 
-      <div className="flex items-center justify-between w-full mt-1">
-        <div className="flex items-center w-[13em] justify-center rounded-xl p-0 ring-t-pm bg-clear-pl3  gap-3 ring-2 h-10">
-          <p
-            className={
-              GPTJorGPT3 ? "text-slate-500  line-through" : "!text-t-pm"
-            }
-          >
-            GPT-3
-          </p>
-          <Toggle
-            className=" fade-effect"
-            defaultChecked={GPTJorGPT3}
-            icons={false}
-            onChange={() => {
-              setGPTJorGPT3(!GPTJorGPT3);
-            }}
-          />
-          <p
-            className={
-              GPTJorGPT3 ? "!text-t-pm" : "text-slate-500 line-through"
-            }
-          >
-            GPT-J
-          </p>
-        </div>
-        <div className="relative group">
-          <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-pm via-violet-400 to-t-pd blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
-          <button
-            className="w-[8em] h-[2em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer !shadow-clear-pd3 md:hover:shadow-xl m-1 drop-shadow-xl !bg-gradient-to-br from-white via-t-pl  to-t-pm !shadow-2xl "
-            type="submit"
-            onClick={() => {
-              if (aiLoading) {
-                console.log("Please wait for the first request to load");
-              } else {
-                // setGPTJStatus(true);
-                if (credits >= 0.2) {
-                  setAiLoading(true);
-                  setoldInput("")
-                  onSubmitFormGptJ({ input: GPTJInput, type: "new" });
-                } else {
-                  setResponseRecieved(false);
-                  setResponseRecievedGPTJ(false);
-                  setoldInput("")
-                  setAiResponse(
-                    "No credits remaining, you can purchase more or upgrade your plan in the billing menu."
-                  );
-                  dispatch(gptJOutputAction(aiResponse));
-                  setResponseRecieved(true);
-                }
-              }
-            }}
-          >
-            {aiLoading ? (
-              <>
-                <p className="pl-2 text-t-pd">Sending...</p>
+  //     <div className="flex items-center justify-between w-full mt-1">
+  //       {/* <div className="flex items-center w-[13em] justify-center rounded-xl p-0 ring-t-pm bg-clear-pl3  gap-3 ring-2 h-10">
+  //         <p
+  //           className={
+  //             GPTJorGPT3 ? "text-slate-500  line-through" : "!text-t-pm"
+  //           }
+  //         >
+  //           GPT-3
+  //         </p>
+  //         <Toggle
+  //           className=" fade-effect"
+  //           defaultChecked={GPTJorGPT3}
+  //           icons={false}
+  //           onChange={() => {
+  //             setGPTJorGPT3(!GPTJorGPT3);
+  //           }}
+  //         />
+  //         <p
+  //           className={
+  //             GPTJorGPT3 ? "!text-t-pm" : "text-slate-500 line-through"
+  //           }
+  //         >
+  //           GPT-J
+  //         </p>
+  //       </div> */}
+  //       <div className="relative group">
+  //         <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-pm via-violet-400 to-t-pd blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
+  //         <button
+  //           className="w-[8em] h-[2em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer !shadow-clear-pd3 md:hover:shadow-xl m-1 drop-shadow-xl !bg-gradient-to-br from-white via-t-pl  to-t-pm !shadow-2xl "
+  //           type="submit"
+  //           onClick={() => {
+  //             if (aiLoading) {
+  //               console.log("Please wait for the first request to load");
+  //             } else {
+  //               // setGPTJStatus(true);
+  //               if (credits >= 0.2) {
+  //                 setAiLoading(true);
+  //                 setoldInput("");
+  //                 onSubmitFormGptJ({ input: GPTJInput, type: "new" });
+  //               } else {
+  //                 setResponseRecieved(false);
+  //                 setResponseRecievedGPTJ(false);
+  //                 setoldInput("");
+  //                 setAiResponse(
+  //                   "No credits remaining, you can purchase more or upgrade your plan in the billing menu."
+  //                 );
+  //                 dispatch(gptJOutputAction(aiResponse));
+  //                 setResponseRecieved(true);
+  //               }
+  //             }
+  //           }}
+  //         >
+  //           {aiLoading ? (
+  //             <>
+  //               <p className="pl-2 text-t-pd">Sending...</p>
 
-                <BsHourglassSplit
-                  style={{ fontSize: "32px" }}
-                  className="pl-2 text-t-pd"
-                />
-              </>
-            ) : (
-              <>
-                <div className="flex flex-col items-center mt-2 leading-3">
-                  <p className="pl-2 text-t-pd dark:text-t-pd">Send to AI</p>
-                  <p className="pl-2 text-xs text-slate-500 dark:text-slate-500">
-                    (0.2 Credits)
-                  </p>
-                </div>
+  //               <BsHourglassSplit
+  //                 style={{ fontSize: "32px" }}
+  //                 className="pl-2 text-t-pd"
+  //               />
+  //             </>
+  //           ) : (
+  //             <>
+  //               <div className="flex flex-col items-center mt-2 leading-3">
+  //                 <p className="pl-2 text-t-pd dark:text-t-pd">Send to AI</p>
+  //                 <p className="pl-2 text-xs text-slate-500 dark:text-slate-500">
+  //                   (0.2 Credits)
+  //                 </p>
+  //               </div>
 
-                <BiSend
-                  style={{ fontSize: "32px" }}
-                  className="pl-2 text-t-pd"
-                />
-              </>
-            )}
-          </button>
-        </div>
-      </div>
-    </div>
-  );
+  //               <BiSend
+  //                 style={{ fontSize: "32px" }}
+  //                 className="pl-2 text-t-pd"
+  //               />
+  //             </>
+  //           )}
+  //         </button>
+  //       </div>
+  //     </div>
+  //   </div>
+  // );
 
   var gpt3Content = (
     <div className="flex flex-col items-center">
@@ -375,12 +374,12 @@ const GPTtool = ({ showButton }) => {
           setGPT3Input(e.target.value);
         }}
         value={GPT3Input}
-        placeholder="3-5 keywords about your problem"
+        placeholder="Write 3-5 words that describe the solution you are looking for. ex: e-commerce advertising tool"
         maxLength="150"
       ></TextareaAutosize>
 
-      <div className="flex items-center justify-between w-full mt-1">
-        <div className="flex items-center w-[13em] justify-center rounded-xl p-0 ring-t-pm bg-clear-pl3  gap-3 ring-2 h-10">
+      <div className="flex items-center justify-center min-w-[30em] w-full mt-2">
+        {/* <div className="flex items-center w-[13em] justify-center rounded-xl p-0 ring-t-pm bg-clear-pl3  gap-3 ring-2 h-10">
           <p
             className={
               GPTJorGPT3 ? "text-slate-500  line-through" : "!text-t-pm"
@@ -403,11 +402,11 @@ const GPTtool = ({ showButton }) => {
           >
             GPT-J
           </p>
-        </div>
+        </div> */}
         <div className="relative group">
           <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-pm via-violet-400 to-t-pd blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
           <button
-            className="w-[8em] h-[2em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer !shadow-clear-pd3 md:hover:shadow-xl m-1 drop-shadow-xl !bg-gradient-to-br from-white via-t-pl  to-t-pm !shadow-2xl "
+            className="w-[8em] h-[2em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer !shadow-clear-pd3 md:hover:shadow-xl mt-1 drop-shadow-xl !bg-gradient-to-br from-white via-t-pl  to-t-pm !shadow-2xl "
             type="submit"
             onClick={() => {
               if (aiLoading) {
@@ -416,12 +415,12 @@ const GPTtool = ({ showButton }) => {
                 // setGPT3Status(true);
                 if (credits >= 1) {
                   setAiLoading(true);
-                  setoldInput("")
+                  setoldInput("");
                   onSubmitForm({ input: GPT3Input, type: "new" });
                 } else {
                   setResponseRecieved(false);
                   setResponseRecievedGPTJ(false);
-                  setoldInput("")
+                  setoldInput("");
                   setAiResponse(
                     "No credits remaining, you can purchase more or upgrade your plan in the billing menu."
                   );
@@ -540,10 +539,9 @@ const GPTtool = ({ showButton }) => {
             {GPTJorGPT3 ? gptJContent : gpt3Content}
           </div>
           <div className="flex flex-col w-full ">
-            <p className="pt-2 text-left text-md text-t-pd">Results:</p>
+            <p className="text-left text-md text-t-pd">Results:</p>
 
             <div className="flex items-center w-full text-left ai-output-box bg-white/80 dark:bg-slate-800/60 min-w-30em">
-
               {oldInput.length > 0 && <p>{oldInput.trimStart() + " "}</p>}
               <Loader show={aiLoading} />
 
@@ -563,13 +561,16 @@ const GPTtool = ({ showButton }) => {
                     console.log("Please wait for the first request to load");
                   } else {
                     if (GPTJorGPT3) {
-                      setoldInput(aiResponseGPTJ)
+                      setoldInput(aiResponseGPTJ);
                       //  setGPTJStatus(true);
                       setAiLoading(true);
-                      onSubmitFormGptJ({ input: aiResponseGPTJ, type: "expand" });
+                      onSubmitFormGptJ({
+                        input: aiResponseGPTJ,
+                        type: "expand",
+                      });
                     } else {
                       //  setGPT3Status(true);
-                      setoldInput(oldInput + " " +aiResponse)
+                      setoldInput(oldInput + " " + aiResponse);
 
                       setAiLoading(true);
                       onSubmitForm({ input: aiResponse, type: "expand" });
@@ -577,7 +578,7 @@ const GPTtool = ({ showButton }) => {
                   }
                 }}
               >
-                {aiLoading && oldInput.length > 0  ? (
+                {aiLoading && oldInput.length > 0 ? (
                   <>
                     <p className="text-lg text-t-pd">Expanding...</p>{" "}
                   </>

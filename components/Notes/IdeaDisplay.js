@@ -1,13 +1,6 @@
 import Stars from "./Stars";
-import {
-  FaEdit,
-  FaExternalLinkAlt,
-  FaImage,
-} from "react-icons/fa";
-import {
-  useEffect,
-  useState,
-} from "react";
+import { FaEdit, FaExternalLinkAlt, FaImage } from "react-icons/fa";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { editModeAction, sFormAction } from "../../redux/actions";
 import sanitize from "../../lib/sanitize";
@@ -24,8 +17,7 @@ export default function IdeaDisplay(props) {
   const [isPic, setIsPic] = useState(false);
   const dispatch = useDispatch();
   let type = props.type;
- 
-  
+
   useEffect(() => {
     if (currentDocRedux) {
       if (currentDocRedux.imgUrl?.length > 0) {
@@ -35,8 +27,6 @@ export default function IdeaDisplay(props) {
       }
     }
   }, [currentDocRedux]); // eslint-disable-line react-hooks/exhaustive-deps
-
-
 
   return (
     <div className="flex flex-col items-center w-full fade-effect-quick">
@@ -61,7 +51,7 @@ export default function IdeaDisplay(props) {
 
       <div
         className={
-          "flex items-center my-2  w-[98%] " +
+          "flex items-center my-2  w-[98%] md:flex-row sm:flex-col md:gap-0 sm:gap-2 " +
           (type === "ideas" ? "justify-between" : "justify-end")
         }
       >
