@@ -536,7 +536,7 @@ const GPTtool = ({ showButton }) => {
               </p>
             </div>
 
-            {GPTJorGPT3 ? gptJContent : gpt3Content}
+            { gpt3Content}
           </div>
           <div className="flex flex-col w-full ">
             <p className="text-left text-md text-t-pd">Results:</p>

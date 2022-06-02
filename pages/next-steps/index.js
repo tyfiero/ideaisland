@@ -49,7 +49,7 @@ const ImplementationPage = (props) => {
 
           <div></div>
 
-          <div className="relative flex flex-wrap items-center justify-center w-full px-5 py-5 border-8 border-t-bl rounded-2xl bg-clear-bl2">
+          <div className="relative flex flex-wrap items-center justify-center w-full px-5 py-5 mt-2 transition duration-[1400ms] ring-2 hover:ring-8 ring-t-bl rounded-2xl hover:bg-clear-bl2">
             <div className="flex w-full ">
               {/* <p className="pb-3 text-t-bl">Web2 Tools</p> */}
             </div>
