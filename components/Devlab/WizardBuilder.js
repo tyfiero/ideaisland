@@ -64,7 +64,7 @@ function WizardBuilder() {
       loadStep(stepNum - 1);
       setUpdate(false);
     }
-  }, [update]);
+  }, [update]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Create a new post in firestore
   const saveRoute = async (e) => {
@@ -386,7 +386,7 @@ function StepVizUnit({
       setColor(" bg-clear-pl3");
       setColor2(" bg-t-pl text-t-pd");
     }
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div

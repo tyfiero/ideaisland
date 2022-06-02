@@ -80,7 +80,7 @@ const GPTtool = ({ showButton }) => {
 
   useEffect(() => {
     getTokenAmount();
-  }, []);
+  }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
   const deduct = async (values) => {
     let uid;

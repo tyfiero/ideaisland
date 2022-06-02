@@ -7,7 +7,15 @@ import AuthError from "./AuthError";
 import Link from "next/link";
 // import useStore from "../StateManagement";
 
-import { FaEnvelope, FaChevronLeft, FaSignInAlt, FaUserPlus, FaArrowLeft, FaLongArrowAltLeft, FaArrowRight } from "react-icons/fa";
+import {
+  FaEnvelope,
+  FaChevronLeft,
+  FaSignInAlt,
+  FaUserPlus,
+  FaArrowLeft,
+  FaLongArrowAltLeft,
+  FaArrowRight,
+} from "react-icons/fa";
 // import { UserContext } from "../../lib/context";
 // import { auth, googleAuthProvider } from "../../lib/firebase";
 // import { useContext } from 'react';
@@ -307,13 +315,14 @@ export default function LoginPage() {
             className="fixed cursor-pointer text-[24px]"
           />
         ) : null}
-{expandSignIn && <button
-                onClick={()=>setExpandSignIn(!expandSignIn)}
-                className="absolute left-0 flex items-center justify-center w-16 h-8 gap-4 px-2 text-4xl top-2 right-50 text-blues-500 rounded-3xl drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95"
-              >
-              
-                 <FaLongArrowAltLeft/>
-              </button>}
+        {expandSignIn && (
+          <button
+            onClick={() => setExpandSignIn(!expandSignIn)}
+            className="absolute left-0 flex items-center justify-center w-16 h-8 gap-4 px-2 text-4xl top-2 right-50 text-blues-500 rounded-3xl drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95"
+          >
+            <FaLongArrowAltLeft />
+          </button>
+        )}
         <div className="flex flex-col items-center">
           <img
             src="/ii-palm.png"
@@ -323,57 +332,79 @@ export default function LoginPage() {
             className="mx-auto "
           />
           <div className="flex mt-1 text-3xl font-extrabold text-center text-gray-900">
-          {expandSignIn ? ("Sign in to your account"):(<><p>Welcome to<span className="logo fre">&nbsp;ideaisland </span>!</p></>)}
+            {expandSignIn ? (
+              "Sign in to your account"
+            ) : (
+              <>
+                <p>
+                  Welcome to<span className="logo fre">&nbsp;ideaisland </span>!
+                </p>
+              </>
+            )}
           </div>
 
           {/* {signInMethod === 0 ? ( */}
-            <div className="flex flex-col items-center gap-2 pt-3">
-              {/* <button
+          <div className="flex flex-col items-center gap-2 pt-3">
+            {/* <button
                 onClick={emailButton}
                 className="w-[18em] h-12 rounded-3xl bg-t-pm flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95"
               >
                 <FaEnvelope className="text-[28px]  text-white" /> Sign in with
                 Email
               </button> */}
-                
-              {expandSignIn ? (
-                <button
-                  onClick={googleButton}
-                  className="w-[18em] h-12 rounded-3xl bg-t-bl flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95"
-                >
-                  <div className="flex items-center w-8 h-8 bg-white rounded-xl">
-                    <img src="/google.png" alt="google" />
+
+            {expandSignIn ? (
+              <button
+                onClick={googleButton}
+                className="w-[18em] h-12 rounded-3xl bg-t-bl flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95"
+              >
+                <div className="flex items-center w-8 h-8 bg-white rounded-xl">
+                  <img src="/google.png" alt="google" />
+                </div>
+                Sign in with Google
+              </button>
+            ) : (
+              <>
+                {cookiePop ? (
+                  <div>
+                    <p className="text-center nun">
+                      This website requires cookies to work properly. By
+                      continuing you are agreeing to our use of necessary
+                      cookies.
+                    </p>
+                    <Link href="/signup">
+                      <a>
+                        <div
+                          className="flex items-center justify-center h-16 gap-4 px-12 text-2xl cursor-pointer text-pinks-50 rounded-3xl bg-t-bl drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95"
+                          onClick={() => setCookiePop(!cookiePop)}
+                        >
+                          Accept and Continue
+                          <FaArrowRight />
+                        </div>
+                      </a>
+                    </Link>
                   </div>
-                  Sign in with Google
-                </button>
-              
-              ) : (
-                <>
-                {cookiePop ? (<div><p className="text-center nun">This website requires cookies to work properly.  By continuing you are agreeing to our use of necessary cookies.</p>
-                  <Link href="/signup">
-                    <div className="flex items-center justify-center h-16 gap-4 px-12 text-2xl cursor-pointer text-pinks-50 rounded-3xl bg-t-bl drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95"
-                     onClick={()=>setCookiePop(!cookiePop)}>Accept and Continue<FaArrowRight/></div>
-                  </Link></div>) : (<div className="flex items-center justify-center h-16 gap-4 px-12 text-2xl cursor-pointer text-pinks-50 rounded-3xl bg-t-pm drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95"
-                     onClick={()=>setCookiePop(!cookiePop)}>Sign up<FaUserPlus/></div>)}
+                ) : (
+                  <div
+                    className="flex items-center justify-center h-16 gap-4 px-12 text-2xl cursor-pointer text-pinks-50 rounded-3xl bg-t-pm drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95"
+                    onClick={() => setCookiePop(!cookiePop)}
+                  >
+                    Sign up
+                    <FaUserPlus />
+                  </div>
+                )}
 
-                     
-                {!cookiePop &&<button
-                  onClick={()=>setExpandSignIn(!expandSignIn)}
-                  className="flex items-center justify-center h-10 gap-4 px-12 text-2xl text-blues-50 rounded-3xl bg-t-bl drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95"
-                >
-                
-                  Sign in <FaSignInAlt/>
-                </button>}
-
-
-                
-                 
-
-
-                  
-                </>
-              )}
-            </div>
+                {!cookiePop && (
+                  <button
+                    onClick={() => setExpandSignIn(!expandSignIn)}
+                    className="flex items-center justify-center h-10 gap-4 px-12 text-2xl text-blues-50 rounded-3xl bg-t-bl drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95"
+                  >
+                    Sign in <FaSignInAlt />
+                  </button>
+                )}
+              </>
+            )}
+          </div>
           {/* ) : null} */}
           {/* {signInMethod === 1 && emailForm} */}
         </div>

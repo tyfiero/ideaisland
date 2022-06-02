@@ -24,7 +24,7 @@ function KeyResult(props) {
     }
      
 
-  }, [props.value]);
+  }, [props.value]); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <div
       className={

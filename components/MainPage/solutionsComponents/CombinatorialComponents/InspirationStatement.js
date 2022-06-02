@@ -56,7 +56,7 @@ function InspirationStatement({ randomizeAll }) {
 
   useEffect(() => {
     separateText();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   // useEffect(() => {
   //   if(!splitText){
   //     console.log("RAN")

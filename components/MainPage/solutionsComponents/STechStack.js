@@ -159,7 +159,7 @@ function STechStack(props) {
       dispatch(sFormAction(updated));
       setMonthlyCost(monthTotal);
     }
-  }, [toolArray]);
+  }, [toolArray]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div
@@ -1173,7 +1173,7 @@ function ListItem({ name, deleteIndex, cost, url, type, kind }) {
         " dark:bg-indigo-500/80 bg-indigo-200/60 dark:border-indigo-300  border-indigo-700 "
       );
     }
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   // console.log(url)
   return (
     <div

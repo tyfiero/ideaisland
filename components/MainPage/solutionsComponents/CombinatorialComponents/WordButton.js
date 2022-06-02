@@ -68,7 +68,7 @@ function WordButton({ text, word, updateSelected, selectedWords, mode }) {
         setTextColor(" underline decoration-sky-400 text-sky-400 dark:text-sky-300 ");
       }
     }
-  }, [clicked]);
+  }, [clicked]); // eslint-disable-line react-hooks/exhaustive-deps
 
   
   //randomize button function

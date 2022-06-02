@@ -44,7 +44,7 @@ function CardImage(props) {
     setWordChanged(true);
     setNextPhoto(1);
     getPhoto()
-  }, [props.alt]);
+  }, [props.alt]); // eslint-disable-line react-hooks/exhaustive-deps
   
   function imageClickHandler() {
     if (wordChanged) {

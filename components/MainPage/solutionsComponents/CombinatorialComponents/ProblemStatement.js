@@ -61,7 +61,7 @@ function ProblemStatement(props) {
 
   useEffect(() => {
     separateText();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
 
   const randomizeAll = (event) => {

@@ -18,13 +18,13 @@ function Objective(props) {
     if (!modalOpen && selectedKr !== null) {
       setSelectedKr(null);
     }
-  }, [modalOpen]);
+  }, [modalOpen]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (!modalOpen && selectedKr !== null) {
       setSelectedKr(null);
     }
-  }, [krProgress]);
+  }, [krProgress]); // eslint-disable-line react-hooks/exhaustive-deps
 
   
   return (
