@@ -78,6 +78,8 @@ export default function UsernameForm(props) {
 
   // Hit the database for username match after each debounced change
   // useCallback is required for debounce to work
+
+  //es-lint-disable-next-line
   const checkUsername = useCallback(
     debounce(async (input) => {
       if (input.length >= 3) {

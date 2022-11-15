@@ -128,6 +128,7 @@ function CanvasSection({ title, kind, description, qContext }) {
         placeholder="..."
         > 
       </TextareaAutosize>
+
     </div>
   );
 }

@@ -1231,6 +1231,7 @@ p {
   flex-direction: column;
   align-items: flex-start;
 }
+
 .card-label {
   z-index: 4;
   color: black;
@@ -2993,22 +2994,14 @@ input[type="range"]::-moz-range-thumb:active {
   animation: logo-text 0.2s;
 }
 
-.link-underline {
-  border-bottom-width: 0;
-  background-image: linear-gradient(transparent, transparent),
-    linear-gradient(#fff, #fff);
-  background-size: 0 6px;
-  background-position: 0 100%;
-  background-repeat: no-repeat;
-  transition: background-size 0.5s ease-in-out;
+.parallax-effect-glare-scale {
+  transform-style: preserve-3d;
+  transform: translateZ(60px);
 }
-
-.link-underline-black {
-  background-image: linear-gradient(transparent, transparent),
-    linear-gradient(var(--colorDark1), var(--colorLight1));
+.inner-element {
+  transform: translateZ(600px);
+  transform: translateZ(750px) perspective(20px) !important;
 }
-
-.link-underline:hover {
-  background-size: 100% 3px;
-  background-position: 0 100%;
+.core-element {
+  transform: translateZ(-4px);
 }

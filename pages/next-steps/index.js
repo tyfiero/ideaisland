@@ -55,11 +55,15 @@ const ImplementationPage = (props) => {
             </div>
             <div className="flex">
               <Tilt
+                className="parallax-effect-glare-scale"
                 tiltMaxAngleX={10}
                 tiltMaxAngleY={10}
-                perspective={1000}
+                perspective={500}
                 transitionSpeed={1000}
                 scale={1.02}
+                glareEnable={true}
+                glarePosition="bottom"
+                glareColor="#ffffff"
               >
                 <ImplementTool
                   route="/next-steps/features"
@@ -216,7 +220,7 @@ const ImplementTool = ({
   return (
     <div
       className={
-        "flex flex-col items-center justify-center w-[15em] h-[25em] p-1 bg-white/80 dark:bg-slate-800 rounded-xl md:hover:scale-105 transition duration-500 md:hover:ring-8  ring-clear-bd3 mx-2 " +
+        "flex flex-col core-element items-center justify-center w-[15em] h-[25em] p-1 bg-white/80 dark:bg-slate-800 rounded-xl md:hover:scale-105 transition duration-500 md:hover:ring-8  ring-clear-bd3 mx-2 " +
         bColor
       }
     >
@@ -228,8 +232,8 @@ const ImplementTool = ({
         />
       </div>
 
-      <div className="flex flex-col justify-between items-center h-[15em] px-5 py-2">
-        <h3 className={"m-0 text-2xl " + textColor}>{title}</h3>
+      <div className="flex flex-col justify-between items-center h-[15em] px-5 py-2 inner-element">
+        <h3 className={"m-0 text-2xl  " + textColor}>{title}</h3>
 
         <p className="text-sm text-left">{description}</p>
         <button
