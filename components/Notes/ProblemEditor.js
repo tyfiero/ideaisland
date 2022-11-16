@@ -15,10 +15,8 @@ import Stars from "./Stars";
 import { firestore, auth } from "../../lib/firebase";
 import Toggle from "react-toggle";
 import sanitize from "../../lib/sanitize";
-
 import FullLoader from "../../components/Layout/FullLoader";
-// import ReactQuill from "react-quill";
-// import ReactQuill from 'react-quill';
+
 import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
 import {
@@ -46,13 +44,6 @@ import { currentDocAction } from "../../redux/actions";
 
 import TextareaAutosize from "react-textarea-autosize";
 
-// const ClientQuill = dynamic(
-//     () => {
-//  return import ReactQuill from 'react-quill';
-
-//     },
-//     { ssr: false }
-//   );
 
 function ProblemEditor(props) {
   //   const [editMode, setEditMode] = useState(false);
@@ -192,19 +183,7 @@ function CreateNewProblem(props) {
   }, [user, userUIDRedux]);
   // // console.log(setEditDocDetails.length + "docdeets");
   // // console.log(serverTimestamp());
-  // useEffect(() => {
-  //   return () => {
-  //     // console.log("Here, you can add clean up code - componentWillUnmount");
 
-  //     if (unsavedChangesRedux) {
-  //       if (editModeRedux === "edit") {
-  //         // updateIdea()
-  //       } else if (editModeRedux === "new") {
-  //         createIdea();
-  //       }
-  //     }
-  //   };
-  // }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (editModeRedux === "new") {
@@ -258,9 +237,6 @@ function CreateNewProblem(props) {
 
   // Ensure slug is URL safe
 
-  //   const slug = encodeURI(kebabCase(title));
-  //   console.log(setEditDocDetails);
-  //   console.log(title);
 
   // Validate length
   const isValid = title?.length > 3 && title?.length < 100;

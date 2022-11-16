@@ -61,19 +61,7 @@ export default function IdeaDisplay(props) {
               <p className="text-[22px] text-t-bd">Rating</p>
               <Stars hover={false} rating={currentDocRedux?.rating} />
             </div>
-            {/* <div>
-              {currentDocRedux?.published ? (
-                <div className="flex items-center gap-1">
-                  <FaGlobeAmericas className="text-t-bl" />
-                  <p className="text-t-bl">Public&nbsp;&nbsp; </p>
-                </div>
-              ) : (
-                <div className="flex items-center gap-1">
-                  <FaLock className="text-t-pd" />
-                  <p className="text-t-pd">Private</p>
-                </div>
-              )}
-            </div> */}
+           
           </>
         )}
 

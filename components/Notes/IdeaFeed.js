@@ -1,14 +1,9 @@
 import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
 import { currentDocAction } from "../../redux/actions";
-// import AuthCheck from "../components/Authentication/AuthCheck";
-
-// import { doc, getDoc } from "firebase/firestore";
-// import { firestore } from "../lib/firebase";
 import { FaCheck, FaEdit, FaGlobeAmericas, FaLock, FaRegTrashAlt } from "react-icons/fa";
 import OneStar from "./OneStar";
 import Stars from "./Stars";
-// import DOMPurify from "dompurify";
 import sanitize from "../../lib/sanitize";
 import { useState, useEffect } from "react";
 import { editModeAction } from "../../redux/actions";

@@ -5,7 +5,6 @@ import dynamic from "next/dynamic";
 import { useSelector, useDispatch } from "react-redux";
 import toast from "react-hot-toast";
 import { FaSave, FaTrash } from "react-icons/fa";
-
 import {
   serverTimestamp,
   query,
@@ -46,14 +45,6 @@ function IdeaNote() {
     setRating(starsRating);
   };
 
-// useEffect(() => {
-//   if (darkRedux) {
-// //     const quilStyle =document.querySelector("#__next > div > div:nth-child(6) > div > div.popup-box > div > div.h-full > div > div.flex.justify-center.w-full.h-full.p-2.rounded-b-3xl.rounded-t-xl.bg-clear-bl3 > div > div > div.ql-toolbar.ql-snow");
-// // console.log(quilStyle);
-// //     //  let quilStyle = document.getElementsByClassName(".ql-toolbar")
-// //      quilStyle.style.backgroundColor = "hsla(200,0%,50%,0.7) !important"
-//   }
-// }, [])
 
 
   // Create a new post in firestore

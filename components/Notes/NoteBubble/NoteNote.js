@@ -5,7 +5,6 @@ import dynamic from "next/dynamic";
 import { useSelector, useDispatch } from "react-redux";
 import toast from "react-hot-toast";
 import { FaSave, FaTrash } from "react-icons/fa";
-
 import {
   serverTimestamp,
   query,
@@ -38,28 +37,6 @@ function NoteNote() {
   const userUIDRedux = useSelector((state) => state.userUID);
   const unsavedRedux = useSelector((state) => state.unsavedChanges);
   const dispatch = useDispatch();
-
-
-  // useEffect(() => {
-  //   return () => {
-  //     console.log("unmounting");
-
-
-  //     // Your code you want to run on unmount.
-  //     if(unsavedRedux){
-  //     console.log("unsaved");
-  //     toast.error("TITLE...");
-
-  //       createIdea(title, content);  
-  //       dispatch(unsavedChangesAction(false));
-
-        
-  //   }else{
-  //     toast.error("WTF????...");
-      
-  //   }
-  // }
-  // },[]); 
 
 
   

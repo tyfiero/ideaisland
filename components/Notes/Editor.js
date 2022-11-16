@@ -8,8 +8,6 @@ import Stars from "./Stars";
 import { firestore, auth } from "../../lib/firebase";
 import Toggle from "react-toggle";
 import sanitize from "../../lib/sanitize";
-// import ReactQuill from "react-quill";
-// import ReactQuill from 'react-quill';
 import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
 import {
@@ -41,16 +39,8 @@ const QuillNoSSRWrapper = dynamic(() => import("react-quill"), {
   ssr: false,
 });
 
-// const ClientQuill = dynamic(
-//     () => {
-//  return import ReactQuill from 'react-quill';
-
-//     },
-//     { ssr: false }
-//   );
 
 function Editor(props) {
-  //   const [editMode, setEditMode] = useState(false);
   const [editDocDetails, setEditDocDetails] = useState([]);
 
   const currentDocRedux = useSelector((state) => state.currentDoc);

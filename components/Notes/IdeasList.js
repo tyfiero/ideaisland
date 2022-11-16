@@ -1,5 +1,4 @@
 import IdeaFeed from "./IdeaFeed";
-
 import { UserContext } from "../../lib/context";
 import {
   serverTimestamp,
@@ -15,10 +14,8 @@ import {
 import { firestore, auth } from "../../lib/firebase";
 import { useContext, useState, useEffect } from "react";
 import { useRouter } from "next/router";
-
 import { useCollection } from "react-firebase-hooks/firestore";
 import toast from "react-hot-toast";
-// import IdeaFeed from "./IdeaFeed";
 import { editModeAction } from "../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 import { statsAction } from "../../redux/actions";
