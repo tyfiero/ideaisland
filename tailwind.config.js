@@ -16,7 +16,6 @@ module.exports = {
       fontFamily: {
         sans: ["Graphik", "sans-serif"],
         serif: ["Merriweather", "serif"],
-        // custom: ["Sniglet", "sans-serif"],
       },
       colors: {
         blues: {
