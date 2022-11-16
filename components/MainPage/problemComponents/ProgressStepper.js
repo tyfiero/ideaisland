@@ -1,6 +1,5 @@
 import React from "react";
 /* eslint react/prop-types: 0 */
-// import styles from './nav.less';
 import {
   FaUsers,
   FaLaptopCode,

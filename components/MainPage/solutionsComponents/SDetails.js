@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
 import { UserContext } from "../../../lib/context";
-
 import { Popover, ArrowContainer } from "react-tiny-popover";
 import ConfettiComponent from "../ConfettiComponent";
 import {
@@ -28,7 +27,6 @@ import {
 } from "firebase/firestore";
 import { useRouter } from "next/router";
 import { firestore, auth } from "../../../lib/firebase";
-
 import { useSelector, useDispatch } from "react-redux";
 import { sFormAction } from "../../../redux/actions";
 import ChipBlue from "../problemComponents/chips/ChipBlue";
@@ -36,7 +34,6 @@ import ChipFeature from "./CombinatorialComponents/ChipFeature";
 import ChipTechStackDisplay from "./CombinatorialComponents/ChipTechStackDisplay";
 import sanitize from "../../../lib/sanitize";
 function SDetails(props) {
-  // console.log("DETAILS--------------------" + props.isActive)
 
   const dispatch = useDispatch();
   const sFormRedux = useSelector((state) => state.sForm);
@@ -49,11 +46,7 @@ function SDetails(props) {
   const { user, username } = useContext(UserContext);
   const userUIDRedux = useSelector((state) => state.userUID);
   const userNameRedux = useSelector((state) => state.userName);
-  // const update = (e) => {
-  //   props.update(e.target.name, e.target.value);
-  // };
 
-  // console.log(sFormRedux)
   useEffect(() => {
     if (props.changes) {
       setReadyToSave(true);

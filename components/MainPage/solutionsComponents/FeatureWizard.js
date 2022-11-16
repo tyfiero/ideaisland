@@ -1,8 +1,6 @@
 import StepWizard from "react-step-wizard";
 import loadable from "@loadable/component";
-
 import { useState, React } from "react";
-
 import { useSelector } from "react-redux";
 import SToolBar from "./SToolBar";
 import FeatureStepper from "./FeatureStepper";
@@ -13,10 +11,8 @@ const SFeatures = loadable(() => import("./SFeatures"));
 const SDetails = loadable(() => import("./SDetails"));
 
 function FeatureWizard(props) {
-  // const { user, username } = useContext(UserContext);
   const sFormRedux = useSelector((state) => state.sForm);
 
-  // const userUIDRedux = useSelector((state) => state.userUID);
   const [changes, setChanges] = useState(false);
   const [reset, setReset] = useState(false);
 
@@ -27,28 +23,6 @@ function FeatureWizard(props) {
     demo: true, // uncomment to see more
   });
 
-  // const [formContent, setFormContent] = useState({ form: {} });
-  // const updateForm = (key, value) => {
-  //   const { form } = formContent;
-
-  //   form[key] = value;
-  //   setFormContent({
-  //     ...formContent,
-  //     form,
-  //   });
-  //   // console.log(form.details)
-  // };
-
-  // Create a new post in firestore
-
-  // Do something on step change
-  // const onStepChange = (stats) => {
-  //   console.log(stats);
-  //   if(sFormRedux.idea === null){
-  //     toast.error("Please select an idea before continuing")
-  //     // goToStep(1)
-  //   }
-  // };
   const updateForm = (key, value) => {
     const { form } = state;
 

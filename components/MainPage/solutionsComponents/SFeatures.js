@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-
 import { Popover, ArrowContainer } from "react-tiny-popover";
-
 import {
   FaLaptopCode,
   FaShoppingBag,
@@ -26,7 +24,6 @@ import toast from "react-hot-toast";
 import TextareaAutosize from "react-textarea-autosize";
 
 function SFeatures(props) {
-  // console.log("FEATURES--------------------" + props.isActive);
 
   const dispatch = useDispatch();
   const sFormRedux = useSelector((state) => state.sForm);
@@ -40,24 +37,11 @@ function SFeatures(props) {
   const [showSecurity, setShowSecurity] = useState(false);
   const [showMisc, setShowMisc] = useState(false);
 
-  // const [button2, setButton2] = useState(false);
   const [rerender, setRerender] = useState(false);
 
   const [featureContent, setFeatureContent] = useState("");
   const [featureArray, setFeatureArray] = useState([]);
-  // const [featureString, setFeatureString] = useState("");
-  // const [changes, setChanges] = useState(false);
 
-  // console.log(props.form.form);
-  // console.log(sFormRedux);
-
-  // useEffect(() => {
-  //   console.log("ACTION");
-
-  //   let text = featureArray.toString();
-  //   console.log(text);
-  //   setFeatureString(text);
-  // }, [props.form.form]);
   useEffect(() => {
     if (sFormRedux.idea === null) {
       props.goToStep(1);
@@ -76,22 +60,14 @@ function SFeatures(props) {
     }
   }, [props.reset]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // useEffect(() => {
-  //   if (sFormRedux.features.length > 0) {
-  //     setFeatureArray(sFormRedux.features);
-  //   }
-  // }, [props.loadData]); // eslint-disable-line react-hooks/exhaustive-deps
+
 
   useEffect(() => {
-    // console.log(featureArray)
-    // console.log("ue")
 
-    // setFeatureArray(featureArray)
     setRerender(!rerender);
   }, [sFormRedux, featureArray]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const updateArray = (data) => {
-    // console.log(featureArray);
 
     //NOTE!! This is duplicated many times. If you want to change it, change all of them.
     let featureObject = {
@@ -161,14 +137,6 @@ function SFeatures(props) {
     // props.update("Features", featureArray);
   };
 
-  // console.log(featureString);
-
-  // for (var i = 0; i < featureArray.length; i++){
-  // // document.writeln((i+1) + ": " + array[i]);
-  // console.log(((i+1) + ": " + featureArray[i]) + " THISS");
-
-  // }
-  // let arrayTextList =
 
   return (
     <div>

@@ -1,9 +1,6 @@
 import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
-// import AuthCheck from "../components/Authentication/AuthCheck";
 
-// import { doc, getDoc } from "firebase/firestore";
-// import { firestore } from "../lib/firebase";
 import {
   FaCheck,
   FaEdit,
@@ -21,33 +18,10 @@ import { sFormAction, sUpdateAction } from "../../../redux/actions";
 import { updateCurrentUser } from "firebase/auth";
 
 export default function IdeaFeed({ ideas, admin }) {
-  // const statsRedux = useSelector((state) => state.stats);
   const sFormRedux = useSelector((state) => state.sForm);
 
   const dispatch = useDispatch();
-  // console.log(sFormRedux)
-  // const docRef = doc(firestore, ", "idea-1");
-  // getDoc(docRef).then((doc) => {
-  //   console.log(doc.data(), doc.id);
-  // })
-  // // const docSnap = async  () => { await getDoc(docRef)};
-  // // if (docSnap.exists()) {
-  //   // console.log("Document data:", docSnap.data());
-  // // } else {
-  // //   // doc.data() will be undefined in this case
-  // //   console.log("No such document!");
-  // // }
-  // console.log(ideas);
-
-  // useEffect(() => {
-
-  //   if(ideas){
-  //     let num = ideas.length;
-  //     dispatch(statsAction({ideaNum: num}))
-  //   }
-
-  // }, [])
-
+  
   return ideas
     ? ideas.map((idea) => (
         <IdeaItem idea={idea} key={idea.identifier} admin={admin} />

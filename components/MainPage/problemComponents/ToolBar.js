@@ -9,21 +9,13 @@ import { useSelector, useDispatch } from "react-redux";
 import Modal from "../../Layout/Modal";
 import ReusableModal from "../../Layout/ReusableModal";
 function ToolBar({SW}) {
-
-
   const sFormRedux = useSelector((state) => state.sForm);
   const sUpdate = useSelector((state) => state.sUpdate);
-
   const {idea} = useSelector((state) => state.sForm);
-
   const [ideaBar, setIdeaBar] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [openShareMenu, setOpenShareMenu] = useState(false);
-
-  // console.log(idea)
-
   useEffect(() => {
-    // console.log("ran")
 
     if(sFormRedux.idea?.title){
       // console.log("idea")
@@ -32,11 +24,6 @@ function ToolBar({SW}) {
       setIdeaBar(null)
     }
   },[sUpdate]);// eslint-disable-line react-hooks/exhaustive-deps
-
-
-
-
-  
   return (
     <div className="sticky top-0 z-40 flex items-center justify-between border-t-0 shadow-xl bg-white/30">
       <div className="flex justify-between w-full h-full bg-gradient-to-l from-clear-pl2">
@@ -54,7 +41,6 @@ function ToolBar({SW}) {
                 Yes, Start Over
               </button>
               </div>
-      {/* <img src="ii-palm.png" alt="" /> */}
     </ReusableModal>}
 
     {openShareMenu && <Modal setOpenShareMenu={setOpenShareMenu} />}

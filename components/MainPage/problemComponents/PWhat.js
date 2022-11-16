@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
-
 import { Popover, ArrowContainer } from "react-tiny-popover";
 import { pFormAction } from "../../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 import TextareaAutosize from "react-textarea-autosize";
-
 import {
   FaLaptopCode,
   FaShoppingBag,
@@ -16,7 +14,6 @@ import {
 function PWhat(props) {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [content, setContent] = useState("");
-
   const [button1, setButton1] = useState(false);
   const [button2, setButton2] = useState(false);
   const dispatch = useDispatch();

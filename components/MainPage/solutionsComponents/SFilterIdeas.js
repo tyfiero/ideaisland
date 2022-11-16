@@ -3,7 +3,6 @@ import SFilterIdeaFeed from "./SFilterIdeaFeed";
 import { useSelector, useDispatch } from "react-redux";
 import { firestore, auth } from "../../../lib/firebase";
 import { UserContext } from "../../../lib/context";
-
 import {
   serverTimestamp,
   query,
@@ -13,20 +12,18 @@ import {
   setDoc,
   doc,
 } from "firebase/firestore";
-
 import { useCollection } from "react-firebase-hooks/firestore";
 import { FaRegTimesCircle, FaSearch } from "react-icons/fa";
-
 function SFilterIdeas(props) {
   const [searchValue, setSearchValue] = useState("");
 
   return (
     <div className="flex flex-col items-center w-full">
-      {/* <p>**Might need a filter, sort, or search function at some point**</p> */}
+     
 
       <div className="pt-2 relative mx-auto text-gray-600  mb-2 flex w-[80%] items-center">
         <div className="flex items-center justify-start ">
-          {/* <h1 className=" !text-xl whitespace-nowrap !mb-0 mr-5">All Ideas</h1> */}
+         
         </div>
         <input
           className="w-full h-10 px-5 pr-16 text-sm bg-white border-2 border-gray-300 rounded-full dark:bg-slate-500 focus:outline-none placeholder:text-slate-400 dark:placeholder:text-slate-300 text-slate-700 dark:text-slate-100 "
@@ -66,8 +63,6 @@ function IdeasList(props) {
   const sUpdate = useSelector((state) => state.sUpdate);
   const [searchTerm, setSearchTerm] = useState("");
 
-  // const [ideas, setIdeas] = useState([]);
-
   useEffect(() => {
     setSearchTerm(props.searchTerm);
   }, [props.searchTerm]);
@@ -88,11 +83,7 @@ function IdeasList(props) {
     uid = "default";
     console.log("no uid available :(");
   }
-  // console.log(auth.currentUser);1
-
-  //   let ideas =null;
-  //   useEffect(() => {
-  // if (uid) {
+ 
 
   //TODO memoize all firebase reads, if it needs it. Im unsure if querySnapshot continues to read from firebase after the first read. I think it waits until the data changes maybe?
   const ref = collection(getFirestore(), "users", uid, "ideas");
@@ -110,18 +101,7 @@ function IdeasList(props) {
     );
   });
 
-  // console.log(ideaSearch)
-  //   }
 
-  //   }
-  //   },[])
-
-  //   useEffect(() => {
-  // console.log("IT RAN")
-  //     if (sFormRedux.idea[1]?.title) {
-  //     setCanSelect(false);
-  //     }
-  //   },[sUpdate])
 
   return (
     <>

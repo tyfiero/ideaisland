@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -14,10 +13,6 @@ import {
   Scales,
   Animations,
 } from "chart.js";
-
-
-
-
 // import faker from 'faker';
 const { faker } = require("@faker-js/faker");
 

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import {
   FaBuilding,
   FaLaptopCode,
@@ -21,7 +20,6 @@ import {
 } from "react-icons/fa";
 import { IoIosPeople } from "react-icons/io";
 import TextareaAutosize from "react-textarea-autosize";
-
 import { Popover, ArrowContainer } from "react-tiny-popover";
 import { useSelector, useDispatch } from "react-redux";
 import { pFormAction } from "../../../redux/actions";
@@ -43,12 +41,10 @@ import ChipPurple from "./chips/ChipPurple.js";
 import ChipIndigo from "./chips/ChipIndigo.js";
 
 function PWhy(props) {
-  // console.log(props.update)
   const pFormRedux = useSelector((state) => state.pForm);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [startMenu, setStartMenu] = useState(true);
   const [content, setContent] = useState("");
-
   const [button1, setButton1] = useState(false);
   const [button2, setButton2] = useState(false);
   const [button3, setButton3] = useState(false);

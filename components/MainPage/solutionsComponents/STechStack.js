@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
-
 import { Popover, ArrowContainer } from "react-tiny-popover";
 import Select from "react-select";
-
 import {
   FaLaptopCode,
   FaShoppingBag,
@@ -31,7 +29,6 @@ import {
   FaEdit,
 } from "react-icons/fa";
 import { sFormAction, sUpdateAction } from "../../../redux/actions";
-
 import { AiOutlineCluster } from "react-icons/ai";
 import { SiTailwindcss } from "react-icons/si";
 import { HiOutlineDotsCircleHorizontal } from "react-icons/hi";
@@ -53,10 +50,7 @@ import {
 } from "./CombinatorialComponents/DataForTechStack";
 import { useSelector, useDispatch } from "react-redux";
 import toast from "react-hot-toast";
-
 function STechStack(props) {
-  // console.log("TECHSTACK--------------------" + props.isActive);
-
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [refresh, setRefresh] = useState(false);
   const dispatch = useDispatch();

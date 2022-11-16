@@ -2,11 +2,6 @@ import  { useState, React } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { sWord1Action, sWord2Action } from "../../../redux/actions";
 
-// import {
-//   allLists,
-//   sWord1Action,
-//   sWord2Action,
-// } from "../../../redux/reducers/allLists";
 
 var selectedSentence = "commaOf";
 var index = 1;
@@ -22,7 +17,6 @@ function SentenceTool(props) {
   //Sentence selector
 
   var sentences = ["commaOf", "hadABaby", "proofOf"];
-  // dispatch(sWord2Action("test"));
 
   const changeSentence = () => {
     if (index > sentences.length - 1) {

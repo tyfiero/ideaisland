@@ -15,6 +15,7 @@ import {
   FaRobot,
   FaRandom,
   FaRegLightbulb,
+  FaQuestion,
 } from "react-icons/fa";
 import Link from "next/link";
 
@@ -41,10 +42,12 @@ function SIdeate(props) {
   "
       >
         <div className="w-full max-w-[62rem] p-10 space-y-8  normal-box-soft relative !bg-gradient-to-b from-clear-pl3 dark:from-clear-pd2 dark:to-clear-bd4 to-clear-bl3 min-h-[30em]">
-          
           <div className="absolute top-0 left-0 flex items-center content-center w-full h-full overflow-hidden select-none rounded-xl">
-            
-              <img src="/treeillustration.png" alt="palm" className="object-cover opacity-25 -z-10 sm:scale-125"/> 
+            <img
+              src="/treeillustration.png"
+              alt="palm"
+              className="object-cover opacity-25 -z-10 sm:scale-125"
+            />
           </div>
           <div className="absolute top-5 left-5">
             <Popover
@@ -88,100 +91,43 @@ function SIdeate(props) {
             </Popover>
           </div>
           <div className="flex flex-col items-center justify-center gap-3 p-3 problem-page fade-effect-quick !m-0">
-            <h1 className="text-3xl text-t-bd dark:text-blues-100">Solutions</h1>
-            {/* <div className="!bg-white normal-box-soft !opacity-100">
-              <h3 className="heading">The s</h3>
-            </div> */}
+            <h1 className="text-3xl text-t-bd dark:text-blues-100">
+              Solutions
+            </h1>
+            
             <div className="bg-white/60 rounded-xl">
-              {/* <Image
-        alt="Next.js logo"
-        src="/palmnobgoptimized.png"
-        width={2802}
-        height={1487}
-        priority={true}
-      /> */}
-        {/* <SolutionWizard /> */}
-
+        
             </div>
             <div className="flex gap-5">
-              {/* <button
-                className={"w-[12em] h-[4em] rounded-3xl  flex items-center justify-center text-black gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " + (button1 ? " border-4 border-t-bl bg-blues-200" : "bg-blues-100")}
-                onClick={(e)=>{setButton1(!button1); setButton2(false)
-                  updateButton(e)}}
-                value="Software Product"
-              >
-                <FaRandom />
-                Combinatorial Tool {button1 ?   <span className="absolute flex items-center justify-center w-6 h-6 leading-none text-center text-black rounded-full -top-2 -left-2 bg-t-bpop"><FaCheck/></span> : null}
-              </button>
-              <button
-              className={"w-[12em] h-[4em] rounded-3xl  flex items-center justify-center text-black gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " + (button2 ? " border-4 border-t-bl bg-blues-200" : "bg-blues-100")}
-              onClick={(e)=>{setButton2(!button2); setButton1(false)
-                updateButton(e)}}
-                value="Physical Product"
-              >
-                <FaRobot /> AI tool {button2 ?   <span className="absolute flex items-center justify-center w-6 h-6 leading-none text-center text-black rounded-full -top-2 -left-2 bg-t-bpop"><FaCheck/></span> : null}
-              </button> */}
+        
               <div className="flex flex-col items-center gap-5">
-                {/* <h4>Tools:</h4> */}
                 <Link href="/solutions/finder">
                   <a>
-                  <div className="relative group md:!w-[25em] sm:!w-[18em]">
-                <div className="absolute w-full transition duration-1000 rounded-full opacity-90 -inset-1 bg-gradient-to-r from-t-bl via-blues-200 to-blues-50 blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
-                <button
-                  className="w-[95%] h-[3em] bg-gradient-to-r from-t-bl via-blues-300 to-blues-100  flex items-center justify-between px-5 md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-clear-bd3 md:hover:shadow-xl m-1 drop-shadow-xl rounded-full text-xl text-white"
-                >
-            Solution Finder
-                  <FaRegLightbulb className="ml-1 text-[24px] text-blues-500" />
-                </button>
-              </div>
-                
-                  </a>
-                </Link>
-
-                {/* <Link href="/solutions/improve">
-                  <a>
-                  <div className="relative group md:!w-[25em] sm:!w-[18em]">
-                <div className="absolute w-full transition duration-1000 rounded-full opacity-90 -inset-1 bg-gradient-to-r from-t-bl via-blues-200 to-blues-50 blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
-                <button
-                  className="w-[95%] h-[3em] bg-gradient-to-r from-t-bl via-t-bl to-t-bpop  flex items-center justify-between px-5 md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-clear-bd3 md:hover:shadow-xl m-1 drop-shadow-xl rounded-full text-xl text-white"
-                >
-            Improve Existing Solution
-                  <MdOutlineUpgrade className="ml-1 text-[34px] text-blues-600" />
-                </button>
-              </div>
-                  </a>
-                </Link> */}
-
-                {/* <Link href="/solutions/ai">
-                  <a>
-                    <div className="solution-button">
-                      <FaPastafarianism className="text-3xl" />
-                      <p>AI Tool</p>
+                    <div className="relative group md:!w-[25em] sm:!w-[18em]">
+                      <div className="absolute w-full transition duration-1000 rounded-full opacity-90 -inset-1 bg-gradient-to-r from-t-bl via-blues-200 to-blues-50 blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
+                      <button className="w-[95%] h-[3em] bg-gradient-to-r from-t-bl via-blues-300 to-blues-100  flex items-center justify-between px-5 md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-clear-bd3 md:hover:shadow-xl m-1 drop-shadow-xl rounded-full text-xl text-white">
+                        Solution Finder
+                        <FaRegLightbulb className="ml-1 text-[24px] text-blues-500" />
+                      </button>
                     </div>
                   </a>
-                </Link> */}
+                </Link>
+                <Link href="/solutions/cards">
+                  <a>
+                    <div className="relative group md:!w-[25em] sm:!w-[18em]">
+                      <div className="absolute w-full transition duration-1000 rounded-full opacity-50 -inset-1 bg-gradient-to-r from-blues-100 via-t-bl to-t-bd blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
+                      <button className="w-[95%] h-[3em] bg-gradient-to-r from-t-bl via-t-bl to-t-bd  flex items-center justify-between px-5 md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-clear-bd3 md:hover:shadow-xl m-1 drop-shadow-xl rounded-full text-xl text-white">
+                        Question Cards
+                        <FaQuestion className="ml-1 text-[24px] text-blues-200" />
+                      </button>
+                    </div>
+                  </a>
+                </Link>
+               
               </div>
             </div>
 
-            {/* <div className="flex items-center justify-between w-full">
-              <button
-                className=" save_button card__btn_prev left-[5%]  flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick !w-[10em]"
-                onClick={() => router.push("/problem/progress")}
-              >
-                <FaLongArrowAltLeft className="mr-1 text-[24px]" />
-                Back to Problem
-              </button>
-              <div className="relative group">
-                <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
-                <button
-                  className="w-[5em] h-[3em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-clear-bd3 md:hover:shadow-xl m-1 drop-shadow-xl "
-                  onClick={() => props.goToStep(2)}
-                >
-                  Next
-                  <FaLongArrowAltRight className="ml-1 text-[24px]" />
-                </button>
-              </div> */}
-            {/* </div> */}
+         
           </div>
         </div>
       </div>

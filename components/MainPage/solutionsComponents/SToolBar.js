@@ -18,22 +18,13 @@ function SToolBar({SWC}) {
   const [ideaBar, setIdeaBar] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [openShareMenu, setOpenShareMenu] = useState(false);
-
-  // console.log(idea)
-
   useEffect(() => {
-    // console.log("ran")
-
     if(sFormRedux.idea?.title){
-      // console.log("idea")
       setIdeaBar(sFormRedux.idea.title)
     }else{
       setIdeaBar(null)
     }
   },[sUpdate]);// eslint-disable-line react-hooks/exhaustive-deps
-
-
-
 
   
   return (

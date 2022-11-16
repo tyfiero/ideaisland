@@ -1,8 +1,5 @@
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-
-// import { Popover, ArrowContainer } from "react-tiny-popover";
-
 import {
   FaLaptopCode,
   FaShoppingBag,
@@ -16,22 +13,12 @@ import SFilterIdeas from "./SFilterIdeas";
 import { useSelector, useDispatch } from "react-redux";
 
 function SFilter(props) {
-  // const dispatch = useDispatch();
-  // console.log("FILTER--------------------" + props.isActive)
-
   const sFormRedux = useSelector((state) => state.sForm);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [button1, setButton1] = useState(false);
   const [button2, setButton2] = useState(false);
   const router = useRouter();
-  // const update = (e) => {
-  //   props.update(e.target.name, e.target.value);
-  // };
-  // const updateButton = (e) => {
-  //   props.update("productType", e.target.value);
-  // };
 
-  // console.log(sFormRedux)
   return (
     <div>
       <div
@@ -98,23 +85,7 @@ function SFilter(props) {
             </div>
 
             <div className="flex gap-5">
-              {/* <button
-                className={"w-[12em] h-[4em] rounded-3xl  flex items-center justify-center text-black gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " + (button1 ? " border-4 border-t-bl bg-blues-200" : "bg-blues-100")}
-                onClick={(e)=>{setButton1(!button1); setButton2(false)
-                  updateButton(e)}}
-                value="Software Product"
-              >
-                <FaLaptopCode />
-                Software Product {button1 ?   <span className="absolute flex items-center justify-center w-6 h-6 leading-none text-center text-black rounded-full -top-2 -left-2 bg-t-bpop"><FaCheck/></span> : null}
-              </button>
-              <button
-              className={"w-[12em] h-[4em] rounded-3xl  flex items-center justify-center text-black gap-1 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer  " + (button2 ? " border-4 border-t-bl bg-blues-200" : "bg-blues-100")}
-              onClick={(e)=>{setButton2(!button2); setButton1(false)
-                updateButton(e)}}
-                value="Physical Product"
-              >
-                <FaShoppingBag /> Physical Product {button2 ?   <span className="absolute flex items-center justify-center w-6 h-6 leading-none text-center text-black rounded-full -top-2 -left-2 bg-t-bpop"><FaCheck/></span> : null}
-              </button> */}
+              
             </div>
 
             <div className="flex flex-col w-full">

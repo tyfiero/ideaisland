@@ -8,7 +8,7 @@ import {
 function SolutionsPage() {
   return (
     <div className="text-black solution-page fade-effect-quick">
-      <h1 className=" text-3xl text-t-bd dark:text-blues-100 ">
+      <h1 className="text-3xl text-t-bd dark:text-blues-100">
         Solution Page
       </h1>
       <h4>Tools:</h4>

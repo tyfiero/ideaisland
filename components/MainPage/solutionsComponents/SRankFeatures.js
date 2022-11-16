@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
-
 import { Popover, ArrowContainer } from "react-tiny-popover";
 import styled from "styled-components";
-
 import {
   FaLaptopCode,
   FaShoppingBag,
@@ -23,7 +21,6 @@ import FeasibilityChip from "./rank/FeasibilityChip";
 import CostChip from "./rank/CostChip";
 import VersionChip from "./rank/VersionChip";
 import CommentsTextArea from "./rank/CommentsTextArea";
-
 import { useSelector, useDispatch } from "react-redux";
 import { sFormAction } from "../../../redux/actions";
 import toast from "react-hot-toast";
@@ -32,7 +29,6 @@ const Styles = styled.div`
 
   table {
     border-spacing: 0;
-    /* border: 1px solid black; */
 
     tr {
       :last-child {
@@ -59,7 +55,6 @@ const Styles = styled.div`
 function SRankFeatures(props) {
   // console.log("RANK--------------------" + props.isActive)
 
-
   const dispatch = useDispatch();
   const sFormRedux = useSelector((state) => state.sForm);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -78,39 +73,33 @@ function SRankFeatures(props) {
       col6: "BLANK",
     },
   ]);
-  // console.log(tableContent.length === sFormRedux.features.length)
 
-  // console.log(props.form.form.Features);
-  // console.log("props.form.form.Features ^^^^");
-  // console.log(props)
   useEffect(() => {
-  
     if (props.reset) {
-      setTableContent( {
+      setTableContent({
         col1: "BLANK",
         col2: "BLANK",
         col3: "BLANK",
         col4: "BLANK",
         col5: "BLANK",
         col6: "BLANK",
-      })
+      });
     } else {
       if (sFormRedux.features?.length > 0) {
         // console.log("RANNNNNNNNNNNNNN")
-      // setRefresh(!refresh)
+        // setRefresh(!refresh)
       }
     }
   }, [props.reset]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // console.log(tableContent)
   useEffect(() => {
-    if(sFormRedux.idea === null){
-      props.goToStep(1)
-        toast.error("Please select an idea before continuing")
+    if (sFormRedux.idea === null) {
+      props.goToStep(1);
+      toast.error("Please select an idea before continuing");
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  
   const updateFromChip = (data) => {
     // console.log(data);
     let pointerIndex = data[0];
@@ -173,8 +162,8 @@ function SRankFeatures(props) {
 
     // console.log(sFormRedux.features === oldArray)
     oldArray[pointerIndex] = updatedObj;
-    if(!props.changes){
-      props.setChanges(true)
+    if (!props.changes) {
+      props.setChanges(true);
     }
     // sFormRedux.features[pointerIndex] = updatedObj;
     dispatch(sFormAction(oldArray));
@@ -188,29 +177,12 @@ function SRankFeatures(props) {
   };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    // eslint-disable-line react-hooks/exhaustive-deps
-    // console.log("shit changed");
-    // setRerender(!rerender)
     if (tableContent.length !== sFormRedux.features?.length) {
       setRefresh(!refresh);
-      // console.log("It actually changed")
     }
   });
 
-  //   //function that sorts object of objects by key
-  // function sortByKey(array, key) {
-
-  //   return array.sort(function(a, b) {
-  //     var x = a[key];
-  //     var y = b[key];
-  //     return ((x < y) ? -1 : ((x > y) ? 1 : 0));
-  //   });
-  // }
   useEffect(() => {
-    // console.log("UE RAN");
-    // console.log(tableContent);
-    // console.log("before map tableContent");
-
     if (sFormRedux.features) {
       // console.log("MAP TIME");
 
@@ -222,48 +194,32 @@ function SRankFeatures(props) {
               <p className="mb-0 ml-5 sm:text-xs sm:ml-1">{featureData.name}</p>
             </div>
           ),
-          // col2: featureData.importance,
-          // col3: featureData.feasibility,
-          // col4: featureData.cost,
-          // col5: featureData.version,
-          // col6: featureData.comments,
-          col2: (
-            // <span className="px-3 py-1 text-xs text-orange-600 bg-orange-200 rounded-full cursor-pointer md:hover:scale-110">
-            //   {featureData.importance}
-            // </span>
-            <div className="sm:mx-3">
 
-            <ImportanceChip
-              value={featureData.importance}
-              updateFromChip={updateFromChip}
-              givenFeature={index}
-            />
+          col2: (
+            <div className="sm:mx-3">
+              <ImportanceChip
+                value={featureData.importance}
+                updateFromChip={updateFromChip}
+                givenFeature={index}
+              />
             </div>
           ),
           col3: (
-            // <span className="px-3 py-1 text-xs text-green-600 bg-green-200 rounded-full cursor-pointer md:hover:scale-110">
-            //   {featureData.feasibility}
-            // </span>
             <div className="sm:mx-3">
-
-            <FeasibilityChip
-              value={featureData.feasibility}
-              updateFromChip={updateFromChip}
-              givenFeature={index}
-            />
+              <FeasibilityChip
+                value={featureData.feasibility}
+                updateFromChip={updateFromChip}
+                givenFeature={index}
+              />
             </div>
           ),
           col4: (
-            // <span className="px-3 py-1 text-xs text-purple-600 bg-purple-200 rounded-full cursor-pointer md:hover:scale-110">
-            //   {featureData.cost}
-            // </span>
             <div className="sm:mx-3">
-
-            <CostChip
-              value={featureData.cost}
-              updateFromChip={updateFromChip}
-              givenFeature={index}
-            />
+              <CostChip
+                value={featureData.cost}
+                updateFromChip={updateFromChip}
+                givenFeature={index}
+              />
             </div>
           ),
           col5: (
@@ -385,40 +341,6 @@ function SRankFeatures(props) {
   });
 
   const data = React.useMemo(() => tableContent, [tableContent]);
-  // const data = React.useMemo(
-  //   () => [
-  //     {
-  //       col1: props.form.form.Features?.name || "oops",
-  //       col2: (
-  //         <span className="px-3 py-1 text-xs text-orange-600 bg-orange-200 rounded-full cursor-pointer md:hover:scale-110">
-  //           Should Have
-  //         </span>
-  //       ),
-  //       col3: (
-  //         <span className="px-3 py-1 text-xs text-green-600 bg-green-200 rounded-full cursor-pointer md:hover:scale-110">
-  //           Easy
-  //         </span>
-  //       ),
-  //       col4: (
-  //         <span className="px-3 py-1 text-xs text-purple-600 bg-purple-200 rounded-full cursor-pointer md:hover:scale-110">
-  //           Easy
-  //         </span>
-  //       ),
-  //       col5: (
-  //         <span className="px-3 py-1 text-xs text-blue-600 bg-blue-200 rounded-full cursor-pointer md:hover:scale-110">
-  //           MVP
-  //         </span>
-  //       ),
-  //       col6: (
-  //         <p className="px-3 py-1 m-0 text-xs cursor-auto ">
-  //           comments about the feature
-  //         </p>
-  //       ),
-  //     },
-  //   tableContent[0]
-  //   ],
-  //   [tableContent]
-  // );
 
   return (
     <div>
@@ -461,7 +383,9 @@ function SRankFeatures(props) {
                       className="!opacity-100 bg-white w-[25em] nun rounded-xl p-3"
                       onClick={() => setIsPopoverOpen(!isPopoverOpen)}
                     >
-                      Entrepreneurs tend to add too many features too early. This tool aims to help you identify the most important features that you should add to your product, and when.
+                      Entrepreneurs tend to add too many features too early.
+                      This tool aims to help you identify the most important
+                      features that you should add to your product, and when.
                     </div>
                   </ArrowContainer>
                 )}
@@ -478,12 +402,15 @@ function SRankFeatures(props) {
               Feature Selection
             </h1>
             <div className="normal-box-soft">
-                <h3 className="heading">
-                  Time to pick the features defined in the last step.
-                </h3>
-              </div>
-           
-           <p className="md:hidden sm:block"> {"<----- Scroll left and right to see full table ----->"}</p>
+              <h3 className="heading">
+                Time to pick the features defined in the last step.
+              </h3>
+            </div>
+
+            <p className="md:hidden sm:block">
+              {" "}
+              {"<----- Scroll left and right to see full table ----->"}
+            </p>
             <div className="flex flex-col sm:w-[122%] md:w-full">
               <Styles>
                 {/* <div className="flex gap-3 normal-box-soft right-10 ">
@@ -516,25 +443,25 @@ function SRankFeatures(props) {
               </Styles>
 
               <div className="flex items-center justify-between w-full mt-2">
-              <button
-                className="card__btn_prev save_button left-[5%]  flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick"
-                onClick={() => props.goToStep(2)}
-              >
-                <FaLongArrowAltLeft className="mr-1 text-[24px]" />
-                Back
-              </button>
-             
-              <div className="relative group">
-                <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
                 <button
-                  className="w-[5em] h-[3em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-clear-bd3 md:hover:shadow-xl m-1 drop-shadow-xl "
-                  onClick={() => props.goToStep(4)}
+                  className="card__btn_prev save_button left-[5%]  flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick"
+                  onClick={() => props.goToStep(2)}
                 >
-                  Next
-                  <FaLongArrowAltRight className="ml-1 text-[24px]" />
+                  <FaLongArrowAltLeft className="mr-1 text-[24px]" />
+                  Back
                 </button>
+
+                <div className="relative group">
+                  <div className="absolute transition duration-1000 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
+                  <button
+                    className="w-[5em] h-[3em] card__btn_next right-[50px] flex items-center justify-center md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect cursor-pointer shadow-clear-bd3 md:hover:shadow-xl m-1 drop-shadow-xl "
+                    onClick={() => props.goToStep(4)}
+                  >
+                    Next
+                    <FaLongArrowAltRight className="ml-1 text-[24px]" />
+                  </button>
+                </div>
               </div>
-            </div>
               {/* table start */}
               {/* <div className="flex justify-center min-h-screen p-2 bg-white/50 rounded-xl">
 	<div className="col-span-12">
@@ -581,8 +508,6 @@ function SRankFeatures(props) {
 		</div>
 	</div>
 </div>  */}
-
-             
             </div>
           </div>
         </div>

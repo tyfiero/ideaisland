@@ -1,12 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import { UserContext } from "../../../lib/context";
-
 import { Popover, ArrowContainer } from "react-tiny-popover";
 import TextareaAutosize from "react-textarea-autosize";
-
 import {
-  FaLaptopCode,
-  FaShoppingBag,
   FaLongArrowAltLeft,
   FaLongArrowAltRight,
   FaInfoCircle,
@@ -14,19 +10,15 @@ import {
 import toast from "react-hot-toast";
 import {
   serverTimestamp,
-  collection,
-  orderBy,
   doc,
   getFirestore,
   updateDoc,
-  addDoc,
-  onSnapshot,
   setDoc,
 } from "firebase/firestore";
 import { useSelector, useDispatch } from "react-redux";
 import { pFormAction } from "../../../redux/actions";
 import { useRouter } from "next/router";
-import { firestore, auth } from "../../../lib/firebase";
+import { auth } from "../../../lib/firebase";
 
 function PDetails(props) {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -34,7 +26,6 @@ function PDetails(props) {
   const [content2, setContent2] = useState("");
   const [content3, setContent3] = useState("");
   const { user, username } = useContext(UserContext);
-
   const [titleContent, setTitleContent] = useState("");
   const dispatch = useDispatch();
   const pFormRedux = useSelector((state) => state.pForm);
@@ -283,41 +274,12 @@ function PDetails(props) {
                 />
               </div>
 
-              {/* <p>Your problem so far:</p>
-              <div className="flex flex-wrap w-[25em] flex-col items-center">
-                <div className="flex flex-col normal-box">
-                  <h4>Why:</h4>
-                  <p>{props.form?.whyOptions}</p>
-                  <p>{props.form?.why}</p>
-
-                </div>
-                <div className="flex flex-col normal-box">
-                  <h4>What:</h4>
-                  <p>{props.form?.productType}</p>
-                  <p>{props.form?.what}</p>
-
-                </div>
-                <div className="flex flex-col normal-box">
-                  <h4>Who:</h4>
-                  <p>{props.form?.who}</p>
-
-                </div>
-              </div> */}
-
               <div className="flex flex-col p-2 my-2 glass-box bg-clear-pl2">
                 <p>
                   What problem are you trying to solve? What frustrates or
                   annoys your users?
                 </p>
 
-                {/* <textarea
-                // type="text"
-                className="textarea-box textarea-tw  h-[5em] whitespace-normal"
-                name="pq1"
-                value={content1}
-                placeholder="..."
-                onChange={update}
-              /> */}
                 <TextareaAutosize
                   className="textarea-box textarea-tw  h-[5em] whitespace-normal"
                   value={content1}
@@ -332,14 +294,6 @@ function PDetails(props) {
                   potential cause
                 </p>
 
-                {/* <textarea
-                // type="text"
-                className="textarea-box textarea-tw  h-[5em] whitespace-normal"
-                name="pq2"
-                value={content2}
-                placeholder="..."
-                onChange={update}
-              /> */}
                 <TextareaAutosize
                   className="textarea-box textarea-tw  h-[5em] whitespace-normal"
                   value={content2}
@@ -353,15 +307,6 @@ function PDetails(props) {
                   Why does the potential cause occur? This is your root cause.
                 </p>
 
-                {/* <textarea
-                // type="text"
-                className="textarea-box textarea-tw  h-[5em] whitespace-normal"
-                name="pq3"
-                placeholder="..."
-                value={content3}
-                onChange={update}
-              /> */}
-
                 <TextareaAutosize
                   className="textarea-box textarea-tw  h-[5em] whitespace-normal"
                   value={content3}
@@ -371,10 +316,7 @@ function PDetails(props) {
                 ></TextareaAutosize>
               </div>
 
-              {/* <p>
-                *This note will be saved to your Idea Page for your review
-                later.
-              </p> */}
+         
             </div>
             <div className="flex items-center justify-between w-full">
               <button

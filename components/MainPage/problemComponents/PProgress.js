@@ -1,37 +1,12 @@
 import { React, useState, useContext } from "react";
 import { UserContext } from "../../../lib/context";
-
 import {
-  FaBuilding,
-  FaLaptopCode,
-  FaQuestion,
-  FaShoppingBag,
   FaLongArrowAltLeft,
   FaLongArrowAltRight,
-  FaCheck,
-  FaEdit,
-  FaInfoCircle,
 } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
-
 import TextareaAutosize from "react-textarea-autosize";
-import {
-  serverTimestamp,
-  query,
-  where,
-  collection,
-  orderBy,
-  doc,
-  getFirestore,
-  updateDoc,
-  addDoc,
-  onSnapshot,
-  deleteDoc,
-  setDoc,
-  getDoc,
-} from "firebase/firestore";
-import { firestore, auth } from "../../../lib/firebase";
 import toast from "react-hot-toast";
 import { pFormAction } from "../../../redux/actions";
 
@@ -48,17 +23,13 @@ function ProblemProgressPage(props) {
   const [contentPq2, setContentPq2] = useState(pFormRedux.pq2);
   const [contentPq3, setContentPq3] = useState(pFormRedux.pq3);
   const [contentTitle, setContentTitle] = useState(pFormRedux.title);
-
-
-
   const [changes, setChanges] = useState(false);
   const dispatch = useDispatch();
 
   const router = useRouter();
 
-  const saveOrContinue =  (e) => {
-   
-      router.push("/solutions");
+  const saveOrContinue = (e) => {
+    router.push("/solutions");
   };
 
   return (
@@ -74,130 +45,36 @@ function ProblemProgressPage(props) {
             </h1>
             <div className="flex flex-col w-full gap-4">
               <div className="p-5 normal-box-soft !rounded-xl w-full group">
-                {/* <button
-                  className="absolute flex items-center gap-1 p-1 px-2 text-white transition duration-500 opacity-0 bg-t-bl rounded-2xl group-hover:opacity-100 hover:scale-110 active:scale-95"
-                  onClick={() => setEditTitle(!editTitle)}
-                >
-                  {!editTitle ? (
-                    <>
-                      <p>Edit</p>
-                      <FaEdit />
-                    </>
-                  ) : (
-                    <>
-                      {" "}
-                      <p>Done</p> <FaCheck />
-                    </>
-                  )}{" "}
-                </button> */}
-                {/* <hr className="border-t-bd"></hr> */}
-           
-                  <h3 className="heading">{contentTitle}</h3>
-     
+                <h3 className="heading">{contentTitle}</h3>
               </div>
 
               <div className="flex flex-wrap justify-center gap-4">
                 <div className="p-5 normal-box-soft !rounded-xl md:min-w-[25em] md:max-w-[40em] group !bg-clear-bl2">
-
-              
-                  {/* <button
-                    className="absolute flex items-center gap-1 p-1 px-2 text-white transition duration-500 opacity-0 bg-t-bl rounded-2xl group-hover:opacity-100 hover:scale-110 active:scale-95"
-                    onClick={() => setEditWhy(!editWhy)}
-                  >
-                    {!editWhy ? (
-                      <>
-                        <p>Edit</p>
-                        <FaEdit />
-                      </>
-                    ) : (
-                      <>
-                        {" "}
-                        <p>Done</p> <FaCheck />
-                      </>
-                    )}{" "}
-                  </button> */}
                   <h3 className="heading"> Why:</h3>
                   {/* <hr className="border-t-bd"></hr> */}
                   <div className="w-full glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-black/80    flex flex-wrap gap-1 mb-3 justify-center">
                     {pFormRedux.whyOptions?.map((data, index) => (
-                  <ListItem
-                    name={data}
-                    key={index}
-
-                  />
-                ))}
+                      <ListItem name={data} key={index} />
+                    ))}
                   </div>
                   <div className="w-full glass-box dark:bg-black/80 bg-white/90">
-                 
-                      <p>{contentWhy}</p>
+                    <p>{contentWhy}</p>
                   </div>
                 </div>
                 <div className="p-5 normal-box-soft !rounded-xl w-[35em] group !bg-clear-pl3">
-                  {/* <button
-                    className="absolute flex items-center gap-1 p-1 px-2 text-white transition duration-500 opacity-0 bg-t-bl rounded-2xl group-hover:opacity-100 hover:scale-110 active:scale-95"
-                    onClick={() => setEditWhat(!editWhat)}
-                  >
-                    {!editWhat ? (
-                      <>
-                        <p>Edit</p>
-                        <FaEdit />
-                      </>
-                    ) : (
-                      <>
-                        {" "}
-                        <p>Done</p> <FaCheck />
-                      </>
-                    )}{" "}
-                  </button> */}
-
                   <h3 className="heading"> What:</h3>
                   {/* <hr className="border-t-bd"></hr> */}
                   <div className="w-full glass-box dark:bg-black/80 bg-white/90">
-                    
-                      <p>{contentWhat}</p>
+                    <p>{contentWhat}</p>
                   </div>
                 </div>
                 <div className="p-5 normal-box-soft !rounded-xl w-[35em] group !bg-clear-bpop1">
-                  {/* <button
-                    className="absolute flex items-center gap-1 p-1 px-2 text-white transition duration-500 opacity-0 bg-t-bl rounded-2xl group-hover:opacity-100 hover:scale-110 active:scale-95"
-                    onClick={() => setEditWho(!editWho)}
-                  >
-                    {!editWho ? (
-                      <>
-                        <p>Edit</p>
-                        <FaEdit />
-                      </>
-                    ) : (
-                      <>
-                        {" "}
-                        <p>Done</p> <FaCheck />
-                      </>
-                    )}{" "}
-                  </button> */}
                   <h3 className="heading">Who:</h3>
-                  {/* <hr className="border-t-bd"></hr> */}
                   <div className="w-full glass-box dark:bg-black/80 bg-white/90">
-                   
-                      <p>{contentWho}</p>
+                    <p>{contentWho}</p>
                   </div>
                 </div>
                 <div className="p-5 normal-box-soft !rounded-xl md:min-w-[35em] sm:min-w-full group !bg-clear-pm2">
-                  {/* <button
-                    className="absolute flex items-center gap-1 p-1 px-2 text-white transition duration-500 opacity-0 bg-t-bl rounded-2xl group-hover:opacity-100 hover:scale-110 active:scale-95"
-                    onClick={() => setEditProblem(!editProblem)}
-                  >
-                    {!editProblem ? (
-                      <>
-                        <p>Edit</p>
-                        <FaEdit />
-                      </>
-                    ) : (
-                      <>
-                        {" "}
-                        <p>Done</p> <FaCheck />
-                      </>
-                    )}{" "}
-                  </button> */}
                   <h3 className="heading"> Problem:</h3>
                   {/* <hr className="border-t-bd"></hr> */}
                   <div className="flex flex-col gap-1">
@@ -206,21 +83,18 @@ function ProblemProgressPage(props) {
                     </p>
 
                     <div className="w-full glass-box dark:bg-black/80 bg-white/90">
-                     
-                        <p>{contentPq1}</p>
+                      <p>{contentPq1}</p>
                     </div>
 
                     <p className="mt-4 text-xl text-white">Potential Cause:</p>
 
                     <div className="w-full glass-box dark:bg-black/80 bg-white/90">
-                     
-                        <p>{contentPq2}</p>
+                      <p>{contentPq2}</p>
                     </div>
                     <p className="mt-4 text-xl text-white">Root Cause:</p>
 
                     <div className="w-full glass-box dark:bg-black/80 bg-white/90">
-                     
-                        <p>{contentPq3}</p>
+                      <p>{contentPq3}</p>
                     </div>
                   </div>
                 </div>
@@ -269,8 +143,6 @@ function ProblemProgressPage(props) {
   );
 }
 export default ProblemProgressPage;
-
-
 
 function ListItem({ name }) {
   return (
