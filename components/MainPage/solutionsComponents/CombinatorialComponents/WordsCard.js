@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { wordAction } from "../../../../redux/actions";
 import { similarRequest } from "../../../../redux/actions";
 import Loader from "../../../Layout/Loader";
-
 //WordsCard.js global variables
 var similarWordsItem;
 var similarWordsWord;
@@ -12,7 +11,6 @@ function WordsCard(props) {
   const wordRedux = useSelector((state) => state.word);
   const dispatch = useDispatch();
   const similarWordsRedux = useSelector((state) => state.boolean);
-
   //Logic
   const axios = require("axios");
 
@@ -23,9 +21,6 @@ function WordsCard(props) {
   const [showRelatedWord, setShowRelatedWord] = useState(true);
   const [similarWordsWord, setSimilarWordsWord] = useState(true);
   const [loading, setLoading] = useState(false);
-
-  
-
   useEffect(() => {
     setLoading(true)
     axios({
@@ -40,15 +35,6 @@ function WordsCard(props) {
         // console.log(JSON.stringify(response.data.results));
         let similarWordsItemOne = response.data.results[(1, 2)];
       
-
-        // let [word1, word2, word3, word4, word5] = [
-        //   response.data[0].word,
-        //   response.data[1].word,
-        //   response.data[2].word,
-        //   response.data[3].word,
-        //   response.data[4].word,
-        // ];
-
         let testArray = [
           response.data.results[0].word,
           response.data.results[1].word,
@@ -59,11 +45,6 @@ function WordsCard(props) {
 
         ];
 
-        // console.log(response.data[0].word);
-        // console.log(response.data[1].word);
-        // console.log(response.data[2].word);
-
-        // console.log(similarWordsItemOne);
         setSimilarWordsWord(similarWordsItemOne.word)
         setIsRelatedWord(testArray);
         // setUpdate(!update)
@@ -79,17 +60,13 @@ function WordsCard(props) {
       });
   }, [props.word]);// eslint-disable-line react-hooks/exhaustive-deps
   
-  // This will only run when one of those variables change
 
 
 
   return (
       <div
         className="flex flex-col items-center min-w-[12em] max-w-[16em] rounded-lg  "
-        // onClick={() => {
-        //   dispatch(similarRequest(true));
-        //   setShowRelatedWord(!showRelatedWord);
-        // }}
+       
       >
        <p className="text-t-bl">Similar Words:</p>
         {/* <p>Words with Similar Meanings:</p> */}

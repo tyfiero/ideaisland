@@ -24,20 +24,12 @@ import "antd/dist/antd.css";
 import { randomizeAction, sArrayAction } from "../../../../redux/actions";
 
 function ProblemStatement(props) {
-
-  
-
-  // const sArray = useSelector((state) => state.sArray);
-
   const isRandomized = useSelector((state) => state.randomize);
   const dispatch = useDispatch();
   const [selectedWords, setSelectedWords] = useState([]);
   const [editSentence, setEditSentence] = useState(false);
   const [splitTextArray, setSplitTextArray] = useState([]);
-  // const [edited, setEdited] = useState(false);
-  // let splitTextDefault = edited ? "" : "";
-  // const [splitText, setSplitText] = useState(edited ? "" : "How might we improve brainstorming for entrepreneurs?");
-  // const [splitTextDefault, setSplitTextDefault] = useState("How might we improve brainstorming for entrepreneurs?");
+
   const [splitText, setSplitText] = useState(
     "How might we improve brainstorming for entrepreneurs?"
   );
@@ -45,8 +37,6 @@ function ProblemStatement(props) {
   const focusTextInput = useRef(null);
   const previousSplitTextValue = useRef("");
 
-  // console.log(splitTextArray)
-  // console.log("updateMAIN--"+update)
   useEffect(() => {
     previousSplitTextValue.current = splitText;
     // console.log(splitText);
@@ -67,25 +57,12 @@ function ProblemStatement(props) {
   const randomizeAll = (event) => {
     dispatch(randomizeAction(true));
   };
-  // useEffect(() => {
-  //   if(!splitText){
-  //     console.log("RAN")
-  //   setSplitText("How might we 10X brainstorming for tech entrepreneurs?")
-  //   }
-  //   separateText();
-  //   setUpdate(!update)
-  // }, [splitText]);
 
-  //   const updateSentence = (data) => {
-  // console.log(data)
-  //   }
 
   const updateSelected = (data) => {
     if (data[1] === "add") {
       let array = selectedWords;
-      //   let pointer = wordArray.indexOf(data[0])
-      //   console.log(pointer)
-      // console.log(data[0]);
+
 
       array.push(data[0]);
       // setUpdate(!update);
@@ -108,22 +85,10 @@ function ProblemStatement(props) {
       if (word.includes(" ")) {
         word = word.replace(" ", "-");
       }
-      // console.log(word);
-
       const splitArray = previousSplitTextValue.current.split(" ");
-      // console.log(data[2]);
-
       splitArray[data[2]] = word;
-      // console.log(splitArray);
-
       let joined = splitArray.join(" ");
-      // console.log(joined);
-
       setSplitText(joined);
-
-      // setUpdate((update ? false : true));
-
-      // console.log(splitText);
     }
   };
 
@@ -143,16 +108,10 @@ function ProblemStatement(props) {
       );
     });
     setSplitTextArray(formatted);
-    // if(template){
-    //   setEditSentence(false)
-    // }
-    // setUpdate(!update);
-    // setUpdate((update ? false : true));
+ 
   };
 
   function onCascadeChange(value, label) {
-    // console.log(value);
-    // console.log(label);
 
     if (value.length > 2) {
       setSplitText(label[2].label);
@@ -271,24 +230,17 @@ function ProblemStatement(props) {
                       </p>
                       <FaRegFolderOpen className="text-md text-slate-700 dark:text-white" />
 
-                      {/* <BsArrowRight
-          style={{ fontSize: "32px" }}
-          className="pl-2 text-t-pd"
-        /> */}
+                     
                     </button>
                   </a>
                 </Cascader>
-                {/* <ToolTip text="Select a sentence template to start from" id="templates" w=" !w-[15em]" /> */}
+               
               </div>
             </div>
             <p className="absolute top-0 text-lg left-2 text-t-pm dark:text-t-pm">
               Problem Statement
             </p>
-            {/* <div className="flex flex-col">
-
-              <p>split text:{splitText}</p>
-              <p>prev text:{previousSplitTextValue.current}</p>
-            </div> */}
+            
             {editSentence ? (
               <>
                 <input

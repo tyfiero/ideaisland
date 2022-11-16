@@ -1,7 +1,5 @@
 import React, { useState, useCallback, memo, useEffect } from "react";
-
 import { Squash as Hamburger } from "hamburger-react";
-
 import { Cascader } from "antd";
 import "antd/dist/antd.css";
 import WordsCard from "./WordsCard";

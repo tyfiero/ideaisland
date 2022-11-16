@@ -1,10 +1,7 @@
 /* eslint-disable */
-
 import React from 'react'
 import { FaCaretDown } from 'react-icons/fa'
 import { useTable, useSortBy } from 'react-table'
-
-// import makeData from './makeData'
 
 function FeatureTable({ columns, data }) {
   const {

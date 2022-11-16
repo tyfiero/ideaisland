@@ -9,9 +9,6 @@ import {
   nounOptions,
   outcomeOptions,
 } from "./ListData";
-// import ToolTip from "../../../../components/Layout/ToolTip";
-
-// import useKeyboardShortcut from 'use-keyboard-shortcut'
 import useKeyboardShortcut from "../../../../lib/useKeyboardShortcut";
 import { BsDice3 } from "react-icons/bs";
 import { FiTrash2 } from "react-icons/fi";
@@ -29,7 +26,6 @@ function ModularCard({
   updateSegment,
   swapPositions,
 }) {
-  // console.log(variant + " " + id + " " + card + " " + text + " " + listProp);
   const sArray = useSelector((state) => state.sArray);
   const isRandomized = useSelector((state) => state.randomize);
   const dispatch = useDispatch();
@@ -39,24 +35,14 @@ function ModularCard({
   const [typeChanged, setTypeChanged] = useState(false);
   const [randomized, setRandomized] = useState(false);
   const [locked, setLocked] = useState(false);
-
-
-
   const [list, setList] = useState(listProp);
   const [listOptions, setListOptions] = useState(introOptions);
-
   const [content, setContent] = useState(text);
   const [contentEdit, setContentEdit] = useState(false);
-
   const [ringColor, setRingColor] = useState(" ring-blues-600");
   const [textColor, setTextColor] = useState(" text-blues-600");
   const [colorClass, setColorClass] = useState(" blue-card");
   const focusTextInput = useRef(null);
-
-
-  
-
-  
   const { flushHeldKeys } = useKeyboardShortcut(
     ["Enter"],
     (shortcutKeys) => {
@@ -77,14 +63,11 @@ function ModularCard({
       focusTextInput.current.focus();
     }
   }, [contentEdit]);
-  // console.log(content);
 
 
   //randomize button function
   useEffect(() => {
     if(randomized || (isRandomized && !locked)){
-  // console.log(listOptions)
-  // console.log(list)
   try{
     let listContent, randomNumber;
     //find the index of the list header

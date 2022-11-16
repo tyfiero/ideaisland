@@ -26,8 +26,6 @@ function WordButton({ text, word, updateSelected, selectedWords, mode }) {
   
   const isRandomized2 = useSelector((state) => state.randomize2);
 
-  // console.log(isRandomized);
-  // console.log(isRandomized2);
   const [clicked, setClicked] = useState(false);
   const [locked, setLocked] = useState(false);
 
@@ -127,49 +125,6 @@ function WordButton({ text, word, updateSelected, selectedWords, mode }) {
       setDisplayText(value[1][4]);
     }
 
-    // setList(label[1].label);
-
-    //     setContent(value[1]);
-    //     if (type === "Intro") {
-    //       setList(label[0].label);
-    //     } else if (type === "Noun") {
-    //       //thisll be a tricky one
-    //       if (value.length > 2) {
-    //         setList(label[1].label);
-    //         // setContent(value[2]);
-    //       } else {
-    //         setList(label[0].label);
-    //       }
-    //     } else if (type === "Verb") {
-    //       setList(label[0].label);
-    //     } else if (type === "Desired Outcome") {
-    //       setList(label[0].label);
-    //     } else {
-    //       if (value.length > 2) {
-    //         setList(label[2].label);
-    //       } else {
-    //         setList(label[1].label);
-    //       }
-    //     }
-
-    //     //This code is meant to determine what content to display based off of what is selected in the tree
-    // let textValueFromCascade;
-    // if(value.length > 2){
-    // textValueFromCascade = value[2]
-    // }else if(value.length > 1){
-    // textValueFromCascade = value[1]
-    // }else{
-    // textValueFromCascade = value[0]
-    // }
-
-    //     let newArray = sArray;
-    //   newArray[card] = {
-    //     id: id,
-    //     type: type,
-    //     list: list,
-    //     text: textValueFromCascade,
-    //   };
-    //   dispatch(sArrayAction(newArray));
   }
 
   // Just show the latest item. in list display
@@ -209,14 +164,7 @@ function WordButton({ text, word, updateSelected, selectedWords, mode }) {
                     defaultValue={displayText}
                     ref={focusTextInput}
                     onChange={(e) => {
-                      // let newArray = sArray;
-                      // newArray[card] = {
-                      //   id: id,
-                      //   type: type,
-                      //   list: list,
-                      //   text: e.target.value,
-                      // };
-                      // dispatch(sArrayAction(newArray));
+                   
                       setDisplayText(e.target.value);
                     }}
                     placeholder={displayText}
@@ -260,21 +208,7 @@ function WordButton({ text, word, updateSelected, selectedWords, mode }) {
       </button>
       {clicked && (
         <div className={"flex relative "}>
-          {/* {!(!showImage && !showSimWords)  && (
-            <div
-              className={
-                "absolute z-50  flex flex-nowrap items-center gap-1 transition duration-500 justify-evenly rounded-xl glass-box bg-white/40 -top-[14em] -left-20" 
-              }
-            >
-              <div className="relative ">
-               
-              
-
-              {showImage &&  <CardImage alt={displayText} />}
-              {showSimWords && <WordsCard word={displayText} />}
-              </div>
-            </div>
-          )} */}
+       
           <div
             className={
               " z-50  flex flex-nowrap items-center gap-1 transition duration-500 justify-evenly rounded-xl glass-box bg-white/90 dark:bg-slate-600/80  -left-[6rem] fade-effect-quick dark:border-black"
@@ -344,14 +278,7 @@ function WordButton({ text, word, updateSelected, selectedWords, mode }) {
                   />
                 </button>
                 )}
-                {/* {!locked &&  <button
-           data-tip
-           data-for="trash"
-           className="flex items-center justify-center gap-4 p-2 pr-1 text-white cursor-pointer w-9 rounded-3xl bg-clear-bpop3 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 fade-effect-quick "
-          onClick={() =>  setClicked(false)}
-           >
-           <FaEdit className={"text-lg "} />
-         </button>} */}
+              
                 <button
                   data-tip
                   data-for="images"

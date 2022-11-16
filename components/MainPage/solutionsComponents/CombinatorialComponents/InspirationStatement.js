@@ -24,27 +24,19 @@ import "antd/dist/antd.css";
 import { randomize2Action, sArrayAction } from "../../../../redux/actions";
 
 function InspirationStatement({ randomizeAll }) {
-  // const sArray = useSelector((state) => state.sArray);
-
   const randomized2 = useSelector((state) => state.randomize2);
   const dispatch = useDispatch();
   const [selectedWords, setSelectedWords] = useState([]);
   const [editSentence, setEditSentence] = useState(false);
   const [splitTextArray, setSplitTextArray] = useState([]);
-  // const [edited, setEdited] = useState(false);
-  // let splitTextDefault = edited ? "" : "";
-  // const [splitText, setSplitText] = useState(edited ? "" : "How might we improve brainstorming for entrepreneurs?");
-  // const [splitTextDefault, setSplitTextDefault] = useState("How might we improve brainstorming for entrepreneurs?");
+ 
   const [splitText, setSplitText] = useState("The Tinder of innovation");
   const [update, setUpdate] = useState(false);
   const focusTextInput = useRef(null);
   const previousSplitTextValue = useRef("");
 
-  // console.log(splitTextArray)
-  // console.log("updateMAIN--"+update)
   useEffect(() => {
     previousSplitTextValue.current = splitText;
-    // console.log(splitText);
   }, [splitText]);
 
   //Use efffect to focus text input on click
@@ -57,28 +49,13 @@ function InspirationStatement({ randomizeAll }) {
   useEffect(() => {
     separateText();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-  // useEffect(() => {
-  //   if(!splitText){
-  //     console.log("RAN")
-  //   setSplitText("How might we 10X brainstorming for tech entrepreneurs?")
-  //   }
-  //   separateText();
-  //   setUpdate(!update)
-  // }, [splitText]);
-
-  //   const updateSentence = (data) => {
-  // console.log(data)
-  //   }
-
+ 
   const updateSelected = (data) => {
     if (data[1] === "add") {
       let array = selectedWords;
-      //   let pointer = wordArray.indexOf(data[0])
-      //   console.log(pointer)
-      // console.log(data[0]);
+
 
       array.push(data[0]);
-      // setUpdate(!update);
       setSelectedWords(array);
     } else if (data[1] === "delete") {
       let array = selectedWords;
@@ -86,9 +63,7 @@ function InspirationStatement({ randomizeAll }) {
       for (var i = array.length - 1; i >= 0; i--) {
         if (array[i] === data[0]) {
           array.splice(i, 1);
-          // setUpdate(!update);
           setSelectedWords(array);
-          // setChanges(false)
         }
       }
     } else {
@@ -98,22 +73,10 @@ function InspirationStatement({ randomizeAll }) {
       if (word.includes(" ")) {
         word = word.replace(" ", "-");
       }
-      // console.log(word);
-
       const splitArray = previousSplitTextValue.current.split(" ");
-      // console.log(data[2]);
-
       splitArray[data[2]] = word;
-      // console.log(splitArray);
-
       let joined = splitArray.join(" ");
-      // console.log(joined);
-
       setSplitText(joined);
-
-      // setUpdate((update ? false : true));
-
-      // console.log(splitText);
     }
   };
 
@@ -133,17 +96,10 @@ function InspirationStatement({ randomizeAll }) {
       );
     });
     setSplitTextArray(formatted);
-    // if(template){
-    //   setEditSentence(false)
-    // }
-    // setUpdate(!update);
-    // setUpdate((update ? false : true));
+  
   };
 
   function onCascadeChange(value, label) {
-    // console.log(value);
-    // console.log(label);
-
     if (value.length > 2) {
       setSplitText(label[2].label);
       separateText();
@@ -157,11 +113,7 @@ function InspirationStatement({ randomizeAll }) {
       setSplitText(label[0].label);
       separateText();
     }
-    // setEditSentence(false);
-    //     setTimeout(() => {
-    //       setEditSentence(false);
-    //       setUpdate(!update);
-    // }, 2000);
+
   }
 
   // Just show the latest item.
@@ -234,10 +186,7 @@ function InspirationStatement({ randomizeAll }) {
                   place="left"
                 />
 
-                {/* <BsArrowRight
-          style={{ fontSize: "32px" }}
-          className="pl-2 text-t-pd"
-        /> */}
+             
               </button>
             </div>
             <div className="absolute text-lg left-1 top-6 ">
@@ -266,24 +215,17 @@ function InspirationStatement({ randomizeAll }) {
                       </p>
                       <FaRegFolderOpen className="text-md text-slate-700 dark:text-white" />
 
-                      {/* <BsArrowRight
-          style={{ fontSize: "32px" }}
-          className="pl-2 text-t-pd"
-        /> */}
+                     
                     </button>
                   </a>
                 </Cascader>
-                {/* <ToolTip text="Select a sentence template to start from" id="templates" w=" !w-[15em]" /> */}
+                
               </div>
             </div>
             <p className="absolute top-0 text-lg left-2 text-t-bl dark:text-t-bl">
               Idea Inspiration
             </p>
-            {/* <div className="flex flex-col">
-
-              <p>split text:{splitText}</p>
-              <p>prev text:{previousSplitTextValue.current}</p>
-            </div> */}
+           
             {editSentence ? (
               <>
                 <input

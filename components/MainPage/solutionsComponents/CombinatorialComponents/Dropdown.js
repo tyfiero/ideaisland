@@ -1,14 +1,6 @@
-import React, { useState, useEffect } from "react";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { useSelector, useDispatch } from "react-redux";
-import { listNum } from "../../../../redux/actions";
-import { listChanged } from "../../../../redux/actions";
-// import { makeStyles } from "@material-ui/core/styles";
-import { Squash as Hamburger } from "hamburger-react";
-
-// import MinimalSelect from "./MinimalDropDown";
 
 var menuOptions = [
   "Industry",
@@ -20,79 +12,13 @@ var menuOptions = [
   "Companies",
 ];
 
-// const useStyles = makeStyles({
-//   root: {
-//     width: 200,
-//     "& .MuiOutlinedInput-input": {
-//       color: "green",
-//     },
-//     "& .MuiInputLabel-root": {
-//       color: "green",
-//     },
-//     "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-//       borderColor: "green",
-//     },
-//     "&:hover .MuiOutlinedInput-input": {
-//       color: "red",
-//     },
-//     "&:hover .MuiInputLabel-root": {
-//       color: "red",
-//     },
-//     "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-//       borderColor: "red",
-//     },
-//     "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-input": {
-//       color: "purple",
-//     },
-//     "& .MuiInputLabel-root.Mui-focused": {
-//       color: "purple",
-//     },
-//     "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-//       borderColor: "purple",
-//     },
-//   },
-// });
-
 export default function Dropdown({
   sendDataToParent,
   initial,
   listNumber,
   open,
 }) {
-  //redux
-  // const listRedux = useSelector((state) => state.list);
-  // const listChangedRedux = useSelector((state) => state.listChanged);
-
-  // const dispatch = useDispatch();
-  // dispatch(listChanged(false));
-
-  // const handleChange = (event) => {
-  //   let changedValue = event.target.value;
-  //   dispatch(listChanged(true));
-
-  //   dispatch(listNum(changedValue));
-  //   // sendDataToParent(changedValue);
-  // };
-
-  //Hamburger menu
-
-  // const [isOpen, setOpen] = useState(false);
-
-  // useEffect(() => {
-  //   console.log("UE2");
-
-  //   if (open === true) {
-  //     setOpen(true);
-  //   }
-  // }, [open]);
-
-  // let displayName;
-
-  // if (initial === 0) {
-  //   displayName = initial;
-  // } else {
-  // }
-
+ 
   let menu = (
     <FormControl
       sx={{
@@ -130,17 +56,7 @@ export default function Dropdown({
   );
   return (
     <div>
-      {/* <Hamburger
-        className="hamburger"
-        toggled={isOpen}
-        toggle={() => {
-          setOpen(!isOpen);
-        }}
-        // size={25}
-        easing="ease-in"
-        label="Show menu"
-        rounded
-      /> */}
+
 
       {open ? menu : null}
     </div>

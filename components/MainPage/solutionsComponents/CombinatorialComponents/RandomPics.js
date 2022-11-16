@@ -8,7 +8,6 @@ import {
   FaRedo,
 } from "react-icons/fa";
 import axios from "axios";
-
 function RandomPics() {
   const [images, setImages] = React.useState(true);
   const [words, setWords] = React.useState(false);
@@ -33,12 +32,6 @@ function RandomPics() {
   const [src, setSrc] = React.useState("https://picsum.photos/200/15");
   const [src2, setSrc2] = React.useState("https://picsum.photos/200/14");
 
-  // console.log(wordList[0])
-  //     React.useEffect(() => {
-
-  //   getWords()
-
-  //     }, [])
 
   React.useEffect(() => {
     if (refresh) {
