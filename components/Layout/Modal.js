@@ -98,16 +98,7 @@ const Modal = ({ setOpenShareMenu }) => {
               <PinterestIcon size={40} round />
             </PinterestShareButton>
 
-            {/* <InstapaperShareButton  url={link} title={title} description={description}>
-                <InstapaperIcon size={40} round />
-            </InstapaperShareButton>
-    
-            
-         
-            
-            <PocketShareButton  url={link} title={title}>
-            <PocketIcon size={40} round />
-            </PocketShareButton> */}
+          
 
             <TelegramShareButton url={link} title={title}>
               <TelegramIcon size={40} round />

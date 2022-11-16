@@ -1,4 +1,4 @@
-// import { auth, firestore, googleAuthProvider } from "../../lib/firebase";
+
 import { UserContext } from "../../../lib/context";
 import { doc, writeBatch, getDoc, getFirestore } from "firebase/firestore";
 
@@ -124,14 +124,7 @@ export default function UsernameForm(props) {
             Choose
           </button>
 
-          {/* <h3 className="text-xl">Debug State</h3>
-          <div>
-            Username: {formValue}
-            <br />
-            Loading: {loading.toString()}
-            <br />
-            Username Valid: {isValid.toString()}
-          </div> */}
+
         </div>
       </form>
     </>
@@ -143,8 +136,7 @@ export default function UsernameForm(props) {
         Welcome {username}!! 😄
       </h3>
 
-      {/* <Link href="/"> */}
-      {/* <a> */}
+ 
 
       <button
         className="w-[18em] h-12 rounded-3xl bg-t-bl flex items-center mt-3 justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95"
@@ -155,8 +147,7 @@ export default function UsernameForm(props) {
       >
         Continue <FaLongArrowAltRight />
       </button>
-      {/* </a> */}
-      {/* </Link> */}
+   
     </>
   );
   return (

@@ -27,11 +27,8 @@ function WelcomePopUp(props) {
     <button  className="w-[14em] flex items-center gap-2 justify-center px-3 py-3 text-xl transition-colors duration-700 transform bg-t-bl rounded-full shadow dark:bg-t-bl dark:text-white text-white hover:text-t-bl hover:bg-t-bd"
     onClick={() => {
         
-        // if (props.onboard) {
-        //     props.goToStep(4);
-        //   }else{
+    
             router.push('/');
-          // }
         
        }}
     >Continue <FaArrowRight /></button>

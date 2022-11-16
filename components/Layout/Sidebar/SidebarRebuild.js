@@ -1,10 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-// import { Link } from "react-router-dom";
-// import { IconName } from "react-icons/fa";
-
-// import { isMobile, browserName } from "react-device-detect";
-// import { Squash as Hamburger } from "hamburger-react";
-// import { SentencePage } from "../pages/SolutionPage";
 import {
   FaHome,
   FaBug,
@@ -38,7 +32,6 @@ const Sidebar2 = (props) => {
   const [selected, setSelected] = useState(0);
   const [timerOpen, setTimerOpen] = useState(false);
 
-  // const [usernameSlug, setUsernameSlug] = useState("");
   const userData = useUserData();
   const userRedux = useSelector((state) => state.userData);
   const userNameRedux = useSelector((state) => state.userName);
@@ -58,9 +51,9 @@ const Sidebar2 = (props) => {
       setSelected(3);
     } else if (router.asPath === "/help") {
       setSelected(5);
-    }else if (router.asPath === "/projects") {
-    setSelected(6);
-  }
+    } else if (router.asPath === "/projects") {
+      setSelected(6);
+    }
   }, [router.asPath]);
 
   let clickStyle = {
@@ -88,8 +81,8 @@ const Sidebar2 = (props) => {
                 }
                 onClick={() => {
                   setSelected(0);
-                  if(props.isToggled){
-                    props.setIsToggled(false)
+                  if (props.isToggled) {
+                    props.setIsToggled(false);
                   }
                 }}
               >
@@ -118,8 +111,8 @@ const Sidebar2 = (props) => {
                 }
                 onClick={() => {
                   setSelected(4);
-                  if(props.isToggled){
-                    props.setIsToggled(false)
+                  if (props.isToggled) {
+                    props.setIsToggled(false);
                   }
                 }}
               >
@@ -137,7 +130,7 @@ const Sidebar2 = (props) => {
             </div>
           </a>
         </Link>
-        {/* <Link href={`/projects`} passHref>
+        <Link href={`/projects`} passHref>
           <a>
             <div className="flex flex-col items-center group">
               <div
@@ -153,18 +146,20 @@ const Sidebar2 = (props) => {
                   id="Flat"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 256 256"
-                  className={" transition  duration-1000 scale-[130%]  group-hover:fill-pink-50 " + (selected === 6 ? " fill-pinks-50" : "fill-pinks-700") }
+                  className={
+                    " transition  duration-1000 scale-[130%]  group-hover:fill-pink-50 " +
+                    (selected === 6 ? " fill-pinks-50" : "fill-pinks-700")
+                  }
                 >
                   <path d="M224,66H154.6665a2.01254,2.01254,0,0,1-1.1997-.3999L125.7334,44.80029A14.08792,14.08792,0,0,0,117.3335,42H72A14.01572,14.01572,0,0,0,58,56V74H40A14.01572,14.01572,0,0,0,26,88V200a14.01572,14.01572,0,0,0,14,14H192.88867A13.12634,13.12634,0,0,0,206,200.88867V182h18.88867A13.12634,13.12634,0,0,0,238,168.88867V80A14.01572,14.01572,0,0,0,224,66ZM194,200.88867A1.11259,1.11259,0,0,1,192.88867,202H40a2.00229,2.00229,0,0,1-2-2V88a2.00229,2.00229,0,0,1,2-2H85.3335a2.01254,2.01254,0,0,1,1.1997.3999l27.7334,20.79981A14.08792,14.08792,0,0,0,122.6665,110H192a2.00229,2.00229,0,0,1,2,2Zm32-32A1.11259,1.11259,0,0,1,224.88867,170H206V112a14.01572,14.01572,0,0,0-14-14H122.6665a2.01254,2.01254,0,0,1-1.1997-.3999L93.7334,76.80029A14.08792,14.08792,0,0,0,85.3335,74H70V56a2.00229,2.00229,0,0,1,2-2h45.3335a2.01254,2.01254,0,0,1,1.1997.3999l27.7334,20.79981A14.08792,14.08792,0,0,0,154.6665,78H224a2.00229,2.00229,0,0,1,2,2Z" />
                 </svg>
-            
               </div>
               <p className="text-xs text-black transition duration-1000 opacity-50 group-hover:opacity-100 dark:text-slate-50">
                 Projects
               </p>
             </div>
           </a>
-        </Link> */}
+        </Link>
 
         <Link href="/problem">
           <a>
@@ -176,8 +171,8 @@ const Sidebar2 = (props) => {
                 }
                 onClick={() => {
                   setSelected(1);
-                  if(props.isToggled){
-                    props.setIsToggled(false)
+                  if (props.isToggled) {
+                    props.setIsToggled(false);
                   }
                 }}
               >
@@ -205,8 +200,8 @@ const Sidebar2 = (props) => {
                 }
                 onClick={() => {
                   setSelected(2);
-                  if(props.isToggled){
-                    props.setIsToggled(false)
+                  if (props.isToggled) {
+                    props.setIsToggled(false);
                   }
                 }}
               >
@@ -233,8 +228,8 @@ const Sidebar2 = (props) => {
                 }
                 onClick={() => {
                   setSelected(3);
-                  if(props.isToggled){
-                    props.setIsToggled(false)
+                  if (props.isToggled) {
+                    props.setIsToggled(false);
                   }
                 }}
               >
@@ -262,8 +257,8 @@ const Sidebar2 = (props) => {
                 }
                 onClick={() => {
                   setSelected(5);
-                  if(props.isToggled){
-                    props.setIsToggled(false)
+                  if (props.isToggled) {
+                    props.setIsToggled(false);
                   }
                 }}
               >
@@ -308,8 +303,6 @@ const Sidebar2 = (props) => {
               </p>
             </>
           )}
-
-        
         </div>
 
         {timerOpen && (
@@ -319,11 +312,10 @@ const Sidebar2 = (props) => {
           />
         )}
 
-<div className="flex justify-center w-full pt-1">
-              <DarkModeToggle />
-              </div>  
+        <div className="flex justify-center w-full pt-1">
+          <DarkModeToggle />
+        </div>
       </div>
-      
     </div>
     // <>
     //   <IconContext.Provider value={{ color: "black" }}>

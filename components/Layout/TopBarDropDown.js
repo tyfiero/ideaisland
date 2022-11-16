@@ -1,19 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { CSSTransition } from "react-transition-group";
-import {
-  FaUserAlt,
-  FaCog,
-  FaBook,
-  FaRegLightbulb,
-  FaLightbulb,
-  FaFileExport,
-  FaShareAlt,
-  FaRegUser,
-} from "react-icons/fa";
+import { FaRegUser } from "react-icons/fa";
 import Link from "next/link";
 import DarkModeToggle from "./DarkModeToggle";
 import { useDispatch, useSelector } from "react-redux";
-// import { auth } from "../lib/firebase";
 import { auth } from "../../lib/firebase";
 
 import { HiOutlineCog } from "react-icons/hi";
@@ -24,27 +14,14 @@ import Modal from "./Modal";
 import { MdLogout } from "react-icons/md";
 import { logIn, logOutAction } from "../../redux/actions";
 
-
-
 export default function TopBarDropDown({ setIsVisible }) {
   const [activeMenu, setActiveMenu] = useState("main");
   const [openShareMenu, setOpenShareMenu] = useState(false);
 
-  // const [menuHeight, setMenuHeight] = useState(null);
   const dropdownRef = useRef(null);
   const darkRedux = useSelector((state) => state.darkMode);
   const userNameRedux = useSelector((state) => state.userName);
   const dispatch = useDispatch();
-
-  //   console.log(user);
-  // useEffect(() => {
-  //   setMenuHeight(dropdownRef.current?.firstChild.offsetHeight)
-  // }, [])
-
-  // function calcHeight(el) {
-  //   const height = el.offsetHeight;
-  //   setMenuHeight(height);
-  // }
 
   // eslint-disable-next-line
   const DropdownItem = React.forwardRef(
@@ -189,18 +166,6 @@ export default function TopBarDropDown({ setIsVisible }) {
                 <p className=" text-pinks-700 dark:text-pinks-100"> Sign Out</p>
               </DropdownItem>
             </div>
-
-            {/* </a> */}
-            {/* </a> */}
-            {/* </Link> */}
-
-            {/* <DropdownItem
-            leftIcon="🦧"
-            rightIcon={<FaUserAlt />}
-            goToMenu="animals"
-          >
-            Animals
-          </DropdownItem> */}
           </div>
         </CSSTransition>
 
@@ -210,15 +175,7 @@ export default function TopBarDropDown({ setIsVisible }) {
           classNames="menu-secondary"
           unmountOnExit
         >
-          <div className="menu">
-            {/* <DropdownItem goToMenu="main" leftIcon={<FaUserAlt />}>
-            <h2>My Tutorial</h2>
-          </DropdownItem>
-          <DropdownItem leftIcon={<FaUserAlt />}>HTML</DropdownItem>
-          <DropdownItem leftIcon={<FaUserAlt />}>CSS</DropdownItem>
-          <DropdownItem leftIcon={<FaUserAlt />}>JavaScript</DropdownItem>
-          <DropdownItem leftIcon={<FaUserAlt />}>Awesome!</DropdownItem> */}
-          </div>
+          <div className="menu"></div>
         </CSSTransition>
 
         <CSSTransition
@@ -227,15 +184,7 @@ export default function TopBarDropDown({ setIsVisible }) {
           classNames="menu-secondary"
           unmountOnExit
         >
-          <div className="menu">
-            {/* <DropdownItem goToMenu="main" leftIcon={<FaUserAlt />}>
-            <h2>Animals</h2>
-          </DropdownItem>
-          <DropdownItem leftIcon="🦘">Kangaroo</DropdownItem>
-          <DropdownItem leftIcon="🐸">Frog</DropdownItem>
-          <DropdownItem leftIcon="🦋">Horse?</DropdownItem>
-          <DropdownItem leftIcon="🦔">Hedgehog</DropdownItem> */}
-          </div>
+          <div className="menu"></div>
         </CSSTransition>
       </div>
       {openShareMenu && <Modal setOpenShareMenu={setOpenShareMenu} />}

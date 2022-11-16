@@ -2,17 +2,12 @@ import { React, useContext, useEffect, useState } from "react";
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 import Toggle from "react-toggle";
 import Script from "next/script";
-// import dynamic from "next/dynamic";
 import { UserContext } from "../../../lib/context";
-// import { auth } from "../../../lib/firebase";
 import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import PaddleLoader from "../PaddleLoader";
-// import { doc, getFirestore, updateDoc } from "firebase/firestore";
 import WelcomePopUp from "./WelcomePopUp";
-// const PaddleScript = dynamic(() => import("react-quill"), {
-//     ssr: false,
-//   });
+
 function Pricing(props) {
   const [annual, setAnnual] = useState(true);
   const [successPopUp, setSuccessPopUp] = useState(false);
@@ -25,12 +20,10 @@ function Pricing(props) {
 
   useEffect(() => {
     const Paddle = window.Paddle;
-    // console.log(Paddle)
     // eslint-disable-next-line
     if (typeof Paddle !== "undefined") {
       console.log("IT RAN, NO EXCUSES");
       let vendorNum = Number(process.env.NEXT_PUBLIC_PADDLE_VENDOR_ID);
-      // console.log(vendorNum);
       // eslint-disable-next-line
       Paddle.Setup({
         vendor: vendorNum,
@@ -39,53 +32,7 @@ function Pricing(props) {
     }
   }, []);
 
-  // const updateIdea = async (
-  //   amount,
-  //   planType,
-  //   cancelUrl,
-  //   updateUrl,
-  //   paddleUserId,
-  //   nextBillDate,
-  //   subscriptionStartDate,
-  //   subscriptionID
-  // ) => {
-  //   let uid;
-
-  //   if (user?.uid) {
-  //     uid = user?.uid;
-  //   } else if (userUIDRedux) {
-  //     uid = userUIDRedux;
-  //   } else if (auth.currentUser?.uid) {
-  //     uid = auth.currentUser?.uid;
-  //   } else {
-  //     uid = "default";
-  //     // console.log("no uid available :(");
-  //   }
-  //   const ref = doc(getFirestore(), "users", uid);
-
-  //   let data = {
-  //     credits: amount,
-  //     plan: planType,
-  //     cancelUrl: cancelUrl,
-  //     updateUrl: null,
-  //     paddleUserID: null,
-  //     nextBillDate: null,
-  //     subscriptionStartDate: null,
-  //     subscriptionID: null,
-  //   };
-  //   await updateDoc(ref, data)
-  //     .then(() => {
-  //       toast.success(`New AI credit balance: ${amount}`);
-  //     })
-  //     .catch((error) => {
-  //       toast.error("Error occured, please contact support");
-  //       console.log("Update failed!" + error);
-  //     });
-  // };
-
   function checkoutComplete(data) {
-    // console.log(data);
-    // alert("Thanks for your purchase.");
 
     let updateUrl;
     let cancelUrl;
@@ -134,19 +81,14 @@ function Pricing(props) {
 
   return (
     <div className="overflow-auto ">
-      {/* <PaddleLoader /> */}
-      {/* <script async src="https://cdn.paddle.com/paddle/paddle.js">
-        {console.log("Loaded paddleeeeeeeeeee from script")}
-      </script> */}
+    
       <Script
         id="paddle-checkout-js"
         src="https://cdn.paddle.com/paddle/paddle.js"
         // strategy="beforeInteractive"
         onLoad={(e) => {
-          // console.log("before load paddle");
 
           // eslint-disable-next-line
-          // Paddle.Environment.set("sandbox");
           // eslint-disable-next-line
           Paddle.Setup({
             vendor: Number(process.env.NEXT_PUBLIC_PADDLE_VENDOR_ID),
@@ -223,72 +165,7 @@ function Pricing(props) {
 
 
               
-              {/* <div
-                className={
-                  "w-[50%] px-4 py-4 mt-6 text-black transition duration-500 rounded-lg      group  flex-col flex justify-between " +
-                  (paidPlan === "Beta"
-                    ? " bg-clear-bl1 border-8 border-t-bd dark:bg-clear-bl1 shadow-3xl"
-                    : " bg-white/60 md:hover:bg-clear-bl2 dark:bg-slate-600/80 shadow-lg")
-                }
-              >
-                <div className="relative p-4">
-                  {paidPlan === "Beta" && (
-                    <p className="absolute text-xl font-bold -left-3 -top-4 text-t-bd">
-                      Current Plan:
-                    </p>
-                  )}
-                  <div className="flex justify-center">
-                    <span className="inline-flex px-4 py-1 mb-0 text-3xl font-semibold leading-5 tracking-wide transition rounded-full group-hover:text-white blue-gradient-text">
-                      Beta Testing Plan
-                    </span>
-                  </div>
-                  <div className="flex justify-center mt-4 text-6xl font-extrabold leading-none transition text-blues-200 group-hover:text-white">
-                    Free
-                
-                  </div>
-                  <p className="mt-4 text-md">Plan includes :</p>
-                  <ul className="w-full mt-2 mb-6 text-sm">
-                    <li className="flex items-center mb-3 dark:text-white nun ">
-                      <FaCheckCircle className="mr-4 text-xl text-t-bl" />
-                      All beta features to test
-                    </li>
-                  </ul>
-                </div>
-                <p className="!mb-5 text-center">
-                  This plan is totally free, and helps us test out backend code.
-                  Thank you for helping us test ideaisland!! :D
-                </p>
-                <button
-                  className={
-                    "w-full px-3 py-2  transition-colors duration-700 transform rounded-lg shadow text-md    " +
-                    (paidPlan === "Beta"
-                      ? " bg-slate-300 cursor-not-allowed"
-                      : " text-white hover:bg-white hover:text-t-bl bg-t-bl")
-                  }
-                  onClick={() => {
-                    if (paidPlan !== "Beta") {
-                      // eslint-disable-next-line
-                      if (Paddle.Audience.AllowPopup() === true) {
-                        // eslint-disable-next-line
-                        Paddle.Checkout.open({
-                          product: "772088",
-                          email: user.email || null,
-                          passthrough: `${user?.uid}`,
-                          successCallback: checkoutComplete,
-                          closeCallback: checkoutClosed,
-                        });
-                      } else {
-                        toast.error("Please allow popups to proceed");
-                      }
-                    } else {
-                      toast.error("You are already on this plan");
-                    }
-                  }}
-                >
-                  {paidPlan === "Beta" ? "Active Plan" : "Select this plan"}
-                </button>
-              </div> */}
-
+         
 
 
 

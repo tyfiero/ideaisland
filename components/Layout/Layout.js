@@ -3,15 +3,12 @@ import TopBar from "./TopBar";
 import TopBarRight from "./TopBarRight";
 import Sidebar2 from "./Sidebar/SidebarRebuild";
 import { FaBook, FaPlus, FaTimes } from "react-icons/fa";
-
 import NotePopUp from "../Notes/NoteBubble/NotePopUp";
 import NotePopUpModal from "../Notes/NoteBubble/NotePopUpModal";
 import { useEffect, useState, useContext, React, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-// import { logIn, userDataRedux } from "../../redux/actions";
 import { useUserData } from "../../lib/hooks";
 import { UserContext } from "../../lib/context";
-// import firebase from "firebase/compat";
 import { auth } from "../../lib/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import firebase from "firebase/compat/app";
@@ -23,31 +20,18 @@ import {
   userUIDAction,
   logIn,
 } from "../../redux/actions";
-// import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import CircleTimer from "./Timer";
 import { Toaster } from "react-hot-toast";
-// import Loader from "./Loader";
 import FullLoader from "./FullLoader";
 import { isMobile } from "react-device-detect";
 import { Router } from "next/router";
 import { useRouter } from "next/router";
-
-import Footer from "./Footer";
 import Loader from "./Loader";
 import { collection } from "firebase/firestore";
 import { HiMusicNote } from "react-icons/hi";
 import { Squash as Hamburger } from "hamburger-react";
 
-// import { firebaseAdmin } from "../../lib/firebaseAdmin";
-
-// import { adminDB } from "../../lib/firebaseAdmin";
-
 export default function Layout({ children }) {
-  // console.log("Layout Rerendered")
-
-  // let db = firebaseAdmin.firestore()
-  // console.log(db)
-
   const [isMobile, setIsMobile] = useState(false);
 
   const router = useRouter();
@@ -66,19 +50,14 @@ export default function Layout({ children }) {
   const darkRedux = useSelector((state) => state.darkMode);
 
   const userNameRedux = useSelector((state) => state.userName);
-  // console.log(userNameRedux + "unr")
 
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);
-  // const [isPopUpModalOpen, setIsPopUpModalOpen] = useState(false);
   const videoRef = useRef(null);
 
   const togglePopup = () => {
     setIsPopUpOpen(!isPopUpOpen);
   };
 
-  // let user;
-  // console.log(userData)
-  // console.log(user)
 
   //This use effect is important! It waits for firebase auth to load the current user object, feed it to the userContext hook, then display content.
   useEffect(() => {
@@ -150,12 +129,7 @@ export default function Layout({ children }) {
   }, [darkRedux]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    // videoRef.current.playbackRate ="0.5"
 
-    //if mobile, redirect to mobile page
-    // if (isMobile) {
-    //   router.push("/mobile");
-    // }
     console.log(`
     _   _         _     _           _ 
    |_|_| |___ ___|_|___| |___ ___ _| |
@@ -264,30 +238,7 @@ export default function Layout({ children }) {
     <div className="fixed top-0 left-0 wrapper md:touch-auto sm:touch-pan-y">
       <div className="bg-image touch-none"></div>
 
-      {/* TAILWIND BREAKPOINT CHECKER */}
-      {/* <div className="fixed z-50 p-2 text-xs font-bold text-black">
-        <span className="p-1 px-1 bg-yellow-400 rounded sm:hidden">XS</span>
-        <span className="hidden px-1 bg-yellow-400 rounded sm:inline-block md:hidden">
-          SM
-        </span>
-        <span className="hidden px-1 bg-yellow-400 rounded sm:hidden md:inline-block lg:hidden">
-          MD
-        </span>
-        <span className="hidden px-1 bg-yellow-400 rounded lg:inline-block xl:hidden">
-          LG
-        </span>
-        <span className="hidden px-1 bg-yellow-400 rounded xl:inline-block">
-          XL
-        </span>
-      </div> */}
-
-      {/* <video playsinline autoPlay muted loop ref={videoRef}  className="absolute top-0 left-0" >
-    <source src="/vid2.mp4" type="video/mp4"/>
-    Your browser does not support the video tag.
-</video> */}
-
-      {/* <div className="background blur"></div> */}
-      {/* <noscript>You need to enable JavaScript to run this app.</noscript> */}
+    
 
       <div className=" blobs">
         <div className="svg-blob1 rotate-effect scale-effect"></div>
@@ -296,16 +247,8 @@ export default function Layout({ children }) {
         <div className="svg-blob4 rotate-effect scale-effect"></div>
         <div className="svg-blob5 rotate-effect scale-effect"></div>
       </div>
-      {/* <div className="blobs rotate-effect-slow">
-            <div className="svg-blob1 rotate-effect scale-effect"></div>
-            <div className="svg-blob2 rotate-effect scale-effect"></div>
-            <div className="svg-blob3 rotate-effect scale-effect"></div>
-            <div className="svg-blob4 rotate-effect scale-effect"></div>
-            <div className="svg-blob5 rotate-effect scale-effect"></div>
-
-          </div> */}
+     
       <div className=" flex top-bar !min-h-[4em]  w-full ">
-        {/* {loadingUI ? <Loader show={true}/>: "NOT LOADING YO"} */}
         <div className="w-[25em]">
           <TopBar signedIn={signedIn} />
         </div>

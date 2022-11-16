@@ -14,7 +14,6 @@ function OnboardingPage() {
 
     // Do something on step change
   const onStepChange = (stats) => {
-    // console.log(stats);
   };
   return (
     <div className="flex flex-col w-full h-full overflow-hidden ">
@@ -23,19 +22,10 @@ function OnboardingPage() {
         onStepChange={onStepChange}
         isHashEnabled
         className="flex flex-col-reverse items-center justify-center w-full h-full"
-        //  transitions={state.transitions} // comment out for default transitions
-        
 
-        
-        // nav={<StepperOnboarding />}
-
-
-
-        // instance={setInstance}
       >
        
         <SignupPage hashKey={"signup"}
-        //  setChanges={setChanges} reset={reset} loadData={loadData}
          />
         <UsernameForm hashKey={"select-username"}/>
         {/* <Pricing hashKey={"select-plan"} onboard={true}/> */}

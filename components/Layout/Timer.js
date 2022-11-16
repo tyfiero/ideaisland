@@ -1,5 +1,4 @@
 import React from "react";
-// import ReactDOM from "react-dom";
 import { useState, useRef } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import Toggle from "react-toggle";
@@ -18,7 +17,6 @@ import useVisible from "../../lib/useVisible";
 
 const RenderTime = ({ remainingTime }) => {
   var audioRef = useRef(null);
-  // const [timerDone, setTimerDone] = useState(false);
   const soundRedux = useSelector((state) => state.soundSetting);
 
   const minutes = Math.floor(remainingTime / 60);
@@ -66,8 +64,7 @@ function CircleTimer({ setTimerOpen }) {
     clearTimeout(clickTimer);
     if (event.detail === 1) {
       clickTimer = setTimeout(() => {
-        // console.log("SINGLE CLICK");
-        // setTimerMenuOpen(!timerMenuOpen)
+
         setIsVisible(!isVisible);
       }, 200);
     } else if (event.detail === 2) {
@@ -75,7 +72,6 @@ function CircleTimer({ setTimerOpen }) {
       setPlay(!play);
     }
   };
-  // const [, forceUpdate] = useReducer(x => x + 1, 0);
 
   let timerMenuContent = (
     <div className="flex flex-col items-center timer-menu glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]   fade-effect-fast !rounded-2xl bg-white/50 z-[500]">
