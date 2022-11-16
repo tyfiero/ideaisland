@@ -10,7 +10,6 @@ import {
 } from "react-icons/fa";
 import { Popover, ArrowContainer } from "react-tiny-popover";
 import DatePicker from "react-datepicker";
-
 import "react-datepicker/dist/react-datepicker.css";
 import { MdSpeed } from "react-icons/md";
 
@@ -30,7 +29,7 @@ function ProjectModal({
   return (
     <>
       <div
-        // className=" fade-effect-quick bg-black/30 z-[80] fixed md:-top-[10em] md:-left-[10em] sm:w-[100.7vw] md:w-[103vw] lg:w-[100.9vw] xl:w-[100vw] h-[100vh] overflow-hidden"
+       
         className=" fade-effect-quick darkBG bg-black/30 z-[80] absolute top-0 left-0 w-full  overflow-hidden"
         onClick={() => setModalOpen(false)}
       />

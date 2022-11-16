@@ -1,6 +1,5 @@
 import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../../../lib/context";
-
 import TextareaAutosize from "react-textarea-autosize";
 import axios from "axios";
 import { auth } from "../../../lib/firebase";
@@ -15,21 +14,15 @@ function CanvasSection({ title, kind, description, qContext }) {
   const [aiLoading, setAiLoading] = useState(false);
   const [responseRecieved, setResponseRecieved] = useState(false);
   const [credits, setCredits] = useState(0);
-
-
-
-
   useEffect(() => {
     if(aiCredits){
         setCredits(aiCredits);
     }
 
   }, [aiCredits]);
-
   
   const sendToAI = async (data) => {
-    // let formData = values.input;
-    // let formType = values.type;
+
     setResponseRecieved(false);
     let uid;
 
@@ -55,19 +48,11 @@ function CanvasSection({ title, kind, description, qContext }) {
       // headers: headers,
     })
       .then((response) => {
-        // console.log("Status: " + response.status);
-        // console.log("limit: " + response.headers?.get('X-RateLimit-Limit'));
-        // console.log("remaining: " + response.headers?.get('X-RateLimit-Remaining'));
+  
 
         setText(response.data.results.trimStart());
-        // dispatch(gpt3OutputAction(aiResponse));
         setResponseRecieved(true);
-        // if(formType === "new"){
-
-        // deduct(1);
-        // }else{
-        //   deduct(1.5);
-        // }
+     
         setAiLoading(false);
 
         return response;
@@ -77,15 +62,12 @@ function CanvasSection({ title, kind, description, qContext }) {
           setResponseRecieved(true);
           setAiLoading(false);
           setText("Rate limit exceeded, to many requests sent in one minute ");
-          //   dispatch(gpt3OutputAction(aiResponse));
         } else {
           setResponseRecieved(true);
           setAiLoading(false);
           setText("Something went wrong. Please try again later.");
-          //   dispatch(gpt3OutputAction(aiResponse));
         }
 
-        // return "Sorry, an Error occured";
       });
   };
   return (

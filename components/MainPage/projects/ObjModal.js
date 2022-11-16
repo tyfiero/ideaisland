@@ -36,23 +36,7 @@ function ObjModal({
   const [startDate, setStartDate] = React.useState(null);
   const [status, setStatus] = React.useState("On Track");
   console.log(selectedObj);
-  // console.log(selectedKr);
-  // console.log(krs[selectedKr?.num]);
-  useEffect(() => {
-    // if (selectedKr !== null) {
-    //   setModalTitle(selectedKr.title);
-    //   // setModalContent(selectedKr.description);
-    //   setModalValue(selectedKr.value);
-    //   setModalTargetValue(selectedKr.target);
-    //   setModalValueType(selectedKr.type);
-    //   setColor(selectedKr.color);
-
-    //   if (selectedKr.date !== null) {
-    //     setShowDate(true);
-    //     setStartDate(selectedKr.date);
-    //   }
-    // }
-  }, []);
+ 
   return (
     <>
       <div

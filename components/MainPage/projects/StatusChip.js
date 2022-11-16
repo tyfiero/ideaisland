@@ -25,22 +25,6 @@ function StatusChip({setStatus, status, clickable}) {
     }
   }, [status, clicked]);// eslint-disable-line react-hooks/exhaustive-deps
 
-  // useEffect(() => {
-  //   if (option === 0) {
-  //     setColor(" bg-sky-200  text-sky-600 shadow-sm shadow-sky-300");
-  //     setContent("On Track");
-  //   } else if (option === 1) {
-  //     setColor(" bg-yellow-200  text-yellow-600 shadow-sm shadow-yellow-300");
-  //     setContent("Off Track");
-  //   } else if (option === 2) {
-  //     setColor(" bg-red-200  text-red-600 shadow-sm shadow-red-300");
-  //     setContent("Behind");
-  //   }else{
-  //     setColor(" bg-green-200  text-green-600 shadow-sm shadow-green-300");
-  //     setContent("Complete");
-  //   }
-  // }, [option]); // eslint-disable-line react-hooks/exhaustive-deps
-
   return (
     <div className="flex justify-center">
       <button

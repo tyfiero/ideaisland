@@ -6,7 +6,6 @@ import StatusChip from "./StatusChip";
 function KeyResult(props) {
   const [progress, setProgress] = React.useState(50);
   const [viewKr, setViewKr] = React.useState(false);
-//   console.log(props);
 
   useEffect(() => {
     
@@ -61,11 +60,7 @@ function KeyResult(props) {
           )): (<p>-</p>)}
           
           
-          {/* {props.type === "$" ? (
-            <p>{"$" + props.value + " / " + "$" + props.target}</p>
-          ) : (
-            <p>{props.value + " / " + props.target + " " + props.type}</p>
-          )} */}
+      
         </div>
         <div className="flex items-center justify-center gap-2 BOX4 basis-2/6">
           <div className="w-[10em]  shadow-3xl shadow-t-bl">
@@ -80,13 +75,7 @@ function KeyResult(props) {
         </div>
       </div>
 
-      {/* {props.description.length > 0 && (
-        <>
-          {" "}
-          <hr className="w-full mt-1 border-slate-600/30" />
-          <p className="text-sm">{props.description}</p>
-        </>
-      )} */}
+    
     </div>
   );
 }
