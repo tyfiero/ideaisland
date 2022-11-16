@@ -49,4 +49,5 @@ test/firestore/firestore-debug.log
 test/firestore/firestore-coverage-chat.html
 test/firestore/firestore-coverage-newsletter.html
 test/firestore/firestore-coverage-todo.html
+storage.rules
 
