@@ -8,33 +8,18 @@ import { ChromePicker } from "react-color";
 import { SketchPicker, Slider } from "react-color";
 import { FaRedo } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
-
 var { Hue } = require("react-color/lib/components/common");
-
 const SettingsPage = () => {
   const { user, username } = useContext(UserContext);
   const darkRedux = useSelector((state) => state.darkMode);
-
   const imgRef = useRef();
   const [loading, setLoading] = useState(false);
   const [reset, setReset] = useState(false);
-
-
-  // const [goodies, setGoodies] = useState(
-  //   " border-[1px] border-dashed !mb-10"
-  // );
-  // const [goodies2, setGoodies2] = useState(
-  //   " border-[1px]  !ml-10"
-  // );
-
-
   const [colorOpacity, setColorOpacity] = useState(0.6);
   const [menuOpacity, setMenuOpacity] = useState(0.6);
   const [opacityChange, setOpacityChange] = useState(false);
-
   const [changeColor, setChangeColor] = useState(false);
   const [addImage, setAddImage] = useState(false);
-
   let blobc1 = localStorage.getItem("blob1") || "hsla(206,91%,64%,1)";
   let blobc2 = localStorage.getItem("blob2") || "hsla(224,64%,40%,1)";
   let blobc3 = localStorage.getItem("blob3") || "hsla(319,100%,37%,1)";
@@ -69,7 +54,7 @@ const SettingsPage = () => {
     //I want to avoid setting localstorage to default color state
 
     //if localstorage color is not the same as the color state, set the localstorage to the color state
-    // console.log(color)
+
 
     const sliceHsl = (fullString) => {
       let sliced = fullString.slice(5);
@@ -211,88 +196,6 @@ const SettingsPage = () => {
         <FullLoader show={true} />
       ) : (
         <div>
-          {/* <div className="absolute top-0 left-0 w-full h-full pixel-grid z-[1000]">
-          
-          
-          <div className={"w-full mb-5 border-black " + goodies}></div>
-          <div className={"w-full mb-5 border-black " + goodies}></div>
-          <div className={"w-full mb-5 border-black " + goodies}></div>
-          <div className={"w-full mb-5 border-black " + goodies}></div>
-          <div className={"w-full mb-5 border-black " + goodies}></div>
-          <div className={"w-full mb-5 border-black " + goodies}></div>
-          <div className={"w-full mb-5 border-black " + goodies}></div>
-          <div className={"w-full mb-5 border-black " + goodies}></div>
-          <div className={"w-full mb-5 border-black " + goodies}></div>
-          <div className={"w-full mb-5 border-black " + goodies}></div>
-          <div className={"w-full mb-5 border-black " + goodies}></div>
-          <div className={"w-full mb-5 border-black " + goodies}></div>
-          <div className={"w-full mb-5 border-black " + goodies}></div>
-          <div className={"w-full mb-5 border-black " + goodies}></div>
-          <div className={"w-full mb-5 border-black " + goodies}></div>
-          <div className={"w-full mb-5 border-black " + goodies}></div>
-          <div className={"w-full mb-5 border-black " + goodies}></div>
-          <div className={"w-full mb-5 border-black " + goodies}></div>
-          <div className={"w-full mb-5 border-black " + goodies}></div>
-          <div className={"w-full mb-5 border-black " + goodies}></div>
-          <div className={"w-full mb-5 border-black " + goodies}></div>
-          <div className={"w-full mb-5 border-black " + goodies}></div>
-          <div className={"w-full mb-5 border-black " + goodies}></div>
-          <div className={"w-full mb-5 border-black " + goodies}></div>
-          <div className={"w-full mb-5 border-black " + goodies}></div>
-          <div className={"w-full mb-5 border-black " + goodies}></div>
-          <div className={"w-full mb-5 border-black " + goodies}></div>
-          <div className={"w-full mb-5 border-black " + goodies}></div>
-          <div className={"w-full mb-5 border-black " + goodies}></div>
-          <div className={"w-full mb-5 border-black " + goodies}></div>
-          <div className={"w-full mb-5 border-black " + goodies}></div>
-          <div className={"w-full mb-5 border-black " + goodies}></div>
-          <div className={"w-full mb-5 border-black " + goodies}></div>
-          <div className={"w-full mb-5 border-black " + goodies}></div>
-          <div className={"w-full mb-5 border-black " + goodies}></div>
-          <div className={"w-full mb-5 border-black " + goodies}></div>
-          <div className={"w-full mb-5 border-black " + goodies}></div>
-          <div className={"w-full mb-5 border-black " + goodies}></div>
-          <div className={"w-full mb-5 border-black " + goodies}></div>
-          <div className={"w-full mb-5 border-black " + goodies}></div>
-          <div className={"w-full mb-5 border-black " + goodies}></div>
-          <div className={"w-full mb-5 border-black " + goodies}></div>
-        
-        
-        
-        
-        
-         
-        
-     
-         
-          </div>
-
-          <div className="absolute top-0 left-0 w-full h-full pixel-grid z-[10010] flex">
-
-          <div className={"h-full  border-black " + goodies2}></div>
-          <div className={"h-full  border-black " + goodies2}></div>
-          <div className={"h-full  border-black " + goodies2}></div>
-          <div className={"h-full  border-black " + goodies2}></div>
-          <div className={"h-full  border-black " + goodies2}></div>
-          <div className={"h-full  border-black " + goodies2}></div>
-          <div className={"h-full  border-black " + goodies2}></div>
-          <div className={"h-full  border-black " + goodies2}></div>
-          <div className={"h-full  border-black " + goodies2}></div>
-          <div className={"h-full  border-black " + goodies2}></div>
-          <div className={"h-full  border-black " + goodies2}></div>
-          <div className={"h-full  border-black " + goodies2}></div>
-          <div className={"h-full  border-black " + goodies2}></div>
-          <div className={"h-full  border-black " + goodies2}></div>
-          <div className={"h-full  border-black " + goodies2}></div>
-          <div className={"h-full  border-black " + goodies2}></div>
-          <div className={"h-full  border-black " + goodies2}></div>
-          <div className={"h-full  border-black " + goodies2}></div>
-          <div className={"h-full  border-black " + goodies2}></div>
-          <div className={"h-full  border-black " + goodies2}></div>
-          <div className={"h-full  border-black " + goodies2}></div>
-          <div className={"h-full  border-black " + goodies2}></div>
-          </div> */}
-
           <h1 className="text-3xl text-t-bd dark:text-blues-100">Settings</h1>
           <div className="flex flex-col md:min-w-[40em] gap-5 p-5 glass-box bg-[rgba(255, 255, 255, 0.25)] dark:bg-[hsla(200,0%,5%,0.35)]  ">
             <div className="flex gap-20">
@@ -413,19 +316,7 @@ const SettingsPage = () => {
               </p>
             )}
           </div>
-          {/* <p>Your username is: {username}</p> */}
-          {/* <p>Your uid is: {user?.uid}</p>
-          {loading && <div className="w-full h-[45em] bg-t-pm">LOADING</div>} */}
-          {/* {changeColor && <div className="text-left rounded-2xl">
-          <p className="pl-5 bg-t-bpop rounded-t-xl">Accent Color</p>
-
-          <p className="pl-5 bg-t-bd">Color 1 dark</p>
-          <p className="pl-5 bg-t-pl">Color 2 light</p>
-          <p className="pl-5 bg-t-pm">Color 2 medium</p>
-          <p className="pl-5 bg-t-pd rounded-b-xl">Color 2 dark</p>
-
         
-          </div>} */}
 
           {loading && <div className="h-[20em] w-[35em] bg-t-bl">LOADING</div>}
           {!user && (
@@ -453,18 +344,7 @@ const SettingsPage = () => {
           <div className="flex flex-wrap items-center justify-center gap-5">
             <div className="flex flex-col items-center">
               <p>Color 1 light</p>
-              {/* <div className="flex rounded-lg">
-    <div className="w-5 h-5 bg-blues-50"></div>
-    <div className="w-5 h-5 bg-blues-100"></div>
-    <div className="w-5 h-5 bg-blues-200"></div>
-    <div className="w-5 h-5 bg-blues-300"></div>
-    <div className="w-5 h-5 bg-blues-400"></div>
-    <div className="w-5 h-5 bg-blues-500"></div>
-    <div className="w-5 h-5 bg-blues-600"></div>
-    <div className="w-5 h-5 bg-blues-700"></div>
-    <div className="w-5 h-5 bg-blues-800"></div>
-    <div className="w-5 h-5 bg-blues-900"></div>
-</div> */}
+       
               <div className="h-8 rounded-xl w-[12.5rem] bg-t-bl"></div>
 
               <ChromePicker
@@ -513,30 +393,7 @@ const SettingsPage = () => {
             </div>
             <div className="flex flex-col items-center">
               <p>Color 2 light</p>
-              {/* <div className="flex bg-white rounded-lg">
-    <div className="w-5 h-5 bg-clear-pl5"></div>
-    <div className="w-5 h-5 bg-clear-bl2"></div>
-    <div className="w-5 h-5 bg-clear-bd3"></div>
-    <div className="w-5 h-5 bg-clear-pd4"></div>
-    <div className="w-5 h-5 bg-clear-pm5"></div>
-    <div className="w-5 h-5 bg-pinks-200"></div>
-    <div className="w-5 h-5 bg-pinks-300"></div>
-    <div className="w-5 h-5 bg-pinks-400"></div>
-    <div className="w-5 h-5 bg-pinks-500"></div>
-    <div className="w-5 h-5 bg-pinks-600"></div>
-</div> */}
-              {/* <div className="flex rounded-lg">
-    <div className="w-5 h-5 bg-pinks-50"></div>
-    <div className="w-5 h-5 bg-pinks-100"></div>
-    <div className="w-5 h-5 bg-pinks-200"></div>
-    <div className="w-5 h-5 bg-pinks-300"></div>
-    <div className="w-5 h-5 bg-pinks-400"></div>
-    <div className="w-5 h-5 bg-pinks-500"></div>
-    <div className="w-5 h-5 bg-pinks-600"></div>
-    <div className="w-5 h-5 bg-pinks-700"></div>
-    <div className="w-5 h-5 bg-pinks-800"></div>
-    <div className="w-5 h-5 bg-pinks-900"></div>
-</div> */}
+           
               <div className="h-8 rounded-xl w-[12.5rem] bg-t-pl"></div>
               {/* <div className="h-8 rounded-xl w-[12.5rem] bg-[hsla(103,66%,58%,0.9)]"></div>
           <div className="h-8 rounded-xl w-[12.5rem] bg-clear-pl5"></div> */}
