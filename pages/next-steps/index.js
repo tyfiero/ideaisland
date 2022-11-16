@@ -2,11 +2,6 @@ import React from "react";
 // import { useState } from "react";
 import { auth } from "../../lib/firebase";
 
-// import axios from "axios";
-// let key = process.env.NEXT_PUBLIC_TEST;
-// console.log(key + "key");
-// const axios = require("axios");
-
 import AuthCheck from "../../components/Authentication/AuthCheck";
 
 import {
@@ -111,79 +106,10 @@ const ImplementationPage = (props) => {
                 />
               </Tilt>
 
-              {/* <ImplementTool
-              route="/next-steps/mrr-calculator"
-              color={"bg-blues-100"}
-              bColor="md:hover:ring-clear-bd3"
-              textColor=" text-t-bl"
-              title="Pricing Tool"
-              description="This tool helps you price your products and services."
-              imgSrc="https://images.unsplash.com/photo-1598520106830-8c45c2035460?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8d2hpdGVib2FyZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-            />
-            <ImplementTool
-              route="/next-steps/mrr-calculator"
-              color={"bg-blues-100"}
-              bColor="md:hover:ring-clear-bd3"
-              textColor=" text-t-bl"
-              title="Runway Calculator"
-              description="How long can you operate without revenue? This tool aims to show you."
-              imgSrc="https://images.unsplash.com/photo-1553729459-efe14ef6055d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjZ8fGNhbGN1bGF0b3J8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
-            />
-            <ImplementTool
-              route="/next-steps/mrr-calculator"
-              color={"bg-blues-100"}
-              bColor="md:hover:ring-clear-bd3"
-              textColor=" text-t-bl"
-              title="Marketing plan"
-              description="Build a simple marketing plan to help you grow your business."
-              imgSrc="https://images.unsplash.com/photo-1611926653458-09294b3142bf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDd8fG1hcmtldGluZ3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-            /> */}
+           
             </div>
           </div>
-          {/* <div className="flex flex-wrap items-center justify-center w-full px-5 pb-5 mt-2 border-4 border-t-pm rounded-2xl bg-clear-pm2">
-            <div className="flex w-full">
-              <p className="pb-3 text-t-pm">Web3 Tools</p>
-            </div>
-            <div className="flex">
-
-            <ImplementTool
-              route="/next-steps/mrr-calculator"
-              color={"bg-t-pl"}
-              bColor="md:hover:ring-t-pl"
-              textColor=" text-t-pm"
-              title="Tokenomics Calculator"
-              description="A calculator for calculating the tokenomics of a crypto project."
-              imgSrc="https://images.unsplash.com/photo-1631603090989-93f9ef6f9d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8Y3J5cHRvfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-            />
-            <ImplementTool
-              route="/next-steps/mrr-calculator"
-              color={"bg-t-pl"}
-              bColor="md:hover:ring-t-pl"
-              textColor=" text-t-pm"
-              title="NFT Project Tool"
-              description="Plan out your NFT project with this tool."
-              imgSrc="https://images.unsplash.com/photo-1642751227050-feb02d648136?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NzB8fGV0aGVyZXVtfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-            />
-            <ImplementTool
-              route="/next-steps/mrr-calculator"
-              color={"bg-t-pl"}
-              bColor="md:hover:ring-t-pl"
-              textColor=" text-t-pm"
-              title="DAO Tool"
-              description="A calculator to plan a DAO."
-              imgSrc="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzF8fG5ldHdvcmslMjBwZW9wbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
-            />
-            <ImplementTool
-              route="/next-steps/mrr-calculator"
-              color={"bg-t-pl"}
-              bColor="md:hover:ring-t-pl"
-              textColor=" text-t-pm"
-              title="Ecosystem Tool"
-              description="A tool to map out crypto ecosystems and identify gaps in the market."
-              imgSrc="https://images.unsplash.com/photo-1634704760994-96e3ccf2ae85?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGV0aGVyZXVtfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-            />
-          </div>
-          </div> */}
+         
         </div>
 
         <div className="flex p-2 mt-5 mb-10 rounded-xl bg-clear-pl4">

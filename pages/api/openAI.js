@@ -1,26 +1,15 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import axios from "axios";
-// import { responseSymbol } from "next/dist/server/web/spec-compliant/fetch-event";
 var throttle = require('lodash.throttle');
-
-
 const OpenAI = require("openai-api");
 const openai = new OpenAI(process.env.OPENAI_API_KEY);
-// import gpt3APIRequest from "./gpt";
-
    
-// import * as uuid from 'uuid'
 import rateLimit from "../../lib/ratelimit";
 
 const limiter = rateLimit({
   interval: 60 * 1000, // 60 seconds
   uniqueTokenPerInterval: 500, // Max 500 users per second
 })
-
-
 async function gpt3APIRequest(req) {
-  //   console.log(req.body.input);
-  // console.log(process.env.OPENAI_API_KEY);
   let user = req.body.user;
   let userInput = req.body.input;
   let type = req.body.type;
@@ -28,14 +17,8 @@ async function gpt3APIRequest(req) {
 
 
 
-
-// console.log(req.body )
-  // console.log(user)
-  //   let input = ` ${req}`;
-  // let prompt = `Brainstorm some ideas combining ${userInput}: `;
   let prompt = ` Making a new software product about ${userInput} is complex, but worth it. Here is a list of software product ideas in the ${userInput} domain:`;
 
-// console.log(kind);
   let aiInput 
 if(type === "plan"){
   // console.log("Kind is not null or undefined")
@@ -53,7 +36,6 @@ if(type === "plan"){
   aiInput = `${userInput} What is my vision for the future of my product?`;
 }
 }else{
-  // console.log("Where it needs to be")
 
   if(type === "expand"){
     aiInput = (userInput + " ")
@@ -66,13 +48,10 @@ if(type === "plan"){
 console.log(aiInput)
 console.log("^^input")
 
-// let shouldStream = type === "expand" ? true : false;
 let presence_penalty = type === "expand" ? 1.5 : 1;
 let frequency_penalty = type === "expand" ? 1.5 : 0.5;
-// console.log(aiInput )
 
   const gptResponse = await openai.complete({
-    // engine: "ada",
     engine: "text-davinci-002",
     prompt: aiInput,
     maxTokens: 100,
@@ -86,10 +65,9 @@ let frequency_penalty = type === "expand" ? 1.5 : 0.5;
     n: 1,
   });
 
-  //   console.log(gptResponse.data.choices[0].text);
 
   return gptResponse.data.choices[0].text;
-  //   res.status(200).json({ text: `${gptResponse.data.choices[0].text}` });
+
 }
 
 export default async function handler(req, res) {
@@ -146,9 +124,7 @@ export default async function handler(req, res) {
 
 }
 
-// export default gpt3APIRequest;
 
-//Content filter
 
 async function checkInContentFilter(message) {
   // from docs: https://beta.openai.com/docs/engines/content-filter

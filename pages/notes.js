@@ -13,29 +13,8 @@ const NotePage = (props) => {
   const [currentNote, setCurrentNote] = useState("ideas");
 
   const unsavedChangesRedux = useSelector((state) => state.unsavedChanges);
-  // const [ID, setID] = useState(null);
-  // useEffect(() => {
-
-  // console.log(currentNote)
-
   const [isMobile, setIsMobile] = useState(false);
   const [openNote, setOpenNote] = useState(false);
-
-  //choose the screen size
-  // const handleResize = () => {
-  //   if (   window.innerWidth < 720) {
-  //       setIsMobile(true)
-  //   } else {
-  //       setIsMobile(false)
-  //   }
-  // }
-
-  // // create an event listener
-  // useEffect(() => {
-  //   window.addEventListener("resize", handleResize)
-  // console.log("ran")
-  // })
-
   useEffect(() => {
     const getWindowDimensions = () => {
       const { innerWidth: width, innerHeight: height } = window;
@@ -62,9 +41,7 @@ const NotePage = (props) => {
   return (
     // <AuthCheck plan="Innovator">
       <div className="flex flex-col w-full mt-3 fade-effect-turbo sm:mb-20">
-        {/* <div className="flex flex-col items-center "> */}
-        {/* <p>A place for all of your wild ideas and notes.</p> */}
-        {/* </div> */}
+      
 
         {isMobile ? (
           <div className="w-full">

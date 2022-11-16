@@ -1,9 +1,6 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import axios from "axios";
-// import { responseSymbol } from "next/dist/server/web/spec-compliant/fetch-event";
 import sanitize from "../../lib/sanitize";
 
-// console.log(process.env.NEXT_PUBLIC_OPENAI_API_KEY);
 async function gptJAPIRequest(req) {
     console.log(req.body);
 
@@ -25,9 +22,8 @@ async function gptJAPIRequest(req) {
   };
   let config = {
     method: "POST",
-    // "Access-Control-Allow-Origin" : *,
     url: "https://api.textsynth.com/v1/engines/gptj_6B/completions",
-    // url: "/api/cors?url=https://api.textsynth.com/v1/engines/gptj_6B/completions",
+   
     headers: {
       Authorization: process.env.GPTJ_API_KEY,
       // "Access-Control-Allow-Origin": "*",
@@ -36,17 +32,9 @@ async function gptJAPIRequest(req) {
     data: promptToSend,
   };
 
-  // console.log(data);
   let axiosRequest = await axios(config)
-    //   axios(config)
     .then(function (response) {
-      //   console.log(axiosRequest);
-      //   console.log("res" + JSON.stringify(response.data));
-
       let gptjResponse = response.data.text;
-      //   console.log("data.text" + gptjResponse);
-      // dispatch(gptJOutputAction(gptjResponse));
-
       return gptjResponse;
     })
     .catch(function (error) {
@@ -56,11 +44,7 @@ async function gptJAPIRequest(req) {
     });
   return axiosRequest;
 }
-//   console.log(gptResponse.data.choices[0].text);
 
-//   return gptResponse.data.choices[0].text;
-//   res.status(200).json({ text: `${gptResponse.data.choices[0].text}` });
-// }
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
@@ -84,47 +68,3 @@ export default async function handler(req, res) {
     res.end();
   }
 }
-
-// export default gpt3APIRequest;
-
-// OLD GPTJ
-
-// useEffect(() => {
-//     if (GPTJStatus) {
-//       const jFunc = () => {
-//         console.log("redux input" + gptJInputRedux);
-//         var data = JSON.stringify({
-//           prompt: `${gptJInputRedux}:`,
-//         });
-
-//         //MUST BE UPDATED. THIS WILL NOT WORK IN PRODUCTION!!!!!
-//         var config = {
-//           method: "post",
-//           // url: "https://cors-anywhere.herokuapp.com/https://api.textsynth.com/v1/engines/gptj_6B/completions",
-//           // "Access-Control-Allow-Origin" : *,
-//           url: "https://api.textsynth.com/v1/engines/gptj_6B/completions",
-//           // url: "/api/cors?url=https://api.textsynth.com/v1/engines/gptj_6B/completions",
-
-//           headers: {
-//             Authorization: process.env.NEXT_PUBLIC__GPTJ_API_KEY,
-
-//             "Content-Type": "application/json",
-//           },
-//           data: data,
-//         };
-
-//         axios(config)
-//           .then(function (response) {
-//             console.log(JSON.stringify(response.data));
-//             let gptjResponse = response.data.text;
-//             // console.log(gptjResponse);
-//             dispatch(gptJOutputAction(gptjResponse));
-//           })
-//           .catch(function (error) {
-//             console.log(error);
-//           });
-//       };
-//       jFunc();
-//       setGPTJStatus(false);
-//     }
-//   }, [GPTJStatus]);

@@ -7,10 +7,8 @@ import {
   Store,
 } from "redux";
 import { persistStore, persistReducer } from "redux-persist";
-// import storage from "redux-persist/lib/storage";
 import { createWrapper, Context, HYDRATE } from "next-redux-wrapper";
 import thunkMiddleware from "redux-thunk";
-// import { composeWithDevTools } from '@redux-devtools/extension';
 import { createLogger } from "redux-logger";
 import hardSet from "redux-persist/lib/stateReconciler/autoMergeLevel2";
 
@@ -50,19 +48,6 @@ import sentenceArrayReducer from "./reducers/SentenceArray";
 import randomize2Reducer from "./reducers/randomize2";
 import currentJourney from "./reducers/currentJourney";
 //OTHER REDUCERS GO HERE
-
-// let devTools;
-// const isClient = typeof window !== "undefined";
-
-// if (
-//   isClient &&
-//   window.__REDUX_DEVTOOLS_EXTENSION__ &&
-//   window.__REDUX_DEVTOOLS_EXTENSION__()
-// ) {
-//   devTools =
-//     window.__REDUX_DEVTOOLS_EXTENSION__ &&
-//     window.__REDUX_DEVTOOLS_EXTENSION__();
-// }
 
 const appReducer = combineReducers({
   counter: counterReducer,

@@ -7,23 +7,23 @@ import TinderCard from "react-tinder-card";
 const db = [
   {
     name: "Could it be more specific?",
-    url: "https://rb.gy/df8y2i",
+    url: "https://images.unsplash.com/photo-1509233725247-49e657c54213?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=749&q=80",
   },
   {
     name: "Could it be downsized?",
-    url: "https://rb.gy/osiw9l",
+    url: "https://images.unsplash.com/photo-1559494007-9f5847c49d94?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
   },
   {
     name: "How would your family solve this problem?",
-    url: "https://rb.gy/s8a3mn",
+    url: "https://images.unsplash.com/photo-1454391304352-2bf4678b1a7a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
   },
   {
     name: "How might we make it cheaper?",
-    url: "https://rb.gy/1jfgm0",
+    url: "https://images.unsplash.com/photo-1538964173425-93884d739596?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80",
   },
   {
     name: "How could we speed up the process?",
-    url: "https://rb.gy/ujaeir",
+    url: "https://images.unsplash.com/photo-1506477331477-33d5d8b3dc85?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=734&q=80",
   },
 ];
 
@@ -81,7 +81,8 @@ function Advanced() {
 
   return (
     <div className="flex flex-col items-center mt-5 overflow-x-hidden">
-      <h1 className="mb-10 text-3xl text-t-bd">Question Cards</h1>
+      <h1 className="ml-20 text-3xl text-t-bd">Question Cards</h1>
+      <p className="ml-20 ">**Work in progress**</p>
       <div className="w-[40em] h-[30em] flex items-center justify-center ">
         {db.map((question, index) => (
           <TinderCard
@@ -94,11 +95,10 @@ function Advanced() {
             <div
               style={{
                 backgroundImage: "url(" + question.url + ")",
-                // transform: `translateX(${index * 10}px)`,
               }}
               className=" bg-center rounded-2xl bg-cover w-[25em] h-[30em] flex flex-col items-center justify-center p-5 md:hover:rotate-3 transition transform  duration-1000 md:hover:scale-105 translate-x-10"
             >
-              <h3 className="text-xl text-white nun infoText">
+              <h3 className="text-2xl text-sky-50 nun infoText">
                 {question.name}
               </h3>
             </div>
