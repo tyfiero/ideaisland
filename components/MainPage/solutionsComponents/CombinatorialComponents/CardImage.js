@@ -2,7 +2,7 @@ import Image from "next/image";
 import React, { useState, memo, useEffect } from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-
+const axios = require("axios");
 //cardimage.js global variables
 var imageData;
 var imagURLParse;
@@ -11,8 +11,6 @@ var photographerDataParse;
 var photographerData;
 var photoCreditStatement;
 var photoPage;
-
-const axios = require("axios");
 
 function CardImage(props) {
   const [isPhoto, setIsPhoto] = React.useState(null);
