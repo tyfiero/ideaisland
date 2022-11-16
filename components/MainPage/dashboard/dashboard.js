@@ -1,19 +1,12 @@
 import React from "react";
 import { useEffect } from "react";
-// import { auth } from "../../../lib/firebase";
 import { useSelector, useDispatch } from "react-redux";
 import PublicIdeaFeed from "../../PublicIdeaFeed";
-// import PieChart from "./PieChart";
-// import ChartIdeas from "./ChartIdeas";
 import IdeaSideBar from "../../Notes/IdeaSideBar";
 import statsAction from "../../../redux/actions";
 import FullLoader from "../../Layout/FullLoader";
 import AuthCheck from "../../Authentication/AuthCheck";
 import ReusableModal from "../../Layout/ReusableModal";
-// import statsAction
-// export async function getServerSideProps(context) {
-//   return {
-//     props: {},
 import dynamic from "next/dynamic";
 import IdeaFeed from "../../Notes/IdeaFeed";
 import IdeasList from "../../Notes/IdeasList";
@@ -21,9 +14,6 @@ import { FaExternalLinkAlt } from "react-icons/fa";
 import { useRouter } from "next/router";
 import CircleTimer from "../../Layout/Timer";
 const Quote = require("inspirational-quotes");
-
-//   }
-// }
 const Streak = dynamic(() => import("./Streak"), { ssr: false });
 const Dashboard = () => {
   const notesRedux = useSelector((state) => state.notes);
@@ -33,60 +23,9 @@ const Dashboard = () => {
   const dispatch = useDispatch();
 
   const [modalOpen, setModalOpen] = React.useState(false);
-  // console.log(auth.currentUser);
 
   return (
-    // <AuthCheck>
     <div className="flex flex-col items-center overflow-auto fade-effect-quick sm:mb-20">
-      {/* {modalOpen &&   <ReusableModal modalOpen={modalOpen} setModalOpen={setModalOpen} header="Test Header">  
-      <p>Does this work?</p>
-      <img src="ii-palm.png" alt="" />
-    </ReusableModal>}
-
-<button className="p-2 text-white bg-t-bl rounded-xl" onClick={()=>{setModalOpen(!modalOpen)}}>Open modal</button> */}
-
-      {/* <div className="dash-title">
-          <h1 className="text-3xl text-t-bd dark:text-blues-100">Dashboard</h1>
-        </div> */}
-      {/* <div className="mt-5 stat-holder dark:bg-red"> */}
-      {/* <button onClick={()=>{ dispatch(statsAction(5))}}>inc</button> */}
-      {/* <p>userName: {userNameRedux}</p> */}
-
-      {/* <div className="dash-stat">
-            <h2 className="heading text-t-bd dark:text-blues-100">Ideas</h2>
-            <h2 className="text-[40px] text-blues-600">{statsRedux?.ideaNum || 10}</h2>
-          </div> */}
-
-      {/* <div className="dash-stat">
-            <h2 className="heading text-t-bd dark:text-blues-100">
-              Login Streak
-            </h2>
-            <Streak />
-          </div> */}
-
-      {/* <div className="dash-stat !rounded-xl ">
-            <h2 className="heading text-t-bd dark:text-blues-100">
-              Evolved Ideas
-            </h2>
-            <h2 className="text-[40px]">3</h2>
-          </div> */}
-
-      {/* 
-
-          <div className="dash-stat">
-            <h2 className="heading text-t-bd dark:text-blues-100">Problems</h2>
-            <h2 className="text-[40px] text-blues-600">2</h2>
-          </div> */}
-
-      {/* <div className="dash-stat">
-            <h2 className="heading text-t-bd dark:text-blues-100">
-              Implementations
-            </h2>
-            <h2 className="text-[40px]">10</h2>
-          </div> */}
-      {/* </div> */}
-      {/* <CircleTimer /> */}
-
       <div className="flex flex-col items-center p-3 h-30 normal-box w-[80%] my-5 bg-white/60 dark:bg-black/60">
         <p className="text-xl heading text-t-bd dark:text-blues-100 fre">
           Question of the Week
@@ -96,12 +35,6 @@ const Dashboard = () => {
           mitigate or prevent it?
         </h1>
       </div>
-
-      {/* <p>
-        Include buttons to quickly launch favorite tools from dahsboard and
-        display recent notes. Maybe a hop back in to where you were last button
-        too{" "}
-      </p> */}
 
       <div className="flex items-center justify-center w-full gap-5 md:mx-0 md:my-5 sm:my-10">
         <div className="flex gap-5 md:flex-row sm:flex-col">
@@ -114,15 +47,10 @@ const Dashboard = () => {
 
             <div className="relative mt-2 group">
               <div className="absolute transition duration-1000 rounded-full opacity-25 -inset-1 bg-gradient-to-r from-t-pl via-t-bl to-t-bpop blur-sm group-hover:opacity-100 group-hover:duration-200 animate-gradient-xy"></div>
-              {/* <div className="relative flex justify-start rounded-lg ring-1 items-top"> */}
 
               <button
-                // type="submit"
-                // disabled={!isValid}
                 onClick={() => {
-                  // dispatch(editModeAction("new"));
                   router.push("/notes");
-                  // dispatch(currentDocAction(idea.identifier))
                 }}
                 className=" w-[12em] h-[2em] m-2 rounded-3xl bg-t-bl flex items-center justify-center text-slate-100 gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95 cursor-pointer md:hover:shadow-xl shadow-clear-bd3 step-2"
               >

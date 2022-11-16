@@ -13,18 +13,12 @@ import ReusableModal from "../Layout/ReusableModal";
 import { useRouter } from "next/router";
 
 function JourneyToolBar({ SW, setPlay, fullScreen, setFullScreen, kind }) {
-  // const sFormRedux = useSelector((state) => state.sForm);
-  // const sUpdate = useSelector((state) => state.sUpdate);
   const router = useRouter();
-  // const { idea } = useSelector((state) => state.sForm);
 
-  // const [ideaBar, setIdeaBar] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [openShareMenu, setOpenShareMenu] = useState(false);
   const [update, setUpdate] = useState(false);
 
-  // console.log(SW);
-  // console.log(SW?.state.activeStep);
 
   useEffect(() => {
     // console.log("ran")
