@@ -9,7 +9,6 @@ export default function AuthCheck(props) {
   const [loadingPlanUI, setLoadingPlanUI] = useState(false);
 
   useEffect(() => {
-    // console.log(loading);
 
     if (user?.uid) {
       setLoadingUI(false);
@@ -54,14 +53,7 @@ export default function AuthCheck(props) {
             </button>
           </a>
         </Link>
-        {/* <Link href="/signup" passHref>
-          <a>
-            <button className="w-[18em] h-12 rounded-3xl bg-t-pl flex items-center justify-center text-white gap-4 drop-shadow-xl md:hover:scale-105 md:transition-transform md:active:scale-95">
-              <FaIdCard style={{ color: "white", fontSize: "29px" }} />
-              Sign Up
-            </button>
-          </a>
-        </Link> */}
+     
       </div>
     </div>
     </div>

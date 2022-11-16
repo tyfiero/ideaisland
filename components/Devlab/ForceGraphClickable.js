@@ -5,13 +5,7 @@ import { ForceGraph2D, ForceGraph3D } from "react-force-graph";
 
 import DummyData from "./data.json";
 
-// import Button from "./Button";
-// import Info from "./Info";
-// import Menu from "./Menu";
-// import Panel from "./Panel";
-// import Toolbar from "./Toolbar";
 
-// import "./style.scss";
 
 const myInitialData = {
   nodes: [

@@ -9,7 +9,6 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 import { auth } from "../lib/firebase";
-// import { logIn } from "../../redux/actions";
 import { logIn, logOutAction } from "../redux/actions";
 import toast from "react-hot-toast";
 import Link from "next/link";
@@ -103,92 +102,12 @@ const [modalOpen, setModalOpen] = useState(false)
       </a>
 </Link>
 
-{/* <button
-        className=" w-[16em] px-3 py-2 font-medium rounded-full md:space-x-6 text-sm fade-effect text-white hover:text-blues-100 bg-t-bd mt-2 flex gap-3 items-center transition duration-500"
-        onClick={() => {
-          
-                          // eslint-disable-next-line
-          Paddle.User.History(user.email, null, function(response) {					
-            if(response.success) {
-              // Let the user know they'll receive an email with their 
-              // order history and license codes if their email was matched.
-              toast.success("Your order history has been sent to your email.");
-            } else {
-              // Likely a formatting error in the email, vendorID, or ProductID.
-              toast.error("There was an error sending your order history. Please contact us for support.");
-            }
-          });
-        }}
-      >
-        Send Order History to Email
-        <FaEnvelope />
-      </button> */}
-
-      {/* <button
-        className="flex items-center gap-3 px-3 py-1 mt-2 text-sm font-medium underline rounded-full md:space-x-6 fade-effect text-t-pm hover:text-t-pd"
-        onClick={() => {
-        setModalOpen(true)
-        }}
-      >
-        Cancel Subscription
-      </button> */}
       </div>
     
      
       <LogOutButton />
       </div>
-{/* <div className="bg-white/60 glass-box mt-36">
-    <p className="text-t-pm ">Danger Zone:</p>
-    {!deleteWindow && <button  className="flex items-center gap-3 px-3 py-2 font-medium text-black bg-red-400 rounded-full fade-effect hover:text-t-pd"
-    onClick={()=>{
-      setDeleteWindow(true)
-    }}
-    >Delete Account</button>}
-fa
 
-    {deleteWindow && <><p>Are you sure you want to delete your account?</p><div className="flex gap-3"><button  className="flex items-center gap-3 px-3 py-2 font-medium text-white rounded-full bg-t-bl fade-effect hover:text-t-pd"
-    onClick={()=>{
-      setDeleteWindow(false)
-    }}
-    >No, keep account</button><button  className="flex items-center gap-3 px-3 py-2 font-medium text-black bg-red-400 rounded-full fade-effect hover:text-t-pd"
-    onClick={()=>{
-      const auth = getAuth();
-      const user = auth.currentUser;
-      const userUid = auth.currentUser.uid
-
-
-      const credential = promptForCredentials();
-
-reauthenticateWithCredential(user, credential).then(() => {
-  // User re-authenticated.
-}).catch((error) => {
-  // An error ocurred
-  // ...
-});
-
-
-      const deleteAccount = async (e) => {
-        const ref = doc(getFirestore(), "users", userUid);
-        await deleteDoc(ref)
-          .then(() => {
-            console.log("deleted info");
-          })
-          .catch((error) => {
-            console.log("Delete failed!" + error);
-          });
-      };
-      
-      deleteUser(user).then(()=>{
-        toast.success("Account deleted, sorry to see you go!")
-      setDeleteWindow(false)
-
-        dispatch(logIn(false));
-        dispatch(logOutAction(true));
-        // router.push("/login")
-      })
-    }}
-    >Yes, delete account</button></div></>}
-     </div> */}
     </div>
   );
 }
